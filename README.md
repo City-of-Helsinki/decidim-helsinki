@@ -183,7 +183,7 @@ Launch Puma in the project root folder:
 
 ```
   cd /path/to/project
-  bundle exec RAILS_ENV=development
+  RAILS_ENV=development bundle exec rails s
 ```
 
 
