@@ -1,0 +1,19 @@
+.process_stats {
+  .process_stats-item {
+    position: relative;
+
+    .icon {
+      color: $black;
+    }
+    .fa {
+      position: absolute;
+      top: 18px;
+      width: 20px;
+      text-align: center;
+
+      + .process_stats-text {
+        margin-left: 30px;
+      }
+    }
+  }
+}

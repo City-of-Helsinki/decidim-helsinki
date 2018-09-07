@@ -1,0 +1,236 @@
+/* Foundation button overrides*/
+
+.button{
+  &.small{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+
+    &.compact{
+      padding-left: .5rem;
+      padding-right: .5rem;
+      letter-spacing: 0;
+    }
+  }
+  &.tiny{
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+
+    &.compact{
+      padding-left: .25rem;
+      padding-right: .25rem;
+      letter-spacing: 0;
+    }
+  }
+}
+
+// Overwrite Foundation hover styles in hollow disabled buttons
+.button.hollow:disabled:hover,
+.button.hollow.disabled:hover{
+  background-color: transparent;
+  border-color: inherit;
+  color: $primary;
+
+  &.secondary{
+    color: $secondary;
+  }
+
+  &.success{
+    color: $success;
+  }
+
+  &.alert{
+    color: $alert;
+  }
+
+  &.warning{
+    color: $warning;
+  }
+}
+
+.button.light:not(.hollow){
+  @include modifiers(color, (success: $white, secondary: $white));
+}
+
+// Button groups
+.button-group--collapse{
+  text-align: left;
+  margin-bottom: 0;
+  display: flex;
+
+  > :last-child{
+    flex: 1;
+  }
+
+  .button{
+    margin-right: 0;
+  }
+
+  > :first-child,
+  > :first-child *{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  > :last-child,
+  > :last-child *{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  > :not(:first-child):not(:last-child),
+  > :not(:first-child):not(:last-child) *{
+    border-radius: 0;
+  }
+}
+
+// buttons layout
+.buttons__row{
+  @include flexgap(.5rem);
+}
+
+.buttons__column{
+  @include flexgap(.5rem, column);
+}
+
+
+/* Extra buttons styles */
+
+.button--shadow{
+  $shadows:(
+    primary: shade($primary, 50),
+    secondary: shade($secondary, 50),
+    success: shade($success, 50),
+    warning: shade($warning, 50),
+    alert: shade($alert, 50),
+    muted: shade($muted, 50)
+  );
+
+  @include modifiers(background-color, $shadows){
+    color: $white;
+  }
+}
+
+.button--icon{
+  display: flex;
+  align-items: center;
+
+  .icon{
+    margin: 0 2px;
+  }
+  &.small{
+    .icon{
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+
+.button--nomargin{
+  margin: 0;
+}
+
+.button--frosted{
+  background-color: rgba($white, .65);
+  color: $primary;
+}
+
+.button--muted{
+  background-color: $muted;
+
+  &:hover{
+    background-color: $secondary;
+  }
+
+  &.hollow{
+    border-color: $muted;
+  }
+}
+
+.button--sc{
+  //text-transform: uppercase;
+  letter-spacing: .05em;
+  font-weight: 600;
+
+  &.large{
+    font-size: 1rem;
+  }
+}
+
+.button__info{
+  text-transform: none;
+  font-weight: normal;
+  font-size: 80%;
+  margin-top: .25rem;
+  display: block;
+}
+
+.link{
+  color: $anchor-color;
+  font-weight: 600;
+}
+
+.link--no-color{
+  color: inherit;
+}
+
+.muted-link{
+  font-weight: 600;
+  color: $muted;
+
+  &:hover{
+    color: $anchor-color;
+  }
+}
+
+.show-more{
+  text-align: center;
+  margin-bottom: $margin-s;
+}
+
+/* Social buttons */
+
+.button--social{
+  padding: 0 1.5rem 0 0;
+  text-align: center;
+  display: block;
+  min-width: 250px;
+
+  &.button--tunnistamo {
+    .icon {
+      width: 90px;
+      height: 40px;
+    }
+  }
+}
+
+.button--social__icon{
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.85em 1rem;
+  //border-right: 1px solid rgba(black, .075);
+  margin-right: .5rem;
+  min-width: 3rem;
+  text-align: center;
+}
+
+.button--twitter{
+  background-color: $twitter;
+
+  &:hover{
+    background-color: lighten($twitter,5);
+  }
+}
+.button--facebook{
+  background-color: $facebook;
+
+  &:hover{
+    background-color: lighten($facebook,5);
+  }
+}
+.button--google{
+  background-color: $google;
+
+  &:hover{
+    background-color: lighten($google,5);
+  }
+}

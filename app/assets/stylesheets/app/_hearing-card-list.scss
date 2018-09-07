@@ -1,0 +1,28 @@
+.hearing-card-list {
+
+  margin-bottom: $line-height-computed;
+
+  & > [class*='col-'] {
+    padding: 15px;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    display: flex;
+    flex-wrap: wrap;
+
+    &:before {
+      // Fix flex-wrap bug with Bootstrap Row in Safari
+      content: none !important;
+    }
+
+    & > [class*='col-'] {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      & > * {
+        flex-grow: 1;
+      }
+    }
+  }
+}

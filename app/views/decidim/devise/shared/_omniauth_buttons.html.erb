@@ -1,0 +1,32 @@
+<% if devise_mapping.omniauthable? && any_social_provider_enabled? %>
+  <div class="row">
+    <div class="columns large-6 medium-centered">
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <% if social_provider_enabled? provider %>
+          <div class="social-register">
+            <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button button--social button--#{normalize_provider_name(provider)}" do %>
+              <span class="button--social__icon">
+                <%= icon normalize_provider_name(provider) %>
+              </span>
+              <% if provider == :tunnistamo %>
+                <% if Rails.application.config.use_mode == 'kuva' %>
+                  <%= t('tunnistamo_explanation_internal', scope: "helsinki.devise.shared.omniauth_buttons") %>
+                <% else %>
+                  <%= t('tunnistamo_explanation', scope: "helsinki.devise.shared.omniauth_buttons") %>
+                <% end %>
+              <% else %>
+                <%= t("devise.shared.links.sign_in_with_provider", provider: normalize_provider_name(provider).titleize) %>
+              <% end %>
+            <% end %>
+          </div>
+          <% if provider == :tunnistamo %>
+            <p class="text-center"><%= t("helsinki.devise.shared.tunnistamo_description") %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <span class="register__separator">
+      <span class="register__separator__text"><%= t('.or') %></span>
+    </span>
+  </div>
+<% end %>

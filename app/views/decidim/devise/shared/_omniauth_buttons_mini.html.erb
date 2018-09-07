@@ -1,0 +1,26 @@
+<% if Devise.mappings[:user].omniauthable? && any_social_provider_enabled? %>
+  <div class="row">
+    <div class="columns medium-8 medium-centered">
+      <div class="text-center">
+        <%- Decidim::User.omniauth_providers.each do |provider| %>
+          <% if social_provider_enabled? provider %>
+            <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button button--social button--#{normalize_provider_name(provider)} button--social--mini" do %>
+              <span class="button--social__icon">
+                <%= icon normalize_provider_name(provider) %>
+              </span>
+              <% if provider == :tunnistamo %>
+                <%= t("helsinki.devise.shared.omniauth_buttons.tunnistamo_explanation_internal") %>
+              <% end %>
+            <% end %>
+            <% if provider == :tunnistamo %>
+              <p class="text-center"><%= t("helsinki.devise.shared.tunnistamo_description") %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <span class="register__separator">
+        <span class="register__separator__text"><%= t('or', scope: "decidim.devise.shared.omniauth_buttons") %></span>
+      </span>
+      </div>
+  </div>
+<% end %>

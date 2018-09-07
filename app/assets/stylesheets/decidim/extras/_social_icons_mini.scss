@@ -1,0 +1,17 @@
+.button--social--mini {
+  padding: 0.85em;
+  display: inline-block;
+  min-width: 0;
+
+  .button--social__icon {
+    border: 0;
+    padding: 0;
+    margin-right: 0.85em;
+  }
+
+  &.button--tunnistamo {
+    .icon {
+      height: 45px;
+    }
+  }
+}

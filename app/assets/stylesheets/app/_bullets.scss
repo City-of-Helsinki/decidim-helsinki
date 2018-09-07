@@ -1,0 +1,25 @@
+.home-bullets {
+  text-align: center;
+  margin-bottom: 40px;
+
+  .banner--guide {
+    background-color: $hel-engel;
+    padding: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .home-bullet__icon {
+    width: auto;
+    float: none;
+    text-align: center;
+
+    .fa {
+      display: inline-block;
+      padding: 28px 0;
+      font-size: 100px;
+    }
+  }
+  .home-bullet__desc {
+    width: auto;
+  }
+}

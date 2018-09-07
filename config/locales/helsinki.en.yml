@@ -1,0 +1,24 @@
+en:
+  helsinki:
+    areas:
+      choose_your_area: Valitse alueesi kartalta
+    map:
+      districts:
+        western: Western
+        northern: Northern
+        southern: Southern
+        central: Central
+        northeastern: Northeastern
+        eastern: Eastern
+        southeastern: Southeastern
+      image:
+        license: Image license
+        creator: Original creator of the image
+        note: The image has been edited from the original
+    devise:
+      shared:
+        omniauth_buttons:
+          tunnistamo_explanation: 'Facebook-, Google- or YLE authentication'
+          tunnistamo_explanation_internal: 'Tunnistamo authentication'
+        tunnistamo_description: Using Tunnistamo you can authenticate using Google, Facebook, YLE, or edu.hel.fi among others.
+    copyright: 2018 City of Helsinki

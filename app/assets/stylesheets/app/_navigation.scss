@@ -1,0 +1,82 @@
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar-inverse {
+  // Match with Kerrokantasi
+  border: 0;
+}
+
+.navbar-nav > .dropdown {
+  padding-top: 10px;
+}
+
+.navbar-secondary {
+  min-height: 30px;
+  margin-bottom: 0;
+  font-size: 14px;
+
+  .navbar-nav > li > a {
+    line-height: 1;
+    padding: 0 15px;
+    margin: 8px 0;
+    border-right: 1px solid $white;
+
+    &:hover,
+    &:active {
+      &:after {
+        border: 0;
+      }
+    }
+  }
+
+  .navbar-nav > li:last-child > a {
+    border-right: 0;
+  }
+}
+
+.navbar-right.nav-user-menu {
+  border: 1px solid $black;
+  margin-top: 10px;
+  margin-right: 0;
+  margin-left: 0;
+
+  @media (min-width: $screen-sm-min) {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  li > a {
+    padding: 6px;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+
+      &:after {
+        border: 0;
+      }
+    }
+  }
+}
+
+.navbar-inverse .navbar-right.nav-user-menu {
+  border: 1px solid $white;
+}
+
+.nav-fixed {
+  .navbar-primary {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 10000;
+  }
+
+  .navbar-primary-fixed-placeholder {
+    min-height: 60px;
+  }
+
+  .modal-dialog {
+    margin-top: 90px;
+  }
+}

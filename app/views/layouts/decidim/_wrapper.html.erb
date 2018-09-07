@@ -1,0 +1,143 @@
+<div class="off-canvas-wrapper">
+  <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+    <div class="off-canvas position-right hide-for-large" data-position="right"
+         id="offCanvas" data-off-canvas>
+
+      <!-- Close button -->
+      <button class="close-button"
+              aria-label="<%= t("layouts.decidim.header.close_menu") %>" type="button"
+              data-close>
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <!-- Menu -->
+      <div class="hide-for-medium" data-set="nav-holder"></div>
+      <div class="hide-for-medium usermenu-off-canvas-holder"
+           data-set="nav-login-holder"></div>
+    </div>
+
+    <div class="off-canvas-content" data-off-canvas-content>
+      <div class="footer-separator">
+        <!--separates the footer from the rest of the page,
+             creates a sticky footer-->
+
+        <div class="header-bar panel clearfix">
+          <div class="hki-city-logo"><%= image_tag "helsinki/helsinki-logo-white.svg", alt: "Helsinki" %></div>
+
+          <div class="system-menu">
+            <%= render partial: "layouts/decidim/language_chooser" %>
+
+            <% if display_common_elements? %>
+              <% if current_user %>
+                <div class="topbar__dropmenu topbar__user__logged">
+                  <%= link_to decidim.profile_notifications_path(current_user.nickname), class: "topbar__notifications #{current_user.notifications.any? ? "is-active" : ""}" do %>
+                    <%= icon "bell" %>
+                  <% end %>
+                  <%= link_to decidim.conversations_path, class: "topbar__conversations #{current_user.unread_conversations.any? ? "is-active" : ""}" do %>
+                    <%= icon "envelope-closed" %>
+                  <% end %>
+                  <ul class="dropdown menu" data-dropdown-menu>
+                    <li class="is-dropdown-submenu-parent show-for-medium">
+                      <%= link_to current_user.name, decidim.account_path %>
+                      <ul class="menu is-dropdown-submenu js-append usermenu-off-canvas">
+                        <%= render partial: "layouts/decidim/user_menu" %>
+                      </ul>
+                      <span data-set="nav-login-holder" class="show-for-medium">
+                        <!-- Repeated due to dropdown limitations -->
+                        <ul class="menu is-dropdown-submenu js-append usermenu-off-canvas">
+                          <%= render partial: "layouts/decidim/user_menu" %>
+                        </ul>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              <% else %>
+                <div class="topbar__user show-for-medium" data-set="nav-login-holder">
+                  <div class="topbar__user__login js-append">
+                    <%= link_to t("layouts.decidim.header.sign_up"), decidim.new_user_registration_path, class: "sign-up-link" %>
+                    <%= link_to t("layouts.decidim.header.sign_in"), decidim.new_user_session_path, class: "sign-in-link" %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Topbar -->
+        <div class="title-bar">
+          <% if current_organization.official_img_header? %>
+            <%= link_to current_organization.official_url, class: "logo-cityhall" do %>
+              <!-- <%= image_tag current_organization.official_img_header.url.to_s , alt: current_organization.name %> -->
+            <% end %>
+          <% end %>
+          <div class="topbar">
+            <div class="logo-wrapper">
+              <%= render partial: "layouts/decidim/logo", locals: { organization: current_organization } %>
+            </div>
+
+            <% if display_common_elements?  %>
+              <div class="show-for-medium topbar__navbar" data-set="nav-holder">
+                <nav class="navbar js-append">
+                  <%= main_menu.render %>
+                </nav>
+              </div>
+            <% end %>
+
+            <!-- <%= render partial: "layouts/decidim/topbar_search" %> -->
+
+            <% if display_common_elements? %>
+              <div class="hide-for-medium topbar__menu">
+                <button type="button" data-toggle="offCanvas">
+                  <%= icon "menu", aria_label: t("layouts.decidim.header.navigation"), role: "img" %>
+                </button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <main>
+          <%= display_flash_messages %>
+          <%= yield %>
+        </main>
+
+      </div><!-- /.footer-separator -->
+
+      <div class="main-footer">
+        <div class="row">
+          <div class="medium-3 column">
+            <%= link_to current_organization.official_url, class: "main-footer__badge" do %>
+              <%= image_tag "helsinki/helsinki-logo-white.svg", alt: "Helsinki" %>
+            <% end %>
+          </div>
+          <div class="medium-9 column main__footer__nav">
+            <% if current_organization.static_pages.any? %>
+              <h3><%= t("layouts.footer.about").html_safe %></h3>
+              <ul class="footer-nav">
+                <% current_organization.static_pages.sorted_by_i18n_title.each do |page| %>
+                  <li><%= link_to translated_attribute(page.title), decidim.page_path(page) %></li>
+                <% end %>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mini-footer">
+        <div class="row">
+          <div class="medium-6 column">
+            <a rel="license" class="cc-badge"
+               href="http://creativecommons.org/licenses/by-sa/4.0/"
+               target="_blank">
+              <%= image_tag("decidim/cc-badge.png", alt: "Creative Commons License" ) %></a>
+            <%= t("layouts.decidim.footer.made_with_open_source").html_safe %>
+          </div>
+          <div class="medium-6 column mini-footer__copyright">
+            <a href="mailto:osbu@hel.fi?subject=Avoin%20Budjetointi%20-palaute"><%= t("layouts.footer.feedback").html_safe %></a> |
+            <%= t("helsinki.copyright").html_safe %>
+          </div>
+        </div>
+      </div>
+
+    </div><!--/.off-canvas-content-->
+  </div><!--/.off-canvas-wrapper-inner-->
+</div><!--/.off-canvas-wrapper-->

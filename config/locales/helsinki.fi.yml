@@ -1,0 +1,24 @@
+fi:
+  helsinki:
+    areas:
+      choose_your_area: Valitse alueesi kartalta
+    map:
+      districts:
+        western: Läntinen
+        northern: Pohjoinen
+        southern: Eteläinen
+        central: Keskinen
+        northeastern: Koillinen
+        eastern: Itäinen
+        southeastern: Kaakkoinen
+      image:
+        license: Kuvan lisenssi
+        creator: Alkuperäisen kuvan tekijä
+        note: Kuvaa muokattu alkuperäisestä
+    devise:
+      shared:
+        omniauth_buttons:
+          tunnistamo_explanation: 'Facebook-, Google- tai YLE-kirjautuminen'
+          tunnistamo_explanation_internal: 'Tunnistamo-kirjautuminen'
+        tunnistamo_description: Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook-, YLE- tai edu.hel.fi-palveluiden avulla.
+    copyright: 2018 Helsingin kaupunki

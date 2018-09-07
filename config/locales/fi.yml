@@ -1,0 +1,30 @@
+fi:
+  auth:
+    sign_in_with_tunnistamo: 'Käytä Tunnistamoa kirjautuaksesi sisään'
+    sign_in_with_internal: Kirjaudu palvelun omalla tunnuksella
+    sign_up_with_internal: Rekisteröidy palvelun omalla tunnuksella
+  pages:
+    home:
+      hero:
+        participate: Osallistu
+      extended:
+        debates: Keskustelut
+        debates_explanation: Jaa henkilökohtaiset mielipiteesi ja näkemyksesi keskusteluiden kautta.
+        meetings_explanation: Tavataan ja osallistutaan kaupunkimme puolesta.
+        proposals: Ideat
+        proposals_explanation: Avoin tila asukkaiden ideoille siitä, millaisessa kaupungissa haluaisimme asua.
+        how_to_participate: Kuinka osallistun
+      statistics:
+        headline: Tämänhetkiset tilastot
+      footer_sub_hero:
+        footer_sub_hero_headline: Yhteisöllinen osallistumispalvelu
+      highlighted_processes:
+        active_processes: Käynnissä nyt
+        see_all_processes: Näytä kaikki
+      highlighted_process_groups:
+        active_processes: Käynnissä nyt
+        see_all_processes: Näytä kaikki
+  layouts:
+    footer:
+      feedback: Palaute
+      about: Tietoa palvelusta

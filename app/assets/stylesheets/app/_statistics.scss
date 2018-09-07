@@ -1,0 +1,20 @@
+.system-statistics {
+  .system-statistics-section {
+    display: inline-block;
+    width: 250px;
+    margin-bottom: 40px;
+
+    h4 {
+      margin-top: 0;
+    }
+    .fa {
+      font-size: 80px;
+    }
+    .system-statistics-count {
+      margin-top: 10px;
+      margin-bottom: 5px;
+      font-size: 40px;
+      line-height: 1;
+    }
+  }
+}

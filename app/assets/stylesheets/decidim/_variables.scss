@@ -1,0 +1,50 @@
+// Helsinki Brand Variables
+// Do not use these variables directly.
+// Map them to application or theme variables instead.
+// --------------------------------------------------
+
+// Brand colors
+
+$hel-white:         #ffffff;
+$hel-black:         #000000;
+$hel-copper:        #00d7a7;
+$hel-bus:           #0000bf;
+$hel-coat:          #0072c6;
+$hel-fog:           #9fc9eb;
+$hel-metro:         #fd4f00;
+$hel-brick:         #bd2719;
+$hel-suomenlinna:   #f5a3c7;
+$hel-engel:         #ffe977;
+$hel-tram:          #009246;
+$hel-summer:        #ffc61e;
+$hel-silver:        #dedfe1;
+$hel-gold:          #c2a251;
+$hel-dark-grey:     #525a65;
+$hel-medium-grey:   #abb2bd;
+$hel-light-grey:    #ebedf1;
+
+// Variables
+
+$primary: $hel-coat !default;
+$secondary: $hel-fog !default;
+$success: $hel-tram !default;
+$warning: $hel-summer !default;
+$alert: $hel-metro !default;
+
+$proposals: #238FF7 !default;
+$actions: #57D685 !default;
+$debates: #FA6C96 !default;
+$meetings: #FABC6C !default;
+
+$twitter: #55acee !default;
+$facebook: #3b5998 !default;
+$google: #dd4b39 !default;
+
+$hel-grotesk: "HelsinkiGrotesk", Arial, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+
+
+// Foundation customizations
+$body-background: #ffffff;

@@ -1,0 +1,420 @@
+/* Variables */
+
+$navbar-bg: transparent; // Changed - doing Helsinki mod
+$navbar-bg-hover: transparent; // Same as normal background - ie. no indicator
+$navbar-color: $hel-black;
+$navbar-color-hover: $navbar-color;
+$navbar-active-color: $white;
+$navbar-active-bg: $navbar-bg-hover;
+$navbar-active-shadow-small: inset 4px 0 0 0 $primary;
+$navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
+
+$header-background: $hel-metro;
+$header-foreground: $hel-white;
+
+/* Navigation */
+
+.navbar{
+  background: $navbar-bg;
+}
+
+/* Header bar */
+
+.header-bar {
+  background-color: $header-background;
+
+  .hki-city-logo {
+    float: left;
+    width: 108px;
+    padding: 18px 15px;
+    img { height: 100%; }
+  }
+  .system-menu {
+    float: right;
+    padding: 18px 15px;
+  }
+}
+
+/* Title bar */
+
+.title-bar{
+  position: relative;
+
+  /*@include breakpoint(smallmedium down){
+    border-top: 2.125rem solid $dark-gray;
+  }*/
+}
+
+.logo-cityhall{
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  margin-top: -1.95rem;
+  text-align: right;
+
+  img{
+    width: auto;
+    height: 22px !important;
+  }
+
+  @include breakpoint(medium){
+    top: 50%;
+    margin-top: -19px;
+
+    img{
+      height: 38px !important;
+    }
+  }
+}
+
+.topbar__search{
+  position: relative;
+
+  input,
+  input:focus{
+    color: $navbar-color-hover;
+    border: 0;
+    padding-left: $input-padding * 4;
+    box-shadow: none;
+    background: $navbar-active-bg;
+
+    @include breakpoint(medium){
+      background: $navbar-bg;
+    }
+  }
+
+  svg{
+    color: $input-placeholder-color;
+    position: absolute;
+    top: 50%;
+    left: $input-padding;
+    transform: translateY(-50%);
+    opacity: .5;
+  }
+}
+
+/* Top bar */
+/*.topbar{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}*/
+
+.logo-wrapper{
+  display: inline-block;
+  line-height: 0;
+  //flex-grow: 1;
+  float: left;
+  padding: 2px 10px 2px 0;
+
+  a{
+    display: inline-block;
+  }
+
+  img{
+    display: block;
+    max-height: 33px;
+
+    @include breakpoint(mediumlarge){
+      max-height: 45px;
+    }
+  }
+}
+
+/* Dropmenus in topbar */
+.topbar__dropmenu{
+  display: inline-block;
+  vertical-align: middle;
+  padding-top: 0;
+  margin-left: 2rem;
+
+  .dropdown > li > a{
+    padding-left: 0;
+  }
+
+  .dropdown{
+    display: inline-block;
+    vertical-align: middle;
+
+    .is-active > a {
+      color: $header-foreground;
+    }
+  }
+
+  .is-dropdown-submenu{
+    z-index: 2;
+    text-align: left;
+    padding-left: .3rem;
+    background-color: $white;
+    border: 1px solid $light-gray;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+    min-width: 150px;
+
+    li{
+      padding: $global-padding  / 2;
+
+      a{
+        padding: .5rem;
+        //color: $anchor-color;
+        color: $body-font-color;
+
+        &:hover{
+          color: lighten($body-font-color, 20);
+        }
+      }
+
+      &:not(:last-child){
+        border-bottom: $border;
+      }
+
+      &:hover{
+        cursor: pointer;
+        background-color: rgba($secondary, .05);
+      }
+    }
+  }
+
+  // Arrow center position
+  #topbar__language-choose .is-dropdown-submenu{
+    transform: translateX(-12%);
+    top: 110%;
+  }
+
+  #topbar__user-notifications .is-dropdown-submenu{
+    transform: translateX(-47%);
+    top: 110%;
+  }
+
+  #topbar__user-profile .is-dropdown-submenu{
+    transform: translateX(-40%);
+    top: 110%;
+  }
+}
+
+//Foundation overwrites
+.topbar__dropmenu > ul > li > a{
+  color: $header-foreground;
+
+  &:after{
+    margin-top: -1px !important;
+    border-top-color: $header-foreground !important;
+  }
+}
+
+.language-choose{
+  @include breakpoint(smallmedium down){
+    font-size: .8rem;
+    position: absolute;
+    top: -2.2rem;
+    left: .5rem;
+    margin-left: 0;
+
+    .dropdown.menu > li.is-dropdown-submenu-parent > a::after{
+      border-width: 3px;
+      right: 10px;
+      margin-top: 0;
+    }
+  }
+}
+
+.topbar__user{
+  display: inline-block;
+  margin-left: 2rem;
+  vertical-align: middle;
+}
+
+.topbar__user__logged{
+  display: inline-block;
+  text-align: right;
+  display: none;
+  vertical-align: middle;
+
+  @include breakpoint(medium){
+    display: inline-block;
+  }
+
+  // hide caret down
+  .dropdown.menu > li.is-dropdown-submenu-parent > a::after{
+    display: none;
+  }
+}
+
+.topbar__user__logged__picture{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: $border;
+  object-fit: cover;
+}
+
+.topbar__user__logged__name{
+  color: $body-font-color;
+
+  > *{
+    display: block;
+  }
+}
+
+.topbar__notifications,
+.topbar__conversations{
+  margin-right: 1rem;
+  vertical-align: -4px;
+
+  .icon{
+    fill: $black;
+    opacity: .3;
+  }
+
+  &.is-active .icon{
+    fill: $warning;
+    opacity: 1;
+  }
+}
+
+.topbar__notifications__item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $muted;
+  width: 250px;
+
+  @include flexgap(1rem);
+
+  strong{
+    color: $anchor-color;
+  }
+
+  :last-child{
+    flex: 1;
+
+    > *{
+      display: block;
+    }
+  }
+}
+
+.topbar__notifications__item--more{
+  text-align: center;
+  background-color: $light-gray-dark;
+  color: $anchor-color;
+  font-size: 90%;
+}
+
+.topbar__user__login{
+  text-align: right;
+  line-height: 1.2;
+
+  a{
+    color: $header-foreground;
+    font-weight: 600;
+
+    &:hover{
+      color: $header-foreground;
+    }
+  }
+
+  a:first-of-type::after{
+    content: "";
+    margin-left: .5rem;
+    margin-right: .5rem;
+    display: inline-block;
+    width: 1px;
+    height: 2px;
+    vertical-align: middle;
+  }
+}
+
+.off-canvas .topbar__user__login{
+  text-align: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+
+  a {
+    color: $white;
+
+    &:hover {
+      color: $header-foreground;
+    }
+  }
+}
+
+
+/* Menu icon and off-canvas */
+.topbar__menu{
+  text-align: right;
+  font-size: 20px;
+  margin-right: .1rem;
+
+  button {
+    color: inherit;
+  }
+}
+
+.usermenu-off-canvas-holder .usermenu-off-canvas{
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+
+  &.is-dropdown-submenu{
+    display: block;
+    position: static;
+    background: transparent;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  a{
+    display: block;
+    padding: 1em 2em;
+    color: $white;
+
+    &:hover{
+      background: $navbar-bg-hover;
+      color: $white;
+    }
+  }
+}
+
+
+/* Main nav */
+.main-nav ul{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  overflow-x: auto;
+
+  @include breakpoint(medium) {
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+
+    >li{
+      display: inline-block;
+    }
+  }
+}
+
+.main-nav__link a{
+  display: block;
+  padding: 1em 2em;
+  color: $navbar-color;
+  font-weight: 500;
+
+  &:hover{
+    text-decoration: underline;
+  }
+
+  @include breakpoint(medium){
+    padding: .2em 2em;
+  }
+}
+
+.off-canvas .main-nav__link a {
+  color: $white;
+
+  &:hover{
+    color: $white;
+  }
+}

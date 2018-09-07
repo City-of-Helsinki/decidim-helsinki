@@ -1,0 +1,30 @@
+en:
+  auth:
+    sign_in_with_tunnistamo: 'Use Tunnistamo to sign in'
+    sign_in_with_internal: Sign in using service authentication
+    sign_up_with_internal: Sign up using service authentication
+  pages:
+    home:
+      hero:
+        participate: Participate
+      extended:
+        debates: Discussions
+        debates_explanation: Share your personal opinions and points of views through discussions.
+        meetings_explanation: Let's meet and collaborate for our city.
+        proposals: Ideas
+        proposals_explanation: Open space for citizen ideas about what kind of city we want to live in.
+        how_to_participate: How to participate
+      statistics:
+        headline: Current statistics
+      footer_sub_hero:
+        footer_sub_hero_headline: Community participation service
+      highlighted_processes:
+        active_processes: Active now
+        see_all_processes: Show all
+      highlighted_process_groups:
+        active_processes: Active now
+        see_all_processes: Show all
+  layouts:
+    footer:
+      feedback: Feedback
+      about: About the service

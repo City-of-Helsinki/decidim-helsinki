@@ -1,0 +1,181 @@
+.hearing-list-item {
+    display: flex;
+    position: relative;
+    margin-bottom: $line-height-computed * 2;
+    width: 100%;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.33);
+
+    @media (max-width: $screen-xs-max) {
+        font-size: 1.4rem;
+    }
+    &-image {
+        flex-basis: 200px;
+        flex-shrink: 0;
+        flex-grow: 0;
+        background-size: cover;
+        background-position: center;
+
+        @media (max-width: $screen-xs-max) {
+            display: none;
+        }
+    }
+    &-content {
+        flex: 1 auto;
+        padding: $line-height-computed;
+    }
+    &-labels {
+        @extend .clearfix;
+        .label {
+            margin-bottom: 12px;
+        }
+    }
+    &-labellist {
+        float: left;
+    }
+    &-closed {
+        text-align: right;
+    }
+    &-title-wrap {
+        padding-right: 70px;
+        position: relative;
+    }
+    &-title {
+        margin-top: 0;
+        @media (max-width: $screen-xs-max) {
+            font-size: 1.5rem;
+        }
+    }
+    &-comments {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    &-times {
+        color: $text-muted;
+        font-size: 1.4rem;
+    }
+
+    .notice-content {
+        font-size: 14px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        color: #ffffff;
+        padding: 2px;
+        background: $gray-light;
+
+        .language-available-message {
+            font-size: 12px;
+        }
+    }
+
+}
+
+.page-section--all-hearings-header {
+  background-color: $light-gray;
+}
+
+.page-section--hearings-list {
+
+}
+
+.hearing-comment__images {
+    display: flex;
+
+    &-image {
+        max-width: 100px;
+        max-height: 100px;
+    }
+}
+
+.hearing-list-hidden {
+    display: none;
+}
+
+.hearing-list__tabs {
+    margin-top: 40px;
+    width: 100%;
+
+    &-empty {
+        width: 70%;
+        @media (max-width: $screen-xs-max) {
+            width: 60%;
+        }
+        @media (max-width: $screen-xs-min) {
+            width: 45%;
+        }
+    }
+}
+
+.hearing-list-map {
+    margin-top: 20px !important;
+}
+
+.hearing-list__filter-bar {
+    @extend .clearfix;
+    margin-bottom: $line-height-computed;
+
+    &-filter {
+        float: right;
+        @media (min-width: $screen-sm-min) {
+            width: 40%;
+        }
+    }
+
+    &-label {
+        float: right;
+        padding-top: 8px;
+        margin-right: 10px;
+    }
+}
+
+.page-section--hearings-search {
+    background-color: $light-gray;
+}
+
+.page-section--hearings-tabs {
+    background-color: $light-gray;
+}
+
+.hearings-search {
+
+    &__container {
+        padding-bottom: 10px;
+        height: 80px;
+    }
+
+    &__label {
+        width: 48%;
+        float: right;
+    }
+
+    &__text {
+        width: 48%;
+        display: inline-block;
+    }
+
+    &__button {
+        float: left;
+    }
+}
+
+.hearing-labels {
+    border: 1px solid #000;
+    border-top: none;
+    position: absolute;
+    background: #fff;
+    max-height: 300px;
+    z-index: 100;
+    overflow: auto;
+    margin-right: 30px;
+
+    &__label {
+        padding: 10px;
+
+        &:hover{
+            background: #005eb8;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+}

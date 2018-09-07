@@ -1,0 +1,272 @@
+// Select element overrides
+
+.select {
+  position: relative;
+  -webkit-appearance:none;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    right: 10px;
+    bottom: 0;
+    margin: auto;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: $black transparent transparent transparent;
+    pointer-events: none;
+  }
+
+  &:before {
+    width: 30px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: $gray-lighter;
+    content: '';
+    pointer-events: none;
+  }
+
+  &:hover {
+    &:after {
+      border-color: $theme-primary-dark transparent transparent transparent;
+    }
+  }
+
+  select {
+    border-width: 2px;
+    box-shadow: none;
+    cursor: pointer;
+    outline: none;
+    padding-right: 35px;
+    padding-left: 15px;
+
+    // Firefox style reset
+    -moz-appearance: none;
+
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 #000;
+    }
+
+    // Webkit style reset
+    -webkit-appearance: none;
+
+    // Disable default arrow on IE 11+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+}
+
+select.form-control:focus {
+  border-color: $black;
+}
+
+// IE 9 only
+@media all and (min-width:0\0) and (min-resolution:.001dpcm){
+  .select{
+    select {
+      padding-right: 0;
+    }
+
+    &:after, &:before {
+      display: none;
+    }
+  }
+}
+
+// Form element overrides
+
+.form-control {
+  border-width: 0 0 2px 0;
+  box-shadow: none;
+  height: 40px;
+  padding: 6px 0;
+}
+
+textarea.form-control {
+  border-width: 2px;
+  padding: 6px 12px;
+  &:focus {
+    border-color: $theme-highlight-dark;
+  }
+}
+
+// form element focus style
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.form-control:focus,
+.uneditable-input:focus {
+  border-bottom-color: $theme-highlight-dark;
+  box-shadow: none;
+}
+
+.input-group .form-control {
+  border-width: 2px;
+  padding: 6px 12px;
+
+  &:focus {
+    border-bottom-color: $black;
+  }
+}
+
+.input-group .form-control:first-child,
+.input-group-addon:first-child,
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn-group > .btn,
+.input-group-btn:first-child > .dropdown-toggle,
+.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
+  border-right-width: 0;
+}
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group > .btn,
+.input-group-btn:last-child > .dropdown-toggle,
+.input-group-btn:first-child > .btn:not(:first-child),
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+  border-left-width: 0;
+}
+
+.input-group-addon {
+  border-width: 2px;
+  color: $black;
+}
+
+// accommodate 2px border width in groups
+.btn-group {
+  .btn + .btn,
+  .btn + .btn-group,
+  .btn-group + .btn,
+  .btn-group + .btn-group {
+    margin-left: -2px;
+  }
+}
+
+// accommodate 2px border width in groups
+.btn-group-vertical {
+  > .btn + .btn,
+  > .btn + .btn-group,
+  > .btn-group + .btn,
+  > .btn-group + .btn-group {
+    margin-top: -2px;
+  }
+}
+
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+  padding: 6px 12px;
+  border-color: $gray-light;
+}
+
+.has-warning {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label {
+    color: $theme-warning;
+  }
+
+  .form-control {
+    border-color: $theme-warning;
+    box-shadow: none;
+    &:focus {
+      padding: 6px 12px;
+      border-color: $theme-warning;
+      background-color: lighten($theme-warning, 20%);
+      box-shadow: none;
+    }
+  }
+}
+
+.has-error {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label {
+    color: $theme-danger;
+  }
+
+  .form-control {
+    border-color: $theme-danger;
+    box-shadow: none;
+    &:focus {
+      padding: 6px 12px;
+      border-color: $theme-danger;
+      background-color: lighten($theme-danger, 15%);
+      box-shadow: none;
+    }
+  }
+}
+
+.has-success {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label {
+    color: $theme-success;
+  }
+
+  .form-control {
+    border-color: $theme-success;
+    box-shadow: none;
+    &:focus {
+      padding: 6px 12px;
+      border-color: $theme-success;
+      background-color: lighten($theme-success, 50%);
+      box-shadow: none;
+    }
+  }
+}
+
+.form-error {
+  display: none;
+  color: $brand-danger;
+
+  &.is-visible {
+    display: block;
+  }
+}
+
+legend {
+  padding: 0 5px;
+  border-bottom: 0;
+  font-size: 20px;
+}

@@ -1,0 +1,22 @@
+.main-labels {
+  margin-bottom: 10px;
+
+  .label {
+    font-size: 75%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+a.label-container {
+  text-decoration: none;
+}
+
+.off-canvas-wrapper{
+  background-color: $white;
+}
+
+ul.list-group {
+  margin-left: 0;
+  list-style-type: none;
+}

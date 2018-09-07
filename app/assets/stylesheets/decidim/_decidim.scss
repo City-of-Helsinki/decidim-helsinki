@@ -1,0 +1,34 @@
+@import "variables";
+@import "foundation";
+@import "utils/settings";
+
+@include foundation-everything($flex: false);
+
+@import "utils/fontface";
+@import "decidim/utils/helpers";
+@import "decidim/utils/keyframes";
+@import "decidim/utils/mixins";
+@import "decidim/utils/toggle-expand";
+@import "decidim/modules/modules";
+@import "modules/modules";
+@import "decidim/layouts/highlighted_banner";
+@import "layouts/home";
+@import "decidim/layouts/user";
+@import "decidim/layouts/view";
+//@import "layouts/*";
+@import "decidim/extras/add_comments";
+@import "decidim/extras/announcement";
+@import "decidim/extras/collection-sort-controls";
+@import "decidim/extras/embed";
+@import "decidim/extras/impersonation-bar";
+@import "decidim/extras/label-required";
+@import "decidim/extras/leaflet";
+@import "decidim/extras/meeting-registrations";
+@import "decidim/extras/process_stats";
+@import "decidim/extras/proposal_form";
+@import "decidim/extras/quill";
+@import "decidim/extras/reference";
+@import "decidim/extras/results-per-page";
+@import "decidim/extras/social_icons_mini";
+@import "decidim/extras/status-labels";
+@import "extras/*";

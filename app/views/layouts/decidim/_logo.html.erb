@@ -1,0 +1,49 @@
+<% if organization %>
+  <%= link_to decidim.root_url(host: organization.host) do %>
+    <!-- Default Helsinki boat logo, if the organization does not have a
+         image set. The image can be set (overriden) via Admin dashboard
+         within Decidim -->
+
+    <style>
+    .logo-wrapper span {
+      color: #000000;
+      font-weight: 600;
+      font-size: 1.4em;
+      display: inline-block;
+      text-align: left;
+      line-height: 1;
+      position: relative;
+    }
+    .logo-wrapper svg{
+       color: #000000;
+       font-weight: 600;
+       font-size: 1.4em;
+       display: inline-block;
+       text-align: left;
+       line-height: 1;
+       position: relative;
+    }
+    </style>
+
+
+    <span class='logo-wrapper'>
+    </span>
+
+    <span class='logo-wrapper'>
+      <%= organization.name %>
+    </span>
+     <!--
+      // This below is the vertical "blip", a narrow block on left organization's name
+     .logo-wrapper span:before{
+       content: "";
+       display: block;
+       position: absolute;
+       border-left: 4px solid white;
+       height: 88%;
+       top: 6%; left: 0;
+     }
+     -->
+  <% end %>
+<% else %>
+  <%= Decidim.application_name %>
+<% end %>

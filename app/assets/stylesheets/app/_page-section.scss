@@ -1,0 +1,24 @@
+.page-section {
+  position: relative;
+  padding-top: 44px;
+  padding-bottom: 44px;
+}
+
+.page-section--hearing-card {
+  background-color: $hel-engel;
+
+  .hearing-koro {
+    @include koro("wave", $hel-engel, 300);
+
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    z-index: 10;
+    top: -30px;
+  }
+}
+
+.process-group-description {
+  margin-bottom: 50px;
+}

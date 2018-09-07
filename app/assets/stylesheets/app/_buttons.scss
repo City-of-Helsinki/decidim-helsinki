@@ -1,0 +1,30 @@
+.btn {
+  border-width: 0px;
+}
+
+.button--social {
+  &.button--tunnistamo {
+    .button--social__icon {
+      position: relative;
+      top: 2px;
+      min-width: 5rem;
+      padding: 0.65em 1rem;
+
+      .icon {
+        width: 75px;
+        height: 35px;
+
+        path {
+          fill: #f00;
+        }
+      }
+    }
+  }
+}
+
+.sort-buttons {
+  > div {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
