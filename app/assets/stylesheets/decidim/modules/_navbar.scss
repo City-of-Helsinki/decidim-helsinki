@@ -202,6 +202,10 @@ $header-foreground: $hel-white;
   }
 }
 
+.topbar__edit__link a {
+  color: $header-foreground;
+}
+
 .language-choose{
   @include breakpoint(smallmedium down){
     font-size: .8rem;
@@ -237,6 +241,17 @@ $header-foreground: $hel-white;
   // hide caret down
   .dropdown.menu > li.is-dropdown-submenu-parent > a::after{
     display: none;
+  }
+}
+
+.topbar__edit__link {
+  display: inline-block;
+  text-align: right;
+  display: none;
+  vertical-align: middle;
+
+  @include breakpoint(medium){
+    display: inline-block;
   }
 }
 
