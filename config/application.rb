@@ -15,6 +15,11 @@ module DecidimHelsinki
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # Add the override translations to the load path
+    config.i18n.load_path += Dir[
+      Rails.root.join('config', 'locales', 'crowdin-master/*.yml').to_s
+    ]
+
     # String identifier, this defines the main mode of Decidim
     # See README.md for more explation on this.
     #
