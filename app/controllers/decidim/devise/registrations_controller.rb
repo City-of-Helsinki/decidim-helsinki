@@ -9,9 +9,9 @@ module Decidim
       include Decidim::DeviseControllers
       include NeedsTosAccepted
 
-      # Normal login enabled -> comment out the before_action below 
+      # Normal login enabled -> comment out the before_action below
       # To Disable login     -> comment the line below
-      if Rails.application.config.use_mode == 'kuva'
+      if Rails.application.config.use_mode == 'private'
         before_action :disable_controller
       end
 

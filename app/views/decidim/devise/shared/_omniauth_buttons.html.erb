@@ -9,7 +9,7 @@
                 <%= icon normalize_provider_name(provider) %>
               </span>
               <% if provider == :tunnistamo %>
-                <% if Rails.application.config.use_mode == 'kuva' %>
+                <% if Rails.application.config.use_mode == 'private' %>
                   <%= t('tunnistamo_explanation_internal', scope: "helsinki.devise.shared.omniauth_buttons") %>
                 <% else %>
                   <%= t('tunnistamo_explanation', scope: "helsinki.devise.shared.omniauth_buttons") %>

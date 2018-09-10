@@ -123,13 +123,15 @@ end
             <% end %>
           </div>
           <div class="medium-9 column main__footer__nav">
-            <% if current_organization.static_pages.any? %>
-              <h3><%= t("layouts.footer.about").html_safe %></h3>
-              <ul class="footer-nav">
-                <% current_organization.static_pages.sorted_by_i18n_title.each do |page| %>
-                  <li><%= link_to translated_attribute(page.title), decidim.page_path(page) %></li>
-                <% end %>
-              </ul>
+            <% if display_common_elements? %>
+              <% if current_organization.static_pages.any? %>
+                <h3><%= t("layouts.footer.about").html_safe %></h3>
+                <ul class="footer-nav">
+                  <% current_organization.static_pages.sorted_by_i18n_title.each do |page| %>
+                    <li><%= link_to translated_attribute(page.title), decidim.page_path(page) %></li>
+                  <% end %>
+                </ul>
+              <% end %>
             <% end %>
           </div>
         </div>

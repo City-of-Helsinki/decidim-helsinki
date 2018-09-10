@@ -8,7 +8,7 @@
   </div>
   <div class="row">
     <%= render "decidim/devise/shared/omniauth_buttons_mini" %>
-    <%= render "shared/internal_auth_link" %>  
+    <%= render "shared/internal_auth_link" %>
     <div id="internal-auth-form" class="columns medium-8 medium-centered hide">
       <%= decidim_form_for(Decidim::User.new, as: :user, url: session_path(:user), html: { class: "register-form new_user" }) do |f| %>
         <div>
@@ -23,9 +23,11 @@
           <%= f.submit t("devise.sessions.new.sign_in"), class: "button expanded" %>
         </div>
       <% end %>
-      <p class="text-center">
-        <%= link_to t(".sign_up"), decidim.new_user_registration_path, class: "sign-up-link" %>
-      </p>
+      <% if Devise.mappings[:user].registerable? %>
+        <p class="text-center">
+          <%= link_to t(".sign_up"), decidim.new_user_registration_path, class: "sign-up-link" %>
+        </p>
+      <% end %>
       <p class="text-center">
         <%= link_to t("devise.shared.links.forgot_your_password"), new_password_path(:user) %>
       </p>

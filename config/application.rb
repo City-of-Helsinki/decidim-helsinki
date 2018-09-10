@@ -25,9 +25,9 @@ module DecidimHelsinki
     #
     # Available throughout code as: Rails.application.config.use_mode
     # Allowed values are:
-    #   'kuva' : string = Using this Decidim for Kulttuuri- ja vapaa-aika (Helsinki)
-    #   'ibud' : string = Interactive budgeting (Helsinki (original, pilot usage of Decidim)
-    config.use_mode = 'ibud'
+    #   'private' : string = Private mode (force logging in)
+    #   'normal' : string = Normal mode without modifications
+    config.use_mode = 'normal'
 
     # Passes a block of code to do after initialization.
     config.after_initialize do

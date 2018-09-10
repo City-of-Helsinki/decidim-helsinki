@@ -132,26 +132,26 @@ The switch is in source file: `./config/application.rb`
 Variable name is set on a line like this:
 
 ```
-  config.use_mode = 'kuva'
+  config.use_mode = 'private'
 ```
 
 Read below for explanation of the 2 modes.
 
-#### config.use_mode='kuva'
+#### config.use_mode='private'
 
-'kuva' = Using Decidim for the Ideapaahtimo instance, forcing all users to
-         authenticate before they can access the service. Used to be Kulttuuri-
-         ja vapaa-aika (Helsinki, i.e. "KUVA", thus the name). After setting
-         this, the application will force authentication to the platform for all
-         users, automatically. No public (unauthorized user) viewing is allowed.
-         This is the sort of "intranet" use mode for City employees-only.
+'private' = Using Decidim for the Ideapaahtimo instance, forcing all users to
+            authenticate before they can access the service. After setting this,
+            the application will force authentication to the platform for all
+            users, automatically. No public (unauthorized user) viewing is
+            allowed. This is the sort of "intranet" use mode for City
+            employees-only.
 
 To run this on development, you can use the `development_kuva` environment as
 follows:
 
 `RAILS_ENV=development_kuva bundle exec rails s`
 
-Specific notable features in KuVa (Ideapaahtimo) use:
+Specific notable features in private use (Ideapaahtimo/KuVa):
 
 * Login is mandatory: no public pages/resources
 * UI differs from that of other use mode(s)

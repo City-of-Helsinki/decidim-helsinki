@@ -3,7 +3,7 @@ Rails.application.configure do
 
   # String identifier, this defines the main mode of Decidim
   # See README.md for more explation on this.
-  config.use_mode = 'kuva'
+  config.use_mode = 'private'
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

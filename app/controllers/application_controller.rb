@@ -17,16 +17,16 @@ class ApplicationController < ActionController::Base
   # Breaks the request lifecycle, if user is not authenticated.
   # Otherwise returns.
   def ensure_authenticated!
-    # Block of code to apply extra auth check only for the KuVa branch
-    # of decidim. 'ibud' mode => does not apply checks.
-    if Rails.application.config.use_mode != 'kuva'
+    # Block of code to apply extra auth check only for the private mode
+    # of Decidim. 'normal' mode => does not apply checks.
+    if Rails.application.config.use_mode != 'private'
       return
     end
 
     # Next stop: Let's check whether auth is ok
     unless user_signed_in?
       flash[:warning] = I18n.t('auth.sign_in_with_tunnistamo')
-      return redirect_to new_user_session_path
+      return redirect_to decidim.new_user_session_path
     end
   end
 

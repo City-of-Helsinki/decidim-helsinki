@@ -3,7 +3,7 @@ Rails.application.configure do
 
   # String identifier, this defines the main mode of Decidim
   # See README.md for more explation on this.
-  config.use_mode = 'kuva'
+  config.use_mode = 'private'
 
   # Code is not reloaded between requests.
   config.cache_classes = true
