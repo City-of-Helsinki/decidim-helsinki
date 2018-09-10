@@ -2,10 +2,11 @@ source "https://rubygems.org"
 
 ruby '2.4.1'
 
-# The new 0.12-stable gem of Decidim. This ~> allows minor version updates
-# in the version range. Run updates by following the Decidim web page's
-# instructions.
-gem "decidim", '~> 0.12.2'
+# Run updates by following the Decidim upgrade instructions:
+# https://github.com/decidim/decidim/blob/master/docs/getting_started.md#keeping-your-app-up-to-date
+DECIDIM_VERSION = "0.14.0"
+
+gem "decidim", DECIDIM_VERSION
 
 gem "font-awesome-rails", "~> 4.7.0"
 
@@ -23,7 +24,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'decidim-dev', '~> 0.12.2'
+  gem 'decidim-dev', DECIDIM_VERSION
 
   gem 'web-console'
   gem 'listen', '~> 3.1.0'
