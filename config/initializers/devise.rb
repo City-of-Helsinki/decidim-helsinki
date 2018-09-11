@@ -71,5 +71,3 @@ Devise.setup do |config|
     end
   end
 end
-
-Decidim::User.send(:include, UserAuthentication)
