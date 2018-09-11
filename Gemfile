@@ -33,17 +33,7 @@ group :development do
   gem 'faker', '~> 1.8.4'
 end
 
-group :production do
-  gem "rails_12factor"
-  gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
-end
-
-group :production_kuva do
-  gem "rails_12factor"
-  gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
-end
-
-group :staging do
+group :production, :production_kuva, :staging do
   gem "rails_12factor"
   gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 end
