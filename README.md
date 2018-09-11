@@ -163,12 +163,10 @@ Tunnistamo is a user federation / administration service built by the City of
 Helsinki. Check out more docs at:
 [Tunnistamo in github](https://github.com/City-of-Helsinki/tunnistamo/)
 
-#### config.use_mode='ibud' (default)
+#### config.use_mode='normal' (default)
 
-'ibud' = Interactive budgeting (Helsinki (original, pilot usage of Decidim)
-         The Helsinki Participatory Budgeting - open to public (citizens)
-         Users who use the system are authenticated also by using Tunnistamo,
-         but they may have
+'normal' = Normal mode, application is open to public (citizens) users, no login
+           required before accessing the content.
 
 
 ## Development
