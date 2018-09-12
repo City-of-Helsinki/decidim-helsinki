@@ -10,6 +10,7 @@ $navbar-active-shadow-small: inset 4px 0 0 0 $primary;
 $navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
 
 $header-background: $hel-metro;
+$header-background-paahtimo: $hel-gold;
 $header-foreground: $hel-white;
 
 /* Navigation */
@@ -32,6 +33,12 @@ $header-foreground: $hel-white;
   .system-menu {
     float: right;
     padding: 18px 15px;
+  }
+}
+
+.wrapper-paahtimo {
+  .header-bar {
+    background-color: $header-background-paahtimo;
   }
 }
 

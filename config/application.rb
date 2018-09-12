@@ -29,6 +29,10 @@ module DecidimHelsinki
     #   'normal' : string = Normal mode without modifications
     config.use_mode = 'normal'
 
+    # Wrapper class can be used to customize the coloring of the platform per
+    # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
+    config.wrapper_class = 'wrapper-default'
+
     # Passes a block of code to do after initialization.
     config.after_initialize do
       # Override the main menu

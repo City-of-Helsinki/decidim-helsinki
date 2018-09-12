@@ -1,4 +1,5 @@
 $footer-bg: $hel-metro;
+$footer-bg-paahtimo: $hel-gold;
 $footer-fg: $hel-white;
 
 .main-footer,
@@ -19,7 +20,14 @@ $footer-fg: $hel-white;
 
   a {
     color: $footer-fg;
-    text-decoration: underline;  
+    text-decoration: underline;
+  }
+}
+
+.wrapper-paahtimo {
+  .main-footer,
+  .mini-footer {
+    background-color: $footer-bg-paahtimo;
   }
 }
 
