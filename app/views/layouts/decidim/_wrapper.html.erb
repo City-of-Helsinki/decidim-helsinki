@@ -115,44 +115,7 @@ end
 
       </div><!-- /.footer-separator -->
 
-      <div class="main-footer">
-        <div class="row">
-          <div class="medium-3 column">
-            <%= link_to current_organization.official_url, class: "main-footer__badge" do %>
-              <%= image_tag "helsinki/helsinki-logo-white.svg", alt: "Helsinki" %>
-            <% end %>
-          </div>
-          <div class="medium-9 column main__footer__nav">
-            <% if display_common_elements? %>
-              <% if current_organization.static_pages.any? %>
-                <h3><%= t("layouts.footer.about").html_safe %></h3>
-                <ul class="footer-nav">
-                  <% current_organization.static_pages.sorted_by_i18n_title.each do |page| %>
-                    <li><%= link_to translated_attribute(page.title), decidim.page_path(page) %></li>
-                  <% end %>
-                </ul>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <div class="mini-footer">
-        <div class="row">
-          <div class="medium-6 column">
-            <a rel="license" class="cc-badge"
-               href="http://creativecommons.org/licenses/by-sa/4.0/"
-               target="_blank">
-              <%= image_tag("decidim/cc-badge.png", alt: "Creative Commons License" ) %></a>
-            <%= t("layouts.decidim.footer.made_with_open_source").html_safe %>
-          </div>
-          <div class="medium-6 column mini-footer__copyright">
-            <a href="mailto:osbu@hel.fi?subject=Avoin%20Budjetointi%20-palaute"><%= t("layouts.footer.feedback").html_safe %></a> |
-            <%= t("helsinki.copyright").html_safe %>
-          </div>
-        </div>
-      </div>
-
+      <%= render partial: 'layouts/helsinki/footer' %>
     </div><!--/.off-canvas-content-->
   </div><!--/.off-canvas-wrapper-inner-->
 </div><!--/.off-canvas-wrapper-->
