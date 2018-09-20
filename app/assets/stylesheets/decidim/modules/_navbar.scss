@@ -5,6 +5,7 @@ $navbar-bg-hover: transparent; // Same as normal background - ie. no indicator
 $navbar-color: $hel-black;
 $navbar-color-hover: $navbar-color;
 $navbar-active-color: $white;
+$navbar-active-color-paahtimo: $hel-black;
 $navbar-active-bg: $navbar-bg-hover;
 $navbar-active-shadow-small: inset 4px 0 0 0 $primary;
 $navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
@@ -12,6 +13,7 @@ $navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
 $header-background: $hel-metro;
 $header-background-paahtimo: $hel-gold;
 $header-foreground: $hel-white;
+$header-foreground-paahtimo: $hel-black;
 
 /* Navigation */
 
@@ -199,6 +201,16 @@ $header-foreground: $hel-white;
   }
 }
 
+.wrapper-paahtimo{
+  .topbar__dropmenu{
+    .dropdown{
+      .is-active > a {
+        color: $header-foreground-paahtimo;
+      }
+    }
+  }
+}
+
 //Foundation overwrites
 .topbar__dropmenu > ul > li > a{
   color: $header-foreground;
@@ -209,8 +221,24 @@ $header-foreground: $hel-white;
   }
 }
 
+.wrapper-paahtimo{
+  .topbar__dropmenu > ul > li > a{
+    color: $header-foreground-paahtimo;
+
+    &:after{
+      border-top-color: $header-foreground-paahtimo !important;
+    }
+  }
+}
+
 .topbar__edit__link a {
   color: $header-foreground;
+}
+
+.wrapper-paahtimo{
+  .topbar__edit__link a{
+    color: $header-foreground-paahtimo;
+  }
 }
 
 .language-choose{

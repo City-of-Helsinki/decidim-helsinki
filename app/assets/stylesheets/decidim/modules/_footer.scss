@@ -1,6 +1,7 @@
 $footer-bg: $hel-metro;
 $footer-bg-paahtimo: $hel-gold;
 $footer-fg: $hel-white;
+$footer-fg-paahtimo: $hel-black;
 
 .main-footer,
 .mini-footer  {
@@ -28,6 +29,11 @@ $footer-fg: $hel-white;
   .main-footer,
   .mini-footer {
     background-color: $footer-bg-paahtimo;
+    color: $footer-fg-paahtimo;
+
+    a {
+      color: $footer-fg-paahtimo;
+    }
   }
 }
 
@@ -48,6 +54,14 @@ $footer-fg: $hel-white;
   .footer-nav {
     list-style: none;
     margin: 0;
+  }
+}
+
+.wrapper-paahtimo {
+  .main__footer__nav {
+    h3 {
+      color: $footer-fg-paahtimo;
+    }
   }
 }
 

@@ -179,6 +179,13 @@
   background-color: $hel-copper;
 }
 
+.wrapper-paahtimo {
+  .wrapper-home.home-section {
+    .section-heading { color: $hel-black; }
+    background-color: $hel-white;
+  }
+}
+
 .wrapper-home--mini{
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -211,6 +218,12 @@
     @include breakpoint(medium down){
       font-size: 1.2em;
     }
+  }
+}
+
+.wrapper-paahtimo {
+  .subhero{
+    h2, h3, h4 { color: $hel-gold; }
   }
 }
 
