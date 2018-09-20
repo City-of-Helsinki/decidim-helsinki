@@ -36,7 +36,7 @@ wrapper_class = Rails.application.config.wrapper_class
              creates a sticky footer-->
 
         <div class="header-bar panel clearfix">
-          <div class="hki-city-logo"><%= image_tag "helsinki/helsinki-logo-white.svg", alt: "Helsinki" %></div>
+          <div class="hki-city-logo"><%= image_tag "helsinki/helsinki-logo-#{Rails.application.config.color_profile}.svg", alt: "Helsinki" %></div>
 
           <div class="system-menu">
             <%= render partial: "layouts/decidim/language_chooser" %>

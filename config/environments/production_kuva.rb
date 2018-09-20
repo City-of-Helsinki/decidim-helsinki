@@ -9,6 +9,9 @@ Rails.application.configure do
   # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
   config.wrapper_class = 'wrapper-paahtimo'
 
+  # Color profile that changes the logo color for header and footer
+  config.color_profile = 'black'
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

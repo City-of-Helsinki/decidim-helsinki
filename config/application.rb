@@ -33,6 +33,9 @@ module DecidimHelsinki
     # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
     config.wrapper_class = 'wrapper-default'
 
+    # Color profile that changes the logo color for header and footer
+    config.color_profile = 'white'
+
     # Passes a block of code to do after initialization.
     config.after_initialize do
       # Override the main menu
