@@ -16,6 +16,7 @@
 //= require cable
 //= require_self
 //= require decidim
+//= require ie-polyfills
 
 (function ($) {
   $(document).on('ready', function () {
