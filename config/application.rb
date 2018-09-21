@@ -17,7 +17,8 @@ module DecidimHelsinki
 
     # Add the override translations to the load path
     config.i18n.load_path += Dir[
-      Rails.root.join('config', 'locales', 'crowdin-master/*.yml').to_s
+      Rails.root.join('config', 'locales', 'crowdin-master/*.yml').to_s,
+      Rails.root.join('config', 'locales', 'overrides/*.yml').to_s,
     ]
 
     # String identifier, this defines the main mode of Decidim
