@@ -11,6 +11,7 @@
             .css({
               backgroundImage: 'url(' + imgUrl + ')',
               backgroundSize: 'cover',
+              backgroundPosition: 'center center',
             })
             .addClass('compat-object-fit')
             .height(height)
