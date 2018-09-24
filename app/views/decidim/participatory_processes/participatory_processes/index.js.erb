@@ -1,4 +1,4 @@
-$(document).ready(function() {
+(function ($) {
   var $grid = $('#processes-grid');
   var $loading = $grid.find('.loading');
 
@@ -6,6 +6,6 @@ $(document).ready(function() {
   $grid.find('.processes-grid-order-by').html('<%= j(render(partial: "decidim/participatory_processes/participatory_processes/order_by_processes", locals: { include_filter: true })).strip.html_safe %>');
   $loading.hide();
 
-  // IE polyfill
-  $('img.card__image').objectFitPolyfill();
-})
+  // IE polyfills
+  $('body').applyPolyfills();
+})($);
