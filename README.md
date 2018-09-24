@@ -184,6 +184,40 @@ Launch Puma in the project root folder:
   RAILS_ENV=development bundle exec rails s
 ```
 
+### Comments component
+
+The comments component has been extracted from the main Decidim application to
+apply local changes to it. The main reason for this was to make it IE11
+compatible.
+
+The comments component works as a standalone React application which is bundled
+for the Rails assets pipeline. Every time making changes to the app, please
+rebuild the application bundle.
+
+The application sources live at `vendor/decidim-comments`. The sources are
+bundled locally to the app directory using Webpack.
+
+Follow Decidim's own instructions regarding developing the comments component:
+
+https://github.com/decidim/decidim/tree/master/decidim-comments
+
+In short:
+
+- Install npm dependencies with:
+  `npm i`
+- During development, run the webpack watcher with (it will rebuild the app
+  every time you make changes):
+  `npm start`
+- Make your changes to the React app at `vendor/decidim-comments`
+- Test it in the browser
+- Once you are finished, stop the watcher and run tests with:
+  `npm test`
+- If some tests fail, fix them
+- Build the production version of the application bundle with:
+  `npm run build:prod`
+- Commit your changes along with the new bundle created at
+  `app/assets/javascripts/decidim/comments/bundle.js`
+
 
 ## Deploying the Code (production)
 
