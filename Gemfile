@@ -34,7 +34,6 @@ group :development do
 end
 
 group :production, :production_kuva, :staging do
-  gem "rails_12factor"
   gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 end
 
