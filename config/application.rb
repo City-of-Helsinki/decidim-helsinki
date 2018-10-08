@@ -11,6 +11,11 @@ module DecidimHelsinki
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    # Configure an application wide address suffix to pass to the geocoder.
+    # This is to make sure that the addresses are not incorrectly mapped outside
+    # of the wanted area.
+    config.address_suffix = 'Helsinki, Finland'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
