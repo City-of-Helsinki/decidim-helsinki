@@ -2,7 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Wrapper class can be used to customize the coloring of the platform per
-  # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
+  # environment. This is used mainly for the custom instances.
   config.wrapper_class = 'wrapper-discussion'
 
   # Code is not reloaded between requests.
@@ -32,7 +32,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = 'https://ideapaahtimo.osallistu.hel.fi'
+  config.action_controller.asset_host = 'https://keskustelu.hel.fi'
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
