@@ -97,6 +97,9 @@ Rails.application.configure do
     }
   end
 
+  # Sending address for mails
+  config.mailer_sender = "no-reply@omastadi.hel.fi"
+
   # Default URL for application (Devise)
   config.action_controller.default_url_options  = {
     #protocol: 'https', # Breaks login redirection

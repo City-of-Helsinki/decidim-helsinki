@@ -16,6 +16,9 @@ module DecidimHelsinki
     # of the wanted area.
     config.address_suffix = 'Helsinki, Finland'
 
+    # Sending address for mails
+    config.mailer_sender = "no-reply@omastadi.hel.fi"
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

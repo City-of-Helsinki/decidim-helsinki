@@ -1,16 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # String identifier, this defines the main mode of Decidim
-  # See README.md for more explation on this.
-  config.use_mode = 'private'
-
   # Wrapper class can be used to customize the coloring of the platform per
   # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
-  config.wrapper_class = 'wrapper-paahtimo'
-
-  # Color profile that changes the logo color for header and footer
-  config.color_profile = 'black'
+  config.wrapper_class = 'wrapper-discussion'
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -97,20 +90,18 @@ Rails.application.configure do
   end
 
   # Sending address for mails
-  config.mailer_sender = "no-reply@ideapaahtimo.osallistu.hel.fi"
+  config.mailer_sender = "no-reply@keskustelu.hel.fi"
 
   # Default URL for application (Devise)
   config.action_controller.default_url_options  = {
-    #protocol: 'https', # Breaks login redirection
-    host: 'ideapaahtimo.osallistu.hel.fi',
+    host: 'keskustelu.hel.fi',
     port: 443,
   }
 
   # Default URL for mailer (Devise)
   config.action_mailer.default_url_options = {
     protocol: 'https',
-    host: 'ideapaahtimo.osallistu.hel.fi',
-    #from: 'no-reply@ideapaahtimo.osallistu.hel.fi', # Causes forms to break e.g. when publishing proposal
+    host: 'keskustelu.hel.fi',
   }
 
   # Use a different logger for distributed setups.
