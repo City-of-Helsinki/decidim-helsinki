@@ -4,7 +4,7 @@ ruby '2.4.1'
 
 # Run updates by following the Decidim upgrade instructions:
 # https://github.com/decidim/decidim/blob/master/docs/getting_started.md#keeping-your-app-up-to-date
-DECIDIM_VERSION = "0.14.2"
+DECIDIM_VERSION = "0.14.3"
 
 gem "decidim", DECIDIM_VERSION
 
