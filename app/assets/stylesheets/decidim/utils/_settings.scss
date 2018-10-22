@@ -85,7 +85,7 @@ $black: $hel-black;
 $white: #fff;
 $light-gray-dark: darken($light-gray, 2.5) !default;
 $body-background: $light-gray;
-$body-font-color: #3D393C;
+$body-font-color: $hel-black;
 $muted: lighten($body-font-color, 30) !default;
 $body-font-family: $hel-grotesk;
 $body-antialiased: true;
@@ -93,7 +93,7 @@ $global-margin: 1rem;
 $global-padding: 1rem;
 $global-position: 1rem;
 $global-weight-normal: normal;
-$global-weight-bold: 500;
+$global-weight-bold: 800;
 $global-radius: 0;
 $global-menu-padding: .7rem 1rem;
 $global-menu-nested-margin: 1rem;
@@ -141,7 +141,7 @@ $block-grid-max: 8;
 // ------------------
 
 $header-font-family: $body-font-family;
-$header-font-weight: $global-weight-normal;
+$header-font-weight: $global-weight-bold;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $header-color: #000000;
@@ -179,8 +179,9 @@ $code-border: 1px solid $medium-gray;
 $code-padding: rem-calc(2 5 1);
 $anchor-color: $secondary-color;
 $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
+$anchor-font-weight: 600;
 $anchor-text-decoration: none;
-$anchor-text-decoration-hover: none;
+$anchor-text-decoration-hover: underline;
 $hr-width: $global-width;
 $hr-border: 1px solid $medium-gray;
 $hr-margin: 6rem auto 5rem;
@@ -798,7 +799,7 @@ $thumbnail-radius: $global-radius;
 // $titlebar-color: $white;
 $titlebar-background: transparent;
 $titlebar-color: #000000;
-$titlebar-padding: 1rem 0.5rem;
+$titlebar-padding: 0;
 $titlebar-text-font-weight: bold;
 $titlebar-icon-color: $white;
 $titlebar-icon-color-hover: $medium-gray;
@@ -820,8 +821,8 @@ $tooltip-radius: $global-radius;
 // 55. Top Bar
 // -----------
 
-$topbar-padding: 0.5rem;
-$topbar-background: $black;
+$topbar-padding: 1rem 0.5rem 1.1rem;
+$topbar-background: $hel-white;
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 1rem;
 $topbar-input-width: 200px;

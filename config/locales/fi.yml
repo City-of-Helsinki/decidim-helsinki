@@ -26,5 +26,5 @@ fi:
         see_all_processes: Näytä kaikki
   layouts:
     footer:
-      feedback: Palaute
+      feedback: Anna palautetta
       about: Tietoa palvelusta

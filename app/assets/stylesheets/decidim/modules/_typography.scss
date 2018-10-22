@@ -52,6 +52,10 @@ input{
   font-size: 1rem;
 }
 
+a{
+  font-weight: $anchor-font-weight;
+}
+
 hr{
   width: 50%;
 

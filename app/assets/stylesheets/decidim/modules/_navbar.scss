@@ -1,46 +1,55 @@
 /* Variables */
 
-$navbar-bg: transparent; // Changed - doing Helsinki mod
-$navbar-bg-hover: transparent; // Same as normal background - ie. no indicator
+$navbar-bg: $hel-white;
+$navbar-bg-hover: rgba(white, .02);
 $navbar-color: $hel-black;
-$navbar-color-hover: $navbar-color;
-$navbar-active-color: $white;
-$navbar-active-color-paahtimo: $hel-black;
+$navbar-color-hover: $hel-black;
+$navbar-active-color: $hel-black;
 $navbar-active-bg: $navbar-bg-hover;
 $navbar-active-shadow-small: inset 4px 0 0 0 $primary;
 $navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
 
-$header-background: $hel-metro;
-$header-background-paahtimo: $hel-gold;
-$header-foreground: $hel-white;
-$header-foreground-paahtimo: $hel-black;
+$titlebar-bg: $hel-copper;
+$titlebar-bg-paahtimo: $hel-gold;
+$titlebar-bg-discussion: $hel-metro;
+$titlebar-fg: $hel-black;
+$titlebar-fg-paahtimo: $hel-black;
+$titlebar-fg-discussion: $hel-white;
+
+$menuitem-padding: 1em 2em;
 
 /* Navigation */
 
 .navbar{
   background: $navbar-bg;
+
+  .menu-main{
+    padding-top: .8rem;
+  }
+
+  .top-bar-right{
+    @include breakpoint(medium){
+      padding-top: .1rem;
+    }
+
+    @include breakpoint(large){
+      padding-top: 1.05rem;
+    }
+
+    @include breakpoint(xlarge){
+      padding-top: 1.3rem;
+    }
+  }
 }
 
-/* Header bar */
-
-.header-bar {
-  background-color: $header-background;
-
-  .hki-city-logo {
-    float: left;
-    width: 108px;
-    padding: 18px 15px;
-    img { height: 100%; }
+.top-bar{
+  @include breakpoint(medium){
+    padding-top: 1.5rem;
   }
-  .system-menu {
-    float: right;
-    padding: 18px 15px;
-  }
-}
 
-.wrapper-paahtimo {
-  .header-bar {
-    background-color: $header-background-paahtimo;
+  .top-bar-left,
+  .top-bar-right{
+    width: auto;
   }
 }
 
@@ -48,10 +57,46 @@ $header-foreground-paahtimo: $hel-black;
 
 .title-bar{
   position: relative;
+  background-color: $titlebar-bg;
+  color: $titlebar-fg;
 
-  /*@include breakpoint(smallmedium down){
-    border-top: 2.125rem solid $dark-gray;
-  }*/
+  .title{
+    padding: .25rem 0 .9rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    @include breakpoint(medium){
+      font-size: 3rem;
+    }
+  }
+
+  .koro-top{
+    @include koro("basic", $titlebar-bg, 1000);
+    height: 28px;
+    background-color: $navbar-bg;
+  }
+}
+
+.wrapper-paahtimo{
+  .title-bar{
+    background-color: $titlebar-bg-paahtimo;
+    color: $titlebar-fg-paahtimo;
+
+    .koro-top{
+      @include koro("basic", $titlebar-bg-paahtimo, 1000);
+    }
+  }
+}
+
+.wrapper-discussion{
+  .title-bar{
+    background-color: $titlebar-bg-discussion;
+    color: $titlebar-fg-discussion;
+
+    .koro-top{
+      @include koro("basic", $titlebar-bg-discussion, 1000);
+    }
+  }
 }
 
 .logo-cityhall{
@@ -104,18 +149,25 @@ $header-foreground-paahtimo: $hel-black;
 }
 
 /* Top bar */
-/*.topbar{
+.topbar{
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-}*/
+  justify-content: flex-start;
+}
 
 .logo-wrapper{
-  display: inline-block;
-  line-height: 0;
-  //flex-grow: 1;
+  display: block;
   float: left;
-  padding: 2px 10px 2px 0;
+  width: 110px;
+  line-height: 0;
+  margin-right: 1rem;
+
+  @include breakpoint(medium){
+    width: 160px;
+  }
+  @include breakpoint(xlarge){
+    margin-right: 1.8rem;
+  }
 
   a{
     display: inline-block;
@@ -123,20 +175,31 @@ $header-foreground-paahtimo: $hel-black;
 
   img{
     display: block;
-    max-height: 33px;
+    max-height: 50px;
 
-    @include breakpoint(mediumlarge){
-      max-height: 45px;
+    @include breakpoint(medium){
+      max-height: 75px;
     }
   }
 }
 
+.menu-main{
+  display: inline-block;
+}
+
 /* Dropmenus in topbar */
 .topbar__dropmenu{
-  display: inline-block;
   vertical-align: middle;
   padding-top: 0;
-  margin-left: 2rem;
+
+  @include breakpoint(large){
+    display: inline-block;
+    margin-left: 1rem;
+  }
+
+  &.language-choose{
+    margin-left: 0;
+  }
 
   .dropdown > li > a{
     padding-left: 0;
@@ -145,28 +208,50 @@ $header-foreground-paahtimo: $hel-black;
   .dropdown{
     display: inline-block;
     vertical-align: middle;
-
-    .is-active > a {
-      color: $header-foreground;
-    }
   }
 
   .is-dropdown-submenu{
     z-index: 2;
     text-align: left;
-    padding-left: .3rem;
+    padding: 0;
     background-color: $white;
     border: 1px solid $light-gray;
+    border-radius: 4px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
     min-width: 150px;
+
+    &::after,
+    &::before{
+      bottom: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    &::after{
+      border-color: rgba($light-gray, 0);
+      border-bottom-color: $white;
+      border-width: 10px;
+      margin-left: -10px;
+    }
+
+    &::before{
+      border-color: rgba($light-gray, 0);
+      border-bottom-color: $white;
+      border-width: 11px;
+      margin-left: -11px;
+    }
 
     li{
       padding: $global-padding  / 2;
 
       a{
         padding: .5rem;
-        //color: $anchor-color;
-        color: $body-font-color;
+        color: $anchor-color;
 
         &:hover{
           color: lighten($body-font-color, 20);
@@ -201,92 +286,37 @@ $header-foreground-paahtimo: $hel-black;
   }
 }
 
-.wrapper-paahtimo{
-  .topbar__dropmenu{
-    .dropdown{
-      .is-active > a {
-        color: $header-foreground-paahtimo;
-      }
-    }
-  }
-}
-
 //Foundation overwrites
 .topbar__dropmenu > ul > li > a{
-  color: $header-foreground;
+  color: $body-font-color;
 
-  &:after{
+  &::after{
     margin-top: -1px !important;
-    border-top-color: $header-foreground !important;
-  }
-}
-
-.wrapper-paahtimo{
-  .topbar__dropmenu > ul > li > a{
-    color: $header-foreground-paahtimo;
-
-    &:after{
-      border-top-color: $header-foreground-paahtimo !important;
-    }
-  }
-}
-
-.topbar__edit__link a {
-  color: $header-foreground;
-}
-
-.wrapper-paahtimo{
-  .topbar__edit__link a{
-    color: $header-foreground-paahtimo;
-  }
-}
-
-.language-choose{
-  @include breakpoint(smallmedium down){
-    font-size: .8rem;
-    position: absolute;
-    top: -2.2rem;
-    left: .5rem;
-    margin-left: 0;
-
-    .dropdown.menu > li.is-dropdown-submenu-parent > a::after{
-      border-width: 3px;
-      right: 10px;
-      margin-top: 0;
-    }
+    border-top-color: $body-font-color !important;
   }
 }
 
 .topbar__user{
   display: inline-block;
+  padding-right: 2.5rem;
   margin-left: 2rem;
-  vertical-align: middle;
+
+  @media (min-width: (1300 / 16) + em){
+    padding-right: 0;
+  }
 }
 
 .topbar__user__logged{
-  display: inline-block;
   text-align: right;
+  padding-right: 0;
   display: none;
-  vertical-align: middle;
 
   @include breakpoint(medium){
     display: inline-block;
   }
 
-  // hide caret down
-  .dropdown.menu > li.is-dropdown-submenu-parent > a::after{
-    display: none;
-  }
-}
-
-.topbar__edit__link {
-  display: inline-block;
-  text-align: right;
-  display: none;
-  vertical-align: middle;
-
-  @include breakpoint(medium){
-    display: inline-block;
+  @media (min-width: (1300 / 16) + em){
+    padding-right: 0;
   }
 }
 
@@ -312,7 +342,7 @@ $header-foreground-paahtimo: $hel-black;
   vertical-align: -4px;
 
   .icon{
-    fill: $black;
+    fill: $medium-gray;
     opacity: .3;
   }
 
@@ -356,11 +386,10 @@ $header-foreground-paahtimo: $hel-black;
   line-height: 1.2;
 
   a{
-    color: $header-foreground;
-    font-weight: 600;
+    color: $body-font-color;
 
     &:hover{
-      color: $header-foreground;
+      color: $anchor-color;
     }
   }
 
@@ -371,36 +400,69 @@ $header-foreground-paahtimo: $hel-black;
     display: inline-block;
     width: 1px;
     height: 2px;
+    border-left: $border;
     vertical-align: middle;
   }
 }
 
-.off-canvas .topbar__user__login{
-  text-align: center;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
+/* Menu icon and off-canvas */
+.topbar__menu{
+  text-align: right;
+  font-size: 30px;
+  margin-right: .1rem;
 
-  a {
-    color: $white;
+  @include breakpoint(medium){
+    font-size: 40px;
+  }
 
-    &:hover {
-      color: $header-foreground;
+  button{
+    position: relative;
+    color: inherit;
+
+    &.button-menu{
+      top: -1px;
+    }
+
+    .text-small{
+      position: relative;
+      top: -5px;
+      margin-right: 0.2rem;
+      color: $body-font-color;
+      font-size: 1.2rem;
+
+      @include breakpoint(medium){
+        top: -9px;
+        font-size: 1.6rem;
+      }
+    }
+  }
+  .menu{
+    li{
+      margin-left: .5rem;
+
+      @include breakpoint(medium){
+        margin-left: 1.4rem;
+      }
     }
   }
 }
 
+.topbar__language-menu{
+  display: inline-block;
+}
 
-/* Menu icon and off-canvas */
-.topbar__menu{
-  text-align: right;
-  font-size: 20px;
-  margin-right: .1rem;
+.topbar__edit__link{
+  display: inline-block;
+  vertical-align: middle;
 
-  button {
-    color: inherit;
+  a{
+    padding: $menu-item-padding;
+    color: $medium-gray;
+
+    &:hover{
+      background: $navbar-bg-hover;
+      color: $navbar-color-hover;
+    }
   }
 }
 
@@ -419,15 +481,23 @@ $header-foreground-paahtimo: $hel-black;
   a{
     display: block;
     padding: 1em 2em;
-    color: $white;
+    color: $navbar-color;
 
     &:hover{
       background: $navbar-bg-hover;
-      color: $white;
+      color: $navbar-color-hover;
     }
   }
 }
 
+.off-canvas .topbar__user__login{
+  text-align: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
 
 /* Main nav */
 .main-nav ul{
@@ -436,35 +506,57 @@ $header-foreground-paahtimo: $hel-black;
   list-style: none;
   overflow-x: auto;
 
-  @include breakpoint(medium) {
+  @include breakpoint(large){
     -webkit-overflow-scrolling: touch;
     white-space: nowrap;
+    display: flex;
 
-    >li{
+    > li{
       display: inline-block;
+      flex: 1;
+      text-align: center;
     }
   }
 }
 
-.main-nav__link a{
+.main-nav__link a,
+.user-nav__link a,
+.language-nav__link a{
   display: block;
-  padding: 1em 2em;
+  padding: $menuitem-padding;
   color: $navbar-color;
-  font-weight: 500;
 
   &:hover{
-    text-decoration: underline;
-  }
-
-  @include breakpoint(medium){
-    padding: .2em 2em;
+    background: $navbar-bg-hover;
+    color: $anchor-color;
   }
 }
 
-.off-canvas .main-nav__link a {
-  color: $white;
+.accordion-menu .is-accordion-submenu .user-nav__link a{
+  @include breakpoint(smallmedium){
+    padding: $menuitem-padding;
+    padding-left: 3rem;
+  }
+}
 
-  &:hover{
-    color: $white;
+.main-nav__link a{
+  @include breakpoint(large){
+    padding: 0.7rem 1.3rem;
+    font-size: 1.3rem;
+  }
+  @include breakpoint(xlarge){
+    padding: 0.7rem 1.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+.main-nav__link--active a{
+  //box-shadow: $navbar-active-shadow-small;
+  font-weight: 800;
+  color: $navbar-active-color;
+  background: $navbar-active-bg;
+
+  @include breakpoint(medium){
+    //box-shadow: $navbar-active-shadow-medium;
   }
 }

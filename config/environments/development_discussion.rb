@@ -5,6 +5,9 @@ Rails.application.configure do
   # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
   config.wrapper_class = 'wrapper-discussion'
 
+  # Color profile that changes the logo color for footer
+  config.color_profile = 'white'
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

@@ -1,0 +1,10 @@
+<% if available_locales.length > 1 %>
+  <div class="topbar__dropmenu language-choose">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="is-dropdown-submenu-parent">
+        <%= link_to t("name", scope: "locale") %>
+        <%= render partial: "layouts/decidim/language_chooser_languages" %>
+      </li>
+    </ul>
+  </div>
+<% end %>

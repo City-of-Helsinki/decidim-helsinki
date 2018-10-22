@@ -5,6 +5,9 @@ Rails.application.configure do
   # environment. This is used mainly for the custom instances.
   config.wrapper_class = 'wrapper-discussion'
 
+  # Color profile that changes the logo color for footer
+  config.color_profile = 'white'
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

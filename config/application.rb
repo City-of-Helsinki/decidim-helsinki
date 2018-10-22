@@ -43,13 +43,18 @@ module DecidimHelsinki
     config.wrapper_class = 'wrapper-default'
 
     # Color profile that changes the logo color for header and footer
-    config.color_profile = 'white'
+    config.color_profile = 'black'
 
     # Passes a block of code to do after initialization.
     config.after_initialize do
       # Override the main menu
       Decidim::MenuRegistry.create(:menu)
       Decidim.menu :menu do |menu|
+
+        menu.item I18n.t("menu.home", scope: "decidim"),
+                  decidim.root_path,
+                  position: 1,
+                  active: :inclusive
 
         menu.item I18n.t("menu.processes", scope: "decidim"),
                   decidim_participatory_processes.participatory_processes_path,
