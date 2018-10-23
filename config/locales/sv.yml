@@ -1,12 +1,6 @@
 en:
   auth:
-<<<<<<< HEAD
-    sign_in_with_tunnistamo: 'Använd Tunnistamo för att logga in'
-=======
     sign_in_with_tunnistamo: 'Logga in med Tunnistamo'
-    sign_in_with_internal: Logga in med hjälp av serviceverifiering
-    sign_up_with_internal: Registrera dig med hjälp av serviceverifiering
->>>>>>> develop
   pages:
     home:
       hero:
@@ -24,21 +18,11 @@ en:
         footer_sub_hero_headline: Gemenskapens deltagande tjänst
       highlighted_processes:
         active_processes: Aktiv nu
-<<<<<<< HEAD
-        see_all_processes: Visa allt
+        see_all_processes: Visa alla
       highlighted_process_groups:
         active_processes: Aktiv nu
-        see_all_processes: Visa allt
+        see_all_processes: Visa alla
   layouts:
     footer:
       feedback: Ge feedback
-=======
-        see_all_processes: Visa alla
-      highlighted_process_groups:
-        active_processes: Aktiv nu
-        see_all_processes: Visa alla
-  layouts:
-    footer:
-      feedback: Feedback
->>>>>>> develop
       about: Om tjänsten
