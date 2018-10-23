@@ -7,16 +7,24 @@
             <h3 class="h5 margin-bottom-1">
               <%= t("devise.shared.omniauth.#{provider}.sign_in_with") %>
             </h3>
+            <% unless is_private_mode? %>
             <p>
               <%= t("devise.shared.omniauth.#{provider}.description") %>
             </p>
+            <% end %>
             <% if provider == :tunnistamo %>
               <p>
-                <div class="social-share-button social-login-button">
-                  <span class="ssb-icon ssb-facebook"></span>
-                  <span class="ssb-icon ssb-google_plus"></span>
-                  <span class="ssb-icon ssb-yle"></span>
-                  <span class="ssb-icon ssb-hel"></span>
+                <div class="login-icons">
+                  <% if is_private_mode? %>
+                    <%= image_tag "helsinki/helsinki-logo-black.svg", alt: "Helsinki" %>
+                  <% else %>
+                    <div class="social-share-button social-login-button">
+                      <span class="ssb-icon ssb-facebook"></span>
+                      <span class="ssb-icon ssb-google_plus"></span>
+                      <span class="ssb-icon ssb-yle"></span>
+                      <span class="ssb-icon ssb-hel"></span>
+                    </div>
+                  <% end %>
                 </div>
               </p>
             <% end %>
