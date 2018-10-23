@@ -1,6 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Tracking
+  config.snoobi_account = 'omastadi_hel_fi'
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

@@ -1,0 +1,23 @@
+<% if Rails.application.config.snoobi_account %>
+<script type="text/javascript">
+var _saq = _saq || [];
+
+(function() {
+
+ var account = '<%= Rails.application.config.snoobi_account %>';
+ var page_name = '';
+ var section = '';
+
+var snbscript = document.createElement('script');
+ snbscript.type = 'text/javascript';
+ snbscript.async = true;
+ snbscript.src = ('https:' == document.location.protocol ? 'https://' : 'http://')
+ + 'eu1.snoobi.com/snoop.php?tili=' + account
+ + '&page_name=' + page_name
+ + '&section=' + section;
+
+var s = document.getElementsByTagName('script')[0];
+ s.parentNode.insertBefore(snbscript, s);
+ })();
+</script>
+<% end %>
