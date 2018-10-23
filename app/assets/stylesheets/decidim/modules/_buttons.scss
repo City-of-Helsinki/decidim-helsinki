@@ -190,10 +190,14 @@
 /* Social buttons */
 
 .button--social{
-  padding: 0 1.5rem 0 0;
+  padding: 0 1.5rem 1rem 0;
   text-align: center;
   display: block;
   min-width: 250px;
+
+  @include breakpoint(medium){
+    padding-bottom: 0;
+  }
 
   &.button--tunnistamo {
     .icon {
@@ -204,13 +208,17 @@
 }
 
 .button--social__icon{
-  display: inline-block;
+  display: block;
   vertical-align: middle;
   padding: 0.85em 1rem;
   //border-right: 1px solid rgba(black, .075);
   margin-right: .5rem;
   min-width: 3rem;
   text-align: center;
+
+  @include breakpoint(medium) {
+    display: inline-block;
+  }
 }
 
 .button--twitter{
