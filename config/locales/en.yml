@@ -1,8 +1,6 @@
 en:
   auth:
     sign_in_with_tunnistamo: 'Use Tunnistamo to sign in'
-    sign_in_with_internal: Sign in using service authentication
-    sign_up_with_internal: Sign up using service authentication
   pages:
     home:
       hero:

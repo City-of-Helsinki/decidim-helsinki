@@ -1,8 +1,6 @@
 fi:
   auth:
     sign_in_with_tunnistamo: 'Käytä Tunnistamoa kirjautuaksesi sisään'
-    sign_in_with_internal: Kirjaudu palvelun omalla tunnuksella
-    sign_up_with_internal: Rekisteröidy palvelun omalla tunnuksella
   pages:
     home:
       hero:
