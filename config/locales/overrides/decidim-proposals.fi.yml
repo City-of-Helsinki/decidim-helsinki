@@ -1,0 +1,10 @@
+fi:
+  decidim:
+    proposals:
+      proposals:
+        wizard_steps:
+          step_3: Luo ehdotuksesi
+          step_4: Esikatsele ja julkaise ehdotuksesi
+      collaborative_drafts:
+        wizard_steps:
+          step_3: Luo yhteistyöluonnoksesi

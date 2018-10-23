@@ -1,0 +1,10 @@
+sv:
+  decidim:
+    proposals:
+      proposals:
+        wizard_steps:
+          step_3: Skapa ditt förslag
+          step_4: Förhandsvisa och Publicera ditt förslag
+      collaborative_drafts:
+        wizard_steps:
+          step_3: Skapa ditt samarbetsutkast

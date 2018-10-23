@@ -1,0 +1,10 @@
+en:
+  decidim:
+    proposals:
+      proposals:
+        wizard_steps:
+          step_3: Create your proposal
+          step_4: Preview and publish your proposal
+      collaborative_drafts:
+        wizard_steps:
+          step_3: Create your collaborative draft
