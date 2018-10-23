@@ -4,10 +4,10 @@ fi:
       area:
         area_type: Alueen tyyppi
         name: Nimi
-        organization: organisaatio
+        organization: Organisaatio
       area_type:
         name: Nimi
-        organization: organisaatio
+        organization: Organisaatio
         plural: Monikko
       attachment:
         attachment_collection_id: Kansio
@@ -36,6 +36,7 @@ fi:
         organization_url: Organisaation URL-osoite
         redirect_uri: Uudelleenohjauksen URI
       organization:
+        badges_enabled: Ota kunniamerkit käyttöön
         cta_button_path: Call To Action -painikkeen polku
         cta_button_text: Call To Action -painikkeen teksti
         default_locale: Oletuskieli
@@ -103,9 +104,6 @@ fi:
         organization_url: Organisaation URL-osoite
         redirect_uri: Uudelleenohjausosoite (URI)
         site: Verkkosivusto
-  date:
-    formats:
-      datepicker: "%d. %m. %Y"
   decidim:
     admin:
       actions:
@@ -614,6 +612,7 @@ fi:
         new:
           create: Kutsu
           title: Kutsu käyttäjä hallinnoijaksi
+      view_public_page: Näytä julkinen sivu
     forms:
       errors:
         impersonate_user:
@@ -654,7 +653,3 @@ fi:
           title: Asetukset
         users:
           title: Käyttäjät
-  time:
-    formats:
-      datepicker: "%d. %m. %Y"
-      timepicker: "%d/%m/%Y %H:%M"
