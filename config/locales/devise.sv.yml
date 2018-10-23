@@ -1,0 +1,17 @@
+sv:
+  devise:
+    shared:
+      omniauth:
+        tunnistamo:
+          sign_in_with: 'Logga in med Tunnistamo'
+  decidim:
+    description: 'Tunnistamo tillåter dig att logga in t.ex. med Google-, Facebook- eller YLE-tjänster.'
+    devise:
+      registrations:
+        new:
+          sign_up_service_account: 'Skapa ditt eget konto'
+          sign_up_service_account_description: 'Skapa ditt eget konto och logga in med ditt personliga e-post och ett lösenord enligt ditt val i framtiden.'
+      sessions:
+        new:
+          sign_in_service_account: 'Logga in med service konto'
+          sign_in_service_account_description: 'Logga in med din e-post och ett lösenord enligt ditt val.'

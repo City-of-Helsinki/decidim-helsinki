@@ -1,0 +1,17 @@
+fi:
+  devise:
+    shared:
+      omniauth:
+        tunnistamo:
+          sign_in_with: 'Kirjaudu Tunnistamo-palvelun avulla'
+          description: 'Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook- tai YLE-palveluiden avulla.'
+  decidim:
+    devise:
+      registrations:
+        new:
+          sign_up_service_account: 'Luo omat tunnukset'
+          sign_up_service_account_description: 'Luo oma käyttäjätili ja kirjaudu jatkossa sisään sähköpostisoittella ja itse valitsemallasi salasanalla.'
+      sessions:
+        new:
+          sign_in_service_account: 'Kirjaudu omalla tunnuksella'
+          sign_in_service_account_description: 'Kirjaudu sisään sähköpostisoittella ja itse valitsemallasi salasanalla.'

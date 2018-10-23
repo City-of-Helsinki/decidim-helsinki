@@ -1,7 +1,9 @@
 <section class="extended subhero home-section">
   <div class="row">
     <div class="columns small-centered large-10">
-      <h2 class="heading3"><%= decidim_sanitize translated_attribute current_organization.description %></h2>
+      <div class="lead">
+        <%= decidim_sanitize translated_attribute current_organization.description %>
+      </div>
       <% unless current_user %>
         <% if Devise.mappings[:user].registerable? %>
           <%= link_to decidim.new_user_registration_path, class: "button--sc link subhero-cta" do %>

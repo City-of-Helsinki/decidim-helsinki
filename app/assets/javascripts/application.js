@@ -31,9 +31,12 @@
     $(window).resize(function () {
      // $('.match-height').matchHeight()
      // $('.navbar-primary').removeData('navbar-fix-position')
-    })
+   });
     $(window).on('scroll', function () {
       // $('.navbar-primary').fixNavbar()
-    })
+    });
+
+    // IE polyfills
+    $('body').applyPolyfills();
   })
-})($)
+})($);

@@ -1,0 +1,7 @@
+<ul class="menu">
+  <% (available_locales - [I18n.locale.to_s]).each do |locale| %>
+    <li class="language-nav__link">
+      <%= link_to locale_name(locale), decidim.locale_path(locale: locale), method: :post %>
+    </li>
+  <% end %>
+</ul>

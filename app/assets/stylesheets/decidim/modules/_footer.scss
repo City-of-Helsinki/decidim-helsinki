@@ -1,72 +1,142 @@
-$footer-bg: $hel-metro;
+$footer-bg: $hel-copper;
 $footer-bg-paahtimo: $hel-gold;
-$footer-fg: $hel-white;
+$footer-bg-discussion: $hel-metro;
+$footer-fg: $hel-black;
 $footer-fg-paahtimo: $hel-black;
+$footer-fg-discussion: $hel-white;
+
+.footer-wrapper{
+  .koro-top{
+    @include koro("basic", $footer-bg, 1000);
+    height: 28px;
+  }
+}
 
 .main-footer,
-.mini-footer  {
+.mini-footer{
   background-color: $footer-bg;
   color: $footer-fg;
-  padding-top: 2rem;
+  font-size: 0.95rem;
 
-  @include breakpoint(medium) {
+  @include breakpoint(medium){
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(large){
     padding-left: 4rem;
     padding-right: 4rem;
   }
 
-  a {
+  a{
     color: $footer-fg;
-    text-decoration: underline;
   }
 }
 
-.wrapper-paahtimo {
+.mini-footer{
+  padding-top: 4rem;
+}
+
+.wrapper-paahtimo{
+  .footer-wrapper{
+    .koro-top{
+      @include koro("basic", $titlebar-bg-paahtimo, 1000);
+    }
+  }
   .main-footer,
-  .mini-footer {
+  .mini-footer{
     background-color: $footer-bg-paahtimo;
     color: $footer-fg-paahtimo;
 
-    a {
+    a{
       color: $footer-fg-paahtimo;
+    }
+  }
+}
+
+.wrapper-discussion{
+  .footer-wrapper{
+    .koro-top{
+      @include koro("basic", $titlebar-bg-discussion, 1000);
+    }
+  }
+  .main-footer,
+  .mini-footer{
+    background-color: $footer-bg-discussion;
+    color: $footer-fg-discussion;
+
+    a{
+      color: $footer-fg-discussion;
     }
   }
 }
 
 .main-footer {
+  padding-top: 3.2rem;
+
   .main-footer__badge {
     display: block;
+    margin-top: 9px;
     width: 140px;
+
+    @include breakpoint(medium){
+      width: 160px;
+    }
+
+    @include breakpoint(large){
+      width: 180px;
+    }
+
+    @include breakpoint(xlarge){
+      width: 220px;
+    }
+
     img { height: 100%; }
   }
 }
 
-.main__footer__nav {
-  h3 {
+.main__footer__nav{
+  h3{
     color: $footer-fg;
-    font-weight: 800;
+    font-weight: 600;
+    font-size: 1.55rem;
+    margin-bottom: 0;
   }
 
-  .footer-nav {
+  .footer-nav{
     list-style: none;
     margin: 0;
+
+    a{
+      font-weight: $global-weight-normal;
+    }
   }
 }
 
-.wrapper-paahtimo {
-  .main__footer__nav {
-    h3 {
+.wrapper-paahtimo{
+  .main__footer__nav{
+    h3{
       color: $footer-fg-paahtimo;
     }
   }
 }
 
-.mini-footer {
+.wrapper-discussion{
+  .main__footer__nav{
+    h3{
+      color: $footer-fg-discussion;
+    }
+  }
+}
+
+.mini-footer{
   padding-bottom: 6rem;
+
+  .cc-badge{
+    position: relative;
+    top: -1px;
+    margin-right: 0.5rem;
+  }
 }
 
 @include breakpoint(medium) {

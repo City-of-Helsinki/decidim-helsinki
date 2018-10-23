@@ -1,0 +1,10 @@
+<% if content_for?(:edit_link) %>
+  <div class="topbar__edit__link show-for-large" data-set="nav-extra-holder">
+    <div class="js-append">
+      <%= link_to content_for(:edit_link) do %>
+        <%= icon "pencil" %>
+        <span><%= t(".edit") %></span>
+      <% end %>
+    </div>
+  </div>
+<% end %>

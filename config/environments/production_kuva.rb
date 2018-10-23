@@ -9,9 +9,6 @@ Rails.application.configure do
   # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
   config.wrapper_class = 'wrapper-paahtimo'
 
-  # Color profile that changes the logo color for header and footer
-  config.color_profile = 'black'
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -95,6 +92,9 @@ Rails.application.configure do
       }.to_json
     }
   end
+
+  # Sending address for mails
+  config.mailer_sender = "no-reply@ideapaahtimo.osallistu.hel.fi"
 
   # Default URL for application (Devise)
   config.action_controller.default_url_options  = {

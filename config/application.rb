@@ -11,6 +11,14 @@ module DecidimHelsinki
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    # Configure an application wide address suffix to pass to the geocoder.
+    # This is to make sure that the addresses are not incorrectly mapped outside
+    # of the wanted area.
+    config.address_suffix = 'Helsinki, Finland'
+
+    # Sending address for mails
+    config.mailer_sender = "no-reply@omastadi.hel.fi"
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -35,13 +43,18 @@ module DecidimHelsinki
     config.wrapper_class = 'wrapper-default'
 
     # Color profile that changes the logo color for header and footer
-    config.color_profile = 'white'
+    config.color_profile = 'black'
 
     # Passes a block of code to do after initialization.
     config.after_initialize do
       # Override the main menu
       Decidim::MenuRegistry.create(:menu)
       Decidim.menu :menu do |menu|
+
+        menu.item I18n.t("menu.home", scope: "decidim"),
+                  decidim.root_path,
+                  position: 1,
+                  active: :inclusive
 
         menu.item I18n.t("menu.processes", scope: "decidim"),
                   decidim_participatory_processes.participatory_processes_path,
