@@ -68,21 +68,7 @@ hr{
 
 .section-heading{
   position: relative;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 1.125em;
-  letter-spacing: .05em;
-
-  /*&:before{
-    content: "";
-    display: inline-block;
-    width: 4px;
-    height: .8em;
-    background-color: $primary;
-    margin-right: .5rem;
-    margin-bottom: -.1rem;
-  }*/
+  margin-bottom: 2rem;
 
   &.collapse{
     margin: 0;

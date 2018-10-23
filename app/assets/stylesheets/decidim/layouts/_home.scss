@@ -106,7 +106,7 @@
   margin-bottom: 1.5rem;
   font-size: 2rem;
   line-height: 1;
-  text-shadow: 0 0 5px rgba(black, .8);
+  text-shadow: none;
 
   br{
     display: none;
@@ -163,15 +163,7 @@
 }
 
 .wrapper-home.home-section {
-  .section-heading { color: $hel-white; }
-  background-color: $hel-copper;
-}
-
-.wrapper-paahtimo {
-  .wrapper-home.home-section {
-    .section-heading { color: $hel-black; }
-    background-color: $hel-white;
-  }
+  background-color: $hel-white;
 }
 
 .wrapper-home--mini{
@@ -189,8 +181,8 @@
   text-align: center;
 
   .lead{
-    font-size: 2.5em;
-    font-weight: 800;
+    font-size: 2.6em;
+    font-weight: 600;
     line-height: 1;
 
     p{
