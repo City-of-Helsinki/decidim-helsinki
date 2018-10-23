@@ -1,0 +1,30 @@
+en:
+  auth:
+    sign_in_with_tunnistamo: 'Logga in med Tunnistamo'
+    sign_in_with_internal: Logga in med hjälp av serviceverifiering
+    sign_up_with_internal: Registrera dig med hjälp av serviceverifiering
+  pages:
+    home:
+      hero:
+        participate: Delta
+      extended:
+        debates: Diskussioner
+        debates_explanation: Dela dina personliga åsikter och synpunkter genom diskussioner.
+        meetings_explanation: Låt oss träffas och samarbeta för vår stad.
+        proposals: Idéer
+        proposals_explanation: Öppna utrymme för medborgarnas idéer om vilken typ av stad vi vill bo i.
+        how_to_participate: Hur man deltar
+      statistics:
+        headline: Aktuell statistik
+      footer_sub_hero:
+        footer_sub_hero_headline: Gemenskapens deltagande tjänst
+      highlighted_processes:
+        active_processes: Aktiv nu
+        see_all_processes: Visa alla
+      highlighted_process_groups:
+        active_processes: Aktiv nu
+        see_all_processes: Visa alla
+  layouts:
+    footer:
+      feedback: Feedback
+      about: Om tjänsten

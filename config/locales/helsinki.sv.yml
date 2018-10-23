@@ -1,0 +1,24 @@
+en:
+  helsinki:
+    areas:
+      choose_your_area: Välj ditt område från kartan
+    map:
+      districts:
+        western: Västra
+        northern: Nordlig
+        southern: Sydlig
+        central: Central
+        northeastern: Nordost
+        eastern: Östra
+        southeastern: Sydöst
+      image:
+        license: Bildlicens
+        creator: Den ursprungliga skaparen av bilden
+        note: Bilden har redigerats från originalet
+    devise:
+      shared:
+        omniauth_buttons:
+          tunnistamo_explanation: 'Facebook-, Google- or YLE autentisering'
+          tunnistamo_explanation_internal: 'Tunnistamo autentisering'
+        tunnistamo_description: Med Tunnistamo kan du autentisera med bland annat Google, Facebook eller YLE.
+    copyright: 2018 Helsingfors stad
