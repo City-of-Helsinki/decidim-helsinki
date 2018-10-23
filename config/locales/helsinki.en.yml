@@ -1,7 +1,7 @@
 en:
   helsinki:
     areas:
-      choose_your_area: Valitse alueesi kartalta
+      choose_your_area: Choose your area from the map
     map:
       districts:
         western: Western
