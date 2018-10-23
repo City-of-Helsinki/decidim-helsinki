@@ -20,5 +20,5 @@ fi:
         omniauth_buttons:
           tunnistamo_explanation: 'Facebook-, Google- tai YLE-kirjautuminen'
           tunnistamo_explanation_internal: 'Tunnistamo-kirjautuminen'
-        tunnistamo_description: Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook-, YLE- tai edu.hel.fi-palveluiden avulla.
+        tunnistamo_description: Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook-, YLE-palveluiden avulla.
     copyright: 2018 Helsingin kaupunki

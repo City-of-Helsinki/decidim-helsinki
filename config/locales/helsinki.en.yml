@@ -20,5 +20,5 @@ en:
         omniauth_buttons:
           tunnistamo_explanation: 'Facebook-, Google- or YLE authentication'
           tunnistamo_explanation_internal: 'Tunnistamo authentication'
-        tunnistamo_description: Using Tunnistamo you can authenticate using Google, Facebook, YLE, or edu.hel.fi among others.
+        tunnistamo_description: Using Tunnistamo you can authenticate using Google, Facebook, or YLE among others.
     copyright: 2018 City of Helsinki

@@ -1,0 +1,17 @@
+en:
+  devise:
+    shared:
+      omniauth:
+        tunnistamo:
+          sign_in_with: 'Sign in with Tunnistamo'
+          description: 'Tunnistamo allows you to sign in e.g. using Google, Facebook or YLE services.'
+  decidim:
+    devise:
+      registrations:
+        new:
+          sign_up_service_account: 'Create your own account'
+          sign_up_service_account_description: 'Create your own account and sign in with your personal email and a password of your choice in the future.'
+      sessions:
+        new:
+          sign_in_service_account: 'Sign in with service account'
+          sign_in_service_account_description: 'Sign in using your email address and a password of your choice.'
