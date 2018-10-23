@@ -345,6 +345,10 @@ $menuitem-padding: 1em 2em;
   margin-right: 1rem;
   vertical-align: -4px;
 
+  &:hover{
+    text-decoration: none;
+  }
+
   .icon{
     fill: $medium-gray;
     opacity: .3;
