@@ -93,6 +93,10 @@ production_kuva:
   <<: *default
   database: <%= ENV.fetch("DATABASE_NAME") { "dummy" } %>
 
+production_discussion:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME") { "dummy" } %>
+
 staging:
   <<: *default
   database: <%= ENV.fetch("DATABASE_NAME") { "dummy" } %>
