@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby '2.4.1'
+ruby '2.5.1'
 
 # Run updates by following the Decidim upgrade instructions:
 # https://github.com/decidim/decidim/blob/master/docs/getting_started.md#keeping-your-app-up-to-date
