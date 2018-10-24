@@ -20,7 +20,7 @@ module Decidim
           on(:ok) do |user|
             if user.active_for_authentication?
               sign_in_and_redirect user, event: :authentication
-              set_flash_message :notice, :success, kind: @form.provider.capitalize
+              set_flash_message :notice, :success, kind: provider_name(@form.provider)
             else
               expire_data_after_sign_in!
               redirect_to root_path
@@ -29,13 +29,13 @@ module Decidim
           end
 
           on(:invalid) do
-            set_flash_message :notice, :success, kind: @form.provider.capitalize
+            set_flash_message :notice, :success, kind: provider_name(@form.provider)
             render :new
           end
 
           on(:error) do |user|
             if user.errors[:email]
-              set_flash_message :alert, :failure, kind: @form.provider.capitalize, reason: t("decidim.devise.omniauth_registrations.create.email_already_exists")
+              set_flash_message :alert, :failure, kind: provider_name(@form.provider), reason: t("decidim.devise.omniauth_registrations.create.email_already_exists")
             end
 
             render :new
@@ -72,6 +72,9 @@ module Decidim
       def tunnistamo
         info = oauth_data[:info] || {}
 
+        # Fetch the nickname passed form Tunnistamo
+        nickname = oauth_nickname
+
         identity = Decidim::Identity.find_by(uid: oauth_data[:uid])
         if identity
           user = identity.user
@@ -79,9 +82,10 @@ module Decidim
             # Update user if it alreadt existed
             user.update(
               email: info[:email],
-              name: info[:name] || info[:email],
+              name: oauth_name,
             )
 
+            set_flash_message :notice, :success, kind: provider_name(oauth_data[:provider])
             handle_tunnistamo_success user
             return
           else
@@ -94,22 +98,25 @@ module Decidim
           provider: oauth_data[:provider],
           oauth_signature: OmniauthRegistrationForm.create_signature(oauth_data[:provider], oauth_data[:uid]),
           email: info[:email],
-          name: info[:name] || info[:email],
+          name: oauth_name,
+          nickname: oauth_nickname,
         })
 
         CreateOmniauthRegistration.call(@form, verified_email) do
           on(:ok) do |user|
+            mark_tos_accepted user
+            set_flash_message :notice, :success, kind: provider_name(@form.provider)
             handle_tunnistamo_success user
           end
 
           on(:invalid) do
-            set_flash_message :notice, :success, kind: @form.provider.capitalize
+            set_flash_message :notice, :success, kind: provider_name(@form.provider)
             redirect_to root_path
           end
 
           on(:error) do |user|
             if user.errors[:email]
-              set_flash_message :alert, :failure, kind: @form.provider.capitalize, reason: t("decidim.devise.omniauth_registrations.create.email_already_exists")
+              set_flash_message :alert, :failure, kind: provider_name(@form.provider), reason: t("decidim.devise.omniauth_registrations.create.email_already_exists")
             end
 
             redirect_to root_path
@@ -122,7 +129,6 @@ module Decidim
       def handle_tunnistamo_success(user)
         if user.active_for_authentication?
           sign_in_and_redirect user, event: :authentication
-          set_flash_message :notice, :success, kind: "Tunnistamo"
         else
           expire_data_after_sign_in!
           redirect_to root_path
@@ -131,8 +137,7 @@ module Decidim
       end
 
       def oauth_data
-        return {} unless request.env["omniauth.auth"]
-        @oauth_data ||= request.env["omniauth.auth"].slice(:provider, :uid, :info)
+        @oauth_data ||= oauth_hash.slice(:provider, :uid, :info)
       end
 
       # Private: Create form params from omniauth hash
@@ -147,8 +152,40 @@ module Decidim
         }
       end
 
+      def mark_tos_accepted(user)
+        if user.accepted_tos_version.nil?
+          user.update(
+            accepted_tos_version: current_organization.tos_version,
+          )
+        end
+      end
+
+      def oauth_name
+        oauth_data.dig(:info, :name) || oauth_nickname || verified_email.split('@').first
+      end
+
+      def oauth_nickname
+        # Fetch the nickname passed form Tunnistamo
+        oauth_data.dig(:info, :nickname) || oauth_hash.dig(:extra, :raw_info, :nickname)
+      end
+
       def verified_email
         @verified_email ||= oauth_data.dig(:info, :email)
+      end
+
+      def provider_name(provider)
+        if provider.to_sym == :tunnistamo
+          "Helsinki - Tunnistamo"
+        else
+          provider.capitalize
+        end
+      end
+
+      def oauth_hash
+        raw_hash = request.env["omniauth.auth"] || session[:oauth_hash]
+        return {} unless raw_hash
+
+        raw_hash.deep_symbolize_keys
       end
     end
   end
