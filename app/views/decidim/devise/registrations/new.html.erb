@@ -15,7 +15,7 @@
 
   <%= render "decidim/devise/shared/omniauth_buttons" %>
 
-  <div class="wrapper">
+  <div class="wrapper" id="register_section">
     <div class="row collapse">
       <div class="row">
         <div class="columns large-6 medium-10 medium-centered">
@@ -130,3 +130,21 @@
   </div>
 </main>
 <%= render "decidim/devise/shared/newsletter_modal" %>
+
+<% if params[:user] %>
+  <%= javascript_tag defer: 'defer' do -%>
+  setTimeout(function() {
+    var $button = $('#register_toggle');
+    $button.trigger('click.zf.trigger').scrollTo();
+  }, 500);
+  <% end -%>
+<% else %>
+  <%= javascript_tag defer: 'defer' do -%>
+  if (window.location.hash == '#register_section') {
+    setTimeout(function() {
+      $('#register_toggle').trigger('click.zf.trigger');
+      $('input#user_name').focus();
+    }, 500);
+  }
+  <% end %>
+<% end %>
