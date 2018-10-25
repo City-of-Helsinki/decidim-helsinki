@@ -181,9 +181,20 @@
   text-align: center;
 
   .lead{
-    font-size: 2.6em;
+    font-size: 1.5em;
     font-weight: 600;
     line-height: 1;
+    padding: 0 1rem;
+
+    @include breakpoint(medium){
+      font-size: 2em;
+      padding: 0;
+    }
+
+    @include breakpoint(large){
+      font-size: 2.6em;
+      padding: 0;
+    }
 
     p{
       line-height: 1;
