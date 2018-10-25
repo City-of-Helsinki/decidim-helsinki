@@ -21,6 +21,10 @@
   @include breakpoint(large){
     padding: 6rem 0;
   }
+
+  .text-highlight{
+    color: $white;
+  }
 }
 
 .hero__boxes{
@@ -130,8 +134,8 @@
 }
 
 .hero-cta{
-  background-color: $hel-white;
-  color: $hel-black;
+  background-color: $white;
+  color: $black;
   margin-top: 1rem;
   padding: 1.2rem 1rem;
 
@@ -163,16 +167,12 @@
 }
 
 .wrapper-home.home-section {
-  background-color: $hel-white;
+  background-color: $white;
 }
 
 .wrapper-home--mini{
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.home-section{
-  background: $light-gray-dark;
 }
 
 .subhero{
@@ -212,7 +212,7 @@
 
 .subhero-cta{
   margin-top: 2rem;
-  color: $hel-black;
+  color: $black;
   display: inline-block;
 
   .icon{

@@ -1,10 +1,10 @@
 /* Variables */
 
-$navbar-bg: $hel-white;
+$navbar-bg: $white;
 $navbar-bg-hover: rgba(white, .02);
-$navbar-color: $hel-black;
-$navbar-color-hover: $hel-black;
-$navbar-active-color: $hel-black;
+$navbar-color: $black;
+$navbar-color-hover: $black;
+$navbar-active-color: $black;
 $navbar-active-bg: $navbar-bg-hover;
 $navbar-active-shadow-small: inset 4px 0 0 0 $primary;
 $navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
@@ -12,9 +12,9 @@ $navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
 $titlebar-bg: $hel-copper;
 $titlebar-bg-paahtimo: $hel-gold;
 $titlebar-bg-discussion: $hel-metro;
-$titlebar-fg: $hel-black;
-$titlebar-fg-paahtimo: $hel-black;
-$titlebar-fg-discussion: $hel-white;
+$titlebar-fg: $black;
+$titlebar-fg-paahtimo: $black;
+$titlebar-fg-discussion: $white;
 
 $menuitem-padding: 1em 2em;
 
@@ -174,7 +174,7 @@ $menuitem-padding: 1em 2em;
   }
 
   a{
-    display: inline-block;
+    display: block;
   }
 
   img{

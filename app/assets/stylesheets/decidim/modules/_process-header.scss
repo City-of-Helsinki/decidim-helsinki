@@ -12,10 +12,8 @@
 
 .process-header__main{
   background-size: cover;
-  position: relative;
   z-index: 0;
-  display: flex;
-  flex-direction: column;
+  display: block;
 }
 
 .process-header__container{
@@ -30,14 +28,10 @@
 }
 
 .process-header__info{
-  padding: 1rem 1.5rem 1rem 1rem;
+  padding: 1rem 1.5rem 1rem 0;
 
   @include breakpoint(medium){
-    padding: 2rem 1.5rem 2rem 1rem;
-  }
-
-  @include breakpoint(mediumlarge){
-    padding-left: 2rem;
+    padding: 2rem 1.5rem 2rem 0;
   }
 }
 
@@ -53,6 +47,22 @@
     margin-bottom: 0;
     color: $white;
     border-color: $white;
+
+    &:hover,
+    &.is-active{
+      color: $primary;
+      border-color: $primary;
+    }
+  }
+}
+
+.wrapper-default .process-header__phase{
+  background: transparent;
+  color: $black;
+
+  .button{
+    color: $black;
+    border-color: $black;
 
     &:hover,
     &.is-active{
@@ -79,7 +89,7 @@
     margin-right: .5rem;
   }
 
-  a { color: $hel-white; }
+  a { color: $white; }
 }
 
 

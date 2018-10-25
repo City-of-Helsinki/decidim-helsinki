@@ -57,7 +57,7 @@ module DecidimHelsinki
         menu.item I18n.t("menu.home", scope: "decidim"),
                   decidim.root_path,
                   position: 1,
-                  active: :inclusive
+                  active: :exact
 
         menu.item I18n.t("menu.processes", scope: "decidim"),
                   decidim_participatory_processes.participatory_processes_path,
@@ -108,6 +108,22 @@ module DecidimHelsinki
       app.reloader.after_class_unload do
         Decidim::User.send(:include, UserAuthentication)
       end
+    end
+
+    # See:
+    # https://guides.rubyonrails.org/configuring.html#initialization-events
+    #
+    # Run before every request in development.
+    config.to_prepare do
+      # Extra helpers
+      Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
+        :include,
+        Decidim::ApplicationHelper
+      )
+      Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
+        :include,
+        Decidim::SanitizeHelper
+      )
     end
   end
 end

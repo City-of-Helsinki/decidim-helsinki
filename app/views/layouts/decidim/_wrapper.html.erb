@@ -75,7 +75,9 @@ wrapper_class = Rails.application.config.wrapper_class
             <nav class="navbar row column">
               <div class="top-bar-left">
                 <div class="logo-wrapper">
-                  <%= render partial: "layouts/decidim/logo", locals: { organization: current_organization } %>
+                  <%= link_to decidim.root_path do %>
+                    <%= render partial: "layouts/decidim/logo", locals: { organization: current_organization } %>
+                  <% end %>
                 </div>
                 <% if display_common_elements? %>
                   <div class="menu menu-main show-for-large" data-set="nav-holder">
