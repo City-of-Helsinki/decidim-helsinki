@@ -1,10 +1,22 @@
 sv:
+  activemodel:
+    attributes:
+      collaborative_draft:
+        address: Plats
+        has_address: Förslaget har plats
+      proposal:
+        address: Plats
+        has_address: Förslaget har plats
   decidim:
     proposals:
       proposals:
+        edit:
+          attachment_legend: "(Valfritt) Lägg till en bild eller annan bilaga"
         wizard_steps:
           step_3: Skapa ditt förslag
           step_4: Förhandsvisa och Publicera ditt förslag
       collaborative_drafts:
+        complete:
+          attachment_legend: "(Valfritt) Lägg till en bild eller annan bilaga"
         wizard_steps:
           step_3: Skapa ditt samarbetsutkast

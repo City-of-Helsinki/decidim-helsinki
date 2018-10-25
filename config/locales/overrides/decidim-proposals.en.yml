@@ -1,10 +1,22 @@
 en:
+  activemodel:
+    attributes:
+      collaborative_draft:
+        address: Location
+        has_address: Proposal has location
+      proposal:
+        address: Location
+        has_address: Proposal has location
   decidim:
     proposals:
       proposals:
+        edit:
+          attachment_legend: "(Optional) Add an image or other attachment"
         wizard_steps:
           step_3: Create your proposal
           step_4: Preview and publish your proposal
       collaborative_drafts:
+        complete:
+          attachment_legend: "(Optional) Add an image or other attachment"
         wizard_steps:
           step_3: Create your collaborative draft

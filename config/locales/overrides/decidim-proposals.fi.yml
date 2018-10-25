@@ -1,10 +1,22 @@
 fi:
+  activemodel:
+    attributes:
+      collaborative_draft:
+        address: Sijainti
+        has_address: Ehdotuksella on sijainti
+      proposal:
+        address: Sijainti
+        has_address: Ehdotuksella on sijainti
   decidim:
     proposals:
       proposals:
+        edit:
+          attachment_legend: "(Valinnainen) Lisää kuva tai muu liite"
         wizard_steps:
           step_3: Luo ehdotuksesi
           step_4: Esikatsele ja julkaise ehdotuksesi
       collaborative_drafts:
+        complete:
+          attachment_legend: "(Valinnainen) Lisää kuva tai muu liite"
         wizard_steps:
           step_3: Luo yhteistyöluonnoksesi
