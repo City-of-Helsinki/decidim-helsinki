@@ -8,3 +8,5 @@
 <% Decidim.participatory_space_manifests.map(&:stylesheet).compact.each do |stylesheet| %>
 @import "<%= stylesheet %>";
 <% end %>
+
+@import "budgets-extra/*";
