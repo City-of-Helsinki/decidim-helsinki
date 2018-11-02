@@ -1,0 +1,37 @@
+fi:
+  decidim:
+    participatory_processes:
+      pages:
+        home:
+          highlighted_processes:
+            active_processes: Käynnissä nyt
+            see_all_processes: Näytä kaikki
+      participatory_processes:
+        filters:
+          counters:
+            active:
+              one: 1 käynnissä
+              other: "%{count} käynnissä"
+            all:
+              one: 1 yhteensä
+              other: "%{count} yhteensä"
+            past:
+              one: 1 mennyt
+              other: "%{count} mennyttä"
+            upcoming:
+              one: 1 tuleva
+              other: "%{count} tulevaa"
+          explanations:
+            no_active: Ei aktiivisia
+            no_active_nor_upcoming: Ei käytössä olevia tai tulevia
+            no_active_nor_upcoming_callout: Käytössä olevia tai tulevia ei ole tiedossa. Tässä on luettelo menneistä.
+  layouts:
+    decidim:
+      process_header:
+        process_menu_item: Tietoa
+      participatory_process_groups:
+        participatory_process_group:
+          processes_count: 'Prosessit:'
+      participatory_processes:
+        index:
+          promoted_processes: Korostettu nyt

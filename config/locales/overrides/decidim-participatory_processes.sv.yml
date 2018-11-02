@@ -1,0 +1,37 @@
+fi:
+  decidim:
+    participatory_processes:
+      pages:
+        home:
+          highlighted_processes:
+            active_processes: På gång nu
+            see_all_processes: Visa alla
+      participatory_processes:
+        filters:
+          counters:
+            active:
+              one: 1 pågår
+              other: "%{count} pågår"
+            all:
+              one: 1 totalt
+              other: "%{count} totalt"
+            past:
+              one: 1 tidigare
+              other: "%{count} tidigare"
+            upcoming:
+              one: 1 kommande
+              other: "%{count} kommande"
+          explanations:
+            no_active: Inga aktiv
+            no_active_nor_upcoming: Inga pågår eller kommande
+            no_active_nor_upcoming_callout: I bruk eller kommande är det okänt. Här är en förteckning över det förflutna.
+  layouts:
+    decidim:
+      process_header:
+        process_menu_item: Information
+      participatory_process_groups:
+        participatory_process_group:
+          processes_count: 'Processer:'
+      participatory_processes:
+        index:
+          promoted_processes: Framhävda nu
