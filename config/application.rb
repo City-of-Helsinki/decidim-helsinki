@@ -115,6 +115,12 @@ module DecidimHelsinki
     #
     # Run before every request in development.
     config.to_prepare do
+      # Helper extensions
+      Decidim::Comments::CommentsHelper.send(
+        :include,
+        CommentsHelperExtensions
+      )
+
       # Extra helpers
       Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
         :include,

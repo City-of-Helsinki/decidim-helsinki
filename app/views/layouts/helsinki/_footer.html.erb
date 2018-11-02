@@ -1,5 +1,9 @@
 <div class="footer-wrapper">
-  <div class="koro-top"></div>
+  <% if content_for? :footer_koro %>
+    <%= yield :footer_koro %>
+  <% else %>
+    <div class="koro-top"></div>
+  <% end %>
   <div class="main-footer">
     <div class="row">
       <div class="medium-4 large-3 column">

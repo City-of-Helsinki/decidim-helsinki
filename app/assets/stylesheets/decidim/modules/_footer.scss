@@ -9,6 +9,10 @@ $footer-fg-discussion: $white;
   .koro-top{
     @include koro("basic", $footer-bg, 1000);
     height: 28px;
+
+    &.with-wrapper--inner{
+      background-color: $light-gray-dark;
+    }
   }
 }
 
