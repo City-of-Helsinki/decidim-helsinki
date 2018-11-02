@@ -1,0 +1,13 @@
+<% if has_actions? %>
+  <% if !current_settings.votes_hidden? %>
+    <%= cell(
+      "decidim/progress_bar",
+      progress_bar_progress,
+      total: progress_bar_total,
+      units_name: "decidim.proposals.proposals.votes_count.count",
+      element_id: "proposal-#{model.id}-votes-count",
+      subtitle_text: progress_bar_subtitle_text,
+      small: true
+    ) %>
+  <% end %>
+<% end %>

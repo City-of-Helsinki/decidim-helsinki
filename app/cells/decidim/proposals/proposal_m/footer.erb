@@ -1,0 +1,7 @@
+<% if has_link_to_resource? %>
+  <div class="card__footer">
+    <div class="card__support">
+      <%= link_to t("decidim.proposals.proposals.proposal.view_proposal"), resource_path, class: "card__button button hollow primary" %>
+    </div>
+  </div>
+<% end %>

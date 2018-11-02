@@ -23,7 +23,8 @@ module Decidim
       end
 
       def has_state?
-        model.published?
+        #model.published?
+        false
       end
 
       def has_badge?
@@ -51,9 +52,7 @@ module Decidim
       end
 
       def statuses
-        return [:endorsements_count, :comments_count] if model.draft?
-        return [:creation_date, :endorsements_count, :comments_count] unless has_link_to_resource?
-        [:creation_date, :follow, :endorsements_count, :comments_count]
+        [:endorsements_count, :comments_count]
       end
 
       def creation_date_status
@@ -87,6 +86,32 @@ module Decidim
           t("decidim.proposals.proposals.votes_count.most_popular_proposal")
         else
           t("decidim.proposals.proposals.votes_count.need_more_votes")
+        end
+      end
+
+      def has_image?
+        if resource_image_attachment
+          return true
+        end
+
+        false
+      end
+
+      def resource_image_path
+        if has_image?
+          versions = resource_image_attachment.file.versions
+          vhandle = :big
+          if versions.has_key?(vhandle)
+            return versions[vhandle].url
+          end
+        end
+      end
+
+      def resource_image_attachment
+        if attachment = model.attachments.first
+          if attachment.photo?
+            attachment
+          end
         end
       end
     end

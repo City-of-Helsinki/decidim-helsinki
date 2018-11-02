@@ -1,0 +1,42 @@
+<div class="card__icondata">
+  <ul class="card-data">
+    <li class="card-data__item">
+      <%= icon "datetime" %>
+    </li>
+    <li class="card-data__item">
+      <div>
+        <strong><%= t("activemodel.attributes.participatory_process.start_date") %>:</strong>
+        <%= start_date ? l(start_date, format: :decidim_short) : t("decidim.participatory_processes.show.unspecified") %>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="card__icondata">
+  <ul class="card-data">
+    <li class="card-data__item">
+      <%= icon "datetime" %>
+    </li>
+    <li class="card-data__item">
+      <div>
+        <strong><%= t("activemodel.attributes.participatory_process.end_date") %>:</strong>
+        <%= end_date ? l(end_date, format: :decidim_short) : t("decidim.participatory_processes.show.unspecified") %>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<% if has_step? %>
+<div class="card__icondata">
+  <ul class="card-data">
+    <li class="card-data__item">
+      <%= icon "process" %>
+    </li>
+    <li class="card-data__item">
+      <div>
+        <strong><%= t("layouts.decidim.participatory_processes.participatory_process.active_step") %></strong>
+        <%= step_title %>
+      </div>
+    </li>
+  </ul>
+</div>
+<% end %>

@@ -1,0 +1,13 @@
+<div class="card__icondata">
+  <ul class="card-data">
+    <li class="card-data__item">
+      <%= icon "process" %>
+    </li>
+    <li class="card-data__item">
+      <div>
+        <strong><%= t("layouts.decidim.participatory_process_groups.participatory_process_group.processes_count") %></strong>
+        <%= model.participatory_processes.published.count.to_s %>
+      </div>
+    </li>
+  </ul>
+</div>
