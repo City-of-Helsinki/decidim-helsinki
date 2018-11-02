@@ -12,4 +12,13 @@ module ApplicationHelper
   def is_private_mode?
     Rails.application.config.use_mode == 'private'
   end
+
+  # Replace the footer koro with a custom one. E.g. a specific background color
+  # may need to be added to the footer koro element depending on the previous
+  # element.
+  def replace_footer_koro(extra_cls)
+    content_for :footer_koro, flush: true do
+      ('<div class="koro-top ' + extra_cls + '"></div>').html_safe
+    end
+  end
 end
