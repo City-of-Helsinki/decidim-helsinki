@@ -7,11 +7,43 @@ sv:
       proposal:
         address: Plats
         has_address: Förslaget har plats
+    models:
+      decidim/proposals/accepted_proposal_event: Förslag möjligt
+      decidim/proposals/rejected_proposal_event: Förslag inte möjligt
   decidim:
+    events:
+      proposals:
+        proposal_accepted:
+          email_intro: 'Förslag "%{resource_title}" är möjligt. Du kan läsa svaret härifrån:'
+          email_subject: Förslag du följer är möjligt
+          notification_title: Förslag <a href="%{resource_path}">%{resource_title}</a> är möjligt.
+        proposal_rejected:
+          email_intro: 'Förslag "%{resource_title}" är inte möjligt. Du kan läsa svaret härifrån:'
+          email_subject: Förslag du följer är inte möjligt
+          notification_title: Förslag <a href="%{resource_path}">%{resource_title}</a> är inte möjligt.
+    gamification:
+      badges:
+        accepted_proposals:
+          description_another: Den här användaren har %{score} möjligt förslag.
+          description_own: Du har %{score} möjligt förslag.
+          explanation: Användare får detta märke genom att få möjligt förslag.
+          name: Möjligt förslag
+          next_level_in: Få %{score} fler möjligt förslag för att nå nästa nivå!
+          unearned_another: Den här användaren har inte fått några möjligt förslag än.
+          unearned_own: Du har inga möjligt förslag än.
     proposals:
+      answers:
+        accepted: Möjligt
+        rejected: Inte möjligt
       proposals:
         edit:
           attachment_legend: "(Valfritt) Lägg till en bild eller annan bilaga"
+        filters:
+          accepted: Möjligt
+          rejected: Inte möjligt
+        show:
+          proposal_accepted_reason: 'Detta förslag är möjligt eftersom:'
+          proposal_rejected_reason: 'Detta förslag är inte möjligt på grund av att:'
         wizard_steps:
           step_3: Skapa ditt förslag
           step_4: Förhandsvisa och Publicera ditt förslag

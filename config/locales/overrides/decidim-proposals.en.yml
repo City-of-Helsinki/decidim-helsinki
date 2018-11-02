@@ -7,11 +7,43 @@ en:
       proposal:
         address: Location
         has_address: Proposal has location
+    models:
+      decidim/proposals/accepted_proposal_event: Proposal possible
+      decidim/proposals/rejected_proposal_event: Proposal not possible
   decidim:
+    events:
+      proposals:
+        proposal_accepted:
+          email_intro: 'Proposal "%{resource_title}" is possible. You can read the response from here:'
+          email_subject: A proposal you are following is possible
+          notification_title: Proposal <a href="%{resource_path}">%{resource_title}</a> is possible.
+        proposal_rejected:
+          email_intro: 'Proposal "%{resource_title}" is not possible. You can read the response from here:'
+          email_subject: A proposal you are following is not possible
+          notification_title: Proposal <a href="%{resource_path}">%{resource_title}</a> is not possible.
+    gamification:
+      badges:
+        accepted_proposals:
+          description_another: This user has gotten %{score} possible proposals.
+          description_own: You got %{score} possible proposals.
+          explanation: Users get this badge by getting possible proposals.
+          name: Possible proposals
+          next_level_in: Get %{score} more possible proposals to reach the next level!
+          unearned_another: This user hasn't gotten any possible proposals yet.
+          unearned_own: You got no possible proposals yet.
     proposals:
+      answers:
+        accepted: Possible
+        rejected: Not possible
       proposals:
         edit:
           attachment_legend: "(Optional) Add an image or other attachment"
+        filters:
+          accepted: Possible
+          rejected: Not possible
+        show:
+          proposal_accepted_reason: 'This proposal is possible because:'
+          proposal_rejected_reason: 'This proposal is not possible because:'
         wizard_steps:
           step_3: Create your proposal
           step_4: Preview and publish your proposal

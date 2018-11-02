@@ -7,11 +7,43 @@ fi:
       proposal:
         address: Sijainti
         has_address: Ehdotuksella on sijainti
+    models:
+      decidim/proposals/accepted_proposal_event: Ehdotus mahdollinen
+      decidim/proposals/rejected_proposal_event: Ehdotus ei mahdollinen
   decidim:
+    events:
+      proposals:
+        proposal_accepted:
+          email_intro: 'Ehdotus "%{resource_title}" on mahdollinen. Voit lukea vastauksen täältä:'
+          email_subject: Seuraamasi ehdotus on mahdollinen
+          notification_title: Ehdotus <a href="%{resource_path}">%{resource_title}</a> on mahdollinen.
+        proposal_rejected:
+          email_intro: 'Ehdotus "%{resource_title}" ei ole mahdollinen. Voit lukea vastauksen täältä:'
+          email_subject: Seuraamasi ehdotus ei ole mahdollinen
+          notification_title: Ehdotus <a href="%{resource_path}">%{resource_title}</a> ei ole mahdollinen.
+    gamification:
+      badges:
+        accepted_proposals:
+          description_another: Tällä käyttäjällä on %{score} mahdollista ehdotusta.
+          description_own: Sinulla on %{score} mahdollista ehdotusta.
+          explanation: Käyttäjät saavat tämän kunniamerkin syöttämällä mahdollisia ehdotuksia.
+          name: Mahdolliset ehdotukset
+          next_level_in: Kerää vielä %{score} mahdollista ehdotusta noustaksesi seuraavalle tasolle!
+          unearned_another: Tällä käyttäjällä ei ole vielä mahdollisia ehdotuksia.
+          unearned_own: Sinulla ei ole vielä mahdollisia ehdotuksia.
     proposals:
+      answers:
+        accepted: Mahdollinen
+        rejected: Ei mahdollinen
       proposals:
         edit:
           attachment_legend: "(Valinnainen) Lisää kuva tai muu liite"
+        filters:
+          accepted: Mahdollinen
+          rejected: Ei mahdollinen
+        show:
+          proposal_accepted_reason: 'Tämä ehdotus on mahdollinen, koska:'
+          proposal_rejected_reason: 'Tämä ehdotus ei ole mahdollinen, koska:'
         wizard_steps:
           step_3: Luo ehdotuksesi
           step_4: Esikatsele ja julkaise ehdotuksesi
