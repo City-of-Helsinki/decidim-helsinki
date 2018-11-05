@@ -1,0 +1,7 @@
+@import 'forms/error';
+
+.form-extra{
+  @include form-error;
+  display: block;
+  color: $black;
+}

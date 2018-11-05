@@ -19,11 +19,13 @@
 //= require ie-polyfills
 //= require app/toggle-checkbox
 //= require app/fix-map-toggle
+//= require app/remaining-characters
 
 (function ($) {
   $(document).on('ready', function () {
     $('#proposals-map-container').fixMapToggle();
     $('[data-toggle-checkbox]').toggleCheckbox();
+    $('[data-remaining-characters]').remainingCharacters();
 
     // IE polyfills
     $('body').applyPolyfills();
