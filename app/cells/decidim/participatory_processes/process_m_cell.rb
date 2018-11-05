@@ -12,7 +12,8 @@ module Decidim
       end
 
       def has_state?
-        model.past?
+        #model.past?
+        false
       end
 
       def has_badge?
