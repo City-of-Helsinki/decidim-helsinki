@@ -36,6 +36,9 @@ en:
         accepted: Possible
         rejected: Not possible
       proposals:
+        index:
+          show_map: Proposals on map
+          hide_map: Hide map
         edit:
           attachment_legend: "(Optional) Add an image or other attachment"
         filters:

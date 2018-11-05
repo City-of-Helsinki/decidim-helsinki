@@ -1,6 +1,8 @@
 /* Foundation button overrides*/
 
 .button{
+  font-weight: $button-font-weight;
+
   &.small{
     padding-top: .5rem;
     padding-bottom: .5rem;

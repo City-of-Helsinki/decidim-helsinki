@@ -36,6 +36,9 @@ sv:
         accepted: Möjligt
         rejected: Inte möjligt
       proposals:
+        index:
+          show_map: Förslag på kartan
+          hide_map: Dölj kartan
         edit:
           attachment_legend: "(Valfritt) Lägg till en bild eller annan bilaga"
         filters:

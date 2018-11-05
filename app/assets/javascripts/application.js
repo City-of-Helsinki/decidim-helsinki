@@ -17,24 +17,11 @@
 //= require_self
 //= require decidim
 //= require ie-polyfills
+//= require app/fix-map-toggle
 
 (function ($) {
   $(document).on('ready', function () {
-    // $('.match-height').matchHeight()
-    // $('.navbar-primary').fixNavbar();
-
-    // setTimeout(function () {
-    //     // Sometimes it takes a while to render after the document is ready
-    //   $('.match-height').matchHeight()
-    // }, 500)
-
-    $(window).resize(function () {
-     // $('.match-height').matchHeight()
-     // $('.navbar-primary').removeData('navbar-fix-position')
-   });
-    $(window).on('scroll', function () {
-      // $('.navbar-primary').fixNavbar()
-    });
+    $('#proposals-map-container').fixMapToggle();
 
     // IE polyfills
     $('body').applyPolyfills();
