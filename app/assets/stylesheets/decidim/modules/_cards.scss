@@ -39,6 +39,10 @@ $datetime-bg: $primary;
   }
 
   .progress__bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-basis: auto;
     padding: 0 $card-padding-small;
 
     @include breakpoint(medium){
