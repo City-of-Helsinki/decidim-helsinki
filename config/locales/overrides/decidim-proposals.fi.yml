@@ -44,6 +44,7 @@ fi:
         show:
           proposal_accepted_reason: 'Tämä ehdotus on pääsi jatkoon, koska:'
           proposal_rejected_reason: 'Tämä ehdotus ei päässyt jatkoon, koska:'
+          back_to_proposals: 'Takaisin ehdotuksiin'
         wizard_steps:
           step_3: Luo ehdotuksesi
           step_4: Esikatsele ja julkaise ehdotuksesi

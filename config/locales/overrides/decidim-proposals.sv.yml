@@ -44,6 +44,7 @@ sv:
         show:
           proposal_accepted_reason: 'Detta förslag är möjligt eftersom:'
           proposal_rejected_reason: 'Detta förslag är inte möjligt på grund av att:'
+          back_to_proposals: 'Tillbaka till förslagen'
         wizard_steps:
           step_3: Skapa ditt förslag
           step_4: Förhandsvisa och Publicera ditt förslag
