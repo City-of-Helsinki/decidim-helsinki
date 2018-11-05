@@ -8,29 +8,29 @@ fi:
         address: Sijainti
         has_address: Ehdotuksella on sijainti
     models:
-      decidim/proposals/accepted_proposal_event: Ehdotus mahdollinen
-      decidim/proposals/rejected_proposal_event: Ehdotus ei mahdollinen
+      decidim/proposals/accepted_proposal_event: Ehdotus pääsi jatkoon
+      decidim/proposals/rejected_proposal_event: Ehdotus ei päässyt jatkoon
   decidim:
     events:
       proposals:
         proposal_accepted:
-          email_intro: 'Ehdotus "%{resource_title}" on mahdollinen. Voit lukea vastauksen täältä:'
-          email_subject: Seuraamasi ehdotus on mahdollinen
-          notification_title: Ehdotus <a href="%{resource_path}">%{resource_title}</a> on mahdollinen.
+          email_intro: 'Ehdotus "%{resource_title}" pääsi jatkoon. Voit lukea vastauksen täältä:'
+          email_subject: Seuraamasi ehdotus pääsi jatkoon
+          notification_title: Ehdotus <a href="%{resource_path}">%{resource_title}</a> pääsi jatkoon.
         proposal_rejected:
-          email_intro: 'Ehdotus "%{resource_title}" ei ole mahdollinen. Voit lukea vastauksen täältä:'
-          email_subject: Seuraamasi ehdotus ei ole mahdollinen
-          notification_title: Ehdotus <a href="%{resource_path}">%{resource_title}</a> ei ole mahdollinen.
+          email_intro: 'Ehdotus "%{resource_title}" ei päässyt jatkoon. Voit lukea vastauksen täältä:'
+          email_subject: Seuraamasi ehdotus ei päässyt jatkoon
+          notification_title: Ehdotus <a href="%{resource_path}">%{resource_title}</a> ei päässyt jatkoon.
     gamification:
       badges:
         accepted_proposals:
-          description_another: Tällä käyttäjällä on %{score} mahdollista ehdotusta.
-          description_own: Sinulla on %{score} mahdollista ehdotusta.
-          explanation: Käyttäjät saavat tämän kunniamerkin syöttämällä mahdollisia ehdotuksia.
-          name: Mahdolliset ehdotukset
-          next_level_in: Kerää vielä %{score} mahdollista ehdotusta noustaksesi seuraavalle tasolle!
-          unearned_another: Tällä käyttäjällä ei ole vielä mahdollisia ehdotuksia.
-          unearned_own: Sinulla ei ole vielä mahdollisia ehdotuksia.
+          description_another: Tämä käyttäjä on tehnyt %{score} jatkoon päässyttä ehdotusta.
+          description_own: Olet tehnyt %{score} jatkoon päässyttä ehdotusta.
+          explanation: Käyttäjät saavat tämän kunniamerkin saamalla ehdotuksiaan jatkoon.
+          name: Jatkoon päässeet ehdotukset
+          next_level_in: Kerää vielä %{score} jatkoon päässyttä ehdotusta noustaksesi seuraavalle tasolle!
+          unearned_another: Tällä käyttäjällä ei ole vielä jatkoon päässeitä ehdotuksia.
+          unearned_own: Sinulla ei ole vielä jatkoon päässeitä ehdotuksia.
     proposals:
       answers:
         accepted: Mahdollinen
@@ -42,8 +42,8 @@ fi:
           accepted: Mahdollinen
           rejected: Ei mahdollinen
         show:
-          proposal_accepted_reason: 'Tämä ehdotus on mahdollinen, koska:'
-          proposal_rejected_reason: 'Tämä ehdotus ei ole mahdollinen, koska:'
+          proposal_accepted_reason: 'Tämä ehdotus on pääsi jatkoon, koska:'
+          proposal_rejected_reason: 'Tämä ehdotus ei päässyt jatkoon, koska:'
         wizard_steps:
           step_3: Luo ehdotuksesi
           step_4: Esikatsele ja julkaise ehdotuksesi
