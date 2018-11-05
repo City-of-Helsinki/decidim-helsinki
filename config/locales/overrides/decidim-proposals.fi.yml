@@ -41,6 +41,8 @@ fi:
           hide_map: Piilota kartta
         edit:
           attachment_legend: "(Valinnainen) Lisää kuva tai muu liite"
+        edit_form_fields:
+          add_address: '(Valinnainen) Lisää sijainti'
         filters:
           accepted: Mahdollinen
           rejected: Ei mahdollinen

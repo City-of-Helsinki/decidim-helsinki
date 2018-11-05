@@ -41,6 +41,8 @@ sv:
           hide_map: Dölj kartan
         edit:
           attachment_legend: "(Valfritt) Lägg till en bild eller annan bilaga"
+        edit_form_fields:
+          add_address: '(Valfritt) Lägg till plats'
         filters:
           accepted: Möjligt
           rejected: Inte möjligt

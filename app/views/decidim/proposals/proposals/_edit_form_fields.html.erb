@@ -12,16 +12,6 @@
   <%= form.text_area :body, rows: 10, class: "js-hashtags", hashtaggable: true, value: present(@proposal).body %>
 </div>
 
-<% if component_settings.geocoding_enabled? %>
-  <div class="field">
-    <%= form.check_box :has_address, checked: form_has_address?, class: 'has_address' %>
-  </div>
-
-  <div class="field" id="address_input">
-    <%= form.text_field :address %>
-  </div>
-<% end %>
-
 <% if @form.categories&.any? %>
   <div class="field">
     <%= form.categories_select :category_id, @form.categories, prompt: t("decidim.proposals.proposals.edit.select_a_category") %>
@@ -34,9 +24,48 @@
   </div>
 <% end %>
 
+<% if component_settings.geocoding_enabled? %>
+  <div class="field-toggle">
+    <p>
+      <button type="button" class="h5 text-left"
+        data-toggle="address_closed address_open"
+        data-toggle-checkbox="<%= "#{form.object_name}_has_address" %>"
+        id="address_toggle"
+      >
+        <%= t(".add_address") %>
+        <span id="address_closed" data-toggler=".is-hidden" aria-expanded="true">
+          <%= icon "chevron-bottom" %>
+        </span>
+        <span id="address_open" class="is-hidden" data-toggler=".is-hidden" aria-expanded="false">
+          <%= icon "chevron-top" %>
+        </span>
+      </button>
+    </p>
+    <span class="is-hidden">
+      <%= form.check_box :has_address, checked: false, class: 'has_address' %>
+    </span>
+    <div class="field" id="address_input">
+      <%= form.text_field :address %>
+    </div>
+  </div>
+<% end %>
+
 <% if component_settings.attachments_allowed? && @proposal %>
-  <fieldset>
-    <legend><%= t("attachment_legend", scope: "decidim.proposals.proposals.edit") %></legend>
+  <p>
+    <button type="button" class="h5 text-left"
+      data-toggle="attachment_section attachment_closed attachment_open"
+      id="attachment_toggle"
+    >
+      <%= t("attachment_legend", scope: "decidim.proposals.proposals.edit") %>
+      <span id="attachment_closed" data-toggler=".is-hidden" aria-expanded="true">
+        <%= icon "chevron-bottom" %>
+      </span>
+      <span id="attachment_open" class="is-hidden" data-toggler=".is-hidden" aria-expanded="false">
+        <%= icon "chevron-top" %>
+      </span>
+    </button>
+  </p>
+  <fieldset id="attachment_section" class="is-hidden" data-toggler=".is-hidden">
     <%= form.fields_for :attachment, @form.attachment do |nested_form| %>
       <div class="field">
         <%= nested_form.text_field :title %>
@@ -54,4 +83,24 @@
       </div>
     <% end %>
   </fieldset>
+<% end %>
+
+<% if form_has_address? %>
+<script type="text/javascript">
+  $(document).on('app-ready', function() {
+    setTimeout(function() {
+      $('#address_toggle').trigger('click');
+    }, 500);
+  });
+</script>
+<% end %>
+
+<% if @form.errors[:attachment].any? || (@form.attachment && @form.attachment.errors.any?) %>
+<script type="text/javascript">
+  $(document).on('app-ready', function() {
+    setTimeout(function() {
+      $('#attachment_toggle').trigger('click');
+    }, 500);
+  });
+</script>
 <% end %>

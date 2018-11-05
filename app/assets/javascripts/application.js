@@ -17,13 +17,18 @@
 //= require_self
 //= require decidim
 //= require ie-polyfills
+//= require app/toggle-checkbox
 //= require app/fix-map-toggle
 
 (function ($) {
   $(document).on('ready', function () {
     $('#proposals-map-container').fixMapToggle();
+    $('[data-toggle-checkbox]').toggleCheckbox();
 
     // IE polyfills
     $('body').applyPolyfills();
+
+    // Event to determine when the application scripts have finished their setup
+    $(document).trigger('app-ready');
   })
 })($);

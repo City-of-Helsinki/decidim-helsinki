@@ -41,6 +41,8 @@ en:
           hide_map: Hide map
         edit:
           attachment_legend: "(Optional) Add an image or other attachment"
+        edit_form_fields:
+          add_address: '(Optional) Add location'
         filters:
           accepted: Possible
           rejected: Not possible
