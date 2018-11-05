@@ -45,7 +45,13 @@
                 <div class="card__content">
                   <fieldset class="text-center">
                     <legend><%= t(".sign_up_as.legend") %></legend>
-                    <%= f.collection_radio_buttons :sign_up_as, [["user", t(".sign_up_as.user")], ["user_group", t(".sign_up_as.user_group") ]], :first, :last %>
+                    <%= f.collection_radio_buttons :sign_up_as, [["user", t(".sign_up_as.user")], ["user_group", t(".sign_up_as.user_group") ]], :first, :last do |b| %>
+                      <div class="field field-inline">
+                        <%= b.label do %>
+                          <%= b.radio_button + b.text %>
+                        <% end %>
+                      </div>
+                    <% end %>
                   </fieldset>
 
                   <div class="user-person">
