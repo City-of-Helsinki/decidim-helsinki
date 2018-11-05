@@ -1,0 +1,8 @@
+sv:
+  decidim:
+    assemblies:
+      pages:
+        home:
+          highlighted_assemblies:
+            active_assemblies: Att stödja deltagande
+            see_all_assemblies: Visa alla grupper

@@ -1,0 +1,8 @@
+en:
+  decidim:
+    assemblies:
+      pages:
+        home:
+          highlighted_assemblies:
+            active_assemblies: To support participation
+            see_all_assemblies: Show all active groups

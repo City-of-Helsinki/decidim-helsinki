@@ -1,0 +1,8 @@
+fi:
+  decidim:
+    assemblies:
+      pages:
+        home:
+          highlighted_assemblies:
+            active_assemblies: Osallistumisen tueksi
+            see_all_assemblies: Näytä kaikki ryhmät
