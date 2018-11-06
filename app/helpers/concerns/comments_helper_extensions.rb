@@ -3,7 +3,11 @@ module CommentsHelperExtensions
   extend ActiveSupport::Concern
 
   included do
-    alias_method :comments_for_orig, :comments_for
+    # In development environment we can end up in an endless loop if we alias
+    # the already overridden method as then it will call itself.
+    unless method_defined?(:comments_for_orig)
+      alias_method :comments_for_orig, :comments_for
+    end
 
     def comments_for(resource)
       replace_footer_koro("with-wrapper--inner")
