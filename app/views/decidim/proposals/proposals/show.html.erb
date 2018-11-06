@@ -16,35 +16,12 @@
 </div>
 
 <%= render partial: "voting_rules" %>
-<div class="row column view-header">
-  <h2 class="heading2"><%= present(@proposal).html_title %></h2>
-  <%= cell("decidim/coauthorships", @proposal, has_actions: true, size: 3) %>
-</div>
-<div class="row">
-  <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
-    <% if allowed_to?(:edit, :proposal, proposal: @proposal) %>
-      <%= link_to t(".edit_proposal"), edit_proposal_path(@proposal), class: "button secondary hollow expanded button-sc button--icon follow-button" %>
-    <% end %>
-    <% if current_settings.votes_enabled? || show_endorsements_card? || current_user %>
-      <div class="card">
-        <div class="card__content">
-          <% if current_settings.votes_enabled? %>
-            <%= render partial: "votes_count", locals: { proposal: @proposal, from_proposals_list: false } %>
-            <%= render partial: "vote_button", locals: { proposal: @proposal, from_proposals_list: false } %>
-          <% end %>
-          <%= render partial: "endorsements_card_row", locals: { proposal: @proposal } %>
-          <br />
-          <%= follow_button_for(@proposal) %>
-        </div>
-      </div>
-    <% end %>
-    <%= resource_reference(@proposal) %>
-    <%= cell("decidim/fingerprint", @proposal) %>
-    <%= render partial: "decidim/shared/share_modal" %>
-    <%= embed_modal_for proposal_proposal_widget_url(@proposal, format: :js) %>
-    <%= cell "decidim/proposals/proposal_link_to_collaborative_draft", @proposal %>
-  </div>
-  <div class="columns mediumlarge-8 mediumlarge-pull-4">
+<div class="row view-header">
+  <div class="columns mediumlarge-8">
+    <h2 class="heading2"><%= present(@proposal).html_title %></h2>
+
+    <%= cell("decidim/coauthorships", @proposal, has_actions: true, size: 3) %>
+
     <div class="section">
       <%== cell("decidim/proposals/proposal_m", @proposal, full_badge: true).badge %>
       <%= simple_format present(@proposal).html_body %>
@@ -77,6 +54,46 @@
         </div>
       <% end %>
     <% end %>
+  </div>
+  <div class="columns mediumlarge-4 large-3">
+    <div class="card">
+      <div class="card__content">
+        <% if allowed_to?(:edit, :proposal, proposal: @proposal) %>
+          <%= link_to t(".edit_proposal"), edit_proposal_path(@proposal), class: "button secondary hollow expanded button-sc button--icon follow-button" %>
+        <% end %>
+        <%= follow_button_for(@proposal) %>
+        <%= render partial: "decidim/shared/share_modal" %>
+        <%= embed_modal_for proposal_proposal_widget_url(@proposal, format: :js) %>
+
+        <div class="text-center">
+          <button type="button" class="share-link link" data-open="<%= current_user.present? ? "flagModal" : "loginModal" %>" title="<%= t("report", scope: "decidim.proposals.proposals.show") %>" aria-controls="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-haspopup="true" tabindex="0">
+            <%= t(".report") %>
+            <%= icon "flag", aria_label: t("report", scope: "decidim.proposals.proposals.show"), class: "icon--after" %>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <% if current_settings.votes_enabled? || show_endorsements_card? || current_user %>
+      <div class="card">
+        <div class="card__content">
+          <% if current_settings.votes_enabled? %>
+            <%= render partial: "votes_count", locals: { proposal: @proposal, from_proposals_list: false } %>
+            <%= render partial: "vote_button", locals: { proposal: @proposal, from_proposals_list: false } %>
+          <% end %>
+          <%= render partial: "endorsements_card_row", locals: { proposal: @proposal } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
+    <%= resource_reference(@proposal) %>
+    <%= cell("decidim/fingerprint", @proposal) %>
+    <%= cell "decidim/proposals/proposal_link_to_collaborative_draft", @proposal %>
+  </div>
+  <div class="columns mediumlarge-8 mediumlarge-pull-4">
     <%= linked_resources_for @proposal, :results, "included_proposals" %>
     <%= linked_resources_for @proposal, :projects, "included_proposals" %>
     <%= linked_resources_for @proposal, :meetings, "proposals_from_meeting" %>

@@ -69,7 +69,7 @@ module Decidim
 
       def endorsements_count
         with_tooltip t("decidim.proposals.models.proposal.fields.endorsements") do
-          icon("bullhorn", class: "icon--small") + " " + model.proposal_endorsements_count.to_s
+          icon("thumb-up", class: "icon--small") + " " + model.proposal_endorsements_count.to_s
         end
       end
 
