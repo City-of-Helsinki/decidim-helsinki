@@ -14,7 +14,7 @@ module Decidim
       private
 
       def resource_icon
-        icon "meetings", class: "icon--big"
+        icon "meetings"
       end
 
       def spans_multiple_dates?
