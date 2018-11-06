@@ -912,6 +912,19 @@ $datetime-bg: $primary;
   }
 }
 
+.card__detail{
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+
+  .card__detail--icon{
+    display: flex;
+    font-size: 1.5rem;
+    margin-right: 5px;
+    margin-bottom: 1px;
+  }
+}
+
 // card stack
 .card--stack{
   position: relative;

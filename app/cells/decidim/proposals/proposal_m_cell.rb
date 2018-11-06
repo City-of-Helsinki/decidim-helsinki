@@ -89,6 +89,16 @@ module Decidim
         end
       end
 
+      def has_address?
+        return false unless component_settings.geocoding_enabled?
+        return false if address.nil?
+        return address.strip.length > 0
+      end
+
+      def address
+        model.address
+      end
+
       def has_image?
         if resource_image_attachment
           return true
