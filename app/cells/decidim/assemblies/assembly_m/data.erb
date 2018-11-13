@@ -1,0 +1,15 @@
+<% if has_assembly_type? %>
+<div class="card__icondata">
+  <ul class="card-data">
+    <li class="card-data__item">
+      <%= icon "tag" %>
+    </li>
+    <li class="card-data__item">
+      <div>
+        <strong><%= t("assemblies.show.assembly_type", scope: "decidim") %>:</strong>
+        <%= assembly_type %>
+      </div>
+    </li>
+  </ul>
+</div>
+<% end %>
