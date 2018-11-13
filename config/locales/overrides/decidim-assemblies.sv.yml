@@ -6,3 +6,7 @@ sv:
           highlighted_assemblies:
             active_assemblies: Att stödja deltagande
             see_all_assemblies: Visa alla grupper
+  layouts:
+    decidim:
+      assembly_header:
+        assembly_menu_item: Information

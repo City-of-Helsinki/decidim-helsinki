@@ -6,3 +6,7 @@ fi:
           highlighted_assemblies:
             active_assemblies: Osallistumisen tueksi
             see_all_assemblies: Näytä kaikki ryhmät
+  layouts:
+    decidim:
+      assembly_header:
+        assembly_menu_item: Tietoa
