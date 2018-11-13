@@ -58,9 +58,6 @@ module Decidim
         if address.strip.length == 0
           @has_address = false
         end
-        unless has_address
-          @address = nil
-        end
       end
 
       def scope_belongs_to_participatory_space_scope
