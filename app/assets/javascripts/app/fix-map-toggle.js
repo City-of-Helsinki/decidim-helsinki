@@ -23,11 +23,9 @@ $.fn.fixMapToggle = function() {
             // Re-center the map as done in `decidim/map.js.es6`
             var bounds = null;
             if (markersData.length > 0) {
-              bounds = new window.L.LatLngBounds(
-                $.map(function(markersData, markerData) {
-                  return [markerData.latitude, markerData.longitude];
-                })
-              );
+              bounds = new window.L.LatLngBounds(markersData.map(function(markerData) {
+                return [markerData.latitude, markerData.longitude];
+              }));
             } else {
               // In case no markers are available, center Helsiki city bounds
               bounds = new window.L.LatLngBounds([
