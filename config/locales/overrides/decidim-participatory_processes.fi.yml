@@ -1,5 +1,14 @@
 fi:
+  activemodel:
+    attributes:
+      participatory_process:
+        promoted: Tärkeä
   decidim:
+    admin:
+      models:
+        participatory_process:
+          fields:
+            promoted: Tärkeä
     participatory_processes:
       pages:
         home:
@@ -10,8 +19,8 @@ fi:
         filters:
           counters:
             active:
-              one: 1 käynnissä
-              other: "%{count} käynnissä"
+              one: 1 käynnissä nyt
+              other: "%{count} käynnissä nyt"
             all:
               one: 1 yhteensä
               other: "%{count} yhteensä"
@@ -23,8 +32,13 @@ fi:
               other: "%{count} tulevaa"
           explanations:
             no_active: Ei aktiivisia
-            no_active_nor_upcoming: Ei käytössä olevia tai tulevia
-            no_active_nor_upcoming_callout: Käytössä olevia tai tulevia ei ole tiedossa. Tässä on luettelo menneistä.
+            no_active_nor_upcoming: Ei käynnissä olevia tai tulevia
+            no_active_nor_upcoming_callout: Käynnissä olevia tai tulevia ei ole tiedossa. Tässä on luettelo menneistä.
+          names:
+            active: Käynnissä nyt
+            all: Kaikki
+            past: Menneet
+            upcoming: Tulevat
   layouts:
     decidim:
       process_header:

@@ -1,0 +1,5 @@
+en:
+  activemodel:
+    attributes:
+      attachment:
+        title: Title for image or attachment

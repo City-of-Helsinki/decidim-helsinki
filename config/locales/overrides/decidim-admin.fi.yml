@@ -1,0 +1,5 @@
+fi:
+  activemodel:
+    attributes:
+      attachment:
+        title: Kuvan tai liitteen otsikko

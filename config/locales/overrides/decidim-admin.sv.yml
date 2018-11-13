@@ -1,0 +1,5 @@
+sv:
+  activemodel:
+    attributes:
+      attachment:
+        title: Titel för bild eller bilaga

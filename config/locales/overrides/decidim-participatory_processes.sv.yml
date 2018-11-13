@@ -1,5 +1,14 @@
 sv:
+  activemodel:
+    attributes:
+      participatory_process:
+        promoted: Främjas
   decidim:
+    admin:
+      models:
+        participatory_process:
+          fields:
+            promoted: Främjas
     participatory_processes:
       pages:
         home:
@@ -10,8 +19,8 @@ sv:
         filters:
           counters:
             active:
-              one: 1 pågår
-              other: "%{count} pågår"
+              one: 1 pågår nu
+              other: "%{count} pågår nu"
             all:
               one: 1 totalt
               other: "%{count} totalt"
@@ -22,9 +31,14 @@ sv:
               one: 1 kommande
               other: "%{count} kommande"
           explanations:
-            no_active: Inga aktiv
+            no_active: Inga pågår
             no_active_nor_upcoming: Inga pågår eller kommande
-            no_active_nor_upcoming_callout: I bruk eller kommande är det okänt. Här är en förteckning över det förflutna.
+            no_active_nor_upcoming_callout: Pågår eller kommande är det okänt. Här är en förteckning över det förflutna.
+          names:
+            active: Pågår nu
+            all: Alla
+            past: Tidigare
+            upcoming: Kommande
   layouts:
     decidim:
       process_header:

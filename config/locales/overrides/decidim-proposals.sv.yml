@@ -8,29 +8,29 @@ sv:
         address: Plats
         has_address: Förslaget har plats
     models:
-      decidim/proposals/accepted_proposal_event: Förslag möjligt
-      decidim/proposals/rejected_proposal_event: Förslag inte möjligt
+      decidim/proposals/accepted_proposal_event: Förslaget gick vidare
+      decidim/proposals/rejected_proposal_event: Förslaget gick inte vidare
   decidim:
     events:
       proposals:
         proposal_accepted:
-          email_intro: 'Förslag "%{resource_title}" är möjligt. Du kan läsa svaret härifrån:'
-          email_subject: Förslag du följer är möjligt
-          notification_title: Förslag <a href="%{resource_path}">%{resource_title}</a> är möjligt.
+          email_intro: 'Förslaget "%{resource_title}" gick vidare. Du kan läsa svaret härifrån:'
+          email_subject: Ett förslag som du följer gick vidare
+          notification_title: Förslaget <a href="%{resource_path}">%{resource_title}</a> gick vidare.
         proposal_rejected:
-          email_intro: 'Förslag "%{resource_title}" är inte möjligt. Du kan läsa svaret härifrån:'
-          email_subject: Förslag du följer är inte möjligt
-          notification_title: Förslag <a href="%{resource_path}">%{resource_title}</a> är inte möjligt.
+          email_intro: 'Förslaget "%{resource_title}" gick inte vidare. Du kan läsa svaret härifrån:'
+          email_subject: Ett förslag som du följer gick inte vidare.
+          notification_title: Förslaget <a href="%{resource_path}">%{resource_title}</a> gick inte vidare.
     gamification:
       badges:
         accepted_proposals:
-          description_another: Den här användaren har %{score} möjligt förslag.
-          description_own: Du har %{score} möjligt förslag.
-          explanation: Användare får detta märke genom att få möjligt förslag.
-          name: Möjligt förslag
-          next_level_in: Få %{score} fler möjligt förslag för att nå nästa nivå!
-          unearned_another: Den här användaren har inte fått några möjligt förslag än.
-          unearned_own: Du har inga möjligt förslag än.
+          description_another: Den här användaren har gjort %{score} förslag som gått vidare.
+          description_own: Du har gjort %{score} förslag som gått vidare.
+          explanation: Användarna får det här hederstecknet genom att göra förslag som går vidare.
+          name: Förslag som gått vidare
+          next_level_in: Gör %{score} ytterligare förslag som går vidare för att uppnå följande nivå!
+          unearned_another: Den här användaren har ännu inte gjort förslag som gått vidare.
+          unearned_own: Du har ännu inte gjort förslag som gått vidare.
     proposals:
       answers:
         accepted: Möjligt
@@ -47,8 +47,8 @@ sv:
           accepted: Möjligt
           rejected: Inte möjligt
         show:
-          proposal_accepted_reason: 'Detta förslag är möjligt eftersom:'
-          proposal_rejected_reason: 'Detta förslag är inte möjligt på grund av att:'
+          proposal_accepted_reason: 'Förslaget gick vidare.'
+          proposal_rejected_reason: 'Förslaget gick inte vidare.'
           back_to_proposals: 'Tillbaka till förslagen'
         wizard_steps:
           step_3: Skapa ditt förslag

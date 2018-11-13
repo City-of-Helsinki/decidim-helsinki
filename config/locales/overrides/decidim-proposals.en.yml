@@ -14,22 +14,22 @@ en:
     events:
       proposals:
         proposal_accepted:
-          email_intro: 'Proposal "%{resource_title}" is possible. You can read the response from here:'
+          email_intro: 'Proposal "%{resource_title}" is possible. You can read the response from this page:'
           email_subject: A proposal you are following is possible
           notification_title: Proposal <a href="%{resource_path}">%{resource_title}</a> is possible.
         proposal_rejected:
-          email_intro: 'Proposal "%{resource_title}" is not possible. You can read the response from here:'
+          email_intro: 'Proposal "%{resource_title}" is not possible. You can read the response from this page:'
           email_subject: A proposal you are following is not possible
           notification_title: Proposal <a href="%{resource_path}">%{resource_title}</a> is not possible.
     gamification:
       badges:
         accepted_proposals:
-          description_another: This user has gotten %{score} possible proposals.
+          description_another: This user has got %{score} possible proposals.
           description_own: You got %{score} possible proposals.
           explanation: Users get this badge by getting possible proposals.
           name: Possible proposals
           next_level_in: Get %{score} more possible proposals to reach the next level!
-          unearned_another: This user hasn't gotten any possible proposals yet.
+          unearned_another: This user hasn't got any possible proposals yet.
           unearned_own: You got no possible proposals yet.
     proposals:
       answers:

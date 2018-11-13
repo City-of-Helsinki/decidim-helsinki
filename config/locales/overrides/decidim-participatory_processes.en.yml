@@ -1,5 +1,14 @@
 en:
+  activemodel:
+    attributes:
+      participatory_process:
+        promoted: Promoted
   decidim:
+    admin:
+      models:
+        participatory_process:
+          fields:
+            promoted: Promoted
     participatory_processes:
       pages:
         home:
@@ -10,8 +19,8 @@ en:
         filters:
           counters:
             active:
-              one: 1 active
-              other: "%{count} active"
+              one: 1 active now
+              other: "%{count} active now"
             all:
               one: 1 total
               other: "%{count} total"
@@ -25,6 +34,11 @@ en:
             no_active: No active
             no_active_nor_upcoming: No active nor upcoming
             no_active_nor_upcoming_callout: No active nor upcoming. Here is a list of past.
+          names:
+            active: Active now
+            all: All
+            past: Past
+            upcoming: Upcoming
   layouts:
     decidim:
       process_header:
@@ -34,4 +48,4 @@ en:
           processes_count: 'Processes:'
       participatory_processes:
         index:
-          promoted_processes: Highlighted now
+          promoted_processes: Promoted now
