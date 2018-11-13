@@ -102,7 +102,7 @@
 </script>
 <% end %>
 
-<% if @form.errors[:attachment].any? || (@form.attachment && @form.attachment.errors.any?) %>
+<% if @form.errors[:attachment].any? || @form.attachment %>
 <script type="text/javascript">
   $(document).on('app-ready', function() {
     setTimeout(function() {
