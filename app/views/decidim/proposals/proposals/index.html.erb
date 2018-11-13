@@ -11,23 +11,23 @@
 <div class="row columns">
   <div class="title-action">
     <% if current_settings.creation_enabled && current_component.participatory_space.can_participate?(current_user) %>
-      <%= action_authorized_link_to :create, new_proposal_path, class: "title-action__action button large hollow", data: { "redirect_url" => new_proposal_path } do %>
+      <%= action_authorized_link_to :create, new_proposal_path, class: "title-action__action button large hollow mr-s", data: { "redirect_url" => new_proposal_path } do %>
         <%= icon "plus" %>
         <%= t(".new_proposal") %>
       <% end %>
     <% else %>
-      <span class="title-action__action button large hollow disabled">
+      <span class="title-action__action button large hollow disabled mr-s">
         <%= icon "plus" %>
         <%= t(".new_proposal") %>
       </span>
     <% end %>
 
     <% if component_settings.collaborative_drafts_enabled? %>
-      <%= link_to t(".collaborative_drafts_list"), collaborative_drafts_path, class: "title-action__action button large hollow ml-s" %>
+      <%= link_to t(".collaborative_drafts_list"), collaborative_drafts_path, class: "title-action__action button large hollow mr-s" %>
     <% end %>
 
     <% if component_settings.geocoding_enabled? %>
-      <button class="title-action__action button large hollow ml-s" data-toggle="proposals-map-container proposals-map-show proposals-map-hide">
+      <button class="title-action__action button large hollow mr-s" data-toggle="proposals-map-container proposals-map-show proposals-map-hide">
         <span id="proposals-map-show" data-toggler=".hide">
           <%= t(".show_map") %>
         </span>

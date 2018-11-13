@@ -2,11 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 1.5rem;
-
-  [data-toggle]{
-    margin: 0;
-  }
+  margin-bottom: 1rem;
 }
 
 .title-action__title{
@@ -23,7 +19,7 @@
 .title-action__action{
   display: inline-block;
   vertical-align: middle;
-  margin-bottom: 0;
+  margin-bottom: .5rem;
 
   .icon{
     width: 11px;
