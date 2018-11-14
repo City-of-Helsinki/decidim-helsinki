@@ -352,6 +352,9 @@ fi:
         assembly_member_menu_item: Jäsenet
         assembly_menu_item: Ryhmä
         unfold: Avaa
+      assembly_navigation:
+        assembly_member_menu_item: Jäsenet
+        assembly_menu_item: Ryhmä
       assembly_widgets:
         show:
           take_part: Osallistu
