@@ -3,10 +3,14 @@ en:
     attributes:
       collaborative_draft:
         address: Location
+        body: Proposal description
         has_address: Proposal has location
+        title: Proposal name
       proposal:
         address: Location
+        body: Proposal description
         has_address: Proposal has location
+        title: Proposal name
     models:
       decidim/proposals/accepted_proposal_event: Proposal possible
       decidim/proposals/rejected_proposal_event: Proposal not possible
