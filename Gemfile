@@ -8,6 +8,8 @@ DECIDIM_VERSION = "0.14.4"
 
 gem "decidim", DECIDIM_VERSION
 
+gem "decidim-antivirus", "~> 0.14.4"
+
 gem "font-awesome-rails", "~> 4.7.0"
 
 gem 'puma', '~> 3.0'
