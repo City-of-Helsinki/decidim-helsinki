@@ -1,8 +1,19 @@
+<%
+if @proposal
+  meta_description = truncate(strip_tags(@proposal.body), length: 100)
+  if attachment = @proposal.attachments.first
+    meta_image = attachment.url
+  end
+end
+#meta_image ||= current_participatory_space.banner_image.url
+meta_image ||= image_url('helsinki-social/omastadi-wide.jpg')
+meta_description ||= translated_attribute(current_participatory_space.short_description)
+%>
 <% add_decidim_page_title(translated_attribute(current_component.name)) if try(:current_component) %>
 <% add_decidim_page_title(translated_attribute(current_participatory_space.title)) %>
 <% add_decidim_meta_tags(
-  image_url: current_participatory_space.banner_image.url,
-  description: translated_attribute(current_participatory_space.short_description),
+  image_url: meta_image,
+  description: meta_description,
 ) %>
 
 <%= render "layouts/decidim/application" do %>
@@ -21,4 +32,4 @@
   <% end %>
 <% end %>
 
-<% provide :meta_image_url, current_participatory_space.banner_image.url %>
+<% provide :meta_image_url, meta_image %>
