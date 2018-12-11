@@ -60,6 +60,7 @@ module Decidim
       end
 
       def endorsements_count_status
+        return unless current_settings.endorsements_enabled?
         return endorsements_count unless has_link_to_resource?
 
         link_to resource_path do
@@ -70,6 +71,15 @@ module Decidim
       def endorsements_count
         with_tooltip t("decidim.proposals.models.proposal.fields.endorsements") do
           icon("thumb-up", class: "icon--small") + " " + model.proposal_endorsements_count.to_s
+        end
+      end
+
+      def comments_count_status
+        return unless component_settings.comments_enabled?
+        return render_comments_count unless has_link_to_resource?
+
+        link_to resource_path do
+          render_comments_count
         end
       end
 
