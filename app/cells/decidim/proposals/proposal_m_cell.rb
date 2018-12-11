@@ -37,10 +37,10 @@ module Decidim
 
       def description
         model_body = present(model).body
-        model_body = strip_tags(model_body).gsub(/\n/, '<br>')
+        model_body = strip_tags(model_body)
 
         if options[:full_description]
-          model_body
+          model_body.gsub(/\n/, '<br>')
         else
           truncate(model_body, length: 100)
         end
