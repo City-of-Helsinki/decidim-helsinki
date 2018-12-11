@@ -53,13 +53,8 @@ Rails.application.configure do
     #from: 'info@local.dev', # Causes forms to break e.g. when publishing proposal
   }
 
-  # Install MailCatcher for local development
-  # See instructions from:
-  # https://mailcatcher.me/
-  config.action_mailer.smtp_settings = {
-    :address => "localhost",
-    :port => "1025"
-  }
+  # Use letter_opener
+  config.action_mailer.delivery_method = :letter_opener_web
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

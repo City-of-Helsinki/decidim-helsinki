@@ -23,11 +23,12 @@ gem 'roo', '~> 2.7', '>= 2.7.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+
+  gem 'decidim-dev', DECIDIM_VERSION
 end
 
 group :development do
-  gem 'decidim-dev', DECIDIM_VERSION
-
+  gem "letter_opener_web", "~> 1.3"
   gem 'web-console'
   gem 'listen', '~> 3.1.0'
   gem 'spring'
