@@ -19,17 +19,17 @@ sv:
         filters:
           counters:
             active:
-              one: 1 pågår nu
-              other: "%{count} pågår nu"
+              one: Pågår nu
+              other: "Pågår nu"
             all:
-              one: 1 totalt
-              other: "%{count} totalt"
+              one: Alla
+              other: "Alla"
             past:
-              one: 1 tidigare
-              other: "%{count} tidigare"
+              one: Tidigare
+              other: "Tidigare"
             upcoming:
-              one: 1 kommande
-              other: "%{count} kommande"
+              one: Kommande
+              other: "Kommande"
           explanations:
             no_active: Inga pågår
             no_active_nor_upcoming: Inga pågår eller kommande

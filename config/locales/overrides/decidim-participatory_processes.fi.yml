@@ -19,17 +19,17 @@ fi:
         filters:
           counters:
             active:
-              one: 1 käynnissä nyt
-              other: "%{count} käynnissä nyt"
+              one: Käynnissä nyt
+              other: "Käynnissä nyt"
             all:
-              one: 1 yhteensä
-              other: "%{count} yhteensä"
+              one: Kaikki
+              other: "Kaikki"
             past:
-              one: 1 mennyt
-              other: "%{count} mennyttä"
+              one: Menneet
+              other: "Menneet"
             upcoming:
-              one: 1 tuleva
-              other: "%{count} tulevaa"
+              one: Tulevat
+              other: "Tulevat"
           explanations:
             no_active: Ei aktiivisia
             no_active_nor_upcoming: Ei käynnissä olevia tai tulevia

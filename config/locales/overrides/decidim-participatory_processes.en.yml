@@ -19,17 +19,17 @@ en:
         filters:
           counters:
             active:
-              one: 1 active now
-              other: "%{count} active now"
+              one: Active now
+              other: "Active now"
             all:
-              one: 1 total
-              other: "%{count} total"
+              one: All
+              other: "All"
             past:
-              one: 1 past
-              other: "%{count} past"
+              one: Past
+              other: "Past"
             upcoming:
-              one: 1 upcoming
-              other: "%{count} upcoming"
+              one: Upcoming
+              other: "Upcoming"
           explanations:
             no_active: No active
             no_active_nor_upcoming: No active nor upcoming
