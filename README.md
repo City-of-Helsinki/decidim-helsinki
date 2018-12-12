@@ -8,7 +8,7 @@ wide participatory budgeting ([read more](https://kuntalehti.fi/uutiset/kaupunki
 Before this system has been evaluated in distributing funds for youth projects
 in Helsinki ([read more](https://digi.hel.fi/digipalveluopas/tarinat/miten-budjetti-jaetaan-osallistava-budjetointi/)).
 
-This system is also internally being used at Helsinki to apply participatory
+This system has also internally been used at Helsinki to apply participatory
 decision making within the organization as well.
 
 
@@ -21,13 +21,12 @@ budgeted money on publicly funded projects.
 
 The live instance is visible in the following address:
 
-https://osallistu.hel.fi/
+https://omastadi.hel.fi/
 
 
 ## The software stack
 
-Technically the software is a Ruby on Rails project. In particular,
-this is Rails 5.x.
+Technically the software is a Ruby on Rails (5) project.
 
 The Decidim core is made on top of the Ruby on Rails framework as well.
 
@@ -229,7 +228,7 @@ https://github.com/decidim/decidim/blob/master/docs/getting_started.md#deploy
 ### New code updates to production server
 
 The production updates are run using Capistrano with the `production`
-environment. Please see the `config/deploy` folder for all environments.
+environment.
 
 For security reasons, the deployment configs are kept in a separate repository.
 
