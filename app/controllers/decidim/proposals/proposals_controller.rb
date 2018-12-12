@@ -78,6 +78,13 @@ module Decidim
           component: current_component,
         }))
 
+        # Add coauthorship to the new proposal
+        user_group ||= Decidim::UserGroup.find_by(
+          organization: current_user.organization,
+          id: @form.user_group_id
+        )
+        @proposal.add_coauthor(current_user, user_group: user_group)
+
         # We need to initiate the `UpdateProposal` command in order to save the
         # attachements, address and category. The default `CreateProposal` only
         # saves the title and body.
@@ -242,7 +249,7 @@ module Decidim
       end
 
       def proposal_draft
-        Proposal.from_all_user_identities(current_user).not_hidden.where(component: current_component).find_by(published_at: nil)
+        Proposal.from_all_author_identities(current_user).not_hidden.where(component: current_component).find_by(published_at: nil)
       end
 
       def ensure_is_draft
