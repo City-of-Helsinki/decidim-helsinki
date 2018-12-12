@@ -86,7 +86,7 @@ fi:
       badges:
         initiatives:
           conditions:
-            - Siirry aloitteiden osallistumistilaan
+            - Siirry aloitteiden osallisuustilaan
             - Luo uusi aloite ohjeiden mukaisesti
           description: Tämä kunniamerkki myönnetään, kun laadit uusia aloitteita ja keräät verkoston ihmisiä toteuttamaan niitä.
           description_another: Tämä käyttäjä on julkaissut %{score} aloitetta.
@@ -95,6 +95,12 @@ fi:
           next_level_in: Julkaise %{score} uutta aloitetta saavuttaaksesi seuraavan tason!
           unearned_another: Tämä käyttäjä ei ole vielä julkaissut yhtään aloitetta.
           unearned_own: Sinulla ei ole vielä julkaistuja aloitteita.
+    help:
+      participatory_spaces:
+        initiatives:
+          contextual: "<p>Aloite on ehdotus, jota kuka tahansa voi itsenäisesti edistää ​​(muista kanavista tai osallisuustiloista riippumatta) kokoamalla (digitaaliset) allekirjoitukset organisaatiolle tietyn toimen toteuttamiseksi (asetuksen muuttaminen, hankkeen käynnistys , alueen tai kadun nimen muuttaminen, jne.).</p> <p>Aloitteen edistäjät voivat määritellä tavoitteet, kerätä tukea, järjestää keskustelua, levittää aloitetta ja määritellä kohtaamispaikkoja, joissa allekirjoituksia voidaan kerätä osallistujilta tai keskustella avoimesti muiden osallistujien kanssa.</p> <p>Esimerkiksi, aloite voi: kerätä allekirjoituksia kutsuakseen koolle tietyn organisaation, panna aluilleen ryhmän tai käynnistää prosessin määrärahojen lisäämisestä alueelle tai organisaatiolle. Allekirjoitusten keräysprosessin aikana useammat ihmiset voivat antaa panoksensa aloitteen vaatimuksille ja viedä sitä eteenpäin organisaatiossa.</p>\n"
+          page: "<p>Aloite on ehdotus, jota kuka tahansa voi itsenäisesti edistää ​​(muista kanavista tai osallisuustiloista riippumatta) kokoamalla (digitaaliset) allekirjoitukset organisaatiolle tietyn toimen toteuttamiseksi (asetuksen muuttaminen, hankkeen käynnistys , alueen tai kadun nimen muuttaminen, jne.).</p> <p>Aloitteen edistäjät voivat määritellä tavoitteet, kerätä tukea, järjestää keskustelua, levittää aloitetta ja määritellä kohtaamispaikkoja, joissa allekirjoituksia voidaan kerätä osallistujilta tai keskustella avoimesti muiden osallistujien kanssa.</p> <p>Esimerkiksi, aloite voi: kerätä allekirjoituksia kutsuakseen koolle tietyn organisaation, panna aluilleen ryhmän tai käynnistää prosessin määrärahojen lisäämisestä alueelle tai organisaatiolle. Allekirjoitusten keräysprosessin aikana useammat ihmiset voivat antaa panoksensa aloitteen vaatimuksille ja viedä sitä eteenpäin organisaatiossa.</p>"
+          title: Mitkä ovat aloitteet?
     initiatives:
       admin:
         committee_requests:
@@ -305,10 +311,10 @@ fi:
           one: " allekirjoitus"
           other: " allekirjoitusta"
         statistics:
-          assistants_count_title: Avustajat
-          comments_count_title: Kommentit
-          meetings_count_title: Tapaamiset
-          supports_count_title: Allekirjoitukset
+          assistants_count_title: Avustajia
+          comments_count_title: Kommentteja
+          meetings_count_title: Tapaamisia
+          supports_count_title: Allekirjoituksia
         supports:
           title: Allekirjoitusten luettelo
         vote_cabin:

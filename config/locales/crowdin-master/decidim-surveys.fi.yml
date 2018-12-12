@@ -53,6 +53,11 @@ fi:
       errors:
         survey_answer:
           body: Runko ei voi olla tyhjä
+    metrics:
+      survey_answers:
+        description: Kyselyvastausten määrä
+        object: kyselyvastaukset
+        title: Kyselyvastaukset
     surveys:
       admin:
         exports:

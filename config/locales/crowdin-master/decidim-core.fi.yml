@@ -9,7 +9,7 @@ fi:
         about: Profiilikuvaus
         email: Sähköpostiosoitteesi
         name: Nimesi
-        nickname: Oma yksilöllinen käyttäjätunnuksesi
+        nickname: Nimimerkki
         password: Salasana
         password_confirmation: Vahvista salasanasi
         personal_url: Henkilökohtainen URL-osoite
@@ -35,9 +35,12 @@ fi:
         password_confirmation: Salasanan vahvistus
         remember_me: Muista minut
     models:
+      decidim/amendment:
+        one: muutos
+        other: Muutokset
       decidim/user:
-        one: Käyttäjä
-        other: Käyttäjät
+        one: Ei käyttäjiä
+        other: Käyttäjää
       decidim/user_group:
         one: Käyttäjäryhmä
         other: Käyttäjäryhmät
@@ -125,6 +128,52 @@ fi:
       user_group:
         reject: "%{user_name} hylkäsi käyttäjäryhmän %{resource_name} vahvistaminen"
         verify: "%{user_name} vahvisti käyttäjäryhmän %{resource_name}"
+    amendments:
+      accepted:
+        error: Muutoksen hyväksynnässä tapahtui virhe, yritä myöhemmin uudelleen.
+        success: Tämä muutos on hyväksytty onnistuneesti.
+      amendable:
+        amended_by: 'Muuttanut:'
+        button: Muuta %{model_name}
+        error: Tämän resurssin muuttamisessa tapahtui virhe.
+        help_text: Paranna tätä %{model_name} kohdetta muuttamalla sen kenttiä %{amendable_fields}
+        no_amenders: Ei muutoksia tehneitä
+        no_amendments: Ei muutoksia
+        section_heading: Muutokset (%{count})
+      created:
+        error: Virhe luotaessa muutosta, yritä myöhemmin uudelleen
+        success: Muutos luotu onnistuneesti
+      emendation:
+        actions:
+          button_accept: Hyväksy
+          button_reject: Hylkää
+          help_text: Tarkastele muutoksia ja hyväksy tai hylkää tämä muutos. Laatijoille lähetetään ilmoitus.
+        announcement:
+          accepted: |-
+            Tämä muutos kohteelle %{amendable_type} %{amendable_link} on
+            hyväksytty <strong>%{announcement_date}</strong>.
+          evaluating: |-
+            Tämä on muutos kohteelle %{amendable_type} %{amendable_link}
+            arvioimiselle.
+          publish_as: julkaise tämä muutos itsenäisenä kohteena %{amendable_type}
+          rejected: |-
+            Tämä muutos kohteelle %{amendable_type} %{amendable_link}
+            hylättiin <strong>%{announcement_date}</strong>.<br>
+            Voit %{publish_as_button}.
+          withdrawn: |-
+            Tämä muutos kohteelle %{amendable_type} %{amendable_link}
+            on peruutettu sen laatijan toimesta.
+      new:
+        amendment_author: Muutoksen laatija
+        back: Takaisin
+        heading: Luo muutos
+        help_text: Olet muuttamassa kohdetta %{model_name}
+        send: Lähetä muutos
+      review:
+        back: Takaisin
+        heading: Tarkastele muutosta
+        help_text: Olet muuttamassa kohdetta %{model_name}
+        send: Hyväksy muutos
     anonymous_user: Anonyymi
     application:
       collection:
@@ -199,7 +248,7 @@ fi:
           title: Vahvista sähköpostiosoitteesi
     collapsible_list:
       hidden_elements_count:
-        one: ja 1 lisää
+        one: ja %{count} lisää
         other: ja %{count} lisää
       see_less: "(näytä vähemmän)"
       see_more: "(näytä enemmän)"
@@ -211,9 +260,11 @@ fi:
         name: Esimerkkikomponentti
         settings:
           global:
+            amendments_enabled: Muutokset käytössä
             comments_enabled: Kommentit käytössä
             dummy_global_attribute_1: Esimerkkitietue 1
             dummy_global_attribute_2: Esimerkkitietue 2
+            enable_pads_creation: Ota käyttöön muistioiden luominen
             resources_permissions_enabled: Resurssien käyttöoikeudet ovat käytössä
           step:
             comments_blocked: Kommentit estetty
@@ -295,7 +346,7 @@ fi:
             <p>Hei, oletko varma, että et halua saada uutiskirjeitä?<br>
             Ole hyvä ja harkitse uudelleen uutiskirjeiden tilausta.<br>
             Meille on erittäin tärkeää, että voit vastaanottaa silloin tällöin ​​sähköposteja tärkeistä tiedoteluontoisista asioista. Voit aina muuttaa mieltäsi ja estää uutiskirjeet käyttäjäprofiilisi ilmoitusasetusten kautta.</p>
-            <p>Jos et hyväksy uutiskirjeiden vastaanottoa, voit jäädä paitsi olennaisesta tiedosta palvelun uusista osallistumismahdollisuuksista.<br>
+            <p>Jos et hyväksy uutiskirjeiden vastaanottoa, voit jäädä paitsi olennaisesta tiedosta palvelun uusista osallisuusmahdollisuuksista.<br>
             Mikäli silti haluat estää uutiskirjeiden vastaanottamisen, ymmärrämme täysin päätöksesi.</p>
             <p>Kiitos, että jaksoit lukea tämän ilmoituksen!</p>
           title: Uutiskirjeitä koskeva ilmoitus
@@ -325,6 +376,17 @@ fi:
         content_doesnt_exist: Tämä osoite on virheellinen tai käytöstä poistunut.
         title: Etsimääsi sivua ei löydy
     events:
+      amendments:
+        amendment_created:
+          email_intro: 'Uusi muutos on luotu kohteelle %{amendable_title}. Näet sen tältä sivulta:'
+          email_outro: Saat tämän ilmoituksen, koska olet laatinut tai seuraat kohdetta %{amendable_title}. Voit lopettaa ilmoitusten vastaanottamisen edellä esitetyn linkin kautta.
+          email_subject: Uusi muutos kohteelle %{amendable_title} käyttäjältä %{emendation_author_nickname}
+          notification_title: <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> on laatinut <a href="%{emendation_path}">uuden muutoksen</a> kohteelle <a href="%{amendable_path}">%{amendable_title}</a> %{amendable_type}.
+        amendment_accepted:
+          email_intro: 'Muutos on hyväksytty kohteelle %{amendable_title}. Näet sen tältä sivulta:'
+          email_outro: Saat tämän ilmoituksen, koska olet laatinut tai seuraat kohdetta %{amendable_title}. Voit lopettaa ilmoitusten vastaanottamisen edellä esitetyn linkin kautta.
+          email_subject: Muutos hyväksytty kohteelle %{amendable_title}, jonka on laatinut %{emendation_author_nickname}
+          notification_title: Käyttäjän <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> laatima <a href="%{emendation_path}">muutos</a> on hyväksytty kohteelle <a href="%{amendable_path}">%{amendable_title}</a> %{amendable_type}.
       attachments:
         attachment_created:
           email_intro: 'Uusi asiakirja on lisätty kohteeseen %{resource_title}. Voit nähdä sen täältä:'
@@ -336,7 +398,7 @@ fi:
           email_intro: '%{resource_title} -komponentti on nyt käytössä kohteessa %{participatory_space_title}. Näet sen tältä sivulta:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta %{participatory_space_title}. Voit lopettaa ilmoitusten vastaanottamisen edellä esitetyn linkin kautta.
           email_subject: Päivitys kohteessa %{participatory_space_title}
-          notification_title: '%{resource_title} -komponentti on nyt aktiivinen kohteessa <a href="%{resource_path}">%{participatory_space_title}</a>'
+          notification_title: Komponentti %{resource_title} on nyt aktiivinen kohteessa <a href="%{resource_path}">%{participatory_space_title}</a>
       email_event:
         email_greeting: Hei %{user_name},
         email_intro: 'Kohteeseen ”%{resource_title}” on tehty päivitys. Näet sen tältä sivulta:'
@@ -578,6 +640,13 @@ fi:
         invitations_title: Pitäisikö sinun mielestäsi %{organization_name} -organisaatiossa kuulla enemmän ääniä?
         invite: Kutsu
         visit_your_profile: Siirry profiiliisi
+    help:
+      main_topic:
+        default_page:
+          content: "<p>Palvelussa %{organization} voit osallistua ja päättää eri aiheista ylävalikossa näkyvien osallisuustilojen kautta: prosessit, ryhmät, aloitteet ja kuulemiset.</p> <p>Jokaisessa tilassa voit osallistua: tehdä ehdotuksia - itsenäisesti tai muiden ihmisten kanssa, osallistua keskusteluihin, priorisoida toteutettavia hankkeita sekä osallistua tapaamisiin ja muihin toimiin.</p>\n"
+          title: Mitä voin tehdä palvelussa %{organization}?
+        description: Lue lisää palvelusta %{organization}
+        title: Yleisiä ohjeita
     last_activities:
       activities:
         no_activities_warning: Ei toimintaa
@@ -630,19 +699,33 @@ fi:
           from: Lähettäjä
           last_message_html: Viimeisin viesti <strong>%{time} sitten</strong>
           no_conversations: Sinulla ei vielä ole keskusteluja
+          title: Keskustelut
+        reply:
+          send: Lähetä
+          title: Vastaa
         show:
           conversation_with_html: Keskustelu käyttäjän <strong>%{name}</strong> kanssa
           reply: Vastaa
           send: Lähetä
+          title: 'Keskustelu: %{usernames}'
         start:
           send: Lähetä
           title: Aloita keskustelu
         update:
           error: Viestiä ei lähetetty. Yritä myöhemmin uudelleen
     metrics:
+      followers:
+        description: Organisaatiota seuraavien käyttäjien määrä
+        object: seuraajat
+        title: Seuraajat
+      participants:
+        description: Organisaation aktiivisten käyttäjien määrä
+        object: osallistujat
+        title: Osallistujat
       users:
-        object: käyttäjää
-        title: Käyttäjiä
+        description: Organisaation käyttäjien määrä
+        object: käyttäjät
+        title: Käyttäjät
     newsletter_mailer:
       newsletter:
         note: Tämä viesti on lähetetty sinulle, koska olet tilannut uutiskirjeet organisaatiolta %{organization_name}. Voit muuttaa asetuksiasi <a href="%{link}">ilmoitusten sivulla</a>.
@@ -679,11 +762,17 @@ fi:
       update:
         error: Ilmoitusasetustesi päivityksessä tapahtui virhe.
         success: Ilmoitusasetuksesi päivitettiin onnistuneesti.
+    open_data:
+      not_available_yet: Avoimet datatiedostot eivät ole vielä käytettävissä, yritä uudelleen muutaman minuutin kuluttua.
     own_user_groups:
       index:
         pending: Odottaa
         rejected: Hylätty
         verified: Varmennettu
+    pad_iframe:
+      disclaimer: Tämän muistion sisällön ovat kirjoittaneet alustan rekisteröityneet käyttäjät, jotka ilmaisevat omia mielipiteitään. %{organization} ei ole vastuussa sisällöstä.
+      explanation: Käytä tätä muistiota yhdessä muiden kanssa tehdäksesi muistiinpanoja kokouksen aikana, jotta pöytäkirja olisi helpompi kirjoittaa myöhemmin.
+      pad: Muistio
     pages:
       home:
         extended:
@@ -697,7 +786,7 @@ fi:
           proposals_explanation: Tee ehdotuksia, tue muiden tekemiä ehdotuksia ja edistä muutoksia, joita haluat nähdä.
         footer_sub_hero:
           footer_sub_hero_body: Rakennetaan avoimempi, läpinäkyvämpi ja yhteisöllisempi yhteiskunta.<br /> Liity, osallistu ja päätä.
-          footer_sub_hero_headline: Tervetuloa %{organization} -organisaation yhteisölliseen osallistumispalveluun.
+          footer_sub_hero_headline: Tervetuloa yhteisölliseen osallisuuspalveluun %{organization}.
           register: Rekisteröidy
         hero:
           participate: Osallistu
@@ -715,7 +804,7 @@ fi:
           meetings_count: Tapahtumat
           orders_count: Ääntä
           pages_count: Sivua
-          processes_count: Prosessia
+          processes_count: Prosesseja
           projects_count: Projektit
           proposals_accepted: Hyväksyttyä ehdotusta
           proposals_count: Ehdotukset
@@ -731,6 +820,10 @@ fi:
         subheading: Selaa palvelun %{name} tietosivuja
         title: Tietoa
         topics: Aiheet
+      participatory_space:
+        metrics:
+          headline: Osallistuminen lukuina
+          link: Näytä kaikki tilastot
       terms_and_conditions:
         accept:
           error: Ehtojen hyväksymisessä tapahtui virhe.
@@ -758,6 +851,7 @@ fi:
       default_officialization_text_for_user_groups: Tämä käyttäjäryhmä on julkisesti vahvistettu, sen nimi vastaa oikeaa nimeä
       default_officialization_text_for_users: Tämä osallistuja on julkisesti vahvistettu. Hänen nimensä tai roolinsa on varmistettu vastaamaan hänen oikeaa nimeään ja rooliaan
       show:
+        activity: Aktiviteetti
         badges: Kunniamerkit
         conversations: Keskustelut
         followers: Seuraajat
@@ -765,6 +859,8 @@ fi:
         groups: Ryhmät
         members: Jäsenet
         notifications: Ilmoitukset
+        timeline: Aikajana
+        view_full_profile: Näytä koko profiili
       sidebar:
         badges:
           info: Kunniamerkit ansaitaan suorittamalla tiettyjä toimintoja alustalla.
@@ -810,11 +906,23 @@ fi:
     searches:
       filters:
         search: Hae
+        back: Takaisin listaan
+        jump_to: 'Siirry kohtaan:'
+        state:
+          active: Aktiiviset
+          all: Kaikki
+          future: Tulevat
+          past: Menneet
       filters_small_view:
         close_modal: Sulje ikkuna
         filter: Suodata
         filter_by: Suodata
         unfold: Avaa
+      results:
+        results:
+          one: "%{count} tulos"
+          other: "%{count} tulosta"
+        view_all: Näytä kaikki (%{count})
     shared:
       embed_modal:
         close_window: Sulje ikkuna
@@ -832,6 +940,8 @@ fi:
         report: Tee ilmoitus
         spam: Tämä ehdotus sisältää klikkihoukutteita, mainostusta, huijauksia tai bottiskriptejä.
         title: Ilmoita ongelmasta
+      floating_help:
+        help: Ohjeet
       follow_button:
         sign_in_before_follow: Kirjaudu sisään ennen tämän toiminnon suorittamista
       login_modal:
@@ -847,8 +957,11 @@ fi:
         share_link: Jaa linkki
       version_author:
         deleted: Käyttäjä poistettu
+    user_activity:
+      index:
+        no_activities_warning: Tämä käyttäjä ei ole vielä ollut aktiivinen.
     welcome_notification:
-      default_body: <p>Hei {{name}}, kiitos liittymisestäsi palveluun {{organization}}! Tervetuloa mukaan!</p><ul><li>Jos haluat saada nopean käsityksen siitä, mitä voit tehdä täällä, tutustu <a href="{{help_url}}">ohjeisiin</a>.</li><li>Kun olet lukenut ohjeet, saat ensimmäisen kunniamerkkisi. Tässä on <a href="{{badges_url}}">lista kaikista kunniamerkeistä</a>, jotka voit saada osallistumalla aktiivisesti palvelussa {{organization_name}}</li><li>Viimeisimpänä, mutta ei vähäisimpänä, yhdistä voimasi muiden ihmisten kanssa ja jaa heidän kanssaan kokemuksiasi osallistumisesta palvelussa {{organization}}. Tee ehdotuksia, kommentoi, keskustele, mieti tapoja edistää yhteistä hyvää, argumentoi vakuuttaaksesi muut, kuuntele ja lue ennen kuin muodostat mielipiteen, ilmaise ideasi konkreettisella ja suoralla tavalla, vastaa kärsivällisesti ja päättäväisesti, puolusta ajatuksiasi, pidä avoin mieli yhteistyölle ja liity mukaan muiden ihmisten ideoihin.</li></ul>
+      default_body: <p>Hei {{name}}, kiitos liittymisestä palveluun {{organization}} ja tervetuloa!</p><ul><li>Jos haluat saada nopean käsityksen siitä, mitä voit tehdä palvelussa, tutustu <a href="{{help_url}}">ohjeisiin</a>.</li><li>Kun olet lukenut ohjeet, saat ensimmäisen kunniamerkkisi. Tässä on <a href="{{badges_url}}">lista kaikista kunniamerkeistä</a>, joita saat osallistuessasi palvelussa {{organization}}</li><li>Viimeisenä, mutta ei vähäisimpänä, yhdistä voimasi muiden ihmisten kanssa, jaa heidän kanssaan kokemuksiasi osallistumisestasi palvelussa {{organization}}. Tee ehdotuksia, kommentoi, keskustele, mieti tapoja edistää yhteistä hyvää, vakuuta argumenteillasi, vakuutu kuuntelemalla ja lukemalla, ilmaise ideasi konkreettisella ja suoraviivaisella tavalla, vastaa kärsivällisesti ja päättäväisesti, puolusta ajatuksiasi, tee yhteistyötä avoimin mielin ja osallistu muiden ihmisten ideoiden kehittämiseen.</li></ul>
       default_subject: Kiitos liittymisestäsi palveluun {{organization}}!
   devise:
     confirmations:
@@ -916,7 +1029,7 @@ fi:
         friend_custom_text: 'Sinulle lähetettiin seuraavan viesti kutsun yhteydessä:'
         subject: Sinut on kutsuttu organisaatioon %{organization}
       invite_private_user:
-        subject: Sinut on kutsuttu yksityiseen osallistumisprosessiin organisaatiossa %{organization}
+        subject: Sinut on kutsuttu yksityiseen osallisuusprosessiin organisaatiossa %{organization}
       organization_admin_invitation_instructions:
         subject: Sinut on kutsuttu hallitsemaan organisaatiota %{organization}
       password_change:
@@ -1032,6 +1145,7 @@ fi:
       edit_link:
         edit: Muokkaa
       footer:
+        download_open_data: Lataa avoimet datatiedostot
         made_with_open_source: Verkkosivusto luotu <a target="_blank" href="https://github.com/decidim/decidim">vapaan ohjelmiston</a> avulla.
       header:
         close_menu: Sulje valikko

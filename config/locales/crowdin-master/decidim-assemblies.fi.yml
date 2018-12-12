@@ -32,7 +32,7 @@ fi:
         local_area: Organisaatioalue
         meta_scope: Teeman metadata
         parent_id: Liittyvä ryhmä
-        participatory_processes_ids: Liittyvät osallistumisprosessit
+        participatory_processes_ids: Liittyvät osallisuusprosessit
         participatory_scope: Mitä päätetään
         participatory_structure: Miten päätetään
         private_space: Yksityinen tila
@@ -250,7 +250,7 @@ fi:
         executive: Johtaja
         government: Hallitus
         others: Muut
-        participatory: Osallistuva
+        participatory: Osallisuus
         working_group: Työryhmä
       content_blocks:
         highlighted_assemblies:
@@ -294,31 +294,37 @@ fi:
         purpose_of_action: Toiminnan tarkoitus
         read_less: Vähennä tekstiä
         read_more: Lue lisää
-        related_participatory_processes: Liittyvät osallistumisprosessit
+        related_participatory_processes: Liittyvät osallisuusprosessit
         scope: Teema
         social_networks: Sosiaalinen media
         target: Kuka osallistuu
       statistics:
         answers_count: Vastaukset
-        assemblies_count: Ryhmät
-        comments_count: Kommentit
-        debates_count: Keskustelut
-        endorsements_count: Suositukset
+        assemblies_count: Ryhmiä
+        comments_count: Kommentteja
+        debates_count: Keskusteluja
+        endorsements_count: Suosituksia
         headline: Tilastot
-        meetings_count: Tapaamiset
-        orders_count: Äänet
-        pages_count: Sivut
-        projects_count: Projektit
-        proposals_count: Ehdotukset
-        results_count: Tulokset
-        surveys_count: Kyselyt
-        users_count: Osallistujat
-        votes_count: Äänet
+        meetings_count: Tapaamisia
+        orders_count: Ääniä
+        pages_count: Sivuja
+        projects_count: Suunnitelmia
+        proposals_count: Ehdotuksia
+        results_count: Tuloksia
+        surveys_count: Kyselyitä
+        users_count: Osallistujia
+        votes_count: Ääniä
     assembly_members:
       assembly_member:
         designated_on: Nimetty
       index:
         title: Jäsenet
+    help:
+      participatory_spaces:
+        assemblies:
+          contextual: "<p>Ryhmä on joukko organisaation jäseniä, jotka kokoontuvat säännöllisesti tekemään päätöksiä tietyllä alueella tai organisaation osastossa.</p> <p>Ryhmät järjestävät tapaamisia, joista jotkut ovat yksityisiä ja jotkut ovat avoimia. Jos tapaamiset ovat avoimia, niihin on mahdollista osallistua (esimerkiksi lisätäksesi esityslistalle asioita tai kommentoidaksesi kyseisen elimen ehdotuksia ja päätöksiä).</p> <p>Esimerkkejä: yleisryhmä (joka kokoontuu kerran vuodessa määritelläkseen organisaation keskeiset toimintalinjat sekä äänestääkseen sen päätöksentekijöistä), tasa-neuvottelukunta (joka kokoontuu joka toinen kuukausi tehdäkseen ehdotuksia siitä, miten parantaa sukupuolten välisiä suhteita organisaatiossa), arviointikomitea (joka kokoontuu kuukausittain seuratakseen prosessia) tai takaajaryhmä (joka selvittää epäselvyyksiä, väärinkäytöksiä tai ehdotuksia parantaakseen päätöksenteon luotettavuutta).</p>\n"
+          page: "<p>Ryhmä on joukko organisaation jäseniä, jotka kokoontuvat säännöllisesti tekemään päätöksiä tietyllä alueella tai organisaation osastossa.</p> <p>Ryhmät järjestävät tapaamisia, joista jotkut ovat yksityisiä ja jotkut ovat avoimia. Jos tapaamiset ovat avoimia, niihin on mahdollista osallistua (esimerkiksi lisätäksesi esityslistalle asioita tai kommentoidaksesi kyseisen elimen ehdotuksia ja päätöksiä).</p> <p>Esimerkkejä: yleisryhmä (joka kokoontuu kerran vuodessa määritelläkseen organisaation keskeiset toimintalinjat sekä äänestääkseen sen päätöksentekijöistä), tasa-neuvottelukunta (joka kokoontuu joka toinen kuukausi tehdäkseen ehdotuksia siitä, miten parantaa sukupuolten välisiä suhteita organisaatiossa), arviointikomitea (joka kokoontuu kuukausittain seuratakseen prosessia) tai takaajaryhmä (joka selvittää epäselvyyksiä, väärinkäytöksiä tai ehdotuksia parantaakseen päätöksenteon luotettavuutta).</p>"
+          title: Mitä ovat ryhmät?
     log:
       value_types:
         assembly_presenter:
@@ -327,6 +333,7 @@ fi:
       assemblies: Ryhmät
     metrics:
       assemblies:
+        description: Ryhmien määrä
         object: ryhmät
         title: Ryhmät
   errors:

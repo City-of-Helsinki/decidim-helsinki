@@ -12,7 +12,7 @@ fi:
         description: Kuvaus
         hashtag: Hashtag
         hero_image: Etusivun kuva
-        participatory_processes_ids: Liittyvät osallistumisprosessit
+        participatory_processes_ids: Liittyvät osallisuusprosessit
         promoted: Korostettu
         published_at: Julkaisuaika
         scope_id: Teema
@@ -44,12 +44,13 @@ fi:
         other: Konferenssin puhujat
       decidim/conference_user_role:
         one: Konferenssin käyttäjärooli
-        other: Konferenssin käyttäjäroolit
+        other: Konferenssin käyttäjäroolia
   decidim:
     admin:
       actions:
         confirm: Vahvista
         new_conference: Uusi konferenssi
+        send_diplomas: Lähetä diplomit
       conference_copies:
         new:
           copy: Kopio
@@ -153,6 +154,7 @@ fi:
           conference_admins: Konferenssin käyttäjät
           conference_invites: Kutsut
           conference_speakers: Puhujat
+          diploma: Diplomi
           info: Tiedot
           media_links: Medialinkit
           moderations: Moderoinnit
@@ -250,8 +252,10 @@ fi:
       conference:
         create: "%{user_name} loi konferenssin %{resource_name}"
         publish: "%{user_name} julkaisi konferenssin %{resource_name}"
+        send_conference_diplomas: "%{user_name} lähetti diplomit konferenssin %{resource_name} käyttäjille"
         unpublish: "%{user_name} lopetti konferenssin %{resource_name} julkaisun"
         update: "%{user_name} päivitti konferenssia %{resource_name}"
+        update_diploma: "%{user_name} päivitti diplomeita konferenssille %{resource_name}"
       conference_speaker:
         create: "%{user_name} loi puhujan %{resource_name} konferenssiin %{space_name}"
         delete: "%{user_name} poisti puhujan %{resource_name} konferenssista %{space_name}"
@@ -272,6 +276,10 @@ fi:
           publish: "%{user_name} julkaisi ilmoittautumistyypin %{resource_name} konferenssissa %{space_name}"
           unpublish: "%{user_name} lopetti ilmoittautumistyypin %{resource_name} julkaisun konferenssissa %{space_name}"
           update: "%{user_name} päivitti ilmoittautumistyyppiä %{resource_name} konferenssissa %{space_name}"
+      media_link:
+        create: "%{user_name} loi medialinkin %{resource_name} konferenssissa %{space_name}"
+        delete: "%{user_name} poisti medialinkin %{resource_name} konferenssista %{space_name}"
+        update: "%{user_name} päivitti medialinkin %{resource_name} konferenssiin %{space_name}"
     conference_program:
       index:
         title: Ohjelma
@@ -325,11 +333,15 @@ fi:
               one: Ilmoittautumisia on 1 kpl.
               other: Ilmoittautumisia on %{count} kpl.
             slug_help: 'URL-tunnisteita käytetään luomaan URL-osoitteet, jotka osoittavat tähän konferenssiin. Hyväksyy vain kirjaimet, numerot ja viivat. Kirjaimen on oltava ensimmäinen merkki tunnisteessa. Esimerkki: %{url}'
+        diplomas:
+          edit:
+            save: Tallenna
+            title: Diplomi
         invite_join_conference_mailer:
           invite:
             decline: Hylkää kutsu "%{conference_title}"
             invited_you_to_join_a_conference: "%{invited_by} on kutsunut sinut konferenssiin palvelussa %{application}. Voit hylätä tai hyväksyä kutsun alla olevien linkkien avulla."
-            join: Liity konferenssiin '%{conference_title}'
+            registration: Ilmoittautuminen konferenssiin "%{conference_title}"
         partners:
           index:
             title: Yhteistyökumppanit
@@ -338,14 +350,25 @@ fi:
             select_conference_meetings: Valitse konferenssin tapaamiset
           index:
             title: Ilmoittautumistyypit
+        send_conference_diploma_mailer:
+          diploma:
+            diploma_html: Löydät konferenssin <a href="%{url}">%{title}</a> diplomin liitteistä.
+          diploma_user:
+            attendance_verified_by: Osallistuminen vahvistettu
+            certificate_of_attendance: Läsnäolotodistus
+            certificate_of_attendance_description: Tämä todistaa, että <strong>%{user}</strong> on osallistunut konferenssiin <strong>%{title}</strong>, joka pidettiin paikassa <strong>%{location}</strong> ajankohtana <strong>%{start} - %{end}</strong>
+        send_diploma:
+          error: Konferenssin diplomeiden lähettämisessä esiintyi ongelma.
+          success: Konferenssin diplomit on lähetetty onnistuneesti
       conference:
         registration_confirm:
           cancel: Peruuta
           confirm: Vahvista
         show:
+          free: Maksuton
           going: Osallistumassa
-          join: Liity konferenssiin
           no_slots_available: Ei paikkoja vapaana
+          registration: Ilmoittautuminen
       conference_program:
         program_meeting:
           content: Sisältö
@@ -389,13 +412,11 @@ fi:
         index:
           speakers: Puhujat
       conferences:
-        conferences_sidebar:
-          register: Ilmoittaudu
         partners:
-          collaborators: yhteistyökumppanit
-          main_promotors: Pääpromoottorit
+          collaborators: Yhteistyökumppanit
+          main_promotors: Järjestäjät
         show:
-          login_as: Olet kirjautunut sisään %{name} <%{email}>
+          login_as: Olet kirjautunut sisään henkilönä %{name} <%{email}>
           make_conference_registration: 'Ilmoittaudu konferenssiin:'
           register: Rekisteröidy
       content_blocks:
@@ -412,6 +433,9 @@ fi:
         invite_join_conference_mailer:
           invite:
             subject: Kutsu konferenssiin
+        send_conference_diploma_mailer:
+          diploma:
+            subject: Konferenssin diplomit on lähetetty
       models:
         conference_invite:
           fields:
@@ -455,37 +479,37 @@ fi:
         conference_user_login:
           already_account: Onko sinulla jo käyttäjätili?
           new_user: Uusi käyttäjä?
-          sign_in: Kirjaudu sisään ilmoittautuaksesi tähän konferenssiin
-          sign_up: Rekisteröidy maksutta ilmoittautuaksesi
+          sign_in: Kirjaudu sisään ilmoittautuaksesi konferenssiin
+          sign_up: Luo tili palveluun ilmoittautuaksesi konferenssin
       show:
         details: Tarkemmat tiedot
         introduction: Esittely
         objectives: Tavoitteet
         related_assemblies: Liittyvät ryhmät
         related_consultations: Liittyvät kuulemiset
-        related_participatory_processes: Liittyvät osallistumisprosessit
+        related_participatory_processes: Liittyvät osallisuusprosessit
       statistics:
-        answers_count: Vastaukset
-        comments_count: Kommentit
-        conference_count: Konferenssit
-        debates_count: Keskustelut
-        endorsements_count: Suositukset
+        answers_count: Vastauksia
+        comments_count: Kommentteja
+        conference_count: Konferensseja
+        debates_count: Keskusteluita
+        endorsements_count: Suosituksia
         headline: Toiminta
-        meetings_count: Tapaamiset
-        orders_count: Äänet
-        pages_count: Sivut
-        posts_count: Viestit
-        projects_count: Suunnitelmat
-        proposals_count: Ehdotukset
-        results_count: Tulokset
-        surveys_count: Kyselyt
-        users_count: Osallistujat
-        votes_count: Äänet
+        meetings_count: Tapaamisia
+        orders_count: Ääniä
+        pages_count: Sivuja
+        posts_count: Viestejä
+        projects_count: Suunnitelmia
+        proposals_count: Ehdotuksia
+        results_count: Tuloksia
+        surveys_count: Kyselyitä
+        users_count: Osallistujia
+        votes_count: Ääniä
     events:
       conferences:
         conference_registrations_over_percentage:
           email_intro: '"%{resource_title}" -konferenssista on varattu yli %{percentage}% vapaista paikoista.'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet konferenssin osallistumistilan hallinnoija.
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet konferenssin osallisuustilan hallinnoija.
           email_subject: '"%{resource_title}" -konferenssista on varattu yli %{percentage}% vapaista paikoista'
           notification_title: <a href="%{resource_path}">%{resource_title}</a> -konferenssista on varattu yli %{percentage}% vapaista paikoista.
         conference_updated:
