@@ -53,6 +53,11 @@ sv:
       errors:
         survey_answer:
           body: Innehåll kan inte vara tomt
+    metrics:
+      survey_answers:
+        description: Antal enkäter besvarade av användarna
+        object: svar på undersökningar
+        title: Svar på undersökningar
     surveys:
       admin:
         exports:

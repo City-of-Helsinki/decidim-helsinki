@@ -69,6 +69,7 @@ sv:
         name: Förslag
         settings:
           global:
+            amendments_enabled: Ändringar möjliga
             announcement: Notis
             attachments_allowed: Tillåt bifogade filer
             can_accumulate_supports_beyond_threshold: Kan ackumulera stöd bortom tröskeln
@@ -148,7 +149,7 @@ sv:
           email_subject: Ett förslag som du följer är godkänt
           notification_title: Förslaget <a href="%{resource_path}">%{resource_title}</a> har godkänts.
         proposal_endorsed:
-          email_intro: "%{endorser_name} %{endorser_nickname}, som du följer har just godkänt ett förslag som kan vara intressant för dig, kolla in det och bidra:"
+          email_intro: '%{endorser_name} %{endorser_nickname}, som du följer, har just godkänt förslaget "%{resource_title}" och vi tycker att det kan vara intressant för dig. Kolla in det och bidra med:'
           email_outro: Du har fått den här notifikationen eftersom du följer %{endorser_nickname}. Du kan sluta ta emot meddelanden vid föregående länk.
           email_subject: "%{endorser_nickname} har godkänt ett nytt förslag"
           notification_title: '| <a href="%{resource_path}">%{resource_title}</a> förslaget har godkänts av <a href="%{endorser_path}">%{endorser_name} %{endorser_nickname}</a>.'
@@ -162,14 +163,14 @@ sv:
           email_subject: Ditt förslag "%{mentioned_proposal_title}" har nämnts
           notification_title: Ditt förslag "%{mentioned_proposal_title}" har nämnts <a href="%{resource_path}">i det här utrymmet</a> i kommentarerna.
         proposal_published:
-          email_intro: "%{author_name} %{author_nickname}, som du följer har publicerat ett nytt förslag, kolla in det och bidra:"
+          email_intro: '%{author_name} %{author_nickname}, som du följer, har publicerat ett nytt förslag som heter "%{resource_title}". Kolla in det och bidra med:'
           email_outro: Du har fått den här notifikationen eftersom du följer %{author_nickname}. Du kan sluta ta emot notifikationer från föregående länken.
-          email_subject: Nytt förslag från %{author_nickname}
+          email_subject: Nytt förslag "%{resource_title}" med %{author_nickname}
           notification_title: Förslaget <a href="%{resource_path}">%{resource_title}</a> publicerades av <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
         proposal_published_for_space:
           email_intro: Förslaget "%{resource_title}" har lagts till i "%{participatory_space_title}" som du följer.
           email_outro: Du har fått det här meddelandet eftersom du följer "%{participatory_space_title}". Du kan sluta följa det från föregående länken.
-          email_subject: Nytt förslag lades till %{participatory_space_title}
+          email_subject: Nytt förslag "%{resource_title}" läggs till %{participatory_space_title}
           notification_title: Förslaget <a href="%{resource_path}">%{resource_title}</a> har lagts till %{participatory_space_title}
         proposal_rejected:
           email_intro: 'Förslaget "%{resource_title}" har avslagits. Du kan läsa svaret på den här sidan:'
@@ -223,12 +224,19 @@ sv:
           unearned_own: Du har inte skapat några förslag än.
     metrics:
       accepted_proposals:
+        description: Antal förslag accepterade av användarna
         object: förslag
         title: Godkända Förslag
+      endorsements:
+        description: Antal anmärkningar som genereras i förslag
+        object: påskrifter
+        title: påskrifter
       proposals:
+        description: Antal förslag som genererats
         object: förslag
         title: Förslag
       votes:
+        description: Antal röster som genereras i förslag från användare
         object: röster
         title: Röster
     participatory_processes:
@@ -239,6 +247,7 @@ sv:
       highlighted_proposals:
         proposals: Förslag
         see_all_proposals: Se alla förslag
+        see_all: Se alla (%{count})
     proposals:
       actions:
         answer: Svara
@@ -307,7 +316,9 @@ sv:
             update: Uppdatera
           form:
             attachment_legend: "(Valfritt) Lägg till en bilaga"
+            created_in_meeting: Detta förslag kommer från ett möte
             select_a_category: Välj en kategori
+            select_a_meeting: Välj ett möte
           index:
             actions: Åtgärder
             cancel: Avbryt
@@ -364,6 +375,19 @@ sv:
         not_answered: Inte besvarad
         rejected: Avvisade
         withdrawn: Tillbakadragen
+      application_helper:
+        filter_origin_values:
+          all: Alla
+          citizens: Medborgare
+          meetings: möten
+          official: Officiell
+          user_groups: Användargrupper
+        filter_state_values:
+          accepted: Accepterad
+          all: Alla
+          evaluating: utvärdera
+          except_rejected: Alla förutom avvisade
+          rejected: avvisade
       collaborative_drafts:
         collaborative_draft:
           publish:
@@ -394,8 +418,8 @@ sv:
           title: Färdigställ i ditt samarbetsutkast
         count:
           drafts_count:
-            one: 1 samarbetsutkast
-            other: "%{count} samarbetsutkast"
+            one: "%{count} samarbetsförslag"
+            other: "%{count} samarbetsförslag"
         create:
           error: Det uppstod ett problem med att skapa dessa samarbetsutkast
           success: Samarbetsutkast framgångsrikt utarbetat.
@@ -449,7 +473,7 @@ sv:
           final_proposal: sista förslaget
           final_proposal_help_text: Detta utkast är färdigt. Du kan se det slutgiltiga förslaget
           hidden_authors_count:
-            one: och 1 till person
+            one: och %{count} mer person
             other: och %{count} fler personer
           info-message: Detta är ett <strong>samlingsförslag</strong> för ett förslag. Det innebär att du kan hjälpa deras författare att forma förslaget med hjälp av kommentarsektionen nedan eller förbättra det direkt genom att begära åtkomst för att redigera det. När författarna ger dig tillgång, kan du göra ändringar i detta utkast.
           of_versions: "(av %{number})"
@@ -507,6 +531,13 @@ sv:
             votes: Röster
       new:
         limit_reached: Du kan inte skapa nya förslag eftersom du har överskridit gränsen.
+      participatory_text_proposal:
+        alternative_title: Det finns inga deltagande texter just nu
+        buttons:
+          comment: Kommentar
+          comments: kommentarer
+          endorse: Stödja
+          endorsements: påskrifter
       proposal_endorsements:
         create:
           error: Det har blivit fel när man godkände förslaget.
@@ -532,7 +563,7 @@ sv:
           title: Färdigställ ditt förslag
         count:
           proposals_count:
-            one: 1 förslag
+            one: "%{count} förslag"
             other: "%{count} förslag"
         edit:
           attachment_legend: "(Valfritt) Lägg till en bilaga"
@@ -587,6 +618,11 @@ sv:
           most_voted: Mest röstade
           random: Slumpmässig
           recent: Senaste
+        participatory_texts:
+          index:
+            document_index: Dokumentindex
+          view_index:
+            see_index: Se index
         preview:
           modify: Ändra förslaget
           proposal_edit_before_minutes:
@@ -598,10 +634,11 @@ sv:
           creation_date: 'Skapat: %{date}'
           view_proposal: Visa förslag
         show:
+          back_to: Tillbaka till
           edit_proposal: Redigera förslag
           endorsements_list: Förteckning över Stöd
           hidden_endorsers_count:
-            one: och ytterligare 1 person
+            one: och %{count} mer person
             other: och %{count} fler personer
           link_to_collaborative_draft_help_text: Detta förslag är resultatet av ett samlat förslag. Granska historiken
           link_to_collaborative_draft_text: Se samarbetsutkastet
@@ -611,6 +648,7 @@ sv:
           report: Rapportera
           sign_in: Logga in
           sign_in_or_up: "%{in} eller %{up} för att delta"
+          sign_in_to_participate: "%{in} att delta"
           sign_up: registrera
           withdraw_btn_hint: Du kan dra tillbaka ditt förslag om du ändrar dig, så länge du inte har fått något stöd. Förslaget är inte borttaget, det kommer att visas i listan över återkallade förslag.
           withdraw_confirmation: Är du säker på att dra tillbaka detta förslag?
