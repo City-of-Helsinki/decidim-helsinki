@@ -1,0 +1,138 @@
+sv:
+  activemodel:
+    attributes:
+      id_document_information:
+        document_number: Dokumentnummer (med bokstav)
+        document_type: Typ av dokumentet
+      id_document_upload:
+        document_number: Dokumentnummer (med bokstav)
+        document_type: Typ av ditt dokument
+        user: Användare
+        verification_attachment: Skannad kopia av ditt dokument
+      postal_letter_address:
+        full_address: Fullständig adress
+      postal_letter_confirmation:
+        verification_code: Verifieringskod
+      postal_letter_postage:
+        full_address: Fullständig adress
+        verification_code: Verifieringskod
+  decidim:
+    admin:
+      menu:
+        authorization_workflows: Verifieringar
+    authorization_handlers:
+      admin:
+        id_documents:
+          help:
+            - Användare fyller i sin identitetsinformation och laddar upp en kopia av deras dokument.
+            - Du fyller i informationen som finns i den uppladdade bilden.
+            - Informationen ska matcha vad användaren fyllt i.
+            - Om du inte klart kan se informationen eller du inte kan verifiera den kan du avvisa förfrågan och användaren kommer att kunna åtgärda det.
+        postal_letter:
+          help:
+            - Användare begär en verifieringskod som ska skickas till deras adress.
+            - Du skickar brevet till deras adress med verifieringskoden.
+            - Du markerar brevet som skickat.
+            - När du markerar brevet som skickat kommer användaren att kunna införa koden och bli verifierad.
+      direct: Direkt
+      help: Hjälp
+      id_documents:
+        explanation: Ladda upp dina identitetshandlingar så att vi kan kontrollera din identitet
+        name: Identitetsdokument
+      multistep: Flersteg
+      name: Namn
+      postal_letter:
+        explanation: Vi skickar dig ett brev med en kod som du måste ange så vi kan verifiera din adress
+        name: Kod med postbrev
+    verifications:
+      authorizations:
+        create:
+          error: Ett fel uppstod när auktoriseringen skulle skapas.
+          success: Du har framgångsrikt auktoriserats.
+          unconfirmed: Du måste bekräfta din e-post för att auktorisera dig själv.
+        first_login:
+          actions:
+            another_dummy_authorization_handler: Verifiera mot ett annat exempel på behörighetshanteraren
+            dummy_authorization_handler: Verifiera mot exempel av behörighetshanterare
+            dummy_authorization_workflow: Verifiera mot exemplet på arbetsflöde för auktorisering
+            id_documents: Bli verifierad genom att ladda upp ditt identitetsdokument
+            postal_letter: Få verifierad genom att ta emot en verifieringskod via brev
+          title: Verifiera din identitet
+          verify_with_these_options: 'Det här är de tillgängliga alternativen för att verifiera din identitet:'
+        new:
+          authorize: Skicka
+          authorize_with: Verifiera med %{authorizer}
+        skip_verification: Du kan hoppa över det här för tillfället och %{link}
+        start_exploring: börja utforska
+      dummy_authorization:
+        extra_explanation:
+          one: Deltagande är begränsat till användare med postnummer %{postal_codes}.
+          other: 'Deltagande är begränsat till användare med någon av följande postnummer: %{postal_codes}.'
+      id_documents:
+        admin:
+          confirmations:
+            create:
+              error: Verifieringen matchar inte. Försök igen eller avvisa verifieringen så att användaren kan ändra den
+              success: Användaren har verifierats
+            new:
+              introduce_user_data: Presentera data i bilden
+              reject: Avvisa
+              verify: Verifiera
+          pending_authorizations:
+            index:
+              title: Pågående verifieringar
+              verification_number: 'Verifiering #%{n}'
+          rejections:
+            create:
+              success: Verifieringen avvisades. Användaren kommer att uppmanas att ändra sina dokument
+        authorizations:
+          create:
+            error: Det gick inte att ladda upp dokumentet
+            success: Dokumentet har laddats upp
+          edit:
+            being_reviewed: Vi granskar dina dokument. Du kommer att verifieras inom kort
+            rejection_clarity: Se till att informationen syns tydligt i den uppladdade bilden
+            rejection_correctness: Se till att informationen som angivits är korrekt
+            rejection_notice: Det uppstod ett problem med din verifiering. Var god försök igen
+            send: Begär verifiering igen
+          new:
+            send: Begär verifiering
+            title: Ladda upp ditt identitetsdokument
+          update:
+            error: Ett problem uppstod när dokumentet skulle laddas upp igen
+            success: Dokumentet laddades framgångsrikt upp
+        dni: ID-kort
+        nie: Personnummer
+        passport: Pass
+      postal_letter:
+        admin:
+          pending_authorizations:
+            index:
+              address: Adress
+              letter_sent_at: Brev skickat till
+              mark_as_sent: Markera som skickat
+              not_yet_sent: inte skickat än
+              title: Pågående kontroller
+              username: Användarnamn
+              verification_code: Verifieringskod
+          postages:
+            create:
+              error: Fel uppstod när brev skulle markeras som skickat
+              success: Brevet har markerats som skickat
+        authorizations:
+          create:
+            error: Det uppstod ett problem med din förfrågan
+            success: Tack! Vi skickar en verifieringskod till din adress
+          edit:
+            send: Bekräfta
+            title: Presentera verifieringskoden du fick
+            waiting_for_letter: Vi skickar snart ett brev till din adress med din verifieringskod
+          new:
+            send: Skicka mig ett brev
+            title: Begär din verifieringskod
+          update:
+            error: Din verifieringskod stämmer inte överens med vår. Vänligen dubbelklicka på det brev vi skickade till dig
+            success: Grattis. Du har blivit verifierad
+  errors:
+    messages:
+      uppercase_only_letters_numbers: måste vara versaler och endast innehålla bokstäver och/eller siffror
