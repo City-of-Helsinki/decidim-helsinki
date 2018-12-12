@@ -16,7 +16,7 @@ class AddOrganizationAsAuthorToDebates < ActiveRecord::Migration[5.2]
     Debate.find_each do |debate|
       if debate.decidim_author_id.present?
         debate.decidim_author_type = "Decidim::UserBaseEntity"
-      else
+      elsif debate.organization
         debate.decidim_author_id = debate.organization.id
         debate.decidim_author_type = "Decidim::Organization"
       end
