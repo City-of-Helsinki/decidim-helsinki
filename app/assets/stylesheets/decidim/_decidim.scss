@@ -10,7 +10,6 @@
 @import "decidim/utils/keyframes";
 @import "decidim/utils/mixins";
 @import "decidim/utils/toggle-expand";
-@import "decidim/modules/modules";
 @import "modules/modules";
 @import "layouts/highlighted_banner";
 @import "layouts/home";
@@ -33,3 +32,7 @@
 @import "decidim/extras/social_icons_mini";
 @import "decidim/extras/status-labels";
 @import "extras/*";
+@import "decidim/vizzs/areachart";
+@import "decidim/vizzs/chart-tooltip";
+@import "decidim/vizzs/linechart";
+@import "decidim/vizzs/rowchart";
