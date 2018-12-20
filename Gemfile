@@ -38,6 +38,12 @@ end
 
 group :production, :production_kuva, :production_discussion, :staging do
   gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
+
+  # resque-scheduler still depends on resque ~> 1.25
+  # Keep an eye on:
+  # https://github.com/resque/resque-scheduler/pull/661
+  gem 'resque', '~> 1.26'
+  gem 'resque-scheduler', '~> 4.0'
 end
 
 group :test do
