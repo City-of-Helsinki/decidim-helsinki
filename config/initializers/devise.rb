@@ -1,4 +1,13 @@
+require 'helsinki/devise_failure_app'
+
 Devise.setup do |config|
+  # ==> Warden configuration
+  # Needed to fix:
+  # https://github.com/decidim/decidim/issues/4660
+  config.warden do |manager|
+    manager.failure_app = Helsinki::DeviseFailureApp
+  end
+
   config.secret_key = Rails.application.secrets.secret_key_devise.inspect
 
   ###################################
