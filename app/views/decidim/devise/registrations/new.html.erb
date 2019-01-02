@@ -43,17 +43,6 @@
               <%= invisible_captcha %>
               <div class="card">
                 <div class="card__content">
-                  <fieldset class="text-center">
-                    <legend><%= t(".sign_up_as.legend") %></legend>
-                    <%= f.collection_radio_buttons :sign_up_as, [["user", t(".sign_up_as.user")], ["user_group", t(".sign_up_as.user_group") ]], :first, :last do |b| %>
-                      <div class="field field-inline">
-                        <%= b.label do %>
-                          <%= b.radio_button + b.text %>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </fieldset>
-
                   <div class="user-person">
                     <div class="field">
                       <%= f.text_field :name, help_text: t(".username_help") %>
@@ -76,20 +65,6 @@
 
                   <div class="field">
                     <%= f.password_field :password_confirmation %>
-                  </div>
-
-                  <div class="user-group-fields">
-                    <div class="field">
-                      <%= f.text_field :user_group_name %>
-                    </div>
-
-                    <div class="field">
-                      <%= f.text_field :user_group_document_number %>
-                    </div>
-
-                    <div class="field">
-                      <%= f.text_field :user_group_phone %>
-                    </div>
                   </div>
                 </div>
               </div>
