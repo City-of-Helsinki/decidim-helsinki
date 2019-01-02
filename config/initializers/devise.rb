@@ -1,3 +1,4 @@
+require 'omniauth/strategies/openid_connect_helsinki'
 require 'helsinki/devise_failure_app'
 
 Devise.setup do |config|
@@ -51,7 +52,7 @@ Devise.setup do |config|
 
     auth_uri = URI.parse(server_uri)
 
-    config.omniauth :openid_connect, {
+    config.omniauth :openid_connect_helsinki, {
       name: :tunnistamo,
       scope: [:openid, :email, :profile],
       response_type: :code,
