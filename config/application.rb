@@ -121,6 +121,10 @@ module DecidimHelsinki
         CommentsHelperExtensions
       )
 
+      # View extensions
+      ActionView::Base.send :include, Decidim::MapHelper
+      ActionView::Base.send :include, Decidim::WidgetUrlsHelper
+
       # Extra helpers
       Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
         :include,

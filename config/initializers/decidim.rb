@@ -23,7 +23,3 @@ end
 # Define the I18n locales.
 Rails.application.config.i18n.available_locales = Decidim.available_locales
 Rails.application.config.i18n.default_locale = Decidim.default_locale
-
-# Add extra helpers
-ActionView::Base.send :include, Decidim::MapHelper
-ActionView::Base.send :include, Decidim::WidgetUrlsHelper
