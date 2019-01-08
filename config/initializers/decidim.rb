@@ -6,6 +6,7 @@ Decidim.configure do |config|
   config.authorization_handlers = [ExampleAuthorizationHandler]
 
   # Uncomment this lines to set your preferred locales
+  config.default_locale = :fi
   config.available_locales = %i{fi en sv}
 
   # Geocoder configuration
@@ -18,6 +19,10 @@ Decidim.configure do |config|
   # Currency unit
   # config.currency_unit = "€"
 end
+
+# Define the I18n locales.
+Rails.application.config.i18n.available_locales = Decidim.available_locales
+Rails.application.config.i18n.default_locale = Decidim.default_locale
 
 # Add extra helpers
 ActionView::Base.send :include, Decidim::MapHelper
