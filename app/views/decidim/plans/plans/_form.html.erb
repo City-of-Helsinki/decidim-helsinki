@@ -1,0 +1,51 @@
+<% if false %>
+  <div class="row column">
+    <%= attached_proposals_picker_field form, :proposals %>
+  </div>
+
+  <%= javascript_include_tag "decidim/plans/proposal_picker" %>
+  <%= stylesheet_link_tag "decidim/plans/proposal_picker" %>
+<% end %>
+
+<div class="field">
+  <%= form.translated :text_field, :title %>
+</div>
+
+<% if @form.categories&.any? %>
+  <div class="field">
+    <%= form.categories_select :category_id, @form.categories, prompt: t(".select_a_category") %>
+  </div>
+<% end %>
+
+<% if current_participatory_space.has_subscopes? %>
+  <div class="field">
+    <%= scopes_picker_field form, :scope_id %>
+  </div>
+<% end %>
+
+<% if Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.any? %>
+  <div class="field">
+    <%= user_group_select_field form, :user_group_id %>
+  </div>
+<% end %>
+
+<% @form.contents.each_with_index do |content, idx| %>
+  <%= fields_for "contents[]", content do |content_form| %>
+    <%= render "edit_content", form: content_form, id: tabs_id_for_content(idx) %>
+  <% end %>
+<% end %>
+
+<% if component_settings.attachments_allowed? %>
+  <fieldset>
+    <legend><%= t(".attachment_legend") %></legend>
+    <%= form.fields_for :attachment, @form.attachment do |form| %>
+      <div class="field">
+        <%= form.text_field :title %>
+      </div>
+
+      <div class="field">
+        <%= form.upload :file, optional: false %>
+      </div>
+    <% end %>
+  </fieldset>
+<% end %>

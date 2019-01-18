@@ -1,0 +1,11 @@
+<% if current_settings.creation_enabled %>
+  <%= action_authorized_link_to :create, new_plan_path, class: "title-action__action button large hollow mr-s", data: { "redirect_url" => new_plan_path } do %>
+    <%= t(".new_plan") %>
+    <%= icon "plus" %>
+  <% end %>
+<% else %>
+  <span class="title-action__action button large hollow mr-s disabled">
+    <%= t(".new_plan") %>
+    <%= icon "plus" %>
+  </span>
+<% end %>
