@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_12_131273) do
+ActiveRecord::Schema.define(version: 2019_01_18_055463) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -763,6 +763,68 @@ ActiveRecord::Schema.define(version: 2018_12_12_131273) do
     t.datetime "updated_at", null: false
     t.index ["decidim_user_id"], name: "index_decidim_spaces_users_on_private_user_id"
     t.index ["privatable_to_type", "privatable_to_id"], name: "space_privatable_to_privatable_id"
+  end
+
+  create_table "decidim_plans_attached_proposals", force: :cascade do |t|
+    t.bigint "decidim_plan_id"
+    t.bigint "decidim_proposal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_plan_id"], name: "index_decidim_plans_attached_proposals_on_decidim_plan_id"
+    t.index ["decidim_proposal_id"], name: "index_decidim_plans_attached_proposals_on_decidim_proposal_id"
+  end
+
+  create_table "decidim_plans_plan_collaborator_requests", force: :cascade do |t|
+    t.bigint "decidim_plan_id", null: false
+    t.bigint "decidim_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_plan_id"], name: "index_plan_collab_requests_on_decidim_plans_plan_id"
+    t.index ["decidim_user_id"], name: "index_plan_collab_requests_on_decidim_user_id"
+  end
+
+  create_table "decidim_plans_plan_contents", force: :cascade do |t|
+    t.jsonb "body", default: []
+    t.bigint "decidim_user_id"
+    t.bigint "decidim_plan_id"
+    t.bigint "decidim_section_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_plan_id"], name: "index_decidim_plans_plan_contents_on_decidim_plan_id"
+    t.index ["decidim_section_id"], name: "index_decidim_plans_contents_section_id"
+    t.index ["decidim_user_id"], name: "index_decidim_plans_plan_contents_on_decidim_user_id"
+  end
+
+  create_table "decidim_plans_plans", force: :cascade do |t|
+    t.jsonb "title"
+    t.integer "position"
+    t.string "state"
+    t.jsonb "answer"
+    t.datetime "answered_at"
+    t.integer "coauthorships_count", default: 0, null: false
+    t.integer "integer", default: 0, null: false
+    t.datetime "published_at"
+    t.bigint "decidim_component_id", null: false
+    t.bigint "decidim_category_id"
+    t.bigint "decidim_scope_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answered_at"], name: "index_decidim_plans_plans_on_answered_at"
+    t.index ["decidim_category_id"], name: "index_decidim_plans_plans_on_decidim_category_id"
+    t.index ["decidim_component_id"], name: "index_decidim_plans_plans_on_decidim_component_id"
+    t.index ["decidim_scope_id"], name: "index_decidim_plans_plans_on_decidim_scope_id"
+    t.index ["published_at"], name: "index_decidim_plans_plans_on_published_at"
+    t.index ["state"], name: "index_decidim_plans_plans_on_state"
+  end
+
+  create_table "decidim_plans_sections", force: :cascade do |t|
+    t.integer "position"
+    t.jsonb "body"
+    t.bigint "decidim_component_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_component_id"], name: "index_decidim_plans_sections_on_decidim_component_id"
+    t.index ["position"], name: "index_decidim_plans_sections_on_position"
   end
 
   create_table "decidim_proposals_collaborative_draft_collaborator_requests", force: :cascade do |t|
