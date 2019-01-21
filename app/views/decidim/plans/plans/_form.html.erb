@@ -1,11 +1,9 @@
-<% if false %>
-  <div class="row column">
-    <%= attached_proposals_picker_field form, :proposals %>
-  </div>
+<div class="row column">
+  <%= attached_proposals_picker_field form, :proposals %>
+</div>
 
-  <%= javascript_include_tag "decidim/plans/proposal_picker" %>
-  <%= stylesheet_link_tag "decidim/plans/proposal_picker" %>
-<% end %>
+<%= javascript_include_tag "decidim/plans/proposal_picker" %>
+<%= stylesheet_link_tag "decidim/plans/proposal_picker" %>
 
 <div class="field">
   <%= form.translated :text_field, :title %>
