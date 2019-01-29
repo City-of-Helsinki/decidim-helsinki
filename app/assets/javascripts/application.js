@@ -25,7 +25,7 @@
   $(document).on('ready', function () {
     $('#proposals-map-container').fixMapToggle();
     $('[data-toggle-checkbox]').toggleCheckbox();
-    $('[data-remaining-characters]').remainingCharacters();
+    $('.remaining-characters-container [data-remaining-characters]').remainingCharacters();
 
     // IE polyfills
     $('body').applyPolyfills();
