@@ -4,7 +4,7 @@ ruby '2.5.1'
 
 # Run updates by following the Decidim upgrade instructions:
 # https://github.com/decidim/decidim/blob/master/docs/getting_started.md#keeping-your-app-up-to-date
-DECIDIM_VERSION = "0.15.1"
+DECIDIM_VERSION = "0.15.2"
 
 gem "decidim", DECIDIM_VERSION
 
@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # HKI authentication
 gem 'omniauth_openid_connect', '~> 0.1'
+gem 'openid_connect', '~> 0.12.0'
 
 # HKI import
 gem 'roo', '~> 2.7', '>= 2.7.1'
