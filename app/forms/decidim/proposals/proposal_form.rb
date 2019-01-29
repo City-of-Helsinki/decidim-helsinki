@@ -55,7 +55,7 @@ module Decidim
       private
 
       def address_only_when_enabled
-        if address.strip.length == 0
+        if address.nil? || address.strip.length == 0
           @has_address = false
         end
       end
