@@ -10,7 +10,7 @@ gem "decidim", DECIDIM_VERSION
 
 gem "decidim-antivirus", "~> 0.15.0"
 
-gem 'decidim-plans', git: 'git://github.com/mainio/decidim-module-plans.git'
+gem 'decidim-plans', git: 'git@github.com:mainio/decidim-module-plans.git'
 
 gem "font-awesome-rails", "~> 4.7.0"
 
