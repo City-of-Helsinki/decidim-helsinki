@@ -11,6 +11,7 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-antivirus", "~> 0.15.0"
 
 gem 'decidim-plans', git: 'git@github.com:mainio/decidim-module-plans.git'
+gem 'decidim-access_requests', :git => 'git@github.com:mainio/decidim-module-access_requests.git'
 
 gem "font-awesome-rails", "~> 4.7.0"
 

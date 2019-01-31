@@ -1,6 +1,11 @@
 en:
   auth:
     sign_in_with_tunnistamo: 'Use Tunnistamo to sign in'
+  decidim:
+    authorization_handlers:
+      cocreation:
+        explanation: Ask for permission to create cocreation plans
+        name: Cocreation
   pages:
     home:
       hero:

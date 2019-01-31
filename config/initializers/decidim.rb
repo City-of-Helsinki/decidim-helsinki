@@ -3,7 +3,6 @@
 Decidim.configure do |config|
   config.application_name = "City of Helsinki participationary platform"
   config.mailer_sender    = Rails.application.config.mailer_sender
-  config.authorization_handlers = [ExampleAuthorizationHandler]
 
   # Uncomment this lines to set your preferred locales
   config.default_locale = :fi

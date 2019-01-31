@@ -1,6 +1,11 @@
 sv:
   auth:
     sign_in_with_tunnistamo: 'Logga in med Tunnistamo'
+  decidim:
+    authorization_handlers:
+      cocreation:
+        explanation: Be om tillstånd att skapa samskapande planer
+        name: Samskapande
   pages:
     home:
       hero:

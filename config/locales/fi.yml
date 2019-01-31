@@ -1,6 +1,11 @@
 fi:
   auth:
     sign_in_with_tunnistamo: 'Käytä Tunnistamoa kirjautuaksesi sisään'
+  decidim:
+    authorization_handlers:
+      cocreation:
+        explanation: Pyydä oikeutta luoda yhteistyöstämissuunnitelmia
+        name: Yhteistyöstäminen
   pages:
     home:
       hero:
