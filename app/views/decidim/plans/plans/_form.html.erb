@@ -5,6 +5,12 @@
 form.multipart = true
 %>
 
+<% if Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.any? %>
+  <div class="field">
+    <%= user_group_select_field form, :user_group_id %>
+  </div>
+<% end %>
+
 <div class="row column">
   <%= attached_proposals_picker_field form, :proposals %>
 </div>
@@ -52,12 +58,6 @@ form.multipart = true
 <% if current_participatory_space.has_subscopes? %>
   <div class="field">
     <%= scopes_picker_field form, :scope_id %>
-  </div>
-<% end %>
-
-<% if Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.any? %>
-  <div class="field">
-    <%= user_group_select_field form, :user_group_id %>
   </div>
 <% end %>
 
