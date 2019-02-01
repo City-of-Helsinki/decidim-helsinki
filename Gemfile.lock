@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@github.com:mainio/decidim-module-plans.git
-  revision: 27d3ea0eaaf6b1daa71c2e8a8ece48f12b73007e
+  revision: f3e4f21af4683c996781dcedff147a809e00fac4
   specs:
     decidim-plans (0.15.0.dev)
       decidim-core (~> 0.15.0)
@@ -389,7 +389,7 @@ GEM
     geocoder (1.5.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    graphiql-rails (1.6.0)
+    graphiql-rails (1.7.0)
       railties
       sprockets-rails
     graphql (1.8.13)

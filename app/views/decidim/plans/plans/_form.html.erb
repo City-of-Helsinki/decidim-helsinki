@@ -60,19 +60,7 @@
   <% end %>
 <% end %>
 
-<% if component_settings.attachments_allowed? %>
-  <fieldset>
-    <legend><%= t(".attachment_legend") %></legend>
-    <%= form.fields_for :attachment, @form.attachment do |form| %>
-      <div class="field">
-        <%= form.text_field :title %>
-      </div>
-
-      <div class="field">
-        <%= form.upload :file, optional: false %>
-      </div>
-    <% end %>
-  </fieldset>
-<% end %>
+<%= render partial: "decidim/plans/shared/attachments", object: form, locals: { form: form, blank_attachment: blank_attachment, component_settings: component_settings } %>
 
 <%= javascript_include_tag "decidim/plans/plans_form" %>
+<%= stylesheet_link_tag "decidim/plans/plans_form" %>
