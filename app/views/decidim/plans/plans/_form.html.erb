@@ -1,3 +1,10 @@
+<%
+# Force the form to be multipart for the file uploads.
+# Calling Decidim form builder's own `upload` builder method should already do
+# this but it is not working in our case since we have multiple file fields.
+form.multipart = true
+%>
+
 <div class="row column">
   <%= attached_proposals_picker_field form, :proposals %>
 </div>
