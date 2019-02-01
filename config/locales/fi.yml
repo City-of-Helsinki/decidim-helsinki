@@ -5,7 +5,7 @@ fi:
     authorization_handlers:
       cocreation:
         explanation: Pyydä oikeutta luoda yhteistyöstämissuunnitelmia
-        name: Yhteistyöstäminen
+        name: Yhteiskehittäminen
   pages:
     home:
       hero:
