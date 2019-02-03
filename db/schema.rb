@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_29_233526) do
+ActiveRecord::Schema.define(version: 2019_02_03_101018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -809,6 +809,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_233526) do
     t.bigint "decidim_scope_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "update_token"
     t.index ["answered_at"], name: "index_decidim_plans_plans_on_answered_at"
     t.index ["decidim_category_id"], name: "index_decidim_plans_plans_on_decidim_category_id"
     t.index ["decidim_component_id"], name: "index_decidim_plans_plans_on_decidim_component_id"
@@ -1235,6 +1236,15 @@ ActiveRecord::Schema.define(version: 2019_01_29_233526) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "version_associations", force: :cascade do |t|
+    t.integer "version_id"
+    t.string "foreign_key_name", null: false
+    t.integer "foreign_key_id"
+    t.string "foreign_type", null: false
+    t.index ["foreign_key_name", "foreign_key_id", "foreign_type"], name: "index_version_associations_on_foreign_key"
+    t.index ["version_id"], name: "index_version_associations_on_version_id"
+  end
+
   create_table "versions", force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", null: false
@@ -1243,7 +1253,9 @@ ActiveRecord::Schema.define(version: 2019_01_29_233526) do
     t.jsonb "object"
     t.datetime "created_at"
     t.text "object_changes"
+    t.integer "transaction_id"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.index ["transaction_id"], name: "index_versions_on_transaction_id"
   end
 
   add_foreign_key "decidim_area_types", "decidim_organizations"
