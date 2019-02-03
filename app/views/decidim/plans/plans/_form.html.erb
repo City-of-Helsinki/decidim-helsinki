@@ -19,33 +19,17 @@ form.multipart = true
 <%= stylesheet_link_tag "decidim/plans/proposal_picker" %>
 
 <div class="field">
-  <%
-  opts = {}
-  remaining_characters = component_settings.plan_title_length
-  if remaining_characters > 0
-    remaining_characters_id = "plans_title_remaining_characters"
-    opts = {
-      maxlength: remaining_characters,
-      data: {
-        remaining_characters: "##{remaining_characters_id}"
-      }
-    }
-  end
-  %>
-
-  <% if component_settings.multilingual_answers? %>
-    <%= form.translated :text_field, :title, opts %>
-  <% else %>
-    <%= form.text_field(
-      "title_#{current_locale}".to_sym,
-      {
-        label: form.label(:title).gsub(/<\/?label[^>]*>/, '')
-      }.merge(opts)
-    ) %>
-  <% end %>
-
-  <% if remaining_characters > 0 %>
-    <%= render "decidim/plans/shared/remaining_characters_container", remaining_characters_id: remaining_characters_id %>
+  <%= remaining_characters("plans_title", component_settings.plan_title_length) do |opts| %>
+    <% if component_settings.multilingual_answers? %>
+      <%= form.translated :text_field, :title, opts %>
+    <% else %>
+      <%= form.text_field(
+        "title_#{current_locale}".to_sym,
+        {
+          label: form.label_for(:title)
+        }.merge(opts)
+      ) %>
+    <% end %>
   <% end %>
 </div>
 
