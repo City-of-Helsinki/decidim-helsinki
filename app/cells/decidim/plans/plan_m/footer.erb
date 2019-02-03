@@ -1,5 +1,7 @@
 <div class="card__footer">
   <div class="card__support">
-    <%= link_to t("decidim.plans.plans.plan.view_plan"), resource_path, class: "card__button button hollow primary" %>
+    <% if has_link_to_resource? %>
+      <%= link_to t("decidim.plans.plans.plan.view_plan"), resource_path, class: "card__button button hollow primary" %>
+    <% end %>
   </div>
 </div>
