@@ -15,7 +15,6 @@
 @import "layouts/home";
 @import "decidim/layouts/user";
 @import "decidim/layouts/view";
-//@import "layouts/*";
 @import "decidim/extras/add_comments";
 @import "decidim/extras/announcement";
 @import "decidim/extras/collection-sort-controls";
@@ -35,4 +34,5 @@
 @import "decidim/vizzs/areachart";
 @import "decidim/vizzs/chart-tooltip";
 @import "decidim/vizzs/linechart";
+@import "decidim/vizzs/orgchart";
 @import "decidim/vizzs/rowchart";

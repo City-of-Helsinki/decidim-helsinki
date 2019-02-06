@@ -32,6 +32,9 @@ sv:
         active_processes: Aktiv nu
         see_all_processes: Visa alla
   layouts:
+    decidim:
+      process_header:
+        unfold: Öppna
     footer:
       feedback: Ge feedback
       about: Om tjänsten

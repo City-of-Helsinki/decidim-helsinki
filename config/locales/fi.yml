@@ -32,6 +32,9 @@ fi:
         active_processes: Käynnissä nyt
         see_all_processes: Näytä kaikki
   layouts:
+    decidim:
+      process_header:
+        unfold: Avaa
     footer:
       feedback: Anna palautetta
       about: Tietoa palvelusta

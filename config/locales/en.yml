@@ -32,6 +32,9 @@ en:
         active_processes: Active now
         see_all_processes: Show all
   layouts:
+    decidim:
+      process_header:
+        unfold: Unfold
     footer:
       feedback: Give feedback
       about: About the service

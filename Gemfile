@@ -4,14 +4,14 @@ ruby '2.5.1'
 
 # Run updates by following the Decidim upgrade instructions:
 # https://github.com/decidim/decidim/blob/master/docs/getting_started.md#keeping-your-app-up-to-date
-DECIDIM_VERSION = "0.15.2"
+DECIDIM_VERSION = "0.16.0"
+DECIDIM_MODULE_VERSION = "~> 0.16.0"
 
 gem "decidim", DECIDIM_VERSION
 
-gem "decidim-antivirus", "~> 0.15.0"
-
-gem 'decidim-plans', "~> 0.15.0"
-gem 'decidim-access_requests', "~> 0.15.0"
+gem "decidim-antivirus", DECIDIM_MODULE_VERSION
+gem 'decidim-plans', DECIDIM_MODULE_VERSION
+gem 'decidim-access_requests', DECIDIM_MODULE_VERSION
 
 gem "font-awesome-rails", "~> 4.7.0"
 

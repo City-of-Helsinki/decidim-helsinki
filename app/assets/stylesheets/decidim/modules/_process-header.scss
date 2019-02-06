@@ -1,9 +1,11 @@
 .process-header{
   //margin-bottom: $margin-sm;
 
-  /*@include breakpoint(medium){
+  /*
+  @include breakpoint(medium){
     margin-bottom: $margin-m;
-  }*/
+  }
+  */
 
   .heading2{
     font-weight: bold;
@@ -59,17 +61,6 @@
 .wrapper-default .process-header__phase{
   background: transparent;
   color: $black;
-
-  .button{
-    color: $black;
-    border-color: $black;
-
-    &:hover,
-    &.is-active{
-      color: $primary;
-      border-color: $primary;
-    }
-  }
 }
 
 .process-header__phase--simple{
@@ -89,11 +80,15 @@
     margin-right: .5rem;
   }
 
-  a { color: $white; }
+  a{
+    color: $white;
+  }
 }
 
 .wrapper-default .process-header__hashtag{
-  a { color: $black; }
+  a{
+    color: $black;
+  }
 }
 
 .process-header__nav{
