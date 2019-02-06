@@ -39,6 +39,10 @@ fi:
       answers:
         accepted: Mahdollinen
         rejected: Ei mahdollinen
+      application_helper:
+        filter_state_values:
+          accepted: Mahdollinen
+          rejected: Ei mahdollinen
       proposals:
         index:
           show_map: Ehdotukset kartalla

@@ -39,6 +39,10 @@ en:
       answers:
         accepted: Possible
         rejected: Not possible
+      application_helper:
+        filter_state_values:
+          accepted: Possible
+          rejected: Not possible
       proposals:
         index:
           show_map: Proposals on map

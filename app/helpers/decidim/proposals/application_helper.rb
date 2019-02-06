@@ -12,6 +12,7 @@ module Decidim
       include Decidim::MapHelper
       include Decidim::Proposals::MapHelper
       include CollaborativeDraftHelper
+      include ControlVersionHelper
 
       delegate :minimum_votes_per_user, to: :component_settings
 
@@ -104,6 +105,14 @@ module Decidim
         end
       end
 
+      def votes_count_for(model, from_proposals_list)
+        render partial: "decidim/proposals/proposals/participatory_texts/proposal_votes_count.html", locals: { proposal: model, from_proposals_list: from_proposals_list }
+      end
+
+      def vote_button_for(model, from_proposals_list)
+        render partial: "decidim/proposals/proposals/participatory_texts/proposal_vote_button.html", locals: { proposal: model, from_proposals_list: from_proposals_list }
+      end
+
       def endorsers_for(proposal)
         proposal.endorsements.for_listing.map { |identity| present(identity.normalized_author) }
       end
@@ -124,6 +133,38 @@ module Decidim
         return true if proposal_limit_enabled?
         return true if can_accumulate_supports_beyond_threshold?
         return true if minimum_votes_per_user_enabled?
+      end
+
+      def filter_origin_values
+        base = if component_settings.official_proposals_enabled
+                 [
+                   ["all", t("decidim.proposals.application_helper.filter_origin_values.all")],
+                   ["official", t("decidim.proposals.application_helper.filter_origin_values.official")]
+                 ]
+               else
+                 [["all", t("decidim.proposals.application_helper.filter_origin_values.all")]]
+               end
+
+        base += [["citizens", t("decidim.proposals.application_helper.filter_origin_values.citizens")]]
+        base += [["user_group", t("decidim.proposals.application_helper.filter_origin_values.user_groups")]] if current_organization.user_groups_enabled?
+        base + [["meeting", t("decidim.proposals.application_helper.filter_origin_values.meetings")]]
+      end
+
+      def filter_state_values
+        [
+          ["all", t("decidim.proposals.application_helper.filter_state_values.all")],
+          ["accepted", t("decidim.proposals.application_helper.filter_state_values.accepted")],
+          ["rejected", t("decidim.proposals.application_helper.filter_state_values.rejected")],
+          ["evaluating", t("decidim.proposals.application_helper.filter_state_values.evaluating")]
+        ]
+      end
+
+      def filter_type_values
+        [
+          ["all", t("decidim.proposals.application_helper.filter_type_values.all")],
+          ["proposals", t("decidim.proposals.application_helper.filter_type_values.proposals")],
+          ["amendments", t("decidim.proposals.application_helper.filter_type_values.amendments")]
+        ]
       end
     end
   end
