@@ -14,6 +14,12 @@ module Decidim
 
       private
 
+      def resource_path
+        path = super
+        path << "?back_to=#{URI.encode(options[:back_to])}" if options[:back_to].presence
+        path
+      end
+
       def title
         present(model).title
       end

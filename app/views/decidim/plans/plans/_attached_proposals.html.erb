@@ -1,0 +1,10 @@
+<% if @plan.proposals.count.nonzero? %>
+  <div class="attached-proposals">
+    <h4 class="section-heading"><%= t(".attached_proposals") %></h3>
+    <div class="collapsible-list row small-up-1 medium-up-2 card-grid">
+      <% @plan.proposals.each do |proposal| %>
+        <%= card_for proposal, from: proposal, back_to: plan_path(@plan) %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -57,7 +57,7 @@ en:
         show:
           proposal_accepted_reason: 'This proposal went through because:'
           proposal_rejected_reason: 'This proposal did not go through because:'
-          back_to_proposals: 'Back to proposals'
+          back_to_proposals: 'Back'
         wizard_steps:
           step_3: Create your proposal
           step_4: Preview and publish your proposal

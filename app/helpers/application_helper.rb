@@ -21,4 +21,23 @@ module ApplicationHelper
       ('<div class="koro-top ' + extra_cls + '"></div>').html_safe
     end
   end
+
+  def link_to_or_back(*args, &block)
+    body = args.shift
+    path = if block_given?
+      body
+    else
+      args.shift
+    end
+
+    if params[:back_to] =~ /^(\/[a-z0-9-]*)+$/
+      path = params[:back_to]
+    end
+
+    if block_given?
+      link_to(path, *args, &block)
+    else
+      link_to(body, path, *args)
+    end
+  end
 end

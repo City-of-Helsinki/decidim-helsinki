@@ -57,7 +57,7 @@ fi:
         show:
           proposal_accepted_reason: 'Tämä ehdotus eteni jatkoon.'
           proposal_rejected_reason: 'Tämä ehdotus ei edennyt jatkoon.'
-          back_to_proposals: 'Takaisin ehdotuksiin'
+          back_to_proposals: 'Takaisin'
         wizard_steps:
           step_3: Luo ehdotuksesi
           step_4: Esikatsele ja julkaise ehdotuksesi
