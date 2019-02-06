@@ -96,4 +96,44 @@ namespace :hki do
 
     puts "CSV file written to: #{filename}"
   end
+
+  # Import budgeting answers from a spreadsheet (e.g. ODS, Excel).
+  # Usage: rake hki:import_answers[tmp/answers.(ods|xlsx)]
+  desc "Import answers to proposals."
+  task :import_answers, [:filename] => [:environment] do |t, args|
+    filename = args[:filename]
+
+    spreadsheet = Roo::Spreadsheet.open(filename)
+    sheet = spreadsheet.sheet(0)
+    columns = []
+    sheet.each_with_index do |row, rowi|
+      rowdata = {}
+      row.each_with_index do |cell, celli|
+        if rowi == 0
+          columns[celli] = cell
+        else
+          rowdata[columns[celli].to_sym] = cell
+        end
+      end
+      next if rowi == 0
+
+      p = Decidim::Proposals::Proposal.find_by(id: rowdata[:proposal_id])
+      if p
+        state = "accepted"
+        state = "rejected" if rowdata[:rejected] == 1
+
+        begin
+          p.update_attributes(
+            state: state,
+            answer: { fi: rowdata[:answer] },
+            answered_at: Time.now
+          )
+        rescue
+          puts "Update failed: #{rowdata[:proposal_id]}, row: #{rowi}"
+        end
+      else
+        puts "Proposal not found: #{rowdata[:proposal_id]}, row: #{rowi}"
+      end
+    end
+  end
 end
