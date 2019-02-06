@@ -6,6 +6,10 @@ en:
       cocreation:
         explanation: Ask for permission to create cocreation plans
         name: Cocreation
+    pages:
+      home:
+        statistics:
+          plans_count: Plans
   pages:
     home:
       hero:

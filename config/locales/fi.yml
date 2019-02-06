@@ -6,6 +6,10 @@ fi:
       cocreation:
         explanation: Pyydä oikeutta luoda yhteistyöstämissuunnitelmia
         name: Yhteiskehittäminen
+    pages:
+      home:
+        statistics:
+          plans_count: Suunnitelmia
   pages:
     home:
       hero:

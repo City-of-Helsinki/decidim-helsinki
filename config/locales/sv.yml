@@ -6,6 +6,10 @@ sv:
       cocreation:
         explanation: Be om tillstånd att skapa samskapande planer
         name: Samskapande
+    pages:
+      home:
+        statistics:
+          plans_count: Planer
   pages:
     home:
       hero:
