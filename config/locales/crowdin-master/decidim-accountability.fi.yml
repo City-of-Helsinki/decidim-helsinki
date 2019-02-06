@@ -218,8 +218,6 @@ fi:
           results: Tulokset
     participatory_spaces:
       highlighted_results:
-        results: Tulokset
-        see_all_results: Näytä kaikki tulokset
         see_all: Näytä kaikki (%{count})
     resource_links:
       included_projects:

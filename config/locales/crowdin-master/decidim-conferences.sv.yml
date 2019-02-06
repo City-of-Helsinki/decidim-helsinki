@@ -105,8 +105,6 @@ sv:
         create:
           error: Det uppstod ett fel vid att skapa en ny konferens.
           success: Konferensen skapades framgångsrikt.
-        destroy:
-          success: Konferensen togs bort framgångsrikt.
         edit:
           update: Uppdatera
         exports:
@@ -153,7 +151,6 @@ sv:
           components: Komponenter
           conference_admins: Konferensanvändare
           conference_invites: Inbjudningskort
-          conference_registrations: Konferensregistreringar
           conference_speakers: högtalare
           diploma: Diplom
           info: Info
@@ -342,7 +339,6 @@ sv:
           invite:
             decline: Avvisa inbjudan '%{conference_title}'
             invited_you_to_join_a_conference: "%{invited_by} har bjudit in dig till en konferens på %{application}. Du kan avböja eller acceptera det genom länkarna nedan."
-            join: Gå med i konferens '%{conference_title}'
             registration: Registrering för '%{conference_title}'
         partners:
           index:
@@ -383,7 +379,6 @@ sv:
       conference_registration_mailer:
         confirmation:
           confirmed_html: Din registrering för konferensen <a href="%{url}">%{title}</a> har bekräftats.
-          details: Du hittar konferensens detaljer i bilagan.
           details_1: 'Du är registrerad på konferensen med %{registration_type} typ. Det kostar %{price} och du kan delta i följande evenemang:'
           details_2: Du hittar konferensens detaljer i bilagan.
         pending_validation:
@@ -419,13 +414,9 @@ sv:
           collaborators: partners
           main_promotors: arrangörer
         show:
-          already_account: Har du redan ett konto i decidim?
           login_as: Du är inloggad som %{name} <%{email}>
           make_conference_registration: 'Gör din registrering på konferensen:'
-          new_user: Ny användare?
           register: Registrera
-          sign_in: Logga in för att registrera dig på denna konferens
-          sign_up: Registrera dig gratis i decidim för att registrera dig
       content_blocks:
         highlighted_conferences:
           name: Upplysta konferenser
@@ -514,6 +505,10 @@ sv:
         votes_count: Röster
     events:
       conferences:
+        conference_registration_validation_pending:
+          notification_title: Din registrering för konferensen <a href="%{resource_url}">%{resource_title}</a> väntar på att bekräftas.
+        conference_registration_confirmed:
+          notification_title: Din registrering för konferensen <a href="%{resource_url}">%{resource_title}</a> har bekräftats.
         conference_registrations_over_percentage:
           email_intro: '"%{resource_title}" -konferensens upptagna platser är över %{percentage}%.'
           email_outro: Du har fått den här meddelandet eftersom du är en administratör för konferensens deltagande utrymme.
@@ -529,6 +524,11 @@ sv:
           email_outro: Du har fått den här meddelandet eftersom du följer "%{resource_title}" -konferensen. Du kan följa det från föregående länk.
           email_subject: Konferensen "%{resource_title}" har aktiverat registreringar.
           notification_title: <a href="%{resource_path}">%{resource_title}</a> konferensen har aktiverat registreringar.
+        upcoming_conference:
+          email_intro: 'Konferensen "%{resource_title}" äger rum om 2 dagar. Du kan läsa beskrivningen från sidan:'
+          email_outro: Du har fått den här meddelandet eftersom du följer "%{resource_title}" -konferensen. Du kan följa det från föregående länk.
+          email_subject: Konferensen "%{resource_title}" kommer!
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> konferensen kommer inom 2 dagar.
     log:
       value_types:
         conference_presenter:
@@ -567,5 +567,4 @@ sv:
         conference_partners_menu_item: Partners
         conference_speaker_menu_item: Talare
         media: Media
-        unfold: Veckla ut
         venues: Ställen

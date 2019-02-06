@@ -26,8 +26,19 @@ sv:
         user: Kommittémedlem
       initiatives_type:
         banner_image: Banner image
+        collect_user_extra_fields: Samla användarens personuppgifter om signatur
         description: Beskrivning
+        document_number_authorization_handler: Bemyndigande att verifiera dokumentnummer vid omröstning
+        extra_fields_legal_information: Juridisk information om insamling av personuppgifter
+        minimum_committee_members: Minsta utskottets medlemmar
+        online_signature_enabled: Online signatur aktiverad
         title: Titel
+        validate_sms_code_on_votes: Lägg till SMS-kodvalideringssteg till signaturprocess
+      initiatives_vote:
+        name_and_surname: Namn och efternamn
+        document_number: Dokumentnummer
+        date_of_birth: Födelsedatum
+        postal_code: Postnummer
       organization_data:
         address: Adress
         id_document: ID-dokument
@@ -54,6 +65,7 @@ sv:
         initiatives:
           fields:
             created_at: Skapad vid
+            id: ID
             state: Status
             supports_count: Stöder
             title: initiativ
@@ -67,6 +79,20 @@ sv:
             created_at: Skapad vid
             title: Initiativtyper
           name: Initiativtyp
+        initiatives_votes:
+          fields:
+            date_of_birth: Födelsedatum
+            document_number: Dokumentnummer
+            hash: Hash
+            initiative_end_date: Slutdatum
+            initiative_id: Initiativ ID
+            initiative_signatures_count: Antal signaturer
+            initiative_start_date: Start datum
+            initiative_title: Initiativtitel
+            name_and_surname: Namn och efternamn
+            postal_code: Postnummer
+            time_and_date: Tid och datum
+            timestamp: Tidsstämpel
       titles:
         initiatives: initiativ
         initiatives_types: Initiativtyper
@@ -78,10 +104,16 @@ sv:
           email_subject: Initiativa signaturer slutdatum förlängt!
           notification_title: Signaturens slutdatum för <a href="%{resource_path}">%{resource_title}</a> initiativet har förlängts.
         milestone_completed:
-          email_intro: Initiativet %{resource_title} har uppnått %{percentage}% av underskrifterna!
-          email_outro: Du har fått den här meddelandet eftersom du följer %{resource_title}. Du kan sluta ta emot meddelanden efter föregående länk.
-          email_subject: Ny milstolpe färdigställd!
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> initiativet har uppnått %{percentage}% av underskrifterna.
+          affected_user:
+            email_intro: Ditt initiativ %{resource_title} har uppnått %{percentage}% av signaturerna!
+            email_outro: Du har fått den här meddelandet eftersom du är författaren till initiativet %{resource_title}.
+            email_subject: Ny milstolpe färdigställd!
+            notification_title: Ditt <a href="%{resource_path}">%{resource_title}</a> initiativ har uppnått %{percentage}% av underskrifterna.
+          follower:
+            email_intro: Initiativet %{resource_title} har uppnått %{percentage}% av underskrifterna!
+            email_outro: Du har fått den här meddelandet eftersom du följer %{resource_title}. Du kan sluta ta emot meddelanden efter föregående länk.
+            email_subject: Ny milstolpe färdigställd!
+            notification_title: <a href="%{resource_path}">%{resource_title}</a> initiativet har uppnått %{percentage}% av underskrifterna.
     gamification:
       badges:
         initiatives:
@@ -119,6 +151,7 @@ sv:
             accept: Acceptera initiativ
             confirm: Är du säker?
             discard: Förkasta initiativet
+            export_pdf_signatures: Exportera PDF av signaturer
             export_votes: Exportstöd
             reject: Avvisa initiativ
             send_to_technical_validation: Skicka till teknisk validering
@@ -234,7 +267,7 @@ sv:
           more_information: "(Mer information)"
         promotal_committee:
           back: Tillbaka
-          individual_help_text: Medborgarinitiativ kräver en föreslagningskommission bestående av minst tre personer (vittnen). Du måste dela följande länk med andra personer som ingår i detta initiativ. När dina kontakter får den här länken måste de följa de angivna stegen.
+          individual_help_text: Denna typ av medborgarinitiativ kräver en uppdragskommission bestående av minst %{committee_size} personer (vittnen). Du måste dela följande länk med andra personer som ingår i detta initiativ. När dina kontakter får den här länken måste de följa de angivna stegen.
           more_information: "(Mer information)"
         select_initiative_type:
           back: Tillbaka
@@ -262,9 +295,25 @@ sv:
           notification_title: <a href="%{resource_path}">%{resource_title}</a> initiativet godkändes av <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
       index:
         title: initiativ
+      initiative_signatures:
+        fill_personal_data:
+          continue: Fortsätta
+          help: Vänligen fyll i följande fält med dina personuppgifter för att underteckna initiativet
+        sms_phone_number:
+          continue: Skicka mig ett SMS
+          help: Fyll i formuläret med ditt verifierade telefonnummer för att begära din verifieringskod
+        sms_code:
+          continue: Kontrollera koden och fortsätt
+          help: Kontrollera det SMS som mottas i telefonen
       initiative_votes:
         create:
           error: Det har varit fel när du undertecknade initiativet.
+          invalid: Uppgifterna som lämnas för att underteckna initiativet är inte giltiga
+          success: grattis! Initiativet har skrivits korrekt
+        sms_code:
+          invalid: Din verifieringskod stämmer inte överens med vår. Vänligen dubbelklicka på det SMS vi skickade till dig.
+        sms_phone:
+          invalid: Telefonnumret är ogiltigt eller inte godkänt. Var god kontrollera dina auktorisationer.
       initiatives:
         author:
           deleted: Raderad
@@ -320,6 +369,7 @@ sv:
         vote_cabin:
           already_voted: Redan undertecknad
           supports_required: "%{total_supports} signaturer krävs"
+          verification_required: Verifiera din identitet för att underteckna initiativet
           vote: Signera
           votes_blocked: Signering inaktiverad
         votes_count:
@@ -349,8 +399,14 @@ sv:
       states:
         accepted: Accepterad
         expired: Utgånget
+      unavailable_scope: Otillgänglig räckvidd
     menu:
       initiatives: initiativ
+    resources:
+      initiatives_type:
+        actions:
+          vote: Rösta
+          title: Åtgärder
   layouts:
     decidim:
       admin:
@@ -370,6 +426,15 @@ sv:
         title: Skapa ny satsning
       initiative_header:
         initiative_menu_item: Initiativ
+      initiative_signature_creation_header:
+        back: Tillbaka
+        fill_personal_data: Fyll i dina uppgifter
+        select_identity: Välj identitet
+        see_steps: se steg
+        sms_code: SMS-kod verifiering
+        sms_phone_number: mobilnummer
+        step: Steg %{current} av %{total}
+        title: Sign %{initiative_title}
       initiatives:
         initiative:
           check: Kolla in det
