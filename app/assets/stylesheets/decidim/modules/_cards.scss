@@ -217,16 +217,18 @@ $datetime-bg: $primary;
   }
 
   > .card__footer{
-    flex: 0.6;
+    flex: .6;
   }
+
   > .card__status{
-    flex: 0.4;
+    flex: .4;
     align-self: center;
 
     @include breakpoint(mediumlarge only){
       align-self: flex-start;
     }
   }
+
   > .card__status{
     text-align: left;
 
@@ -303,9 +305,10 @@ $datetime-bg: $primary;
 /* Card data */
 
 .card-data{
-  display: flex;
   list-style: none;
   margin: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card-data__item{
@@ -967,6 +970,30 @@ $datetime-bg: $primary;
     flex-wrap: inherit;
 
     .card-data__item{
+      display: inline-block;
+      flex-basis: 33.33%;
+      flex-grow: 1;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: rem-calc(15);
+      line-height: 1;
+      color: $muted;
+      padding: .5em;
+      border-right: $border;
+      margin-right: -1px;
+      border-top: $border;
+      margin-top: -1px;
+
+      .card-data__item--centerblock{
+        margin: 0 auto;
+      }
+
+      &.card-data__item--expand{
+        line-height: $global-lineheight;
+      }
+    }
+
+    .card-data__item{
       color: $body-font-color;
       text-transform: none;
       font-size: rem-calc(16);
@@ -980,10 +1007,18 @@ $datetime-bg: $primary;
       }
 
       &:first-child{
+        flex-grow: 0;
+        flex-basis: 12%;
         background-color: $card-secondary-bg;
         position: relative;
-        padding-top: 0;
-        padding-bottom: 0;
+
+        > div{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          @include absolute-center;
+        }
       }
     }
   }
