@@ -1,4 +1,7 @@
 en:
+  activerecord:
+    models:
+      decidim/plans/plan: Plan
   auth:
     sign_in_with_tunnistamo: 'Use Tunnistamo to sign in'
   decidim:

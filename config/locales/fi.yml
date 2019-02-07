@@ -1,4 +1,7 @@
 fi:
+  activerecord:
+    models:
+      decidim/plans/plan: Suunnitelma
   auth:
     sign_in_with_tunnistamo: 'Käytä Tunnistamoa kirjautuaksesi sisään'
   decidim:

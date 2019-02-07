@@ -1,4 +1,7 @@
 sv:
+  activerecord:
+    models:
+      decidim/plans/plan: Plan
   auth:
     sign_in_with_tunnistamo: 'Logga in med Tunnistamo'
   decidim:
