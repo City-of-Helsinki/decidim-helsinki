@@ -8,7 +8,10 @@ module CellResourcePaths
   class_methods do
     def define_resource_path(path_helper)
       define_method :resource_path do
-        controller.send(path_helper, model)
+        return controller.send(path_helper, model) if controller.respond_to?(path_helper)
+
+        # Fall back to resource locator
+        resource_locator(model, controller).path
       end
     end
   end
