@@ -244,7 +244,8 @@ module Decidim
           category_id: "",
           state: "all",
           scope_id: nil,
-          related_to: ""
+          related_to: "",
+          type: "all"
         }
       end
 
