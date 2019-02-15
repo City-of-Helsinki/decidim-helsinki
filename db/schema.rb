@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_06_214344) do
+ActiveRecord::Schema.define(version: 2019_02_15_094618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -899,7 +899,9 @@ ActiveRecord::Schema.define(version: 2019_02_06_214344) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "update_token"
+    t.datetime "closed_at"
     t.index ["answered_at"], name: "index_decidim_plans_plans_on_answered_at"
+    t.index ["closed_at"], name: "index_decidim_plans_plans_on_closed_at"
     t.index ["decidim_category_id"], name: "index_decidim_plans_plans_on_decidim_category_id"
     t.index ["decidim_component_id"], name: "index_decidim_plans_plans_on_decidim_component_id"
     t.index ["decidim_scope_id"], name: "index_decidim_plans_plans_on_decidim_scope_id"
