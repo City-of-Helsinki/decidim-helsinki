@@ -58,6 +58,9 @@ fi:
           proposal_accepted_reason: 'Tämä ehdotus eteni jatkoon.'
           proposal_rejected_reason: 'Tämä ehdotus ei edennyt jatkoon.'
           back_to_proposals: 'Takaisin'
+          sign_in: Kirjaudu sisään
+          sign_up: Rekisteröidy
+          sign_in_or_up: Kirjaudu sisään tai rekisteröidy
         wizard_steps:
           step_3: Luo ehdotuksesi
           step_4: Esikatsele ja julkaise ehdotuksesi

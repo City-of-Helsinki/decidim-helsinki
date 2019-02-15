@@ -58,6 +58,9 @@ sv:
           proposal_accepted_reason: 'Förslaget gick vidare.'
           proposal_rejected_reason: 'Förslaget gick inte vidare.'
           back_to_proposals: 'Tillbaka'
+          sign_in: Logga in
+          sign_up: Registrera dig
+          sign_in_or_up: Logga in eller registrera dig
         wizard_steps:
           step_3: Skapa ditt förslag
           step_4: Förhandsvisa och Publicera ditt förslag
