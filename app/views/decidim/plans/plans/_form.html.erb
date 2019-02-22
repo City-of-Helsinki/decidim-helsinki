@@ -11,12 +11,14 @@ form.multipart = true
   </div>
 <% end %>
 
-<div class="row column">
-  <%= attached_proposals_picker_field form, :proposals %>
-</div>
+<% if component_settings.proposal_linking_enabled? %>
+  <div class="row column">
+    <%= attached_proposals_picker_field form, :proposals %>
+  </div>
 
-<%= javascript_include_tag "decidim/plans/proposal_picker" %>
-<%= stylesheet_link_tag "decidim/plans/proposal_picker" %>
+  <%= javascript_include_tag "decidim/plans/proposal_picker" %>
+  <%= stylesheet_link_tag "decidim/plans/proposal_picker" %>
+<% end %>
 
 <div class="field">
   <%= remaining_characters("plans_title", component_settings.plan_title_length) do |opts| %>
@@ -33,15 +35,15 @@ form.multipart = true
   <% end %>
 </div>
 
-<% if @form.categories&.any? %>
+<% if component_settings.scopes_enabled? && current_participatory_space.has_subscopes? %>
   <div class="field">
-    <%= form.categories_select :category_id, @form.categories, prompt: t(".select_a_category") %>
+    <%= scopes_picker_field form, :scope_id %>
   </div>
 <% end %>
 
-<% if current_participatory_space.has_subscopes? %>
+<% if component_settings.categories_enabled? && @form.categories&.any? %>
   <div class="field">
-    <%= scopes_picker_field form, :scope_id %>
+    <%= form.categories_select :category_id, @form.categories, prompt: t(".select_a_category") %>
   </div>
 <% end %>
 
