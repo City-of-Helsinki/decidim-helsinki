@@ -14,6 +14,7 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-antivirus", DECIDIM_MODULE_VERSION
 gem "decidim-plans", DECIDIM_MODULE_VERSION
 gem "decidim-access_requests", DECIDIM_MODULE_VERSION
+gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
 
 gem "font-awesome-rails", "~> 4.7.0"
 
