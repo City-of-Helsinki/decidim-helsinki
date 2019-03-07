@@ -7,6 +7,7 @@ module Decidim
     # This cell renders a proposal with its M-size card.
     class ProposalMCell < Decidim::CardMCell
       include ProposalCellsHelper
+      include Decidim::Plans::LinksHelper
 
       def badge
         render if has_badge?
@@ -16,8 +17,10 @@ module Decidim
 
       def resource_path
         path = super
-        path << "?back_to=#{URI.encode(options[:back_to])}" if options[:back_to].presence
-        path
+        extra = {}
+        extra[:back_to] = options[:back_to] if options[:back_to].presence
+
+        path + request_params_query(extra)
       end
 
       def title

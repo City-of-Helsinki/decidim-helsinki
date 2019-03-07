@@ -14,6 +14,10 @@ module Decidim
 
       private
 
+      def resource_path
+        resource_locator(model).path + request_params_query
+      end
+
       def title
         present(model).title
       end
