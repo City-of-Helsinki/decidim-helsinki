@@ -145,7 +145,7 @@ GEM
       decidim-surveys (= 0.16.0)
       decidim-system (= 0.16.0)
       decidim-verifications (= 0.16.0)
-    decidim-access_requests (0.16.0)
+    decidim-access_requests (0.16.1)
       decidim-admin (~> 0.16.0)
       decidim-core (~> 0.16.0)
       decidim-verifications (~> 0.16.0)
