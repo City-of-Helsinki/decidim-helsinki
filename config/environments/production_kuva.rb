@@ -9,6 +9,9 @@ Rails.application.configure do
   # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
   config.wrapper_class = 'wrapper-paahtimo'
 
+  # The feedback email in the footer of the site
+  config.feedback_email = 'ideapaahtimo@hel.fi'
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

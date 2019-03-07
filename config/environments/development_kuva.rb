@@ -9,6 +9,9 @@ Rails.application.configure do
   # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
   config.wrapper_class = 'wrapper-paahtimo'
 
+  # The feedback email in the footer of the site
+  config.feedback_email = 'ideapaahtimo@hel.fi'
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

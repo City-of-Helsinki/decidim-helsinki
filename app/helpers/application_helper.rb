@@ -15,6 +15,10 @@ module ApplicationHelper
     Rails.application.config.use_mode == 'private'
   end
 
+  def feedback_email
+    Rails.application.config.feedback_email
+  end
+
   # Replace the footer koro with a custom one. E.g. a specific background color
   # may need to be added to the footer koro element depending on the previous
   # element.
