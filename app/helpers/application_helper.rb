@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Decidim::Plans::LinksHelper
+
   # Defines whether the "common" content elements are displayed. In the
   # 'private' application mode these should be hidden in case the user is not
   # signed in.
@@ -33,6 +35,8 @@ module ApplicationHelper
     if params[:back_to] =~ /^(\/[a-z0-9-]*)+$/
       path = params[:back_to]
     end
+
+    path << request_params_query({}, [:back_to])
 
     if block_given?
       link_to(path, *args, &block)
