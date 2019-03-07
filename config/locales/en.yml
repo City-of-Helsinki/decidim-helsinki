@@ -36,6 +36,8 @@ en:
         see_all_processes: Show all
   layouts:
     decidim:
+      assembly_header:
+        unfold: Unfold
       process_header:
         unfold: Unfold
     footer:

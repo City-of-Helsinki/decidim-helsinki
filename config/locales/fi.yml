@@ -36,6 +36,8 @@ fi:
         see_all_processes: Näytä kaikki
   layouts:
     decidim:
+      assembly_header:
+        unfold: Avaa
       process_header:
         unfold: Avaa
     footer:

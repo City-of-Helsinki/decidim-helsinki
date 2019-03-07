@@ -36,6 +36,8 @@ sv:
         see_all_processes: Visa alla
   layouts:
     decidim:
+      assembly_header:
+        unfold: Öppna
       process_header:
         unfold: Öppna
     footer:
