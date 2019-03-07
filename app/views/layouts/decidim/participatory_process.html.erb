@@ -6,7 +6,7 @@ if @proposal
   end
 end
 #meta_image ||= current_participatory_space.banner_image.url
-meta_image ||= image_url('helsinki-social/omastadi-wide.jpg')
+meta_image ||= image_url(meta_image_default)
 meta_description ||= translated_attribute(current_participatory_space.short_description)
 %>
 <% add_decidim_page_title(translated_attribute(current_component.name)) if try(:current_component) %>

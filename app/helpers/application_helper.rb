@@ -44,4 +44,10 @@ module ApplicationHelper
       link_to(body, path, *args)
     end
   end
+
+  def meta_image_default
+    return "helsinki-social/ideapaahtimo-wide.jpg" if Rails.application.config.wrapper_class == "wrapper-paahtimo"
+
+    "helsinki-social/omastadi-wide.jpg"
+  end
 end
