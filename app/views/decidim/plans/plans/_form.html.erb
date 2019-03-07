@@ -23,12 +23,15 @@ form.multipart = true
 <div class="field">
   <%= remaining_characters("plans_title", component_settings.plan_title_length) do |opts| %>
     <% if component_settings.multilingual_answers? %>
-      <%= form.translated :text_field, :title, opts %>
+      <%= form.translated :text_field, :title, opts.merge(
+        help_text: translated_attribute(component_settings.title_help)
+      ) %>
     <% else %>
       <%= form.text_field(
         "title_#{current_locale}".to_sym,
         {
-          label: form.label_for(:title)
+          label: form.label_for(:title),
+          help_text: translated_attribute(component_settings.title_help)
         }.merge(opts)
       ) %>
     <% end %>
