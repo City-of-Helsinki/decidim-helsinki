@@ -58,7 +58,8 @@
   }
 }
 
-.wrapper-default .process-header__phase{
+.wrapper-default .process-header__phase,
+.wrapper-paahtimo .process-header__phase{
   background: transparent;
   color: $black;
 }
@@ -85,7 +86,8 @@
   }
 }
 
-.wrapper-default .process-header__hashtag{
+.wrapper-default .process-header__hashtag,
+.wrapper-paahtimo .process-header__hashtag{
   a{
     color: $black;
   }

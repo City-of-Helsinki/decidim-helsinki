@@ -1,5 +1,5 @@
 $footer-bg: $hel-copper;
-$footer-bg-paahtimo: $hel-gold;
+$footer-bg-paahtimo: $hel-summer;
 $footer-bg-discussion: $hel-metro;
 $footer-fg: $black;
 $footer-fg-paahtimo: $black;
@@ -44,7 +44,7 @@ $footer-fg-discussion: $white;
 .wrapper-paahtimo{
   .footer-wrapper{
     .koro-top{
-      @include koro("basic", $titlebar-bg-paahtimo, 1000);
+      @include koro("basic", $footer-bg-paahtimo, 1000);
     }
   }
   .main-footer,
@@ -113,6 +113,10 @@ $footer-fg-discussion: $white;
 
     a{
       font-weight: $global-weight-normal;
+    }
+
+    .footer-nav{
+      margin-left: 15px;
     }
   }
 }
