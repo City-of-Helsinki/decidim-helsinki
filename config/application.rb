@@ -124,6 +124,12 @@ module DecidimHelsinki
         CommentsHelperExtensions
       )
 
+      # Parser extensions
+      Decidim::ContentParsers::ProposalParser.send(
+        :include,
+        Helsinki::ProposalParserExtensions
+      )
+
       # View extensions
       ActionView::Base.send :include, Decidim::MapHelper
       ActionView::Base.send :include, Decidim::WidgetUrlsHelper
