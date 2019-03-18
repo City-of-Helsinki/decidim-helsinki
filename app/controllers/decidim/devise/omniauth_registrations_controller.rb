@@ -79,10 +79,12 @@ module Decidim
         if identity
           user = identity.user
           if user
-            # Update user if it alreadt existed
+            # Update user if it already existed
             user.update(
               email: info[:email],
-              name: oauth_name,
+              # The user may have changed their name e.g. for anonymization and
+              # therefore we should not update it on every login separately.
+              #name: oauth_name,
             )
 
             set_flash_message :notice, :success, kind: provider_name(oauth_data[:provider])
