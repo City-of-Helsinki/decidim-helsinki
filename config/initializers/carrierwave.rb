@@ -6,6 +6,9 @@ CarrierWave.configure do |config|
   config.directory_permissions = 0o777
   config.storage = :file
   config.enable_processing = !Rails.env.test?
+
+  # Fix `.url` pointing to full URLs for the uploaders. Affects e.g. the og meta
+  # tags for social images.
   config.asset_host = ActionController::Base.asset_host
 end
 
