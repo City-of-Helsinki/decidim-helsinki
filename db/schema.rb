@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_190413) do
+ActiveRecord::Schema.define(version: 2019_04_02_115753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -884,6 +884,14 @@ ActiveRecord::Schema.define(version: 2019_02_22_190413) do
     t.index ["decidim_user_id"], name: "index_decidim_plans_plan_contents_on_decidim_user_id"
   end
 
+  create_table "decidim_plans_plan_taggings", force: :cascade do |t|
+    t.datetime "created_at"
+    t.bigint "decidim_plans_tag_id"
+    t.bigint "decidim_plan_id"
+    t.index ["decidim_plan_id"], name: "index_decidim_plans_plan_taggings_on_decidim_plan_id"
+    t.index ["decidim_plans_tag_id"], name: "index_decidim_plans_plan_taggings_on_decidim_plans_tag_id"
+  end
+
   create_table "decidim_plans_plans", force: :cascade do |t|
     t.jsonb "title"
     t.integer "position"
@@ -921,6 +929,14 @@ ActiveRecord::Schema.define(version: 2019_02_22_190413) do
     t.integer "answer_length", default: 0
     t.index ["decidim_component_id"], name: "index_decidim_plans_sections_on_decidim_component_id"
     t.index ["position"], name: "index_decidim_plans_sections_on_position"
+  end
+
+  create_table "decidim_plans_tags", force: :cascade do |t|
+    t.jsonb "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "decidim_organization_id", null: false
+    t.index ["decidim_organization_id"], name: "index_decidim_plans_tags_on_decidim_organization_id"
   end
 
   create_table "decidim_proposals_collaborative_draft_collaborator_requests", force: :cascade do |t|
@@ -1398,6 +1414,7 @@ ActiveRecord::Schema.define(version: 2019_02_22_190413) do
   add_foreign_key "decidim_newsletters", "decidim_users", column: "author_id"
   add_foreign_key "decidim_participatory_process_steps", "decidim_participatory_processes"
   add_foreign_key "decidim_participatory_processes", "decidim_organizations"
+  add_foreign_key "decidim_plans_tags", "decidim_organizations"
   add_foreign_key "decidim_scope_types", "decidim_organizations"
   add_foreign_key "decidim_scopes", "decidim_organizations"
   add_foreign_key "decidim_scopes", "decidim_scope_types", column: "scope_type_id"
