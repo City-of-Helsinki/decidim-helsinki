@@ -286,7 +286,7 @@ GEM
       decidim-core (= 0.16.1)
     decidim-participatory_processes (0.16.1)
       decidim-core (= 0.16.1)
-    decidim-plans (0.16.7)
+    decidim-plans (0.16.8)
       decidim-core (~> 0.16.0)
       decidim-proposals (~> 0.16.0)
     decidim-proposals (0.16.1)
