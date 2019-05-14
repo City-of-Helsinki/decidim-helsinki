@@ -38,7 +38,7 @@ module Decidim
           body: present(proposal).body,
           state: proposal.state.to_s,
           reference: proposal.reference,
-          answer: proposal.answer || empty_translatable,
+          answer: answer,
           supports: proposal.proposal_votes_count,
           endorsements: proposal.endorsements.count,
           comments: proposal.comments.count,
@@ -57,6 +57,18 @@ module Decidim
 
       def component
         proposal.component
+      end
+
+      def answer
+        proposal.component.organization.available_locales.map do |loc|
+          loc_answer = if proposal.answer && proposal.answer.is_a?(Hash)
+                         proposal.answer[loc] || ""
+                       else
+                         ""
+                       end
+
+          [loc, loc_answer]
+        end.to_h
       end
 
       def meetings
