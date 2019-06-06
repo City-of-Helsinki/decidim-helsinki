@@ -1,8 +1,14 @@
-<% if @plan.proposals.count.nonzero? %>
+<%
+proposals = @plan.linked_resources(:proposals, "included_proposals")
+%>
+
+<% if proposals.count.nonzero? %>
   <div class="attached-proposals">
-    <h4 class="section-heading"><%= t(".attached_proposals") %></h3>
+    <h4 class="section-heading">
+      <%= t("decidim.resource_links.included_proposals.plan_proposal") %>
+    </h4>
     <div class="collapsible-list row small-up-1 medium-up-2 card-grid">
-      <% @plan.proposals.each do |proposal| %>
+      <% proposals.each do |proposal| %>
         <%= card_for proposal, from: proposal, back_to: plan_path(@plan) %>
       <% end %>
     </div>
