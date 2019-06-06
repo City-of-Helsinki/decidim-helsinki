@@ -5,31 +5,53 @@
 
 // Brand colors
 
-$hel-white:         #fff;
-$hel-black:         #000;
-$hel-copper:        #00d7a7;
-$hel-bus:           #0000bf;
-$hel-coat:          #0072c6;
-$hel-fog:           #9fc9eb;
-$hel-metro:         #fd4f00;
-$hel-brick:         #bd2719;
-$hel-suomenlinna:   #f5a3c7;
-$hel-engel:         #ffe977;
-$hel-tram:          #009246;
-$hel-summer:        #ffc61e;
-$hel-silver:        #dedfe1;
-$hel-gold:          #c2a251;
-$hel-dark-grey:     #525a65;
-$hel-medium-grey:   #abb2bd;
-$hel-light-grey:    #ebedf1;
+$hel-white:           #fff;
+$hel-white-rgb:       255,255,255;
+$hel-black:           #000;
+$hel-black-rgb:       0,0,0;
+$hel-copper:          #00d7a7;
+$hel-copper-rgb:      0,215,167;
+$hel-bus:             #0000bf;
+$hel-bus-rgb:         0,0,191;
+$hel-coat:            #0072c6;
+$hel-coat-rgb:        0,114,198;
+$hel-fog:             #9fc9eb;
+$hel-fog-rgb:         159,201,235;
+$hel-metro:           #fd4f00;
+$hel-metro-rgb:       253,79,0;
+$hel-brick:           #bd2719;
+$hel-brick-rgb:       189,39,25;
+$hel-suomenlinna:     #f5a3c7;
+$hel-suomenlinna-rgb: 245,163,199;
+$hel-engel:           #ffe977;
+$hel-engel-rgb:       255,233,119;
+$hel-tram:            #009246;
+$hel-tram-rgb:        0,146,70;
+$hel-summer:          #ffc61e;
+$hel-summer-rgb:      255,198,30;
+$hel-silver:          #dedfe1;
+$hel-silver-rgb:      222,223,225;
+$hel-gold:            #c2a251;
+$hel-gold-rgb:        194,162,81;
+$hel-dark-grey:       #525a65;
+$hel-dark-grey-rgb:   82,90,101;
+$hel-medium-grey:     #abb2bd;
+$hel-medium-grey-rgb: 171,178,189;
+$hel-light-grey:      #ebedf1;
+$hel-light-grey-rgb:  235,237,241;
 
 // Variables
 
 $primary: $hel-coat !default;
+$primary-rgb: $hel-coat-rgb !default;
 $secondary: $hel-fog !default;
+$secondary-rgb: $hel-fog-rgb !default;
 $success: $hel-tram !default;
+$success-rgb: $hel-tram-rgb !default;
 $warning: $hel-summer !default;
+$warning-rgb: $hel-summer-rgb !default;
 $alert: $hel-metro !default;
+$alert-rgb: $hel-metro-rgb !default;
 
 $proposals: #238ff7 !default;
 $actions: #57d685 !default;
@@ -47,3 +69,25 @@ $hel-grotesk: "HelsinkiGrotesk", Arial, -apple-system, BlinkMacSystemFont,
 
 // Foundation customizations
 $body-background: #fff;
+
+// Define custom properties as css color variables
+
+:root{
+  --primary: #{$primary};
+  --primary-rgb: #{$primary-rgb};
+  --secondary: #{$secondary};
+  --secondary-rgb: #{$secondary-rgb};
+  --success: #{$success};
+  --success-rgb: #{$success-rgb};
+  --warning: #{$warning};
+  --warning-rgb: #{$warning-rgb};
+  --alert: #{$alert};
+  --alert-rgb: #{$alert-rgb};
+  --proposals: #{$proposals};
+  --actions: #{$actions};
+  --debates: #{$debates};
+  --meetings: #{$meetings};
+  --twitter: #{$twitter};
+  --facebook: #{$facebook};
+  --google: #{$google};
+}
