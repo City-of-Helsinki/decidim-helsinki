@@ -1,4 +1,4 @@
-<ul class="menu">
+<ul class="menu vertical hide-on-load">
   <% (available_locales - [I18n.locale.to_s]).each do |locale| %>
     <li class="language-nav__link">
       <%= link_to locale_name(locale), decidim.locale_path(locale: locale), method: :post %>

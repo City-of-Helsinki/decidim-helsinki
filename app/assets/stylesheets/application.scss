@@ -16,6 +16,11 @@
 @import 'decidim';
 
 // Foundation override
-.callout {
+.callout{
   font-weight: 800;
+}
+
+// Fix the flickering navs on load
+html.js .hide-on-load{
+  display: none;
 }

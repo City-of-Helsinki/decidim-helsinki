@@ -128,7 +128,7 @@ wrapper_class = Rails.application.config.wrapper_class
                       <ul class="dropdown menu js-append" data-responsive-menu="accordion large-dropdown">
                         <li class="is-dropdown-submenu-parent opens-left user-nav__link">
                           <%= link_to current_user.name, decidim.account_path %>
-                          <ul class="vertical menu usermenu-off-canvas">
+                          <ul class="vertical menu usermenu-off-canvas hide-on-load">
                             <%= render partial: "layouts/decidim/user_menu" %>
                           </ul>
                         </li>

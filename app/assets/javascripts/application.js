@@ -30,7 +30,9 @@
     // IE polyfills
     $('body').applyPolyfills();
 
+    $('.hide-on-load').removeClass('hide-on-load');
+
     // Event to determine when the application scripts have finished their setup
     $(document).trigger('app-ready');
-  })
+  });
 })($);
