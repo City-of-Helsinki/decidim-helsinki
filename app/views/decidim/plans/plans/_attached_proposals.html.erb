@@ -1,5 +1,5 @@
 <%
-proposals = @plan.linked_resources(:proposals, "included_proposals")
+proposals = @plan.linked_resources(:proposals, "included_proposals").not_hidden
 %>
 
 <% if proposals.count.nonzero? %>
