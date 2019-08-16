@@ -1,6 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # This defines an email address for automatically generated user accounts,
+  # e.g. through the Suomi.fi or MPASSid authentications.
+  config.auto_email_domain = "osallistu.hel.ninja"
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

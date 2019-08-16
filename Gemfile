@@ -17,6 +17,10 @@ gem "decidim-access_requests", DECIDIM_MODULE_VERSION
 gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
 gem "decidim-process_groups_content_block", DECIDIM_MODULE_VERSION
 
+# Install the git modules until they have an actual release
+gem "decidim-suomifi", git: "git@github.com:mainio/decidim-module-suomifi.git"
+gem "decidim-mpassid", git: "git@github.com:mainio/decidim-module-mpassid.git"
+
 gem "font-awesome-rails", "~> 4.7.0"
 
 gem "puma", "~> 3.0"

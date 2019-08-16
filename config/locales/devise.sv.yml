@@ -4,6 +4,13 @@ sv:
       omniauth:
         tunnistamo:
           sign_in_with: 'Logga in med hjälp av tjänsten Tunnistamo'
+          description: ''
+        suomifi:
+          sign_in_with: 'Suomi.fi-identifikation'
+          description: 'Suomi.fi tillåter användare att identifiera sig, t.ex. med finska bankkonton och Mobil ID.'
+        mpassid:
+          sign_in_with: 'MPASSid-identifikation'
+          description: 'Som grundskolestudent kan du identifiera dig själv genom MPASSid-tjänsten med ditt skolkonto.'
   decidim:
     description: 'Med hjälp av Tunnistamo kan du logga in i tjänsten bl.a. med tjänsterna Google, Facebook eller YLE.'
     devise:
