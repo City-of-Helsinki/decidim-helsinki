@@ -5,7 +5,7 @@
   z-index: 1;
   font-size: 1.7rem;
   font-weight: 600;
-  margin: 3rem 0 1rem;
+  margin: 0 0 1.5rem;
 
   &::before{
     content: "";
@@ -29,14 +29,6 @@
   background: $black;
   color: $white;
   padding: 0 1rem;
-}
-
-.provider__separator{
-  display: block;
-  height: 1px;
-  width: 100%;
-  background-color: $black;
-  margin: 2rem 0 3rem;
 }
 
 .register-form{

@@ -1,53 +1,55 @@
 <% if devise_mapping.omniauthable? && any_social_provider_enabled? %>
   <%- resource_class.omniauth_providers.each_with_index do |provider, index| %>
     <% if index > 0 %>
-      <span class="provider__separator"></span>
+      <%= render "decidim/devise/shared/register_separator" %>
     <% end %>
-    <div class="row collapse">
-      <div class="columns medium-8 medium-centered">
-        <% if social_provider_enabled? provider %>
-          <div class="social-register text-center">
-            <h3 class="h5 margin-bottom-1">
-              <%= t("devise.shared.omniauth.#{provider}.sign_in_with") %>
-            </h3>
-            <% unless is_private_mode? %>
-              <p>
-                <%= t("devise.shared.omniauth.#{provider}.description") %>
-              </p>
-            <% end %>
-            <% if provider == :tunnistamo %>
-              <p>
-                <div class="login-icons">
-                  <% if is_private_mode? %>
-                    <%= image_tag "helsinki/helsinki-logo-black.svg", alt: "Helsinki" %>
-                  <% else %>
-                    <div class="social-share-button social-login-button">
-                      <span class="ssb-icon ssb-facebook"></span>
-                      <span class="ssb-icon ssb-google_plus"></span>
-                      <span class="ssb-icon ssb-yle"></span>
-                      <span class="ssb-icon ssb-hel"></span>
-                    </div>
-                  <% end %>
-                </div>
-              </p>
-            <% elsif provider == :suomifi %>
-              <p>
-                <div class="login-icons">
-                  <%= image_tag "suomifi-logo.png", alt: "Suomi.fi" %>
-                </div>
-              </p>
-            <% elsif provider == :mpassid %>
-              <p>
-                <div class="login-icons">
-                  <%= image_tag "mpassid-logo.png", alt: "MPASSid" %>
-                </div>
-              </p>
-            <% end %>
-            <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(provider)}" do %>
-              <%= t("devise.shared.omniauth.#{provider}.sign_in_button") %>
-            <% end %>
-          </div>
-        <% end %>
+    <div class="wrapper">
+      <div class="row collapse">
+        <div class="columns medium-8 medium-centered">
+          <% if social_provider_enabled? provider %>
+            <div class="social-register text-center">
+              <h3 class="h5 margin-bottom-1">
+                <%= t("devise.shared.omniauth.#{provider}.sign_in_with") %>
+              </h3>
+              <% unless is_private_mode? %>
+                <p>
+                  <%= t("devise.shared.omniauth.#{provider}.description") %>
+                </p>
+              <% end %>
+              <% if provider == :tunnistamo %>
+                <p>
+                  <div class="login-icons">
+                    <% if is_private_mode? %>
+                      <%= image_tag "helsinki/helsinki-logo-black.svg", alt: "Helsinki" %>
+                    <% else %>
+                      <div class="social-share-button social-login-button">
+                        <span class="ssb-icon ssb-facebook"></span>
+                        <span class="ssb-icon ssb-google_plus"></span>
+                        <span class="ssb-icon ssb-yle"></span>
+                        <span class="ssb-icon ssb-hel"></span>
+                      </div>
+                    <% end %>
+                  </div>
+                </p>
+              <% elsif provider == :suomifi %>
+                <p>
+                  <div class="login-icons">
+                    <%= image_tag "suomifi-logo.png", alt: "Suomi.fi" %>
+                  </div>
+                </p>
+              <% elsif provider == :mpassid %>
+                <p>
+                  <div class="login-icons">
+                    <%= image_tag "mpassid-logo.png", alt: "MPASSid" %>
+                  </div>
+                </p>
+              <% end %>
+              <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(provider)}" do %>
+                <%= t("devise.shared.omniauth.#{provider}.sign_in_button") %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>
