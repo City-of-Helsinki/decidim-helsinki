@@ -5,12 +5,15 @@ en:
         tunnistamo:
           sign_in_with: 'Sign in with Tunnistamo'
           description: 'Tunnistamo allows you to sign in e.g. using Google, Facebook or YLE services.'
+          sign_in_button: 'Sign in'
         suomifi:
           sign_in_with: 'Suomi.fi e-Identification'
           description: 'Suomi.fi allows users to identify themselves e.g. using Finnish bank accounts and Mobile ID.'
+          sign_in_button: 'Identify yourself'
         mpassid:
           sign_in_with: 'MPASSid-identification'
           description: 'As an elementary school student you can identify your self through the MPASSid service using your school account.'
+          sign_in_button: 'Identify yourself'
   decidim:
     devise:
       registrations:

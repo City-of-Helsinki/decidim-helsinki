@@ -5,12 +5,15 @@ sv:
         tunnistamo:
           sign_in_with: 'Logga in med hjälp av tjänsten Tunnistamo'
           description: ''
+          sign_in_button: 'Logga in'
         suomifi:
           sign_in_with: 'Suomi.fi-identifikation'
           description: 'Suomi.fi tillåter användare att identifiera sig, t.ex. med finska bankkonton och Mobil ID.'
+          sign_in_button: 'Identifiera dig'
         mpassid:
           sign_in_with: 'MPASSid-identifikation'
           description: 'Som grundskolestudent kan du identifiera dig själv genom MPASSid-tjänsten med ditt skolkonto.'
+          sign_in_button: 'Identifiera dig'
   decidim:
     description: 'Med hjälp av Tunnistamo kan du logga in i tjänsten bl.a. med tjänsterna Google, Facebook eller YLE.'
     devise:

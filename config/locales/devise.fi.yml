@@ -5,12 +5,15 @@ fi:
         tunnistamo:
           sign_in_with: 'Kirjaudu Tunnistamo-palvelun avulla'
           description: 'Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook- tai YLE-palveluiden avulla.'
+          sign_in_button: 'Kirjaudu sisään'
         suomifi:
           sign_in_with: 'Suomi.fi-tunnistautuminen'
           description: 'Suomi.fi tarjoaa tunnistautumismahdollisuuden mm. suomalaisilla pankkitunnuksilla ja mobiilivarmenteella.'
+          sign_in_button: 'Tunnistaudu'
         mpassid:
           sign_in_with: 'MPASSid-tunnistautuminen'
           description: 'Koululaisena voit kirjautua MPASSid-palvelun avulla koulusi tunnuksella.'
+          sign_in_button: 'Tunnistaudu'
   decidim:
     devise:
       registrations:
