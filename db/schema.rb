@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_073008) do
+ActiveRecord::Schema.define(version: 2019_08_19_133348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -313,6 +313,27 @@ ActiveRecord::Schema.define(version: 2019_06_06_073008) do
     t.index ["coauthorable_type", "coauthorable_id"], name: "index_coauthorable_on_coauthorship"
     t.index ["decidim_author_id", "decidim_author_type"], name: "index_decidim_coauthorships_on_decidim_author"
     t.index ["decidim_user_group_id"], name: "index_user_group_on_coauthorsihp"
+  end
+
+  create_table "decidim_combined_budgeting_component_maps", force: :cascade do |t|
+    t.bigint "decidim_combined_budgeting_process_id", null: false
+    t.bigint "decidim_component_id", null: false
+    t.index ["decidim_combined_budgeting_process_id"], name: "index_combined_budgeting_process_compmaps_on_process"
+    t.index ["decidim_component_id"], name: "index_combined_budgeting_process_compmaps_on_component"
+  end
+
+  create_table "decidim_combined_budgeting_processes", force: :cascade do |t|
+    t.jsonb "title"
+    t.jsonb "description"
+    t.string "slug", null: false
+    t.datetime "published_at"
+    t.bigint "decidim_organization_id"
+    t.string "authorizations", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_organization_id", "slug"], name: "index_combined_budgeting_processes_org_slug_uniqueness", unique: true
+    t.index ["decidim_organization_id"], name: "index_combined_budgeting_processes_on_organization_id"
+    t.index ["published_at"], name: "index_decidim_combined_budgeting_processes_on_published_at"
   end
 
   create_table "decidim_comments_comment_votes", id: :serial, force: :cascade do |t|
@@ -1410,6 +1431,9 @@ ActiveRecord::Schema.define(version: 2019_06_06_073008) do
   add_foreign_key "decidim_attachments", "decidim_attachment_collections", column: "attachment_collection_id", name: "fk_decidim_attachments_attachment_collection_id", on_delete: :nullify
   add_foreign_key "decidim_authorizations", "decidim_users"
   add_foreign_key "decidim_categorizations", "decidim_categories"
+  add_foreign_key "decidim_combined_budgeting_component_maps", "decidim_combined_budgeting_processes"
+  add_foreign_key "decidim_combined_budgeting_component_maps", "decidim_components", on_delete: :cascade
+  add_foreign_key "decidim_combined_budgeting_processes", "decidim_organizations"
   add_foreign_key "decidim_identities", "decidim_organizations"
   add_foreign_key "decidim_newsletters", "decidim_users", column: "author_id"
   add_foreign_key "decidim_participatory_process_steps", "decidim_participatory_processes"

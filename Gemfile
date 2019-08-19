@@ -20,6 +20,7 @@ gem "decidim-process_groups_content_block", DECIDIM_MODULE_VERSION
 # Install the git modules until they have an actual release
 gem "decidim-suomifi", git: "git@github.com:mainio/decidim-module-suomifi.git"
 gem "decidim-mpassid", git: "git@github.com:mainio/decidim-module-mpassid.git"
+gem "decidim-combined_budgeting", git: "git@github.com:mainio/decidim-module-combined_budgeting.git"
 
 gem "font-awesome-rails", "~> 4.7.0"
 

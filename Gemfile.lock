@@ -1,4 +1,14 @@
 GIT
+  remote: git@github.com:mainio/decidim-module-combined_budgeting.git
+  revision: b9f7052348acdf00e739b73bba19263fe7ccfb54
+  specs:
+    decidim-combined_budgeting (0.17.0)
+      decidim-admin (~> 0.17.0)
+      decidim-budgets (~> 0.17.0)
+      decidim-core (~> 0.17.0)
+      decidim-verifications (~> 0.17.0)
+
+GIT
   remote: git@github.com:mainio/decidim-module-mpassid.git
   revision: 2167e2ea30c5115ca0ec52ccba3a752237637991
   specs:
@@ -858,6 +868,7 @@ DEPENDENCIES
   decidim (= 0.17.1)
   decidim-access_requests (~> 0.17.0)
   decidim-antivirus (~> 0.17.0)
+  decidim-combined_budgeting!
   decidim-dev (= 0.17.1)
   decidim-mpassid!
   decidim-plans (~> 0.17.0)
