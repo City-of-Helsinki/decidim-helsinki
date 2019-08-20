@@ -60,6 +60,9 @@ module DecidimHelsinki
     # e.g. through the Suomi.fi or MPASSid authentications.
     config.auto_email_domain = "omastadi.hel.fi"
 
+    config.suomifi_enabled = true
+    config.mpassid_enabled = true
+
     # Passes a block of code to do after initialization.
     config.after_initialize do
       # Override the main menu
