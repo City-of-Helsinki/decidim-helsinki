@@ -1,4 +1,8 @@
 fi:
+  activemodel:
+    attributes:
+      budgeting_verification:
+        district: Suurpiiri
   activerecord:
     models:
       decidim/plans/plan: Suunnitelma
@@ -6,6 +10,11 @@ fi:
     sign_in_with_tunnistamo: 'Käytä Tunnistamoa kirjautuaksesi sisään'
   decidim:
     authorization_handlers:
+      budgeting_identity:
+        explanation: Tunnista itsesi budjetointia varten
+        name: Budjetointi
+        fields:
+          allowed_districts: Sallitut suurpiirit
       cocreation:
         explanation: Pyydä oikeutta luoda yhteistyöstämissuunnitelmia
         name: Yhteiskehittäminen

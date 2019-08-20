@@ -1,10 +1,15 @@
-require_relative 'boot'
+# frozen_string_literal: true
 
-require 'rails/all'
+require_relative "boot"
+
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+# Require the application specific engines for the custom verifications.
+require File.expand_path("../lib/engines", __dir__)
 
 module DecidimHelsinki
   class Application < Rails::Application
@@ -14,7 +19,7 @@ module DecidimHelsinki
     # Configure an application wide address suffix to pass to the geocoder.
     # This is to make sure that the addresses are not incorrectly mapped outside
     # of the wanted area.
-    config.address_suffix = 'Helsinki, Finland'
+    config.address_suffix = "Helsinki, Finland"
 
     # Sending address for mails
     config.mailer_sender = "no-reply@omastadi.hel.fi"
@@ -28,8 +33,8 @@ module DecidimHelsinki
 
     # Add the override translations to the load path
     config.i18n.load_path += Dir[
-      Rails.root.join('config', 'locales', 'crowdin-master/*.yml').to_s,
-      Rails.root.join('config', 'locales', 'overrides/*.yml').to_s,
+      Rails.root.join("config", "locales", "crowdin-master/*.yml").to_s,
+      Rails.root.join("config", "locales", "overrides/*.yml").to_s,
     ]
 
     # String identifier, this defines the main mode of Decidim
@@ -37,19 +42,19 @@ module DecidimHelsinki
     #
     # Available throughout code as: Rails.application.config.use_mode
     # Allowed values are:
-    #   'private' : string = Private mode (force logging in)
-    #   'normal' : string = Normal mode without modifications
-    config.use_mode = 'normal'
+    #   "private" : string = Private mode (force logging in)
+    #   "normal" : string = Normal mode without modifications
+    config.use_mode = "normal"
 
     # Wrapper class can be used to customize the coloring of the platform per
     # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
-    config.wrapper_class = 'wrapper-default'
+    config.wrapper_class = "wrapper-default"
 
     # Color profile that changes the logo color for header and footer
-    config.color_profile = 'black'
+    config.color_profile = "black"
 
     # The feedback email in the footer of the site
-    config.feedback_email = 'omastadi@hel.fi'
+    config.feedback_email = "omastadi@hel.fi"
 
     # This defines an email address for automatically generated user accounts,
     # e.g. through the Suomi.fi or MPASSid authentications.
@@ -78,7 +83,7 @@ module DecidimHelsinki
       end
     end
 
-    initializer 'user_authentication' do |app|
+    initializer "user_authentication" do |app|
       Decidim::User.send(:include, UserAuthentication)
 
       # The following hook is for the development environment and it is needed

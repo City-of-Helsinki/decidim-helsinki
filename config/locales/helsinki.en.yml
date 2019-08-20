@@ -2,23 +2,47 @@ en:
   helsinki:
     areas:
       choose_your_area: Choose your area from the map
-    map:
-      districts:
-        western: Western
-        northern: Northern
-        southern: Southern
-        central: Central
-        northeastern: Northeastern
-        eastern: Eastern
-        southeastern: Southeastern
-      image:
-        license: Image license
-        creator: Original creator of the image
-        note: The image has been edited from the original
+    budgeting_verification:
+      action_authorizer:
+        restrictions:
+          district_not_allowed: Your district is not in the allowed districts.
+          district_required: District information is requred.
+      authorizations:
+        error:
+          title: Voting not allowed
+          reason_title: 'Reason:'
+          reason:
+            age_unknown: Your age is unknown.
+            data_blank: Not enough data available for verification.
+            class_level_not_defined: Your school class is not known.
+            not_in_area: Your home municipality is not Helsinki.
+            not_permanent_resident: You are not a permanent citizen of Helsinki.
+            not_student: You are not a student.
+            too_young: You are too young to vote.
+            unknown_school: Your school is not known.
+        identify:
+          title: Identify yourself
+        new:
+          title: Choose subdivision
+          submit: Choose
+    copyright: 2018 City of Helsinki
     devise:
       shared:
         omniauth_buttons:
           tunnistamo_explanation: 'Facebook-, Google- or YLE authentication'
           tunnistamo_explanation_internal: 'Tunnistamo authentication'
         tunnistamo_description: Using Tunnistamo you can authenticate using Google, Facebook, or YLE among others.
-    copyright: 2018 City of Helsinki
+    map:
+      districts:
+        central: Central
+        eastern: Eastern
+        northeastern: Northeastern
+        northern: Northern
+        ostersundom: Östersundom
+        southern: Southern
+        southeastern: Southeastern
+        western: Western
+      image:
+        creator: Original creator of the image
+        license: Image license
+        note: The image has been edited from the original

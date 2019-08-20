@@ -2,23 +2,47 @@ fi:
   helsinki:
     areas:
       choose_your_area: Valitse alueesi kartalta
-    map:
-      districts:
-        western: Läntinen
-        northern: Pohjoinen
-        southern: Eteläinen
-        central: Keskinen
-        northeastern: Koillinen
-        eastern: Itäinen
-        southeastern: Kaakkoinen
-      image:
-        license: Kuvan lisenssi
-        creator: Alkuperäisen kuvan tekijä
-        note: Kuvaa muokattu alkuperäisestä
+    budgeting_verification:
+      action_authorizer:
+        restrictions:
+          district_not_allowed: Suurpiirisi ei ole vaadittu suurpiiri.
+          district_required: Suurpiiritieto tarvitaan.
+      authorizations:
+        error:
+          title: Äänestämistä ei sallita
+          reason_title: 'Syy:'
+          reason:
+            age_unknown: Ikäsi ei ole tiedossa.
+            data_blank: Varmennusta varten ei ole tarpeeksi tietoja.
+            class_level_not_defined: Koulusi luokkatietoa ei tiedetä.
+            not_in_area: Kotikuntasi ei ole Helsinki.
+            not_permanent_resident: Et ole pysyvä asukas Helsingissä.
+            not_student: Et ole oppilas.
+            too_young: Olet liian nuori äänestääksesi.
+            unknown_school: Kouluasi ei tiedetä.
+        identify:
+          title: Tunnistaudu
+        new:
+          title: Valitse suurpiiri
+          submit: Valitse
+    copyright: 2018 Helsingin kaupunki
     devise:
       shared:
         omniauth_buttons:
           tunnistamo_explanation: 'Facebook-, Google- tai YLE-kirjautuminen'
           tunnistamo_explanation_internal: 'Tunnistamo-kirjautuminen'
         tunnistamo_description: Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook-, YLE-palveluiden avulla.
-    copyright: 2018 Helsingin kaupunki
+    map:
+      districts:
+        central: Keskinen
+        eastern: Itäinen
+        northeastern: Koillinen
+        northern: Pohjoinen
+        ostersundom: Östersundom
+        southern: Eteläinen
+        southeastern: Kaakkoinen
+        western: Läntinen
+      image:
+        creator: Alkuperäisen kuvan tekijä
+        license: Kuvan lisenssi
+        note: Kuvaa muokattu alkuperäisestä

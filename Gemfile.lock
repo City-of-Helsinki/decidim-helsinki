@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:mainio/decidim-module-combined_budgeting.git
-  revision: b9f7052348acdf00e739b73bba19263fe7ccfb54
+  revision: 977737322b164c4a297c3910480c5da1ccc27c9c
   specs:
     decidim-combined_budgeting (0.17.0)
       decidim-admin (~> 0.17.0)
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git@github.com:mainio/decidim-module-mpassid.git
-  revision: 2167e2ea30c5115ca0ec52ccba3a752237637991
+  revision: c2855aa77bcd7323472766c7cf02b89ed4ffb224
   specs:
     decidim-mpassid (0.17.0)
       decidim-core (~> 0.17.0)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: git@github.com:mainio/decidim-module-suomifi.git
-  revision: 50ff06687d6a6db873ec5ec469d7f2fbecdfaa85
+  revision: 33f6c2e9d8a4c1fb68c8d44c7be9afc52b4d2133
   specs:
     decidim-suomifi (0.17.0)
       decidim-core (~> 0.17.0)

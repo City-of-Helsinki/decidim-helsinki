@@ -1,4 +1,8 @@
 sv:
+  activemodel:
+    attributes:
+      budgeting_verification:
+        district: Distrikt
   activerecord:
     models:
       decidim/plans/plan: Plan
@@ -6,6 +10,11 @@ sv:
     sign_in_with_tunnistamo: 'Logga in med Tunnistamo'
   decidim:
     authorization_handlers:
+      budgeting_identity:
+        explanation: Identifiera dig själv för deltagande budgetering
+        name: Budgetering
+        fields:
+          allowed_districts: Tillåtna distrikt
       cocreation:
         explanation: Be om tillstånd att skapa samskapande planer
         name: Samskapande

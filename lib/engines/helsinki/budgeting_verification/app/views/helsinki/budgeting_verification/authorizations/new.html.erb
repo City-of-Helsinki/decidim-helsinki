@@ -1,0 +1,30 @@
+<main class="wrapper">
+  <div class="row collapse">
+    <div class="row collapse">
+      <div class="columns large-8 large-centered text-center page-title">
+        <div class="text-center">
+          <h1 class="heading1 page-title"><%= t(".title") %></h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-6 medium-centered">
+        <div class="card">
+          <div class="card__content">
+            <%= decidim_form_for(handler, url: authorization_path(redirect_url: params[:redirect_url])) do |form| %>
+              <%= form.error_for(:base) %>
+              <%= form.hidden_field(:handler_handle) %>
+
+              <%= form.select(:district, form_subdivisions) %>
+
+              <div class="actions">
+                <%= form.submit t(".submit"), class: "button expanded" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

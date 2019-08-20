@@ -1,0 +1,24 @@
+<main class="wrapper">
+  <div class="row collapse">
+    <div class="row collapse">
+      <div class="columns large-8 large-centered text-center page-title">
+        <div class="text-center">
+          <h1 class="heading1 page-title"><%= t(".title") %></h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <% if @errors %>
+        <div class="row collapse">
+          <div class="text-center">
+            <h2><%= t(".reason_title") %></h2>
+            <% @errors.each do |error| %>
+              <p><%= error %></p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

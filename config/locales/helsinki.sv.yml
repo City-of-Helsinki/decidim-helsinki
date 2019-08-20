@@ -2,23 +2,47 @@ sv:
   helsinki:
     areas:
       choose_your_area: Välj din region på kartan
-    map:
-      districts:
-        western: Western
-        northern: Norr
-        southern: Södra
-        central: Centrala
-        northeastern: Nordost
-        eastern: Östra
-        southeastern: Sydost
-      image:
-        license: Bildlicens
-        creator: Författare till originalbilden
-        note: Bildredigerad från original
+    budgeting_verification:
+      action_authorizer:
+        restrictions:
+          district_not_allowed: Ditt distrikt finns inte i de tillåtna distrikten.
+          district_required: Distriktinformation krävs.
+      authorizations:
+        error:
+          title: Röstning inte tillåten
+          reason_title: 'Anledning:'
+          reason:
+            age_unknown: Din ålder är okänd.
+            data_blank: Det finns inte tillräckligt med data för verifiering.
+            class_level_not_defined: Din skolklass är inte känd.
+            not_in_area: Din hemkommune är inte Helsingfors.
+            not_permanent_resident: Du är inte en permanent medborgare i Helsingfors.
+            not_student: Du är inte en student.
+            too_young: Du är för ung för att rösta.
+            unknown_school: Din skola är inte känd.
+        identify:
+          title: Identifiera dig
+        new:
+          title: Välj administrativa indelning
+          submit: Välj
+    copyright: 2018 Helsingfors stad
     devise:
       shared:
         omniauth_buttons:
           tunnistamo_explanation: 'Facebook-, Google- eller YLE-inloggning'
           tunnistamo_explanation_internal: 'Tunnistamo-inloggning'
         tunnistamo_description: Tunnistamo låter dig logga in på tjänsten, t.ex. Google, Facebook eller YLE.
-    copyright: 2018 Helsingfors stad
+    map:
+      districts:
+        central: Centrala
+        eastern: Östra
+        northeastern: Nordost
+        northern: Norr
+        ostersundom: Östersundom
+        southern: Södra
+        southeastern: Sydost
+        western: Western
+      image:
+        creator: Författare till originalbilden
+        license: Bildlicens
+        note: Bildredigerad från original

@@ -1,4 +1,8 @@
 en:
+  activemodel:
+    attributes:
+      budgeting_verification:
+        district: District
   activerecord:
     models:
       decidim/plans/plan: Plan
@@ -6,6 +10,11 @@ en:
     sign_in_with_tunnistamo: 'Use Tunnistamo to sign in'
   decidim:
     authorization_handlers:
+      budgeting_identity:
+        explanation: Identify yourself for participatory budgeting
+        name: Budgeting
+        fields:
+          allowed_districts: Allowed districts
       cocreation:
         explanation: Ask for permission to create cocreation plans
         name: Cocreation
