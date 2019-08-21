@@ -19,7 +19,8 @@ module Decidim
     # Finds the CTA button path to reuse it in other places.
     def cta_button_path
       if current_organization.cta_button_path.present?
-        url = current_organization.cta_button_path
+        path = current_organization.cta_button_path.sub(%r{^/}, "")
+        url = "/#{path}"
         url_opts = controller.default_url_options
         url += "?#{url_opts.to_query}" unless url_opts.empty?
         url
