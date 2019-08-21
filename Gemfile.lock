@@ -741,6 +741,10 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     rubocop-rspec (1.30.0)
       rubocop (>= 0.58.0)
+    ruby-cldr (0.3.0)
+      i18n
+      nokogiri
+      thor
     ruby-ole (1.2.12.2)
     ruby-progressbar (1.10.1)
     ruby-saml (1.11.0)
@@ -878,6 +882,7 @@ DEPENDENCIES
   dotenv-rails (~> 2.1, >= 2.1.1)
   faker (~> 1.8.4)
   font-awesome-rails (~> 4.7.0)
+  henkilotunnus
   letter_opener_web (~> 1.3)
   listen (~> 3.1.0)
   omniauth_openid_connect (~> 0.1)
@@ -887,6 +892,7 @@ DEPENDENCIES
   resque-scheduler (~> 4.0)
   roo (~> 2.7, >= 2.7.1)
   rspec-rails
+  ruby-cldr (~> 0.3.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data

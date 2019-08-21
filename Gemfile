@@ -22,6 +22,10 @@ gem "decidim-suomifi", git: "git@github.com:mainio/decidim-module-suomifi.git"
 gem "decidim-mpassid", git: "git@github.com:mainio/decidim-module-mpassid.git"
 gem "decidim-combined_budgeting", git: "git@github.com:mainio/decidim-module-combined_budgeting.git"
 
+# For the documents authorization handler
+gem "ruby-cldr", "~> 0.3.0"
+gem "henkilotunnus"
+
 gem "font-awesome-rails", "~> 4.7.0"
 
 gem "puma", "~> 3.0"
