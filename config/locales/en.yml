@@ -30,6 +30,7 @@ en:
         name: Budgeting
         fields:
           allowed_districts: Allowed districts
+          district: District
       cocreation:
         explanation: Ask for permission to create cocreation plans
         name: Cocreation

@@ -30,6 +30,7 @@ fi:
         name: Budjetointi
         fields:
           allowed_districts: Sallitut suurpiirit
+          district: Suurpiiri
       cocreation:
         explanation: Pyydä oikeutta luoda yhteistyöstämissuunnitelmia
         name: Yhteiskehittäminen

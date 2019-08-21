@@ -30,6 +30,7 @@ sv:
         name: Budgetering
         fields:
           allowed_districts: Tillåtna distrikt
+          district: Distrikt
       cocreation:
         explanation: Be om tillstånd att skapa samskapande planer
         name: Samskapande
