@@ -5,7 +5,7 @@ en:
     budgeting_verification:
       action_authorizer:
         restrictions:
-          district_not_allowed: Your district is not in the allowed districts.
+          district_not_allowed: Your district is not in the allowed districts in this voting.
           district_required: District information is requred.
       authorizations:
         error:

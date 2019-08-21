@@ -5,7 +5,7 @@ sv:
     budgeting_verification:
       action_authorizer:
         restrictions:
-          district_not_allowed: Ditt distrikt finns inte i de tillåtna distrikten.
+          district_not_allowed: Ditt distrikt är inte i de tillåtna distrikten i denna omröstning.
           district_required: Distriktinformation krävs.
       authorizations:
         error:

@@ -5,7 +5,7 @@ fi:
     budgeting_verification:
       action_authorizer:
         restrictions:
-          district_not_allowed: Suurpiirisi ei ole vaadittu suurpiiri.
+          district_not_allowed: Suurpiirisi ei ole tässä äänestyksessä vaadittu suurpiiri.
           district_required: Suurpiiritieto tarvitaan.
       authorizations:
         error:
