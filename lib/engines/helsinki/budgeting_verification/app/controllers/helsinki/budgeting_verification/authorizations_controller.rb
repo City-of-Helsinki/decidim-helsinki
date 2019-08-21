@@ -58,7 +58,7 @@ module Helsinki
       end
 
       def handler_params
-        (params[:budgeting_verification] || {}).merge(user: current_user)
+        (params[authorization_handle] || {}).merge(user: current_user)
       end
 
       def strong_authorization

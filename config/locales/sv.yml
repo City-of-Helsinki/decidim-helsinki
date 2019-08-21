@@ -3,6 +3,21 @@ sv:
     attributes:
       budgeting_verification:
         district: Distrikt
+      helsinki_documents_authorization_handler:
+        document_type: Typ av identitetsdokument
+        first_name: Förnamn
+        home_municipality_helsinki: Hemstad Helsingfors
+        last_name: Efternamn
+        native_language: Modersmål
+        pin: Personnummer (HETU)
+        postal_code: Postnummer
+    errors:
+      models:
+        helsinki_documents_authorization_handler:
+          attributes:
+            pin:
+              invalid_pin: ogiltigt personnummer
+              used: personnummer har redan använts
   activerecord:
     models:
       decidim/plans/plan: Plan
@@ -18,6 +33,13 @@ sv:
       cocreation:
         explanation: Be om tillstånd att skapa samskapande planer
         name: Samskapande
+      helsinki_documents_authorization_handler:
+        explanation: Identifiera dig själv på en fysisk plats.
+        document_types:
+          idcard: Identitetskort
+          passport: Pass
+        name: Identity document at an office
+        user_explanation: Gå till en fysisk plats för att identifiera dig med ett identitetsdokument.
     pages:
       home:
         statistics:

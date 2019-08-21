@@ -3,6 +3,21 @@ fi:
     attributes:
       budgeting_verification:
         district: Suurpiiri
+      helsinki_documents_authorization_handler:
+        document_type: Henkilöllisyystodistuksen tyyppi
+        first_name: Etunimi
+        home_municipality_helsinki: Kotikunta Helsingissä
+        last_name: Sukunimi
+        native_language: Äidinkieli
+        pin: Henkilötunnus
+        postal_code: Postinumero
+    errors:
+      models:
+        helsinki_documents_authorization_handler:
+          attributes:
+            pin:
+              invalid_pin: virheellinen henkilötunnus
+              used: henkilötunnus on jo käytössä
   activerecord:
     models:
       decidim/plans/plan: Suunnitelma
@@ -18,6 +33,13 @@ fi:
       cocreation:
         explanation: Pyydä oikeutta luoda yhteistyöstämissuunnitelmia
         name: Yhteiskehittäminen
+      helsinki_documents_authorization_handler:
+        explanation: Varmenna itsesi fyysisessä toimipisteessä.
+        document_types:
+          idcard: Henkilökortti
+          passport: Passi
+        name: Henkilöllisyystodistus toimipisteessä
+        user_explanation: Käy fyysisessä toimipisteessä varmentamassa itsesi henkilöllisyystodistuksen avulla.
     pages:
       home:
         statistics:

@@ -1,0 +1,45 @@
+<% handler.setup(controller) %>
+
+<% if handler.context == :impersonation %>
+  <div class="field">
+    <%= form.select :document_type, handler.document_types, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :pin %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :postal_code %>
+  </div>
+
+  <div class="field">
+    <%= form.select :native_language, handler.languages, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= form.check_box :home_municipality_helsinki, required: true  %>
+  </div>
+<% else %>
+  <div class="text-center" id="documents_disabled">
+    <p><%= t("user_explanation", scope: "decidim.authorization_handlers.helsinki_documents_authorization_handler") %></p>
+  </div>
+
+<script>
+$(function() {
+  var $explanation = $("#documents_disabled");
+  $(".actions", $explanation.parents("form")).hide();
+});
+</script>
+<% end %>
+
+<%= form.hidden_field :handler_name %>
+<%= form.hidden_field :handler_context_verification %>

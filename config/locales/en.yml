@@ -3,6 +3,21 @@ en:
     attributes:
       budgeting_verification:
         district: District
+      helsinki_documents_authorization_handler:
+        document_type: Identity document type
+        first_name: First name
+        home_municipality_helsinki: Home municipality Helsinki
+        last_name: Last name
+        native_language: Native language
+        pin: Personal identity number (HETU)
+        postal_code: Postal code
+    errors:
+      models:
+        helsinki_documents_authorization_handler:
+          attributes:
+            pin:
+              invalid_pin: invalid personal identity number
+              used: the personal identity number is already in use
   activerecord:
     models:
       decidim/plans/plan: Plan
@@ -18,6 +33,13 @@ en:
       cocreation:
         explanation: Ask for permission to create cocreation plans
         name: Cocreation
+      helsinki_documents_authorization_handler:
+        explanation: Identify yourself at a physical location.
+        document_types:
+          idcard: ID card
+          passport: Passport
+        name: Identity document at an office
+        user_explanation: Go to a physical location to identify yourself with an identity document.
     pages:
       home:
         statistics:
