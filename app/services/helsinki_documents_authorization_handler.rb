@@ -49,8 +49,17 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   # You must return a Hash that will be serialized to the authorization when
   # it's created, and available though authorization.metadata
   def metadata
+    gender = nil
+    date_of_birth = nil
+    if hetu
+      gender = hetu.male? ? "m" : "f"
+      date_of_birth = hetu.date_of_birth.to_s
+    end
+
     super.merge(
       document_type: sanitized_document_type,
+      gender: gender,
+      date_of_birth: date_of_birth,
       pin_digest: pin_digest,
       first_name: first_name,
       last_name: last_name,
