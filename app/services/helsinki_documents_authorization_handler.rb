@@ -20,7 +20,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   validates :pin, presence: true
   validates :postal_code, presence: true, length: {is: 5}, format: { with: /\A[0-9]*\z/ }
   validates :native_language, presence: true, inclusion: {
-    in: Cldr::Export::Data::Languages.new(I18n.locale).languages.keys.map(&:to_s)
+    in: I18n.t("languages").keys.map(&:to_s)
   }
   validates :home_municipality_helsinki, acceptance: true
 
@@ -67,7 +67,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def languages
-    Cldr::Export::Data::Languages.new(I18n.locale).languages.map do |key, name|
+    I18n.t("languages").map do |key, name|
       [name, key]
     end
   end
