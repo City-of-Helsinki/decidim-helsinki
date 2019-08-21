@@ -63,7 +63,9 @@ module Helsinki
 
       def strong_authorization
         @strong_authorization ||= begin
-          if granted_authorization_handles.include?(:suomifi_eid)
+          if granted_authorization_handles.include?(:helsinki_documents_authorization_handler)
+            granted_authorization(:helsinki_documents_authorization_handler)
+          elsif granted_authorization_handles.include?(:suomifi_eid)
             granted_authorization(:suomifi_eid)
           elsif granted_authorization_handles.include?(:mpassid_nids)
             granted_authorization(:mpassid_nids)
@@ -99,14 +101,16 @@ module Helsinki
 
       def find_area_from_metadata
         case strong_authorization.name.to_sym
+        when :helsinki_documents_authorization_handler
+          find_area_by_postal_code
         when :suomifi_eid
-          find_area_from_suomifi
+          find_area_by_postal_code
         when :mpassid_nids
           find_area_from_mpassid
         end
       end
 
-      def find_area_from_suomifi
+      def find_area_by_postal_code
         Helsinki::DistrictMetadata.postal_code_for_subdivision(
           strong_authorization.metadata["postal_code"]
         )
@@ -134,8 +138,10 @@ module Helsinki
       def conditions_checker
         @conditions_checker ||= begin
           case strong_authorization.name.to_sym
+          when :helsinki_documents_authorization_handler
+            MunicipalityAgeConditions.new(strong_authorization)
           when :suomifi_eid
-            SuomifiConditions.new(strong_authorization)
+            MunicipalityAgeConditions.new(strong_authorization)
           when :mpassid_nids
             MpassConditions.new(strong_authorization)
           end
@@ -147,7 +153,13 @@ module Helsinki
       end
 
       def verification_handles
-        @verification_handles ||= [:suomifi_eid, :mpassid_nids]
+        @verification_handles ||= begin
+          [
+            :helsinki_documents_authorization_handler,
+            :suomifi_eid,
+            :mpassid_nids
+          ]
+        end
       end
 
       def verifications

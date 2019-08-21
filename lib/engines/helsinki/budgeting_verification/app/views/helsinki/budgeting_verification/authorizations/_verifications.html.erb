@@ -1,8 +1,14 @@
-<% if verifications.any? %>
+<%
+target_verificatios = verifications.reject do |v|
+  v.name == "helsinki_documents_authorization_handler"
+end
+%>
+
+<% if target_verificatios.any? %>
   <div class="card card--list">
     <div class="row column authorizations-list">
       <div class="card card--nomargin card--list">
-        <% verifications.each do |method| %>
+        <% target_verificatios.each do |method| %>
           <%= link_to method.root_path do %>
             <div class="card--list__item">
               <div class="card--list__text">

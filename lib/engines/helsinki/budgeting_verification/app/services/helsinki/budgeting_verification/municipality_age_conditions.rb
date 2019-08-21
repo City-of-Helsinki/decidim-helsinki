@@ -2,7 +2,7 @@
 
 module Helsinki
   module BudgetingVerification
-    class SuomifiConditions < BudgetingVerification::Conditions
+    class MunicipalityAgeConditions < BudgetingVerification::Conditions
       def valid?
         @errors = []
 
