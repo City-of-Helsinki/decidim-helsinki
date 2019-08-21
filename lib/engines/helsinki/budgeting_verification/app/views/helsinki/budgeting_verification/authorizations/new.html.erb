@@ -16,7 +16,8 @@
               <%= form.error_for(:base) %>
               <%= form.hidden_field(:handler_handle) %>
 
-              <%= form.select(:district, form_subdivisions) %>
+              <% # The prompt option keeps the empty option away for required field %>
+              <%= form.select(:district, form_subdivisions, prompt: "") %>
 
               <div class="actions">
                 <%= form.submit t(".submit"), class: "button expanded" %>

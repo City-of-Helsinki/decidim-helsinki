@@ -15,6 +15,11 @@ module Helsinki
                 inclusion: {
                   in: %w(budgeting_identity)
                 }
+      validates :district,
+                presence: true,
+                inclusion: {
+                  in: Helsinki::DistrictMetadata.subdivision_names.keys
+                }
 
       def handler_name
         handler_handle

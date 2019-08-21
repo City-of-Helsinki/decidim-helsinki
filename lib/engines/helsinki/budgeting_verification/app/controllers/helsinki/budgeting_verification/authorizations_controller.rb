@@ -30,6 +30,8 @@ module Helsinki
         enforce_permission_to :create, :authorization, authorization: @authorization
         return redirect_to new_authorization_path unless eligible_for_voting?
 
+        return render :new unless handler.valid?
+
         auth = perform_authorization
         return redirect_to(decidim_verifications.authorizations_path) unless auth
 
