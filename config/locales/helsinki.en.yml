@@ -20,6 +20,7 @@ en:
             not_student: You are not a student.
             too_young: You are too young to vote.
             unknown_school: Your school is not known.
+            invalid_school_type: Invalid school type.
         identify:
           title: Identify yourself
         new:

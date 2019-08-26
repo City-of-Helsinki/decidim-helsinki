@@ -20,6 +20,7 @@ sv:
             not_student: Du är inte en student.
             too_young: Du är för ung för att rösta.
             unknown_school: Din skola är inte känd.
+            invalid_school_type: Ogiltig skoltyp.
         identify:
           title: Identifiera dig
         new:

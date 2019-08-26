@@ -18,10 +18,12 @@ module Helsinki
         validate_metadata
         check_district
         check_student
+        check_student_age
+        # check_school_type # Not in use
 
         errors.uniq!
 
-        errors.any?
+        !errors.any?
       end
 
       private
@@ -30,21 +32,17 @@ module Helsinki
         ["municipality", "role", "school_code", "student_class"].each do |key|
           if authorization.metadata[key].blank?
             errors << :data_blank
-            return false
+            return
           end
         end
-
-        true
       end
 
       def check_district
         municipalities = authorization.metadata["municipality"].split(",")
         unless municipalities.include?("091")
           errors << :not_in_area
-          return false
+          return
         end
-
-        true
       end
 
       def check_student
@@ -61,63 +59,66 @@ module Helsinki
       end
 
       def check_student_age
-        # NOTE:
-        # Type 19 contains elementary + high school type schools. Not sure how
-        # the class level is returned for high school students, so it needs more
-        # specification. Only students should have the class level defined, so
-        # having it not empty should already assure the person is a student.
-        second_level_types = [15, 19, 21, 22, 23]
-        elementary_types = [11, 12]
-        school_student_list.each do |ss|
-          if ss[:school].nil?
-            errors << :unknown_school
-            next
+        student_classes = authorization.metadata["student_class"].split(",")
+        student_classes.each do |group|
+          level = group.gsub(/^[^0-9]*/, "").to_i
+          if level < 5
+            errors << :too_young
+            return
           end
-
-          # In case it is a second level school, the person is eligible for
-          # voting.
-          next if second_level_types.include?(ss[:school][:type])
-
-          check_elementary_student_level(ss) if elementary_types.include?(
-            school[:type]
-          )
         end
       end
 
-      def check_elementary_student_level(ss)
-        if ss[:student][:level].blank?
-          errors << :class_level_not_defined
-          return
-        end
+      # NOT IN USE BECAUSE OF CHANGES IN THE SPEC
+      # def check_school_type
+      #   # NOTE:
+      #   # type 11 = elementary level
+      #   # type 12 = elementary level, special schools
+      #   # type 19 = elementary + high school level
+      #   # Type 19 contains elementary + high school type schools. Not sure how
+      #   # the class level is returned for high school students, but should not
+      #   # affect the voting because only class levels are allowed that exist in
+      #   # the elementary school. Only students should have the class level
+      #   # defined, so having it not empty should already assure the person is a
+      #   # student.
+      #   allowed_types = [11, 12, 19]
+      #   school_student_list.each do |ss|
+      #     if ss[:school].nil?
+      #       errors << :unknown_school
+      #       next
+      #     end
+      #
+      #     # Only allow the defined school types
+      #     unless allowed_types.include?(ss[:school][:type])
+      #       errors << :invalid_school_type
+      #       next
+      #     end
+      #   end
+      # end
 
-        if ss[:student][:level] < 5
-          errors << :too_young
-        end
-      end
-
-      def school_student_list
-        @school_student_list ||= begin
-          codes = authorization.metadata["school_code"].split(",")
-          groups = authorization.metadata["student_class"].split(",")
-
-          list = []
-          codes.each_with_index do |code, index|
-            school = Helsinki::SchoolMetadata.metadata_for_school(code)
-            group = student_classes[index]
-            level = nil
-            level = level.gsub(/^[^0-9]*/, "").to_i if group
-            list << {
-              school: school,
-              student: {
-                group: group,
-                level: level
-              }
-            }
-          end
-
-          list
-        end
-      end
+      # def school_student_list
+      #   @school_student_list ||= begin
+      #     codes = authorization.metadata["school_code"].split(",")
+      #     groups = authorization.metadata["student_class"].split(",")
+      #
+      #     list = []
+      #     codes.each_with_index do |code, index|
+      #       school = Helsinki::SchoolMetadata.metadata_for_school(code)
+      #       group = groups[index]
+      #       level = nil
+      #       level = group.gsub(/^[^0-9]*/, "").to_i if group
+      #       list << {
+      #         school: school,
+      #         student: {
+      #           group: group,
+      #           level: level
+      #         }
+      #       }
+      #     end
+      #
+      #     list
+      #   end
+      # end
     end
   end
 end

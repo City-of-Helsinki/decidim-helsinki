@@ -20,6 +20,7 @@ fi:
             not_student: Et ole oppilas.
             too_young: Olet liian nuori äänestääksesi.
             unknown_school: Kouluasi ei tiedetä.
+            invalid_school_type: Virheellinen koulun tyyppi.
         identify:
           title: Tunnistaudu
         new:
