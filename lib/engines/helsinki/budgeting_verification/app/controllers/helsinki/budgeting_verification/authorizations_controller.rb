@@ -115,7 +115,7 @@ module Helsinki
       def find_area_by_postal_code
         Helsinki::DistrictMetadata.postal_code_for_subdivision(
           strong_authorization.metadata["postal_code"]
-        )
+        ) || 1
       end
 
       def find_area_from_mpassid
@@ -126,7 +126,7 @@ module Helsinki
 
         Helsinki::DistrictMetadata.postal_code_for_subdivision(
           postal_code
-        )
+        ) || 1
       end
 
       def is_user_identified?
