@@ -17,7 +17,6 @@ module Helsinki
     # NOTE: This list only contains the Helsinki schools that have elementary
     #       level.
     MAPPING = {
-      "01000" => {name: "Testilukio", type: 15, postal_code: "90800"},
       "03002" => {name: "Aleksis Kiven peruskoulu", type: 11, postal_code: "00510"},
       "03004" => {name: "Haagan peruskoulu", type: 11, postal_code: "00320"},
       "03005" => {name: "Hertsikan ala-aste", type: 11, postal_code: "00800"},
