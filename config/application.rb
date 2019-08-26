@@ -147,6 +147,10 @@ module DecidimHelsinki
       ActionView::Base.send :include, Decidim::MapHelper
       ActionView::Base.send :include, Decidim::WidgetUrlsHelper
 
+      # Controller concern extensions
+      # See: https://github.com/decidim/decidim/pull/5313
+      Decidim::NeedsTosAccepted.send(:include, TosRedirectFix)
+
       # Extra helpers
       Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
         :include,
