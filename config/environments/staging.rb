@@ -134,5 +134,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # The location of the Tunnistamo authentication server
-  config.tunnistamo_auth_server = 'https://api.hel.fi/sso-test'
+  config.tunnistamo_auth_server = 'https://api.hel.fi/sso'
 end
