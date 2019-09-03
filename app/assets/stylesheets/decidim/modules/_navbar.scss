@@ -466,7 +466,9 @@ $menuitem-padding: 1em 2em;
 }
 
 .topbar__edit__link{
-  display: inline-block;
+  display: block;
+  margin-top: 20px;
+  text-align: right;
   vertical-align: middle;
 
   a{
