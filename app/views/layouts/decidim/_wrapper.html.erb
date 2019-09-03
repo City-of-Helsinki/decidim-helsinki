@@ -89,9 +89,9 @@ wrapper_class = Rails.application.config.wrapper_class
               </div>
               <div class="top-bar-right">
                 <% if display_common_elements? %>
-                  <% if false %>
-                      <%= render partial: "layouts/decidim/topbar_search" %>
-                  <% end %>
+                  <div class="topbar__search-wrapper">
+                    <%= render partial: "layouts/decidim/topbar_search" %>
+                  </div>
                 <% end %>
                 <div class="topbar__language-menu show-for-large">
                   <%= render partial: "layouts/decidim/language_chooser" %>
@@ -137,7 +137,6 @@ wrapper_class = Rails.application.config.wrapper_class
                   <% else %>
                     <div class="topbar__user show-for-large" data-set="nav-login-holder">
                       <div class="topbar__user__login js-append">
-                        <%= link_to t("layouts.decidim.header.sign_up"), decidim.new_user_registration_path, class: "sign-up-link" %>
                         <%= link_to t("layouts.decidim.header.sign_in"), decidim.new_user_session_path, class: "sign-in-link" %>
                       </div>
                     </div>

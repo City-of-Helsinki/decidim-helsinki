@@ -28,16 +28,8 @@ $menuitem-padding: 1em 2em;
   }
 
   .top-bar-right{
-    @include breakpoint(medium){
-      padding-top: .1rem;
-    }
-
-    @include breakpoint(large){
-      padding-top: 1.05rem;
-    }
-
     @include breakpoint(xlarge){
-      padding-top: 1.3rem;
+      padding-top: .9rem;
     }
   }
 }
@@ -50,10 +42,6 @@ $menuitem-padding: 1em 2em;
   .top-bar-left,
   .top-bar-right{
     width: auto;
-  }
-
-  .top-bar-left{
-
   }
 }
 
@@ -76,6 +64,7 @@ $menuitem-padding: 1em 2em;
 
   .koro-top{
     @include koro("basic", $titlebar-bg, 1000);
+
     height: 28px;
     background-color: $navbar-bg;
   }
@@ -126,13 +115,27 @@ $menuitem-padding: 1em 2em;
   }
 }
 
+.topbar__search-wrapper{
+  float: left;
+  padding-top: 10px;
+
+  @include breakpoint(large){
+    padding-top: 0;
+    float: none;
+  }
+
+  @include breakpoint(xlarge){
+    float: left;
+    margin-right: 30px;
+  }
+}
+
 .topbar__search{
   position: relative;
 
   input,
   input:focus{
     color: $navbar-color-hover;
-    border: 0;
     padding-left: $input-padding * 4;
     box-shadow: none;
     background: $navbar-active-bg;
@@ -169,6 +172,7 @@ $menuitem-padding: 1em 2em;
   @include breakpoint(medium){
     width: 160px;
   }
+
   @include breakpoint(xlarge){
     margin-right: 1.8rem;
   }
@@ -415,6 +419,7 @@ $menuitem-padding: 1em 2em;
 
 /* Menu icon and off-canvas */
 .topbar__menu{
+  display: inline-block;
   text-align: right;
   font-size: 30px;
   margin-right: .1rem;
@@ -434,7 +439,7 @@ $menuitem-padding: 1em 2em;
     .text-small{
       position: relative;
       top: -5px;
-      margin-right: 0.2rem;
+      margin-right: .2rem;
       color: $body-font-color;
       font-size: 1.2rem;
 
@@ -444,6 +449,7 @@ $menuitem-padding: 1em 2em;
       }
     }
   }
+
   .menu{
     li{
       margin-left: .5rem;
