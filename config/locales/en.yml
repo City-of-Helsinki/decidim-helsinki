@@ -25,6 +25,13 @@ en:
     sign_in_with_tunnistamo: 'Use Tunnistamo to sign in'
   decidim:
     authorization_handlers:
+      admin:
+        cocreation:
+          help:
+            - User requests access against the registered workflow
+            - An admin will review the request
+            - Admin will either approve or reject the access request
+            - The user will get notified that their access request has been either approved or rejected
       budgeting_identity:
         explanation: Identify yourself for participatory budgeting
         name: Budgeting
