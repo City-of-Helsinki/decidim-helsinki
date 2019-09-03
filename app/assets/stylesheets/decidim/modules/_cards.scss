@@ -401,9 +401,14 @@ $datetime-bg: $primary;
     padding: 1rem $card-padding;
   }
 
+  &.card__support--full{
+    margin-right: auto;
+  }
+
   .card__button__container{
     flex: .2 1 auto;
   }
+
   .card__button{
     font-size: $small-font-size;
   }
@@ -597,6 +602,10 @@ $datetime-bg: $primary;
   @extend .card-data__item__number;
 
   font-size: 1.5rem;
+}
+
+.card--list__data__budget{
+  display: flex;
 }
 
 .card--list__titled-text{
