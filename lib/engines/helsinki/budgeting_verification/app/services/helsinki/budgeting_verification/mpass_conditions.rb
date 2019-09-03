@@ -62,7 +62,7 @@ module Helsinki
         student_classes = authorization.metadata["student_class"].split(",")
         student_classes.each do |group|
           level = group.gsub(/^[^0-9]*/, "").to_i
-          if level < 5
+          if level < 6
             errors << :too_young
             return
           end
