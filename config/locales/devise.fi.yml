@@ -1,19 +1,29 @@
 fi:
   devise:
+    sessions:
+      new:
+        sign_in: 'Kirjaudu sisään'
     shared:
       omniauth:
         tunnistamo:
-          sign_in_with: 'Kirjaudu Tunnistamo-palvelun avulla'
           description: 'Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook- tai YLE-palveluiden avulla.'
+          sign_in_with: 'Kirjaudu Tunnistamo-palvelun avulla'
           sign_in_button: 'Kirjaudu sisään'
+        strong:
+          description: 'Kirjautumalla omastadi.hel.fi -palveluun pankkitunnuksella tai mobiilivarmenteella pääset suoraan äänestämään.  Peruskoulun 6-9 luokkalaiset voivat kirjautua ja tunnistautua äänestystä varten Wilma-tunnuksilla.'
+          sign_in_with: 'Kirjaudu ja tunnistaudu äänestämään'
         suomifi:
-          sign_in_with: 'Suomi.fi-tunnistautuminen'
           description: 'Suomi.fi tarjoaa tunnistautumismahdollisuuden mm. suomalaisilla pankkitunnuksilla ja mobiilivarmenteella.'
-          sign_in_button: 'Tunnistaudu'
+          sign_in_with: 'Suomi.fi-tunnistautuminen'
+          sign_in_button: 'Pankkitunnukset tai mobiilivarmenne'
         mpassid:
-          sign_in_with: 'MPASSid-tunnistautuminen'
           description: 'Koululaisena voit kirjautua MPASSid-palvelun avulla koulusi tunnuksella.'
-          sign_in_button: 'Tunnistaudu'
+          sign_in_with: 'MPASSid-tunnistautuminen'
+          sign_in_button: 'Peruskoululaisten Wilma-tunnukset'
+        weak:
+          description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa tai aiemmin luomillasi Omastadi –tunnuksilla. Ensimmäisellä äänestyskerralla sinun tulee lisäksi tunnistautua pankkitunnuksilla, mobiilivarmenteella tai peruskoululaisten Wilma-tunnuksilla.'
+          sign_in_with: 'Kirjaudu  ilman tunnistautumista'
+          sign_in_button: 'Kirjaudu Tunnistamo-palvelun avulla'
   decidim:
     devise:
       registrations:

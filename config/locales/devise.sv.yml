@@ -1,19 +1,29 @@
 sv:
   devise:
+    sessions:
+      new:
+        sign_in: 'Logga in'
     shared:
       omniauth:
         tunnistamo:
-          sign_in_with: 'Logga in med hjälp av tjänsten Tunnistamo'
           description: ''
+          sign_in_with: 'Logga in med hjälp av tjänsten Tunnistamo'
           sign_in_button: 'Logga in'
+        strong:
+          description: 'Genom att logga in på omastadi.hel.fi med ditt bankkonto eller mobil ID kan du rösta direkt. Klass 6-9 i grundskolan kan logga in och identifiera sig för att rösta med Wilma ID.'
+          sign_in_with: 'Kirjaudu ja tunnistaudu äänestämään'
         suomifi:
-          sign_in_with: 'Suomi.fi-identifikation'
           description: 'Suomi.fi tillåter användare att identifiera sig, t.ex. med finska bankkonton och Mobil ID.'
-          sign_in_button: 'Identifiera dig'
+          sign_in_with: 'Suomi.fi-identifikation'
+          sign_in_button: 'Bankkonto eller mobil ID'
         mpassid:
-          sign_in_with: 'MPASSid-identifikation'
           description: 'Som grundskolestudent kan du identifiera dig själv genom MPASSid-tjänsten med ditt skolkonto.'
-          sign_in_button: 'Identifiera dig'
+          sign_in_with: 'MPASSid-identifikation'
+          sign_in_button: 'Wilma ID för grundskoleelever'
+        weak:
+          description: 'Du kan också logga in med sociala mediekonton (Facebook, Yle, Google, etc.) eller med Omastadi-kontot du skapade tidigare. Första gången du röstar måste du också identifiera dig med ditt bankkonto, mobil ID eller Wilma-ID för grundskoleelever.'
+          sign_in_with: 'Logga in utan verifiering'
+          sign_in_button: 'Logga in med Tunnistamo'
   decidim:
     description: 'Med hjälp av Tunnistamo kan du logga in i tjänsten bl.a. med tjänsterna Google, Facebook eller YLE.'
     devise:

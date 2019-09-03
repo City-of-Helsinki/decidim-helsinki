@@ -10,6 +10,14 @@
     padding-left: 4rem;
     padding-right: 4rem;
   }
+
+  &.wrapper-no-top-padding{
+    padding-top: 0;
+  }
+
+  &.wrapper-no-bottom-padding{
+    padding-top: 0;
+  }
 }
 
 .wrapper--inner{
