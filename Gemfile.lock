@@ -1,4 +1,12 @@
 GIT
+  remote: git@github.com:OpenSourcePolitics/decidim-module-budgets_enhanced.git
+  revision: b88dc75bbbde7c548253e65e103cb591acfa2910
+  specs:
+    decidim-budgets_enhanced (0.18.0)
+      decidim-budgets (= 0.18.0)
+      decidim-core (= 0.18.0)
+
+GIT
   remote: git@github.com:mainio/decidim-module-combined_budgeting.git
   revision: f36f782c349ee4f32b2010cc0b8805966d97b6bb
   specs:
@@ -878,6 +886,7 @@ DEPENDENCIES
   decidim (= 0.18.0)
   decidim-access_requests (~> 0.18.0)
   decidim-antivirus (~> 0.18.0)
+  decidim-budgets_enhanced!
   decidim-combined_budgeting!
   decidim-dev (= 0.18.0)
   decidim-mpassid!

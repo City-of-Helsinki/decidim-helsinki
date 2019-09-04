@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_28_211463) do
+ActiveRecord::Schema.define(version: 2019_09_04_092653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -278,6 +278,9 @@ ActiveRecord::Schema.define(version: 2019_08_28_211463) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reference"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["decidim_component_id"], name: "index_decidim_budgets_projects_on_decidim_component_id"
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_projects_on_decidim_scope_id"
   end
@@ -288,6 +291,7 @@ ActiveRecord::Schema.define(version: 2019_08_28_211463) do
     t.integer "parent_id"
     t.integer "decidim_participatory_space_id"
     t.string "decidim_participatory_space_type"
+    t.string "color"
     t.index ["decidim_participatory_space_id", "decidim_participatory_space_type"], name: "index_decidim_categories_on_decidim_participatory_space"
     t.index ["parent_id"], name: "index_decidim_categories_on_parent_id"
   end

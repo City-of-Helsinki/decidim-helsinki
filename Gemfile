@@ -22,6 +22,10 @@ gem "decidim-suomifi", git: "git@github.com:mainio/decidim-module-suomifi.git"
 gem "decidim-mpassid", git: "git@github.com:mainio/decidim-module-mpassid.git"
 gem "decidim-combined_budgeting", git: "git@github.com:mainio/decidim-module-combined_budgeting.git"
 
+# Install the improved budgeting module until these improvements are hopefully
+# merged to the core.
+gem "decidim-budgets_enhanced", git: "git@github.com:OpenSourcePolitics/decidim-module-budgets_enhanced.git"
+
 # For the documents authorization handler
 gem "ruby-cldr", "~> 0.3.0"
 gem "henkilotunnus"
