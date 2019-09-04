@@ -6,9 +6,7 @@ fi:
       helsinki_documents_authorization_handler:
         document_type: Henkilöllisyystodistuksen tyyppi
         first_name: Etunimi
-        home_municipality_helsinki: Kotikunta Helsingissä
         last_name: Sukunimi
-        native_language: Äidinkieli
         pin: Henkilötunnus
         postal_code: Postinumero
     errors:

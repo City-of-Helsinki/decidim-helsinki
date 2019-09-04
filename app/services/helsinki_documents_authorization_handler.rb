@@ -12,17 +12,13 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :first_name, String
   attribute :last_name, String
   attribute :postal_code, String
-  attribute :native_language, String
-  attribute :home_municipality_helsinki, Boolean
 
   validates :context, presence: true
   validates :document_type, presence: true, inclusion: { in: %i(passport idcard) }
   validates :pin, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :postal_code, presence: true, length: {is: 5}, format: { with: /\A[0-9]*\z/ }
-  validates :native_language, presence: true, inclusion: {
-    in: I18n.t("languages").keys.map(&:to_s)
-  }
-  validates :home_municipality_helsinki, acceptance: true
 
   validate :validate_impersonation
   validate :validate_pin
@@ -64,7 +60,6 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
       first_name: first_name,
       last_name: last_name,
       postal_code: postal_code,
-      native_language: native_language,
       municipality: "091"
     )
   end
@@ -72,12 +67,6 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   def document_types
     %i(passport idcard).map do |type|
       [I18n.t(type, scope: "decidim.authorization_handlers.helsinki_documents_authorization_handler.document_types"), type]
-    end
-  end
-
-  def languages
-    I18n.t("languages").map do |key, name|
-      [name, key]
     end
   end
 

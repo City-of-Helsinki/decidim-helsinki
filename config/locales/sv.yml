@@ -6,9 +6,7 @@ sv:
       helsinki_documents_authorization_handler:
         document_type: Typ av identitetsdokument
         first_name: Förnamn
-        home_municipality_helsinki: Hemstad Helsingfors
         last_name: Efternamn
-        native_language: Modersmål
         pin: Personnummer (HETU)
         postal_code: Postnummer
     errors:

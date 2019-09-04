@@ -6,9 +6,7 @@ en:
       helsinki_documents_authorization_handler:
         document_type: Identity document type
         first_name: First name
-        home_municipality_helsinki: Home municipality Helsinki
         last_name: Last name
-        native_language: Native language
         pin: Personal identity number (HETU)
         postal_code: Postal code
     errors:
