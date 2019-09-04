@@ -16,3 +16,20 @@
     flex-direction: column;
   }
 }
+
+.budget-list__number{
+  @include breakpoint(medium){
+    flex-grow: 0;
+    margin-bottom: 20px;
+  }
+}
+
+.budget-list__data_votes{
+  @include breakpoint(medium){
+    flex-basis: 15rem;
+  }
+
+  @include breakpoint(large){
+    flex-basis: 21rem;
+  }
+}
