@@ -1,7 +1,5 @@
 **/*{.,-}min.js
-decidim-*/vendor/**/*.js
-spec/decidim_dummy_app/**/*.js
-development_app
+vendor/**/*.js
 **/node_modules/**
 bundle.js
 karma.conf.js
@@ -11,4 +9,3 @@ entry.test.js
 entry.js
 *_manifest.js
 coverage
-decidim-dev/**/*/test/**/*.js
