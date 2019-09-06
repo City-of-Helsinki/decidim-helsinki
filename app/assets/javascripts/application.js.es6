@@ -9,30 +9,32 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
-//= require jquery
-//= require rails-ujs
-//= require activestorage
-//= require cable
-//= require_self
-//= require decidim
-//= require ie-polyfills
-//= require app/toggle-checkbox
-//= require app/fix-map-toggle
-//= require app/remaining-characters
+// = require jquery
+// = require rails-ujs
+// = require activestorage
+// = require cable
+// = require_self
+// = require decidim
+// = require ie-polyfills
+// = require app/toggle-checkbox
+// = require app/fix-map-toggle
+// = require app/remaining-characters
 
-(function ($) {
-  $(document).on('ready', function () {
-    $('#proposals-map-container').fixMapToggle();
-    $('[data-toggle-checkbox]').toggleCheckbox();
-    $('.remaining-characters-container [data-remaining-characters]').remainingCharacters();
+((exports) => {
+  // eslint-disable-next-line id-length
+  const $ = exports.$;
+
+  $(() => {
+    $("#proposals-map-container").fixMapToggle();
+    $("[data-toggle-checkbox]").toggleCheckbox();
+    $(".remaining-characters-container [data-remaining-characters]").remainingCharacters();
 
     // IE polyfills
-    $('body').applyPolyfills();
+    $("body").applyPolyfills();
 
-    $('.hide-on-load').removeClass('hide-on-load');
+    $(".hide-on-load").removeClass("hide-on-load");
 
     // Event to determine when the application scripts have finished their setup
-    $(document).trigger('app-ready');
+    $(document).trigger("app-ready");
   });
-})($);
+})(window);

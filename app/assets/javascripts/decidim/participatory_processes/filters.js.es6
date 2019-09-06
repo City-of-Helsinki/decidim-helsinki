@@ -12,8 +12,8 @@ $(() => {
 
       // IE1 recognizes the click event on the <strong> element inside the
       // anchor
-      if (!$target.is('a')) {
-        $target = $target.parents('a').first();
+      if (!$target.is("a")) {
+        $target = $target.parents("a").first();
       }
 
       $(filterLinksSelector).removeClass("is-active");
