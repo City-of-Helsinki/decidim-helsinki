@@ -19,6 +19,7 @@
 // = require app/toggle-checkbox
 // = require app/fix-map-toggle
 // = require app/remaining-characters
+// = require app/youtube-modal
 
 ((exports) => {
   // eslint-disable-next-line id-length
@@ -28,6 +29,10 @@
     $("#proposals-map-container").fixMapToggle();
     $("[data-toggle-checkbox]").toggleCheckbox();
     $(".remaining-characters-container [data-remaining-characters]").remainingCharacters();
+    $("[data-open-youtube]").youtubeModal();
+    $("a[data-open]").on("click", (ev) => {
+      ev.preventDefault();
+    });
 
     // IE polyfills
     $("body").applyPolyfills();
