@@ -1,0 +1,31 @@
+@import "decidim/variables";
+
+$colors: (
+  hel-copper : $hel-copper,
+  hel-bus : $hel-bus,
+  hel-coat : $hel-coat,
+  hel-fog: $hel-fog,
+  hel-metro: $hel-metro,
+  hel-brick: $hel-brick,
+  hel-suomenlinna : $hel-suomenlinna,
+  hel-engel: $hel-engel,
+  hel-tram : $hel-tram,
+  hel-summer : $hel-summer,
+  hel-silver : $hel-metro,
+  hel-gold : $hel-gold,
+  hel-black: $hel-black,
+  hel-dark: $hel-dark,
+  hel-gray: $hel-gray,
+  hel-light: $hel-light,
+  hel-white: $hel-white,
+);
+
+@each $key, $value in $colors{
+  .txt-#{$key}{
+    color: #{$value};
+  }
+
+  .bg-#{$key}{
+    background-color: #{$value};
+  }
+}

@@ -1,0 +1,138 @@
+$z-play-video-bg: 0;
+$z-play-video-button: 1;
+$z-mobile-lang: 2;
+$z-topbar: 4;
+$z-nav: 5;
+$z-nav-trigger: 6;
+$z-video-wrapper: 7;
+
+section{
+  #video-banner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background-image: url('./img/OmaStadi_paakuvitus.jpg');
+    background-color: #ccc;
+    // background-size: 150% auto;
+    background-size: auto 150%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-size 1s;
+    padding: 60px 45px;
+    min-height: 500px;
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active){
+      /* IE10+ CSS styles go here */
+      justify-content: flex-start !important;
+    }
+
+    @include breakpoint(mediumlarge){
+      background-size: 150%;
+    }
+
+    .column{
+      width: 900px;
+      max-width: 100%;
+      padding: 35px 25px 25px;
+
+      @include breakpoint(mediumlarge){
+        padding-left: 45px;
+        padding-right: 45px;
+      }
+
+      h2{
+        font-size: 28px;
+        line-height: 34px;
+
+        @include breakpoint(mediumlarge){
+          font-size: 32px;
+          line-height: 40px;
+        }
+      }
+
+      a{
+        &.button{
+          font-size: 17px;
+          border: solid 2px black;
+        }
+      }
+    }
+  }
+}
+
+.play-video{
+  position: relative;
+
+  &::after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(black, .2);
+    z-index: $z-play-video-bg;
+    border-radius: 10px 10px 0 0;
+  }
+}
+
+.play-video__button{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(white, .1);
+  box-shadow: 5px 5px 10px rgba(black, .4);
+  transition: .3s all;
+  transform: translateZ(0);
+  position: absolute;
+  z-index: $z-play-video-button;
+  color: rgba(white, .8);
+  bottom: calc(50% - 1.5em);
+  left: calc(50% - 1.5em);
+  width: 3em;
+  height: 3em;
+
+  @include breakpoint(mediumlarge){
+    bottom: calc(50% - 3em);
+    left: calc(50% - 3em);
+    width: 6em;
+    height: 6em;
+  }
+
+  &:hover,
+  &:focus{
+    color: white;
+    transform: translateZ(0) scale(1.1);
+  }
+}
+
+.play-video__play{
+  &::after{
+    content: "\25B6\FE0E";
+    font-size: 1.5em;
+    margin-left: .3em;
+
+    @include breakpoint(mediumlarge){
+      font-size: 2.5em;
+    }
+  }
+}
+
+.video-wrapper{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-video-wrapper;
+  background-color: rgba(black, .7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  &.is-video-active{
+    display: flex;
+  }
+}
