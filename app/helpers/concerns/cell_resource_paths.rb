@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This is a way to fix the resource paths in the engine cells, related to:
 # https://github.com/decidim/decidim/issues/4660
 #

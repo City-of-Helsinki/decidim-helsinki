@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This is a bit of a hacky way to fix the following bug before it is fixed to
 # the core:
 # https://github.com/decidim/decidim/issues/4660
@@ -23,14 +25,14 @@ module EngineRouteLocales
   extend ActiveSupport::Concern
 
   included do
-    decidim_engines = Rails::Engine.subclasses.select { |sc|
+    decidim_engines = Rails::Engine.subclasses.select do |sc|
       sc.to_s =~ /^Decidim::/ && sc.to_s !~ /::Admin::.*|::AdminEngine$/
-    }
+    end
     decidim_engines.each do |engine|
-      if method_defined? engine.engine_name
-        define_method "#{engine.engine_name}" do
-          controller.send(engine.engine_name)
-        end
+      next unless method_defined?(engine.engine_name)
+
+      define_method engine.engine_name.to_s do
+        controller.send(engine.engine_name)
       end
     end
 

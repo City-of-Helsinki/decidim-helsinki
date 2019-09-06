@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   include Decidim::Plans::LinksHelper
 
@@ -5,14 +7,13 @@ module ApplicationHelper
   # 'private' application mode these should be hidden in case the user is not
   # signed in.
   def display_common_elements?
-    if is_private_mode?
-      return user_signed_in?
-    end
+    return user_signed_in? if private_mode?
+
     true
   end
 
-  def is_private_mode?
-    Rails.application.config.use_mode == 'private'
+  def private_mode?
+    Rails.application.config.use_mode == "private"
   end
 
   def feedback_email
@@ -30,17 +31,17 @@ module ApplicationHelper
 
   def link_to_or_back(*args, &block)
     body = args.shift
-    path = if block_given?
-      body
-    else
-      args.shift
+    path = begin
+      if block_given?
+        body
+      else
+        args.shift
+      end
     end
 
-    if params[:back_to] =~ /^(\/[a-z0-9-]*)+$/
-      path = params[:back_to]
-    end
+    path = params[:back_to] if params[:back_to].match?(%r{^(/[a-z0-9-]*)+$})
 
-    path << request_params_query({}, [:back_to])
+    path += request_params_query({}, [:back_to])
 
     if block_given?
       link_to(path, *args, &block)
