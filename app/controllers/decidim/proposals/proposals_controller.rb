@@ -52,9 +52,7 @@ module Decidim
           redirect_to edit_draft_proposal_path(proposal_draft, component_id: proposal_draft.component.id, question_slug: proposal_draft.component.participatory_space.slug)
         else
           @step = :step_3
-          unless @proposal
-            @proposal = Proposal.new(component: current_component)
-          end
+          @proposal ||= Proposal.new(component: current_component)
           @form = form_proposal_model
           @form.attachment = form_attachment_new
         end
@@ -73,10 +71,10 @@ module Decidim
           :category_id,
           :scope_id,
           :has_address,
-          :attachment,
-        ).merge({
-          component: current_component,
-        }))
+          :attachment
+        ).merge(
+          component: current_component
+        ))
 
         # Add coauthorship to the new proposal
         user_group ||= Decidim::UserGroup.find_by(
@@ -290,7 +288,7 @@ module Decidim
         parts = path.split(/\?/)
 
         if parts.length > 1
-          parts[0] + suffix + '?' + parts[1]
+          parts[0] + suffix + "?" + parts[1]
         else
           parts[0] + suffix
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -19,13 +21,11 @@ class ApplicationController < ActionController::Base
   def ensure_authenticated!
     # Block of code to apply extra auth check only for the private mode
     # of Decidim. 'normal' mode => does not apply checks.
-    if Rails.application.config.use_mode != 'private'
-      return
-    end
+    return if Rails.application.config.use_mode != "private"
 
     # Next stop: Let's check whether auth is ok
     unless user_signed_in?
-      flash[:warning] = I18n.t('auth.sign_in_with_tunnistamo')
+      flash[:warning] = I18n.t("auth.sign_in_with_tunnistamo")
       return redirect_to decidim.new_user_session_path
     end
   end
@@ -34,11 +34,9 @@ class ApplicationController < ActionController::Base
   # authorized
   def allow_unauthorized_path?
     # Changing the locale
-    if request.path =~ /^\/locale/
-      return true
-    elsif request.path =~ /^\/cookies/
-      return true
-    end
+    return true if request.path.match?(%r{^/locale})
+    return true if request.path.match?(%r{^/cookies})
+
     false
   end
 end

@@ -63,7 +63,7 @@ module Decidim
       # at this point because they would rather continue browsing where they
       # left. We are already handling authorization on the component level as
       # well as on the budgeting workflow tool (combined budgeting).
-      def first_login_and_not_authorized?(user)
+      def first_login_and_not_authorized?(_user)
         # user.is_a?(User) && user.sign_in_count == 1 && Decidim.authorization_handlers.any?
         false
       end
@@ -78,7 +78,7 @@ module Decidim
         info = oauth_data[:info] || {}
 
         # Fetch the nickname passed form Tunnistamo
-        nickname = oauth_nickname
+        # nickname = oauth_nickname
 
         identity = Decidim::Identity.find_by(uid: oauth_data[:uid])
         if identity
@@ -89,7 +89,7 @@ module Decidim
               email: info[:email],
               # The user may have changed their name e.g. for anonymization and
               # therefore we should not update it on every login separately.
-              #name: oauth_name,
+              # name: oauth_name,
             )
 
             set_flash_message :notice, :success, kind: provider_name(oauth_data[:provider])
@@ -100,20 +100,20 @@ module Decidim
           end
         end
 
-        @form = form(OmniauthRegistrationForm).from_params({
+        @form = form(OmniauthRegistrationForm).from_params(
           uid: oauth_data[:uid],
           provider: oauth_data[:provider],
           oauth_signature: OmniauthRegistrationForm.create_signature(oauth_data[:provider], oauth_data[:uid]),
           email: info[:email],
           name: oauth_name,
-          nickname: oauth_nickname,
-        })
+          nickname: oauth_nickname
+        )
 
         CreateOmniauthRegistration.call(@form, verified_email) do
-          on(:ok) do |user|
-            mark_tos_accepted user
+          on(:ok) do |registered_user|
+            mark_tos_accepted registered_user
             set_flash_message :notice, :success, kind: provider_name(@form.provider)
-            handle_tunnistamo_success user
+            handle_tunnistamo_success registered_user
           end
 
           on(:invalid) do
@@ -121,8 +121,8 @@ module Decidim
             redirect_to root_path
           end
 
-          on(:error) do |user|
-            if user.errors[:email]
+          on(:error) do |registered_user|
+            if registered_user.errors[:email]
               set_flash_message :alert, :failure, kind: provider_name(@form.provider), reason: t("decidim.devise.omniauth_registrations.create.email_already_exists")
             end
 
@@ -162,13 +162,13 @@ module Decidim
       def mark_tos_accepted(user)
         if user.accepted_tos_version.nil?
           user.update(
-            accepted_tos_version: current_organization.tos_version,
+            accepted_tos_version: current_organization.tos_version
           )
         end
       end
 
       def oauth_name
-        oauth_data.dig(:info, :name) || oauth_nickname || verified_email.split('@').first
+        oauth_data.dig(:info, :name) || oauth_nickname || verified_email.split("@").first
       end
 
       def oauth_nickname
