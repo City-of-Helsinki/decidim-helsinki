@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -18,11 +20,11 @@ Rails.application.configure do
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
-    'Cache-Control' => 'public, max-age=3600'
+    "Cache-Control" => "public, max-age=3600"
   }
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates.
@@ -44,6 +46,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # The location of the Tunnistamo authentication server
-  #config.tunnistamo_auth_server = 'http://127.0.0.1:8000'
-  config.tunnistamo_auth_server = 'https://api.hel.fi/sso'
+  # config.tunnistamo_auth_server = "http://127.0.0.1:8000"
+  config.tunnistamo_auth_server = "https://api.hel.fi/sso"
 end

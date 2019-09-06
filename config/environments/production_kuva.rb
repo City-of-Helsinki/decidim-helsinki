@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # String identifier, this defines the main mode of Decidim
   # See README.md for more explation on this.
-  config.use_mode = 'private'
+  config.use_mode = "private"
 
   # Wrapper class can be used to customize the coloring of the platform per
   # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
-  config.wrapper_class = 'wrapper-paahtimo'
+  config.wrapper_class = "wrapper-paahtimo"
 
   # The feedback email in the footer of the site
-  config.feedback_email = 'ideapaahtimo@hel.fi'
+  config.feedback_email = "ideapaahtimo@hel.fi"
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -22,15 +24,15 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = Uglifier.new(:harmony => true)
+  config.assets.js_compressor = Uglifier.new(harmony: true)
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -39,7 +41,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = 'https://ideapaahtimo.hel.fi'
+  config.action_controller.asset_host = "https://ideapaahtimo.hel.fi"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -58,13 +60,13 @@ Rails.application.configure do
   config.log_level = :error
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  config.active_job.queue_adapter     = :resque
+  config.active_job.queue_adapter = :resque
   config.active_job.queue_name_prefix = "decidim-helsinkikuva_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
@@ -99,17 +101,17 @@ Rails.application.configure do
   config.mailer_sender = "no-reply@ideapaahtimo.hel.fi"
 
   # Default URL for application (Devise)
-  config.action_controller.default_url_options  = {
-    #protocol: 'https', # Breaks login redirection
-    host: 'ideapaahtimo.hel.fi',
-    port: 443,
+  config.action_controller.default_url_options = {
+    # protocol: "https", # Breaks login redirection
+    host: "ideapaahtimo.hel.fi",
+    port: 443
   }
 
   # Default URL for mailer (Devise)
   config.action_mailer.default_url_options = {
-    protocol: 'https',
-    host: 'ideapaahtimo.hel.fi',
-    #from: 'no-reply@ideapaahtimo.hel.fi', # Causes forms to break e.g. when publishing proposal
+    protocol: "https",
+    host: "ideapaahtimo.hel.fi",
+    # from: "no-reply@ideapaahtimo.hel.fi" # Causes forms to break e.g. when publishing proposal
   }
 
   # Use a different logger for distributed setups.
@@ -117,7 +119,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
@@ -126,5 +128,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # The location of the Tunnistamo authentication server
-  config.tunnistamo_auth_server = 'https://api.hel.fi/sso'
+  config.tunnistamo_auth_server = "https://api.hel.fi/sso"
 end
