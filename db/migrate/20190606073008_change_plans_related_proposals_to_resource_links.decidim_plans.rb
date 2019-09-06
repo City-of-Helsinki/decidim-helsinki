@@ -11,6 +11,13 @@ class ChangePlansRelatedProposalsToResourceLinks < ActiveRecord::Migration[5.2]
 
       say("Linking proposals for plan: #{plan.id}")
 
+      # In case the plan has been moved from one participatory space to another,
+      # it may not have the correct mapping with the proposal.
+      proposal_ids = proposal_ids.select do |pid|
+        p = Decidim::Proposals::Proposal.find(pid)
+        p.participatory_space == plan.participatory_space
+      end
+
       next unless proposal_ids.count.positive?
 
       say("--Proposal IDs: #{proposal_ids.join(",")}")
