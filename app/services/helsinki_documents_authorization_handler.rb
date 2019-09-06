@@ -14,11 +14,11 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :postal_code, String
 
   validates :context, presence: true
-  validates :document_type, presence: true, inclusion: { in: %i(passport idcard) }
+  validates :document_type, presence: true, inclusion: { in: [:passport, :idcard] }
   validates :pin, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :postal_code, presence: true, length: {is: 5}, format: { with: /\A[0-9]*\z/ }
+  validates :postal_code, presence: true, length: { is: 5 }, format: { with: /\A[0-9]*\z/ }
 
   validate :validate_impersonation
   validate :validate_pin
@@ -28,10 +28,12 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   # misuse the authorization. It is later converted back to the actual context
   # when the form is submitted with the obfuscated context.
   def setup(controller)
-    if controller.class == Decidim::Admin::ImpersonationsController
-      self.handler_context_verification = generate_context_verification(:impersonation)
-    else
-      self.handler_context_verification = generate_context_verification(:user)
+    self.handler_context_verification = begin
+      if controller.class == Decidim::Admin::ImpersonationsController
+        generate_context_verification(:impersonation)
+      else
+        generate_context_verification(:user)
+      end
     end
   end
 
@@ -65,7 +67,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def document_types
-    %i(passport idcard).map do |type|
+    [:passport, :idcard].map do |type|
       [I18n.t(type, scope: "decidim.authorization_handlers.helsinki_documents_authorization_handler.document_types"), type]
     end
   end
@@ -85,7 +87,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
 
   private
 
-  def is_impersonation?
+  def impersonation?
     context == :impersonation
   end
 
@@ -105,7 +107,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def validate_impersonation
-    errors.add(:document_type, :invalid) unless is_impersonation?
+    errors.add(:document_type, :invalid) unless impersonation?
   end
 
   def validate_pin
