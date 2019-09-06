@@ -144,7 +144,7 @@ $header-font-family: $body-font-family;
 $header-font-weight: $global-weight-bold;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
-$header-color: #000000;
+$header-color: #000;
 $header-lineheight: 1.4;
 $header-margin-bottom: .5rem;
 $header-styles: (
@@ -193,7 +193,7 @@ $list-side-margin: 1.25rem;
 $list-nested-side-margin: 1.25rem;
 $defnlist-margin-bottom: 1rem;
 $defnlist-term-weight: $global-weight-bold;
-$defnlist-term-margin-bottom: 0.3rem;
+$defnlist-term-margin-bottom: .3rem;
 $blockquote-color: $dark-gray;
 $blockquote-padding: rem-calc(9 20 0 19);
 $blockquote-border: 1px solid $medium-gray;
@@ -271,7 +271,6 @@ $badge-padding: .3em;
 $badge-minwidth: 1.5em;
 $badge-font-size: .6rem;
 
-
 // 10. Breadcrumbs
 // ---------------
 
@@ -280,7 +279,7 @@ $breadcrumbs-item-font-size: rem-calc(11);
 $breadcrumbs-item-color: $primary-color;
 $breadcrumbs-item-color-current: $black;
 $breadcrumbs-item-color-disabled: $medium-gray;
-$breadcrumbs-item-margin: 0.75rem;
+$breadcrumbs-item-margin: .75rem;
 $breadcrumbs-item-uppercase: true;
 $breadcrumbs-item-separator: true;
 $breadcrumbs-item-separator-color: $medium-gray;
@@ -368,7 +367,7 @@ $closebutton-color-hover: map-get($foundation-palette, primary);
 // 16. Drilldown
 // -------------
 
-$drilldown-transition: transform 0.15s linear;
+$drilldown-transition: transform .15s linear;
 $drilldown-arrows: true;
 $drilldown-arrow-color: $primary-color;
 $drilldown-padding: $global-menu-padding;
@@ -450,10 +449,10 @@ $input-background-focus: $white;
 $input-background-disabled: $light-gray;
 $input-border: 1px solid $medium-gray;
 $input-border-focus: 1px solid map-get($foundation-palette, primary);
-$input-shadow: inset 0 1px 2px rgba($black, 0.1);
+$input-shadow: inset 0 1px 2px rgba($black, .1);
 $input-shadow-focus: 0 0 5px $medium-gray;
 $input-cursor-disabled: not-allowed;
-$input-transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+$input-transition: box-shadow .5s, border-color .25s ease-in-out;
 $input-number-spinners: true;
 $input-radius: $global-radius;
 $form-button-radius: $global-radius;
@@ -522,7 +521,6 @@ $offcanvas-fixed-reveal: true;
 $offcanvas-exit-background: rgba($white, .25);
 $maincontent-class: 'off-canvas-content';
 
-
 // 26. Orbit
 // ---------
 
@@ -532,9 +530,9 @@ $orbit-bullet-diameter: 1.2rem;
 $orbit-bullet-margin: .1rem;
 $orbit-bullet-margin-top: .8rem;
 $orbit-bullet-margin-bottom: .8rem;
-$orbit-caption-background: rgba($black, 0.5);
+$orbit-caption-background: rgba($black, .5);
 $orbit-caption-padding: 1rem;
-$orbit-control-background-hover: rgba($black, 0.5);
+$orbit-control-background-hover: rgba($black, .5);
 $orbit-control-padding: 1rem;
 $orbit-control-zindex: 10;
 
@@ -745,7 +743,7 @@ $reveal-padding: $global-padding;
 $reveal-border: 1px solid $medium-gray;
 $reveal-radius: $global-radius;
 $reveal-zindex: 1005;
-$reveal-overlay-background: rgba($black, 0.45);
+$reveal-overlay-background: rgba($black, .45);
 
 // 48. Slider
 // ----------
@@ -821,7 +819,7 @@ $tab-content-padding: 0;
 $thumbnail-border: solid 4px $white;
 $thumbnail-margin-bottom: $global-margin;
 $thumbnail-shadow: 0 0 0 1px $medium-gray;
-$thumbnail-shadow-hover: 0 0 0px 1px $primary-color;
+$thumbnail-shadow-hover: 0 0 0 1px $primary-color;
 $thumbnail-transition: box-shadow 200ms ease-out;
 $thumbnail-radius: $global-radius;
 
@@ -829,7 +827,7 @@ $thumbnail-radius: $global-radius;
 // -------------
 
 $titlebar-background: transparent;
-$titlebar-color: #000000;
+$titlebar-color: #000;
 $titlebar-padding: 0;
 $titlebar-text-font-weight: bold;
 $titlebar-icon-color: $white;
