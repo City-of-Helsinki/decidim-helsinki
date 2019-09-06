@@ -1,5 +1,5 @@
 **/*{.,-}min.js
-vendor/**/*.js
+**/vendor/**/*.js
 **/node_modules/**
 bundle.js
 karma.conf.js
