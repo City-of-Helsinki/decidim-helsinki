@@ -11,24 +11,24 @@ DECIDIM_MODULE_VERSION = "~> 0.18.0"
 
 gem "decidim", DECIDIM_VERSION
 
+gem "decidim-access_requests", DECIDIM_MODULE_VERSION
 gem "decidim-antivirus", DECIDIM_MODULE_VERSION
 gem "decidim-plans", DECIDIM_MODULE_VERSION
-gem "decidim-access_requests", DECIDIM_MODULE_VERSION
-gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
 gem "decidim-process_groups_content_block", DECIDIM_MODULE_VERSION
+gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
 
 # Install the git modules until they have an actual release
-gem "decidim-suomifi", git: "git@github.com:mainio/decidim-module-suomifi.git"
-gem "decidim-mpassid", git: "git@github.com:mainio/decidim-module-mpassid.git"
 gem "decidim-combined_budgeting", git: "git@github.com:mainio/decidim-module-combined_budgeting.git"
+gem "decidim-mpassid", git: "git@github.com:mainio/decidim-module-mpassid.git"
+gem "decidim-suomifi", git: "git@github.com:mainio/decidim-module-suomifi.git"
 
 # Install the improved budgeting module until these improvements are hopefully
 # merged to the core.
 gem "decidim-budgets_enhanced", git: "git@github.com:OpenSourcePolitics/decidim-module-budgets_enhanced.git"
 
 # For the documents authorization handler
-gem "ruby-cldr", "~> 0.3.0"
 gem "henkilotunnus"
+gem "ruby-cldr", "~> 0.3.0"
 
 gem "font-awesome-rails", "~> 4.7.0"
 
@@ -49,12 +49,12 @@ group :development, :test do
 end
 
 group :development do
+  gem "faker", "~> 1.8.4"
   gem "letter_opener_web", "~> 1.3"
-  gem "web-console"
   gem "listen", "~> 3.1.0"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
-  gem "faker", "~> 1.8.4"
+  gem "web-console"
 end
 
 group :production, :production_kuva, :production_discussion, :staging do
@@ -68,8 +68,8 @@ group :production, :production_kuva, :production_discussion, :staging do
 end
 
 group :test do
-  gem "rspec-rails"
   gem "database_cleaner"
+  gem "rspec-rails"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
