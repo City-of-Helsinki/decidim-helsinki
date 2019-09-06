@@ -9,7 +9,7 @@
 </div>
 
 <div class="field hashtags__container remaining-characters-container">
-  <%= form.text_area :body, rows: 10, maxlength: component_settings.proposal_length, class: "js-hashtags mb-0", hashtaggable: true, value: present(@proposal).body, data: {
+  <%= form.text_area :body, rows: 10, maxlength: component_settings.proposal_length, class: "js-hashtags", hashtaggable: true, value: present(@proposal).body, data: {
     remaining_characters: '#body_remaining_characters',
     remaining_characters_messages: {
       one: t('decidim.components.add_comment_form.remaining_characters_1', count: '%count%'),
