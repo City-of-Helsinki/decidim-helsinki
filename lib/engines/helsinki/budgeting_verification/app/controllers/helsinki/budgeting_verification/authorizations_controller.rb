@@ -17,7 +17,7 @@ module Helsinki
       def new
         enforce_permission_to :create, :authorization, authorization: @authorization
 
-        return render :identify unless is_user_identified?
+        return render :identify unless user_identified?
         unless eligible_for_voting?
           @errors = conditions_checker.error_messages
           return render :error
@@ -54,9 +54,11 @@ module Helsinki
       private
 
       def handler
-        @handler ||= RequestForm.from_params(handler_params.merge(
-          handler_handle: authorization_handle
-        ))
+        @handler ||= RequestForm.from_params(
+          handler_params.merge(
+            handler_handle: authorization_handle
+          )
+        )
       end
 
       def handler_params
@@ -94,7 +96,7 @@ module Helsinki
 
         auth.attributes = {
           unique_id: uid,
-          metadata: {district: handler.district}
+          metadata: { district: handler.district }
         }
         auth.save!
         auth.grant!
@@ -129,7 +131,7 @@ module Helsinki
         ) || 1
       end
 
-      def is_user_identified?
+      def user_identified?
         verification_handles.each do |handle|
           return true if granted_authorization_handles.include?(handle)
         end
