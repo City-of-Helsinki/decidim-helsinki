@@ -24,19 +24,19 @@ class GeocodingValidator < ActiveModel::EachValidator
   end
 
   private
-    def geocoder_value(value_base)
-      if value_base
-        value_base + value_suffix
-      else
-        value_base
-      end
-    end
 
-    def value_suffix
-      if suffix = Rails.application.config.address_suffix
-        ", #{suffix}"
-      else
-        ''
-      end
+  def geocoder_value(value_base)
+    if value_base
+      value_base + value_suffix
+    else
+      value_base
     end
+  end
+
+  def value_suffix
+    suffix = Rails.application.config.address_suffix
+    return ", #{suffix}" if suffix
+
+    ""
+  end
 end
