@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:OpenSourcePolitics/decidim-module-budgets_enhanced.git
-  revision: b88dc75bbbde7c548253e65e103cb591acfa2910
+  revision: fc2757825dd8351e1e8d4602a42dd547fc3c7d8b
   specs:
     decidim-budgets_enhanced (0.18.0)
       decidim-budgets (= 0.18.0)
@@ -602,7 +602,7 @@ GEM
       request_store (~> 1.1)
     paper_trail-association_tracking (1.1.1)
     parallel (1.17.0)
-    parser (2.6.3.0)
+    parser (2.6.4.0)
       ast (~> 2.4.0)
     pg (1.1.4)
     pg_search (2.3.0)
