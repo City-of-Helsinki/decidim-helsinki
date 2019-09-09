@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:OpenSourcePolitics/decidim-module-budgets_enhanced.git
-  revision: fc2757825dd8351e1e8d4602a42dd547fc3c7d8b
+  revision: e77f14b66706f2ddbf35906063b7b4e0724ca99c
   specs:
     decidim-budgets_enhanced (0.18.0)
       decidim-budgets (= 0.18.0)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: git@github.com:mainio/decidim-module-mpassid.git
-  revision: d68099c0f07e4b36895d320e74c7b64fadf15dea
+  revision: 9bb8f02f4d6ddafad2f2ccf92ab428dc1555a1d1
   specs:
     decidim-mpassid (0.18.0)
       decidim-core (~> 0.18.0)
@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: git@github.com:mainio/decidim-module-suomifi.git
-  revision: f0f6b9ec23ba301dc03cbdc0e266b7da2f5c9210
+  revision: e6c15b9bb5899f32b3e777f7fb77001b395056d0
   specs:
     decidim-suomifi (0.18.0)
       decidim-core (~> 0.18.0)
