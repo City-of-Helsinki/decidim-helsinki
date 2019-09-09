@@ -49,6 +49,18 @@ module Helsinki
           }
         end
 
+        # In case reauthorization is allowed (i.e. no votes have been casted),
+        # show the reauthorization modal that takes the user back to the "new"
+        # action in the authorization handler.
+        if status_code == :unauthorized && allow_reauthorization?
+          return [
+            :incomplete,
+            extra_explanation: data[:extra_explanation],
+            action: :reauthorize,
+            cancel: true
+          ]
+        end
+
         [status_code, data]
       end
 
@@ -56,6 +68,17 @@ module Helsinki
       # forms to inform about it
       def redirect_params
         { "districts" => allowed_districts&.join("-") }
+      end
+
+      private
+
+      def allow_reauthorization?
+        reauth = Helsinki::BudgetingVerification::ReauthorizationHandler.new(
+          authorization.user,
+          authorization.name
+        )
+
+        reauth.can_reauthorize?
       end
     end
   end

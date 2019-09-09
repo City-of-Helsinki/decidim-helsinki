@@ -15,6 +15,16 @@ module Helsinki
       skip_before_action :store_current_location
 
       def new
+        unless @authorization.new_record?
+          reauth = Helsinki::BudgetingVerification::ReauthorizationHandler.new(
+            current_user,
+            @authorization.name
+          )
+          if reauth.can_reauthorize?
+            @authorization.destroy!
+            load_authorization
+          end
+        end
         enforce_permission_to :create, :authorization, authorization: @authorization
 
         return render :identify unless user_identified?
