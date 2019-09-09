@@ -24,8 +24,8 @@ Devise.setup do |config|
     app_root_url = begin
       if urlopts && urlopts[:host]
         url = urlopts[:protocol] || (urlopts[:port] == 443 ? "https" : "http")
-        url << "://#{urlopts[:host]}"
-        url << ":#{urlopts[:port]}" if urlopts[:port] && !urlopts[:port].to_s.match(/^80|443$/)
+        url += "://#{urlopts[:host]}"
+        url += ":#{urlopts[:port]}" if urlopts[:port] && !urlopts[:port].to_s.match(/^80|443$/)
         url
       else
         "http://localhost:3000"
