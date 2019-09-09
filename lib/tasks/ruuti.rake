@@ -1,13 +1,21 @@
+# frozen_string_literal: true
+
 namespace :ruuti do
   desc "Import processes to Decidim from an exported file."
-  task :import_processes, [:filename] => [:environment] do |t, args|
+  task :import_processes, [:filename] => [:environment] do |_t, args|
     filename = args[:filename]
 
-    file = case File.extname(filename)
-    when ".csv" then Roo::Csv.new(filename)
-    when ".xls" then Roo::Excel.new(filename)
-    when ".xlsx" then Roo::Excelx.new(filename)
-    else raise "Unknown file type: #{file.original_filename}"
+    file = begin
+      case File.extname(filename)
+      when ".csv"
+        Roo::Csv.new(filename)
+      when ".xls"
+        Roo::Excel.new(filename)
+      when ".xlsx"
+        Roo::Excelx.new(filename)
+      else
+        raise "Unknown file type: #{file.original_filename}"
+      end
     end
 
     areas = []
@@ -27,10 +35,10 @@ namespace :ruuti do
 
         if rowi == 41
           row.each_with_index do |cell, ind|
-            #puts ind.inspect
-            #puts cell.inspect
+            # puts ind.inspect
+            # puts cell.inspect
           end
-          #raise ""
+          # raise ""
         end
 
         puts "ROW"
@@ -39,68 +47,56 @@ namespace :ruuti do
             # Kaupunginosa
             # puts file.formatted_value(row, cell)
             area = cell.value
-            if rowi == 3 || rowi == 8 || rowi == 14 || rowi == 25 || rowi == 26 || rowi == 27 || rowi == 39 || rowi == 42 || rowi == 43
-              area = ''
+            if [3, 8, 14, 25, 26, 27, 39, 42, 43].include?(rowi)
+              area = ""
             elsif rowi == 4
-              area = 'Haaga'
+              area = "Haaga"
             elsif rowi == 7
-              area = 'Malmi, Pukinmäki'
+              area = "Malmi, Pukinmäki"
             elsif rowi == 12
-              area = 'Pasila'
+              area = "Pasila"
             elsif rowi == 13
-              area = 'Kumpula'
-            elsif rowi == 15 || rowi == 16
-              area = 'Latokartano'
-            elsif rowi == 17 || rowi == 18
-              area = 'Länsi-Herttoniemi'
+              area = "Kumpula"
+            elsif [15, 16].include?(rowi)
+              area = "Latokartano"
+            elsif [17, 18].include?(rowi)
+              area = "Länsi-Herttoniemi"
             elsif rowi == 22
-              area = 'Lauttasaari'
+              area = "Lauttasaari"
             elsif rowi == 23
-              area = 'Laajasalo'
+              area = "Laajasalo"
             elsif rowi == 23
-              area = 'Laajasalo'
+              area = "Laajasalo"
             elsif rowi == 31
-              area = 'Kannelmäki, Malminkartano'
-            elsif rowi == 34 || rowi == 35 || rowi == 37 || rowi == 38
-              area = 'Maunula, Pirkkola'
+              area = "Kannelmäki, Malminkartano"
+            elsif [34, 35, 37, 38].include?(rowi)
+              area = "Maunula, Pirkkola"
             elsif rowi == 36
-              area = 'Koskela, Käpylä, Kumpula, Arabia'
+              area = "Koskela, Käpylä, Kumpula, Arabia"
             elsif rowi == 36
-              area = 'Koskela, Käpylä, Kumpula, Arabia'
+              area = "Koskela, Käpylä, Kumpula, Arabia"
             elsif rowi == 41
-              area = 'Suutarila, Jakomäki'
+              area = "Suutarila, Jakomäki"
             elsif rowi == 44
-              area = 'Vartiokylä, Myllypuro'
+              area = "Vartiokylä, Myllypuro"
             end
           elsif ind == 6
-            if name.nil? || name.blank?
-              name = cell.value
-            end
+            name = cell.value if name.nil? || name.blank?
           elsif ind == 7 # What?
-            if description[:what].nil?
-              description[:what] = cell.value.to_s
-            end
+            description[:what] = cell.value.to_s if description[:what].nil?
           elsif ind == 8 # Why?
-            if description[:why].nil?
-              description[:why] = cell.value.to_s
-            end
+            description[:why] = cell.value.to_s if description[:why].nil?
           elsif ind == 9 # Who it would benefit?
-            if description[:who].nil?
-              description[:who] = cell.value.to_s
-            end
+            description[:who] = cell.value.to_s if description[:who].nil?
           elsif ind == 10 # Sustainable development?
-            if description[:sustainable].nil?
-              description[:sustainable] = cell.value.to_s
-            end
+            description[:sustainable] = cell.value.to_s if description[:sustainable].nil?
           elsif ind == 12 # How young people are involved?
-            if description[:youth].nil?
-              description[:youth] = cell.value.to_s
-            end
+            description[:youth] = cell.value.to_s if description[:youth].nil?
           elsif ind == 14 # Value
             if rowi == 44
               value = "10000"
             elsif value.nil? || value.blank?
-              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, '')
+              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, "")
             end
           end
 
@@ -119,7 +115,7 @@ namespace :ruuti do
             elsif ind == 9
               description[:youth] = cell.value.to_s
             elsif ind == 11
-              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, '')
+              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, "")
             end
           elsif rowi == 12
             if ind == 4
@@ -135,17 +131,13 @@ namespace :ruuti do
             elsif ind == 10
               description[:youth] = cell.value.to_s
             elsif ind == 12
-              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, '')
+              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, "")
             end
           elsif rowi == 22
-            if ind == 13
-              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, '')
-            end
+            value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, "") if ind == 13
           elsif rowi == 24
-            if ind == 13
-              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, '')
-            end
-          elsif rowi == 34 || rowi == 35 || rowi == 37 || rowi == 38 || rowi == 39
+            value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, "") if ind == 13
+          elsif [34, 35, 37, 38, 39].include?(rowi)
             if ind == 5
               name = cell.value
             elsif ind == 6
@@ -159,20 +151,14 @@ namespace :ruuti do
             elsif ind == 10
               description[:youth] = cell.value.to_s
             elsif ind == 12
-              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, '')
+              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, "")
             end
           elsif rowi == 37
-            if ind == 12
-              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, '')
-            end
+            value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, "") if ind == 12
           elsif rowi == 38
-            if ind == 12
-              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, '')
-            end
+            value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, "") if ind == 12
           elsif rowi == 39
-            if ind == 12
-              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, '')
-            end
+            value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, "") if ind == 12
           elsif rowi == 41
             if ind == 5
               name = cell.value
@@ -187,12 +173,10 @@ namespace :ruuti do
             elsif ind == 10
               description[:youth] = cell.value.to_s
             elsif ind == 13
-              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, '')
+              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, "")
             end
           elsif rowi == 43
-            if ind == 13
-              value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, '')
-            end
+            value = cell.value.to_s.gsub(/([.,][0-9]+)|[^0-9]/, "") if ind == 13
           end
         end
 
@@ -206,26 +190,26 @@ namespace :ruuti do
           part = kv[1]
 
           if subject == :what
-            #puts "<h2>Mitä?</h2>"
+            # puts "<h2>Mitä?</h2>"
             puts "Mitä?"
           elsif subject == :why
-            #puts "<h2>Miksi?</h2>"
+            # puts "<h2>Miksi?</h2>"
             puts ""
             puts "Miksi?"
           elsif subject == :who
-            #puts "<h2>Keitä tämä hyödyttäisi?</h2>"
+            # puts "<h2>Keitä tämä hyödyttäisi?</h2>"
             puts ""
             puts "Keitä tämä hyödyttäisi?"
           elsif subject == :sustainable
-            #puts "<h2>Kestävää kehitystä?</h2>"
+            # puts "<h2>Kestävää kehitystä?</h2>"
             puts ""
             puts "Kestävää kehitystä?"
           elsif subject == :youth
-            #puts "<h2>Miten nuoret ovat toteutuksessa mukana?</h2>"
+            # puts "<h2>Miten nuoret ovat toteutuksessa mukana?</h2>"
             puts ""
             puts "Miten nuoret ovat toteutuksessa mukana?"
           end
-          #puts "<p>" + part.to_s.gsub(/\n/, '<br>') + "</p>"
+          # puts "<p>" + part.to_s.gsub(/\n/, '<br>') + "</p>"
           puts part.to_s
         end
         puts "==="
@@ -235,9 +219,7 @@ namespace :ruuti do
 
       rowi += 1
 
-      if rowi >= 45
-        break
-      end
+      break if rowi >= 45
     end
 
     puts areas.uniq.inspect

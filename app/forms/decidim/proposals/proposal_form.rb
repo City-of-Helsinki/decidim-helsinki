@@ -15,7 +15,7 @@ module Decidim
       attribute :attachment, AttachmentForm
 
       validates :address, geocoding: true, if: ->(form) { Decidim.geocoder.present? && form.has_address? }
-      #validates :address, presence: true, if: ->(form) { form.has_address? }
+      # validates :address, presence: true, if: ->(form) { form.has_address? }
       validates :category, presence: true, if: ->(form) { form.category_id.present? }
       validates :scope, presence: true, if: ->(form) { form.scope_id.present? }
 
@@ -55,9 +55,7 @@ module Decidim
       private
 
       def address_only_when_enabled
-        if address.nil? || address.strip.length == 0
-          @has_address = false
-        end
+        @has_address = false if address.nil? || address.strip.empty?
       end
 
       def scope_belongs_to_participatory_space_scope

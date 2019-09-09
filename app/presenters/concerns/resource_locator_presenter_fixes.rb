@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Ability to pass context to Decidim::ResourceLocatorPresenter and using the
 # context and url_options for the path helpers, related to:
 # https://github.com/decidim/decidim/issues/4660
@@ -5,7 +7,7 @@ module ResourceLocatorPresenterFixes
   extend ActiveSupport::Concern
 
   included do
-    def initialize(resource, context=nil)
+    def initialize(resource, context = nil)
       @resource = resource
       @context = context
     end
@@ -19,14 +21,12 @@ module ResourceLocatorPresenterFixes
     end
 
     def route_proxy
-      if @context
-        return @context.send(target.mounted_engine)
-      end
+      return @context.send(target.mounted_engine) if @context
 
       @route_proxy ||= Decidim::EngineRouter.main_proxy(target)
     end
 
-    def url_options(options={})
+    def url_options(options = {})
       target.mounted_params.dup.merge(options)
     end
 

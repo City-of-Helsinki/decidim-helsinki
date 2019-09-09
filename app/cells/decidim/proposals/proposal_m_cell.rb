@@ -32,7 +32,7 @@ module Decidim
       end
 
       def has_state?
-        #model.published?
+        # model.published?
         false
       end
 
@@ -49,7 +49,7 @@ module Decidim
         model_body = strip_tags(model_body)
 
         if options[:full_description]
-          model_body.gsub(/\n/, '<br>')
+          model_body.gsub(/\n/, "<br>")
         else
           truncate(model_body, length: 100)
         end
@@ -111,7 +111,7 @@ module Decidim
       def has_address?
         return false unless component_settings.geocoding_enabled?
         return false if address.nil?
-        return address.strip.length > 0
+        address.strip.length.positive?
       end
 
       def address
@@ -119,9 +119,7 @@ module Decidim
       end
 
       def has_image?
-        if resource_image_attachment
-          return true
-        end
+        return true if resource_image_attachment
 
         false
       end
@@ -130,18 +128,15 @@ module Decidim
         if has_image?
           versions = resource_image_attachment.file.versions
           vhandle = :big
-          if versions.has_key?(vhandle)
-            return versions[vhandle].url
-          end
+          return versions[vhandle].url if versions.has_key?(vhandle)
         end
       end
 
       def resource_image_attachment
-        if attachment = model.attachments.first
-          if attachment.photo?
-            attachment
-          end
-        end
+        attachment = model.attachments.first
+        return nil unless attachment
+
+        attachment if attachment.photo?
       end
     end
   end

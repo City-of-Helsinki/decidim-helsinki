@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Tracking
-  config.snoobi_account = 'omastadi_hel_fi'
+  config.snoobi_account = "omastadi_hel_fi"
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -14,15 +16,15 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = Uglifier.new(:harmony => true)
+  config.assets.js_compressor = Uglifier.new(harmony: true)
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -31,7 +33,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = 'https://omastadi.hel.fi'
+  config.action_controller.asset_host = "https://omastadi.hel.fi"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -50,13 +52,13 @@ Rails.application.configure do
   config.log_level = :error
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  config.active_job.queue_adapter     = :resque
+  config.active_job.queue_adapter = :resque
   config.active_job.queue_name_prefix = "decidim-helsinki_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
@@ -76,14 +78,14 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address        => Rails.application.secrets.smtp_address,
-    :port           => Rails.application.secrets.smtp_port,
-    :authentication => Rails.application.secrets.smtp_authentication,
-    :user_name      => Rails.application.secrets.smtp_username,
-    :password       => Rails.application.secrets.smtp_password,
-    :domain         => Rails.application.secrets.smtp_domain,
-    :enable_starttls_auto => Rails.application.secrets.smtp_starttls_auto,
-    :openssl_verify_mode => 'none'
+    address: Rails.application.secrets.smtp_address,
+    port: Rails.application.secrets.smtp_port,
+    authentication: Rails.application.secrets.smtp_authentication,
+    user_name: Rails.application.secrets.smtp_username,
+    password: Rails.application.secrets.smtp_password,
+    domain: Rails.application.secrets.smtp_domain,
+    enable_starttls_auto: Rails.application.secrets.smtp_starttls_auto,
+    openssl_verify_mode: "none"
   }
 
   if Rails.application.secrets.sendgrid
@@ -101,17 +103,17 @@ Rails.application.configure do
   config.mailer_sender = "no-reply@omastadi.hel.fi"
 
   # Default URL for application (Devise)
-  config.action_controller.default_url_options  = {
-    #protocol: 'https', # Breaks login redirection
-    host: 'omastadi.hel.fi',
-    port: 443,
+  config.action_controller.default_url_options = {
+    # protocol: "https", # Breaks login redirection
+    host: "omastadi.hel.fi",
+    port: 443
   }
 
   # Default URL for mailer (Devise)
   config.action_mailer.default_url_options = {
-    protocol: 'https',
-    host: 'omastadi.hel.fi',
-    #from: 'no-reply@hel.fi', # Causes forms to break e.g. when publishing proposal
+    protocol: "https",
+    host: "omastadi.hel.fi",
+    # from: "no-reply@hel.fi" # Causes forms to break e.g. when publishing proposal
   }
 
   # Use a different logger for distributed setups.
@@ -119,7 +121,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
@@ -128,5 +130,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # The location of the Tunnistamo authentication server
-  config.tunnistamo_auth_server = 'https://api.hel.fi/sso'
+  config.tunnistamo_auth_server = "https://api.hel.fi/sso"
 end

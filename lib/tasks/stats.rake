@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 namespace :stats do
   #
   # stats.rake
@@ -7,17 +8,14 @@ namespace :stats do
   # ==========
   #   RAILS_ENV=development bundle exec rake stats::general
 
-  desc 'Show statistics of users in this Decidim instance'
-  task :general => [:environment] do
+  desc "Show statistics of users in this Decidim instance"
+  task general: [:environment] do
+    # Query for all users
+    allu = Decidim::User.all
+    puts "No users in this Decidim!" unless allu
 
-      # Query for all users
-      allu = Decidim::User.all
-      unless allu
-        puts 'No users in this Decidim!'
-      end
-
-      # Check count of users
-      nu = Decidim::User.all.count
-      puts "#{nu} users in Decidim."
+    # Check count of users
+    nu = Decidim::User.all.count
+    puts "#{nu} users in Decidim."
   end
 end

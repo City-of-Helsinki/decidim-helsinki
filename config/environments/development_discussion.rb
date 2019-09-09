@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Wrapper class can be used to customize the coloring of the platform per
   # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
-  config.wrapper_class = 'wrapper-discussion'
+  config.wrapper_class = "wrapper-discussion"
 
   # Color profile that changes the logo color for footer
-  config.color_profile = 'white'
+  config.color_profile = "white"
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -20,12 +22,12 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => 'public, max-age=172800'
+      "Cache-Control" => "public, max-age=172800"
     }
   else
     config.action_controller.perform_caching = false
@@ -34,7 +36,7 @@ Rails.application.configure do
   end
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = 'http://localhost:3000'
+  config.action_controller.asset_host = "http://localhost:3000"
 
   # Add the same loggers as we have in normal development mode
   config.action_view.logger = Logger.new(STDOUT)
@@ -47,10 +49,10 @@ Rails.application.configure do
 
   # Default URL for mailer (Devise)
   config.action_mailer.default_url_options = {
-    protocol: 'http',
-    host: 'localhost',
-    port: '3000',
-    #from: 'info@local.dev', # Causes forms to break e.g. when publishing proposal
+    protocol: "http",
+    host: "localhost",
+    port: 3000,
+    # from: "info@local.dev" # Causes forms to break e.g. when publishing proposal
   }
 
   # Use letter_opener
@@ -78,6 +80,6 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # The location of the Tunnistamo authentication server
-  #config.tunnistamo_auth_server = 'http://127.0.0.1:8000'
-  config.tunnistamo_auth_server = 'https://api.hel.fi/sso'
+  # config.tunnistamo_auth_server = "http://127.0.0.1:8000"
+  config.tunnistamo_auth_server = "https://api.hel.fi/sso"
 end

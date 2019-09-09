@@ -11,9 +11,7 @@ module Decidim
 
       # Normal login enabled -> comment out the before_action below
       # To Disable login     -> comment the line below
-      if Rails.application.config.use_mode == 'private'
-        before_action :disable_controller
-      end
+      before_action :disable_controller if Rails.application.config.use_mode == "private"
 
       before_action :configure_permitted_parameters
 
@@ -52,7 +50,7 @@ module Decidim
       private
 
       def disable_controller
-        redirect_to '/'
+        redirect_to "/"
       end
 
       protected

@@ -23,16 +23,16 @@ module Helsinki
 
         errors.uniq!
 
-        !errors.any?
+        errors.none?
       end
 
       private
 
       def validate_metadata
-        ["municipality", "role", "school_code", "student_class"].each do |key|
+        %w(municipality role school_code student_class).each do |key|
           if authorization.metadata[key].blank?
             errors << :data_blank
-            return
+            break
           end
         end
       end
@@ -64,7 +64,7 @@ module Helsinki
           level = group.gsub(/^[^0-9]*/, "").to_i
           if level < 6
             errors << :too_young
-            return
+            break
           end
         end
       end

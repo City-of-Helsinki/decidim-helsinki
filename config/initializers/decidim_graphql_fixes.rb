@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 # Fix to authorable interface regarding comments component schema:
 # https://github.com/decidim/decidim/issues/4156
 #
 # This may be removed after that issue is fixed. See steps to replicate from
 # the issue and test it out before removing this.
-require 'decidim/api/authorable_interface'
+require "decidim/api/authorable_interface"
 
 # Fix GraphQL type reloading:
 # https://github.com/decidim/decidim/issues/4202
@@ -19,15 +21,16 @@ if Rails.env.development?
   # First look up all type definitions in the Decidim gems' `app/types` dirs.
   constants = {}
   paths = ActiveSupport::Dependencies.autoload_paths.reject do |path|
-    if path =~ /\/gems\/decidim-(.*)-([0-9]+\.)+[0-9]\/app\/types/
-      Dir["#{path}/**/*.rb"].each do |file|
-        if matches = file.match(/\/decidim\/(.*)\/(.*)\.rb/)
-          mod_name = "Decidim::#{matches[1].camelcase}"
-          type_name = matches[2].camelcase
-          constants[mod_name] ||= []
-          constants[mod_name] << type_name
-        end
-      end
+    next unless path =~ %r{/gems/decidim-(.*)-([0-9]+\.)+[0-9]/app/types}
+
+    Dir["#{path}/**/*.rb"].each do |file|
+      matches = file.match(%r{/decidim/(.*)/(.*)\.rb})
+      next unless matches
+
+      mod_name = "Decidim::#{matches[1].camelcase}"
+      type_name = matches[2].camelcase
+      constants[mod_name] ||= []
+      constants[mod_name] << type_name
     end
   end
 

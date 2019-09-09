@@ -11,13 +11,13 @@ module Helsinki
         check_municipality
         check_age
 
-        !errors.any?
+        errors.none?
       end
 
       private
 
       def validate_metadata
-        ["municipality", "date_of_birth"].each do |key|
+        %w(municipality date_of_birth).each do |key|
           if authorization.metadata[key].blank?
             errors << :data_blank
             return false
@@ -41,7 +41,7 @@ module Helsinki
         date = Date.parse(authorization.metadata["date_of_birth"])
         age = Date.current.year - date.year
         errors << :too_young if age < 12
-      rescue
+      rescue ArgumentError, TypeError
         # Can happen because of a parsing error with the date of birth.
         errors << :age_unknown
       end

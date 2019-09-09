@@ -69,7 +69,6 @@ module DecidimHelsinki
       # Override the main menu
       Decidim::MenuRegistry.create(:menu)
       Decidim.menu :menu do |menu|
-
         menu.item I18n.t("menu.home", scope: "decidim"),
                   decidim.root_path,
                   position: 1,

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 namespace :hki do
   # Export budgeting results to CSV.
   # Usage: rake hki:export_budget[1,tmp/export.csv]
   # Usage (include pending): rake hki:export_budget[1,tmp/export.csv,y]
   desc "Export budgeting results."
-  task :export_budget, [:feature_id, :filename, :include_pending] => [:environment] do |t, args|
+  task :export_budget, [:feature_id, :filename, :include_pending] => [:environment] do |_t, args|
     feature_id = args[:feature_id]
     filename = args[:filename]
     include_pending = !(args[:include_pending] =~ /y/i).nil?
@@ -17,9 +19,10 @@ namespace :hki do
     locales.delete(default_locale)
     locales.unshift(default_locale)
 
-    CSV.open(filename, "w", {
-      force_quotes: true,
-    }) do |csv|
+    CSV.open(
+      filename, "w",
+      force_quotes: true
+    ) do |csv|
       titlerow = []
       locales.each do |loc|
         titlerow << "Title (#{loc})"
@@ -35,38 +38,32 @@ namespace :hki do
       csv << titlerow
 
       # Create the query and go through each line to write to the CSV
-      query = Decidim::Budgets::Project
-      .select('
-        decidim_budgets_projects.*,
+      query = Decidim::Budgets::Project.select("decidim_budgets_projects.*,
         COUNT(finished_line_items.id) AS finished_orders_count,
         COUNT(pending_line_items.id) AS pending_orders_count,
         COUNT(finished_line_items.id) + COUNT(pending_line_items.id) AS orders_count
-      ')
-      .joins(
-        "LEFT OUTER JOIN (
+      ").joins("LEFT OUTER JOIN (
           SELECT decidim_budgets_line_items.* FROM decidim_budgets_line_items
           LEFT OUTER JOIN decidim_budgets_orders
             ON decidim_budgets_orders.id = decidim_budgets_line_items.decidim_order_id
           WHERE decidim_budgets_orders.decidim_feature_id = #{feature.id}
           AND decidim_budgets_orders.checked_out_at IS NOT NULL
-        ) AS finished_line_items ON finished_line_items.decidim_project_id = decidim_budgets_projects.id"
-      )
-      .joins(
-        "LEFT OUTER JOIN (
+        ) AS finished_line_items ON finished_line_items.decidim_project_id = decidim_budgets_projects.id
+      ").joins("LEFT OUTER JOIN (
           SELECT decidim_budgets_line_items.* FROM decidim_budgets_line_items
           LEFT OUTER JOIN decidim_budgets_orders
             ON decidim_budgets_orders.id = decidim_budgets_line_items.decidim_order_id
           WHERE decidim_budgets_orders.decidim_feature_id = #{feature.id}
           AND decidim_budgets_orders.checked_out_at IS NULL
-        ) AS pending_line_items ON pending_line_items.decidim_project_id = decidim_budgets_projects.id"
-      )
-      .where(feature: feature)
-      .group("decidim_budgets_projects.id")
+        ) AS pending_line_items ON pending_line_items.decidim_project_id = decidim_budgets_projects.id
+      ").where(feature: feature).group("decidim_budgets_projects.id")
 
-      if include_pending
-        query = query.order("orders_count DESC")
-      else
-        query = query.order("finished_orders_count DESC")
+      query = begin
+        if include_pending
+          query.order("orders_count DESC")
+        else
+          query.order("finished_orders_count DESC")
+        end
       end
 
       query = query.order("decidim_budgets_projects.title->>'#{default_locale}' ASC")
@@ -100,7 +97,7 @@ namespace :hki do
   # Import budgeting answers from a spreadsheet (e.g. ODS, Excel).
   # Usage: rake hki:import_answers[tmp/answers.(ods|xlsx)]
   desc "Import answers to proposals."
-  task :import_answers, [:filename] => [:environment] do |t, args|
+  task :import_answers, [:filename] => [:environment] do |_t, args|
     filename = args[:filename]
 
     spreadsheet = Roo::Spreadsheet.open(filename)
@@ -109,13 +106,13 @@ namespace :hki do
     sheet.each_with_index do |row, rowi|
       rowdata = {}
       row.each_with_index do |cell, celli|
-        if rowi == 0
+        if rowi.zero?
           columns[celli] = cell
         else
           rowdata[columns[celli].to_sym] = cell
         end
       end
-      next if rowi == 0
+      next if rowi.zero?
 
       p = Decidim::Proposals::Proposal.find_by(id: rowdata[:proposal_id])
       if p
