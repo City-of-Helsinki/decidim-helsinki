@@ -39,7 +39,7 @@ module ApplicationHelper
       end
     end
 
-    path = params[:back_to] if params[:back_to].match?(%r{^(/[a-z0-9-]*)+$})
+    path = params[:back_to] if params[:back_to] =~ %r{^(/[a-z0-9-]*)+$}
 
     path += request_params_query({}, [:back_to])
 

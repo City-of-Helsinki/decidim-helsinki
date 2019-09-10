@@ -34,8 +34,8 @@ class ApplicationController < ActionController::Base
   # authorized
   def allow_unauthorized_path?
     # Changing the locale
-    return true if request.path.match?(%r{^/locale})
-    return true if request.path.match?(%r{^/cookies})
+    return true if request.path =~ %r{^/locale}
+    return true if request.path =~ %r{^/cookies}
 
     false
   end
