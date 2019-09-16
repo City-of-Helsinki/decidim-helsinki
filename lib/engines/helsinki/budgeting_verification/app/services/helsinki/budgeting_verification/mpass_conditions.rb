@@ -29,7 +29,7 @@ module Helsinki
       private
 
       def validate_metadata
-        %w(municipality role school_code student_class).each do |key|
+        %w(municipality role school_code student_class_level).each do |key|
           if authorization.metadata[key].blank?
             errors << :data_blank
             break
@@ -54,14 +54,14 @@ module Helsinki
         # end
 
         # The person should be student in case the class information exists
-        student_classes = authorization.metadata["student_class"].split(",")
+        student_classes = authorization.metadata["student_class_level"].split(",")
         errors << :not_student if student_classes.empty?
       end
 
       def check_student_age
-        student_classes = authorization.metadata["student_class"].split(",")
+        student_classes = authorization.metadata["student_class_level"].split(",")
         student_classes.each do |group|
-          level = group.gsub(/^[^0-9]*/, "").to_i
+          level = group.gsub(/[^0-9]*/, "").to_i
           if level < 6
             errors << :too_young
             break
