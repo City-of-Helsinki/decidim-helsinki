@@ -3,6 +3,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # config.suomifi_enabled = true
+  config.mpassid_enabled = true
+
   # Tracking
   config.snoobi_account = "omastadi_hel_fi"
 
@@ -91,9 +94,9 @@ Rails.application.configure do
   if Rails.application.secrets.sendgrid
     config.action_mailer.default_options = {
       "X-SMTPAPI" => {
-        filters:  {
+        filters: {
           clicktrack: { settings: { enable: 0 } },
-          opentrack:  { settings: { enable: 0 } }
+          opentrack: { settings: { enable: 0 } }
         }
       }.to_json
     }
@@ -112,7 +115,7 @@ Rails.application.configure do
   # Default URL for mailer (Devise)
   config.action_mailer.default_url_options = {
     protocol: "https",
-    host: "omastadi.hel.fi",
+    host: "omastadi.hel.fi"
     # from: "no-reply@hel.fi" # Causes forms to break e.g. when publishing proposal
   }
 
