@@ -13,13 +13,12 @@ Decidim::Verifications.register_workflow(:helsinki_documents_authorization_handl
   auth.expires_in = 1.month
 end
 
-# Register the custom budgeting workflow in case Suomi.fi and MPASSid are enabled
-if Rails.application.config.suomifi_enabled && Rails.application.config.mpassid_enabled
-  Decidim::Verifications.register_workflow(:budgeting_identity) do |workflow|
-    workflow.engine = Helsinki::BudgetingVerification::Engine
-    workflow.action_authorizer = "Helsinki::BudgetingVerification::ActionAuthorizer"
-    workflow.options do |options|
-      options.attribute :allowed_districts, type: :string, required: false
-    end
+# Register the custom budgeting workflow that checks conditions against the
+# Suomi.fi OR MPASSid verification.
+Decidim::Verifications.register_workflow(:budgeting_identity) do |workflow|
+  workflow.engine = Helsinki::BudgetingVerification::Engine
+  workflow.action_authorizer = "Helsinki::BudgetingVerification::ActionAuthorizer"
+  workflow.options do |options|
+    options.attribute :allowed_districts, type: :string, required: false
   end
 end
