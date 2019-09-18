@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: git@github.com:mainio/decidim-module-mpassid.git
-  revision: 9bb8f02f4d6ddafad2f2ccf92ab428dc1555a1d1
+  revision: 8083a6e1bd6283cd1d86305d6f447ec84e34ce31
   specs:
     decidim-mpassid (0.18.0)
       decidim-core (~> 0.18.0)
@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: git@github.com:mainio/decidim-module-suomifi.git
-  revision: e6c15b9bb5899f32b3e777f7fb77001b395056d0
+  revision: 285c9f081c3b4f0b02c843ca97e6c29a8214e437
   specs:
     decidim-suomifi (0.18.0)
       decidim-core (~> 0.18.0)
