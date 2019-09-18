@@ -9,6 +9,10 @@ sv:
         last_name: Efternamn
         pin: Personnummer (HETU)
         postal_code: Postnummer
+      mpassid_nids:
+        voting_unit: Ruuti område
+      suomifi_eid:
+        district: Distrikt
     errors:
       models:
         helsinki_documents_authorization_handler:
@@ -46,6 +50,14 @@ sv:
           passport: Pass
         name: Identity document at an office
         user_explanation: Gå till en fysisk plats för att identifiera dig med ett identitetsdokument.
+      mpassid_nids:
+        fields:
+          allowed_units: Tillåtna Ruuti områden
+          voting_unit: Ruuti område
+      suomifi_eid:
+        fields:
+          allowed_districts: Tillåtna distrikt
+          district: Distrikt
     pages:
       home:
         statistics:

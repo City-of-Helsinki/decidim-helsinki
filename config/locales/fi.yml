@@ -9,6 +9,10 @@ fi:
         last_name: Sukunimi
         pin: Henkilötunnus
         postal_code: Postinumero
+      mpassid_nids:
+        voting_unit: Ruuti-alue
+      suomifi_eid:
+        district: Suurpiiri
     errors:
       models:
         helsinki_documents_authorization_handler:
@@ -46,6 +50,14 @@ fi:
           passport: Passi
         name: Henkilöllisyystodistus toimipisteessä
         user_explanation: Käy fyysisessä toimipisteessä varmentamassa itsesi henkilöllisyystodistuksen avulla.
+      mpassid_nids:
+        fields:
+          allowed_units: Sallitut Ruuti-alueet
+          voting_unit: Ruuti-alue
+      suomifi_eid:
+        fields:
+          allowed_districts: Sallitut suurpiirit
+          district: Suurpiiri
     pages:
       home:
         statistics:

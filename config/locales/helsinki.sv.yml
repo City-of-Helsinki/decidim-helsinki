@@ -47,3 +47,11 @@ sv:
         creator: Författare till originalbilden
         license: Bildlicens
         note: Bildredigerad från original
+  mpassid_action_authorizer:
+    restrictions:
+      voting_unit_not_allowed: Du kan inte rösta på detta område från din skola.
+      voting_unit_required: Information som behövs om ditt Ruuti-område.
+  suomifi_action_authorizer:
+    restrictions:
+      district_not_allowed: Du har redan valt att rösta i ett annat distrikt.
+      district_required: Distriktinformation krävs.

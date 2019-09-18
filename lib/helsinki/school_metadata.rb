@@ -34,6 +34,9 @@ module Helsinki
     # NOTE: This list only contains the Helsinki schools that have elementary
     #       level.
     MAPPING = {
+      "00000" => { name: "Testikoulu", type: 11, postal_code: "00210", voting_unit: 6 },
+
+      # Actual schools
       "00083" => { name: "Helsingin normaalilyseo", type: 19, postal_code: "00120", voting_unit: 6 },
       "00084" => { name: "Helsingin ranskalais-suomalainen koulu", type: 19, postal_code: "00350", voting_unit: 6 },
       "00085" => { name: "Helsingin saksalainen koulu", type: 19, postal_code: "00100", voting_unit: 6 },
@@ -170,6 +173,13 @@ module Helsinki
       return nil unless data
 
       data[:postal_code]
+    end
+
+    def self.voting_unit_for_school(school_code)
+      data = metadata_for_school(school_code)
+      return nil unless data
+
+      data[:voting_unit]
     end
   end
 end

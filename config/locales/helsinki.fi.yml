@@ -5,7 +5,7 @@ fi:
     budgeting_verification:
       action_authorizer:
         restrictions:
-          district_not_allowed: Suurpiirisi ei ole tässä äänestyksessä vaadittu suurpiiri.
+          district_not_allowed: Olet jo valinnut äänestäväsi toisessa suurpiirissä.
           district_required: Suurpiiritieto tarvitaan.
       authorizations:
         error:
@@ -47,3 +47,11 @@ fi:
         creator: Alkuperäisen kuvan tekijä
         license: Kuvan lisenssi
         note: Kuvaa muokattu alkuperäisestä
+  mpassid_action_authorizer:
+    restrictions:
+      voting_unit_not_allowed: Koulustasi ei voi äänestää tällä alueella.
+      voting_unit_required: Tieto Ruuti-alueesta tarvitaan.
+  suomifi_action_authorizer:
+    restrictions:
+      district_not_allowed: Olet jo valinnut äänestäväsi toisessa suurpiirissä.
+      district_required: Suurpiiritieto tarvitaan.

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "helsinki/suomifi_metadata_collector"
+
 if Rails.application.config.suomifi_enabled
   cert_file = Rails.application.secrets.omniauth[:suomifi][:certificate_file]
   pkey_file = Rails.application.secrets.omniauth[:suomifi][:private_key_file]
@@ -11,6 +13,14 @@ if Rails.application.config.suomifi_enabled
       config.certificate_file = cert_file
       config.private_key_file = pkey_file
       config.auto_email_domain = Rails.application.config.auto_email_domain
+      config.workflow_configurator = lambda do |workflow|
+        workflow.expires_in = 0.minutes
+        workflow.action_authorizer = "SuomifiActionAuthorizer"
+        workflow.options do |options|
+          options.attribute :allowed_districts, type: :string, required: false
+        end
+      end
+      config.metadata_collector_class = Helsinki::SuomifiMetadataCollector
     end
   end
 end
