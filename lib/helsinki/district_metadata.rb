@@ -21,7 +21,7 @@ module Helsinki
       8 => %w(00890)
     }.freeze
 
-    def self.postal_code_for_subdivision(postal_code)
+    def self.subdivision_for_postal_code(postal_code)
       MAPPING.each do |subdivision, codes|
         return subdivision if codes.include?(postal_code)
       end

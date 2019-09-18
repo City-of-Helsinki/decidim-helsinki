@@ -125,7 +125,7 @@ module Helsinki
       end
 
       def find_area_by_postal_code
-        Helsinki::DistrictMetadata.postal_code_for_subdivision(
+        Helsinki::DistrictMetadata.subdivision_for_postal_code(
           strong_authorization.metadata["postal_code"]
         ) || 1
       end
@@ -136,7 +136,7 @@ module Helsinki
         )
         return nil unless postal_code
 
-        Helsinki::DistrictMetadata.postal_code_for_subdivision(
+        Helsinki::DistrictMetadata.subdivision_for_postal_code(
           postal_code
         ) || 1
       end
