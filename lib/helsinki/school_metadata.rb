@@ -34,7 +34,8 @@ module Helsinki
     # NOTE: This list only contains the Helsinki schools that have elementary
     #       level.
     MAPPING = {
-      "00000" => { name: "Testikoulu", type: 11, postal_code: "00210", voting_unit: 6 },
+      # Test school code passed for the test authorizer by MPASSid
+      # "00000" => { name: "Testikoulu", type: 11, postal_code: "00210", voting_unit: 6 },
 
       # Actual schools
       "00083" => { name: "Helsingin normaalilyseo", type: 19, postal_code: "00120", voting_unit: 6 },
