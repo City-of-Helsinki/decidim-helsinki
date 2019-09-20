@@ -12,15 +12,15 @@ fi:
           title: Äänestämistä ei sallita
           reason_title: 'Syy:'
           reason:
-            age_unknown: Ikäsi ei ole tiedossa.
-            data_blank: Varmennusta varten ei ole tarpeeksi tietoja.
-            class_level_not_defined: Koulusi luokkatietoa ei tiedetä.
-            not_in_area: Kotikuntasi ei ole Helsinki.
-            not_permanent_resident: Et ole pysyvä asukas Helsingissä.
-            not_student: Et ole oppilas.
-            too_young: Olet liian nuori äänestääksesi.
-            unknown_school: Kouluasi ei tiedetä.
-            invalid_school_type: Virheellinen koulun tyyppi.
+            age_unknown: Ikääsi ei pystytä varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
+            data_blank: Henkilöllisyyttäsi ei pystytä varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
+            class_level_not_defined: Luokka-astettasi ei pystytty varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
+            not_in_area: Kotikuntasi ei ole Helsinki. Tähän äänestykseen voivat osallistua vain helsinkiläiset.
+            not_permanent_resident: Pysyvä asuinpaikkasi ei ole Helsinki. Tähän äänestykseen voivat osallistua vain helsinkiläiset.
+            not_student: Saamamme tiedon mukaan et ole oppilas. Vanhemmat ja opettajat eivät voi tunnistautua äänestämään Wilmalla. Valitse toinen tunnistautumistapa.
+            too_young: Olet ehkä liian nuori äänestämään. Sinun tulee olla vähintään peruskoulun 6-luokalla, jotta voit tunnistautua äänestäjäksi Wilmalla. Jos olet täyttänyt tai täytät tänä vuonna 12 vuotta, voit äänestää erikseen ilmoitetuissa äänestyspaikoissa luokkatasostasi riippumatta.
+            unknown_school: Emme onnistuneet varmistamaan sähköisesti missä koulussa opiskelet. Et valitettavasti voi äänestää Ruuti-budjetoinnissa.
+            invalid_school_type: Koulutyyppisi ei salli sinun tunnistautua äänestäjäksi Wilmalla. Valitse toinen tunnistautumistapa.
         identify:
           title: Tunnistaudu
         new:

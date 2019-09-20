@@ -2,7 +2,7 @@ en:
   activemodel:
     attributes:
       budgeting_verification:
-        district: District
+        district: District (your recommended district by default)
       helsinki_documents_authorization_handler:
         document_type: Identity document type
         first_name: First name

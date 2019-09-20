@@ -12,15 +12,15 @@ en:
           title: Voting not allowed
           reason_title: 'Reason:'
           reason:
-            age_unknown: Your age is unknown.
-            data_blank: Not enough data available for verification.
-            class_level_not_defined: Your school class is not known.
-            not_in_area: Your home municipality is not Helsinki.
-            not_permanent_resident: You are not a permanent citizen of Helsinki.
-            not_student: You are not a student.
-            too_young: You are too young to vote.
-            unknown_school: Your school is not known.
-            invalid_school_type: Invalid school type.
+            age_unknown: Your age cannot be verified electronically. You can vote at the informed voting locations by presenting your ID.
+            data_blank: Your identity cannot be verified electronically. You can vote at the informed voting locations by presenting your ID.
+            class_level_not_defined: Your school grade could not be verified electronically. You can vote at the informed voting locations by presenting your ID.
+            not_in_area: Your home town is not Helsinki. Only Helsinki residents can participate in this vote.
+            not_permanent_resident: You are not a permanent resident of Helsinki. Only Helsinki residents can participate in this vote.
+            not_student: According to our information, you are not a student. Parents and teachers cannot identify themselves with voting at Wilma. Please choose another authentication method.
+            too_young: You may be too young to vote. You must be at least elementary school 6th grade in order to be eligible to vote at Wilma. If you are 12 or older this year, you can vote at the informed voting locations, regardless of your class level.
+            unknown_school: We failed to verify electronically which school you are studying at. Unfortunately, you cannot vote in the Ruuti budgeting.
+            invalid_school_type: Your school type does not allow you to identify yourself as a voter with Wilma. Please choose another authentication method.
         identify:
           title: Identify yourself
         new:

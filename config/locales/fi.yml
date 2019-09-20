@@ -2,7 +2,7 @@ fi:
   activemodel:
     attributes:
       budgeting_verification:
-        district: Suurpiiri
+        district: Suurpiiri (oletuksena sinulle suositeltu suurpiiri)
       helsinki_documents_authorization_handler:
         document_type: Henkilöllisyystodistuksen tyyppi
         first_name: Etunimi

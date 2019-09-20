@@ -2,7 +2,7 @@ sv:
   activemodel:
     attributes:
       budgeting_verification:
-        district: Distrikt
+        district: Distrikt (ditt rekommenderade distrikt som standard)
       helsinki_documents_authorization_handler:
         document_type: Typ av identitetsdokument
         first_name: Förnamn

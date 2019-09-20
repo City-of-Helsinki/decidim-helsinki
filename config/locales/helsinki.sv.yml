@@ -12,15 +12,15 @@ sv:
           title: Röstning inte tillåten
           reason_title: 'Anledning:'
           reason:
-            age_unknown: Din ålder är okänd.
-            data_blank: Det finns inte tillräckligt med data för verifiering.
-            class_level_not_defined: Din skolklass är inte känd.
-            not_in_area: Din hemkommune är inte Helsingfors.
-            not_permanent_resident: Du är inte en permanent medborgare i Helsingfors.
-            not_student: Du är inte en student.
-            too_young: Du är för ung för att rösta.
-            unknown_school: Din skola är inte känd.
-            invalid_school_type: Ogiltig skoltyp.
+            age_unknown: Din ålder kan inte verifieras elektroniskt. Du kan rösta på de informerade omröstningarna genom att presentera ditt ID.
+            data_blank: Din identitet kan inte verifieras elektroniskt. Du kan rösta på de informerade omröstningarna genom att presentera ditt ID.
+            class_level_not_defined: Ditt betyg kunde inte verifieras elektroniskt. Du kan rösta på de informerade omröstningarna genom att presentera ditt ID.
+            not_in_area: Din hemstad är inte Helsingfors. Endast invånare i Helsingfors kan delta i denna omröstning.
+            not_permanent_resident: Din permanenta hemvist är inte Helsingfors. Endast invånare i Helsingfors kan delta i denna omröstning.
+            not_student: Enligt vår information är du inte student. Föräldrar och lärare kan inte identifiera sig med att rösta på Wilma. Välj en annan autentiseringsmetod.
+            too_young: Du kanske är för ung för att rösta. Du måste vara minst 6:e grundskolan för att kunna rösta på Wilma. Om du är 12 år eller äldre i år kan du rösta på de vallokaler du har deklarerat, oavsett klassnivå.
+            unknown_school: Vi kunde inte verifiera elektronisk vilken skola du studerar på. Tyvärr kan du inte rösta i Ruuti-budgeteringen.
+            invalid_school_type: Din skoltyp tillåter dig inte att identifiera dig själv som väljare med Wilma. Välj en annan autentiseringsmetod.
         identify:
           title: Identifiera dig
         new:
