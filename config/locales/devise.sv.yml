@@ -7,30 +7,29 @@ sv:
       omniauth:
         tunnistamo:
           description: ''
-          sign_in_with: 'Logga in med hjälp av tjänsten Tunnistamo'
+          sign_in_with: 'Med hjälp av Tunnistamo kan du logga in i tjänsten bl.a. genom Google, Facebook eller YLE.'
           sign_in_button: 'Logga in'
         strong:
-          description: 'Genom att logga in på omastadi.hel.fi med ditt bankkonto eller mobil ID kan du rösta direkt. Klass 6-9 i grundskolan kan logga in och identifiera sig för att rösta med Wilma ID.'
-          sign_in_with: 'Kirjaudu ja tunnistaudu äänestämään'
+          description: 'Genom att logga in på omastadi.hel.fi-tjänsten med dina bankkoder eller ett mobilcertifikat kan du genast komma åt att rösta.  Klass 6–9 i grundskolan kan logga in och identifiera sig för att rösta med Wilma ID.'
+          sign_in_with: 'Logga in och identifiera dig för att rösta'
         suomifi:
-          description: 'Suomi.fi tillåter användare att identifiera sig, t.ex. med finska bankkonton och Mobil ID.'
-          sign_in_with: 'Suomi.fi-identifikation'
-          sign_in_button: 'Bankkonto eller mobil ID'
+          description: 'Suomi.fi bjuder på möjligheten att identifiera sig bl.a. genom finska bankkoder och mobilcertifikat.'
+          sign_in_with: 'Suomi.fi-identifiering'
+          sign_in_button: 'Bankkoder eller mobilcertifikat'
         mpassid:
           description: 'Som grundskolestudent kan du identifiera dig själv genom MPASSid-tjänsten med ditt skolkonto.'
           sign_in_with: 'MPASSid-identifikation'
           sign_in_button: 'Wilma ID för grundskoleelever'
         weak:
-          description: 'Du kan också logga in med sociala mediekonton (Facebook, Yle, Google, etc.) eller med Omastadi-kontot du skapade tidigare. Första gången du röstar måste du också identifiera dig med ditt bankkonto, mobil ID eller Wilma-ID för grundskoleelever.'
-          sign_in_with: 'Logga in utan verifiering'
-          sign_in_button: 'Logga in med Tunnistamo'
+          description: 'Du kan också logga in på Tunnistamo-tjänsten med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med Omastadi-kontot du skapade tidigare. Första gången du röstar måste du också identifiera dig med ditt bankkonto, mobilcertifikat eller Wilma-ID för grundskoleelever.'
+          sign_in_with: 'Logga in utan identifikation'
+          sign_in_button: 'Logga in med Tunnistamo-tjänsten'
   decidim:
-    description: 'Med hjälp av Tunnistamo kan du logga in i tjänsten bl.a. med tjänsterna Google, Facebook eller YLE.'
     devise:
       registrations:
         new:
           sign_up_service_account: 'Skapa eget konto'
-          sign_up_service_account_description: 'Skapa ett användarkonto och logga i fortsättningen in med e-postadress och ett lösenord som du själv väljer.'
+          sign_up_service_account_description: 'Skapa ett eget användarkonto och logga i fortsättningen in med din e-postadress och ditt eget lösenord.'
       sessions:
         new:
           sign_in_service_account: 'Logga in med eget konto'

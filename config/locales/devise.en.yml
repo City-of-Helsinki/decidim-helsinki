@@ -6,30 +6,30 @@ en:
     shared:
       omniauth:
         tunnistamo:
-          description: 'Tunnistamo allows you to sign in e.g. using Google, Facebook or YLE services.'
+          description: 'Tunnistamo allows you to sign in using services such as Google, Facebook or YLE.'
           sign_in_with: 'Sign in with Tunnistamo'
           sign_in_button: 'Sign in'
         strong:
-          description: 'By signing in to omastadi.hel.fi with your bank account or mobile ID you will be able to vote directly. Grades 6-9 in elementary school can sign in and identify themselves for voting with Wilma IDs.'
-          sign_in_with: 'Sign in and identify yourself to vote'
+          description: 'If you sign in to omastadi.hel.fi with your online banking ID or mobile ID, you will be able to vote directly.  Students in grades 6–9 at comprehensive school can sign in and verify their identity for voting with their Wilma ID.'
+          sign_in_with: 'Sign in and verify your identity to vote'
         suomifi:
-          description: 'Suomi.fi allows users to identify themselves e.g. using Finnish bank accounts and Mobile ID.'
+          description: 'Suomi.fi allows users to verify their identity using Finnish online banking IDs and mobile IDs, among others.'
           sign_in_with: 'Suomi.fi e-Identification'
-          sign_in_button: 'Bank account or mobile ID'
+          sign_in_button: 'Bank ID or mobile ID'
         mpassid:
-          description: 'As an elementary school student you can identify your self through the MPASSid service using your school account.'
+          description: 'If you are a student in comprehensive school, you can verify your identity through the MPASSid service using your school account.'
           sign_in_with: 'MPASSid-identification'
-          sign_in_button: 'Wilma-ID for elementary school students'
+          sign_in_button: 'Wilma ID for comprehensive school students'
         weak:
-          description: 'You can also sign in with social media accounts (Facebook, Yle, Google, etc.) or with the Omastadi account you created earlier. The first time you vote, you also need to identify yourself with a bank ID, mobile ID, or Wilma ID for elementary school students.'
-          sign_in_with: 'Sign in without identification'
+          description: 'You can also sign in with social media accounts (Facebook, Yle, Google, among others) or with an Omastadi account you have created earlier. The first time you vote, you also need to verify your identity with an online banking ID, mobile ID, or a Wilma ID for comprehensive school students.'
+          sign_in_with: 'Sign in without identity verification'
           sign_in_button: 'Sign in with Tunnistamo'
   decidim:
     devise:
       registrations:
         new:
-          sign_up_service_account: 'Create your own account'
-          sign_up_service_account_description: 'Create your own account and sign in with your personal email and a password of your choice in the future.'
+          sign_up_service_account: 'Create an account'
+          sign_up_service_account_description: 'Create your account and sign in with your personal email and a password of your choice in the future.'
       sessions:
         new:
           sign_in_service_account: 'Sign in with service account'
