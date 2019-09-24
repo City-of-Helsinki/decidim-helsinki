@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@github.com:mainio/decidim-module-combined_budgeting.git
-  revision: 8d3b4955c75b85d4999c2bba1bff1349be640a5e
+  revision: 377ac2a4cb6256502aa74e9b5652ad414b9ae5ad
   specs:
     decidim-combined_budgeting (0.18.0)
       decidim-admin (~> 0.18.0)
