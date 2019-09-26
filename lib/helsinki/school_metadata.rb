@@ -31,20 +31,41 @@ module Helsinki
     # 14: Koillinen
     # 15: Viikki
     #
-    # NOTE: This list only contains the Helsinki schools that have elementary
-    #       level.
+    # NOTE:
+    # This list only contains the Helsinki schools that take part in the voting.
     MAPPING = {
       # Test school code passed for the test authorizer by MPASSid
       # "00000" => { name: "Testikoulu", type: 11, postal_code: "00210", voting_unit: 6 },
 
       # Actual schools
+      "00004" => { name: "Alppilan lukio", type: 15, postal_code: "00510", voting_unit: 0 },
+      "00026" => { name: "Brändö gymnasium", type: 15, postal_code: "00570", voting_unit: 0 },
+      "00081" => { name: "Helsingin luonnontiedelukio", type: 15, postal_code: "00610", voting_unit: 0 },
+      "00082" => { name: "Ressun lukio", type: 15, postal_code: "00270", voting_unit: 0 },
       "00083" => { name: "Helsingin normaalilyseo", type: 19, postal_code: "00120", voting_unit: 6 },
       "00084" => { name: "Helsingin ranskalais-suomalainen koulu", type: 19, postal_code: "00350", voting_unit: 6 },
       "00085" => { name: "Helsingin saksalainen koulu", type: 19, postal_code: "00100", voting_unit: 6 },
       "00087" => { name: "Suomalais-venäläinen koulu", type: 19, postal_code: "00420", voting_unit: 8 },
+      "00088" => { name: "Helsingin kuvataidelukio", type: 15, postal_code: "00500", voting_unit: 0 },
+      "00089" => { name: "Sibelius-lukio", type: 15, postal_code: "00170", voting_unit: 0 },
+      "00255" => { name: "Kallion lukio", type: 15, postal_code: "00530", voting_unit: 0 },
+      "00316" => { name: "Eiran aikuislukio", type: 15, postal_code: "00150", voting_unit: 0 },
       "00394" => { name: "Englantilainen koulu", type: 19, postal_code: "00270", voting_unit: 7 },
+      "00518" => { name: "Mäkelänrinteen lukio", type: 15, postal_code: "00550", voting_unit: 0 },
+      "00539" => { name: "Töölön yhteiskoulun aikuislukio", type: 15, postal_code: "00250", voting_unit: 0 },
+      "00551" => { name: "Helsingin aikuislukio", type: 15, postal_code: "00550", voting_unit: 0 },
+      "00561" => { name: "Gymnasiet Lärkan", type: 15, postal_code: "00320", voting_unit: 0 },
+      "00607" => { name: "Tölö gymnasium", type: 15, postal_code: "00260", voting_unit: 0 },
+      "00648" => { name: "Helsingin medialukio", type: 15, postal_code: "00730", voting_unit: 0 },
+      "00670" => { name: "Helsingin  kielilukio", type: 15, postal_code: "00900", voting_unit: 0 },
       "00729" => { name: "Helsingin Rudolf Steiner -koulu", type: 19, postal_code: "00280", voting_unit: 6 },
       "00842" => { name: "HY Viikin normaalikoulu", type: 19, postal_code: "00790", voting_unit: 15 },
+      "00845" => { name: "Etu-Töölön lukio", type: 15, postal_code: "00100", voting_unit: 0 },
+      "00915" => { name: "Vuosaaren lukio", type: 15, postal_code: "00980", voting_unit: 0 },
+      "01164" => { name: "H:gin Maalariammattikoulu", type: 21, postal_code: "00380", voting_unit: 0 },
+      "01294" => { name: "Suomen Diakoniaopisto", type: 21, postal_code: "00530", voting_unit: 0 },
+      "01428" => { name: "Jollas-opisto Oy", type: 21, postal_code: "00510", voting_unit: 0 },
+      "02558" => { name: "Suomen kansallisoopperan ja -baletin balettioppilaitos", type: 21, postal_code: "00530", voting_unit: 0 },
       "03002" => { name: "Aleksis Kiven peruskoulu", type: 11, postal_code: "00510", voting_unit: 6 },
       "03004" => { name: "Haagan peruskoulu", type: 11, postal_code: "00320", voting_unit: 7 },
       "03005" => { name: "Hertsikan ala-aste", type: 11, postal_code: "00800", voting_unit: 1 },
@@ -162,7 +183,12 @@ module Helsinki
       "03845" => { name: "Kalasataman peruskolu", type: 11, postal_code: "00540", voting_unit: 6 },
       "03852" => { name: "Jätkäsaaren peruskoulu", type: 11, postal_code: "00220", voting_unit: 6 },
       "03861" => { name: "Helsingin Montessorikoulu", type: 11, postal_code: "00800", voting_unit: 1 },
-      "05676" => { name: "Östersundom skola", type: 11, postal_code: "00890", voting_unit: 10 }
+      "05676" => { name: "Östersundom skola", type: 11, postal_code: "00890", voting_unit: 10 },
+      "10016" => { name: "Yrkesinstitutet Prakticum", type: 21, postal_code: "00560", voting_unit: nil },
+      "10079" => { name: "Keskuspuiston ammattiopisto", type: 22, postal_code: "00280", voting_unit: nil },
+      "10086" => { name: "Business College Helsinki", type: 21, postal_code: "00520", voting_unit: nil },
+      "10105" => { name: "Stadin ammattiopisto", type: 21, postal_code: "00550", voting_unit: nil },
+      "10120" => { name: "Perho Liiketalousopisto", type: 21, postal_code: "00100", voting_unit: nil }
     }.freeze
 
     def self.metadata_for_school(school_code)
