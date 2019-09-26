@@ -9,11 +9,11 @@ fi:
           district_required: Suurpiiritieto tarvitaan.
       authorizations:
         error:
-          title: Äänestämistä ei sallita
+          title: Äänestäminen ei onnistunut
           reason_title: 'Syy:'
           reason:
             age_unknown: Ikääsi ei pystytä varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
-            data_blank: Henkilöllisyyttäsi ei pystytä varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
+            data_blank: Henkilöllisyyttäsi ei pystytä varmentamaan sähköisesti.  Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
             class_level_not_defined: Luokka-astettasi ei pystytty varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
             not_in_area: Kotikuntasi ei ole Helsinki. Tähän äänestykseen voivat osallistua vain helsinkiläiset.
             not_permanent_resident: Pysyvä asuinpaikkasi ei ole Helsinki. Tähän äänestykseen voivat osallistua vain helsinkiläiset.
@@ -24,8 +24,8 @@ fi:
         identify:
           title: Tunnistaudu
         new:
-          title: Valitse suurpiiri
-          submit: Valitse
+          title: Hyväksy suurpiiri
+          submit: Hyväksy
     copyright: 2018 Helsingin kaupunki
     devise:
       shared:
