@@ -135,29 +135,29 @@ module Helsinki
       #   end
       # end
 
-      def school_student_list
-        @school_student_list ||= begin
-          codes = authorization.metadata["school_code"].split(",")
-          groups = authorization.metadata["student_class"].split(",")
-
-          list = []
-          codes.each_with_index do |code, index|
-            school = Helsinki::SchoolMetadata.metadata_for_school(code)
-            group = groups[index]
-            level = nil
-            level = group.gsub(/^[^0-9]*/, "").to_i if group
-            list << {
-              school: school,
-              student: {
-                group: group,
-                level: level
-              }
-            }
-          end
-
-          list
-        end
-      end
+      # def school_student_list
+      #   @school_student_list ||= begin
+      #     codes = authorization.metadata["school_code"].split(",")
+      #     groups = authorization.metadata["student_class"].split(",")
+      #
+      #     list = []
+      #     codes.each_with_index do |code, index|
+      #       school = Helsinki::SchoolMetadata.metadata_for_school(code)
+      #       group = groups[index]
+      #       level = nil
+      #       level = group.gsub(/^[^0-9]*/, "").to_i if group
+      #       list << {
+      #         school: school,
+      #         student: {
+      #           group: group,
+      #           level: level
+      #         }
+      #       }
+      #     end
+      #
+      #     list
+      #   end
+      # end
     end
   end
 end
