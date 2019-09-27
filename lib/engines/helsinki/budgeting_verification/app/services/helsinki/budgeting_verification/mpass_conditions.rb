@@ -73,25 +73,42 @@ module Helsinki
       # All other school types should be allowed to vote without the "age
       # check".
       def check_student_age
-        # 11 = elementary school (first level)
-        # 12 = elementary school, special schools (first level)
-        check_age_types = [11, 12]
-
-        school_student_list.each do |ss|
-          # We don't care about schools that do not have any metadata set for
-          # them. Students from "unknown" schools can vote if the other
-          # conditions are met because Helsinki can control who can sign in with
-          # MPASSid.
-          next if ss[:school].nil?
-
-          # The age check is only necessary for elementary school students.
-          next unless check_age_types.include?(ss[:school][:type])
-
-          if ss[:student][:level] < 6
+        student_classes = authorization.metadata["student_class"].split(",")
+        student_classes.each do |group|
+          level = group.gsub(/^[^0-9]*/, "").to_i
+          if level < 6
             errors << :too_young
             break
           end
         end
+
+        # DISABLED BECAUSE OF CHANGES IN THE SPEC
+        # This would check the class level only for specified school types. The
+        # problem is that we don't have metadata of all the schools in which
+        # the MPASSid sign in is enabled which could potentially lead e.g. to
+        # all elementery school students from Espoo schools to be able to vote,
+        # regardless of their age.
+        #
+        # 11 = elementary school (first level)
+        # 12 = elementary school, special schools (first level)
+        # 19 = elementary school + high school (first level + second level)
+        # check_age_types = [11, 12, 19]
+        #
+        # school_student_list.each do |ss|
+        #   # We don't care about schools that do not have any metadata set for
+        #   # them. Students from "unknown" schools can vote if the other
+        #   # conditions are met because Helsinki can control who can sign in with
+        #   # MPASSid.
+        #   next if ss[:school].nil?
+        #
+        #   # The age check is only necessary for elementary school students.
+        #   next unless check_age_types.include?(ss[:school][:type])
+        #
+        #   if ss[:student][:level] < 6
+        #     errors << :too_young
+        #     break
+        #   end
+        # end
       end
 
       # NOT IN USE BECAUSE OF CHANGES IN THE SPEC
