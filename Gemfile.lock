@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:OpenSourcePolitics/decidim-module-budgets_enhanced.git
-  revision: 37ef153a78d3142143bbff3036ac8ad8e9b5f4e2
+  revision: 1337042f74738ac7f5676a0040e15609cca9b6ee
   specs:
     decidim-budgets_enhanced (0.18.0)
       decidim-budgets (= 0.18.0)
