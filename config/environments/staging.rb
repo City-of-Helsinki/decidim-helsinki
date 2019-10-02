@@ -97,9 +97,9 @@ Rails.application.configure do
   if Rails.application.secrets.sendgrid
     config.action_mailer.default_options = {
       "X-SMTPAPI" => {
-        filters:  {
+        filters: {
           clicktrack: { settings: { enable: 0 } },
-          opentrack:  { settings: { enable: 0 } }
+          opentrack: { settings: { enable: 0 } }
         }
       }.to_json
     }
@@ -118,7 +118,7 @@ Rails.application.configure do
   # Default URL for mailer (Devise)
   config.action_mailer.default_url_options = {
     protocol: "https",
-    host: "osallistu.hel.ninja",
+    host: "osallistu.hel.ninja"
     # from: "no-reply@hel.fi" # Causes forms to break e.g. when publishing proposal
   }
 
