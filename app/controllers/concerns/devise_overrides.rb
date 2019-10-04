@@ -15,6 +15,9 @@ module DeviseOverrides
     logger.error params.inspect
     logger.error "=== END UNVERIFIED REQUEST ==="
 
+    # Skip unverified request handling for the ErrorsController
+    return if is_a?(Decidim::ErrorsController)
+
     super
   end
 end
