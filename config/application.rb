@@ -125,6 +125,14 @@ module DecidimHelsinki
       end
     end
 
+    initializer "devise_overrides" do
+      # Devise controller overrides to add some extra functionality into them.
+      # Currently this is only for debugging purposes.
+      ActiveSupport.on_load(:action_controller) do
+        include DeviseOverrides
+      end
+    end
+
     # See:
     # https://guides.rubyonrails.org/configuring.html#initialization-events
     #
