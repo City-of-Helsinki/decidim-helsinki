@@ -6,15 +6,6 @@ module DeviseOverrides
   extend ActiveSupport::Concern
 
   def handle_unverified_request
-    logger.error "=== START UNVERIFIED REQUEST ==="
-    logger.error Time.now
-    logger.error "#{request.remote_ip} - Unverified request"
-    logger.error request.path
-    logger.error controller_name
-    logger.error self.class.inspect
-    logger.error params.inspect
-    logger.error "=== END UNVERIFIED REQUEST ==="
-
     # Skip unverified request handling for the ErrorsController
     return if is_a?(Decidim::ErrorsController)
 
