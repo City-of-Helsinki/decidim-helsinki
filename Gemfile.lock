@@ -18,11 +18,11 @@ GIT
 
 GIT
   remote: git@github.com:mainio/decidim-module-mpassid.git
-  revision: 448003471987d60dfdb3e6fac0d86585713e55e0
+  revision: 8efd608bb2677618186c1c88a7b256f1b79e6557
   specs:
     decidim-mpassid (0.18.0)
       decidim-core (~> 0.18.0)
-      omniauth-mpassid (~> 0.1.0)
+      omniauth-mpassid (~> 0.2.0)
 
 GIT
   remote: git@github.com:mainio/decidim-module-suomifi.git
@@ -564,7 +564,7 @@ GEM
       jwt (>= 1.5)
       omniauth (>= 1.1.1)
       omniauth-oauth2 (>= 1.5)
-    omniauth-mpassid (0.1.0)
+    omniauth-mpassid (0.2.0)
       omniauth-saml (~> 1.10.1)
     omniauth-oauth (1.1.0)
       oauth
