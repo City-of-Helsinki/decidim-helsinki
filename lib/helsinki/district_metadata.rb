@@ -25,6 +25,8 @@ module Helsinki
       MAPPING.each do |subdivision, codes|
         return subdivision if codes.include?(postal_code)
       end
+
+      nil
     end
 
     def self.subdivision_names
