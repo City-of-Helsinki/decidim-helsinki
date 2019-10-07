@@ -18,11 +18,19 @@ module Decidim
 
         CreateOmniauthRegistration.call(@form, verified_email) do
           on(:ok) do |user|
+            # Temporary fix for:
+            # https://github.com/decidim/decidim/pull/5397
+            if !user.confirmed? && user.email == verified_email
+              user.skip_confirmation!
+              user.save!
+            end
+
             if user.active_for_authentication?
               sign_in_and_redirect user, event: :authentication
               set_flash_message :notice, :success, kind: provider_name(@form.provider)
             else
               expire_data_after_sign_in!
+              user.resend_confirmation_instructions unless user.confirmed?
               redirect_to decidim.root_path
               flash[:notice] = t("devise.registrations.signed_up_but_unconfirmed")
             end
