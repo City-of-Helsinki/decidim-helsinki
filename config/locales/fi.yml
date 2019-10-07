@@ -46,7 +46,9 @@ fi:
       helsinki_documents_authorization_handler:
         explanation: Varmenna itsesi fyysisessä toimipisteessä.
         document_types:
+          drivers_license: Ajokortti
           idcard: Henkilökortti
+          kela_card: KELA-kortti
           passport: Passi
         name: Henkilöllisyystodistus toimipisteessä
         user_explanation: Käy fyysisessä toimipisteessä varmentamassa itsesi henkilöllisyystodistuksen avulla.

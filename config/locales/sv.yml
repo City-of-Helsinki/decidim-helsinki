@@ -46,7 +46,9 @@ sv:
       helsinki_documents_authorization_handler:
         explanation: Identifiera dig själv på en fysisk plats.
         document_types:
+          drivers_license: Körkort
           idcard: Identitetskort
+          kela_card: FPA-kort
           passport: Pass
         name: Identity document at an office
         user_explanation: Gå till en fysisk plats för att identifiera dig med ett identitetsdokument.
