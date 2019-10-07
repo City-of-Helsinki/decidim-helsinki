@@ -23,7 +23,7 @@ module Decidim
               set_flash_message :notice, :success, kind: provider_name(@form.provider)
             else
               expire_data_after_sign_in!
-              redirect_to root_path
+              redirect_to decidim.root_path
               flash[:notice] = t("devise.registrations.signed_up_but_unconfirmed")
             end
           end
