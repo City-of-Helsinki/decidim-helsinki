@@ -70,6 +70,7 @@ module Decidim
 
       def action_missing(action_name)
         return send(:create) if devise_mapping.omniauthable? && User.omniauth_providers.include?(action_name.to_sym)
+
         raise AbstractController::ActionNotFound, "The action '#{action_name}' could not be found for Decidim::Devise::OmniauthCallbacksController"
       end
 
@@ -86,7 +87,7 @@ module Decidim
           if user
             # Update user if it already existed
             user.update(
-              email: info[:email],
+              email: info[:email]
               # The user may have changed their name e.g. for anonymization and
               # therefore we should not update it on every login separately.
               # name: oauth_name,
@@ -151,6 +152,7 @@ module Decidim
       # Since we are using trusted omniauth data we are generating a valid signature.
       def user_params_from_oauth_hash
         return nil unless request.env["omniauth.auth"]
+
         {
           provider: oauth_data[:provider],
           uid: oauth_data[:uid],
