@@ -49,6 +49,8 @@ sv:
         note: Bildredigerad från original
   mpassid_action_authorizer:
     restrictions:
+      class_level_not_defined: Din årskurs kan inte verifieras elektroniskt.
+      class_level_not_allowed: Du kan vara för ung eller för gammal för att rösta.
       voting_unit_not_allowed: Du kan inte rösta på detta område från din skola.
       voting_unit_required: Information som behövs om ditt Ruuti-område.
   suomifi_action_authorizer:

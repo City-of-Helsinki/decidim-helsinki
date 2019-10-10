@@ -11,6 +11,8 @@ if Rails.application.config.mpassid_enabled
       workflow.action_authorizer = "MpassidActionAuthorizer"
       workflow.options do |options|
         options.attribute :allowed_units, type: :string, required: false
+        options.attribute :min_class_level, type: :integer, default: "", required: false
+        options.attribute :max_class_level, type: :integer, default: "", required: false
       end
     end
     config.metadata_collector_class = Helsinki::MpassidMetadataCollector

@@ -10,6 +10,7 @@ fi:
         pin: Henkilötunnus
         postal_code: Postinumero
       mpassid_nids:
+        student_class_level: Luokka-aste
         voting_unit: Ruuti-alue
       suomifi_eid:
         district: Suurpiiri
@@ -55,6 +56,9 @@ fi:
       mpassid_nids:
         fields:
           allowed_units: Sallitut Ruuti-alueet
+          max_class_level: Suurin luokka-aste
+          min_class_level: Pienin luokka-aste
+          student_class_level: Luokka-aste
           voting_unit: Ruuti-alue
       suomifi_eid:
         fields:

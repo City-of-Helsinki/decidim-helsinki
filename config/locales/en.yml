@@ -10,6 +10,7 @@ en:
         pin: Personal identity number (HETU)
         postal_code: Postal code
       mpassid_nids:
+        student_class_level: Grade level
         voting_unit: Ruuti area
       suomifi_eid:
         district: District
@@ -55,6 +56,9 @@ en:
       mpassid_nids:
         fields:
           allowed_units: Allowed Ruuti areas
+          max_class_level: Maximum grade level
+          min_class_level: Minimum grade level
+          student_class_level: Grade level
           voting_unit: Ruuti area
       suomifi_eid:
         fields:

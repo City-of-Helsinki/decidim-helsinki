@@ -49,6 +49,8 @@ fi:
         note: Kuvaa muokattu alkuperäisestä
   mpassid_action_authorizer:
     restrictions:
+      class_level_not_defined: Luokka-astettasi ei pystytty varmentamaan sähköisesti.
+      class_level_not_allowed: Olet ehkä liian nuori tai vanha äänestämään.
       voting_unit_not_allowed: Koulustasi ei voi äänestää tällä alueella.
       voting_unit_required: Tieto Ruuti-alueesta tarvitaan.
   suomifi_action_authorizer:
