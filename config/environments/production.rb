@@ -3,7 +3,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.suomifi_enabled = true
+  config.suomifi_enabled = false
   config.mpassid_enabled = true
 
   # Tracking
