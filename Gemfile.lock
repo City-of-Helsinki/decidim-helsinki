@@ -26,12 +26,12 @@ GIT
 
 GIT
   remote: git@github.com:mainio/decidim-module-suomifi.git
-  revision: 1c977bb4238df3c02e73bfd09fe3c95eeb59c780
+  revision: 3ae45d8a560e85f2c53830a1df26c4971b4b251b
   specs:
-    decidim-suomifi (0.18.0)
+    decidim-suomifi (0.18.1)
       decidim-core (~> 0.18.0)
       henkilotunnus (~> 1.1.0)
-      omniauth-suomifi (~> 0.2.0)
+      omniauth-suomifi (~> 0.3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -575,7 +575,7 @@ GEM
     omniauth-saml (1.10.1)
       omniauth (~> 1.3, >= 1.3.2)
       ruby-saml (~> 1.7)
-    omniauth-suomifi (0.2.0)
+    omniauth-suomifi (0.3.0)
       omniauth-saml (~> 1.10.1)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
