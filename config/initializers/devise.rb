@@ -42,7 +42,7 @@ Devise.setup do |config|
       name: :tunnistamo,
       scope: [:openid, :email, :profile],
       response_type: :code,
-      issuer: server_uri,
+      issuer: "#{server_uri}/openid",
       discovery: true,
       client_options: {
         port: auth_uri.port,
