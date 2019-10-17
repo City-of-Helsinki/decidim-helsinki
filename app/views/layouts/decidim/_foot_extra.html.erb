@@ -32,15 +32,20 @@ var s = document.getElementsByTagName('script')[0];
     ev.stopPropagation();
 
     var link = this;
-    $.ajax({
-      method: "GET",
-      contentType: "text/html",
-      url: tunnistamoSignOutUrl,
-      processData: false
-    }).done(function() {
+
+    var $frame = $("<iframe></iframe>");
+    $frame.css({
+      width: 10,
+      height: 10,
+      border: 0
+    });
+    $("body").append($frame);
+
+    $frame.load(function() {
       $(link).off("click.tunnistamo");
       link.click();
-    });
+    })
+    $frame.attr("src", tunnistamoSignOutUrl);
   });
 })(jQuery);
 </script>
