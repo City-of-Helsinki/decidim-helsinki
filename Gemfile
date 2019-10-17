@@ -36,8 +36,10 @@ gem "puma", "~> 3.0"
 gem "uglifier", ">= 1.3.0"
 
 # HKI authentication
-gem "omniauth_openid_connect", "~> 0.1"
-gem "openid_connect", "~> 0.12.0"
+# gem "omniauth_openid_connect", "~> 0.3"
+# There is currently an issue with the "code" response types as explained here:
+# https://github.com/m0n9oose/omniauth_openid_connect/issues/40
+gem "omniauth_openid_connect", git: "https://github.com/m0n9oose/omniauth_openid_connect.git", branch: "fix_redundant_token_verification"
 
 # HKI import
 gem "roo", "~> 2.7", ">= 2.7.1"
