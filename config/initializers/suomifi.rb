@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "helsinki/suomifi_authenticator"
 require "helsinki/suomifi_metadata_collector"
 
 if Rails.application.config.suomifi_enabled
@@ -20,6 +21,7 @@ if Rails.application.config.suomifi_enabled
           options.attribute :allowed_districts, type: :string, required: false
         end
       end
+      config.authenticator_class = Helsinki::SuomifiAuthenticator
       config.metadata_collector_class = Helsinki::SuomifiMetadataCollector
     end
   end
