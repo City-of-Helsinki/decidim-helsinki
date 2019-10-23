@@ -16,6 +16,8 @@
               <%= form.error_for(:base) %>
               <%= form.hidden_field(:handler_handle) %>
 
+              <p><%= t(".help") %></p>
+
               <% # The prompt option keeps the empty option away for required field %>
               <%= form.select(:district, form_subdivisions, prompt: "") %>
 

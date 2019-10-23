@@ -24,6 +24,7 @@ fi:
         identify:
           title: Tunnistaudu
         new:
+          help: Voit äänestää koko Helsingin suunnitelmista ja valitsemasi suurpiirin suunnitelmista. Sinulle ehdotetaan kotiosoitteeesi postinumeron (tai Wilma-tunnistautuvilla koulun postinumeron) mukaista suurpiiriä, mutta voit vaihtaa sen alla olevasta putodusvalikosta. Jos haluat äänestää tiettyä suunnitelmaa, tarkista etukäteen minkä suurpiirin alueella se sijaitsee. Jos haluat vaihtaa tässä tekemäsi valinnan jälkikäteen, katso ylävalikosta Ohjeet.
           title: Hyväksy suurpiiri
           submit: Hyväksy
     copyright: 2018 Helsingin kaupunki
