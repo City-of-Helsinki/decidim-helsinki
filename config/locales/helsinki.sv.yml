@@ -24,6 +24,7 @@ sv:
         identify:
           title: Identifiera dig
         new:
+          help: Dur kan rösta i det stordistrikt som du väljer och dessutom hela Helsingfors röstningsområde. Programmet föreslår som standard ditt postnummers stordistrikt, men du kan om du vill ändra på röstningsområdet i rullgardinsmenyn. Om du vill rösta för en viss plan, vänligen se i förväg vilka distrikt den tillhör. Om du vill ändra distriktet senare, se Instruktioner.
           title: Godkänn stordistriktet
           submit: Godkänn
     copyright: 2018 Helsingfors stad
