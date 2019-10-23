@@ -68,6 +68,10 @@ sv:
       home:
         statistics:
           plans_count: Planer
+    suomifi:
+      omniauth_callbacks:
+        failure:
+          security_denial: Din identitet kan inte verifieras elektroniskt. Du kan rösta på röstningsplatserna som har meddelats separat genom att visa upp ett identitetsbevis.
   pages:
     home:
       hero:
