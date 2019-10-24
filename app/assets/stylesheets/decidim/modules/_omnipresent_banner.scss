@@ -17,10 +17,26 @@
 
   a{
     color: $black;
-  }
 
-  a:hover,
-  a:focus{
-    color: rgba($white, .8);
+    &:hover,
+    &:focus{
+      color: rgba($white, .8);
+    }
+  }
+}
+
+.wrapper-paahtimo{
+  .omnipresent-banner{
+    background-color: $hel-coat;
+    color: $white;
+
+    a{
+      color: $white;
+
+      &:hover,
+      &:focus{
+        color: rgba($white, .8);
+      }
+    }
   }
 }

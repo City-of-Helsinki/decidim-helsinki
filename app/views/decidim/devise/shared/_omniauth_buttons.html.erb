@@ -34,18 +34,29 @@
   <% end %>
 
   <% if social_provider_enabled? :tunnistamo %>
-    <div class="wrapper">
+    <% if private_mode? %>
       <div class="row collapse">
         <div class="columns medium-8 medium-centered">
           <div class="social-register text-center">
-            <% if private_mode? %>
-              <h3 class="h5 margin-bottom-1">
-                <%= t("devise.shared.omniauth.tunnistamo.sign_in_with") %>
-              </h3>
-              <%= link_to decidim.send("user_tunnistamo_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(:tunnistamo)}", method: :post do %>
-                <%= t("devise.shared.omniauth.tunnistamo.sign_in_button") %>
-              <% end %>
-            <% else %>
+            <h3 class="h5 margin-bottom-1">
+              <%= t("devise.shared.omniauth.tunnistamo.sign_in_with") %>
+            </h3>
+            <div class="login-icons">
+              <%= image_tag "helsinki/helsinki-logo-black.svg" %>
+            </div>
+            <p></p>
+            <%= link_to decidim.send("user_tunnistamo_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(:tunnistamo)}", method: :post do %>
+              <%= t("devise.shared.omniauth.tunnistamo.sign_in_button") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= render "decidim/devise/shared/register_separator" %>
+    <% else %>
+      <div class="wrapper">
+        <div class="row collapse">
+          <div class="columns medium-8 medium-centered">
+            <div class="social-register text-center">
               <h3 class="h5 margin-bottom-1">
                 <%= t("devise.shared.omniauth.weak.sign_in_with") %>
               </h3>
@@ -55,10 +66,10 @@
               <%= link_to decidim.send("user_tunnistamo_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(:tunnistamo)}", method: :post do %>
                 <%= t("devise.shared.omniauth.weak.sign_in_button") %>
               <% end %>
-            <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>

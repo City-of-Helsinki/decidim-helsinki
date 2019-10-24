@@ -1,10 +1,14 @@
-<% add_decidim_meta_tags({
+<%
+add_decidim_meta_tags({
   description: strip_tags(translated_attribute(current_organization.description)),
   title: current_organization.name,
   url: request.original_url,
   twitter_handler: current_organization.twitter_handler,
   image_url: image_url(meta_image_default)
-}) %>
+})
+
+wrapper_class = Rails.application.config.wrapper_class
+%>
 
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>" class="no-js">
@@ -14,9 +18,11 @@
   </head>
 
   <body>
-    <%= render partial: "layouts/decidim/impersonation_warning" %>
-    <%= render partial: "layouts/decidim/cookie_warning" %>
-    <%= render partial: "layouts/decidim/omnipresent_banner" %>
+    <div class="<%= wrapper_class %>">
+      <%= render partial: "layouts/decidim/impersonation_warning" %>
+      <%= render partial: "layouts/decidim/cookie_warning" %>
+      <%= render partial: "layouts/decidim/omnipresent_banner" %>
+    </div>
 
     <%= render "layouts/decidim/wrapper" do %>
       <%= yield %>
