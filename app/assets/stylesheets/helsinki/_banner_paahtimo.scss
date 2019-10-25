@@ -1,0 +1,131 @@
+.banner-kokeilukiihdyttamo{
+  position: relative;
+  display: block;
+
+  @include breakpoint(medium){
+    height: 0;
+    padding-top: 27.27%;
+  }
+
+  .banner-kokeilukiihdyttamo__inner{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(medium){
+      position: absolute;
+      flex-direction: row;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .banner-kokeilukiihdyttamo__illustration{
+    position: relative;
+    height: 0;
+    padding-top: 45%;
+    background-color: #ffa6ca;
+    background-repeat: no-repeat;
+    background-image: url(image_path("helsinki-paahtimo/kokeilukiihdyttamo-banner-shape-mobile.svg"));
+    background-size: auto 75%;
+    background-position: right 15px center;
+
+    @include breakpoint(medium){
+      height: auto;
+      padding-top: 0;
+      width: 50%;
+      background-image: url(image_path("helsinki-paahtimo/kokeilukiihdyttamo-banner-shape.svg"));
+      background-size: 90% auto;
+      background-position: center center;
+    }
+
+    @include breakpoint(large){
+      width: 68%;
+    }
+  }
+
+  .banner-kokeilukiihdyttamo__logo{
+    position: absolute;
+    width: 40%;
+    height: 0;
+    top: 8%;
+    left: 25px;
+    right: 0;
+    padding-bottom: 28%;
+    margin-left: 0;
+    margin-right: auto;
+
+    @include breakpoint(medium){
+      width: 27%;
+      top: 12%;
+      left: -15px;
+      margin-left: auto;
+    }
+
+    @include breakpoint(large){
+      top: 6.17%;
+    }
+
+    img{
+      display: absolute;
+      width: 100%;
+    }
+  }
+
+  .banner-kokeilukiihdyttamo__content{
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    padding: 20px;
+    background-color: #8bcaed;
+    text-align: center;
+
+    @include breakpoint(medium){
+      width: 50%;
+    }
+
+    @include breakpoint(large){
+      width: 32%;
+    }
+
+    .banner-kokeilukiihdyttamo__content__inner{
+      flex: 1;
+
+      *:last-child{
+        margin-bottom: 0;
+      }
+    }
+
+    .button{
+      font-size: 20px;
+      background-color: $hel-summer;
+      color: $hel-black;
+    }
+  }
+
+  .banner-kokeilukiihdyttamo__title{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+
+    @include breakpoint(large){
+      font-size: 2rem;
+    }
+
+    .banner-kokeilukiihdyttamo__title__tagline{
+      display: block;
+      text-transform: none;
+      font-size: 1.13rem;
+
+      @include breakpoint(large){
+        font-size: 1.62rem;
+      }
+    }
+
+    + p{
+      margin-top: 1.5rem;
+    }
+  }
+}
