@@ -331,7 +331,7 @@ GEM
       decidim-core (= 0.18.0)
     decidim-participatory_processes (0.18.0)
       decidim-core (= 0.18.0)
-    decidim-plans (0.18.0)
+    decidim-plans (0.18.1)
       decidim-core (~> 0.18.0)
       decidim-proposals (~> 0.18.0)
     decidim-process_groups_content_block (0.18.0)
