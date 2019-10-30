@@ -3,6 +3,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Sending address for mails
+  config.mailer_sender = "no-reply@ideapaahtimo.hel.fi"
+
   # String identifier, this defines the main mode of Decidim
   # See README.md for more explation on this.
   config.use_mode = "private"
