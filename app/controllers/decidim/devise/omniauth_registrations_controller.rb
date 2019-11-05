@@ -143,10 +143,18 @@ module Decidim
       private
 
       def handle_tunnistamo_success(user)
+        # Make sure the user account is confirmed because Tunnistamo is assumed
+        # to always return a confirmed email address.
+        if !user.confirmed? && user.email == verified_email
+          user.skip_confirmation!
+          user.save!
+        end
+
         if user.active_for_authentication?
           sign_in_and_redirect user, event: :authentication
         else
           expire_data_after_sign_in!
+          user.resend_confirmation_instructions unless user.confirmed?
           redirect_to root_path
           flash[:notice] = t("devise.registrations.signed_up_but_unconfirmed")
         end
