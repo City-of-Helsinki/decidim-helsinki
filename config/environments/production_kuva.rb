@@ -10,6 +10,9 @@ Rails.application.configure do
   # See README.md for more explation on this.
   config.use_mode = "private"
 
+  # Tracking
+  config.snoobi_account = "ideapaahtimo_hel_fi"
+
   # Wrapper class can be used to customize the coloring of the platform per
   # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
   config.wrapper_class = "wrapper-paahtimo"
