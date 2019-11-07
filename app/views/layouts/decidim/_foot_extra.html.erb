@@ -21,3 +21,32 @@ var s = document.getElementsByTagName('script')[0];
  })();
 </script>
 <% end %>
+
+<% if session["tunnistamo_signed_in"] %>
+<script type="text/javascript">
+(function() {
+  var tunnistamoSignOutUrl = <%= tunnistamo_sign_out_url.to_json.html_safe %>;
+
+  $(".sign-out-link").on("click.tunnistamo", function(ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    var link = this;
+
+    var $frame = $("<iframe></iframe>");
+    $frame.css({
+      width: 10,
+      height: 10,
+      border: 0
+    });
+    $("body").append($frame);
+
+    $frame.load(function() {
+      $(link).off("click.tunnistamo");
+      link.click();
+    })
+    $frame.attr("src", tunnistamoSignOutUrl);
+  });
+})(jQuery);
+</script>
+<% end %>
