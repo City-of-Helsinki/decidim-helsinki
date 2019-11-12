@@ -44,6 +44,9 @@ gem "omniauth_openid_connect", git: "https://github.com/m0n9oose/omniauth_openid
 # HKI import
 gem "roo", "~> 2.7", ">= 2.7.1"
 
+# HKI export
+gem "rubyXL", "~> 3.4", ">= 3.4.6"
+
 group :development, :test do
   gem "byebug", platform: :mri
 
