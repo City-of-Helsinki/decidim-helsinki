@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require "spreadsheet"
+require "rubyXL"
 
 # Used to anonymize certain details of the voting results so that the individual
 # voters cannot be tracked. This is always different for each run.
 ANONYMIZER_SALT = SecureRandom.hex(64)
 
 namespace :hkiresult do
-  # Export budgeting results to XLS.
+  # Export budgeting results to XLSX.
   # Usage: rake hkiresult:generate
   #
   # This has been built as a one time run script for the specific reporting
@@ -15,15 +15,15 @@ namespace :hkiresult do
   # super efficient and could use a lot of refactoring. It was only built to be
   # run once and left here for future reference.
   #
-  # The above will generate the following XLS files:
-  # - tmp/omastadi-votes-suomifi.xls - OmaStadi individual Suomi.fi votes
-  # - tmp/omastadi-votes-mpassid.xls - OmaStadi individual MPASSid votes
-  # - tmp/omastadi-votes-offline.xls - OmaStadi individual offline votes
-  # - tmp/omastadi-totals.xls - OmaStadi total votes
-  # - tmp/ruuti-votes-suomifi.xls - Ruuti individual Suomi.fi votes
-  # - tmp/ruuti-votes-mpassid.xls - Ruuti individual MPASSid votes
-  # - tmp/ruuti-votes-offline.xls - Ruuti individual offline votes
-  # - tmp/ruuti-totals.xls - Ruuti total votes
+  # The above will generate the following XLSX files:
+  # - tmp/omastadi-votes-suomifi.xlsx - OmaStadi individual Suomi.fi votes
+  # - tmp/omastadi-votes-mpassid.xlsx - OmaStadi individual MPASSid votes
+  # - tmp/omastadi-votes-offline.xlsx - OmaStadi individual offline votes
+  # - tmp/omastadi-totals.xlsx - OmaStadi total votes
+  # - tmp/ruuti-votes-suomifi.xlsx - Ruuti individual Suomi.fi votes
+  # - tmp/ruuti-votes-mpassid.xlsx - Ruuti individual MPASSid votes
+  # - tmp/ruuti-votes-offline.xlsx - Ruuti individual offline votes
+  # - tmp/ruuti-totals.xlsx - Ruuti total votes
   #
   # Each spreadsheet contains an individual worksheet for each process.
   # The totals spreadheet also contains a general totals sheet as the first
@@ -107,12 +107,18 @@ namespace :hkiresult do
   def export_components(components, file_prefix)
     target_path = Rails.root.join("tmp")
 
-    suomifi_book = Spreadsheet::Workbook.new
-    mpassid_book = Spreadsheet::Workbook.new
-    offline_book = Spreadsheet::Workbook.new
+    suomifi_book = RubyXL::Workbook.new
+    mpassid_book = RubyXL::Workbook.new
+    offline_book = RubyXL::Workbook.new
 
-    totals_book = Spreadsheet::Workbook.new
-    totals_sheet = totals_book.create_worksheet name: "Total"
+    # Clear the books
+    suomifi_book.worksheets.delete_at(0)
+    mpassid_book.worksheets.delete_at(0)
+    offline_book.worksheets.delete_at(0)
+
+    totals_book = RubyXL::Workbook.new
+    totals_sheet = totals_book.worksheets[0]
+    totals_sheet.sheet_name = "Total"
 
     voter_ids = []
     suomifi_voter_ids = []
@@ -141,63 +147,32 @@ namespace :hkiresult do
       component_orders_count = 0
       component_order_items_count = 0
 
-      suomifi_sheet = suomifi_book.create_worksheet name: name
-      mpassid_sheet = mpassid_book.create_worksheet name: name
-      offline_sheet = offline_book.create_worksheet name: name
-      ctotals_sheet = totals_book.create_worksheet name: name
+      suomifi_sheet = suomifi_book.add_worksheet(name)
+      mpassid_sheet = mpassid_book.add_worksheet(name)
+      offline_sheet = offline_book.add_worksheet(name)
+      ctotals_sheet = totals_book.add_worksheet(name)
 
-      suomifi_sheet.row(0).push(
-        "process_id",
-        "process_name_fi",
-        "process_url",
-        "user_hash",
-        "vote_hash",
-        "vote_started",
-        "vote_verified",
-        "project_id",
-        "project_name_fi",
-        "project_url",
-        "category_id",
-        "category_name_fi",
-        "gender",
-        "postal_code",
-        "age"
-      )
-      mpassid_sheet.row(0).push(
-        "process_id",
-        "process_name_fi",
-        "process_url",
-        "user_hash",
-        "vote_hash",
-        "vote_started",
-        "vote_verified",
-        "project_id",
-        "project_name_fi",
-        "project_url",
-        "category_id",
-        "category_name_fi",
-        "school_code",
-        "role",
-        "class",
-        "class_level"
-      )
-      offline_sheet.row(0).push(
-        "process_id",
-        "process_name_fi",
-        "process_url",
-        "user_hash",
-        "vote_hash",
-        "vote_started",
-        "vote_verified",
-        "project_id",
-        "project_name_fi",
-        "project_url",
-        "category_id",
-        "category_name_fi",
-        "gender",
-        "postal_code",
-        "age"
-      )
+      %w(
+        process_id
+        process_name_fi
+        process_url
+        user_hash
+        vote_hash
+        vote_started
+        vote_verified
+        project_id
+        project_name_fi
+        project_url
+        category_id
+        category_name_fi
+        gender
+        postal_code
+        age
+      ).each_with_index do |header, index|
+        suomifi_sheet.add_cell(0, index, header)
+        mpassid_sheet.add_cell(0, index, header)
+        offline_sheet.add_cell(0, index, header)
+      end
 
       suomifi_row = 1
       mpassid_row = 1
@@ -278,7 +253,9 @@ namespace :hkiresult do
               auth.metadata["postal_code"],
               calculate_age(auth.metadata["date_of_birth"])
             ]
-            suomifi_sheet.row(suomifi_row).concat(data)
+            data.each_with_index do |celldata, index|
+              suomifi_sheet.add_cell(suomifi_row, index, celldata)
+            end
             suomifi_row += 1
           elsif auth.name == "mpassid_nids"
             groups = auth.metadata["student_class"].to_s.split(",")
@@ -290,7 +267,9 @@ namespace :hkiresult do
               auth.metadata["student_class"],
               levels.join(",")
             ]
-            mpassid_sheet.row(mpassid_row).concat(data)
+            data.each_with_index do |celldata, index|
+              mpassid_sheet.add_cell(mpassid_row, index, celldata)
+            end
             mpassid_row += 1
           elsif auth.name == "helsinki_documents_authorization_handler"
             data = votedata + [
@@ -298,7 +277,9 @@ namespace :hkiresult do
               auth.metadata["postal_code"],
               calculate_age(auth.metadata["date_of_birth"])
             ]
-            offline_sheet.row(offline_row).concat(data)
+            data.each_with_index do |celldata, index|
+              offline_sheet.add_cell(offline_row, index, celldata)
+            end
             offline_row += 1
           else
             puts "Export format not defined for: #{auth.name}"
@@ -306,7 +287,7 @@ namespace :hkiresult do
         end
       end
 
-      ctotals_sheet.row(0).push(
+      [
         "project_id",
         "project_name_fi",
         "project_url",
@@ -323,7 +304,9 @@ namespace :hkiresult do
         "suomifi_voters",
         "mpassid_voters",
         "offline_voters"
-      )
+      ].each_with_index do |header, index|
+        ctotals_sheet.add_cell(0, index, header)
+      end
       ctotals_row = 1
       project_totals.each do |project_id, votes|
         project = Decidim::Budgets::Project.find(project_id)
@@ -334,7 +317,7 @@ namespace :hkiresult do
         space_url = "https://omastadi.hel.fi/processes/#{space.slug}"
         comp_url = "#{space_url}/f/#{comp.id}"
 
-        ctotals_sheet.row(ctotals_row).push(
+        [
           project.id,
           project.title["fi"],
           "#{comp_url}/projects/#{project.id}",
@@ -342,11 +325,13 @@ namespace :hkiresult do
           category ? category.id : "",
           category ? category.name["fi"] : "",
           votes
-        )
+        ].each_with_index do |celldata, index|
+          ctotals_sheet.add_cell(ctotals_row, index, celldata)
+        end
         ctotals_row += 1
       end
 
-      ctotals_sheet.row(1).push(
+      [
         "",
         "",
         component_voter_ids.uniq.count,
@@ -356,38 +341,50 @@ namespace :hkiresult do
         component_suomifi_voter_ids.uniq.count,
         component_mpassid_voter_ids.uniq.count,
         component_offline_voter_ids.uniq.count
-      )
+      ].each_with_index do |celldata, index|
+        ctotals_sheet.add_cell(1, 7 + index, celldata)
+      end
     end
 
-    totals_sheet.row(0).push("Number of voters", voter_ids.uniq.count)
-    totals_sheet.row(1).push("Number of votes", orders_count)
-    totals_sheet.row(2).push("Number of projects selected", order_items_count)
-    totals_sheet.row(4).push("Number of Suomi.fi voters", suomifi_voter_ids.uniq.count)
-    totals_sheet.row(5).push("Number of MPASSid voters", mpassid_voter_ids.uniq.count)
-    totals_sheet.row(6).push("Number of offline voters", offline_voter_ids.uniq.count)
+    totals_sheet.add_cell(0, 0, "Number of voters")
+    totals_sheet.add_cell(0, 1, voter_ids.uniq.count)
+    totals_sheet.add_cell(1, 0, "Number of votes")
+    totals_sheet.add_cell(1, 1, orders_count)
+    totals_sheet.add_cell(2, 0, "Number of projects selected")
+    totals_sheet.add_cell(2, 1, order_items_count)
+    totals_sheet.add_cell(4, 0, "Number of Suomi.fi voters")
+    totals_sheet.add_cell(4, 1, suomifi_voter_ids.uniq.count)
+    totals_sheet.add_cell(4, 0, "Number of MPASSid voters")
+    totals_sheet.add_cell(4, 1, mpassid_voter_ids.uniq.count)
+    totals_sheet.add_cell(4, 0, "Number of offline voters")
+    totals_sheet.add_cell(4, 1, offline_voter_ids.uniq.count)
 
-    suomifi_book.write("#{target_path}/#{file_prefix}-votes-suomifi.xls")
-    mpassid_book.write("#{target_path}/#{file_prefix}-votes-mpassid.xls")
-    offline_book.write("#{target_path}/#{file_prefix}-votes-offline.xls")
-    totals_book.write("#{target_path}/#{file_prefix}-totals.xls")
+    suomifi_book.write("#{target_path}/#{file_prefix}-votes-suomifi.xlsx")
+    mpassid_book.write("#{target_path}/#{file_prefix}-votes-mpassid.xlsx")
+    offline_book.write("#{target_path}/#{file_prefix}-votes-offline.xlsx")
+    totals_book.write("#{target_path}/#{file_prefix}-totals.xlsx")
   end
 
   def export_projects(components, file_prefix)
     target_path = Rails.root.join("tmp")
 
-    book = Spreadsheet::Workbook.new
+    book = RubyXL::Workbook.new
+    book.worksheets.delete_at(0)
 
     components.each do |id, name|
-      sheet = book.create_worksheet name: name
+      sheet = book.add_worksheet(name)
 
-      sheet.row(0).push(
-        "project_id",
-        "project_name_fi",
-        "project_url",
-        "project_budget",
-        "category_id",
-        "category_name_fi"
-      )
+      %w(
+        project_id
+        project_name_fi
+        project_url
+        project_budget
+        category_id
+        category_name_fi
+      ).each_with_index do |header, index|
+        sheet.add_cell(0, index, header)
+      end
+
       row = 1
       Decidim::Budgets::Project.where(decidim_component_id: id).each do |project|
         category = project.category
@@ -397,19 +394,21 @@ namespace :hkiresult do
         space_url = "https://omastadi.hel.fi/processes/#{space.slug}"
         comp_url = "#{space_url}/f/#{comp.id}"
 
-        sheet.row(row).push(
+        [
           project.id,
           project.title["fi"],
           "#{comp_url}/projects/#{project.id}",
           project.budget,
           category ? category.id : "",
           category ? category.name["fi"] : ""
-        )
+        ].each_with_index do |celldata, index|
+          sheet.add_cell(row, index, celldata)
+        end
         row += 1
       end
     end
 
-    book.write("#{target_path}/#{file_prefix}-projects.xls")
+    book.write("#{target_path}/#{file_prefix}-projects.xlsx")
   end
 
   def calculate_age(date_of_birth)
