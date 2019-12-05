@@ -19,6 +19,7 @@ gem "decidim-suomifi", DECIDIM_MODULE_VERSION
 gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
 
 # Install the git modules until they have an actual release
+gem "decidim-accountability_simple", git: "git@github.com:mainio/decidim-module-accountability_simple.git"
 gem "decidim-combined_budgeting", git: "git@github.com:mainio/decidim-module-combined_budgeting.git"
 gem "decidim-plans", git: "git@github.com:mainio/decidim-module-plans.git"
 

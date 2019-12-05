@@ -7,6 +7,16 @@ GIT
       decidim-core (= 0.19.0)
 
 GIT
+  remote: git@github.com:mainio/decidim-module-accountability_simple.git
+  revision: ea2a17c09a22289f924b2bc033319997f1e055fd
+  specs:
+    decidim-accountability_simple (0.19.0)
+      decidim-accountability (~> 0.19.0)
+      decidim-admin (~> 0.19.0)
+      decidim-core (~> 0.19.0)
+      decidim-participatory_processes (~> 0.19.0)
+
+GIT
   remote: git@github.com:mainio/decidim-module-combined_budgeting.git
   revision: ff1beea4f2dd0454fde8ee7e5bf0c7cf2387c54a
   specs:
@@ -882,6 +892,7 @@ DEPENDENCIES
   database_cleaner
   decidim (= 0.19.0)
   decidim-access_requests (~> 0.19.0)
+  decidim-accountability_simple!
   decidim-antivirus (~> 0.19.0)
   decidim-budgets_enhanced!
   decidim-combined_budgeting!
