@@ -6,21 +6,21 @@ ruby RUBY_VERSION
 
 # Run updates by following the Decidim upgrade instructions:
 # https://github.com/decidim/decidim/blob/master/docs/getting_started.md#keeping-your-app-up-to-date
-DECIDIM_VERSION = "0.18.0"
-DECIDIM_MODULE_VERSION = "~> 0.18.0"
+DECIDIM_VERSION = "0.19.0"
+DECIDIM_MODULE_VERSION = "~> 0.19.0"
 
 gem "decidim", DECIDIM_VERSION
 
 gem "decidim-access_requests", DECIDIM_MODULE_VERSION
 gem "decidim-antivirus", DECIDIM_MODULE_VERSION
-gem "decidim-plans", DECIDIM_MODULE_VERSION
+gem "decidim-mpassid", DECIDIM_MODULE_VERSION
 gem "decidim-process_groups_content_block", DECIDIM_MODULE_VERSION
+gem "decidim-suomifi", DECIDIM_MODULE_VERSION
 gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
 
 # Install the git modules until they have an actual release
 gem "decidim-combined_budgeting", git: "git@github.com:mainio/decidim-module-combined_budgeting.git"
-gem "decidim-mpassid", git: "git@github.com:mainio/decidim-module-mpassid.git"
-gem "decidim-suomifi", git: "git@github.com:mainio/decidim-module-suomifi.git"
+gem "decidim-plans", git: "git@github.com:mainio/decidim-module-plans.git"
 
 # Install the improved budgeting module until these improvements are hopefully
 # merged to the core.
@@ -32,34 +32,34 @@ gem "ruby-cldr", "~> 0.3.0"
 
 gem "font-awesome-rails", "~> 4.7.0"
 
-gem "puma", "~> 3.0"
-gem "uglifier", ">= 1.3.0"
+gem "puma", "~> 3.12"
+gem "uglifier", "~> 4.1"
 
 # HKI authentication
-# gem "omniauth_openid_connect", "~> 0.3"
-# There is currently an issue with the "code" response types as explained here:
-# https://github.com/m0n9oose/omniauth_openid_connect/issues/40
-gem "omniauth_openid_connect", git: "https://github.com/m0n9oose/omniauth_openid_connect.git", branch: "fix_redundant_token_verification"
+gem "omniauth_openid_connect", "~> 0.3"
 
 # HKI import
-gem "roo", "~> 2.7", ">= 2.7.1"
+# Roo is not currently compatible with RubyZip 2.0+ which is now a dependency of
+# decidim-core.
+# See: https://github.com/roo-rb/roo/pull/515
+# gem "roo", "~> 2.8"
 
 # HKI export
 gem "rubyXL", "~> 3.4", ">= 3.4.6"
 
 group :development, :test do
-  gem "byebug", platform: :mri
+  gem "byebug", "~> 11.0", platform: :mri
 
   gem "decidim-dev", DECIDIM_VERSION
 end
 
 group :development do
-  gem "faker", "~> 1.8.4"
+  gem "faker", "~> 1.9"
   gem "letter_opener_web", "~> 1.3"
-  gem "listen", "~> 3.1.0"
-  gem "spring"
-  gem "spring-watcher-listen", "~> 2.0.0"
-  gem "web-console"
+  gem "listen", "~> 3.1"
+  gem "spring", "~> 2.0"
+  gem "spring-watcher-listen", "~> 2.0"
+  gem "web-console", "~> 3.5"
 end
 
 group :production, :production_kuva, :production_discussion, :staging do
