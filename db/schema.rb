@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_071009) do
+ActiveRecord::Schema.define(version: 2019_12_05_080643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2019_12_05_071009) do
     t.integer "children_count", default: 0
     t.float "weight", default: 1.0
     t.string "external_id"
+    t.string "main_image"
+    t.string "list_image"
     t.index ["decidim_accountability_status_id"], name: "decidim_accountability_results_on_status_id"
     t.index ["decidim_component_id"], name: "index_decidim_accountability_results_on_decidim_component_id"
     t.index ["decidim_scope_id"], name: "index_decidim_accountability_results_on_decidim_scope_id"
