@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_080643) do
+ActiveRecord::Schema.define(version: 2019_12_16_055032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_080643) do
     t.integer "decidim_accountability_result_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "title"
     t.index ["decidim_accountability_result_id"], name: "index_decidim_accountability_timeline_entries_on_results_id"
     t.index ["entry_date"], name: "index_decidim_accountability_timeline_entries_on_entry_date"
   end
