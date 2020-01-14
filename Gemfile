@@ -10,6 +10,7 @@ DECIDIM_VERSION = "0.19.0"
 DECIDIM_MODULE_VERSION = "~> 0.19.0"
 
 gem "decidim", DECIDIM_VERSION
+gem "decidim-initiatives", DECIDIM_VERSION
 
 gem "decidim-access_requests", DECIDIM_MODULE_VERSION
 gem "decidim-antivirus", DECIDIM_MODULE_VERSION
@@ -26,6 +27,11 @@ gem "decidim-plans", git: "git@github.com:mainio/decidim-module-plans.git"
 # Install the improved budgeting module until these improvements are hopefully
 # merged to the core.
 gem "decidim-budgets_enhanced", git: "git@github.com:OpenSourcePolitics/decidim-module-budgets_enhanced.git"
+
+# Issue with core dependencies not being required, see:
+# https://github.com/decidim/decidim/issues/5257
+gem "wicked_pdf", "~> 1.4"
+gem "wkhtmltopdf-binary", "~> 0.12"
 
 # For the documents authorization handler
 gem "henkilotunnus"
