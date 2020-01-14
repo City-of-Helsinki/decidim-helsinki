@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_055032) do
+ActiveRecord::Schema.define(version: 2020_01_14_071555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -36,10 +36,20 @@ ActiveRecord::Schema.define(version: 2019_12_16_055032) do
     t.string "external_id"
     t.string "main_image"
     t.string "list_image"
+    t.string "theme_color"
     t.index ["decidim_accountability_status_id"], name: "decidim_accountability_results_on_status_id"
     t.index ["decidim_component_id"], name: "index_decidim_accountability_results_on_decidim_component_id"
     t.index ["decidim_scope_id"], name: "index_decidim_accountability_results_on_decidim_scope_id"
     t.index ["parent_id"], name: "decidim_accountability_results_on_parent_id"
+  end
+
+  create_table "decidim_accountability_simple_result_details", force: :cascade do |t|
+    t.bigint "decidim_accountability_result_id"
+    t.integer "position"
+    t.string "icon"
+    t.jsonb "title"
+    t.jsonb "description"
+    t.index ["decidim_accountability_result_id"], name: "index_decidim_accountability_result_details_on_results_id"
   end
 
   create_table "decidim_accountability_statuses", id: :serial, force: :cascade do |t|
