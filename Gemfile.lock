@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@github.com:mainio/decidim-module-accountability_simple.git
-  revision: d338afd82106647ca1100700ce50c2159adf1ddc
+  revision: b50216c7b557143549b413fbecbe5699d18f0081
   specs:
     decidim-accountability_simple (0.19.0)
       decidim-accountability (~> 0.19.0)
