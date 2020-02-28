@@ -17,6 +17,16 @@ GIT
       decidim-participatory_processes (~> 0.19.0)
 
 GIT
+  remote: git@github.com:mainio/decidim-module-apiauth.git
+  revision: 9e08b7b38259dfa44310687a3a88988d81eba230
+  specs:
+    decidim-apiauth (0.19.0)
+      decidim-api (~> 0.19.0)
+      decidim-core (~> 0.19.0)
+      devise-jwt (~> 0.6.0)
+      dry-configurable (~> 0.9.0)
+
+GIT
   remote: git@github.com:mainio/decidim-module-combined_budgeting.git
   revision: ff1beea4f2dd0454fde8ee7e5bf0c7cf2387c54a
   specs:
@@ -396,6 +406,9 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.9.0)
       devise (>= 4.7.1)
+    devise-jwt (0.6.0)
+      devise (~> 4.0)
+      warden-jwt_auth (~> 0.4)
     devise_invitable (1.7.5)
       actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
@@ -414,6 +427,16 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
+    dry-auto_inject (0.7.0)
+      dry-container (>= 0.3.4)
+    dry-configurable (0.9.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.4, >= 0.4.7)
+    dry-container (0.7.2)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.1, >= 0.1.3)
+    dry-core (0.4.9)
+      concurrent-ruby (~> 1.0)
     equalizer (0.0.11)
     erb_lint (0.0.30)
       activesupport
@@ -882,6 +905,11 @@ GEM
       virtus (~> 1.0)
     warden (1.2.8)
       rack (>= 2.0.6)
+    warden-jwt_auth (0.4.0)
+      dry-auto_inject (~> 0.6)
+      dry-configurable (~> 0.8)
+      jwt (~> 2.1)
+      warden (~> 1.2)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -917,6 +945,7 @@ DEPENDENCIES
   decidim-access_requests (~> 0.19.0)
   decidim-accountability_simple!
   decidim-antivirus (~> 0.19.0)
+  decidim-apiauth!
   decidim-budgets_enhanced!
   decidim-combined_budgeting!
   decidim-dev (= 0.19.0)

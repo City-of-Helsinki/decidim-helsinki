@@ -23,6 +23,7 @@ gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
 gem "decidim-accountability_simple", git: "git@github.com:mainio/decidim-module-accountability_simple.git"
 gem "decidim-combined_budgeting", git: "git@github.com:mainio/decidim-module-combined_budgeting.git"
 gem "decidim-plans", git: "git@github.com:mainio/decidim-module-plans.git"
+gem "decidim-apiauth", git: "git@github.com:mainio/decidim-module-apiauth.git"
 
 # Install the improved budgeting module until these improvements are hopefully
 # merged to the core.
