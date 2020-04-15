@@ -20,14 +20,14 @@ gem "decidim-suomifi", DECIDIM_MODULE_VERSION
 gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
 
 # Install the git modules until they have an actual release
-gem "decidim-accountability_simple", git: "git@github.com:mainio/decidim-module-accountability_simple.git"
-gem "decidim-apiauth", git: "git@github.com:mainio/decidim-module-apiauth.git"
-gem "decidim-combined_budgeting", git: "git@github.com:mainio/decidim-module-combined_budgeting.git"
-gem "decidim-plans", git: "git@github.com:mainio/decidim-module-plans.git", branch: "0.19-stable"
+gem "decidim-accountability_simple", git: "https://github.com/mainio/decidim-module-accountability_simple"
+gem "decidim-apiauth", git: "https://github.com/mainio/decidim-module-apiauth"
+gem "decidim-combined_budgeting", git: "https://github.com/mainio/decidim-module-combined_budgeting"
+gem "decidim-plans", git: "https://github.com/mainio/decidim-module-plans", branch: "0.19-stable"
 
 # Install the improved budgeting module until these improvements are hopefully
 # merged to the core.
-gem "decidim-budgets_enhanced", git: "git@github.com:OpenSourcePolitics/decidim-module-budgets_enhanced.git"
+gem "decidim-budgets_enhanced", git: "https://github.com/OpenSourcePolitics/decidim-module-budgets_enhanced"
 
 # Issue with core dependencies not being required, see:
 # https://github.com/decidim/decidim/issues/5257

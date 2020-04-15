@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:OpenSourcePolitics/decidim-module-budgets_enhanced.git
+  remote: https://github.com/OpenSourcePolitics/decidim-module-budgets_enhanced
   revision: c45920ae1a2d09856e5fda69e25d36c09bb4989a
   specs:
     decidim-budgets_enhanced (0.19.0)
@@ -7,7 +7,7 @@ GIT
       decidim-core (= 0.19.0)
 
 GIT
-  remote: git@github.com:mainio/decidim-module-accountability_simple.git
+  remote: https://github.com/mainio/decidim-module-accountability_simple
   revision: ccf870a5b0edce77c4a080bea13395747e73be22
   specs:
     decidim-accountability_simple (0.19.0)
@@ -17,7 +17,7 @@ GIT
       decidim-participatory_processes (~> 0.19.0)
 
 GIT
-  remote: git@github.com:mainio/decidim-module-apiauth.git
+  remote: https://github.com/mainio/decidim-module-apiauth
   revision: f55929c2861721fd18c7454e23844e68bab5511e
   specs:
     decidim-apiauth (0.19.0)
@@ -27,8 +27,8 @@ GIT
       dry-configurable (~> 0.9.0)
 
 GIT
-  remote: git@github.com:mainio/decidim-module-combined_budgeting.git
-  revision: ff1beea4f2dd0454fde8ee7e5bf0c7cf2387c54a
+  remote: https://github.com/mainio/decidim-module-combined_budgeting
+  revision: dfc87a6af4a33bfb22689416f3ea626ff7ffd26c
   specs:
     decidim-combined_budgeting (0.19.0)
       decidim-admin (~> 0.19.0)
@@ -37,7 +37,7 @@ GIT
       decidim-verifications (~> 0.19.0)
 
 GIT
-  remote: git@github.com:mainio/decidim-module-plans.git
+  remote: https://github.com/mainio/decidim-module-plans
   revision: d658de975b637ab7720bf47dffb1304568a1d524
   branch: 0.19-stable
   specs:
