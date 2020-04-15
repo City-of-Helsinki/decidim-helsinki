@@ -23,6 +23,8 @@ default: &default
   host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
   username: <%= ENV.fetch("DATABASE_USERNAME") { "decidim" } %>
   password: <%= ENV.fetch("DATABASE_PASSWORD") { "development" } %>
+  sslrootcert: <%= ENV.fetch("DATABASE_ROOT_CERT") { "" } %>
+  sslmode: <%= ENV.fetch("DATABASE_SSL_MODE") { "" } %>
 
 development:
   <<: *default
