@@ -1,0 +1,24 @@
+<%
+filters = Decidim::ParticipatoryProcesses::ProcessFiltersCell::ALL_FILTERS.dup
+filters.reject! { |f| process_count_by_filter[f].zero? }
+%>
+
+<span class="order-by__tabs">
+  <% if should_show_tabs? %>
+    <%= explanation %>
+    <% filters.each do |filter| %>
+      <%= link_to filter_link(filter), remote: true, class: "order-by__tab" do %>
+        <% if current_filter == filter %>
+          <strong>
+            <%= filter_name(filter) %>
+          </strong>&nbsp;<span>(<%= process_count_by_filter[filter] %>)</span>
+        <% else %>
+          <%= filter_name(filter) %>&nbsp;<span>(<%= process_count_by_filter[filter] %>)</span>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= title %>
+    <%= explanation %>
+  <% end %>
+</span>
