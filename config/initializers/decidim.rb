@@ -17,6 +17,8 @@ Decidim.configure do |config|
 
   # Currency unit
   # config.currency_unit = "€"
+
+  config.maximum_attachment_size = 15.megabytes
 end
 
 # Define the I18n locales.
