@@ -23,6 +23,13 @@ if Rails.application.config.suomifi_enabled
       end
       config.authenticator_class = Helsinki::SuomifiAuthenticator
       config.metadata_collector_class = Helsinki::SuomifiMetadataCollector
+      config.extra = {
+        # It seems the Suomi.fi clock is occasionally ~10 seconds ahead of our
+        # servers even when the system clock is synced with NTP. For this reason
+        # we allow 30s clock drift for the SAML authentication in order to avoid
+        # login errors due to this.
+        allowed_clock_drift: 30
+      }
     end
   end
 end
