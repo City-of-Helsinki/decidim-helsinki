@@ -6,44 +6,50 @@ module ScopesHelperExtensions
 
   included do
     # Overrides the scopes picker filter to use our customized one-dimensional
-    # select scope picker
-    def scopes_picker_filter(form, name, checkboxes_on_top = true, _filtering_context_id = "content")
-      root = try(:current_participatory_space).try(:scope)
-
-      label = begin
-        if root
-          translated_attribute(root.name)
-        else
-          scopes_label(form, name)
-        end
-      end
-      scope_options = begin
-        if root
-          scope_picker_options(root.children)
-        else
-          scope_picker_options(current_organization.scopes.top_level)
-        end
-      end
-
-      selected = selected_scopes(form, name).first
-
-      # It's a private method in the filter form builder
-      #form.send(:fieldset_wrapper, label, "#{name}_scopes_picker_filter") do
-      form.send(:fieldset_wrapper, label) do
-        form.select(
-          name,
-          options_for_select(scope_options, selected&.id),
-          include_blank: true,
-          label: false
-        )
-      end
+    # "simple" scope picker.
+    def scopes_picker_filter(form, name, _checkboxes_on_top = true, _filtering_context_id = "content")
+      scopes_picker_filter_simple(form, name)
     end
   end
 
-  def scopes_label(form, name)
-    root = try(:current_participatory_space).try(:scope)
+  def scopes_picker_filter_simple(form, name, options = {})
+    root = options[:root] || try(:current_participatory_space).try(:scope)
 
     label = begin
+      if options[:label]
+        options[:label]
+      elsif root
+        translated_attribute(root.name)
+      else
+        scopes_label
+      end
+    end
+    scopes = begin
+      if root
+        root.children
+      else
+        current_organization.scopes.top_level
+      end
+    end
+
+    selected = selected_scopes(form, name).first
+
+    # It's a private method in the filter form builder
+    # form.send(:fieldset_wrapper, label, "#{name}_scopes_picker_filter") do
+    form.send(:fieldset_wrapper, label) do
+      form.select(
+        name,
+        scope_picker_options(scopes, selected&.id),
+        include_blank: options[:prompt] || I18n.t("forms.scopes_picker.prompt", item_name: label),
+        label: false
+      )
+    end
+  end
+
+  def scopes_label(options = {})
+    root = options[:root] || try(:current_participatory_space).try(:scope)
+
+    begin
       if root
         translated_attribute(root.name)
       else
@@ -54,20 +60,28 @@ module ScopesHelperExtensions
 
   private
 
-  def scope_picker_options(scopes, depth = 0)
-    options = []
+  def scope_picker_options(scopes, selected = nil)
+    groups = []
+    without_groups = []
     scopes.each do |scope|
-      prefix = "--" * depth
-      prefix = "#{prefix} " if depth.positive?
-      name = "#{prefix}#{translated_attribute(scope.name)}"
+      name = translated_attribute(scope.name)
 
-      options << [name, scope.id]
-      next unless scope.children.any?
-
-      options += scope_picker_options(scope.children, depth + 1)
+      if scope.children.any?
+        groups << [name, scope_picker_options(scope.children)]
+      else
+        without_groups << [name, scope.id]
+      end
     end
 
-    options
+    return options_for_select(without_groups, selected) if groups.empty?
+
+    unless without_groups.empty?
+      groups << [
+        I18n.t("forms.scopes_picker.others"),
+        without_groups
+      ]
+    end
+    grouped_options_for_select(groups, selected)
   end
 
   # Private: Returns an array of scopes related to object attribute

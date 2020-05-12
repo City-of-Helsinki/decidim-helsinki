@@ -72,6 +72,10 @@ fi:
       omniauth_callbacks:
         failure:
           security_denial: Henkilöllisyyttäsi ei pystytä varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
+  forms:
+    scopes_picker:
+      others: Muut
+      prompt: Valitse %{item_name}
   pages:
     home:
       hero:

@@ -72,6 +72,10 @@ en:
       omniauth_callbacks:
         failure:
           security_denial: Your identity cannot be verified electronically. You can vote at the polling stations announced separately by showing an ID.
+  forms:
+    scopes_picker:
+      others: Others
+      prompt: Choose %{item_name}
   pages:
     home:
       hero:
