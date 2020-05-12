@@ -103,10 +103,16 @@ module Helsinki
 
         combined_process.publish!
 
-        # Remove the process group
-        Decidim::ParticipatoryProcessGroup.find_by(
+        # Redirect the old process group URL to the combined process and
+        # remove the process group.
+        group = Decidim::ParticipatoryProcessGroup.find_by(
           "name->>'fi' =?", "Helsingin osallistuva budjetointi"
-        ).destroy!
+        )
+        set_redirection(
+          "/processes_groups/#{group.id}",
+          "/processes/#{combined_process.slug}"
+        )
+        group.destroy!
 
         # Redirect the accountability combination page
         set_redirection(
