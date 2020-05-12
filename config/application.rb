@@ -143,6 +143,10 @@ module DecidimHelsinki
         :include,
         CommentsHelperExtensions
       )
+      Decidim::ScopesHelper.send(
+        :include,
+        ScopesHelperExtensions
+      )
 
       # Parser extensions
       Decidim::ContentParsers::ProposalParser.send(
