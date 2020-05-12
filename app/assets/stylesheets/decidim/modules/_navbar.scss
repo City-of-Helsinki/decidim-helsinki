@@ -175,7 +175,7 @@ $menuitem-padding: 1em 2em;
   }
 
   @include breakpoint(xlarge){
-    margin-right: 1.8rem;
+    margin-right: 1.2rem;
   }
 
   a{
@@ -563,7 +563,7 @@ $menuitem-padding: 1em 2em;
     font-size: 1.3rem;
   }
   @include breakpoint(xlarge){
-    padding: 0.7rem 1.5rem;
+    padding: 0.7rem 1.2rem;
     font-size: 1.5rem;
   }
 }
