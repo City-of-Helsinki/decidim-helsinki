@@ -731,7 +731,7 @@ module Helsinki
         )
 
         # Create the categories
-        Decidim::Category.create!(
+        combined_process.categories.create!(
           name: {
             "fi" => "Ekologisuus",
             "en" => "Ecofriendliness",
@@ -744,7 +744,7 @@ module Helsinki
           },
           color: "#51bf9d"
         )
-        Decidim::Category.create!(
+        combined_process.categories.create!(
           name: {
             "fi" => "Yhteisöllisyys",
             "en" => "Community",
@@ -757,7 +757,7 @@ module Helsinki
           },
           color: "#ffd400"
         )
-        Decidim::Category.create!(
+        combined_process.categories.create!(
           name: {
             "fi" => "Terveys ja hyvinvointi",
             "en" => "Health and wellbeing",
@@ -770,7 +770,7 @@ module Helsinki
           },
           color: "#f37021"
         )
-        Decidim::Category.create!(
+        combined_process.categories.create!(
           name: {
             "fi" => "Kulttuuri",
             "en" => "Culture",
@@ -783,7 +783,7 @@ module Helsinki
           },
           color: "#f1a2c6"
         )
-        Decidim::Category.create!(
+        combined_process.categories.create!(
           name: {
             "fi" => "Rakennettu ympäristö",
             "en" => "Built environment",
@@ -796,7 +796,7 @@ module Helsinki
           },
           color: "#0072bc"
         )
-        Decidim::Category.create!(
+        combined_process.categories.create!(
           name: {
             "fi" => "Oppiminen ja osaaminen",
             "en" => "Learning and skills",
@@ -809,7 +809,7 @@ module Helsinki
           },
           color: "#a0c9ec"
         )
-        Decidim::Category.create!(
+        combined_process.categories.create!(
           name: {
             "fi" => "Puistot ja luonto",
             "en" => "Parks and nature",
@@ -822,7 +822,7 @@ module Helsinki
           },
           color: "#c69c4f"
         )
-        Decidim::Category.create!(
+        combined_process.categories.create!(
           name: {
             "fi" => "Liikunta ja ulkoilu",
             "en" => "Sport and outdoors",
