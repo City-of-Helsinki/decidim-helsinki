@@ -24,6 +24,7 @@ gem "decidim-accountability_simple", git: "https://github.com/mainio/decidim-mod
 gem "decidim-apiauth", git: "https://github.com/mainio/decidim-module-apiauth"
 gem "decidim-combined_budgeting", git: "https://github.com/mainio/decidim-module-combined_budgeting"
 gem "decidim-plans", git: "https://github.com/mainio/decidim-module-plans", branch: "0.19-stable"
+gem "decidim-redirects", git: "https://github.com/mainio/decidim-module-redirects"
 
 # Install the improved budgeting module until these improvements are hopefully
 # merged to the core.

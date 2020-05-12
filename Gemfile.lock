@@ -38,13 +38,20 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans
-  revision: d658de975b637ab7720bf47dffb1304568a1d524
+  revision: f8bb285c0c12b694aad73a44e176fdc7e397a397
   branch: 0.19-stable
   specs:
     decidim-plans (0.19.0)
       decidim-core (~> 0.19.0)
       decidim-proposals (~> 0.19.0)
       paper_trail-association_tracking (~> 2.0)
+
+GIT
+  remote: https://github.com/mainio/decidim-module-redirects
+  revision: 57db85c10c33d8993f5e98d908b95d715c2dd17c
+  specs:
+    decidim-redirects (0.19.0)
+      decidim-core (~> 0.19.0)
 
 GEM
   remote: https://rubygems.org/
@@ -954,6 +961,7 @@ DEPENDENCIES
   decidim-mpassid (~> 0.19.0)
   decidim-plans!
   decidim-process_groups_content_block (~> 0.19.0)
+  decidim-redirects!
   decidim-suomifi (~> 0.19.0)
   decidim-term_customizer (~> 0.19.0)
   dotenv-rails (~> 2.1, >= 2.1.1)

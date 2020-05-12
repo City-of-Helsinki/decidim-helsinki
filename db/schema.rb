@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_28_105035) do
+ActiveRecord::Schema.define(version: 2020_05_06_120106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1128,7 +1128,7 @@ ActiveRecord::Schema.define(version: 2020_02_28_105035) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "decidim_author_type", null: false
-    t.index "decidim_proposal_id, decidim_author_id, (COALESCE(decidim_user_group_id, ('-1'::integer)::bigint))", name: "decidim_proposals_proposal_endorsmt_proposal_auth_ugroup_uniq", unique: true
+    t.index "decidim_proposal_id, decidim_author_id, COALESCE(decidim_user_group_id, ('-1'::integer)::bigint)", name: "decidim_proposals_proposal_endorsmt_proposal_auth_ugroup_uniq", unique: true
     t.index ["decidim_author_id", "decidim_author_type"], name: "index_decidim_proposals_proposal_endorsements_on_decidim_author"
     t.index ["decidim_proposal_id"], name: "decidim_proposals_proposal_endorsement_proposal"
     t.index ["decidim_user_group_id"], name: "decidim_proposals_proposal_endorsement_user_group"
@@ -1186,6 +1186,18 @@ ActiveRecord::Schema.define(version: 2020_02_28_105035) do
     t.index ["proposal_endorsements_count"], name: "idx_decidim_proposals_proposals_on_proposal_endorsemnts_count"
     t.index ["proposal_votes_count"], name: "index_decidim_proposals_proposals_on_proposal_votes_count"
     t.index ["state"], name: "index_decidim_proposals_proposals_on_state"
+  end
+
+  create_table "decidim_redirects_redirections", force: :cascade do |t|
+    t.bigint "decidim_organization_id", null: false
+    t.integer "priority", default: 0, null: false
+    t.string "path", null: false
+    t.jsonb "parameters"
+    t.text "target", null: false
+    t.boolean "external", default: false
+    t.index ["decidim_organization_id"], name: "index_decidim_redirects_redirections_on_decidim_organization_id"
+    t.index ["path"], name: "index_decidim_redirects_redirections_on_path"
+    t.index ["priority"], name: "index_decidim_redirects_redirections_on_priority"
   end
 
   create_table "decidim_reports", id: :serial, force: :cascade do |t|
@@ -1569,6 +1581,7 @@ ActiveRecord::Schema.define(version: 2020_02_28_105035) do
   add_foreign_key "decidim_participatory_process_steps", "decidim_participatory_processes"
   add_foreign_key "decidim_participatory_processes", "decidim_organizations"
   add_foreign_key "decidim_plans_tags", "decidim_organizations"
+  add_foreign_key "decidim_redirects_redirections", "decidim_organizations"
   add_foreign_key "decidim_scope_types", "decidim_organizations"
   add_foreign_key "decidim_scopes", "decidim_organizations"
   add_foreign_key "decidim_scopes", "decidim_scope_types", column: "scope_type_id"
