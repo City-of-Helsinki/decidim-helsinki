@@ -1013,7 +1013,7 @@ module Helsinki
               "votes_hidden" => false,
               "comments_blocked" => false,
               "creation_enabled" => false,
-              "proposal_answering_enabled" => false
+              "proposal_answering_enabled" => true
             ),
             combined_process.steps[5].id.to_s => new_component_settings(
               manifest,
@@ -1025,7 +1025,7 @@ module Helsinki
               "votes_hidden" => false,
               "comments_blocked" => false,
               "creation_enabled" => false,
-              "proposal_answering_enabled" => false
+              "proposal_answering_enabled" => true
             ),
             combined_process.steps[6].id.to_s => new_component_settings(
               manifest,
@@ -1037,7 +1037,7 @@ module Helsinki
               "votes_hidden" => true,
               "comments_blocked" => false,
               "creation_enabled" => false,
-              "proposal_answering_enabled" => false
+              "proposal_answering_enabled" => true
             )
           },
           published_at: Time.now
