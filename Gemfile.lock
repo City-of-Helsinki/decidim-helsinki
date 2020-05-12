@@ -48,7 +48,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-redirects
-  revision: 57db85c10c33d8993f5e98d908b95d715c2dd17c
+  revision: 706fdd27a9d863f821eb9bfbac654aa2b17dd44c
   specs:
     decidim-redirects (0.19.0)
       decidim-core (~> 0.19.0)
