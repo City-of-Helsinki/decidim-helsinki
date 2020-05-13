@@ -96,6 +96,7 @@ module Helsinki
             component: accountability_component,
             scope: scope
           )
+          remap_accountability_result_details(process, accountability_component)
 
           process.destroy!
           index += 1
@@ -677,7 +678,7 @@ module Helsinki
         return accountability_component if accountability_component
 
         manifest = Decidim.find_component_manifest("accountability")
-        Decidim::Component.create!(
+        component = Decidim::Component.create!(
           manifest_name: "accountability",
           name: {
             "fi" => "Edistyminen",
@@ -721,6 +722,60 @@ module Helsinki
           },
           published_at: Time.now
         )
+
+        # Add the default details
+        Decidim::AccountabilitySimple::ResultDetail.create!(
+          title: {
+            "fi" => "Hinta",
+            "en" => "Price",
+            "sv" => "Pris"
+          },
+          icon: "budget",
+          position: 0,
+          accountability_result_detailable: component
+        )
+        Decidim::AccountabilitySimple::ResultDetail.create!(
+          title: {
+            "fi" => "Sijainti",
+            "en" => "Location",
+            "sv" => "Plats"
+          },
+          icon: "map-marker",
+          position: 1,
+          accountability_result_detailable: component
+        )
+        Decidim::AccountabilitySimple::ResultDetail.create!(
+          title: {
+            "fi" => "Vuosi",
+            "en" => "Year",
+            "sv" => "År"
+          },
+          icon: "calendar",
+          position: 2,
+          accountability_result_detailable: component
+        )
+        Decidim::AccountabilitySimple::ResultDetail.create!(
+          title: {
+            "fi" => "Äänet",
+            "en" => "Votes",
+            "sv" => "Röster"
+          },
+          icon: "vote",
+          position: 3,
+          accountability_result_detailable: component
+        )
+        Decidim::AccountabilitySimple::ResultDetail.create!(
+          title: {
+            "fi" => "Yhteyshenkilö",
+            "en" => "Contact",
+            "sv" => "Kontakt"
+          },
+          icon: "person",
+          position: 4,
+          accountability_result_detailable: component
+        )
+
+        component
       end
     end
   end

@@ -103,6 +103,29 @@ module Helsinki
         set_redirection(old_url, new_url)
       end
 
+      # Remaps the plan detail values to the new component's detail IDs so that
+      # this data is kept visible after the migration.
+      def remap_accountability_result_details(from_process, to_component)
+        old_component = from_process.components.find_by(manifest_name: "accountability")
+        return unless old_component
+
+        Decidim::AccountabilitySimple::ResultDetail.where(
+          accountability_result_detailable: old_component
+        ).each do |old_detail|
+          new_detail = Decidim::AccountabilitySimple::ResultDetail.find_by(
+            "accountability_result_detailable_type =? AND accountability_result_detailable_id =? AND TRIM(title->>'fi') =?",
+            "Decidim::Component",
+            to_component.id,
+            old_detail.title["fi"].strip
+          )
+          next unless new_detail
+
+          Decidim::AccountabilitySimple::ResultDetailValue.where(
+            detail: old_detail
+          ).update_all(decidim_accountability_result_detail_id: new_detail.id)
+        end
+      end
+
       def move_plans_to_other_component(process, plan_mover, scope, plan_maps = {})
         plans_component = plan_mover.to_component
         to_process = plans_component.participatory_space
