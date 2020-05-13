@@ -88,6 +88,7 @@ module Helsinki
             scope: scope
           )
           remap_accountability_result_details(process, accountability_component)
+          remap_accountability_result_statuses(process, accountability_component)
 
           # Redirect the process
           set_redirection(
@@ -1467,6 +1468,23 @@ module Helsinki
           icon: "person",
           position: 4,
           accountability_result_detailable: component
+        )
+
+        # Add the statuses
+        Decidim::Accountability::Status.create!(
+          component: component,
+          key: "preparation",
+          name: {
+            "fi" => "Esivalmistelu käynnistynyt",
+            "en" => "Preparation started",
+            "sv" => "Förberedelserna har påbörjats"
+          },
+          description: {
+            "fi" => "",
+            "en" => "",
+            "sv" => ""
+          },
+          progress: 5
         )
 
         component

@@ -97,6 +97,7 @@ module Helsinki
             scope: scope
           )
           remap_accountability_result_details(process, accountability_component)
+          remap_accountability_result_statuses(process, accountability_component)
 
           process.destroy!
           index += 1
@@ -773,6 +774,83 @@ module Helsinki
           icon: "person",
           position: 4,
           accountability_result_detailable: component
+        )
+
+        # Add the statuses
+        Decidim::Accountability::Status.create!(
+          component: component,
+          key: "initiative",
+          name: {
+            "fi" => "Aloite",
+            "en" => "Initiative",
+            "sv" => "Initiativ"
+          },
+          description: {
+            "fi" => "",
+            "en" => "",
+            "sv" => ""
+          },
+          progress: nil
+        )
+        Decidim::Accountability::Status.create!(
+          component: component,
+          key: "planning",
+          name: {
+            "fi" => "Suunnittelu aloitettu",
+            "en" => "Planning started",
+            "sv" => "Planeringen startade"
+          },
+          description: {
+            "fi" => "",
+            "en" => "",
+            "sv" => ""
+          },
+          progress: 25
+        )
+        Decidim::Accountability::Status.create!(
+          component: component,
+          key: "preparation",
+          name: {
+            "fi" => "Esivalmistelut",
+            "en" => "Preparation",
+            "sv" => "Förberedelser"
+          },
+          description: {
+            "fi" => "",
+            "en" => "",
+            "sv" => ""
+          },
+          progress: 50
+        )
+        Decidim::Accountability::Status.create!(
+          component: component,
+          key: "progress",
+          name: {
+            "fi" => "Käynnissä",
+            "en" => "In progress",
+            "sv" => "Pågar"
+          },
+          description: {
+            "fi" => "",
+            "en" => "",
+            "sv" => ""
+          },
+          progress: 75
+        )
+        Decidim::Accountability::Status.create!(
+          component: component,
+          key: "completed",
+          name: {
+            "fi" => "Valmis",
+            "en" => "Completed",
+            "sv" => "Färdig"
+          },
+          description: {
+            "fi" => "",
+            "en" => "",
+            "sv" => ""
+          },
+          progress: 100
         )
 
         component

@@ -126,6 +126,24 @@ module Helsinki
         end
       end
 
+      def remap_accountability_result_statuses(from_process, to_component)
+        old_component = from_process.components.find_by(manifest_name: "accountability")
+        return unless old_component
+
+        Decidim::Accountability::Status.where(component: old_component).each do |old_status|
+          new_status = Decidim::Accountability::Status.find_by(
+            component: to_component,
+            progress: old_status.progress
+          )
+          next unless new_status
+
+          Decidim::Accountability::Result.where(
+            component: to_component,
+            status: old_status
+          ).update_all(decidim_accountability_status_id: new_status.id)
+        end
+      end
+
       def move_plans_to_other_component(process, plan_mover, scope, plan_maps = {})
         plans_component = plan_mover.to_component
         to_process = plans_component.participatory_space
