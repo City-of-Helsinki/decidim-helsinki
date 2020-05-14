@@ -715,7 +715,7 @@ module Helsinki
               "Kaupunki valitsee ja kilpailuttaa toimijat OmaStadi- suunnitelmien toteuttamiseksi omien säädöstensä mukaisesti. ",
               "Kaupunkilaisia kutsutaan mukaan tekemään ja toteuttamaan suunnitelmia sekä tietenkin juhlimaan yhteisien unelmien toteutumista.",
               "</p>"
-            ],
+            ].join,
             "en" => [
               "<p>",
               "The Mayor of the City will confirm the result of the vote and authorises the City services to execute the winning plans of the OmaStadi vote. ",
@@ -723,7 +723,7 @@ module Helsinki
               "The City will put up the OmaStadi plans up for tender and select the operators in accordance with its own regulations. ",
               "Residents of the city are invited to make plans and execute them, and of course, to celebrate the realisation of collective dreams.",
               "</p>"
-            ],
+            ].join,
             "sv" => [
               "<p>",
               "Borgmästaren stadfäster valresultatet och befullmäktigar stadens tjänster att genomföra de OmaStadi-planer som vunnit i valet. ",
@@ -731,7 +731,7 @@ module Helsinki
               "Staden väljer och upphandlar entreprenörer för genomförandet i enlighet med det egna regelverket. ",
               "Stadsborna bjuds in för att göra och utföra planerna, och självklart för att fira att de gemensamma drömmarna blir verklighet.",
               "</p>"
-            ]
+            ].join
           },
           start_date: Date.new(2019, 11, 1),
           end_date: Date.new(2020, 9, 13),
