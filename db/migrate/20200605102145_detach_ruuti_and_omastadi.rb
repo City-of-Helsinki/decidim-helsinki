@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require "helsinki/migration/single_process_base"
-require "helsinki/migration/single_process_omastadi"
-require "helsinki/migration/single_process_ruuti"
+require "helsinki/migration/ruuti_move"
 
 class DetachRuutiAndOmastadi < ActiveRecord::Migration[5.2]
   def up
