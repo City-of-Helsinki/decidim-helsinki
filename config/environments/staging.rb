@@ -2,6 +2,7 @@
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.search_indexing = false
 
   config.suomifi_enabled = true
   config.mpassid_enabled = true
