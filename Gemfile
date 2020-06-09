@@ -71,7 +71,7 @@ group :development do
   gem "web-console", "~> 3.5"
 end
 
-group :production, :production_kuva, :production_discussion, :staging do
+group :production, :production_kuva, :production_ruuti, :production_discussion, :staging do
   gem "dotenv-rails", "~> 2.1", ">= 2.1.1"
 
   # resque-scheduler still depends on resque ~> 1.25
