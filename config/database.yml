@@ -34,6 +34,10 @@ development_kuva:
   <<: *default
   database: <%= ENV.fetch("DATABASE_NAME") { "decidim-helsinki_development" } %>
 
+development_ruuti:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME") { "decidim-helsinki_development" } %>
+
 development_discussion:
   <<: *default
   database: <%= ENV.fetch("DATABASE_NAME") { "decidim-helsinki_development" } %>
@@ -96,6 +100,10 @@ production:
   database: <%= ENV.fetch("DATABASE_NAME") { "dummy" } %>
 
 production_kuva:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME") { "dummy" } %>
+
+production_ruuti:
   <<: *default
   database: <%= ENV.fetch("DATABASE_NAME") { "dummy" } %>
 
