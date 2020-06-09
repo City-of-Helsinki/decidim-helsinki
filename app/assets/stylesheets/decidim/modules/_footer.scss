@@ -1,13 +1,14 @@
 $footer-bg: $hel-copper;
 $footer-bg-paahtimo: $hel-summer;
-$footer-bg-discussion: $hel-metro;
+$footer-bg-ruuti: $hel-coat;
 $footer-fg: $black;
 $footer-fg-paahtimo: $black;
-$footer-fg-discussion: $white;
+$footer-fg-ruuti: $white;
 
 .footer-wrapper{
   .koro-top{
     @include koro("basic", $footer-bg, 1000);
+
     height: 28px;
 
     &.with-wrapper--inner{
@@ -20,7 +21,7 @@ $footer-fg-discussion: $white;
 .mini-footer{
   background-color: $footer-bg;
   color: $footer-fg;
-  font-size: 0.95rem;
+  font-size: .95rem;
 
   @include breakpoint(medium){
     padding-left: 1.5rem;
@@ -47,6 +48,7 @@ $footer-fg-discussion: $white;
       @include koro("basic", $footer-bg-paahtimo, 1000);
     }
   }
+
   .main-footer,
   .mini-footer{
     background-color: $footer-bg-paahtimo;
@@ -58,27 +60,28 @@ $footer-fg-discussion: $white;
   }
 }
 
-.wrapper-discussion{
+.wrapper-ruuti{
   .footer-wrapper{
     .koro-top{
-      @include koro("basic", $titlebar-bg-discussion, 1000);
+      @include koro("basic", $footer-bg-ruuti, 1000);
     }
   }
+
   .main-footer,
   .mini-footer{
-    background-color: $footer-bg-discussion;
-    color: $footer-fg-discussion;
+    background-color: $footer-bg-ruuti;
+    color: $footer-fg-ruuti;
 
     a{
-      color: $footer-fg-discussion;
+      color: $footer-fg-ruuti;
     }
   }
 }
 
-.main-footer {
+.main-footer{
   padding-top: 3.2rem;
 
-  .main-footer__badge {
+  .main-footer__badge{
     display: block;
     margin-top: 9px;
     width: 140px;
@@ -95,7 +98,7 @@ $footer-fg-discussion: $white;
       width: 220px;
     }
 
-    img { height: 100%; }
+    img{ height: 100%; }
   }
 }
 
@@ -129,10 +132,16 @@ $footer-fg-discussion: $white;
   }
 }
 
-.wrapper-discussion{
+.wrapper-ruuti{
   .main__footer__nav{
     h3{
-      color: $footer-fg-discussion;
+      color: $footer-fg-ruuti;
+    }
+
+    .footer-nav{
+      a{
+        color: $footer-fg-ruuti;
+      }
     }
   }
 }
@@ -143,10 +152,10 @@ $footer-fg-discussion: $white;
   .cc-badge{
     position: relative;
     top: -1px;
-    margin-right: 0.5rem;
+    margin-right: .5rem;
   }
 }
 
-@include breakpoint(medium) {
-  .mini-footer__copyright { text-align: right; }
+@include breakpoint(medium){
+  .mini-footer__copyright{ text-align: right; }
 }

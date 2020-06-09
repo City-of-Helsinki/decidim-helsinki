@@ -1,13 +1,12 @@
 /* Variables */
 
-
 /* Typography - Foundation overrides */
 button,
 input{
   font-family: inherit;
 }
 
-@mixin heading($heading) {
+@mixin heading($heading){
   line-height: 1.2;
   font-size: map-get(map-get(map-get($header-styles, small), $heading), 'font-size') / 16 + em;
 
@@ -116,7 +115,8 @@ hr{
 }
 
 .wrapper-default .text-highlight,
-.wrapper-paahtimo .text-highlight{
+.wrapper-paahtimo .text-highlight,
+.wrapper-ruuti .text-highlight{
   color: $black;
 }
 

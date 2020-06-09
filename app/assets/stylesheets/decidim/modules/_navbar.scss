@@ -11,10 +11,10 @@ $navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
 
 $titlebar-bg: $hel-copper;
 $titlebar-bg-paahtimo: $hel-fog;
-$titlebar-bg-discussion: $hel-metro;
+$titlebar-bg-ruuti: $hel-coat;
 $titlebar-fg: $black;
 $titlebar-fg-paahtimo: $black;
-$titlebar-fg-discussion: $white;
+$titlebar-fg-ruuti: $white;
 
 $menuitem-padding: 1em 2em;
 
@@ -81,13 +81,13 @@ $menuitem-padding: 1em 2em;
   }
 }
 
-.wrapper-discussion{
+.wrapper-ruuti{
   .title-bar{
-    background-color: $titlebar-bg-discussion;
-    color: $titlebar-fg-discussion;
+    background-color: $titlebar-bg-ruuti;
+    color: $titlebar-fg-ruuti;
 
     .koro-top{
-      @include koro("basic", $titlebar-bg-discussion, 1000);
+      @include koro("basic", $titlebar-bg-ruuti, 1000);
     }
   }
 }
@@ -559,11 +559,12 @@ $menuitem-padding: 1em 2em;
 
 .main-nav__link a{
   @include breakpoint(large){
-    padding: 0.7rem 1.3rem;
+    padding: .7rem 1.3rem;
     font-size: 1.3rem;
   }
+
   @include breakpoint(xlarge){
-    padding: 0.7rem 1.2rem;
+    padding: .7rem 1.2rem;
     font-size: 1.5rem;
   }
 }
