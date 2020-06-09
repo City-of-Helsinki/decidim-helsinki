@@ -8,7 +8,7 @@
         <% if Devise.mappings[:user].registerable? %>
           <%= link_to decidim.new_user_registration_path, class: "button--sc link subhero-cta" do %>
             <%= t("decidim.pages.home.sub_hero.register") %>
-            <%= icon "chevron-right", aria_hidden: true, role: "none presentation" %>
+            <%= icon "chevron-right", aria_hidden: true, role: "img" %>
           <% end %>
         <% end %>
       <% end %>

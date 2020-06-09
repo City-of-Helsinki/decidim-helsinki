@@ -1,6 +1,6 @@
 <% add_decidim_page_title(t("devise.sessions.new.sign_in")) %>
 
-<main>
+<div>
   <div class="wrapper">
     <div class="row collapse">
       <div class="columns large-8 large-centered text-center page-title">
@@ -61,7 +61,7 @@
       </div>
     </div>
   </div>
-</main>
+</div>
 
 <% if params[:user] || session[:open_user_form] %>
   <%= javascript_tag defer: 'defer' do -%>
