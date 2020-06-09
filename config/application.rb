@@ -28,6 +28,9 @@ module DecidimHelsinki
     # Tracking
     config.snoobi_account = nil
 
+    # Can the site be indexed by search engines
+    config.search_indexing = true
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
