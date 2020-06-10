@@ -68,8 +68,12 @@
 
 .wrapper-ruuti{
   .featured-articles{
-    .separator{
-      background-color: $hel-coat;
+    .process-articles-wrapper{
+      article{
+        .separator{
+          background-color: $hel-coat;
+        }
+      }
     }
   }
 }
