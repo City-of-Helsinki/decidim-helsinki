@@ -52,6 +52,16 @@ Devise.setup do |config|
         secret: client_secret,
         redirect_uri: "#{app_root_url}/users/auth/tunnistamo/callback"
       },
+      # The omniauth_openid_connect gem relies on the openid_connect which uses
+      # a request client inherited from rack-oauth2. This request client does
+      # the access token requests to the authentication server and by default
+      # it uses HTTP basic authentication. This does not work if the client
+      # credentials contain specific characters (such as ":") which is why we
+      # define the "other" authentication method when they are included in a
+      # normal POST request. There is no `:other` auth method in the client but
+      # with an unknown method it goes to the else block which does exactly
+      # this. See: https://git.io/JfSD0
+      client_auth_method: :other,
       post_logout_redirect_uri: app_root_url
     )
 
