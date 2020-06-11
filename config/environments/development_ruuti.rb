@@ -10,7 +10,7 @@ Rails.application.configure do
   config.wrapper_class = "wrapper-ruuti"
 
   # Color profile that changes the logo color for the footer
-  config.color_profile = "white"
+  # config.color_profile = "white"
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
