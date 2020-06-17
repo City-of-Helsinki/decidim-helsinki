@@ -3,9 +3,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Once the MPASSid is opened for the instance, enable this.
-  # Update also secrets.yml to enable the MPASSid login.
-  config.mpassid_enabled = false
+  config.mpassid_enabled = true
 
   # Tracking
   config.snoobi_account = "omastadi_hel_fi"
