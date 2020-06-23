@@ -16,5 +16,12 @@ if Rails.application.config.mpassid_enabled
       end
     end
     config.metadata_collector_class = Helsinki::MpassidMetadataCollector
+    config.extra = {
+      # It seems the MPASSid clock is occasionally ~10 seconds ahead of our
+      # servers even when the system clock is synced with NTP. For this reason
+      # we allow 30s clock drift for the SAML authentication in order to avoid
+      # login errors due to this.
+      allowed_clock_drift: 30
+    }
   end
 end
