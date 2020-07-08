@@ -270,6 +270,21 @@ GIT
       decidim-verifications (~> 0.22.0.rc1)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-ideas.git
+  revision: 3149b139c1ef18a02b88d994ded6dd533666db10
+  branch: master
+  specs:
+    decidim-ideas (0.22.0)
+      acts_as_list (~> 0.9)
+      cells-erb (~> 0.1.0)
+      cells-rails (~> 0.0.9)
+      decidim-core (~> 0.22.0.rc1)
+      graphql (~> 1.9.19)
+      kaminari (~> 1.2, >= 1.2.1)
+      ransack (~> 2.1.1)
+      social-share-button (~> 1.2, >= 1.2.1)
+
+GIT
   remote: https://github.com/mainio/decidim-module-mpassid.git
   revision: 09a4caa553c315f26537079cd3a9beaf51867a87
   branch: develop
@@ -1018,6 +1033,7 @@ DEPENDENCIES
   decidim-budgets_enhanced!
   decidim-combined_budgeting!
   decidim-dev!
+  decidim-ideas!
   decidim-initiatives!
   decidim-mpassid!
   decidim-plans!

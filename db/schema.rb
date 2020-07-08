@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_152395) do
+ActiveRecord::Schema.define(version: 2020_07_08_151630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -595,6 +595,64 @@ ActiveRecord::Schema.define(version: 2020_07_07_152395) do
     t.datetime "updated_at", null: false
     t.index ["decidim_organization_id"], name: "index_decidim_hashtags_on_decidim_organization_id"
     t.index ["name"], name: "index_decidim_hashtags_on_name"
+  end
+
+  create_table "decidim_ideas_idea_versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.jsonb "object"
+    t.text "object_changes"
+    t.text "related_changes"
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_decidim_ideas_idea_versions_on_item_type_and_item_id"
+  end
+
+  create_table "decidim_ideas_idea_votes", force: :cascade do |t|
+    t.bigint "decidim_idea_id", null: false
+    t.bigint "decidim_author_id", null: false
+    t.boolean "temporary", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_author_id"], name: "decidim_ideas_idea_vote_author"
+    t.index ["decidim_idea_id", "decidim_author_id"], name: "decidim_ideas_idea_vote_idea_author_unique", unique: true
+    t.index ["decidim_idea_id"], name: "decidim_ideas_idea_vote_idea"
+  end
+
+  create_table "decidim_ideas_ideas", force: :cascade do |t|
+    t.integer "position"
+    t.text "title", null: false
+    t.text "body", null: false
+    t.text "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "reference"
+    t.bigint "decidim_author_id"
+    t.string "state"
+    t.jsonb "answer"
+    t.integer "coauthorships_count", default: 0, null: false
+    t.integer "idea_votes_count", default: 0, null: false
+    t.datetime "terms_confirmed_at"
+    t.datetime "published_at"
+    t.datetime "answered_at"
+    t.datetime "state_published_at"
+    t.datetime "hidden_at"
+    t.bigint "decidim_component_id", null: false
+    t.bigint "area_scope_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answered_at"], name: "index_decidim_ideas_ideas_on_answered_at"
+    t.index ["area_scope_id"], name: "index_decidim_ideas_ideas_on_area_scope_id"
+    t.index ["coauthorships_count"], name: "index_decidim_ideas_ideas_on_coauthorships_count"
+    t.index ["created_at"], name: "index_decidim_ideas_ideas_on_created_at"
+    t.index ["decidim_author_id"], name: "index_decidim_ideas_ideas_on_decidim_author_id"
+    t.index ["decidim_component_id"], name: "index_decidim_ideas_ideas_on_decidim_component_id"
+    t.index ["hidden_at"], name: "index_decidim_ideas_ideas_on_hidden_at"
+    t.index ["idea_votes_count"], name: "index_decidim_ideas_ideas_on_idea_votes_count"
+    t.index ["published_at"], name: "index_decidim_ideas_ideas_on_published_at"
+    t.index ["state"], name: "index_decidim_ideas_ideas_on_state"
+    t.index ["terms_confirmed_at"], name: "index_decidim_ideas_ideas_on_terms_confirmed_at"
   end
 
   create_table "decidim_identities", id: :serial, force: :cascade do |t|
@@ -1626,6 +1684,7 @@ ActiveRecord::Schema.define(version: 2020_07_07_152395) do
   add_foreign_key "decidim_combined_budgeting_component_maps", "decidim_combined_budgeting_processes"
   add_foreign_key "decidim_combined_budgeting_component_maps", "decidim_components", on_delete: :cascade
   add_foreign_key "decidim_combined_budgeting_processes", "decidim_organizations"
+  add_foreign_key "decidim_ideas_ideas", "decidim_scopes", column: "area_scope_id"
   add_foreign_key "decidim_identities", "decidim_organizations"
   add_foreign_key "decidim_newsletters", "decidim_users", column: "author_id"
   add_foreign_key "decidim_participatory_process_steps", "decidim_participatory_processes"
