@@ -3,6 +3,7 @@
 require "helsinki/proposal_parser_extensions"
 require "helsinki/district_metadata"
 require "helsinki/school_metadata"
+require "helsinki/query_extensions"
 
 if Rails.application.config.use_mode == "private"
   Rails.application.config.to_prepare do

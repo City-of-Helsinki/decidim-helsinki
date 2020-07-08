@@ -136,6 +136,12 @@ module DecidimHelsinki
       end
     end
 
+    initializer "graphql_api" do
+      Decidim::Api::QueryType.define do
+        Helsinki::QueryExtensions.define(self)
+      end
+    end
+
     # See:
     # https://guides.rubyonrails.org/configuring.html#initialization-events
     #
