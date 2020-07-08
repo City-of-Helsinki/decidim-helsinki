@@ -137,22 +137,59 @@ $menuitem-padding: 1em 2em;
   input,
   input:focus{
     color: $navbar-color-hover;
-    padding-left: $input-padding * 4;
     box-shadow: none;
     background: $navbar-active-bg;
+    margin-top: 8px;
+    display: inline-block;
+    border-radius: 4px 0 0 4px;
+
+    &:focus{
+      color: $navbar-color-hover;
+      box-shadow: none;
+      background: $navbar-active-bg;
+      outline: 2px solid $primary;
+    }
 
     @include breakpoint(medium){
       background: $navbar-bg;
     }
   }
 
-  svg{
-    color: $input-placeholder-color;
-    position: absolute;
-    top: 50%;
-    left: $input-padding;
-    transform: translateY(-50%);
-    opacity: .5;
+  button{
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid $medium-gray;
+    border-left: 0;
+    border-radius: 0 4px 4px 0;
+    background-color: $navbar-bg;
+
+    svg{
+      color: $input-placeholder-color;
+    }
+  }
+
+  form:first-child{
+    display: inline-flex;
+  }
+
+  button:hover,
+  button:focus{
+    background-color: $secondary;
+    transition: .6s;
+    transition-property: background-color;
+    border-color: $secondary;
+    text-decoration: underline;
+    outline: none;
+
+    svg{
+      color: white;
+    }
+  }
+
+  button:focus{
+    outline: 2px solid $primary;
   }
 }
 
@@ -470,10 +507,9 @@ $menuitem-padding: 1em 2em;
   display: block;
   margin-top: 20px;
   text-align: right;
-  vertical-align: middle;
 
   a{
-    padding: $menu-item-padding;
+    padding: $menu-items-padding;
     color: $medium-gray;
 
     &:hover{
@@ -521,7 +557,6 @@ $menuitem-padding: 1em 2em;
   padding: 0;
   margin: 0;
   list-style: none;
-  overflow-x: auto;
 
   @include breakpoint(large){
     -webkit-overflow-scrolling: touch;
