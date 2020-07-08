@@ -13,13 +13,13 @@
 // = require rails-ujs
 // = require activestorage
 // = require cable
-// = require_self
 // = require decidim
 // = require ie-polyfills
 // = require app/toggle-checkbox
 // = require app/fix-map-toggle
 // = require app/remaining-characters
 // = require app/youtube-modal
+// = require_self
 
 ((exports) => {
   // eslint-disable-next-line id-length
