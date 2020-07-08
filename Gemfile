@@ -6,29 +6,30 @@ ruby RUBY_VERSION
 
 # Run updates by following the Decidim upgrade instructions:
 # https://github.com/decidim/decidim/blob/master/docs/getting_started.md#keeping-your-app-up-to-date
-DECIDIM_VERSION = "0.19.0"
-DECIDIM_MODULE_VERSION = "~> 0.19.0"
+DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.22-stable" }
+# DECIDIM_VERSION = "0.22.0"
+# DECIDIM_MODULE_VERSION = "~> 0.22.0"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-initiatives", DECIDIM_VERSION
 
-gem "decidim-access_requests", DECIDIM_MODULE_VERSION
-gem "decidim-antivirus", DECIDIM_MODULE_VERSION
-gem "decidim-mpassid", DECIDIM_MODULE_VERSION
-gem "decidim-process_groups_content_block", DECIDIM_MODULE_VERSION
-gem "decidim-suomifi", DECIDIM_MODULE_VERSION
-gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
+gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "develop"
+gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "develop"
+gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "develop"
+gem "decidim-process_groups_content_block", github: "mainio/decidim-module-process_groups_content_block", branch: "develop"
+gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "develop"
+gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "develop"
 
 # Install the git modules until they have an actual release
-gem "decidim-accountability_simple", git: "https://github.com/mainio/decidim-module-accountability_simple"
-gem "decidim-apiauth", git: "https://github.com/mainio/decidim-module-apiauth"
-gem "decidim-combined_budgeting", git: "https://github.com/mainio/decidim-module-combined_budgeting"
-gem "decidim-plans", git: "https://github.com/mainio/decidim-module-plans", branch: "0.19-stable"
-gem "decidim-redirects", git: "https://github.com/mainio/decidim-module-redirects"
+gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "develop"
+gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "develop"
+gem "decidim-combined_budgeting", github: "mainio/decidim-module-combined_budgeting", branch: "develop"
+gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "develop"
+gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "develop"
 
 # Install the improved budgeting module until these improvements are hopefully
 # merged to the core.
-gem "decidim-budgets_enhanced", git: "https://github.com/OpenSourcePolitics/decidim-module-budgets_enhanced"
+gem "decidim-budgets_enhanced", github: "OpenSourcePolitics/decidim-module-budgets_enhanced", branch: "0.22-dev"
 
 # Issue with core dependencies not being required, see:
 # https://github.com/decidim/decidim/issues/5257
@@ -41,17 +42,14 @@ gem "ruby-cldr", "~> 0.3.0"
 
 gem "font-awesome-rails", "~> 4.7.0"
 
-gem "puma", "~> 3.12"
+gem "puma", "~> 4.3.3"
 gem "uglifier", "~> 4.1"
 
 # HKI authentication
 gem "omniauth_openid_connect", "~> 0.3"
 
 # HKI import
-# Roo is not currently compatible with RubyZip 2.0+ which is now a dependency of
-# decidim-core.
-# See: https://github.com/roo-rb/roo/pull/515
-# gem "roo", "~> 2.8"
+gem "roo", "~> 2.8"
 
 # HKI export
 gem "rubyXL", "~> 3.4", ">= 3.4.6"
