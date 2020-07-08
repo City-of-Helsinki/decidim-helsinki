@@ -13,6 +13,7 @@
 @import "modules/modules";
 @import "layouts/highlighted_banner";
 @import "layouts/home";
+@import "decidim/layouts/logo";
 @import "decidim/layouts/user";
 @import "decidim/layouts/view";
 @import "decidim/extras/add_comments";
@@ -29,6 +30,7 @@
 @import "decidim/extras/reference";
 @import "decidim/extras/results-per-page";
 @import "decidim/extras/social_icons_mini";
+@import "decidim/extras/social_share";
 @import "decidim/extras/status-labels";
 @import "extras/*";
 @import "decidim/vizzs/areachart";

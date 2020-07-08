@@ -35,6 +35,7 @@
 @import "decidim/modules/tags";
 @import "decidim/modules/input-tags";
 @import "decidim/modules/input-mentions";
+@import "decidim/modules/input-multiple-mentions";
 @import "input-hashtags";
 @import "decidim/modules/list-docs";
 @import "decidim/modules/datepicker";
@@ -48,6 +49,7 @@
 @import "decidim/modules/hover-section";
 @import "decidim/modules/list-request";
 @import "floating-helper";
+@import "decidim/modules/versions";
 
 //Process elements
 @import "process-header";
@@ -60,6 +62,7 @@
 @import "decidim/modules/inline-filters";
 @import "decidim/modules/reference";
 @import "decidim/modules/status-labels";
+@import "decidim/modules/process-stats";
 
 //Conference elements
 @import "decidim/modules/conference-nav";
