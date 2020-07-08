@@ -20,7 +20,7 @@
   <% end %>
 
   <% if component_settings.proposal_answering_enabled && current_settings.proposal_answering_enabled %>
-    <%= form.collection_radio_buttons :state, filter_state_values, :first, :last, legend_title: t(".state") %>
+    <%= form.check_boxes_tree :state, filter_state_values, legend_title: t(".state") %>
   <% end %>
 
   <% if linked_classes_for(Decidim::Proposals::Proposal).any? %>

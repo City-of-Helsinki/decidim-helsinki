@@ -1,6 +1,8 @@
-<% if devise_mapping.omniauthable? && any_social_provider_enabled? %>
+<% if Devise.mappings[:user].omniauthable? && current_organization.enabled_omniauth_providers.any? %>
   <%
-  enabled_strong_providers = [:suomifi, :mpassid].select { |p| social_provider_enabled?(p) }
+  enabled_strong_providers = current_organization.enabled_omniauth_providers.keys.select do |p|
+    %i(suomifi mpassid).include?(p)
+  end
   %>
 
   <% if enabled_strong_providers.any? %>
@@ -28,12 +30,12 @@
       </div>
     </div>
 
-    <% if social_provider_enabled? :tunnistamo %>
+    <% if current_organization.enabled_omniauth_providers.keys.include?(:tunnistamo) %>
       <%= render "decidim/devise/shared/register_separator" %>
     <% end %>
   <% end %>
 
-  <% if social_provider_enabled? :tunnistamo %>
+  <% if current_organization.enabled_omniauth_providers.keys.include?(:tunnistamo) %>
     <% if private_mode? %>
       <div class="row collapse">
         <div class="columns medium-8 medium-centered">

@@ -35,8 +35,7 @@ module ScopesHelperExtensions
     selected = selected_scopes(form, name).first
 
     # It's a private method in the filter form builder
-    # form.send(:fieldset_wrapper, label, "#{name}_scopes_picker_filter") do
-    form.send(:fieldset_wrapper, label) do
+    form.send(:fieldset_wrapper, label, "#{name}_scopes_picker_filter") do
       prompt_label = label[0].downcase + label[1..-1]
 
       form.select(

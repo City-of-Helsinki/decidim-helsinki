@@ -106,6 +106,6 @@ edit_link(
     </div>
   </div>
   <% if current_participatory_space.show_statistics? %>
-    <%= render partial: "statistics" %>
+    <%= cell "decidim/participatory_processes/statistics", stats.collection %>
   <% end %>
 </div>

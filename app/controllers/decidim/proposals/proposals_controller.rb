@@ -6,6 +6,7 @@ module Decidim
     class ProposalsController < Decidim::Proposals::ApplicationController
       helper Decidim::WidgetUrlsHelper
       helper ProposalWizardHelper
+      include Decidim::ApplicationHelper
       include FormFactory
       include FilterResource
       include Orderable
@@ -237,14 +238,21 @@ module Decidim
       def default_filter_params
         {
           search_text: "",
-          origin: "all",
+          origin: default_filter_origin_params,
           activity: "",
           category_id: "",
-          state: "all",
-          scope_id: nil,
+          state: %w(accepted rejected evaluating not_answered),
+          scope_id: "",
           related_to: "",
           type: "all"
         }
+      end
+
+      def default_filter_origin_params
+        filter_origin_params = %w(citizens meeting)
+        filter_origin_params << "official" if component_settings.official_proposals_enabled
+        filter_origin_params << "user_group" if current_organization.user_groups_enabled?
+        filter_origin_params
       end
 
       def proposal_draft

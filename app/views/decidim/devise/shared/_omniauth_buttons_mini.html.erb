@@ -1,6 +1,8 @@
-<% if Devise.mappings[:user].omniauthable? && any_social_provider_enabled? %>
+<% if Devise.mappings[:user].omniauthable? && current_organization.enabled_omniauth_providers.any? %>
   <%
-  enabled_strong_providers = [:suomifi, :mpassid].select { |p| social_provider_enabled?(p) }
+  enabled_strong_providers = current_organization.enabled_omniauth_providers.keys.select do |p|
+    %i(suomifi mpassid).include?(p)
+  end
   %>
 
   <div class="row">
@@ -24,7 +26,7 @@
           <% end %>
         <% end %>
       </div>
-      <% if social_provider_enabled? :tunnistamo %>
+      <% if current_organization.enabled_omniauth_providers.keys.include?(:tunnistamo) %>
         <span class="register__separator">
           <span class="register__separator__text"><%= t('or', scope: "decidim.devise.shared.omniauth_buttons") %></span>
         </span>

@@ -100,7 +100,7 @@
     <%= linked_resources_for @proposal, :meetings, "proposals_from_meeting" %>
     <%= linked_resources_for @proposal, :proposals, "copied_from_component" %>
 
-    <%= cell "decidim/proposals/endorsers_list", @proposal %>
+    <%= cell "decidim/endorsers_list", @proposal %>
   </div>
 </div>
 <%= attachments_for @proposal %>

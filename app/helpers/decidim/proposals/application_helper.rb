@@ -8,11 +8,14 @@ module Decidim
       include Decidim::Comments::CommentsHelper
       include PaginateHelper
       include ProposalVotesHelper
-      include ProposalEndorsementsHelper
+      include ::Decidim::EndorsableHelper
+      include ::Decidim::FollowableHelper
       include Decidim::MapHelper
       include Decidim::Proposals::MapHelper
       include CollaborativeDraftHelper
       include ControlVersionHelper
+      include Decidim::RichTextEditorHelper
+      include Decidim::CheckBoxesTreeHelper
 
       delegate :minimum_votes_per_user, to: :component_settings
 
@@ -74,6 +77,43 @@ module Decidim
 
       def minimum_votes_per_user_enabled?
         minimum_votes_per_user.positive?
+      end
+
+      def not_from_collaborative_draft(proposal)
+        proposal.linked_resources(:proposals, "created_from_collaborative_draft").empty?
+      end
+
+      def not_from_participatory_text(proposal)
+        proposal.participatory_text_level.nil?
+      end
+
+      # If the proposal is official or the rich text editor is enabled on the
+      # frontend, the proposal body is considered as safe content; that's unless
+      # the proposal comes from a collaborative_draft or a participatory_text.
+      def safe_content?
+        rich_text_editor_in_public_views? && not_from_collaborative_draft(@proposal) ||
+          (@proposal.official? || @proposal.official_meeting?) && not_from_participatory_text(@proposal)
+      end
+
+      # If the content is safe, HTML tags are sanitized, otherwise, they are stripped.
+      def render_proposal_body(proposal)
+        body = present(proposal).body(links: true, strip_tags: !safe_content?)
+        body = simple_format(body, {}, sanitize: false)
+
+        return body unless safe_content?
+
+        decidim_sanitize(body)
+      end
+
+      # Returns :text_area or :editor based on the organization' settings.
+      def text_editor_for_proposal_body(form)
+        options = {
+          class: "js-hashtags",
+          hashtaggable: true,
+          value: form_presenter.body(extras: false).strip
+        }
+
+        text_editor_for(form, :body, options)
       end
 
       def proposal_limit
@@ -151,12 +191,15 @@ module Decidim
       end
 
       def filter_state_values
-        [
-          ["all", t("decidim.proposals.application_helper.filter_state_values.all")],
-          ["accepted", t("decidim.proposals.application_helper.filter_state_values.accepted")],
-          ["rejected", t("decidim.proposals.application_helper.filter_state_values.rejected")],
-          ["evaluating", t("decidim.proposals.application_helper.filter_state_values.evaluating")]
-        ]
+        Decidim::CheckBoxesTreeHelper::TreeNode.new(
+          Decidim::CheckBoxesTreeHelper::TreePoint.new("", t("decidim.proposals.application_helper.filter_state_values.all")),
+          [
+            Decidim::CheckBoxesTreeHelper::TreePoint.new("accepted", t("decidim.proposals.application_helper.filter_state_values.accepted")),
+            Decidim::CheckBoxesTreeHelper::TreePoint.new("rejected", t("decidim.proposals.application_helper.filter_state_values.rejected")),
+            Decidim::CheckBoxesTreeHelper::TreePoint.new("evaluating", t("decidim.proposals.application_helper.filter_state_values.evaluating")),
+            Decidim::CheckBoxesTreeHelper::TreePoint.new("not_answered", t("decidim.proposals.application_helper.filter_state_values.not_answered"))
+          ]
+        )
       end
 
       def filter_type_values

@@ -37,7 +37,7 @@ module Decidim
       end
 
       def has_badge?
-        answered? || withdrawn?
+        published_state? || withdrawn?
       end
 
       def has_link_to_resource?
@@ -57,6 +57,7 @@ module Decidim
 
       def badge_classes
         return super unless options[:full_badge]
+
         state_classes.concat(["label", "proposal-status"]).join(" ")
       end
 
@@ -78,8 +79,8 @@ module Decidim
       end
 
       def endorsements_count
-        with_tooltip t("decidim.proposals.models.proposal.fields.endorsements") do
-          icon("thumb-up", class: "icon--small") + " " + model.proposal_endorsements_count.to_s
+        with_tooltip t("decidim.endorsable.endorsements") do
+          icon("thumb-up", class: "icon--small") + " " + model.endorsements_count.to_s
         end
       end
 
@@ -111,6 +112,7 @@ module Decidim
       def has_address?
         return false unless component_settings.geocoding_enabled?
         return false if address.nil?
+
         address.strip.length.positive?
       end
 
