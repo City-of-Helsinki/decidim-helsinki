@@ -64,10 +64,18 @@ sv:
         fields:
           allowed_districts: Tillåtna distrikt
           district: Distrikt
+    budgets:
+      projects:
+        filters:
+          category_prompt: Välj ett ämne
     pages:
       home:
         statistics:
           plans_count: Planer
+    proposals:
+      proposals:
+        filters:
+          category_prompt: Välj ett ämne
     suomifi:
       omniauth_callbacks:
         failure:

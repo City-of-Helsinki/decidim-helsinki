@@ -64,10 +64,18 @@ fi:
         fields:
           allowed_districts: Sallitut suurpiirit
           district: Suurpiiri
+    budgets:
+      projects:
+        filters:
+          category_prompt: Valitse aihepiiri
     pages:
       home:
         statistics:
           plans_count: Suunnitelmia
+    proposals:
+      proposals:
+        filters:
+          category_prompt: Valitse aihepiiri
     suomifi:
       omniauth_callbacks:
         failure:

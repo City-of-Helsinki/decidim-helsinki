@@ -64,10 +64,18 @@ en:
         fields:
           allowed_districts: Allowed districts
           district: District
+    budgets:
+      projects:
+        filters:
+          category_prompt: Choose category
     pages:
       home:
         statistics:
           plans_count: Plans
+    proposals:
+      proposals:
+        filters:
+          category_prompt: Choose category
     suomifi:
       omniauth_callbacks:
         failure:
