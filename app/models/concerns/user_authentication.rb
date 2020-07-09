@@ -9,11 +9,12 @@ module UserAuthentication
 
   class_methods do
     def available_omniauth_providers
-      providers = [:tunnistamo]
-      providers << :suomifi if Decidim::Suomifi.configured?
-      providers << :mpassid if Decidim::Mpassid.configured?
-
-      providers
+      []
+      #providers = [:tunnistamo]
+      #providers << :suomifi if Decidim::Suomifi.configured?
+      #providers << :mpassid if Decidim::Mpassid.configured?
+      #
+      #providers
     end
   end
 end
