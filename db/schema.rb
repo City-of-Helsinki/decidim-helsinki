@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 2020_06_05_102145) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_trgm"
-  enable_extension "pgaudit"
   enable_extension "plpgsql"
 
   create_table "decidim_accountability_results", id: :serial, force: :cascade do |t|
