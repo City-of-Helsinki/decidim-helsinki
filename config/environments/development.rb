@@ -3,8 +3,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.suomifi_enabled = true
-  config.mpassid_enabled = true
+  config.suomifi_enabled = false
+  config.mpassid_enabled = false
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
