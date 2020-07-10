@@ -77,7 +77,11 @@ If you need to run migrations, follow up with:
 
 `heroku run bin/rails db:migrate`
 
-### Urls
+### Heroku documentation
+
+https://devcenter.heroku.com/articles/git
+
+## Urls
 
 * Staging: https://decidim-seattle-staging.herokuapp.com/
 
