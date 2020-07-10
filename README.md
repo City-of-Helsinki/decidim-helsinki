@@ -65,6 +65,18 @@ updates.
 
 `git push heroku-staging master`
 
+If you need to run migrations, follow up with:
+
+`heroku run bin/rails db:migrate`
+
+### Viewing logs
+
+`heroku logs`
+
+### Running migrations
+
+`heroku run bin/rails db:migrate`
+
 ### Urls
 
 * Staging: https://decidim-seattle-staging.herokuapp.com/
