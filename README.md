@@ -52,3 +52,16 @@ maintainable as possible against the Decidim core. Try to avoid hard core
 customizations which require lots of efforts to maintain over Decidim's core
 updates.
 
+## Deploying
+
+### Setup
+
+1. Ask to be invited to the `staging-substantial` team of ECEN
+2. Download and install the [heroku CLI tools](https://devcenter.heroku.com/articles/heroku-command-line)
+3. `heroku login`
+4. `git remote add heroku-staging https://git.heroku.com/decidim-seattle-staging.git`
+
+### Deploying staging
+
+`git push heroku-staging master`
+
