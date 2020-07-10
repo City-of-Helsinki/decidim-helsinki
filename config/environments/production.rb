@@ -108,14 +108,14 @@ Rails.application.configure do
   # Default URL for application (Devise)
   config.action_controller.default_url_options = {
     # protocol: "https", # Breaks login redirection
-    host: "omastadi.hel.fi",
+    host: "decidim-seattle-staging.herokuapp.com",
     port: 443
   }
 
   # Default URL for mailer (Devise)
   config.action_mailer.default_url_options = {
     protocol: "https",
-    host: "omastadi.hel.fi"
+    host: "decidim-seattle-staging.herokuapp.com",
     # from: "no-reply@hel.fi" # Causes forms to break e.g. when publishing proposal
   }
 
