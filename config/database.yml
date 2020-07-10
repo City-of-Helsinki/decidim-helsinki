@@ -21,32 +21,32 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
-  username: <%= ENV.fetch("DATABASE_USERNAME") { "decidim" } %>
-  password: <%= ENV.fetch("DATABASE_PASSWORD") { "development" } %>
+  username: <%= ENV.fetch("DATABASE_USERNAME") { "" } %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") { "" } %>
   sslrootcert: <%= ENV.fetch("DATABASE_ROOT_CERT") { "" } %>
   sslmode: <%= ENV.fetch("DATABASE_SSL_MODE") { "" } %>
 
 development:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_NAME") { "decidim-helsinki_development" } %>
+  database: <%= ENV.fetch("DATABASE_NAME") { "decidim-seattle_development" } %>
 
 development_kuva:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_NAME") { "decidim-helsinki_development" } %>
+  database: <%= ENV.fetch("DATABASE_NAME") { "decidim-seattle_development" } %>
 
 development_ruuti:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_NAME") { "decidim-helsinki_development" } %>
+  database: <%= ENV.fetch("DATABASE_NAME") { "decidim-seattle_development" } %>
 
 development_discussion:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_NAME") { "decidim-helsinki_development" } %>
+  database: <%= ENV.fetch("DATABASE_NAME") { "decidim-seattle_development" } %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: decidim-helsinki
+  #username: decidim-seattle
 
   # The password associated with the postgres role (username).
   #password:
@@ -74,7 +74,7 @@ development_discussion:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_NAME") { "decidim-helsinki_test" } %>
+  database: <%= ENV.fetch("DATABASE_NAME") { "decidim-seattle_test" } %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+BUNDLER_VERSION="~>2.1.0"
+
+cd "$(dirname "$0")/.." || exit 1
+DIR=$(pwd)
+
+for P in "$DIR"/script/dev-setup.d/*; do
+  source "$P"
+done
+
+set -e
+
+function on-exit() {
+  status=$?
+  if [ $status -ne 0 ]; then
+    echo
+    error "Setup wasn't successful"
+    error "Please check the logs above, follow any instructions and run $0 again"
+    exit $status
+  fi
+}
+trap "on-exit" EXIT
+
+info "Install dev dependencies"
+
+info "Installing ruby (if necessary)"
+add-asdf-plugin ruby https://github.com/asdf-vm/asdf-ruby.git
+install-asdf-plugins
+
+info "Installing bundler (if necessary)"
+gem install bundler --conservative --version "$BUNDLER_VERSION"
+
+info "Installing postgres (if necessary)"
+if ! cmd psql; then
+  brew-install postgresql
+fi
+
+info "Install gems (if necessary)"
+bundle install
+
+info "Setting up the database (if necessary)"
+bin/rails db:setup
+
+info "Setting up the database for test (if necessary)"
+RAILS_ENV=test bin/rails db:create
+
+echo -e "${GREEN}>> You're all set up!${DEFAULT}"
