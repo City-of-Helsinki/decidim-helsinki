@@ -65,3 +65,7 @@ updates.
 
 `git push heroku-staging master`
 
+### Urls
+
+* Staging: https://decidim-seattle-staging.herokuapp.com/
+
