@@ -17,19 +17,19 @@ module Decidim
       argument :locale, String, "The locale in which to search the name", required: true
       argument :text, String, "The text to search", required: true
 
-      def call(query, args, _ctx)
-        query.where("name->>? =?", args[:locale], args[:text])
+      def call(_obj, args, _ctx)
+        Decidim::ScopeType.where("name->>? =?", args[:locale], args[:text])
       end
     end
 
     class ScopeTypeListHelper < GraphQL::Function
       argument :name, ScopeTypeNameFilter, "Provides several methods to order the results"
 
-      def call(_obj, args, ctx)
+      def call(obj, args, ctx)
         query = Decidim::ScopeType.where(organization: ctx[:current_organization])
         if args[:name].respond_to?(:call)
-          query.where(
-            args[:name].call(query, args[:name].arguments, ctx)
+          query = query.merge(
+            args[:name].call(obj, args[:name].arguments, ctx)
           )
         end
         query
