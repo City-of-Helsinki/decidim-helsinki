@@ -10,7 +10,10 @@ module Decidim
       field :id, !types.ID, "The scope type's unique ID"
       field :name, !Decidim::Core::TranslatedFieldType, "The name of this scope type."
       field :plural, !Decidim::Core::TranslatedFieldType, "The plural format of this scope type."
-      field :scopes, types[Decidim::Core::ScopeApiType], "Scopes with this scope type."
+      field :scopes,
+            type: types[Decidim::Core::ScopeApiType],
+            description: "Scopes with this scope type.",
+            function: Decidim::Core::ScopeListHelper.new
     end
 
     class ScopeTypeNameFilter < Decidim::Core::BaseInputFilter
@@ -33,6 +36,15 @@ module Decidim
           )
         end
         query
+      end
+    end
+
+    class ScopeListHelper < GraphQL::Function
+      def call(obj, _args, ctx)
+        obj.scopes.where(
+          organization: ctx[:current_organization],
+          parent_id: nil
+        )
       end
     end
   end
