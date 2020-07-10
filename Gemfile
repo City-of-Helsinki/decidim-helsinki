@@ -44,6 +44,9 @@ gem "font-awesome-rails", "~> 4.7.0"
 gem "puma", "~> 3.12"
 gem "uglifier", "~> 4.1"
 
+# Used in production for seed data
+gem "faker", "~> 1.9"
+
 # HKI authentication
 gem "omniauth_openid_connect", "~> 0.3"
 
@@ -63,7 +66,6 @@ group :development, :test do
 end
 
 group :development do
-  gem "faker", "~> 1.9"
   gem "letter_opener_web", "~> 1.3"
   gem "listen", "~> 3.1"
   gem "spring", "~> 2.0"
