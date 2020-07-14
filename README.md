@@ -41,11 +41,21 @@ following URLs:
 - https://decidim.org/docs/
 - https://docs.decidim.org/
 
+## Why Decidim?
+
+We considered both [Consul](https://github.com/consul/consul) and Decidim,
+but were strongly recommended by the [The Participatory Budgeting Project](https://www.participatorybudgeting.org/mission/),
+a nonprofit that encourages PB processes globally, to use Decidim, as it 
+better aligns with the steering committee PB model that is used in the US.
+
 ## Fork of a fork of a fork?
 
 The City of Helsinki spent a bunch of time and money making some lovely
 UI changes to Decidim, and we wanted to piggyback on their good work for
-our Seattle Participatory Budgeting site.
+our Seattle Participatory Budgeting site. Additionally, the Helsinki fork has the 
+most users of any Decidim fork and was well-regarded by the Decidim developers
+in its implementation. One particularly useful feature is the ability to merge
+multiple similar proposals into a single plan that citizens can vote on.
  
 With all customizations and modifications, try to keep the application as
 maintainable as possible against the Decidim core. Try to avoid hard core
