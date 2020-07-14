@@ -36,6 +36,11 @@ if ! cmd psql; then
   brew-install postgresql
 fi
 
+info "Installing imagemagick (if necessary)"
+if ! cmd convert; then
+  brew-install imagemagick
+fi
+
 info "Install gems (if necessary)"
 bundle install
 

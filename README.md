@@ -1,6 +1,6 @@
 # King County Equity Now - Seattle Participatory Budgeting Site
 
-This participatory democracy system is built on the City of Helsinki's fork of the Decidim platform. 
+This participatory democracy system is built on the City of Helsinki's fork of the Decidim platform.
 
 Please check out their README's and documentation for instructions:
 
@@ -18,8 +18,8 @@ Run `script/dev-setup` and follow the instructions until you see:
 What it's going to do:
 
 * Install the asdf package manager (if you prefer rbenv, check out the windows/linux setup below)
-* Install ruby via asdf
-* Install Postgresql via homebrew
+* Install Ruby via asdf
+* Install PostgreSQL and ImageMagick via homebrew
 * Create and set up the database
 
 People sometimes run into problems with database connection issues. If that's the case, chances are postgres is shutting down right after starting up and to find out why, run `brew info postgresql` and check out the instructions on how to start postgresql manually. That's usually enough to get people unblocked.
@@ -45,18 +45,18 @@ following URLs:
 
 We considered both [Consul](https://github.com/consul/consul) and Decidim,
 but were strongly recommended by the [The Participatory Budgeting Project](https://www.participatorybudgeting.org/mission/),
-a nonprofit that encourages PB processes globally, to use Decidim, as it 
+a nonprofit that encourages PB processes globally, to use Decidim, as it
 better aligns with the steering committee PB model that is used in the US.
 
 ## Fork of a fork of a fork?
 
 The City of Helsinki spent a bunch of time and money making some lovely
 UI changes to Decidim, and we wanted to piggyback on their good work for
-our Seattle Participatory Budgeting site. Additionally, the Helsinki fork has the 
+our Seattle Participatory Budgeting site. Additionally, the Helsinki fork has the
 most users of any Decidim fork and was well-regarded by the Decidim developers
 in its implementation. One particularly useful feature is the ability to merge
 multiple similar proposals into a single plan that citizens can vote on.
- 
+
 With all customizations and modifications, try to keep the application as
 maintainable as possible against the Decidim core. Try to avoid hard core
 customizations which require lots of efforts to maintain over Decidim's core
@@ -94,4 +94,3 @@ https://devcenter.heroku.com/articles/git
 ## Urls
 
 * Staging: https://decidim-seattle-staging.herokuapp.com/
-
