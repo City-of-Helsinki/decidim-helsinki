@@ -543,6 +543,7 @@ $menuitem-padding: 1em 2em;
   display: block;
   padding: $menuitem-padding;
   color: $navbar-color;
+  text-transform: uppercase;
 
   &:hover{
     background: $navbar-bg-hover;
