@@ -9,10 +9,10 @@ $navbar-active-bg: $navbar-bg-hover;
 $navbar-active-shadow-small: inset 4px 0 0 0 $primary;
 $navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
 
-$titlebar-bg: $hel-copper;
+$titlebar-bg: $black;
 $titlebar-bg-paahtimo: $hel-fog;
 $titlebar-bg-ruuti: $hel-copper;
-$titlebar-fg: $black;
+$titlebar-fg: $white;
 $titlebar-fg-paahtimo: $black;
 $titlebar-fg-ruuti: $black;
 
@@ -51,23 +51,19 @@ $menuitem-padding: 1em 2em;
   position: relative;
   background-color: $titlebar-bg;
   color: $titlebar-fg;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 
   .title{
     padding: .25rem 0 .9rem;
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: bold;
 
     @include breakpoint(medium){
       font-size: 3rem;
     }
   }
 
-  .koro-top{
-    @include koro("basic", $titlebar-bg, 1000);
-
-    height: 28px;
-    background-color: $navbar-bg;
-  }
 }
 
 .wrapper-paahtimo{
