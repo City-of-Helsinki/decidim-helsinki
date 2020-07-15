@@ -20,7 +20,7 @@ module DecidimHelsinki
     # Configure an application wide address suffix to pass to the geocoder.
     # This is to make sure that the addresses are not incorrectly mapped outside
     # of the wanted area. (e.g., "Helsinki, Finland")
-    config.address_suffix = "Washington, United States"
+    config.address_suffix = "Seattle, Washington, United States"
 
     # Sending address for mails
     config.mailer_sender = "no-reply@omastadi.hel.fi"
