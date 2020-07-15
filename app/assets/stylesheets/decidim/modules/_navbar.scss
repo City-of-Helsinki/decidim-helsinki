@@ -152,6 +152,12 @@ $menuitem-padding: 1em 2em;
   }
 }
 
+.nav-row {
+  float: none;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
 /* Top bar */
 .topbar{
   display: flex;
@@ -182,6 +188,9 @@ $menuitem-padding: 1em 2em;
     font-weight: 600;
     color: black;
     text-align: center;
+
+    padding: 1rem 1rem;
+    font-size: 1.5rem;
 
     @include breakpoint(large) {
       padding: 1.33rem 1.0rem;
