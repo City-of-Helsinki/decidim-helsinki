@@ -9,10 +9,10 @@ $navbar-active-bg: $navbar-bg-hover;
 $navbar-active-shadow-small: inset 4px 0 0 0 $primary;
 $navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
 
-$titlebar-bg: $hel-copper;
+$titlebar-bg: $black;
 $titlebar-bg-paahtimo: $hel-fog;
 $titlebar-bg-ruuti: $hel-copper;
-$titlebar-fg: $black;
+$titlebar-fg: $white;
 $titlebar-fg-paahtimo: $black;
 $titlebar-fg-ruuti: $black;
 
@@ -30,6 +30,9 @@ $menuitem-padding: 1em 2em;
   .top-bar-right{
     @include breakpoint(xlarge){
       padding-top: .9rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
   }
 }
@@ -51,23 +54,19 @@ $menuitem-padding: 1em 2em;
   position: relative;
   background-color: $titlebar-bg;
   color: $titlebar-fg;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 
   .title{
     padding: .25rem 0 .9rem;
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: bold;
 
     @include breakpoint(medium){
       font-size: 3rem;
     }
   }
 
-  .koro-top{
-    @include koro("basic", $titlebar-bg, 1000);
-
-    height: 28px;
-    background-color: $navbar-bg;
-  }
 }
 
 .wrapper-paahtimo{
@@ -156,6 +155,22 @@ $menuitem-padding: 1em 2em;
   }
 }
 
+.nav-row {
+  float: none;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  @include breakpoint(large) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  @include breakpoint(xlarge) {
+    padding-left: 6rem;
+    padding-right: 6rem; 
+  }
+}
+
 /* Top bar */
 .topbar{
   display: flex;
@@ -166,15 +181,10 @@ $menuitem-padding: 1em 2em;
 .logo-wrapper{
   display: block;
   float: left;
-  width: 110px;
   line-height: 0;
   margin-right: 1rem;
 
-  @include breakpoint(medium){
-    width: 160px;
-  }
-
-  @include breakpoint(xlarge){
+  @include breakpoint(xlarge) {
     margin-right: 1.2rem;
   }
 
@@ -182,12 +192,22 @@ $menuitem-padding: 1em 2em;
     display: block;
   }
 
-  img{
-    display: block;
-    max-height: 50px;
+  .seattle-logo {
+    margin-top: 0.8rem;
+    font-size: 1rem;
+    border: 4px solid $black;
+    box-sizing: border-box;
+    border-bottom-right-radius: 1.25rem;
+    font-weight: 600;
+    color: $black;
+    text-align: center;
 
-    @include breakpoint(medium){
-      max-height: 75px;
+    padding: 1rem 1rem;
+    font-size: 1.5rem;
+
+    @include breakpoint(large) {
+      padding: 1.33rem 1.0rem;
+      font-size: 2.25rem;
     }
   }
 }
@@ -200,6 +220,7 @@ $menuitem-padding: 1em 2em;
 .topbar__dropmenu{
   vertical-align: middle;
   padding-top: 0;
+  text-transform: uppercase;
 
   @include breakpoint(large){
     display: inline-block;
@@ -309,6 +330,7 @@ $menuitem-padding: 1em 2em;
   display: inline-block;
   padding-right: 2.5rem;
   margin-left: 2rem;
+  text-transform: uppercase;
 
   @media (min-width: (1300 / 16) + em){
     padding-right: 0;
@@ -543,6 +565,7 @@ $menuitem-padding: 1em 2em;
   display: block;
   padding: $menuitem-padding;
   color: $navbar-color;
+  text-transform: uppercase;
 
   &:hover{
     background: $navbar-bg-hover;
