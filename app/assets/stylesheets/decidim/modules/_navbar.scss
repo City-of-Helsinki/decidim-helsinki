@@ -30,6 +30,9 @@ $menuitem-padding: 1em 2em;
   .top-bar-right{
     @include breakpoint(xlarge){
       padding-top: .9rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
   }
 }
@@ -217,6 +220,7 @@ $menuitem-padding: 1em 2em;
 .topbar__dropmenu{
   vertical-align: middle;
   padding-top: 0;
+  text-transform: uppercase;
 
   @include breakpoint(large){
     display: inline-block;
@@ -326,6 +330,7 @@ $menuitem-padding: 1em 2em;
   display: inline-block;
   padding-right: 2.5rem;
   margin-left: 2rem;
+  text-transform: uppercase;
 
   @media (min-width: (1300 / 16) + em){
     padding-right: 0;
