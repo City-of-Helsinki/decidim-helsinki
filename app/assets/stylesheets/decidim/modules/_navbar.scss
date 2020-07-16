@@ -154,8 +154,18 @@ $menuitem-padding: 1em 2em;
 
 .nav-row {
   float: none;
-  padding-left: 6rem;
-  padding-right: 6rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  @include breakpoint(large) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  @include breakpoint(xlarge) {
+    padding-left: 6rem;
+    padding-right: 6rem; 
+  }
 }
 
 /* Top bar */
