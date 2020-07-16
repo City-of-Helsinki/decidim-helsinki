@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 Decidim.configure do |config|
-  config.application_name = "City of Helsinki participationary platform"
+  config.application_name = "Seattle participatory budgeting"
   config.mailer_sender = Rails.application.config.mailer_sender
 
   # Uncomment this lines to set your preferred locales
-  config.default_locale = :fi
-  config.available_locales = [:fi, :en, :sv]
+  config.default_locale = :en
+  config.available_locales = [:en, "zh-Hant", :ko, "zh-Hans", :so, :es, :tl, :vi, :fi, :sv]
 
   # Geocoder configuration
   #config.geocoder = {
