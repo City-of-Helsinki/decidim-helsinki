@@ -4,7 +4,6 @@
 #
 if Rails.env.production?
   CarrierWave.configure do |config|
-    config.storage = :fog
     config.fog_provider = 'fog/aws'                                             # required
     config.fog_credentials = {
       provider:              'AWS',                                             # required
@@ -16,6 +15,7 @@ if Rails.env.production?
     config.fog_public     = false
     config.cache_dir     = "#{Rails.root}/tmp/uploads"
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" }    # optional, defaults to {}
+    config.storage = :fog
   end
 else
   CarrierWave.configure do |config|
