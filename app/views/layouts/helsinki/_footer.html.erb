@@ -5,14 +5,14 @@ feedback_subject = URI.encode("#{current_organization.name} -palaute").gsub(/,/,
 <div class="footer-wrapper"> 
   <div class="main-footer">
     <div class="row">
-      <div class="medium-3 large-3 column">
+      <div class="medium-3 large-2 column">
         <div class="logo-wrapper">
           <%= link_to decidim.root_path do %>
             <%= render partial: "layouts/decidim/logo", locals: { organization: current_organization } %>
           <% end %>
         </div>
       </div>
-      <div class="medium-6 column main__footer__nav">
+      <div class="medium-6 large-8 column main__footer__nav">
         <% if display_common_elements? %>
           <% if current_organization.static_pages.any? %>
             <h3><%= t("layouts.footer.about").html_safe %></h3>
@@ -42,7 +42,7 @@ feedback_subject = URI.encode("#{current_organization.name} -palaute").gsub(/,/,
           <% end %>
         <% end %>
       </div>
-      <div class="medium-3 column">
+      <div class="medium-3 large-2 column">
         <a href="https://www.kingcountyequitynow.com/">
           <%= image_tag "seattle/kcen-logo.svg" %>
         </a>
@@ -52,7 +52,7 @@ feedback_subject = URI.encode("#{current_organization.name} -palaute").gsub(/,/,
 
   <div class="mini-footer">
     <div class="row">
-      <div class="medium-6 column">
+      <div class="medium-12 column">
         <a rel="license" class="cc-badge"
            href="http://creativecommons.org/licenses/by-sa/4.0/"
            target="_blank">

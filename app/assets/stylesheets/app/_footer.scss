@@ -9,6 +9,21 @@
     padding: 40px 0px;
   }
 
+  .nav-row {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  
+    @include breakpoint(large) {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  
+    @include breakpoint(xlarge) {
+      padding-left: 6rem;
+      padding-right: 6rem; 
+    }
+  }
+
   a {
     color: $white;
   }
@@ -40,25 +55,6 @@
   }
   .decidim-notification {
     margin-top: 40px;
-  }
-
-  .seattle-logo {
-    margin-top: 0.8rem;
-    font-size: 1rem;
-    border: 4px solid $white;
-    box-sizing: border-box;
-    border-bottom-right-radius: 1.25rem;
-    font-weight: 600;
-    color: $white;
-    text-align: center;
-
-    padding: 1rem 1rem;
-    font-size: 1.5rem;
-
-    @include breakpoint(large) {
-      padding: 1.33rem 1.0rem;
-      font-size: 2.25rem;
-    }
   }
 }
 

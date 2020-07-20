@@ -11,18 +11,13 @@ $footer-fg-ruuti: $white;
   color: $footer-fg;
   font-size: .95rem;
 
-  @include breakpoint(medium){
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  @include breakpoint(large){
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
-
   a{
     color: $footer-fg;
+  }
+
+  .logo-wrapper {
+    display: flex;
+    justify-content: center;
   }
 
   .seattle-logo {
@@ -33,6 +28,12 @@ $footer-fg-ruuti: $white;
   .row {
     display: flex;
     align-items: center;
+
+    margin-left: 3rem;
+    margin-right: 3rem;
+    max-width: 200rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
