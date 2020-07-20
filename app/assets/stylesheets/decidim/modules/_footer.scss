@@ -1,21 +1,9 @@
-$footer-bg: $hel-copper;
-$footer-bg-paahtimo: $hel-summer;
-$footer-bg-ruuti: $hel-copper;
-$footer-fg: $black;
-$footer-fg-paahtimo: $black;
-$footer-fg-ruuti: $black;
-
-.footer-wrapper{
-  .koro-top{
-    @include koro("basic", $footer-bg, 1000);
-
-    height: 28px;
-
-    &.with-wrapper--inner{
-      background-color: $light-gray-dark;
-    }
-  }
-}
+$footer-bg: $black;
+$footer-bg-paahtimo: $black;
+$footer-bg-ruuti: $black;
+$footer-fg: $white;
+$footer-fg-paahtimo: $white;
+$footer-fg-ruuti: $white;
 
 .main-footer,
 .mini-footer{
@@ -35,6 +23,16 @@ $footer-fg-ruuti: $black;
 
   a{
     color: $footer-fg;
+  }
+
+  .seattle-logo {
+    border: 4px solid $white;
+    color: $white;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -105,17 +103,24 @@ $footer-fg-ruuti: $black;
 .main__footer__nav{
   h3{
     color: $footer-fg;
-    font-weight: 600;
-    font-size: 1.55rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.125rem;
     margin-bottom: 0;
   }
 
   .footer-nav{
     list-style: none;
     margin: 0;
+    margin-top: 10px;
 
     a{
       font-weight: $global-weight-normal;
+    }
+
+    li{
+      margin-top: 10px;
+      font-size: 1.125rem;
     }
 
     .footer-nav{
