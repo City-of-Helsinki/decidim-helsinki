@@ -74,6 +74,7 @@ group :development do
 end
 
 group :production, :production_kuva, :production_ruuti, :production_discussion, :staging do
+  gem "fog-aws", "~> 3.6"
   gem "dotenv-rails", "~> 2.1", ">= 2.1.1"
 
   # resque-scheduler still depends on resque ~> 1.25
