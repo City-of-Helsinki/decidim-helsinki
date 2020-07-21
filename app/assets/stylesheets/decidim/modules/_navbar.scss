@@ -9,8 +9,8 @@ $navbar-active-bg: $navbar-bg-hover;
 $navbar-active-shadow-small: inset 4px 0 0 0 $primary;
 $navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
 
-$titlebar-bg: #1D1C1A;
-$titlebar-fg: #FFFAF5;
+$titlebar-bg: $chrome-black;
+$titlebar-fg: $white;
 $titlebar-bg-paahtimo: $hel-fog;
 $titlebar-bg-ruuti: $hel-copper;
 $titlebar-fg-paahtimo: $black;
