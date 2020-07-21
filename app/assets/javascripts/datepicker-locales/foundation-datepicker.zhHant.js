@@ -2,7 +2,7 @@
  * Placeholder translation for foundation-datepicker
  */
 ;(function($){
-	$.fn.fdatepicker.dates['zh-Hant'] = {
+	$.fn.fdatepicker.dates['zhHant'] = {
     days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
