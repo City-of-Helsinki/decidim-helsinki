@@ -13,6 +13,7 @@ module Decidim
         attribute :address, String
         attribute :latitude, Float
         attribute :longitude, Float
+        attribute :equity_composite_index_percentile, Float
         attribute :category_id, Integer
         attribute :scope_id, Integer
         attribute :attachment, AttachmentForm
@@ -60,6 +61,10 @@ module Decidim
         def scope
           @scope ||= @scope_id ? current_participatory_space.scopes.find_by(id: @scope_id) : current_participatory_space.scope
         end
+
+        # def equity_composite_index_percentile
+        #   @equity_composite_index_percentile
+        # end
 
         # Scope identifier
         #
