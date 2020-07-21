@@ -1,161 +1,94 @@
-$footer-bg: $hel-copper;
-$footer-bg-paahtimo: $hel-summer;
-$footer-bg-ruuti: $hel-copper;
-$footer-fg: $black;
-$footer-fg-paahtimo: $black;
-$footer-fg-ruuti: $black;
+$footer-bg: $chrome-black;
+$footer-fg: $white;
 
-.footer-wrapper{
-  .koro-top{
-    @include koro("basic", $footer-bg, 1000);
-
-    height: 28px;
-
-    &.with-wrapper--inner{
-      background-color: $light-gray-dark;
-    }
-  }
-}
-
-.main-footer,
-.mini-footer{
+.footer-wrapper {
   background-color: $footer-bg;
   color: $footer-fg;
   font-size: .95rem;
 
-  @include breakpoint(medium){
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 4rem;
 
-  @include breakpoint(large){
+  @include breakpoint(large) {
     padding-left: 4rem;
     padding-right: 4rem;
   }
 
-  a{
-    color: $footer-fg;
-  }
-}
-
-.mini-footer{
-  padding-top: 4rem;
-}
-
-.wrapper-paahtimo{
-  .footer-wrapper{
-    .koro-top{
-      @include koro("basic", $footer-bg-paahtimo, 1000);
-    }
+  @include breakpoint(xlarge) {
+    padding-left: 6rem;
+    padding-right: 6rem; 
   }
 
-  .main-footer,
-  .mini-footer{
-    background-color: $footer-bg-paahtimo;
-    color: $footer-fg-paahtimo;
-
-    a{
-      color: $footer-fg-paahtimo;
-    }
-  }
-}
-
-.wrapper-ruuti{
-  .footer-wrapper{
-    .koro-top{
-      @include koro("basic", $footer-bg-ruuti, 1000);
-    }
-  }
-
-  .main-footer,
-  .mini-footer{
-    background-color: $footer-bg-ruuti;
-    color: $footer-fg-ruuti;
-
-    a{
-      color: $footer-fg-ruuti;
-    }
-  }
-}
-
-.main-footer{
-  padding-top: 3.2rem;
-
-  .main-footer__badge{
-    display: block;
-    margin-top: 9px;
-    width: 140px;
-
-    @include breakpoint(medium){
-      width: 160px;
+  .main-footer {
+    @include breakpoint(medium) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    @include breakpoint(large){
-      width: 180px;
+    .left {
+      .bottom {
+        margin-top: 2rem;
+
+        @include breakpoint(medium) {
+          margin-top: 0;
+          margin-left: 4rem;
+        }
+      }
+
+      @include breakpoint(medium) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
     }
 
-    @include breakpoint(xlarge){
-      width: 220px;
-    }
+    .right {
+      margin-top: 2rem;
 
-    img{ height: 100%; }
-  }
-}
-
-.main__footer__nav{
-  h3{
-    color: $footer-fg;
-    font-weight: 600;
-    font-size: 1.55rem;
-    margin-bottom: 0;
-  }
-
-  .footer-nav{
-    list-style: none;
-    margin: 0;
-
-    a{
-      font-weight: $global-weight-normal;
-    }
-
-    .footer-nav{
-      margin-left: 15px;
-    }
-  }
-}
-
-.wrapper-paahtimo{
-  .main__footer__nav{
-    h3{
-      color: $footer-fg-paahtimo;
-    }
-  }
-}
-
-.wrapper-ruuti{
-  .main__footer__nav{
-    h3{
-      color: $footer-fg-ruuti;
-    }
-
-    .footer-nav{
-      a{
-        color: $footer-fg-ruuti;
+      @include breakpoint(medium) {
+        margin-top: 0;
       }
     }
   }
-}
 
-.mini-footer{
-  padding-bottom: 6rem;
-
-  .cc-badge{
-    position: relative;
-    top: -1px;
-    margin-right: .5rem;
+  a {
+    color: $footer-fg;
   }
-}
 
-@include breakpoint(medium){
-  .mini-footer__copyright{ text-align: right; }
+  .seattle-logo {
+    border: 4px solid $white;
+    color: $white;
+    margin-top: 0;
+    margin-right: 0;
+  }
+
+  h3 {
+    color: $footer-fg;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    margin-top: 10px;
+
+    a {
+      font-weight: $global-weight-normal;
+    }
+
+    li {
+      margin-top: 4px;
+      font-size: 1.125rem;
+    }
+  }
+
+  .attribution {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
 }
