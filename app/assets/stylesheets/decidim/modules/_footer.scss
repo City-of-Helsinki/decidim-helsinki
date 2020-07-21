@@ -26,12 +26,37 @@ $footer-fg-ruuti: $white;
     padding-right: 6rem; 
   }
 
-  .left .bottom {
-    margin-top: 2rem;
-  }
+  .main-footer {
+    @include breakpoint(medium) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-  .right {
-    margin-top: 2rem;
+    .left {
+      .bottom {
+        margin-top: 2rem;
+
+        @include breakpoint(medium) {
+          margin-top: 0;
+          margin-left: 4rem;
+        }
+      }
+
+      @include breakpoint(medium) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .right {
+      margin-top: 2rem;
+
+      @include breakpoint(medium) {
+        margin-top: 0;
+      }
+    }
   }
 
   a {
@@ -41,6 +66,8 @@ $footer-fg-ruuti: $white;
   .seattle-logo {
     border: 4px solid $white;
     color: $white;
+    margin-top: 0;
+    margin-right: 0;
   }
 
   h3 {
@@ -68,7 +95,7 @@ $footer-fg-ruuti: $white;
 
   .attribution {
     padding-top: 4rem;
-    padding-bottom: 2rem;
+    padding-bottom: 4rem;
   }
 }
 
