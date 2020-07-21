@@ -6,19 +6,36 @@ $footer-bg-ruuti: $black;
 $footer-fg-paahtimo: $white;
 $footer-fg-ruuti: $white;
 
-.main-footer,
-.mini-footer{
+
+.footer-wrapper {
   background-color: $footer-bg;
   color: $footer-fg;
   font-size: .95rem;
 
-  a{
-    color: $footer-fg;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 4rem;
+
+  @include breakpoint(large) {
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 
-  .logo-wrapper {
-    display: flex;
-    justify-content: center;
+  @include breakpoint(xlarge) {
+    padding-left: 6rem;
+    padding-right: 6rem; 
+  }
+
+  .left .bottom {
+    margin-top: 2rem;
+  }
+
+  .right {
+    margin-top: 2rem;
+  }
+
+  a {
+    color: $footer-fg;
   }
 
   .seattle-logo {
@@ -26,61 +43,38 @@ $footer-fg-ruuti: $white;
     color: $white;
   }
 
-  .row {
-    display: flex;
-    align-items: center;
-
-    margin-left: 3rem;
-    margin-right: 3rem;
-    max-width: 200rem;
-    padding-left: 0;
-    padding-right: 0;
+  h3 {
+    color: $footer-fg;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0;
   }
-}
 
-.mini-footer{
-  padding-top: 4rem;
-}
+  ul {
+    list-style: none;
+    margin: 0;
+    margin-top: 10px;
 
-.wrapper-paahtimo{
-  .footer-wrapper{
-    .koro-top{
-      @include koro("basic", $footer-bg-paahtimo, 1000);
+    a {
+      font-weight: $global-weight-normal;
+    }
+
+    li {
+      margin-top: 4px;
+      font-size: 1.125rem;
     }
   }
 
-  .main-footer,
-  .mini-footer{
-    background-color: $footer-bg-paahtimo;
-    color: $footer-fg-paahtimo;
-
-    a{
-      color: $footer-fg-paahtimo;
-    }
+  .attribution {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
   }
 }
 
-.wrapper-ruuti{
-  .footer-wrapper{
-    .koro-top{
-      @include koro("basic", $footer-bg-ruuti, 1000);
-    }
-  }
 
-  .main-footer,
-  .mini-footer{
-    background-color: $footer-bg-ruuti;
-    color: $footer-fg-ruuti;
-
-    a{
-      color: $footer-fg-ruuti;
-    }
-  }
-}
-
+// 
 .main-footer{
-  padding-top: 3.2rem;
-
   .main-footer__badge{
     display: block;
     margin-top: 9px;
@@ -103,14 +97,6 @@ $footer-fg-ruuti: $white;
 }
 
 .main__footer__nav{
-  h3{
-    color: $footer-fg;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 1.125rem;
-    margin-bottom: 0;
-  }
-
   .footer-nav{
     list-style: none;
     margin: 0;
@@ -125,7 +111,7 @@ $footer-fg-ruuti: $white;
       font-size: 1.125rem;
     }
 
-    .footer-nav{
+    .footer-nav {
       margin-left: 15px;
     }
   }
