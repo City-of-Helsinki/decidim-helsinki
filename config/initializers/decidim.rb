@@ -8,22 +8,20 @@ Decidim.configure do |config|
   config.default_locale = :en
   config.available_locales = [:en, "zh-Hant", :ko, "zh-Hans", :so, :es, :tl, :vi, :fi, :sv]
 
-  # Geocoder configuration
+  # Currency unit
+  # config.currency_unit = "€"
 
+  config.maximum_attachment_size = 15.megabytes
+  
   # Note: decidim-core 0.19 is using a deprecated authentication scheme for here.com.
   # decidim-core 0.21 fixes this, but we're not ready to upgrade yet. So below we're 
   # giving it some dummy data, then reinitializing the geocoder ourselves with correct
   # auth scheme. It's a mess.
   config.geocoder = {
-   static_map_url: "https://image.maps.cit.api.here.com/mia/1.6/mapview",
-   here_app_id: "",
-   here_app_code: ""
+    static_map_url: "https://image.maps.cit.api.here.com/mia/1.6/mapview",
+    here_app_id: "",
+    here_app_code: ""
   }
-
-  # Currency unit
-  # config.currency_unit = "€"
-
-  config.maximum_attachment_size = 15.megabytes
 end
 
 Rails.application.config.after_initialize do
