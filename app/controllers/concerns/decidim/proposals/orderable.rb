@@ -16,7 +16,7 @@ module Decidim
         # Available orders based on enabled settings
         def available_orders
           @available_orders ||= begin
-            available_orders = %w(random recent most_equitable)
+            available_orders = %w(most_equitable random recent)
             available_orders << "most_voted" if most_voted_order_available?
             available_orders << "most_endorsed" if current_settings.endorsements_enabled?
             available_orders << "most_commented" if component_settings.comments_enabled?
@@ -29,7 +29,7 @@ module Decidim
           if order_by_votes?
             detect_order("most_voted")
           else
-            "random"
+            "most_equitable"
           end
         end
 
@@ -44,7 +44,7 @@ module Decidim
         def reorder(proposals)
           case order
           when "most_equitable"
-            proposals.order(equity_composite_index_percentile: :asc)
+            proposals.order('equity_composite_index_percentile DESC nulls last')
           when "most_commented"
             proposals.left_joins(:comments).group(:id).order(Arel.sql("COUNT(decidim_comments_comments.id) DESC"))
           when "most_endorsed"
