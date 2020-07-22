@@ -13,10 +13,16 @@ Decidim.configure do |config|
 
   config.maximum_attachment_size = 15.megabytes
   
-  # Note: decidim-core 0.19 is using a deprecated authentication scheme for here.com.
-  # decidim-core 0.21 fixes this, but we're not ready to upgrade yet. So below we're 
-  # giving it some dummy data, then reinitializing the geocoder ourselves with correct
-  # auth scheme. It's a mess.
+  # Note: decidim-core hardcodes the assumption that the geocoder is going to be
+  # here.com even though the ruby geocoder gem doesn't care what the provider is.
+  # 
+  # Google is much better at geocoding searches like "Cal anderson, seattle, wa"
+  #
+  # So as an unfortunate workaround, we're going to let Decidim initialize the
+  # geocoder with dummy data, then afterwards immediately re-initialize the underlying
+  # library with our own config. It's a bit of a mess, but means we don't have to
+  # fork decidim-core for this one change.
+  
   if Rails.application.secrets.geocoder[:google_geocoder_api_key].present?
     config.geocoder = {
       static_map_url: "https://image.maps.cit.api.here.com/mia/1.6/mapview",
