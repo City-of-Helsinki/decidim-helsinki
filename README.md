@@ -4,12 +4,12 @@ This participatory democracy system is built on the City of Helsinki's fork of t
 
 Please check out their README's and documentation for instructions:
 
-* [Decidim](https://github.com/decidim/decidim)
-* [City of Helsinki's modified fork of Decidim](https://github.com/City-of-He<F2>lsinki/decidim-helsinki)
+- [Decidim](https://github.com/decidim/decidim)
+- [City of Helsinki's modified fork of Decidim](https://github.com/City-of-Helsinki/decidim-helsinki)
 
 ## Setup
 
-### Setup (osx)
+### Setup (mac)
 
 Run `script/dev-setup` and follow the instructions until you see:
 
@@ -17,10 +17,10 @@ Run `script/dev-setup` and follow the instructions until you see:
 
 What it's going to do:
 
-* Install the asdf package manager (if you prefer rbenv, check out the windows/linux setup below)
-* Install Ruby via asdf
-* Install PostgreSQL and ImageMagick via homebrew
-* Create and set up the database
+- Install the asdf package manager (if you prefer rbenv, check out the windows/linux setup below)
+- Install Ruby via asdf
+- Install PostgreSQL and ImageMagick via homebrew
+- Create and set up the database
 
 People sometimes run into problems with database connection issues. If that's the case, chances are postgres is shutting down right after starting up and to find out why, run `brew info postgresql` and check out the instructions on how to start postgresql manually. That's usually enough to get people unblocked.
 
@@ -93,4 +93,26 @@ https://devcenter.heroku.com/articles/git
 
 ## Urls
 
-* Staging: https://decidim-seattle-staging.herokuapp.com/
+- Staging: https://decidim-seattle-staging.herokuapp.com/
+
+## Future work
+
+### Translations
+
+As a proof of concept, we have added Seattle's tier 1 languages to the language
+dropdown menu, (i.e. `available_locales` configuration). Decidim does not
+support these languages out of the box and additional work will have to be done
+to add translations. Reference [this documentation](https://docs.decidim.org/develop/en/advanced/managing_translations_i18n/)
+to see the work involved to add full translations.
+
+Because of a bug in the plans module, locales with a hyphen in the name, such
+as `zh-Hans`, can't be trivially supported. The bug manifests as an error when
+trying to edit plans in the admin interface. In the future, we should fix this
+bug. For now, as of 7/21/20, we have worked around this bug by using
+non-standard locale names `zhHans` (Chinese Simplified) and `zhHant` (Chinese
+Traditional), without a hyphen. These are non-standard locale names. Update
+the comment in `decidim.rb` when this issue is resolved.
+
+### Social network authentication
+
+Decidim supports single sign-on with Google, Facebook, Twitter, etc, but [it needs to be configured](https://github.com/decidim/decidim/blob/master/docs/services/social_providers.md).
