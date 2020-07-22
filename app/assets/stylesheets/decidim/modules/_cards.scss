@@ -302,6 +302,13 @@ $datetime-bg: $primary;
   line-height: 1;
 }
 
+.card .tags .equity_score{
+  font-weight: 600;
+  display: block;
+  border: 1px solid #abb2bd;
+  padding: 0 .5rem;
+}
+
 /* Card data */
 
 .card-data{
