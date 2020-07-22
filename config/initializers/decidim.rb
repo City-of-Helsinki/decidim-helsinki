@@ -17,18 +17,22 @@ Decidim.configure do |config|
   # decidim-core 0.21 fixes this, but we're not ready to upgrade yet. So below we're 
   # giving it some dummy data, then reinitializing the geocoder ourselves with correct
   # auth scheme. It's a mess.
-  config.geocoder = {
-    static_map_url: "https://image.maps.cit.api.here.com/mia/1.6/mapview",
-    here_app_id: "",
-    here_app_code: ""
-  }
+  if Rails.application.secrets.geocoder[:here_api_key].present?
+    config.geocoder = {
+      static_map_url: "https://image.maps.cit.api.here.com/mia/1.6/mapview",
+      here_app_id: "",
+      here_app_code: ""
+    }
+  end
 end
 
-Rails.application.config.after_initialize do
-  Geocoder.configure(
-    lookup: :here,
-    api_key: Rails.application.secrets.geocoder[:here_api_key]
-  )
+if Rails.application.secrets.geocoder[:here_api_key].present?
+  Rails.application.config.after_initialize do
+    Geocoder.configure(
+      lookup: :here,
+      api_key: Rails.application.secrets.geocoder[:here_api_key]
+    )
+  end
 end
 
 # Define the I18n locales.
