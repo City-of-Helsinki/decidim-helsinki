@@ -3,3 +3,15 @@ en:
     menu:
       processes: 'Participate'
       more_information: 'About'
+    proposals:
+      proposals:
+        orders:
+          label: 'Order proposals by:'
+          most_commented: Most commented
+          most_endorsed: Most endorsed
+          most_equitable: Most equitable
+          most_followed: Most followed
+          most_voted: Most supported
+          random: Random
+          recent: Recent
+          with_more_authors: With more authors
