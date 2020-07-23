@@ -28,6 +28,24 @@
       <% if component_settings.geocoding_enabled? %>
         <%= render partial: "decidim/shared/static_map", locals: { icon_name: "proposals", geolocalizable: @proposal } %>
       <% end %>
+      <% if @proposal.equity_composite_index_percentile != nil %>
+        <figure>
+          <figcaption class="text-uppercase">
+            <strong>
+              <%= t("proposal_title", scope: "decidim.proposals.equity") %>
+            </strong>
+          </figcaption>
+          <ul>
+            <li>
+              <% equity_quintile = (@proposal.equity_composite_index_percentile.round(2) * 5).floor() + 1 %>
+              <%= t("quintile#{equity_quintile}", scope: "decidim.proposals.equity") %>
+            </li>
+            <li>
+              <%= t("proposal_description", scope: "decidim.proposals.equity") %>
+            </li>
+          </ul>
+        </figure>
+      <% end %>
       <%= cell "decidim/proposals/proposal_tags", @proposal %>
     </div>
     <% if @proposal.answered? && translated_attribute(@proposal.answer).present? %>

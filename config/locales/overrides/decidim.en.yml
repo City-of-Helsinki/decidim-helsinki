@@ -1,8 +1,8 @@
 en:
   decidim:
     menu:
-      processes: 'Participate'
-      more_information: 'About'
+      processes: Participate
+      more_information: About
     proposals:
       proposals:
         orders:
@@ -17,8 +17,10 @@ en:
           with_more_authors: With more authors
       equity:
         card_tag_title: 'Equity Impact:'
-        quintile1: 'Lowest'
-        quintile2: 'Second lowest'
-        quintile3: 'Middle'
-        quintile4: 'Second highest'
-        quintile5: 'Highest'
+        proposal_title: Equity Impact
+        proposal_description: The Equity Impact is determined from the location of the proposal and is based on the City of Seattle's Racial and Social Equity Composite Index
+        quintile1: Lowest
+        quintile2: Second lowest
+        quintile3: Middle
+        quintile4: Second highest
+        quintile5: Highest
