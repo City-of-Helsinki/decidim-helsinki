@@ -12,6 +12,8 @@ class GeocodingValidator < ActiveModel::EachValidator
       Geocoder.configure(Geocoder.config.merge(http_headers: { "Referer" => organization.host }))
       coordinates = Geocoder.coordinates(geocoder_value(value))
 
+      Rails.logger.info("Geocoded #{geocoder_value(value).inspect} for result #{coordinates.inspect}")
+
       if coordinates.present?
         record.latitude = coordinates.first
         record.longitude = coordinates.last
