@@ -64,6 +64,12 @@ en:
         fields:
           allowed_districts: Allowed districts
           district: District
+    content_blocks:
+      equity:
+        name: Equity
+        title: How we bring equity into focus
+        subtitle: The Racial and Social Equity Index combines information on race, ethnicity, and related demographics with data on socioeconomic and health disadvantages to identify where priority populations make up relatively large proportions of neighborhood residents.
+        button_title: Learn More
     pages:
       home:
         statistics:
