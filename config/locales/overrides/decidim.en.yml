@@ -16,7 +16,7 @@ en:
           recent: Recent
           with_more_authors: With more authors
       equity:
-        card_tag_title: 'Equity score:'
+        card_tag_title: 'Equity Impact:'
         quintile1: 'Lowest'
         quintile2: 'Second lowest'
         quintile3: 'Middle'
