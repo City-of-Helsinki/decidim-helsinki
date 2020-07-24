@@ -58,13 +58,13 @@ module Decidim
           end
   
           def admin_edition_is_available?
-            return true
+            return unless proposal
 
+            true
+            
             # Overriding the existing behavior to always allow editing of proposals by admins.
             # The previous logic is commented out below:
 
-            # return unless proposal
-  
             # (proposal.official? || proposal.official_meeting?) && proposal.votes.empty?
           end
   
