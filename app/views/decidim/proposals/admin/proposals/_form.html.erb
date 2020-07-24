@@ -73,11 +73,9 @@
       <%= render partial: "decidim/admin/shared/gallery", locals: { form: form } %>
     <% end %>
 
-    <% if @form.equity_composite_index_percentile %>
-        <div class="row column">
-            <%= form.text_field :equity_composite_index_percentile %>
-        </div>
-    <% end %>
+    <div class="row column">
+      <%= form.text_field :equity_composite_index_percentile %>
+    </div>
 
     <% if component_settings.attachments_allowed? %>
       <div class="row column">
