@@ -2,13 +2,7 @@
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
-  config.suomifi_enabled = false
-  config.mpassid_enabled = false
-
-  # Tracking
-  config.snoobi_account = "omastadi_hel_fi"
-
+  
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -131,7 +125,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # The location of the Tunnistamo authentication server
-  config.tunnistamo_auth_server = "https://api.hel.fi/sso"
 end
