@@ -20,18 +20,6 @@ module ApplicationHelper
     Rails.application.config.feedback_email
   end
 
-  def tunnistamo_sign_out_url
-    @tunnistamo_sign_out_url ||= begin
-      # Fetch the logout URI from OmniAuth configs
-      mw = Rails.application.middleware.find { |a| a == OmniAuth::Strategies::OpenIDConnectHelsinki }
-      if mw
-        strategy = mw.klass.new(Rails.application, *mw.args)
-        strategy.send(:discover!)
-        strategy.end_session_uri
-      end
-    end
-  end
-
   # Replace the footer koro with a custom one. E.g. a specific background color
   # may need to be added to the footer koro element depending on the previous
   # element.
