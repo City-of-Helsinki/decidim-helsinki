@@ -109,6 +109,10 @@ sv:
     decidim:
       assembly_header:
         unfold: Öppna
+      header:
+        help: Hjälp
+        sign_in: Logga in
+        subtitle: 2020-2021
       process_header:
         unfold: Öppna
     footer:

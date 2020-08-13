@@ -109,6 +109,10 @@ en:
     decidim:
       assembly_header:
         unfold: Unfold
+      header:
+        help: Help
+        sign_in: Sign in
+        subtitle: 2020-2021
       process_header:
         unfold: Unfold
     footer:

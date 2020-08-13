@@ -109,6 +109,10 @@ fi:
     decidim:
       assembly_header:
         unfold: Avaa
+      header:
+        help: Ohjeet
+        sign_in: Kirjaudu
+        subtitle: 2020-2021
       process_header:
         unfold: Avaa
     footer:
