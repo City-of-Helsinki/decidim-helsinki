@@ -12,6 +12,12 @@ module ApplicationHelper
     true
   end
 
+  def display_header_koro?
+    return false if flash.any?
+
+    controller.controller_name != "homepage"
+  end
+
   def private_mode?
     Rails.application.config.use_mode == "private"
   end

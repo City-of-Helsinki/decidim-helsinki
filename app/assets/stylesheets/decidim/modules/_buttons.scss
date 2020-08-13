@@ -1,6 +1,8 @@
-/* Foundation button overrides*/
+/* Foundation button overrides */
+
 .button{
   font-weight: $button-font-weight;
+  border: $button-border; // not needed in more recent versions of Foundation
 
   &.small{
     padding-top: .5rem;
@@ -12,6 +14,7 @@
       letter-spacing: 0;
     }
   }
+
   &.tiny{
     padding-top: .25rem;
     padding-bottom: .25rem;
@@ -20,6 +23,30 @@
       padding-left: .25rem;
       padding-right: .25rem;
       letter-spacing: 0;
+    }
+  }
+}
+
+.button.hollow{
+  &:hover,
+  &:focus{
+    &.primary{
+      $primary-hover: scale-color($primary, $lightness: $button-background-hover-lightness);
+      $primary-color: color-pick-contrast($primary-hover, ($button-color, $button-color-alt));
+      // $primary-color: $secondary;
+
+      color: $primary-color;
+      background: $primary-hover;
+      border-color: $primary-hover;
+    }
+
+    &.secondary{
+      $secondary-hover: scale-color($secondary, $lightness: $button-background-hover-lightness);
+      $secondary-color: color-pick-contrast($secondary-hover, ($button-color, $button-color-alt));
+
+      color: $secondary-color;
+      background: $secondary-hover;
+      border-color: $secondary-hover;
     }
   }
 }
@@ -93,7 +120,6 @@
   @include flexgap(.5rem, column);
 }
 
-
 /* Extra buttons styles */
 
 .button--shadow{
@@ -118,6 +144,7 @@
   .icon{
     margin: 0 2px;
   }
+
   &.small{
     .icon{
       width: 12px;
@@ -196,8 +223,8 @@
   display: block;
   min-width: 250px;
 
-  &.button--tunnistamo {
-    .icon {
+  &.button--tunnistamo{
+    .icon{
       width: 90px;
       height: 40px;
     }
@@ -207,7 +234,7 @@
 .button--social__icon{
   display: inline-block;
   vertical-align: middle;
-  padding: 0.85em 1rem;
+  padding: .85em 1rem;
   //border-right: 1px solid rgba(black, .075);
   margin-right: .5rem;
   min-width: 3rem;
@@ -218,20 +245,22 @@
   background-color: $twitter;
 
   &:hover{
-    background-color: lighten($twitter,5);
+    background-color: lighten($twitter, 5);
   }
 }
+
 .button--facebook{
   background-color: $facebook;
 
   &:hover{
-    background-color: lighten($facebook,5);
+    background-color: lighten($facebook, 5);
   }
 }
+
 .button--google{
   background-color: $google;
 
   &:hover{
-    background-color: lighten($google,5);
+    background-color: lighten($google, 5);
   }
 }

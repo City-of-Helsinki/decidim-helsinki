@@ -19,6 +19,7 @@
 // = require app/fix-map-toggle
 // = require app/remaining-characters
 // = require app/youtube-modal
+// = require app/slider
 // = require_self
 
 ((exports) => {
@@ -30,6 +31,7 @@
     $("[data-toggle-checkbox]").toggleCheckbox();
     $(".remaining-characters-container [data-remaining-characters]").remainingCharacters();
     $("[data-open-youtube]").youtubeModal();
+    $(".card-slider").slider();
     $("a[data-open]").on("click", (ev) => {
       ev.preventDefault();
     });

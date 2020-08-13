@@ -1,0 +1,18 @@
+.input-group{
+  > :last-child.input-group-button > *{
+    // Move the last child on top of the input element's border.
+    margin-left: -2px;
+  }
+}
+
+.input-group-button{
+  .button{
+    height: 3.4rem;
+  }
+}
+
+label{
+  + .help-text{
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,93 @@
+$slick-arrow-color: $primary;
+$slick-dot-color: $primary;
+$slick-dot-size: 24px;
+$slick-opacity-default: 1;
+
+@import "helsinki/vendor/slick/slick";
+@import "helsinki/vendor/slick/slick-theme";
+
+.card-slider{
+  text-align: initial;
+
+  &.slick-slider{
+    // Give space for the side arrows in order to keep the arrows outside of the
+    // slider track. Otherwise the slides would slide under the arrows which
+    // looks weird.
+    margin: 0 45px;
+
+    &.slick-dotted{
+      margin-bottom: 100px;
+    }
+  }
+
+  &.center{
+    .card-slide-content{
+      position: relative;
+      padding: 2%;
+      margin: 24% 0 18%; // Give space for the center element to be fully visible
+      transition: all 300ms ease;
+    }
+
+    .slick-slide{
+      margin: 0 2rem;
+    }
+
+    .slick-slide.slick-center{
+      .card-slide-content{
+        transform: scale(1.24);
+      }
+    }
+  }
+
+  .slick-track{
+    display: flex !important;
+  }
+
+  .slick-slide{
+    height: inherit !important;
+    display: flex;
+
+    > div{
+      display: flex;
+    }
+
+    .card-slide-content{
+      display: flex !important;
+    }
+
+    .card{
+      display: flex;
+      flex-direction: column;
+
+      .card__content{
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+.slick-prev,
+.slick-next{
+  height: 50px;
+  width: 50px;
+
+  &::before{
+    font-size: 50px;
+  }
+}
+
+.slick-prev{
+  left: -45px;
+}
+
+.slick-next{
+  right: -45px;
+}
+
+.slick-dots{
+  bottom: -70px;
+
+  li{
+    margin: 0 20px;
+  }
+}

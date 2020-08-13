@@ -1,18 +1,20 @@
 @import "decidim/variables";
 
 $colors: (
-  hel-copper : $hel-copper,
-  hel-bus : $hel-bus,
-  hel-coat : $hel-coat,
+  primary: $primary,
+  secondary: $secondary,
+  hel-copper: $hel-copper,
+  hel-bus: $hel-bus,
+  hel-coat: $hel-coat,
   hel-fog: $hel-fog,
   hel-metro: $hel-metro,
   hel-brick: $hel-brick,
   hel-suomenlinna : $hel-suomenlinna,
   hel-engel: $hel-engel,
-  hel-tram : $hel-tram,
-  hel-summer : $hel-summer,
-  hel-silver : $hel-metro,
-  hel-gold : $hel-gold,
+  hel-tram: $hel-tram,
+  hel-summer: $hel-summer,
+  hel-silver: $hel-metro,
+  hel-gold: $hel-gold,
   hel-black: $hel-black,
   hel-dark: $hel-dark,
   hel-gray: $hel-gray,
@@ -27,5 +29,23 @@ $colors: (
 
   .bg-#{$key}{
     background-color: #{$value};
+  }
+}
+
+.bg-primary{
+  &,
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4,
+  h5,
+  .h5,
+  h6,
+  .h6{
+    color: $secondary;
   }
 }

@@ -1,0 +1,38 @@
+<% if participatory_process.steps.any? %>
+  <%
+   helper = begin
+    if respond_to?(:participatory_space_helpers)
+      participatory_space_helpers
+    else
+      pp_helper = participatory_process.manifest.context(:public).helper
+      klass = Class.new(SimpleDelegator) do
+        include pp_helper.constantize if pp_helper
+      end.new(self)
+    end
+  end
+  %>
+
+  <div class="extended page-section">
+    <div class="row columns">
+      <ol class="phases-list">
+        <% past_step = true %>
+        <% participatory_process.steps.each_with_index do |step, index| %>
+          <% past_step = false if step.active? %>
+          <%= helper.process_step_tag(step, past_step) do %>
+            <div class="phases-list-item-phase">
+              <span class="phases-list-item-number"><%= index + 1 %></span>
+            </div>
+            <div class="phases-list-item-info">
+              <%= helper.process_step_link(step) do %>
+                <h4 class="phases-list-item-title">
+                  <%= translated_attribute step.title %>
+                </h4>
+              <% end %>
+              <div class="phases-list-item-date"><%= helper.step_date_info step %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+<% end %>

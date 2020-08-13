@@ -1,9 +1,5 @@
 @import "variables";
-@import "foundation";
-@import "utils/settings";
-
-@include foundation-everything($flex: false);
-
+@import "foundation_and_overrides";
 @import "utils/fontface";
 @import "utils/koro";
 @import "decidim/utils/helpers";
@@ -20,6 +16,7 @@
 @import "decidim/extras/announcement";
 @import "decidim/extras/collection-sort-controls";
 @import "decidim/extras/embed";
+@import "decidim/extras/external-links";
 @import "decidim/extras/impersonation-bar";
 @import "decidim/extras/label-required";
 @import "decidim/extras/leaflet";

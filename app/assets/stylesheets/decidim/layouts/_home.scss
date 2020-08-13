@@ -1,7 +1,19 @@
 // Home
 
 .hero{
+  position: relative;
   background-size: cover;
+  background-position: center center;
+
+  .koro-bottom{
+    @include koro("pulse", $white, 750);
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 33px;
+  }
 }
 
 .hero__container{
@@ -25,6 +37,10 @@
   .text-highlight{
     color: $white;
   }
+}
+
+.hero__empty{
+  height: 510px;
 }
 
 .hero__boxes{
@@ -134,8 +150,8 @@
 }
 
 .hero-cta{
-  background-color: $white;
-  color: $black;
+  background-color: $primary;
+  color: $white;
   margin-top: 1rem;
   padding: 1.2rem 1rem;
 

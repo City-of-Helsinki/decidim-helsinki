@@ -51,8 +51,28 @@ input{
   font-size: 1rem;
 }
 
-a{
+a,
+.link{
   font-weight: $anchor-font-weight;
+  cursor: pointer;
+
+  &:hover{
+    color: $anchor-color-hover;
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+  }
+
+  &:focus{
+    outline: $anchor-outline-focus;
+    outline-offset: $anchor-outline-offset;
+  }
+}
+
+button{
+  &:focus{
+    outline: $button-outline-focus;
+    // outline-color: var(--highlight);
+  }
 }
 
 hr{

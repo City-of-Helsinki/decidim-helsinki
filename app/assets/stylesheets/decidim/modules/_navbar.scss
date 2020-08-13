@@ -1,18 +1,14 @@
 /* Variables */
 
-$navbar-bg: $white;
-$navbar-bg-hover: rgba(white, .02);
-$navbar-color: $black;
-$navbar-color-hover: $black;
-$navbar-active-color: $black;
-$navbar-active-bg: $navbar-bg-hover;
-$navbar-active-shadow-small: inset 4px 0 0 0 $primary;
-$navbar-active-shadow-medium: inset 0 4px 0 0 $primary;
+$top-bar-bg: $secondary;
+$top-bar-fg: $primary;
+$top-bar-color: $top-bar-fg;
+$top-bar-color-hover: $top-bar-fg;
 
-$titlebar-bg: $hel-copper;
+$titlebar-bg: $secondary;
 $titlebar-bg-paahtimo: $hel-fog;
 $titlebar-bg-ruuti: $hel-copper;
-$titlebar-fg: $black;
+$titlebar-fg: $primary;
 $titlebar-fg-paahtimo: $black;
 $titlebar-fg-ruuti: $black;
 
@@ -21,8 +17,6 @@ $menuitem-padding: 1em 2em;
 /* Navigation */
 
 .navbar{
-  background: $navbar-bg;
-
   .menu-main{
     padding-top: .8rem;
   }
@@ -32,16 +26,175 @@ $menuitem-padding: 1em 2em;
       padding-top: .9rem;
     }
   }
+
+  a,
+  .button{
+    &:focus{
+      outline-color: var(--highlight-alternative);
+    }
+  }
 }
 
 .top-bar{
+  background: $top-bar-bg;
+  color: $top-bar-fg;
+
   @include breakpoint(medium){
-    padding-top: 1.5rem;
+    padding-top: 1.7rem;
+  }
+
+  .skip{
+    @include skip-button;
+
+    &:focus{
+      outline-color: var(--highlight-alternative);
+    }
+  }
+
+  a{
+    color: $top-bar-fg;
   }
 
   .top-bar-left,
   .top-bar-right{
     width: auto;
+  }
+}
+
+.site-bar{
+  display: flex;
+  flex: 0 0 auto;
+
+  .site-title{
+    margin-right: 3.9rem;
+
+    .site-title-main{
+      font-size: 2.8rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .site-title-sub{
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    a{
+      display: block; // Makes the outline visible on focus
+
+      &:hover,
+      &:focus{
+        text-decoration: none;
+      }
+    }
+  }
+
+  .language-choose{
+    padding-top: 1.3rem;
+
+    .menu{
+      .language-nav-link{
+        &:first-child{
+          &::before{
+            display: none;
+          }
+        }
+
+        &::before{
+          content: "|";
+          display: inline-block;
+          padding: 0 .55rem;
+        }
+
+        &.language-nav-link-current{
+          a{
+            text-decoration: underline;
+          }
+        }
+
+        a{
+          display: inline-block;
+          font-weight: normal;
+          padding-left: 0;
+          padding-right: 0;
+
+          &:hover,
+          &:focus{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+.top-bar-links{
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding-top: .6rem;
+  margin: 0 (-$global-padding); // Pulls the top bar links to the right side
+
+  .top-bar-links__item{
+    font-size: 1.8rem;
+    margin-left: 3.2rem;
+
+    > .dropdown.menu > li{
+      &.is-active{
+        > a{
+          color: $anchor-color;
+        }
+      }
+
+      > a{
+        background: transparent;
+      }
+
+      .is-dropdown-submenu{
+        z-index: 100;
+        background: $dropdownmenu-submenu-background;
+      }
+    }
+
+    .dropdown{
+      .is-dropdown-submenu{
+        li{
+          border-bottom: 1px solid $light-gray;
+
+          a{
+            padding: 1.1rem 1rem;
+            font-weight: $global-weight-normal;
+            font-size: 1.4rem;
+
+            &:hover,
+            &:focus{
+              background: $primary;
+              color: $white;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  a{
+    padding: $dropdownmenu-padding;
+
+    // Prevent the .menu styles overriding these
+    &:hover,
+    &:focus{
+      text-decoration: $anchor-text-decoration-hover;
+    }
+  }
+}
+
+.header{
+  .koro-bottom{
+    @include koro("pulse", $white, 750);
+
+    height: 33px;
+    background-color: $titlebar-bg;
   }
 }
 
@@ -59,35 +212,6 @@ $menuitem-padding: 1em 2em;
 
     @include breakpoint(medium){
       font-size: 3rem;
-    }
-  }
-
-  .koro-top{
-    @include koro("basic", $titlebar-bg, 1000);
-
-    height: 28px;
-    background-color: $navbar-bg;
-  }
-}
-
-.wrapper-paahtimo{
-  .title-bar{
-    background-color: $titlebar-bg-paahtimo;
-    color: $titlebar-fg-paahtimo;
-
-    .koro-top{
-      @include koro("basic", $titlebar-bg-paahtimo, 1000);
-    }
-  }
-}
-
-.wrapper-ruuti{
-  .title-bar{
-    background-color: $titlebar-bg-ruuti;
-    color: $titlebar-fg-ruuti;
-
-    .koro-top{
-      @include koro("basic", $titlebar-bg-ruuti, 1000);
     }
   }
 }
@@ -136,22 +260,20 @@ $menuitem-padding: 1em 2em;
 
   input,
   input:focus{
-    color: $navbar-color-hover;
+    color: $top-bar-color-hover;
     box-shadow: none;
-    background: $navbar-active-bg;
     margin-top: 8px;
     display: inline-block;
     border-radius: 4px 0 0 4px;
 
     &:focus{
-      color: $navbar-color-hover;
+      color: $top-bar-color-hover;
       box-shadow: none;
-      background: $navbar-active-bg;
       outline: 2px solid $primary;
     }
 
     @include breakpoint(medium){
-      background: $navbar-bg;
+      background: $top-bar-bg;
     }
   }
 
@@ -163,7 +285,7 @@ $menuitem-padding: 1em 2em;
     border: 1px solid $medium-gray;
     border-left: 0;
     border-radius: 0 4px 4px 0;
-    background-color: $navbar-bg;
+    background-color: $top-bar-bg;
 
     svg{
       color: $input-placeholder-color;
@@ -208,11 +330,11 @@ $menuitem-padding: 1em 2em;
   margin-right: 1rem;
 
   @include breakpoint(medium){
-    width: 160px;
+    width: 132px;
   }
 
   @include breakpoint(xlarge){
-    margin-right: 1.2rem;
+    margin-right: 3.6rem;
   }
 
   a{
@@ -334,21 +456,11 @@ $menuitem-padding: 1em 2em;
 
 //Foundation overwrites
 .topbar__dropmenu > ul > li > a{
-  color: $body-font-color;
+  color: $top-bar-fg;
 
   &::after{
     margin-top: -1px !important;
-    border-top-color: $body-font-color !important;
-  }
-}
-
-.topbar__user{
-  display: inline-block;
-  padding-right: 2.5rem;
-  margin-left: 2rem;
-
-  @media (min-width: (1300 / 16) + em){
-    padding-right: 0;
+    border-top-color: $top-bar-fg !important;
   }
 }
 
@@ -436,7 +548,7 @@ $menuitem-padding: 1em 2em;
   line-height: 1.2;
 
   a{
-    color: $body-font-color;
+    color: $top-bar-fg;
 
     &:hover{
       color: $anchor-color;
@@ -513,8 +625,7 @@ $menuitem-padding: 1em 2em;
     color: $medium-gray;
 
     &:hover{
-      background: $navbar-bg-hover;
-      color: $navbar-color-hover;
+      color: $top-bar-color-hover;
     }
   }
 }
@@ -534,11 +645,10 @@ $menuitem-padding: 1em 2em;
   a{
     display: block;
     padding: 1em 2em;
-    color: $navbar-color;
+    color: $top-bar-color;
 
     &:hover{
-      background: $navbar-bg-hover;
-      color: $navbar-color-hover;
+      color: $top-bar-color-hover;
     }
   }
 }
@@ -573,14 +683,12 @@ $menuitem-padding: 1em 2em;
 }
 
 .main-nav__link a,
-.user-nav__link a,
-.language-nav__link a{
+.user-nav__link a{
   display: block;
   padding: $menuitem-padding;
-  color: $navbar-color;
+  color: $top-bar-color;
 
   &:hover{
-    background: $navbar-bg-hover;
     color: $anchor-color;
   }
 }
@@ -605,12 +713,5 @@ $menuitem-padding: 1em 2em;
 }
 
 .main-nav__link--active a{
-  //box-shadow: $navbar-active-shadow-small;
   font-weight: 800;
-  color: $navbar-active-color;
-  background: $navbar-active-bg;
-
-  @include breakpoint(medium){
-    //box-shadow: $navbar-active-shadow-medium;
-  }
 }

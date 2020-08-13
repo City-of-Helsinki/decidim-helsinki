@@ -60,7 +60,7 @@
 //  55. Top Bar
 //  56. Xy Grid
 
-@import 'util/util';
+@import "util/util";
 
 // 1. Global
 // ---------
@@ -72,11 +72,11 @@ $global-lineheight: 1.5;
 // The style + brand guide is at https://city-of-helsinki.github.io/hel-bootstrap-3/brand/
 // (useful regardless of underlying technology being used)
 $foundation-palette: (
-  primary: $hel-black,
-  secondary: $hel-coat,
-  success: $hel-tram,
-  warning: $hel-summer,
-  alert: $hel-metro,
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  warning: $warning,
+  alert: $alert,
 );
 $light-gray: $hel-light-grey;
 $medium-gray: $hel-medium-grey;
@@ -106,20 +106,32 @@ $global-color-pick-contrast-tolerance: 0;
 $print-transparent-backgrounds: true;
 
 $border-width: 1px !default;
-$border: $border-width solid $medium-gray !default;
+$border: $border-width solid $light-gray !default;
 
 @include add-foundation-colors;
+$highlight-color: $highlight;
 
 // 2. Breakpoints
 // --------------
 
+// These are mapped to the Helsinki grid guidelines as follows:
+// - small (Decidim) = xs (Helsinki)
+// - medium (Decidim) = s (Helsinki)
+// - mediumlarge (Decidim) = m (Helsinki)
+// - large (Decidim) = l (Helsinki)
+// - xlarge (Decidim) = xl (Helsinki)
+//
+// We keep original breakpoints here in order to achieve the best compatibility
+// with the Decidim core where these breakpoints can be used.
+//
+// See: https://hds.hel.fi/guidelines/grid
 $breakpoints: (
   small: 0,
   smallmedium: 450px,
-  medium: 640px,
-  mediumlarge: 800px,
-  large: 1024px,
-  xlarge: 1200px,
+  medium: 576px,
+  mediumlarge: 768px,
+  large: 992px,
+  xlarge: 1224px,
   xxlarge: 1440px,
 );
 $print-breakpoint: large;
@@ -131,8 +143,9 @@ $breakpoint-classes: (small smallmedium medium mediumlarge large);
 $grid-row-width: $global-width;
 $grid-column-count: 12;
 $grid-column-gutter: (
-  small: 20px,
-  medium: 30px,
+  small: 12px,
+  medium: 16px,
+  mediumlarge: 24px,
 );
 $grid-column-align-edge: true;
 $grid-column-alias: 'columns';
@@ -145,7 +158,7 @@ $header-font-family: $body-font-family;
 $header-font-weight: $global-weight-bold;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
-$header-color: #000;
+$header-color: $primary;
 $header-lineheight: 1.4;
 $header-margin-bottom: .5rem;
 $header-styles: (
@@ -178,8 +191,10 @@ $code-font-weight: $global-weight-normal;
 $code-background: $light-gray;
 $code-border: 1px solid $medium-gray;
 $code-padding: rem-calc(2 5 1);
-$anchor-color: $secondary-color;
+$anchor-color: $primary-color;
 $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
+$anchor-outline-focus: 1px solid $highlight;
+$anchor-outline-offset: 2px;
 $anchor-font-weight: 600;
 $anchor-text-decoration: none;
 $anchor-text-decoration-hover: underline;
@@ -289,27 +304,38 @@ $breadcrumbs-item-separator-color: $medium-gray;
 // ----------
 
 $button-font-family: inherit;
-$button-font-weight: $anchor-font-weight;
-$button-padding: .85em 1em;
+$button-font-weight: normal;
+$button-padding: 1.2em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
 $button-color: $white;
-$button-color-alt: $black;
+$button-color-alt: $primary;
+$button-shadow: 0 2px 0 rgba(0, 0, 0, .2);
 $button-radius: 0;
+$button-border: 2px solid transparent;
 $button-hollow-border-width: 2px;
 $button-sizes: (
   tiny: .9rem,
   small: .9rem,
   default: 1rem,
-  large: 1.25rem,
+  large: 1.35rem,
 );
 $button-palette: $foundation-palette;
 $button-opacity-disabled: .25;
 $button-background-hover-lightness: -20%;
 $button-hollow-hover-lightness: -50%;
 $button-transition: background-color .25s ease-out, color .25s ease-out;
+$button-outline-focus: $anchor-outline-focus;
+$button-outline-offset: 2px;
+$button-shadow-active: inset 0 0 14px -2px $black;
+$button-shadow-focus: none;
+$button-brightness-hover: 95%;
+$button-brightness-active: 85%;
+$button-brightness-focus: 95%;
+$button-vertical-push-active: 2px;
+$button-hollow-underline: none;
 
 // 12. Button Group
 // ----------------
@@ -424,7 +450,7 @@ $fieldset-border: 1px solid $medium-gray;
 $fieldset-padding: rem-calc(20);
 $fieldset-margin: rem-calc(18 0);
 $legend-padding: rem-calc(0 3);
-$form-spacing: rem-calc(16);
+$form-spacing: rem-calc(32);
 $helptext-color: $body-font-color;
 $helptext-font-size: rem-calc(13);
 $helptext-font-style: italic;
@@ -449,8 +475,11 @@ $input-line-height: $global-lineheight;
 $input-background: $white;
 $input-background-focus: $white;
 $input-background-disabled: $light-gray;
-$input-border: 1px solid $medium-gray;
-$input-border-focus: 1px solid map-get($foundation-palette, primary);
+$input-border: 2px solid $black;
+$input-border-focus: 2px solid map-get($foundation-palette, primary);
+$input-outline: 0;
+$input-outline-focus: none;
+$input-outline-offset: 2px;
 $input-padding: $form-spacing / 2;
 $input-shadow: inset 0 1px 2px rgba($black, .1);
 $input-shadow-focus: 0 0 5px $medium-gray;
@@ -857,8 +886,8 @@ $tooltip-radius: $global-radius;
 // -----------
 
 $topbar-padding: 1rem .5rem 1.1rem;
-$topbar-background: $hel-white;
-$topbar-submenu-background: $topbar-background;
+$topbar-background: transparent;
+$topbar-submenu-background: transparent;
 $topbar-title-spacing: 1rem;
 $topbar-input-width: 200px;
 $topbar-unstack-breakpoint: medium;
@@ -877,3 +906,6 @@ $grid-padding-gutters: $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;
 $grid-container-max: $global-width;
 $xy-block-grid-max: 8;
+
+// TODO: Move customizations here and delete this
+@import "decidim/decidim-settings";

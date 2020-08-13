@@ -1,3 +1,5 @@
 <% unless Rails.application.config.search_indexing %>
   <meta name="robots" content="noindex,nofollow">
 <% end %>
+
+<%= snippets.display(:head) %>
