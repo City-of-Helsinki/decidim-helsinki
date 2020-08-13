@@ -8,6 +8,15 @@ GIT
       decidim-core (= 0.22.0.rc1)
 
 GIT
+  remote: https://github.com/crofty/mapstatic.git
+  revision: 02618fb3918aa65c9a1a64f815881b333e60aad3
+  branch: master
+  specs:
+    mapstatic (0.0.2)
+      mini_magick (~> 4.9)
+      typhoeus (~> 1.3)
+
+GIT
   remote: https://github.com/decidim/decidim.git
   revision: 3cc4df0e1a99a114b805bd3ef9755e235ce31c76
   branch: release/0.22-stable
@@ -531,6 +540,8 @@ GEM
       tzinfo
     etherpad-lite (0.3.0)
       rest-client (>= 1.6)
+    ethon (0.12.0)
+      ffi (>= 1.3.0)
     execjs (2.7.0)
     factory_bot (4.11.1)
       activesupport (>= 3.0.0)
@@ -964,6 +975,8 @@ GEM
     truncato (0.7.11)
       htmlentities (~> 4.3.1)
       nokogiri (>= 1.7.0, <= 2.0)
+    typhoeus (1.4.0)
+      ethon (>= 0.9.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     uber (0.1.0)
@@ -1051,6 +1064,7 @@ DEPENDENCIES
   henkilotunnus
   letter_opener_web (~> 1.3)
   listen (~> 3.1)
+  mapstatic!
   omniauth_openid_connect (~> 0.3)
   puma (~> 4.3.3)
   resque (~> 1.26)

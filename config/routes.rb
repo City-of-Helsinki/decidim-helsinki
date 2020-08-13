@@ -17,6 +17,10 @@ Rails.application.routes.draw do
         via: [:get, :post]
       )
     end
+
+    namespace :geocoding do
+      get :autocomplete
+    end
   end
 
   mount Decidim::Core::Engine => "/"

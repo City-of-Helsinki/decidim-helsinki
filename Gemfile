@@ -32,6 +32,10 @@ gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "dev
 # merged to the core.
 gem "decidim-budgets_enhanced", github: "OpenSourcePolitics/decidim-module-budgets_enhanced", branch: "0.22-dev"
 
+# For static maps, hasn't released an official release with the updated
+# dependencies. GitHub version works fine.
+gem "mapstatic", github: "crofty/mapstatic", branch: "master"
+
 # Issue with core dependencies not being required, see:
 # https://github.com/decidim/decidim/issues/5257
 gem "wicked_pdf", "~> 1.4"

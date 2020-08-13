@@ -41,6 +41,11 @@ module DecidimHelsinki
       Rails.root.join("config", "locales", "overrides/*.yml").to_s,
     ]
 
+    # Add extra asset paths
+    config.assets.paths += Dir[
+      Rails.root.join("app", "assets", "fonts").to_s,
+    ]
+
     # String identifier, this defines the main mode of Decidim
     # See README.md for more explation on this.
     #
@@ -136,6 +141,15 @@ module DecidimHelsinki
       end
     end
 
+    initializer "decidim.geocoding_extensions", after: "geocoder.insert_into_active_record" do
+      # Include it in ActiveRecord base in order to apply it to all models
+      # that may be using the `geocoded_by` or `reverse_geocoded_by` class
+      # methods injected by the Geocoder gem.
+      ActiveSupport.on_load :active_record do
+        ActiveRecord::Base.send(:include, Decidim::Geocodable)
+      end
+    end
+
     initializer "graphql_api" do
       Decidim::Api::QueryType.define do
         Helsinki::QueryExtensions.define(self)
@@ -152,10 +166,17 @@ module DecidimHelsinki
         :include,
         CommentsHelperExtensions
       )
+      Decidim::ParticipatoryProcesses::ParticipatoryProcessHelper.send(
+        :include,
+        ParticipatoryProcessHelperExtensions
+      )
       Decidim::ScopesHelper.send(
         :include,
         ScopesHelperExtensions
       )
+
+      # Builder extensions
+      Decidim::FormBuilder.send(:include, FormBuilderExtensions)
 
       # Parser extensions
       Decidim::ContentParsers::ProposalParser.send(
@@ -167,9 +188,8 @@ module DecidimHelsinki
       ActionView::Base.send :include, Decidim::MapHelper
       ActionView::Base.send :include, Decidim::WidgetUrlsHelper
 
-      # Controller concern extensions
-      # See: https://github.com/decidim/decidim/pull/5313
-      Decidim::NeedsTosAccepted.send(:include, TosRedirectFix)
+      # See: https://github.com/decidim/decidim/pull/6340
+      Decidim::DeviseControllers.send(:include, Decidim::NeedsSnippets)
 
       # Extra helpers
       Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
