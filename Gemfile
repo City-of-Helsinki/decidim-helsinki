@@ -66,12 +66,16 @@ group :development, :test do
 end
 
 group :development do
-  gem "faker", "~> 1.9"
   gem "letter_opener_web", "~> 1.3"
   gem "listen", "~> 3.1"
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 3.5"
+end
+
+# Faker is also needed in staging env in order to generate dummy data.
+group :development, :test, :staging do
+  gem "faker", "~> 1.9"
 end
 
 group :production, :production_kuva, :production_ruuti, :production_discussion, :staging do
