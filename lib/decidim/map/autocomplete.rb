@@ -7,19 +7,6 @@ module Decidim
     # A base class for autocomplete geocoding functionality, common to all
     # autocomplete map services.
     class Autocomplete < Map::Utility
-      # Returns a list of suggestions for the autocompletion query.
-      def suggestions(query)
-        geocoder = Decidim::Map.geocoding(organization: organization)
-        return unless geocoder
-
-        geocoder.search(query).map do |result|
-          {
-            label: result.address,
-            coordinates: result.coordinates
-          }
-        end
-      end
-
       # Creates a builder class for the front-end that is used to build the
       # autocompleter HTML markup.
       #
