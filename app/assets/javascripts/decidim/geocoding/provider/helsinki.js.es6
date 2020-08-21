@@ -2,63 +2,68 @@
 // = require_self
 
 ((exports) => {
-  exports.Decidim = exports.Decidim || {};
+  const $ = exports.$; // eslint-disable-line
 
-  const Geocoder = exports.Decidim.Geocoder;
+  $(() => {
+    $("[data-decidim-geocoding]").each((_i, el) => {
+      const $input = $(el);
+      const config = $input.data("decidim-geocoding");
+      let currentSuggestionQuery = null;
 
-  class HelsinkiGeocoder extends Geocoder {
-    suggestions(query, callback) {
-      clearTimeout(this.currentSuggestionQuery);
-
-      if (query.length < 2) {
+      if (!config.url || config.url.length < 1) {
         return;
       }
 
-      this.currentSuggestionQuery = setTimeout(() => {
-        const language = $("html").attr("lang");
+      $input.on("geocoder-suggest.decidim", (_ev, query, callback) => {
+        clearTimeout(currentSuggestionQuery);
+        if (query.length < 2) {
+          return;
+        }
 
-        const suggestions = $.ajax({
-          method: "GET",
-          url: "https://api.hel.fi/servicemap/v2/suggestion/",
-          data: { q: query, language: language === "sv" ? language : "fi" }, // eslint-disable-line
-          dataType: "json"
-        });
-        const geocoding = $.ajax({
-          method: "GET",
-          url: this.config.url,
-          data: { query: query },
-          dataType: "json"
-        });
+        currentSuggestionQuery = setTimeout(() => {
+          const language = $("html").attr("lang");
 
-        Promise.all([suggestions, geocoding]).then((values) => {
-          const results = [];
+          const suggestions = $.ajax({
+            method: "GET",
+            url: "https://api.hel.fi/servicemap/v2/suggestion/",
+            data: { q: query, language: language === "sv" ? language : "fi" }, // eslint-disable-line
+            dataType: "json"
+          });
+          const geocoding = $.ajax({
+            method: "GET",
+            url: config.url,
+            data: { query: query },
+            dataType: "json"
+          });
 
-          const suggestionResult = values[0];
-          if (suggestionResult && suggestionResult.suggestions) {
-            results.push(...suggestionResult.suggestions.map((data) => {
-              return {
-                key: data.suggestion,
-                value: data.suggestion
-              };
-            }));
-          }
+          Promise.all([suggestions, geocoding]).then((values) => {
+            const results = [];
 
-          const geocodingResult = values[1];
-          if (geocodingResult.success) {
-            results.push(...geocodingResult.results.map((item) => {
-              return {
-                key: item.label,
-                value: item.label,
-                coordinates: item.coordinates
-              };
-            }));
-          }
+            const suggestionResult = values[0];
+            if (suggestionResult && suggestionResult.suggestions) {
+              results.push(...suggestionResult.suggestions.map((data) => {
+                return {
+                  key: data.suggestion,
+                  value: data.suggestion
+                };
+              }));
+            }
 
-          callback(results)
-        });
-      }, 300);
-    }
-  }
+            const geocodingResult = values[1];
+            if (geocodingResult.success) {
+              results.push(...geocodingResult.results.map((item) => {
+                return {
+                  key: item.label,
+                  value: item.label,
+                  coordinates: item.coordinates
+                };
+              }));
+            }
 
-  exports.Decidim.Geocoder = HelsinkiGeocoder;
+            callback(results)
+          });
+        }, 300);
+      });
+    })
+  });
 })(window);

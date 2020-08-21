@@ -1,21 +1,12 @@
 // = require tribute
-// = require decidim/geocoding/geocoder
 
 ((exports) => {
   const $ = exports.$; // eslint-disable-line
   const Tribute = exports.Tribute;
 
-  exports.Decidim = exports.Decidim || {};
-
   $(() => {
-    // Load the final geocoder after document.ready in order to allow the
-    // individual providers to override the default Geocoder.
-    const Geocoder = exports.Decidim.Geocoder;
-
     $("[data-decidim-geocoding]").each((_i, el) => {
       const $input = $(el);
-      const config = $input.data("decidim-geocoding");
-      const geocoder = new Geocoder(config);
 
       const tribute = new Tribute(
         {
@@ -23,11 +14,9 @@
           autocompleteSeparator: " + ",
           allowSpaces: true,
           noMatchTemplate: null,
-          values: (text, cb) => geocoder.suggestions(text, (results) => {
-            $input.trigger("geocoder-suggest.decidim", [results]);
-
-            return cb(results);
-          })
+          values: (text, cb) => {
+            $input.trigger("geocoder-suggest.decidim", [text, cb]);
+          }
         }
       );
 
@@ -44,7 +33,6 @@
 
       tribute.attach($input.get(0));
 
-      $input.data("geocoder", geocoder);
       $input.data("geocoder-tribute", tribute);
     });
   });
