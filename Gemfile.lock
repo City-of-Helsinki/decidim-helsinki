@@ -280,7 +280,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: 11711875f3fcac9c1c21604ae2aa880635b2bfcf
+  revision: 84ad1a298216002f87c3921c7bbf8426f930f2af
   branch: master
   specs:
     decidim-ideas (0.22.0)
@@ -416,7 +416,7 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     batch-loader (1.5.0)
-    bcrypt (3.1.13)
+    bcrypt (3.1.15)
     better_html (1.0.15)
       actionview (>= 4.0)
       activesupport (>= 4.0)
@@ -466,7 +466,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     colorize (0.8.1)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
@@ -490,7 +490,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.9.1)
+    devise-i18n (1.9.2)
       devise (>= 4.7.1)
     devise-jwt (0.7.0)
       devise (~> 4.0)
@@ -592,7 +592,7 @@ GEM
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
-    i18n (1.8.3)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.31)
       activesupport (>= 4.0.2)
@@ -621,7 +621,7 @@ GEM
       activesupport (>= 4.2)
       aes_key_wrap
       bindata
-    jwt (2.2.1)
+    jwt (2.2.2)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -670,7 +670,7 @@ GEM
     mixlib-config (2.2.18)
       tomlrb
     mono_logger (1.1.0)
-    multi_json (1.14.1)
+    multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     mustache (1.1.1)
