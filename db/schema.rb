@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_105826) do
+ActiveRecord::Schema.define(version: 2020_08_31_054401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1193,7 +1193,9 @@ ActiveRecord::Schema.define(version: 2020_08_12_105826) do
     t.jsonb "help"
     t.boolean "mandatory"
     t.string "section_type"
-    t.integer "answer_length", default: 0
+    t.jsonb "settings", default: {}
+    t.jsonb "information_label"
+    t.jsonb "information"
     t.index ["decidim_component_id"], name: "index_decidim_plans_sections_on_decidim_component_id"
     t.index ["position"], name: "index_decidim_plans_sections_on_position"
   end

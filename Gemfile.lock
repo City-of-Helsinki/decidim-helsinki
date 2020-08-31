@@ -304,7 +304,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 056f525f8a39a3d526a1b3fc9fd9f2adbd22aad6
+  revision: 280a9c6eb0ad00b861fd24b126cb6d1bf96d2822
   branch: develop
   specs:
     decidim-plans (0.22.0)
@@ -736,7 +736,7 @@ GEM
     paper_trail (10.3.1)
       activerecord (>= 4.2)
       request_store (~> 1.1)
-    paper_trail-association_tracking (2.0.0)
+    paper_trail-association_tracking (2.1.0)
     parallel (1.19.2)
     parser (2.7.1.4)
       ast (~> 2.4.1)
