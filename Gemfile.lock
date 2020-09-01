@@ -1067,7 +1067,6 @@ DEPENDENCIES
   mapstatic!
   omniauth_openid_connect (~> 0.3)
   puma (~> 4.3.3)
-  rails (>= 5.2.4.3, < 6)
   resque (~> 1.26)
   resque-scheduler (~> 4.0)
   roo (~> 2.8)
