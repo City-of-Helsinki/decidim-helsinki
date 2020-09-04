@@ -156,6 +156,106 @@ module DecidimHelsinki
       end
     end
 
+    initializer "decidim.core.homepage_content_blocks" do
+      Decidim.content_blocks.register(:homepage, :process_steps) do |content_block|
+        content_block.cell = "helsinki/content_blocks/process_steps"
+        content_block.settings_form_cell = "helsinki/content_blocks/process_steps_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.process_steps.name"
+
+        content_block.settings do |settings|
+          settings.attribute :process_id, type: :integer
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :intro) do |content_block|
+        content_block.cell = "helsinki/content_blocks/intro"
+        content_block.settings_form_cell = "helsinki/content_blocks/intro_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.intro.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :link_url, type: :text
+          settings.attribute :link_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :help_section) do |content_block|
+        content_block.cell = "helsinki/content_blocks/help_section"
+        content_block.settings_form_cell = "helsinki/content_blocks/help_section_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.help_section.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :button1_url, type: :text
+          settings.attribute :button1_text, type: :text, translated: true
+          settings.attribute :button2_url, type: :text
+          settings.attribute :button2_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :background_section) do |content_block|
+        content_block.cell = "helsinki/content_blocks/background_section"
+        content_block.settings_form_cell = "helsinki/content_blocks/background_section_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.background_section.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :button1_url, type: :text
+          settings.attribute :button1_text, type: :text, translated: true
+          settings.attribute :button2_url, type: :text
+          settings.attribute :button2_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :image_section) do |content_block|
+        content_block.cell = "helsinki/content_blocks/image_section"
+        content_block.settings_form_cell = "helsinki/content_blocks/image_section_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.image_section.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :link_url, type: :text
+          settings.attribute :link_text, type: :text, translated: true
+        end
+
+        content_block.images = [
+          {
+            name: :image,
+            uploader: "Helsinki::ImageSectionImageUploader"
+          }
+        ]
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :ideas_carousel) do |content_block|
+        content_block.cell = "helsinki/content_blocks/ideas_carousel"
+        content_block.settings_form_cell = "helsinki/content_blocks/ideas_carousel_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.ideas_carousel.name"
+
+        content_block.settings do |settings|
+          settings.attribute :process_id, type: :integer
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :button_url, type: :text
+          settings.attribute :button_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+    end
+
     # See:
     # https://guides.rubyonrails.org/configuring.html#initialization-events
     #

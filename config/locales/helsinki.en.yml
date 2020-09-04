@@ -27,6 +27,52 @@ en:
           help: You can vote both on the plans for entire Helsinki and plans for the district you select below. The service automatically suggests a major district based on your postal code (or postal code of your school if you identify with Wilma), but you can change it using the drop-down menu. If you want to vote for a particular plan, please check beforehand what districts it belongs to. If you want to change the district later, please see Instructions.
           title: Accept the major district
           submit: Accept
+    content_blocks:
+      background_section:
+        name: Background section
+      background_section_settings_form:
+        description: Description
+        button1_text: Button 1 text
+        button1_url: Button 1 URL
+        button2_text: Button 2 text
+        button2_url: Button 2 URL
+        title: Title
+      help_section:
+        name: Help section
+      help_section_settings_form:
+        description: Description
+        button1_text: Button 1 text
+        button1_url: Button 1 URL
+        button2_text: Button 2 text
+        button2_url: Button 2 URL
+        title: Title
+      ideas_carousel:
+        name: Ideas carousel
+      ideas_carousel_settings_form:
+        button_text: Button text
+        button_url: Button URL
+        process: Process
+        title: Title
+      image_section:
+        name: Image section
+      image_section_settings_form:
+        description: Description
+        image: Image
+        link_text: Link text
+        link_url: Link URL
+        title: Title
+      intro:
+        name: Intro
+      intro_settings_form:
+        description: Description
+        link_text: Link text
+        link_url: Link URL
+        title: Title
+      process_steps:
+        name: Process steps
+        navigate: Navigate phases
+      process_steps_settings_form:
+        process: Process
     copyright: '%{year} City of Helsinki'
     devise:
       shared:

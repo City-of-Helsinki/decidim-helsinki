@@ -6,14 +6,18 @@ module ParticipatoryProcessHelperExtensions
 
   def process_step_tag(step, past = false)
     cls = ["phases-list-item"]
-    cls << "phases-list-item-past" if past
+    if past
+      cls << "phases-list-item-past"
+    elsif step.active?
+      cls << "phases-list-item-current"
+    end
 
-    if respond_to?(:current_component) && step.cta_path.present?
+    if current_component && step.cta_path.present?
       cls << "phases-list-item-active" if step.cta_path =~ %r{^f/#{current_component.id}[^0-9]*}
-    elsif !respond_to?(:current_participatory_space)
+    elsif current_participatory_space.blank?
       # When displayed outside of a participatory space, the active state is
       # shown for the active step instead of the active page.
-      cls << "phases-list-item-active" if step.active?
+      # cls << "phases-list-item-active" if step.active?
     end
 
     content_tag :li, class: cls.join(" ") do

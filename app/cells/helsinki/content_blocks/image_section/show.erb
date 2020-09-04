@@ -1,0 +1,25 @@
+<div class="extended hero">
+  <div class="hero__container">
+    <div class="row">
+      <div class="columns small-centered large-10">
+        <% if has_image? %>
+          <div class="hero-section-image">
+            <%= image_tag image, alt: title %>
+          </div>
+        <% end %>
+        <h2 class="heading2 hero-heading">
+          <%= title %>
+        </h2>
+
+        <div class="row">
+          <div class="columns small-centered large-10">
+            <div class="lead">
+              <%== description %>
+              <%= render :link %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

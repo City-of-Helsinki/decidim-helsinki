@@ -1,0 +1,17 @@
+<div class="extended home-section bg-secondary">
+  <div class="hero__container">
+    <div class="row columns">
+      <h2 class="heading2 hero-heading"><%= title %></h2>
+
+      <div class="card-slider center">
+        <% ideas.each do |idea| %>
+          <div class="card-slide-content">
+            <%= card_for idea, from: idea, context: { no_column: true } %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= render :button %>
+    </div>
+  </div>
+</div>

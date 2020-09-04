@@ -27,6 +27,52 @@ sv:
           help: Dur kan rösta i det stordistrikt som du väljer och dessutom hela Helsingfors röstningsområde. Programmet föreslår som standard ditt postnummers stordistrikt, men du kan om du vill ändra på röstningsområdet i rullgardinsmenyn. Om du vill rösta för en viss plan, vänligen se i förväg vilka distrikt den tillhör. Om du vill ändra distriktet senare, se Instruktioner.
           title: Godkänn stordistriktet
           submit: Godkänn
+    content_blocks:
+      background_section:
+        name: Bakgrundssektion
+      background_section_settings_form:
+        description: Beskrivning
+        button1_text: Knapp 1 text
+        button1_url: Knapp 1 URL
+        button2_text: Knapp 2 text
+        button2_url: Knapp 2 URL
+        title: Titel
+      help_section:
+        name: Hjälpsektion
+      help_section_settings_form:
+        description: Beskrivning
+        button1_text: Knapp 1 text
+        button1_url: Knapp 1 URL
+        button2_text: Knapp 2 text
+        button2_url: Knapp 2 URL
+        title: Titel
+      ideas_carousel:
+        name: Idéer karusell
+      ideas_carousel_settings_form:
+        button_text: Knapptext
+        button_url: Knapp URL
+        process: Process
+        title: Titel
+      image_section:
+        name: Image section
+      image_section_settings_form:
+        description: Beskrivning
+        image: Bild
+        link_text: Länktext
+        link_url: Länk URL
+        title: Titel
+      intro:
+        name: Intro
+      intro_settings_form:
+        description: Beskrivning
+        link_text: Länktext
+        link_url: Länk URL
+        title: Titel
+      process_steps:
+        name: Process steg
+        navigate: Navigera steg
+      process_steps_settings_form:
+        process: Process
     copyright: '%{year} Helsingfors stad'
     devise:
       shared:

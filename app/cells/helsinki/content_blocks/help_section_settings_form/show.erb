@@ -1,0 +1,8 @@
+<% form.fields_for :settings, form.object.settings do |settings_fields| %>
+  <%= settings_fields.translated :text_field, :title, label: t(".title") %>
+  <%= settings_fields.translated :editor, :description, label: t(".description") %>
+  <%= settings_fields.text_field :button1_url, label: t(".button1_url") %>
+  <%= settings_fields.translated :text_field, :button1_text, label: t(".button1_text") %>
+  <%= settings_fields.text_field :button2_url, label: t(".button2_url") %>
+  <%= settings_fields.translated :text_field, :button2_text, label: t(".button2_text") %>
+<% end %>
