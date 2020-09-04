@@ -5,34 +5,8 @@
   end
   %>
 
-  <% if enabled_strong_providers.any? %>
-    <div class="wrapper wrapper-no-top-padding">
-      <div class="row collapse">
-        <div class="columns medium-8 medium-centered">
-          <div class="social-register text-center">
-            <h3 class="h5 margin-bottom-1">
-              <%= t("devise.shared.omniauth.strong.sign_in_with") %>
-            </h3>
-            <p>
-              <%= t("devise.shared.omniauth.strong.description") %>
-            </p>
-
-            <% enabled_strong_providers.each_with_index do |provider, index| %>
-              <% if index > 0 %>
-                <br>
-              <% end %>
-              <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(provider)}", method: :post do %>
-                <%= t("devise.shared.omniauth.#{provider}.sign_in_button") %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <% if current_organization.enabled_omniauth_providers.keys.include?(:tunnistamo) %>
-      <%= render "decidim/devise/shared/register_separator" %>
-    <% end %>
+  <% if current_organization.enabled_omniauth_providers.any? %>
+    <%= render "decidim/devise/shared/register_separator" %>
   <% end %>
 
   <% if current_organization.enabled_omniauth_providers.keys.include?(:tunnistamo) %>
@@ -73,5 +47,35 @@
         </div>
       </div>
     <% end %>
+  <% end %>
+
+  <% if enabled_strong_providers.any? %>
+    <% if current_organization.enabled_omniauth_providers.keys.include?(:tunnistamo) %>
+      <%= render "decidim/devise/shared/register_separator" %>
+    <% end %>
+
+    <div class="wrapper">
+      <div class="row collapse">
+        <div class="columns medium-8 medium-centered">
+          <div class="social-register text-center">
+            <h3 class="h5 margin-bottom-1">
+              <%= t("devise.shared.omniauth.strong.sign_in_with") %>
+            </h3>
+            <p>
+              <%= t("devise.shared.omniauth.strong.description") %>
+            </p>
+
+            <% enabled_strong_providers.each_with_index do |provider, index| %>
+              <% if index > 0 %>
+                <br>
+              <% end %>
+              <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(provider)}", method: :post do %>
+                <%= t("devise.shared.omniauth.#{provider}.sign_in_button") %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
 <% end %>

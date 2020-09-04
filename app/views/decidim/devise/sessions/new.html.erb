@@ -9,28 +9,18 @@
     </div>
   </div>
 
-  <%= render "decidim/devise/shared/omniauth_buttons" %>
-
-  <div class="wrapper">
+  <div class="wrapper wrapper-no-top-padding">
     <div class="row collapse">
       <div class="text-center">
+        <h3 class="h5 margin-bottom-1">
+          <%= t(".sign_in_service_account") %>
+        </h3>
         <p>
           <%= t(".sign_in_service_account_description") %>
         </p>
-        <p>
-          <button class="h5" data-toggle="session session_closed session_open" id="session_toggle">
-            <%= t(".sign_in_service_account") %>
-            <span id="session_closed" data-toggler=".is-hidden" aria-expanded="true">
-              <%= icon "chevron-bottom" %>
-            </span>
-            <span id="session_open" class="is-hidden" data-toggler=".is-hidden" aria-expanded="false">
-              <%= icon "chevron-top" %>
-            </span>
-          </button>
-        </p>
       </div>
 
-      <div class="register-form-wrapper is-hidden" id="session" data-toggler=".is-hidden">
+      <div class="register-form-wrapper" id="session">
         <div class="columns large-6 medium-centered">
           <div class="card">
             <div class="card__content">
@@ -61,6 +51,8 @@
       </div>
     </div>
   </div>
+
+  <%= render "decidim/devise/shared/omniauth_buttons" %>
 </div>
 
 <% if params[:user] || session[:open_user_form] %>
