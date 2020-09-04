@@ -64,19 +64,55 @@ $menuitem-padding: 1em 2em;
 .site-bar{
   display: flex;
   flex: 0 0 auto;
+  flex-direction: column;
+  width: 110px;
+
+  @include breakpoint(smallmedium){
+    width: auto;
+  }
+
+  @include breakpoint(mediumlarge){
+    flex-direction: row;
+  }
 
   .site-title{
-    margin-right: 3.9rem;
+    @include breakpoint(large){
+      margin-right: 2rem;
+    }
+
+    @include breakpoint(xlarge){
+      margin-right: 3.9rem;
+    }
 
     .site-title-main{
-      font-size: 2.8rem;
+      font-size: 1.6rem;
       font-weight: 600;
       line-height: 1;
+
+      @include breakpoint(medium){
+        font-size: 2.5rem;
+      }
+
+      @include breakpoint(mediumlarge){
+        font-size: 2.8rem;
+      }
+
+      @include breakpoint(large){
+        font-size: 2.5rem;
+      }
+
+      @include breakpoint(xlarge){
+        font-size: 2.8rem;
+      }
     }
 
     .site-title-sub{
-      font-size: 1.45rem;
+      font-size: 1.2rem;
       line-height: 1;
+
+      @include breakpoint(medium){
+        font-size: 1.45rem;
+      }
     }
 
     a{
@@ -129,25 +165,62 @@ $menuitem-padding: 1em 2em;
 }
 
 .top-bar-links{
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  padding-top: .6rem;
-  margin: 0 (-$global-padding); // Pulls the top bar links to the right side
+  @include breakpoint(large){
+    display: flex;
+    flex: 0 0 auto;
+    align-items: baseline;
+    margin: 0 (-$global-padding); // Pulls the top bar links to the right side
+  }
 
   .top-bar-links__item{
-    font-size: 1.8rem;
-    margin-left: 3.2rem;
+    @include breakpoint(xlarge){
+      margin-left: 3.2rem;
+    }
+
+    &:first-child{
+      margin-left: 0;
+    }
+
+    > a,
+    > .link{
+      display: block;
+    }
 
     > .dropdown.menu > li{
       &.is-active{
-        > a{
+        > a,
+        > .link{
           color: $anchor-color;
         }
       }
 
-      > a{
+      &.is-dropdown-submenu-parent{
+        // The triangle is only applied to a elements by foundation
+        > .link{
+          position: relative;
+          padding-#{$global-right}: $dropdownmenu-arrow-padding;
+          text-align: left;
+
+          &::after{
+            @include css-triangle($dropdownmenu-arrow-size, $dropdownmenu-arrow-color, down);
+
+            position: absolute;
+            top: 50%;
+            #{$global-right}: 5px;
+            #{$global-left}: auto;
+            margin-top: -1 * ($dropdownmenu-arrow-size / 2);
+            // margin-top: -1 * $dropdownmenu-arrow-size;
+          }
+        }
+      }
+
+      > a,
+      > .link{
         background: transparent;
+
+        .icon{
+          margin-right: .4rem;
+        }
       }
 
       .is-dropdown-submenu{
@@ -161,7 +234,9 @@ $menuitem-padding: 1em 2em;
         li{
           border-bottom: 1px solid $light-gray;
 
-          a{
+          a,
+          .link{
+            position: relative;
             padding: 1.1rem 1rem;
             font-weight: $global-weight-normal;
             font-size: 1.4rem;
@@ -171,20 +246,102 @@ $menuitem-padding: 1em 2em;
               background: $primary;
               color: $white;
               text-decoration: none;
+
+              .menu-notification{
+                background: $white;
+                color: $primary;
+              }
             }
           }
         }
       }
     }
+
+    .user-menu-control{
+      max-width: 165px;
+
+      @include breakpoint(xlarge){
+        max-width: 300px;
+      }
+
+      .menu-notification{
+        top: -15px;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        padding: 8px 0;
+        font-size: .9rem;
+      }
+    }
+
+    .top-bar-links__item__description{
+      display: block;
+      font-size: 1rem;
+    }
   }
 
-  a{
+  a,
+  .link,
+  .profile-name{
     padding: $dropdownmenu-padding;
+  }
 
+  a,
+  .link{
     // Prevent the .menu styles overriding these
     &:hover,
     &:focus{
       text-decoration: $anchor-text-decoration-hover;
+    }
+  }
+
+  .menu-notification{
+    position: absolute;
+    top: 11px;
+    right: 8px;
+    background: $primary;
+    color: $white;
+    height: 35px;
+    width: 35px;
+    padding: 8px 0;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    text-align: center;
+
+    .icon{
+      position: relative;
+      left: 3px;
+    }
+  }
+}
+
+.top-bar-links,
+.topbar__language-menu{
+  padding-top: .2rem;
+}
+
+.top-bar-links .top-bar-links__item,
+.topbar__language-menu .language-nav-link{
+  padding: 1rem 0;
+  font-size: 1.8rem;
+
+  @include breakpoint(large){
+    padding: 0;
+  }
+}
+
+.topbar__language-menu{
+  @include breakpoint(large){
+    display: inline-block;
+    padding-top: 0;
+  }
+
+  .language-nav-link{
+    display: block;
+
+    @include breakpoint(large){
+      display: inline-block;
+      font-size: 1rem;
     }
   }
 }
@@ -328,9 +485,14 @@ $menuitem-padding: 1em 2em;
   width: 110px;
   line-height: 0;
   margin-right: 1rem;
+  margin-bottom: .5rem;
 
   @include breakpoint(medium){
     width: 132px;
+  }
+
+  @include breakpoint(mediumlarge){
+    margin-bottom: 0;
   }
 
   @include breakpoint(xlarge){
@@ -584,13 +746,25 @@ $menuitem-padding: 1em 2em;
 
     &.button-menu{
       top: -1px;
+
+      .button-text{
+        position: relative;
+        top: -2px;
+        font-size: 1.7rem;
+        font-weight: $anchor-font-weight;
+        text-transform: uppercase;
+
+        @include breakpoint(medium){
+          top: -4px;
+        }
+      }
     }
 
     .text-small{
       position: relative;
       top: -5px;
       margin-right: .2rem;
-      color: $body-font-color;
+      color: $anchor-color;
       font-size: 1.2rem;
 
       @include breakpoint(medium){
@@ -601,18 +775,22 @@ $menuitem-padding: 1em 2em;
   }
 
   .menu{
+    display: flex;
+    flex-direction: column-reverse;
+
+    @include breakpoint(medium){
+      display: block;
+    }
+
     li{
-      margin-left: .5rem;
+      margin-bottom: .4rem;
 
       @include breakpoint(medium){
         margin-left: 1.4rem;
+        margin-bottom: 0;
       }
     }
   }
-}
-
-.topbar__language-menu{
-  display: inline-block;
 }
 
 .topbar__edit__link{
@@ -685,8 +863,11 @@ $menuitem-padding: 1em 2em;
 .main-nav__link a,
 .user-nav__link a{
   display: block;
-  padding: $menuitem-padding;
   color: $top-bar-color;
+
+  @include breakpoint(large){
+    padding: $menuitem-padding;
+  }
 
   &:hover{
     color: $anchor-color;

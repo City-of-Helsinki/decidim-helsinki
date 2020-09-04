@@ -1,20 +1,200 @@
+.phases-navigation{
+  position: relative;
+  padding: 1rem 0;
+
+  @include breakpoint(mediumlarge){
+    padding: 4rem 0 0;
+  }
+
+  .phases-opener{
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 1rem;
+    background: $white;
+    border: 2px solid $black;
+    font-size: 1.3rem;
+
+    &::after{
+      content: "";
+      position: absolute;
+      top: 20px;
+      right: 1rem;
+      display: inline-block;
+      border: 0 solid $black;
+      border-width: 0 4px 4px 0;
+      padding: 8px;
+      transform: rotate(45deg);
+    }
+  }
+
+  .phases-state{
+    position: absolute;
+    opacity: 0;
+
+    &:focus,
+    &:active{
+      outline: 0;
+
+      + .phases-opener{
+        outline: $anchor-outline-focus;
+        outline-color: var(--highlight);
+        outline-offset: $anchor-outline-offset;
+      }
+    }
+
+    &:checked{
+      + .phases-opener{
+        &::after{
+          top: 27px;
+          transform: rotate(-135deg);
+        }
+      }
+
+      + .phases-opener + .phases-list{
+        display: block;
+
+        @include breakpoint(mediumlarge){
+          display: flex;
+        }
+      }
+    }
+  }
+
+  .phases-list{
+    position: relative;
+    z-index: 1;
+    padding: 0 .5rem 2rem;
+    border: 2px solid $black;
+    border-top: 0;
+
+    @include breakpoint(mediumlarge){
+      padding: 0;
+      border: 0;
+    }
+  }
+}
+
 .phases-list{
+  display: none;
   margin: 0;
-  padding: 4rem 0;
   list-style-type: none;
+
+  @include breakpoint(mediumlarge){
+    display: flex;
+  }
 
   .phases-list-item{
     position: relative;
-    padding-top: 3.5rem;
-    text-align: center;
+    padding-top: 2.5rem;
+
+    @include breakpoint(mediumlarge){
+      display: block;
+      flex: 1 1 auto;
+      padding-top: 3.5rem;
+      text-align: center;
+    }
+
+    &::before,
+    &::after{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 19px;
+      width: 0;
+      height: 50%;
+      border-left: 5px dashed $primary;
+
+      @include breakpoint(medium){
+        left: 22px;
+      }
+
+      @include breakpoint(mediumlarge){
+        top: 77px;
+        left: 0;
+        width: 50%;
+        height: 0;
+        border-left: 0;
+        border-bottom: 5px dashed $primary;
+      }
+
+      @include breakpoint(large){
+        top: 87px;
+      }
+    }
 
     &::before{
-      width: 10px;
+      width: 0;
+
+      @include breakpoint(mediumlarge){
+        width: 50%;
+      }
+    }
+
+    &::after{
+      top: auto;
+      bottom: 6px;
+
+      @include breakpoint(medium){
+        bottom: 3px;
+      }
+
+      @include breakpoint(mediumlarge){
+        top: 77px;
+        bottom: auto;
+        left: auto;
+        right: 5px;
+      }
+
+      @include breakpoint(large){
+        top: 87px;
+      }
+    }
+
+    &:first-of-type{
+      &::before{
+        display: none;
+      }
     }
 
     &:last-of-type{
       &::before{
-        width: 0;
+        @include breakpoint(mediumlarge){
+          width: 51%;
+          height: 0;
+        }
+      }
+
+      &::after{
+        display: none;
+      }
+    }
+
+    &.phases-list-item-current{
+      .phases-list-item-phase{
+        background: $secondary;
+        border-bottom-right-radius: 0;
+        transform: rotate(-45deg);
+
+        @include breakpoint(mediumlarge){
+          transform: rotate(45deg);
+        }
+
+        .phases-list-item-number{
+          transform: rotate(45deg);
+
+          @include breakpoint(mediumlarge){
+            transform: rotate(-45deg);
+          }
+        }
+      }
+    }
+
+    &.phases-list-item-past{
+      .phases-list-item-phase,
+      .phases-list-item-title{
+        background: $hel-medium-grey;
+        border-color: $hel-medium-grey;
       }
     }
 
@@ -22,95 +202,99 @@
       .phases-list-item-phase,
       .phases-list-item-title{
         background: $primary;
+        border-color: $primary;
         color: $white;
+      }
+
+      .phases-list-item-title{
+        text-decoration: underline;
       }
     }
   }
 
   .phases-list-item-phase{
     position: absolute;
+    z-index: 1;
     display: flex;
     flex: 0 0 auto;
     align-items: center;
     justify-content: center;
+    background: $white;
     color: $primary;
     box-shadow: none;
     border: 2px solid $primary;
     border-radius: 50%;
-    margin-left: -29px;
-    width: 58px;
-    height: 58px;
-    font-size: 2rem;
+    width: 43px;
+    height: 43px;
+    font-size: 1.4rem;
     font-weight: 800;
+
+    @include breakpoint(medium){
+      width: 48px;
+      height: 48px;
+    }
+
+    @include breakpoint(mediumlarge){
+      top: -9px;
+      left: 50%;
+      margin-left: -29px;
+    }
+
+    @include breakpoint(large){
+      top: -29px;
+      width: 58px;
+      height: 58px;
+      font-size: 2rem;
+    }
+  }
+
+  .phases-list-item-info{
+    padding-left: 60px;
+
+    @include breakpoint(medium){
+      padding-left: 65px;
+    }
+
+    @include breakpoint(mediumlarge){
+      padding-left: 0;
+    }
+
+    a{
+      &:hover,
+      &:focus{
+        .phases-list-item-title{
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
   .phases-list-item-title{
     position: relative;
+    z-index: 1;
     display: inline-block;
-    padding: .4rem 1.6rem;
+    padding: .3rem .9rem;
     margin-bottom: .6rem;
     background: $white;
     border: 2px solid $primary;
     border-radius: 30px;
-    font-size: 2.1rem;
+    font-size: 1.3rem;
     font-weight: 600;
+
+    @include breakpoint(medium){
+      font-size: 1.4rem;
+      padding: .4rem 1.1rem;
+    }
+
+    @include breakpoint(large){
+      padding: .4rem 1.6rem;
+      font-size: 2.1rem;
+    }
   }
 
   .phases-list-item-date{
     padding-right: 0;
     color: $body-font-color;
     font-size: 1.2rem;
-  }
-}
-
-@include breakpoint(medium){
-  .phases-list{
-    display: flex;
-
-    .phases-list-item{
-      flex: 1 1 auto;
-
-      &::before,
-      &::after{
-        content: "";
-        position: absolute;
-        top: 87px;
-        left: 0;
-        width: 50%;
-        height: 0;
-        border-bottom: 5px dashed $primary;
-      }
-
-      &::after{
-        left: auto;
-        right: 5px;
-      }
-
-      &:first-of-type{
-        &::before{
-          display: none;
-        }
-      }
-
-      &:last-of-type{
-        &::before{
-          width: 51%;
-        }
-
-        &::after{
-          display: none;
-        }
-      }
-    }
-
-    .phases-list-item-phase{
-      top: auto;
-      top: -29px;
-      left: 50%;
-    }
-
-    .phases-list-item-title{
-      z-index: 1;
-    }
   }
 }

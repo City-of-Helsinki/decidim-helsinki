@@ -111,10 +111,19 @@ en:
         unfold: Unfold
       header:
         help: Help
+        navigation: Menu
         sign_in: Sign in
         subtitle: 2020-2021
       process_header:
         unfold: Unfold
+      user_menu:
+        conversations: Messages
+        profile: Account information
+        profile_nav: Profile
+        public_profile: Timeline
     footer:
-      feedback: Give feedback
       about: About the service
+      contact: Contact information
+      feedback: Give feedback
+      processes_info: You can see all the processes in this service from the processes page
+      processes_show: Show all processes

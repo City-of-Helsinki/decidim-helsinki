@@ -48,7 +48,7 @@
   <div class="hero__container">
     <div class="row">
       <div class="columns small-centered large-10">
-        <h2 class="h1 heading1 hero-heading">
+        <h2 class="heading2 hero-heading">
           Ideointivaihe on käynnissä
         </h2>
         <p class="lead">Käy katsomassa muiden ideoita ja jätä omasi.</p>
@@ -66,19 +66,26 @@
   <div class="hero__container">
     <div class="row">
       <div class="columns small-centered large-10">
-        <%= image_tag "helsinki/osbu-2020/omastadi-banneri-2.jpg" %>
-        <h2 class="h1 heading1 hero-heading">
+        <div class="hero-section-image">
+          <%= image_tag "helsinki/osbu-2020/omastadi-banneri-2.jpg" %>
+        </div>
+        <h2 class="heading2 hero-heading">
           Nyt on käynnissä ideointivaihe
         </h2>
-        <div class="lead">
-          <p>
-            Millainen idea tekisi kaupungista paremman meille kaikille? Jätä oma
-            ideasi 1.10.-XX.10. Ideat voivat olla paikallisia tai laajempia,
-            vaikka koko Helsinkiä koskevia. Ideoida voit yksin tai ryhmässä.
-          </p>
-          <p>
-            <%= link_to "Lue lisää ideointivaiheesta &raquo;".html_safe, decidim.pages_path %>
-          </p>
+
+        <div class="row">
+          <div class="columns small-centered large-10">
+            <div class="lead">
+              <p>
+                Millainen idea tekisi kaupungista paremman meille kaikille? Jätä oma
+                ideasi 1.10.-XX.10. Ideat voivat olla paikallisia tai laajempia,
+                vaikka koko Helsinkiä koskevia. Ideoida voit yksin tai ryhmässä.
+              </p>
+              <p>
+                <%= link_to "Lue lisää ideointivaiheesta &raquo;".html_safe, decidim.pages_path %>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -95,7 +102,7 @@ end
   <div class="extended home-section bg-secondary">
     <div class="hero__container">
       <div class="row columns">
-        <h2 class="h1 heading1 hero-heading">Poimintoja ideoista</h2>
+        <h2 class="heading2 hero-heading">Poimintoja ideoista</h2>
 
         <div class="card-slider center">
           <% ideas.each do |idea| %>
@@ -113,7 +120,7 @@ end
   <div class="hero__container">
     <div class="row">
       <div class="columns small-centered large-10">
-        <h2 class="h1 heading1 hero-heading">
+        <h2 class="heading2 hero-heading">
           Tarvitsetko apua?
         </h2>
         <div class="lead">

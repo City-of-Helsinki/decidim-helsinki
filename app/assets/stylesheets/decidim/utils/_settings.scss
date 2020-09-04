@@ -65,7 +65,7 @@
 // 1. Global
 // ---------
 
-$global-font-size: 100%;
+$global-font-size: 16px;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 // Helsinki City Color palette. Based on BootStrap3 -codified colors.
@@ -94,7 +94,7 @@ $global-margin: 1rem;
 $global-padding: 1rem;
 $global-position: 1rem;
 $global-weight-normal: normal;
-$global-weight-bold: 800;
+$global-weight-bold: 600;
 $global-radius: 0;
 $global-menu-padding: .7rem 1rem;
 $global-menu-nested-margin: 1rem;
@@ -160,7 +160,7 @@ $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $header-color: $primary;
 $header-lineheight: 1.4;
-$header-margin-bottom: .5rem;
+$header-margin-bottom: 1.1rem;
 $header-styles: (
   small: (
     'h1': ('font-size': 28),
@@ -171,7 +171,7 @@ $header-styles: (
     'h6': ('font-size': 16)
   ),
   medium: (
-    'h1': ('font-size': 48),
+    'h1': ('font-size': 54),
     'h2': ('font-size': 32),
     'h3': ('font-size': 28),
     'h4': ('font-size': 24),
@@ -182,8 +182,8 @@ $header-styles: (
 $header-text-rendering: optimizeLegibility;
 $small-font-size: 90%;
 $header-small-font-color: lighten($body-font-color, 30);
-$paragraph-lineheight: 1.6;
-$paragraph-margin-bottom: 1rem;
+$paragraph-lineheight: 1.4;
+$paragraph-margin-bottom: 1.1rem;
 $paragraph-text-rendering: optimizeLegibility;
 $code-color: $black;
 $code-font-family: $font-family-monospace;
@@ -193,7 +193,7 @@ $code-border: 1px solid $medium-gray;
 $code-padding: rem-calc(2 5 1);
 $anchor-color: $primary-color;
 $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
-$anchor-outline-focus: 1px solid $highlight;
+$anchor-outline-focus: 2px solid $highlight;
 $anchor-outline-offset: 2px;
 $anchor-font-weight: 600;
 $anchor-text-decoration: none;
@@ -833,11 +833,11 @@ $table-stack-breakpoint: medium;
 // --------
 
 $tab-margin: 0;
-$tab-background: darken($light-gray, 2.5);
-$tab-background-active: $white;
+$tab-background: $white;
+$tab-background-active: $primary-color;
 $tab-item-font-size: rem-calc(16);
 $tab-color: $primary-color;
-$tab-active-color: $primary-color;
+$tab-active-color: $white;
 $tab-item-background-hover: $white;
 $tab-item-padding: 1.25rem 1.5rem;
 $tab-expand-max: 6;

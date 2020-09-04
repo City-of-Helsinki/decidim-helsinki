@@ -111,10 +111,19 @@ sv:
         unfold: Öppna
       header:
         help: Hjälp
+        navigation: Menu
         sign_in: Logga in
         subtitle: 2020-2021
       process_header:
         unfold: Öppna
+      user_menu:
+        conversations: Meddelanden
+        profile: Kontoinformation
+        profile_nav: Profil
+        public_profile: Tidslinje
     footer:
-      feedback: Ge feedback
       about: Om tjänsten
+      contact: Kontaktuppgifter
+      feedback: Ge feedback
+      processes_info: Du kan se alla processer i den här tjänsten från processidan
+      processes_show: Visa alla processer

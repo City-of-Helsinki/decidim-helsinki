@@ -58,9 +58,10 @@
   flex: 1 1 0;
 }
 
-.card-data{
-  flex-wrap: initial;
-}
+// Keeps the data on one line but it can make it overflow
+// .card-data{
+//   flex-wrap: initial;
+// }
 
 .card-data__item{
   border-top: 1px solid $hel-light-grey;

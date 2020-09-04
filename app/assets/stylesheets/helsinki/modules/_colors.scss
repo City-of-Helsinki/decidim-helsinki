@@ -48,4 +48,13 @@ $colors: (
   .h6{
     color: $secondary;
   }
+
+  a,
+  .link,
+  .button{
+    &:focus{
+      outline-color: $highlight-alternative;
+      outline-color: var(--highlight-alternative);
+    }
+  }
 }

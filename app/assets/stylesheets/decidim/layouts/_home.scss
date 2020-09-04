@@ -26,21 +26,33 @@
     padding: 4rem 0;
   }
 
-  @include breakpoint(mediumlarge){
-    padding: 5rem 0;
-  }
+  // @include breakpoint(mediumlarge){
+  //   padding: 5rem 0;
+  // }
 
-  @include breakpoint(large){
-    padding: 6rem 0;
-  }
+  // @include breakpoint(large){
+  //   padding: 6rem 0;
+  // }
 
   .text-highlight{
     color: $white;
   }
+
+  .button{
+    margin: 0 2rem;
+  }
 }
 
 .hero__empty{
-  height: 510px;
+  height: 250px;
+
+  @include breakpoint(large){
+    height: 350px;
+  }
+
+  @include breakpoint(xlarge){
+    height: 510px;
+  }
 }
 
 .hero__boxes{
@@ -123,9 +135,9 @@
 }
 
 .hero-heading{
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  line-height: 1;
+  margin-bottom: .8rem;
+  // font-size: 2rem;
+  line-height: 1.2;
   text-shadow: none;
 
   br{
@@ -133,20 +145,24 @@
   }
 
   @include breakpoint(medium){
-    font-size: 2.5rem;
+    // font-size: 2.5rem;
 
     br{
       display: block;
     }
   }
 
-  @include breakpoint(mediumlarge){
-    font-size: 3.5rem;
-  }
+  // @include breakpoint(mediumlarge){
+  //   font-size: 3.5rem;
+  // }
 
   @include breakpoint(large){
-    font-size: 4.5rem;
+    font-size: 3.35em;
   }
+}
+
+.hero-section-image{
+  margin-bottom: 2.6rem;
 }
 
 .hero-cta{

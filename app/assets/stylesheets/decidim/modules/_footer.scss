@@ -21,7 +21,6 @@ $footer-fg-ruuti: $black;
 .mini-footer{
   background-color: $footer-bg;
   color: $footer-fg;
-  font-size: .95rem;
 
   @include breakpoint(medium){
     padding-left: 1.5rem;
@@ -80,29 +79,20 @@ $footer-fg-ruuti: $black;
 
 .main-footer{
   padding-top: 3.2rem;
+  font-size: 1.35rem;
 
   .main-footer__badge{
     display: block;
     margin-top: 9px;
-    width: 140px;
-
-    @include breakpoint(medium){
-      width: 160px;
-    }
-
-    @include breakpoint(large){
-      width: 180px;
-    }
-
-    @include breakpoint(xlarge){
-      width: 220px;
-    }
+    width: 132px;
 
     img{ height: 100%; }
   }
 }
 
 .main__footer__nav{
+  font-size: 1rem;
+
   h3{
     color: $footer-fg;
     font-weight: 600;
@@ -111,14 +101,19 @@ $footer-fg-ruuti: $black;
   }
 
   .footer-nav{
+    margin: -.7rem 0 0;
     list-style: none;
-    margin: 0;
+
+    li{
+      margin-top: .7rem;
+    }
 
     a{
       font-weight: $global-weight-normal;
     }
 
     .footer-nav{
+      margin-top: 0;
       margin-left: 15px;
     }
   }

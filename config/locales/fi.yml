@@ -111,10 +111,19 @@ fi:
         unfold: Avaa
       header:
         help: Ohjeet
+        navigation: Menu
         sign_in: Kirjaudu
         subtitle: 2020-2021
       process_header:
         unfold: Avaa
+      user_menu:
+        conversations: Viestit
+        profile: Omat tiedot
+        profile_nav: Profiili
+        public_profile: Oma toiminta
     footer:
-      feedback: Anna palautetta
       about: Tietoa palvelusta
+      contact: Yhteystiedot
+      feedback: Anna palautetta
+      processes_info: Prosessit-sivulta voit tutustua palvelun muihin prosesseihin
+      processes_show: Näytä kaikki prosessit

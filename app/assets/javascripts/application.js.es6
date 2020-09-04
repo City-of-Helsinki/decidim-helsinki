@@ -36,6 +36,19 @@
       ev.preventDefault();
     });
 
+    // Open process nav with enter
+    const $processNavState = $("#phases_navigation_state");
+    $processNavState.on("keypress", (event) => {
+      if (event.which !== 13) {
+        return;
+      }
+      if ($processNavState.is(":checked")) {
+        $processNavState.prop("checked", false);
+      } else {
+        $processNavState.prop("checked", true);
+      }
+    });
+
     // IE polyfills
     $("body").applyPolyfills();
 

@@ -97,46 +97,70 @@ wrapper_class = Rails.application.config.wrapper_class
                     <% if display_common_elements? %>
                       <li>
                         <button type="button" class="button-menu" data-toggle="offCanvas">
-                          <%= icon "menu", aria_label: t("layouts.decidim.header.navigation"), role: "img" %>
+                          <span class="button-text"><%= t("layouts.decidim.header.navigation") %></span>
+                          <%= icon "menu", aria_hidden: true %>
                         </button>
                       </li>
                     <% end %>
                   </ul>
                 </div>
-                <div class="top-bar-links">
-                  <% if display_common_elements? %>
-                    <div class="top-bar-links__item">
-                      <%= link_to t("layouts.decidim.header.help"), decidim.pages_path %>
-                    </div>
-                  <% end %>
-                  <% if current_user %>
-                    <div class="top-bar-links__item">
-                      <ul class="dropdown menu" data-dropdown-menu
-                        data-autoclose="false"
-                        data-disable-hover="true"
-                        data-click-open="true"
-                        data-close-on-click="true">
-                        <li class="is-dropdown-submenu-parent show-for-medium" tabindex="-1">
-                          <%= link_to current_user.name, decidim.account_path, id: "user-menu-control", "aria-controls": "user-menu", "aria-haspopup": "true", "aria-label": t("layouts.decidim.user_menu.account", name: current_user.name) %>
-                          <ul class="menu is-dropdown-submenu" id="user-menu" role="menu" aria-labelledby="user-menu-control" tabindex="-1">
-                            <%= render partial: "layouts/decidim/user_menu" %>
-                          </ul>
-                          <div data-set="nav-login-holder" class="show-for-medium">
-                            <!-- Repeated due to dropdown limitations -->
-                            <ul class="menu is-dropdown-submenu js-append usermenu-off-canvas">
+                <div class="show-for-large" data-set="nav-holder">
+                  <div class="top-bar-links js-append">
+                    <% if display_common_elements? %>
+                      <div class="top-bar-links__item">
+                        <%= link_to t("layouts.decidim.header.help"), decidim.pages_path %>
+                      </div>
+                    <% end %>
+                    <% if current_user %>
+                      <div class="top-bar-links__item top-bar-links__user">
+                        <ul class="dropdown menu show-for-large" data-dropdown-menu
+                          data-autoclose="false"
+                          data-disable-hover="true"
+                          data-click-open="true"
+                          data-close-on-click="true">
+                          <li class="is-dropdown-submenu-parent show-for-medium" tabindex="-1">
+                            <button id="user-menu-control" class="link user-menu-control" aria-controls="user-menu" aria-haspopup="true" aria-label="<%= t("layouts.decidim.user_menu.account", name: current_user.name) %>">
+                              <%= icon "person", aria_hidden: true %>
+                              <%= t("layouts.decidim.user_menu.profile_nav") %>
+                              <span class="top-bar-links__item__description">
+                                <%= current_user.name %>
+                              </span>
+                              <% if current_user.unread_messages_count > 0 || current_user.notifications.any? %>
+                                <span class="menu-notification" aria-hidden="true">
+                                  <% num = current_user.unread_messages_count + current_user.notifications.count %>
+                                  <% if num < 100 %>
+                                    <%= num %>
+                                  <% else %>
+                                    <%= icon "bell" %>
+                                  <% end %>
+                                </span>
+                              <% end %>
+                            </button>
+                            <ul class="menu is-dropdown-submenu" id="user-menu" role="menu" aria-labelledby="user-menu-control" tabindex="-1">
                               <%= render partial: "layouts/decidim/user_menu" %>
                             </ul>
+                          </li>
+                        </ul>
+
+                        <div data-set="nav-login-holder" class="hide-for-large">
+                          <div class="profile-name">
+                            <%= icon "person", aria_hidden: true %>
+                            <%= current_user.name %>
                           </div>
-                        </li>
-                      </ul>
-                    </div>
-                  <% else %>
-                    <div class="top-bar-links__item">
-                      <%= link_to t("layouts.decidim.header.sign_in"), decidim.new_user_session_path, class: "sign-in-link" %>
-                    </div>
-                  <% end %>
+
+                          <!-- Repeated due to different display on mobile -->
+                          <ul class="menu js-append usermenu-off-canvas">
+                            <%= render partial: "layouts/decidim/user_menu" %>
+                          </ul>
+                        </div>
+                      </div>
+                    <% else %>
+                      <div class="top-bar-links__item">
+                        <%= link_to t("layouts.decidim.header.sign_in"), decidim.new_user_session_path, class: "sign-in-link" %>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
-                <% # render partial: "layouts/decidim/edit_link" %>
               </div>
             </div>
           </div>
