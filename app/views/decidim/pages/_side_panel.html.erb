@@ -1,0 +1,22 @@
+<div class="side-panel">
+  <ul class="vertical menu">
+    <% Decidim::StaticPageTopic.where(organization: current_organization).each do |topic| %>
+      <li>
+        <%= link_to translated_attribute(topic.title), page_path(topic.pages.first) %>
+
+        <ul class="nested vertical menu">
+          <% topic.pages.each do |page| %>
+            <li class="page-item <%= page == current ? "is-active" : nil %>">
+              <%= link_to translated_attribute(page.title), page_path(page.slug) %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+    <% Decidim::StaticPage.where(topic: nil, organization: current_organization).each do |page| %>
+      <li class="page-item <%= page == current ? "is-active" : nil %>">
+        <%= link_to translated_attribute(page.title), page_path(page.slug) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
