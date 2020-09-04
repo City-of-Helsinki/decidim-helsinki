@@ -271,6 +271,10 @@ $menuitem-padding: 1em 2em;
         height: 30px;
         padding: 8px 0;
         font-size: .9rem;
+
+        .icon{
+          left: 3px;
+        }
       }
     }
 
@@ -310,7 +314,6 @@ $menuitem-padding: 1em 2em;
 
     .icon{
       position: relative;
-      left: 3px;
     }
   }
 }
@@ -860,8 +863,15 @@ $menuitem-padding: 1em 2em;
   }
 }
 
+.menu{
+  li.user-nav__link{
+    display: block;
+  }
+}
+
 .main-nav__link a,
 .user-nav__link a{
+  position: relative;
   display: block;
   color: $top-bar-color;
 
