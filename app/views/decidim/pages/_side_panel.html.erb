@@ -1,6 +1,8 @@
 <div class="side-panel">
   <ul class="vertical menu">
     <% Decidim::StaticPageTopic.where(organization: current_organization).each do |topic| %>
+      <% next unless topic.pages.any? %>
+
       <li>
         <%= link_to translated_attribute(topic.title), page_path(topic.pages.first) %>
 
