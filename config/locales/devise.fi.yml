@@ -6,12 +6,12 @@ fi:
     shared:
       omniauth:
         tunnistamo:
-          description: 'Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook- tai YLE-palveluiden avulla.'
-          sign_in_with: 'Kirjaudu Tunnistamo-palvelun avulla'
+          description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa.'
+          sign_in_with: 'Kirjaudu ilman tunnistautumista'
           sign_in_button: 'Kirjaudu sisään'
         strong:
-          description: 'Kirjautumalla omastadi.hel.fi -palveluun pankkitunnuksella tai mobiilivarmenteella pääset suoraan äänestämään. Peruskoulun 6-9 luokkalaiset voivat kirjautua ja tunnistautua äänestystä varten Wilma-tunnuksilla.'
-          sign_in_with: 'Kirjaudu ja tunnistaudu äänestämään'
+          description: 'Kirjautuminen omastadi.hel.fi -palveluun pankkitunnuksella tai mobiilivarmenteella. Peruskoulun oppilaat voivat kirjautua myös Wilma-tunnuksilla.'
+          sign_in_with: 'Kirjaudu ja tunnistaudu sähköisellä tunnistautumisella'
         suomifi:
           description: 'Suomi.fi tarjoaa tunnistautumismahdollisuuden mm. suomalaisilla pankkitunnuksilla ja mobiilivarmenteella.'
           sign_in_with: 'Suomi.fi-tunnistautuminen'

@@ -6,12 +6,12 @@ en:
     shared:
       omniauth:
         tunnistamo:
-          description: 'Tunnistamo allows you to sign in using services such as Google, Facebook or YLE.'
-          sign_in_with: 'Sign in with Tunnistamo'
+          description: 'You can sign in also using services such as Google, Facebook or YLE through Tunnistamo.'
+          sign_in_with: 'Sign in without verifying your identity'
           sign_in_button: 'Sign in'
         strong:
-          description: 'If you sign in to omastadi.hel.fi with your online banking ID or mobile ID, you will be able to vote directly.  Students in grades 6–9 at comprehensive school can sign in and verify their identity for voting with their Wilma ID.'
-          sign_in_with: 'Sign in and verify your identity to vote'
+          description: 'Sign in to omastadi.hel.fi with your online banking ID or mobile ID. Students at comprehensive school can sign in with their Wilma ID.'
+          sign_in_with: 'Sign in and verify your identity electronically'
         suomifi:
           description: 'Suomi.fi allows users to verify their identity using Finnish online banking IDs and mobile IDs, among others.'
           sign_in_with: 'Suomi.fi e-Identification'
