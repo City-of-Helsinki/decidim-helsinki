@@ -72,6 +72,8 @@ sv:
       home:
         statistics:
           plans_count: Planer
+      index:
+        title: Hjälp
       side_panel:
         show_navigation: Visa navigering
     proposals:

@@ -72,6 +72,8 @@ fi:
       home:
         statistics:
           plans_count: Suunnitelmia
+      index:
+        title: Ohjeet
       side_panel:
         show_navigation: Näytä navigaatio
     proposals:
