@@ -24,9 +24,12 @@ edit_link(
                 <h1 class="heading1 page-title">
                   <%= t "decidim.pages.index.title" %>
                 </h1>
-                <p>
-                  <%= t(".subheading", name: current_organization.name) %>
-                </p>
+                <% content = translated_attribute(current_organization.description) %>
+                <% if content.blank? %>
+                  <p><%= t(".subheading", name: current_organization.name) %></p>
+                <% else %>
+                  <%== content %>
+                <% end %>
               </div>
             </div>
           </div>
