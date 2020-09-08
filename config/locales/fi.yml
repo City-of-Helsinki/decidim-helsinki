@@ -72,6 +72,8 @@ fi:
       home:
         statistics:
           plans_count: Suunnitelmia
+      side_panel:
+        show_navigation: Näytä navigaatio
     proposals:
       proposals:
         filters:

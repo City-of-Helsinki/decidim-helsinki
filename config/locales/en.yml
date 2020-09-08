@@ -72,6 +72,8 @@ en:
       home:
         statistics:
           plans_count: Plans
+      side_panel:
+        show_navigation: Show navigation
     proposals:
       proposals:
         filters:

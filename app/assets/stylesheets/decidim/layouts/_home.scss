@@ -39,7 +39,11 @@
   }
 
   .button{
-    margin: 0 2rem;
+    margin: 1rem 2rem;
+
+    @include breakpoint(medium){
+      margin: 0 2rem;
+    }
   }
 }
 

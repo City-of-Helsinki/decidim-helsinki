@@ -1,12 +1,12 @@
 <% if steps.any? %>
   <div class="extended page-section">
     <div class="row columns">
-      <div class="phases-navigation">
-        <input type="checkbox" class="phases-state hide-for-mediumlarge" id="phases_navigation_state">
-        <label class="phases-opener hide-for-mediumlarge" for="phases_navigation_state">
+      <div class="phases-navigation sub-navigation">
+        <input type="checkbox" class="sub-navigation-state hide-for-mediumlarge" id="phases_navigation_state">
+        <label class="sub-navigation-opener hide-for-mediumlarge" for="phases_navigation_state">
           <%= t(".navigate") %>
         </label>
-        <ol class="phases-list">
+        <ol class="sub-navigation-content phases-list">
           <% past_step = true %>
           <% steps.each_with_index do |step, index| %>
             <% past_step = false if step.active? %>

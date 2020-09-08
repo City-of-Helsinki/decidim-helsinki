@@ -1,59 +1,11 @@
-.phases-navigation{
-  position: relative;
-  padding: 1rem 0;
-
+.sub-navigation.phases-navigation{
   @include breakpoint(mediumlarge){
     padding: 4rem 0 0;
   }
 
-  .phases-opener{
-    position: relative;
-    display: block;
-    margin: 0;
-    padding: 1rem;
-    background: $white;
-    border: 2px solid $black;
-    font-size: 1.3rem;
-
-    &::after{
-      content: "";
-      position: absolute;
-      top: 20px;
-      right: 1rem;
-      display: inline-block;
-      border: 0 solid $black;
-      border-width: 0 4px 4px 0;
-      padding: 8px;
-      transform: rotate(45deg);
-    }
-  }
-
-  .phases-state{
-    position: absolute;
-    opacity: 0;
-
-    &:focus,
-    &:active{
-      outline: 0;
-
-      + .phases-opener{
-        outline: $anchor-outline-focus;
-        outline-color: var(--highlight);
-        outline-offset: $anchor-outline-offset;
-      }
-    }
-
+  .sub-navigation-state{
     &:checked{
-      + .phases-opener{
-        &::after{
-          top: 27px;
-          transform: rotate(-135deg);
-        }
-      }
-
-      + .phases-opener + .phases-list{
-        display: block;
-
+      + .sub-navigation-opener + .sub-navigation-content{
         @include breakpoint(mediumlarge){
           display: flex;
         }
@@ -61,28 +13,19 @@
     }
   }
 
-  .phases-list{
-    position: relative;
-    z-index: 1;
-    padding: 0 .5rem 2rem;
-    border: 2px solid $black;
-    border-top: 0;
+  .sub-navigation-content{
+    padding-top: 0;
 
     @include breakpoint(mediumlarge){
+      display: flex;
       padding: 0;
-      border: 0;
     }
   }
 }
 
 .phases-list{
-  display: none;
   margin: 0;
   list-style-type: none;
-
-  @include breakpoint(mediumlarge){
-    display: flex;
-  }
 
   .phases-list-item{
     position: relative;
