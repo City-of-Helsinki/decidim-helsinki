@@ -261,6 +261,14 @@ module DecidimHelsinki
     #
     # Run before every request in development.
     config.to_prepare do
+      # Controller extensions
+      Decidim::Admin::HelpSectionsController.send(
+        :include,
+        AdminHelpSectionsExtensions
+      )
+      # See: https://github.com/decidim/decidim/pull/6340
+      Decidim::DeviseControllers.send(:include, Decidim::NeedsSnippets)
+
       # Helper extensions
       Decidim::Comments::CommentsHelper.send(
         :include,
@@ -287,9 +295,6 @@ module DecidimHelsinki
       # View extensions
       ActionView::Base.send :include, Decidim::MapHelper
       ActionView::Base.send :include, Decidim::WidgetUrlsHelper
-
-      # See: https://github.com/decidim/decidim/pull/6340
-      Decidim::DeviseControllers.send(:include, Decidim::NeedsSnippets)
 
       # Extra helpers
       Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(

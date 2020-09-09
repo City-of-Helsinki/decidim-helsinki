@@ -68,6 +68,9 @@ fi:
       projects:
         filters:
           category_prompt: Valitse aihepiiri
+    help_sections:
+      help_index:
+        name: Ohjeosion etusivu
     pages:
       home:
         statistics:

@@ -68,6 +68,9 @@ en:
       projects:
         filters:
           category_prompt: Choose category
+    help_sections:
+      help_index:
+        name: Help section front page
     pages:
       home:
         statistics:

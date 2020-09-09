@@ -26,7 +26,13 @@ edit_link(
                 <h1 class="heading1 page-title">
                   <%= t "decidim.pages.index.title" %>
                 </h1>
-                <% content = translated_attribute(current_organization.description) %>
+                <%
+                section = Decidim::ContextualHelpSection.find_content(
+                  current_organization,
+                  "help_index"
+                )
+                content = translated_attribute(section)
+                %>
                 <% if content.blank? %>
                   <p><%= t(".subheading", name: current_organization.name) %></p>
                 <% else %>

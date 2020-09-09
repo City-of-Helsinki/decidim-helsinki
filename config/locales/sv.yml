@@ -68,6 +68,9 @@ sv:
       projects:
         filters:
           category_prompt: Välj ett ämne
+    help_sections:
+      help_index:
+        name: Hjälpavsnittets första sida
     pages:
       home:
         statistics:
