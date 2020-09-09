@@ -25,6 +25,13 @@
       letter-spacing: 0;
     }
   }
+
+  &.secondary{
+    &:hover,
+    &:focus{
+      color: $white;
+    }
+  }
 }
 
 .button.hollow{
