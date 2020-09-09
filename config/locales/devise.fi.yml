@@ -21,7 +21,7 @@ fi:
           sign_in_with: 'MPASSid-tunnistautuminen'
           sign_in_button: 'Peruskoululaisten Wilma-tunnukset'
         weak:
-          description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa tai aiemmin luomillasi Omastadi –tunnuksilla. Ensimmäisellä äänestyskerralla sinun tulee lisäksi tunnistautua pankkitunnuksilla, mobiilivarmenteella tai peruskoululaisten Wilma-tunnuksilla.'
+          description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa tai aiemmin luomillasi Omastadi –tunnuksilla.'
           sign_in_with: 'Kirjaudu  ilman tunnistautumista'
           sign_in_button: 'Kirjaudu Tunnistamo-palvelun avulla'
   decidim:

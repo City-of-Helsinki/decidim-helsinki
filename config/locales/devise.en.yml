@@ -21,7 +21,7 @@ en:
           sign_in_with: 'MPASSid-identification'
           sign_in_button: 'Wilma ID for comprehensive school students'
         weak:
-          description: 'You can also sign in with social media accounts (Facebook, Yle, Google, among others) or with an Omastadi account you have created earlier. The first time you vote, you also need to verify your identity with an online banking ID, mobile ID, or a Wilma ID for comprehensive school students.'
+          description: 'You can also sign in with social media accounts (Facebook, Yle, Google, among others) or with an Omastadi account you have created earlier.'
           sign_in_with: 'Sign in without identity verification'
           sign_in_button: 'Sign in with Tunnistamo'
   decidim:

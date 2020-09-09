@@ -21,7 +21,7 @@ sv:
           sign_in_with: 'MPASSid-identifikation'
           sign_in_button: 'Wilma ID för grundskoleelever'
         weak:
-          description: 'Du kan också logga in på Tunnistamo-tjänsten med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med Omastadi-kontot du skapade tidigare. Första gången du röstar måste du också identifiera dig med ditt bankkonto, mobilcertifikat eller Wilma-ID för grundskoleelever.'
+          description: 'Du kan också logga in på Tunnistamo-tjänsten med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med Omastadi-kontot du skapade tidigare.'
           sign_in_with: 'Logga in utan identifikation'
           sign_in_button: 'Logga in med Tunnistamo-tjänsten'
   decidim:
