@@ -60,7 +60,7 @@ Decidim.configure do |config|
     provider: :helsinki,
     dynamic: {
       tile_layer: {
-        url: "http://tiles.hel.ninja/styles/{style}/{z}/{x}/{y}@2x@fi.png",
+        url: "https://tiles.hel.ninja/styles/{style}/{z}/{x}/{y}@2x@fi.png",
         style: "hel-osm-bright",
         max_zoom: 18,
         attribution: %(
