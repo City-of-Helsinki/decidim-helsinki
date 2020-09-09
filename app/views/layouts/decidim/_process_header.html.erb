@@ -1,10 +1,10 @@
 <%= render partial: "layouts/decidim/breadcrumbs" %>
 
-<% if respond_to?(:current_settings) && translated_attribute(current_settings.announcement).present? %>
+<% if respond_to?(:current_settings) && current_settings.respond_to?(:announcement) && translated_attribute(current_settings.announcement).present? %>
   <%= render partial: "layouts/decidim/participatory_space_announcement", locals: { announcement: current_settings.announcement } %>
-<% elsif respond_to?(:component_settings) && translated_attribute(component_settings.announcement).present? %>
+<% elsif respond_to?(:component_settings) && component_settings.respond_to?(:announcement) && translated_attribute(component_settings.announcement).present? %>
   <%= render partial: "layouts/decidim/participatory_space_announcement", locals: { announcement: component_settings.announcement } %>
-<% elsif translated_attribute(current_participatory_space.announcement).present? %>
+<% elsif current_participatory_space.respond_to?(:announcement) && translated_attribute(current_participatory_space.announcement).present? %>
   <%= render partial: "layouts/decidim/participatory_space_announcement", locals: { announcement: current_participatory_space.announcement } %>
 <% end %>
 
