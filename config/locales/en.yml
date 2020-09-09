@@ -113,6 +113,8 @@ en:
     decidim:
       assembly_header:
         unfold: Unfold
+      breadcrumbs:
+        current: Current page
       header:
         help: Help
         navigation: Menu

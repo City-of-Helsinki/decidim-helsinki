@@ -113,6 +113,8 @@ sv:
     decidim:
       assembly_header:
         unfold: Öppna
+      breadcrumbs:
+        current: Nuvarande sida
       header:
         help: Hjälp
         navigation: Menu

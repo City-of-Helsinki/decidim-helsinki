@@ -1,0 +1,18 @@
+<div class="row columns">
+  <div class="breadcrumbs-section">
+    <ul class="breadcrumbs">
+      <% breadcrumbs.each_with_index do |item, index| %>
+        <% if breadcrumbs.length == index + 1 %>
+          <li>
+            <span class="show-for-sr"><%= t(".current") %>:</span>
+            <%= item[:title] %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to item[:title], item[:url] %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

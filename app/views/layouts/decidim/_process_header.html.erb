@@ -1,3 +1,5 @@
+<%= render partial: "layouts/decidim/breadcrumbs" %>
+
 <% if respond_to?(:current_settings) && translated_attribute(current_settings.announcement).present? %>
   <%= render partial: "layouts/decidim/participatory_space_announcement", locals: { announcement: current_settings.announcement } %>
 <% elsif respond_to?(:component_settings) && translated_attribute(component_settings.announcement).present? %>

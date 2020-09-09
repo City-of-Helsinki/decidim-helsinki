@@ -113,6 +113,8 @@ fi:
     decidim:
       assembly_header:
         unfold: Avaa
+      breadcrumbs:
+        current: Nykyinen sivu
       header:
         help: Ohjeet
         navigation: Menu

@@ -3,6 +3,34 @@
 module ApplicationHelper
   include Decidim::Plans::LinksHelper
 
+  def breadcrumbs
+    links = []
+    links << { title: t("decidim.menu.home"), url: decidim.root_path }
+    if respond_to?(:current_participatory_space)
+      links << {
+        title: translated_attribute(current_participatory_space.title),
+        url: decidim_participatory_processes.participatory_processes_path
+        # url: decidim_participatory_processes.participatory_process_path(current_participatory_space)
+      }
+      if respond_to?(:current_component)
+        links << {
+          title: translated_attribute(current_component.name),
+          url: main_component_path(current_component)
+        }
+      end
+    elsif controller.is_a?(Decidim::PagesController) || controller.is_a?(Decidim::Pages::ApplicationController)
+      links << { title: t("layouts.decidim.header.help"), url: decidim.pages_path }
+      if @page
+        links << {
+          title: translated_attribute(@page.title),
+          url: decidim.page_path(@page)
+        }
+      end
+    end
+
+    links
+  end
+
   # Defines whether the "common" content elements are displayed. In the
   # 'private' application mode these should be hidden in case the user is not
   # signed in.

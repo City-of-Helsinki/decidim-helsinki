@@ -290,13 +290,13 @@ $badge-font-size: .6rem;
 // 10. Breadcrumbs
 // ---------------
 
-$breadcrumbs-margin: 0 0 $global-margin 0;
-$breadcrumbs-item-font-size: rem-calc(11);
+$breadcrumbs-margin: 2rem 0 4rem;
+$breadcrumbs-item-font-size: $global-font-size;
 $breadcrumbs-item-color: $primary-color;
 $breadcrumbs-item-color-current: $black;
 $breadcrumbs-item-color-disabled: $medium-gray;
 $breadcrumbs-item-margin: .75rem;
-$breadcrumbs-item-uppercase: true;
+$breadcrumbs-item-uppercase: false;
 $breadcrumbs-item-separator: true;
 $breadcrumbs-item-separator-color: $medium-gray;
 
