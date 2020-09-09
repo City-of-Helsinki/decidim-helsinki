@@ -9,8 +9,10 @@ module Decidim
       include Decidim::ApplicationHelper
       include FormFactory
       include FilterResource
-      include Orderable
+      include Decidim::Proposals::Orderable
       include Paginable
+
+      helper_method :proposal_presenter, :form_presenter
 
       before_action :authenticate_user!, only: [:new, :create, :complete]
       before_action :ensure_is_draft, only: [:compare, :complete, :preview, :publish, :edit_draft, :update_draft, :destroy_draft]
@@ -25,8 +27,7 @@ module Decidim
                      .results
                      .published
                      .not_hidden
-                     .includes(:category)
-                     .includes(:scope)
+                     .includes(:amendable, :category, :component, :resource_permission, :scope)
 
         @voted_proposals = if current_user
                              ProposalVote.where(
@@ -42,6 +43,8 @@ module Decidim
       end
 
       def show
+        raise ActionController::RoutingError, "Not Found" if @proposal.blank? || !can_show_proposal?
+
         @report_form = form(Decidim::ReportForm).from_params(reason: "spam")
       end
 
@@ -268,6 +271,19 @@ module Decidim
         end
       end
 
+      # Returns true if the proposal is NOT an emendation or the user IS an admin.
+      # Returns false if the proposal is not found or the proposal IS an emendation
+      # and is NOT visible to the user based on the component's amendments settings.
+      def can_show_proposal?
+        return true if @proposal&.amendable? || current_user&.admin?
+
+        Proposal.only_visible_emendations_for(current_user, current_component).published.include?(@proposal)
+      end
+
+      def proposal_presenter
+        @proposal_presenter ||= present(@proposal)
+      end
+
       def set_proposal
         @proposal = Proposal.published.not_hidden.where(component: current_component).find(params[:id])
       end
@@ -278,6 +294,10 @@ module Decidim
 
       def form_proposal_model
         form(ProposalForm).from_model(@proposal)
+      end
+
+      def form_presenter
+        @form_presenter ||= present(@form, presenter_class: Decidim::Proposals::ProposalPresenter)
       end
 
       def form_attachment_new
