@@ -1,7 +1,6 @@
 ((exports) => {
   // eslint-disable-next-line id-length
   const $ = exports.$;
-  const Decidim = exports.Decidim;
 
   $.fn.fixMapToggle = function() {
     return $(this).on("on.zf.toggler off.zf.toggler", (ev) => {
