@@ -8,11 +8,13 @@ module ApplicationHelper
     links = []
     links << { title: t("decidim.menu.home"), url: decidim.root_path }
     if respond_to?(:current_participatory_space)
-      links << {
-        title: translated_attribute(current_participatory_space.title),
-        url: decidim_participatory_processes.participatory_processes_path
-        # url: decidim_participatory_processes.participatory_process_path(current_participatory_space)
-      }
+      # Do not display the current process in the menu because that's
+      # apparently logic (?).
+      # links << {
+      #   title: translated_attribute(current_participatory_space.title),
+      #   url: decidim_participatory_processes.participatory_processes_path
+      #   # url: decidim_participatory_processes.participatory_process_path(current_participatory_space)
+      # }
       if respond_to?(:current_component)
         links << {
           title: translated_attribute(current_component.name),
