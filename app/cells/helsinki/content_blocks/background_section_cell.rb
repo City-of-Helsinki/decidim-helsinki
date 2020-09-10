@@ -3,6 +3,7 @@
 module Helsinki
   module ContentBlocks
     class BackgroundSectionCell < HelpSectionCell
+      include KoroHelper
     end
   end
 end

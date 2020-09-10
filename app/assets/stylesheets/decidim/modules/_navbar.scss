@@ -350,11 +350,11 @@ $menuitem-padding: 1em 2em;
 }
 
 .header{
-  .koro-bottom{
-    @include koro("pulse", $white, 750);
-
-    height: 33px;
-    background-color: $titlebar-bg;
+  .koro{
+    svg{
+      fill: $titlebar-bg;
+      transform: scaleX(1.4);
+    }
   }
 }
 

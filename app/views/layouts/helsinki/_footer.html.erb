@@ -6,7 +6,7 @@ feedback_subject = URI.encode("Yhteydenotto: #{current_organization.name}").gsub
   <% if content_for? :footer_koro %>
     <%= yield :footer_koro %>
   <% else %>
-    <div class="koro-top"></div>
+    <%= koro("basic") %>
   <% end %>
   <div class="main-footer">
     <div class="row">

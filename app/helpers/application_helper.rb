@@ -2,6 +2,7 @@
 
 module ApplicationHelper
   include Decidim::Plans::LinksHelper
+  include KoroHelper
 
   def breadcrumbs
     links = []
@@ -71,7 +72,7 @@ module ApplicationHelper
   # element.
   def replace_footer_koro(extra_cls)
     content_for :footer_koro, flush: true do
-      ('<div class="koro-top ' + extra_cls + '"></div>').html_safe
+      koro("basic", class: extra_cls).html_safe
     end
   end
 

@@ -6,13 +6,12 @@ $footer-fg-paahtimo: $black;
 $footer-fg-ruuti: $black;
 
 .footer-wrapper{
-  .koro-top{
-    @include koro("basic", $footer-bg, 1000);
+  .koro{
+    bottom: -2px;
 
-    height: 28px;
-
-    &.with-wrapper--inner{
-      background-color: $light-gray-dark;
+    svg{
+      fill: $footer-bg;
+      transform: scale(1.8);
     }
   }
 }
@@ -43,8 +42,10 @@ $footer-fg-ruuti: $black;
 
 .wrapper-paahtimo{
   .footer-wrapper{
-    .koro-top{
-      @include koro("basic", $footer-bg-paahtimo, 1000);
+    .koro{
+      svg{
+        fill: $footer-bg-paahtimo;
+      }
     }
   }
 
@@ -61,8 +62,10 @@ $footer-fg-ruuti: $black;
 
 .wrapper-ruuti{
   .footer-wrapper{
-    .koro-top{
-      @include koro("basic", $footer-bg-ruuti, 1000);
+    .koro{
+      svg{
+        fill: $footer-bg-ruuti;
+      }
     }
   }
 

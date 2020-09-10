@@ -305,6 +305,7 @@ module DecidimHelsinki
         :include,
         Decidim::SanitizeHelper
       )
+      Decidim::ContentBlocks::HeroCell.send(:include, KoroHelper)
     end
   end
 end
