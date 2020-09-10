@@ -3,3 +3,7 @@ $font-weights: (300, 400, 500, 600, 700, 800, 900);
 @each $weight in $font-weights{
   .font-weight-#{$weight}{ font-weight: #{$weight}; }
 }
+
+.static__content{
+  font-size: 1.25rem;
+}
