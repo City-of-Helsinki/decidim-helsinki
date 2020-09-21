@@ -16,8 +16,10 @@ feedback_subject = URI.encode("Yhteydenotto: #{current_organization.name}").gsub
         <% end %>
       </div>
       <div class="medium-4 large-3 column">
-        <h4><%= t("layouts.footer.contact").html_safe %></h4>
-        <p><a href="mailto:<%= feedback_email %>?subject=<%= feedback_subject %>"><%= feedback_email %></a></p>
+        <div class="main__footer__contact">
+          <h4><%= t("layouts.footer.contact").html_safe %></h4>
+          <p><a href="mailto:<%= feedback_email %>?subject=<%= feedback_subject %>"><%= feedback_email %></a></p>
+        </div>
       </div>
 
       <% if display_common_elements? %>
@@ -60,15 +62,17 @@ feedback_subject = URI.encode("Yhteydenotto: #{current_organization.name}").gsub
         </div>
       <% end %>
 
-      <div class="medium-4 large-4 column">
+      <div class="medium-12 large-4 column">
         <% if display_common_elements? %>
-          <p>
-            <%= t("layouts.footer.processes_info") %>
-            <br>
-            <%= link_to decidim_participatory_processes.participatory_processes_path do %>
-              <%= t("layouts.footer.processes_show") %>&nbsp;&raquo;
-            <% end %>
-          </p>
+          <div class="main__footer__processes">
+            <p>
+              <%= t("layouts.footer.processes_info") %>
+              <br>
+              <%= link_to decidim_participatory_processes.participatory_processes_path do %>
+                <%= t("layouts.footer.processes_show") %>&nbsp;&raquo;
+              <% end %>
+            </p>
+          </div>
         <% end %>
       </div>
     </div>

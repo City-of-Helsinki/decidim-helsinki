@@ -18,13 +18,10 @@ $footer-fg-ruuti: $black;
 
 .main-footer,
 .mini-footer{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   background-color: $footer-bg;
   color: $footer-fg;
-
-  @include breakpoint(medium){
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
 
   @include breakpoint(large){
     padding-left: 4rem;
@@ -34,10 +31,6 @@ $footer-fg-ruuti: $black;
   a{
     color: $footer-fg;
   }
-}
-
-.mini-footer{
-  padding-top: 4rem;
 }
 
 .wrapper-paahtimo{
@@ -82,7 +75,10 @@ $footer-fg-ruuti: $black;
 
 .main-footer{
   padding-top: 3.2rem;
-  font-size: 1.35rem;
+
+  @include breakpoint(medium){
+    font-size: 1.35rem;
+  }
 
   .main-footer__badge{
     display: block;
@@ -90,6 +86,34 @@ $footer-fg-ruuti: $black;
     width: 132px;
 
     img{ height: 100%; }
+  }
+
+  .main__footer__processes{
+    @include breakpoint(medium){
+      margin-top: 3rem;
+    }
+
+    @include breakpoint(large){
+      margin-top: 0;
+    }
+  }
+
+  .main__footer__contact{
+    h4{
+      margin-bottom: 0;
+    }
+  }
+
+  .column{
+    margin-bottom: 2.5rem;
+
+    p:last-child{
+      margin-bottom: 0;
+    }
+
+    @include breakpoint(medium){
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -145,7 +169,13 @@ $footer-fg-ruuti: $black;
 }
 
 .mini-footer{
-  padding-bottom: 6rem;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+
+  @include breakpoint(medium){
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+  }
 
   .cc-badge{
     position: relative;
