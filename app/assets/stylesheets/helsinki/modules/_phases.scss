@@ -20,6 +20,12 @@
       display: flex;
       padding: 0;
     }
+
+    &.active{
+      @include breakpoint(mediumlarge){
+        display: flex;
+      }
+    }
   }
 }
 
@@ -223,6 +229,7 @@
     border-radius: 30px;
     font-size: 1.3rem;
     font-weight: 600;
+    color: $anchor-color;
 
     @include breakpoint(medium){
       font-size: 1.4rem;

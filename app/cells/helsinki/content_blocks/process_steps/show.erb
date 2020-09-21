@@ -2,11 +2,10 @@
   <div class="extended page-section">
     <div class="row columns">
       <div class="phases-navigation sub-navigation">
-        <input type="checkbox" class="sub-navigation-state hide-for-mediumlarge" id="phases_navigation_state">
-        <label class="sub-navigation-opener hide-for-mediumlarge" for="phases_navigation_state">
+        <button class="sub-navigation-opener hide-for-mediumlarge" data-toggle="phases_navigation">
           <%= t(".navigate") %>
-        </label>
-        <ol class="sub-navigation-content phases-list">
+        </button>
+        <ol id="phases_navigation" class="sub-navigation-content phases-list" data-toggler=".active">
           <% past_step = true %>
           <% steps.each_with_index do |step, index| %>
             <% past_step = false if step.active? %>
@@ -16,9 +15,9 @@
               </div>
               <div class="phases-list-item-info">
                 <%= helper.process_step_link(step) do %>
-                  <h4 class="phases-list-item-title">
+                  <p class="phases-list-item-title">
                     <%= translated_attribute step.title %>
-                  </h4>
+                  </p>
                 <% end %>
                 <div class="phases-list-item-date"><%= helper.step_date_info step %></div>
               </div>

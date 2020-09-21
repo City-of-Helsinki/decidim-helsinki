@@ -1,10 +1,9 @@
 <div class="side-panel">
   <div class="sub-navigation">
-    <input type="checkbox" class="sub-navigation-state hide-for-mediumlarge" id="sub_navigation_state">
-    <label class="sub-navigation-opener hide-for-mediumlarge" for="sub_navigation_state">
+    <button class="sub-navigation-opener hide-for-mediumlarge" data-toggle="sub_navigation">
       <%= t(".show_navigation") %>
-    </label>
-    <ul class="sub-navigation-content vertical menu">
+    </button>
+    <ul id="sub_navigation" class="sub-navigation-content vertical menu" data-toggler=".active">
       <% Decidim::StaticPageTopic.where(organization: current_organization).each do |topic| %>
         <% next unless topic.pages.any? %>
 
