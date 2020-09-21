@@ -36,6 +36,7 @@ body{
   min-width: 320px; // Minimum mobile body width
   height: auto;
   min-height: 100%;
+
   @include breakpoint(smallmedium down){
     background-color: $dark-gray;
   }

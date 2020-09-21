@@ -7,11 +7,15 @@ $footer-fg-ruuti: $black;
 
 .footer-wrapper{
   .koro{
-    bottom: -2px;
+    bottom: 0;
 
     svg{
       fill: $footer-bg;
       transform: scale(1.8);
+    }
+
+    &.with-wrapper--inner{
+      background: $light-gray-dark;
     }
   }
 }
