@@ -34,6 +34,32 @@
   }
 }
 
+.wrapper-ruuti{
+  .button,
+  a.button{
+    &,
+    &.primary{
+      background-color: $ruuti-primary;
+      color: $white;
+
+      &:hover,
+      &:focus{
+        background-color: scale-color($ruuti-primary, $lightness: -50%);
+      }
+    }
+
+    &.secondary{
+      background-color: $ruuti-secondary;
+      color: $white;
+
+      &:hover,
+      &:focus{
+        background-color: scale-color($ruuti-secondary, $lightness: 20%);
+      }
+    }
+  }
+}
+
 .button.hollow{
   &:hover,
   &:focus{
@@ -54,6 +80,45 @@
       color: $secondary-color;
       background: $secondary-hover;
       border-color: $secondary-hover;
+    }
+  }
+}
+
+.wrapper-ruuti{
+  .button.hollow{
+    &,
+    &.primary{
+      background-color: transparent;
+      border-color: $ruuti-primary;
+      color: $ruuti-primary;
+    }
+
+    &.secondary{
+      background-color: transparent;
+      border-color: $ruuti-secondary;
+      color: $ruuti-secondary;
+    }
+
+    &:hover,
+    &:focus{
+      $ruuti-primary-hover: $ruuti-primary;
+      $ruuti-primary-color: $white;
+
+      &,
+      &.primary{
+        color: $ruuti-primary-color;
+        background: $ruuti-primary-hover;
+        border-color: $ruuti-primary-hover;
+      }
+
+      &.secondary{
+        $ruuti-secondary-hover: $ruuti-secondary;
+        $ruuti-secondary-color: $white;
+
+        color: $ruuti-secondary-color;
+        background: $ruuti-secondary-hover;
+        border-color: $ruuti-secondary-hover;
+      }
     }
   }
 }

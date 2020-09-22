@@ -58,3 +58,85 @@ $colors: (
     }
   }
 }
+
+.wrapper-ruuti{
+  .bg-primary,
+  .bg-secondary{
+    a,
+    .link,
+    .button{
+      &:focus{
+        outline-color: $highlight-alternative;
+        outline-color: var(--highlight-alternative);
+      }
+    }
+  }
+
+  .bg-primary{
+    background-color: $hel-gold;
+    color: $hel-black;
+
+    &,
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3,
+    h4,
+    .h4,
+    h5,
+    .h5,
+    h6,
+    .h6{
+      color: $hel-black;
+    }
+  }
+
+  .bg-secondary{
+    background-color: $hel-fog;
+    color: $hel-bus;
+
+    &,
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3,
+    h4,
+    .h4,
+    h5,
+    .h5,
+    h6,
+    .h6{
+      color: $hel-bus;
+    }
+
+    .button,
+    a.button{
+      &,
+      &.primary{
+        background-color: $hel-bus;
+
+        &:hover,
+        &:focus{
+          background-color: scale-color($hel-bus, $lightness: -50%);
+        }
+
+        &.hollow{
+          background-color: transparent;
+          border-color: $hel-bus;
+          color: $hel-bus;
+
+          &:hover,
+          &:focus{
+            color: $white;
+            background: $hel-bus;
+            border-color: $hel-bus;
+          }
+        }
+      }
+    }
+  }
+}

@@ -5,6 +5,11 @@ $top-bar-fg: $primary;
 $top-bar-color: $top-bar-fg;
 $top-bar-color-hover: $top-bar-fg;
 
+$ruuti-top-bar-bg: $hel-fog;
+$ruuti-top-bar-fg: $hel-bus;
+$ruuti-top-bar-color: $ruuti-top-bar-fg;
+$ruuti-top-bar-color-hover: $ruuti-top-bar-fg;
+
 $titlebar-bg: $secondary;
 $titlebar-bg-paahtimo: $hel-fog;
 $titlebar-bg-ruuti: $hel-copper;
@@ -58,6 +63,17 @@ $menuitem-padding: 1em 2em;
   .top-bar-left,
   .top-bar-right{
     width: auto;
+  }
+}
+
+.wrapper-ruuti{
+  .top-bar{
+    background: $ruuti-top-bar-bg;
+    color: $ruuti-top-bar-fg;
+
+    a{
+      color: $ruuti-top-bar-fg;
+    }
   }
 }
 
@@ -360,6 +376,14 @@ $menuitem-padding: 1em 2em;
   }
 }
 
+.wrapper-ruuti{
+  .koro{
+    svg{
+      fill: $ruuti-top-bar-bg;
+    }
+  }
+}
+
 /* Title bar */
 
 .title-bar{
@@ -474,6 +498,29 @@ $menuitem-padding: 1em 2em;
 
   button:focus{
     outline: 2px solid $primary;
+  }
+}
+
+.wrapper-ruuti{
+  .topbar__search{
+    input,
+    input:focus{
+      color: $ruuti-top-bar-color-hover;
+
+      &:focus{
+        color: $ruuti-top-bar-color-hover;
+        box-shadow: none;
+        outline: 2px solid $ruuti-primary;
+      }
+
+      @include breakpoint(medium){
+        background: $ruuti-top-bar-bg;
+      }
+    }
+
+    button{
+      background-color: $ruuti-top-bar-bg;
+    }
   }
 }
 
@@ -813,6 +860,18 @@ $menuitem-padding: 1em 2em;
   }
 }
 
+.wrapper-ruuti{
+  .topbar__edit__link{
+    a{
+      color: $medium-gray;
+
+      &:hover{
+        color: $ruuti-top-bar-color-hover;
+      }
+    }
+  }
+}
+
 .usermenu-off-canvas-holder .usermenu-off-canvas{
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -832,6 +891,20 @@ $menuitem-padding: 1em 2em;
 
     &:hover{
       color: $top-bar-color-hover;
+    }
+  }
+}
+
+.wrapper-ruuti{
+  .usermenu-off-canvas-holder .usermenu-off-canvas{
+    a{
+      display: block;
+      padding: 1em 2em;
+      color: $ruuti-top-bar-color;
+
+      &:hover{
+        color: $ruuti-top-bar-color-hover;
+      }
     }
   }
 }
@@ -883,6 +956,13 @@ $menuitem-padding: 1em 2em;
 
   &:hover{
     color: $anchor-color;
+  }
+}
+
+.wrapper-ruuti{
+  .main-nav__link a,
+  .user-nav__link a{
+    color: $ruuti-top-bar-color;
   }
 }
 

@@ -1,9 +1,9 @@
 $footer-bg: $secondary;
-$footer-bg-paahtimo: $hel-summer;
-$footer-bg-ruuti: $hel-copper;
+$paahtimo-footer-bg: $hel-summer;
+$ruuti-footer-bg: $hel-fog;
 $footer-fg: $primary;
-$footer-fg-paahtimo: $black;
-$footer-fg-ruuti: $black;
+$paahtimo-footer-fg: $black;
+$ruuti-footer-fg: $hel-bus;
 
 .footer-wrapper{
   .koro{
@@ -41,18 +41,18 @@ $footer-fg-ruuti: $black;
   .footer-wrapper{
     .koro{
       svg{
-        fill: $footer-bg-paahtimo;
+        fill: $paahtimo-footer-bg;
       }
     }
   }
 
   .main-footer,
   .mini-footer{
-    background-color: $footer-bg-paahtimo;
-    color: $footer-fg-paahtimo;
+    background-color: $paahtimo-footer-bg;
+    color: $paahtimo-footer-fg;
 
     a{
-      color: $footer-fg-paahtimo;
+      color: $paahtimo-footer-fg;
     }
   }
 }
@@ -61,18 +61,30 @@ $footer-fg-ruuti: $black;
   .footer-wrapper{
     .koro{
       svg{
-        fill: $footer-bg-ruuti;
+        fill: $ruuti-footer-bg;
       }
     }
   }
 
   .main-footer,
   .mini-footer{
-    background-color: $footer-bg-ruuti;
-    color: $footer-fg-ruuti;
+    background-color: $ruuti-footer-bg;
+    color: $ruuti-footer-fg;
 
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3,
+    h4,
+    .h4,
+    h5,
+    .h5,
+    h6,
+    .h6,
     a{
-      color: $footer-fg-ruuti;
+      color: $ruuti-footer-fg;
     }
   }
 }
@@ -153,7 +165,7 @@ $footer-fg-ruuti: $black;
 .wrapper-paahtimo{
   .main__footer__nav{
     h3{
-      color: $footer-fg-paahtimo;
+      color: $paahtimo-footer-fg;
     }
   }
 }
@@ -161,12 +173,12 @@ $footer-fg-ruuti: $black;
 .wrapper-ruuti{
   .main__footer__nav{
     h3{
-      color: $footer-fg-ruuti;
+      color: $ruuti-footer-fg;
     }
 
     .footer-nav{
       a{
-        color: $footer-fg-ruuti;
+        color: $ruuti-footer-fg;
       }
     }
   }

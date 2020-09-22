@@ -248,3 +248,54 @@
     font-size: 1.2rem;
   }
 }
+
+.wrapper-ruuti{
+  .phases-list{
+    .phases-list-item{
+      &::before,
+      &::after{
+        border-left-color: $hel-gold;
+
+        @include breakpoint(mediumlarge){
+          border-bottom-color: $hel-gold;
+        }
+      }
+
+      &.phases-list-item-current{
+        .phases-list-item-phase{
+          background: $hel-gold;
+          color: $white;
+        }
+      }
+
+      &.phases-list-item-past{
+        .phases-list-item-phase,
+        .phases-list-item-title{
+          background: $hel-medium-grey;
+          border-color: $hel-medium-grey;
+        }
+      }
+
+      &.phases-list-item-active{
+        .phases-list-item-phase,
+        .phases-list-item-title{
+          background: $hel-gold;
+          border-color: $hel-gold;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .phases-list-item-phase{
+    background: $white;
+    color: $hel-gold;
+    border-color: $hel-gold;
+  }
+
+  .phases-list-item-title{
+    background: $white;
+    border: 2px solid $hel-gold;
+    color: $hel-gold;
+  }
+}

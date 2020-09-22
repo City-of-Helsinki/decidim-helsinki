@@ -54,6 +54,14 @@ section{
         &.button{
           font-size: 17px;
           border: solid 2px black;
+          background: transparent;
+          color: $black;
+
+          &:focus,
+          &:hover{
+            background: $black;
+            color: $white;
+          }
         }
       }
     }
