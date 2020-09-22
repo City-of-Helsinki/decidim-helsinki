@@ -1,81 +1,19 @@
-<% if Devise.mappings[:user].omniauthable? && current_organization.enabled_omniauth_providers.any? %>
-  <%
-  enabled_strong_providers = current_organization.enabled_omniauth_providers.keys.select do |p|
-    %i(suomifi mpassid).include?(p)
-  end
-  %>
-
-  <% if current_organization.enabled_omniauth_providers.any? %>
-    <%= render "decidim/devise/shared/register_separator" %>
-  <% end %>
-
-  <% if current_organization.enabled_omniauth_providers.keys.include?(:tunnistamo) %>
-    <% if private_mode? %>
-      <div class="row collapse">
-        <div class="columns medium-8 medium-centered">
-          <div class="social-register text-center">
-            <h3 class="h5 margin-bottom-1">
-              <%= t("devise.shared.omniauth.tunnistamo.sign_in_with") %>
-            </h3>
-            <div class="login-icons">
-              <%= image_tag "helsinki/helsinki-logo-black.svg" %>
-            </div>
-            <p></p>
-            <%= link_to decidim.send("user_tunnistamo_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(:tunnistamo)}", method: :post do %>
-              <%= t("devise.shared.omniauth.tunnistamo.sign_in_button") %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <%= render "decidim/devise/shared/register_separator" %>
-    <% else %>
-      <div class="wrapper">
-        <div class="row collapse">
-          <div class="columns medium-8 medium-centered">
-            <div class="social-register text-center">
-              <h3 class="h5 margin-bottom-1">
-                <%= t("devise.shared.omniauth.weak.sign_in_with") %>
-              </h3>
-              <p>
-                <%= t("devise.shared.omniauth.weak.description") %>
-              </p>
-              <%= link_to decidim.send("user_tunnistamo_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(:tunnistamo)}", method: :post do %>
-                <%= t("devise.shared.omniauth.weak.sign_in_button") %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-
-  <% if enabled_strong_providers.any? %>
-    <% if current_organization.enabled_omniauth_providers.keys.include?(:tunnistamo) %>
-      <%= render "decidim/devise/shared/register_separator" %>
-    <% end %>
-
-    <div class="wrapper">
-      <div class="row collapse">
-        <div class="columns medium-8 medium-centered">
-          <div class="social-register text-center">
-            <h3 class="h5 margin-bottom-1">
-              <%= t("devise.shared.omniauth.strong.sign_in_with") %>
-            </h3>
-            <p>
-              <%= t("devise.shared.omniauth.strong.description") %>
-            </p>
-
-            <% enabled_strong_providers.each_with_index do |provider, index| %>
-              <% if index > 0 %>
-                <br>
-              <% end %>
-              <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(provider)}", method: :post do %>
-                <%= t("devise.shared.omniauth.#{provider}.sign_in_button") %>
-              <% end %>
-            <% end %>
-          </div>
+<% if weak_providers_enabled? %>
+  <div class="wrapper<%= local_assigns[:wrapper_class] ? " #{wrapper_class}" : "" %>">
+    <div class="row collapse">
+      <div class="columns medium-8 medium-centered">
+        <div class="social-register text-center">
+          <h3 class="h5 margin-bottom-1">
+            <%= t("devise.shared.omniauth.weak.sign_in_with") %>
+          </h3>
+          <p>
+            <%= t("devise.shared.omniauth.weak.description") %>
+          </p>
+          <%= link_to decidim.send("user_tunnistamo_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(:tunnistamo)}", method: :post do %>
+            <%= t("devise.shared.omniauth.weak.sign_in_button") %>
+          <% end %>
         </div>
       </div>
     </div>
-  <% end %>
+  </div>
 <% end %>

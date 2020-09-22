@@ -1,0 +1,18 @@
+<% if weak_providers_enabled? %>
+  <div class="row collapse">
+    <div class="columns medium-8 medium-centered">
+      <div class="social-register text-center">
+        <h3 class="h5 margin-bottom-1">
+          <%= t("devise.shared.omniauth.tunnistamo.sign_in_with") %>
+        </h3>
+        <div class="login-icons">
+          <%= image_tag "helsinki/helsinki-logo-black.svg" %>
+        </div>
+        <p></p>
+        <%= link_to decidim.send("user_tunnistamo_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(:tunnistamo)}", method: :post do %>
+          <%= t("devise.shared.omniauth.tunnistamo.sign_in_button") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

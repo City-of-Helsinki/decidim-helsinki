@@ -9,57 +9,11 @@
     </div>
   </div>
 
-  <div class="wrapper wrapper-no-top-padding">
-    <div class="row collapse">
-      <div class="text-center">
-        <h3 class="h5 margin-bottom-1">
-          <%= t(".sign_in_service_account") %>
-        </h3>
-        <p>
-          <%= t(".sign_in_service_account_description") %>
-        </p>
-      </div>
-
-      <div class="register-form-wrapper" id="session">
-        <div class="columns large-6 medium-centered">
-          <div class="card">
-            <div class="card__content">
-              <%= decidim_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "register-form new_user" }) do |f| %>
-                <div>
-                  <div class="field">
-                    <%= f.email_field :email, autofocus: true  %>
-                  </div>
-                  <div class="field">
-                    <%= f.password_field :password, autocomplete: "off" %>
-                  </div>
-                </div>
-                <fieldset>
-                  <% if devise_mapping.rememberable? %>
-                    <div class="field">
-                      <%= f.check_box :remember_me %>
-                    </div>
-                  <% end %>
-                </fieldset>
-                <div class="actions">
-                  <%= f.submit t("devise.sessions.new.sign_in"), class: "button expanded" %>
-                </div>
-              <% end %>
-              <%= render "decidim/devise/shared/links" %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <%= render "decidim/devise/shared/omniauth_buttons" %>
+  <% if Rails.application.config.wrapper_class == "wrapper-ruuti" %>
+    <%= render "ruuti" %>
+  <% elsif private_mode? %>
+    <%= render "private" %>
+  <% else %>
+    <%= render "default" %>
+  <% end %>
 </div>
-
-<% if params[:user] || session[:open_user_form] %>
-  <%= javascript_tag defer: 'defer' do -%>
-  setTimeout(function() {
-    var $button = $('#session_toggle');
-    $button.trigger('click.zf.trigger').scrollTo();
-  }, 500);
-  <% end -%>
-<% end %>

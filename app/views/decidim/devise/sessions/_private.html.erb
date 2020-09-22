@@ -1,0 +1,6 @@
+<% if weak_providers_enabled? %>
+  <%= render "decidim/devise/shared/omniauth_buttons_private" %>
+  <%= render "decidim/devise/shared/register_separator" %>
+<% end %>
+
+<%= render "form", autofocus: false, hide_form: true %>

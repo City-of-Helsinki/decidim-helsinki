@@ -1,0 +1,11 @@
+<% if strong_providers_enabled? %>
+  <%= render "decidim/devise/shared/omniauth_buttons_strong", wrapper_class: "wrapper-no-top-padding" %>
+  <%= render "decidim/devise/shared/register_separator" %>
+<% end %>
+
+<% if weak_providers_enabled? %>
+  <%= render "decidim/devise/shared/omniauth_buttons" %>
+  <%= render "decidim/devise/shared/register_separator" %>
+<% end %>
+
+<%= render "form", autofocus: false %>
