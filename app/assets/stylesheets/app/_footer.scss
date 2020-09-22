@@ -1,108 +1,116 @@
-.site-footer {
+.site-footer{
   background-color: $gray-dark;
   color: $white;
   min-height: 20em;
   padding: 4em 0;
 
-  @media (min-width: $screen-md-min) {
+  @media (min-width: $screen-md-min){
     min-height: $site-footer-height;
-    padding: 40px 0px;
+    padding: 40px 0;
   }
 
-  a {
+  a{
     color: $white;
   }
 
-  .site-footer-block {
+  .site-footer-block{
     margin-bottom: 2em;
-    @media (max-width: $screen-xs-max) {
+
+    @media (max-width: $screen-xs-max){
       text-align: center;
     }
   }
 
-  .footer-header {
+  .footer-header{
     font-weight: 800;
     margin-bottom: 1em;
-    @media (max-width: $screen-xs-max) {
+
+    @media (max-width: $screen-xs-max){
       text-align: center;
     }
   }
 
-  .footer-links {
+  .footer-links{
     list-style: none;
     padding-left: 0;
     margin-left: 0;
 
-    .icon {
+    .icon{
       font-size: 1.2em;
-      margin-right: .25em;;
+      margin-right: .25em;
     }
   }
-  .decidim-notification {
+
+  .decidim-notification{
     margin-top: 40px;
   }
 }
 
-.footer-branding {
+.footer-branding{
   margin-bottom: 2em;
 
-  @media (max-width: $screen-xs-max) {
+  @media (max-width: $screen-xs-max){
     text-align: center;
   }
 
-  .footer-logo {
+  .footer-logo{
     margin: 0 auto 1em;
     max-width: 9em;
   }
 }
 
-.footer-social {
+.footer-social{
   margin-top: 2em;
 }
 
-.site-footer-small-print {
+.site-footer-small-print{
   margin-top: 2em;
 
-  @media (max-width: $screen-xs-max) {
+  @media (max-width: $screen-xs-max){
     text-align: center;
     font-size: 14px;
   }
-  &.site-footer-small-print-right {
+
+  &.site-footer-small-print-right{
     text-align: right;
   }
-  .cc-badge {
-    @media (max-width: $screen-xs-max) {
+
+  .cc-badge{
+    @media (max-width: $screen-xs-max){
       display: inline-block;
       max-width: 60px;
     }
-    img {
+
+    img{
       max-width: 100%;
     }
   }
-  .small-print-nav {
+
+  .small-print-nav{
     @extend .list-inline;
+
     color: $gray-lighter;
     font-size: 14px;
 
-    a {
+    a{
       color: $gray-lighter;
     }
 
-    li {
+    li{
       padding: 0;
     }
 
-    li::before {
+    li::before{
       color: $gray-light;
       content: '|';
       margin: 0 .5em;
     }
 
-    li:first-child::before {
+    li:first-child::before{
       content: none;
     }
 
-    @media screen and (max-width: $screen-sm-max) {
+    @media screen and (max-width: $screen-sm-max){
       text-align: center;
     }
   }

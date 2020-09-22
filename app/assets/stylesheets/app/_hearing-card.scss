@@ -1,12 +1,13 @@
-.hearing-card {
+.hearing-card{
   @extend .clearfix;
+
   background-color: $white;
   position: relative;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.33);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .33);
   padding-bottom: $line-height-computed;
   margin-bottom: 40px;
 
-  &-image {
+  &-image{
     display: block;
     height: 170px;
     background: $missing-image;
@@ -15,7 +16,7 @@
     position: relative;
     color: $text-color;
 
-    .hearing-card-comment-count {
+    .hearing-card-comment-count{
       position: absolute;
       top: 0;
       right: 0;
@@ -27,39 +28,39 @@
     }
   }
 
-  &-content {
+  &-content{
     padding: $padding-base-vertical $padding-base-horizontal;
 
-    .hearing-card-time {
+    .hearing-card-time{
       color: $text-muted;
       font-size: 1.4rem;
 
-      &.expires {
+      &.expires{
         color: red;
       }
     }
   }
 
-  &-notice {
+  &-notice{
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1000;
     height: 100%;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, .25);
     width: 100%;
 
-    &:hover {
+    &:hover{
       text-decoration: none;
     }
 
-    .hearing-card-notice-content {
+    .hearing-card-notice-content{
       background: $gray-light;
       color: #fff;
       opacity: 1;
       padding: 5px;
 
-      .language-available-message {
+      .language-available-message{
         padding-top: 2px;
         font-size: 12px;
       }

@@ -1,20 +1,20 @@
-.btn {
-  border-width: 0px;
+.btn{
+  border-width: 0;
 }
 
-.button--social {
-  &.button--tunnistamo {
-    .button--social__icon {
+.button--social{
+  &.button--tunnistamo{
+    .button--social__icon{
       position: relative;
       top: 2px;
       min-width: 5rem;
-      padding: 0.65em 1rem;
+      padding: .65em 1rem;
 
-      .icon {
+      .icon{
         width: 75px;
         height: 35px;
 
-        path {
+        path{
           fill: #f00;
         }
       }
@@ -22,8 +22,8 @@
   }
 }
 
-.sort-buttons {
-  > div {
+.sort-buttons{
+  > div{
     display: inline-block;
     margin-right: 10px;
   }

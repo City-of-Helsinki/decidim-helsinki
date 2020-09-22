@@ -8,19 +8,18 @@ $timeline-inactive-color: $hel-medium-grey;
 
 $timeline-padding: 1rem;
 
-
 /* Timeline */
 
-.timeline {
+.timeline{
   list-style: none;
   margin: 2rem 0 0;
 }
 
-.timeline__item {
+.timeline__item{
   padding-bottom: 2em;
   position: relative;
 
-  &::before {
+  &::before{
     content: "";
     width: 3px;
     height: 100%;
@@ -30,14 +29,14 @@ $timeline-padding: 1rem;
     position: absolute;
   }
 
-  &::after {
+  &::after{
     content: "";
     clear: both;
     display: table;
     width: 100%;
   }
 
-  &:last-of-type:before{
+  &:last-of-type::before{
     width: 0;
   }
 }
@@ -96,7 +95,7 @@ $timeline-padding: 1rem;
   color: $muted;
 
   .timeline__item--current &{
-    color: rgba($white,.8);
+    color: rgba($white, .8);
   }
 }
 
@@ -155,7 +154,7 @@ $timeline-padding: 1rem;
 .timeline__item-text{
   display: block;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: .03em;
   font-size: 90%;
   color: $body-font-color;
   font-weight: 600;
@@ -165,13 +164,13 @@ $timeline-padding: 1rem;
 /* Inactive timeline */
 
 .timeline__item--current{
-  &::before {
+  &::before{
     background: $timeline-inactive-color;
   }
 }
 
 .timeline__item--inactive{
-  &::before {
+  &::before{
     background: $timeline-inactive-color;
   }
 
@@ -180,6 +179,6 @@ $timeline-padding: 1rem;
   }
 
   .timeline__phase__number{
-    text-shadow: 0 1px 2px rgba(black, 0.1);
+    text-shadow: 0 1px 2px rgba(black, .1);
   }
 }
