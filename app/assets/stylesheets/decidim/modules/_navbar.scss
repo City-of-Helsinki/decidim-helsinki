@@ -944,25 +944,29 @@ $menuitem-padding: 1em 2em;
   }
 }
 
-.main-nav__link a,
-.user-nav__link a{
-  position: relative;
-  display: block;
-  color: $top-bar-color;
+.top-bar{
+  .main-nav__link a,
+  .user-nav__link a{
+    position: relative;
+    display: block;
+    color: $top-bar-color;
 
-  @include breakpoint(large){
-    padding: $menuitem-padding;
-  }
+    @include breakpoint(large){
+      padding: $menuitem-padding;
+    }
 
-  &:hover{
-    color: $anchor-color;
+    &:hover{
+      color: $anchor-color;
+    }
   }
 }
 
 .wrapper-ruuti{
-  .main-nav__link a,
-  .user-nav__link a{
-    color: $ruuti-top-bar-color;
+  .top-bar{
+    .main-nav__link a,
+    .user-nav__link a{
+      color: $ruuti-top-bar-color;
+    }
   }
 }
 
