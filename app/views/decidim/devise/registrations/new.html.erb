@@ -5,17 +5,13 @@
 <% end %>
 
 <div>
-  <div class="wrapper">
+  <div class="wrapper" id="register_section">
     <div class="row collapse">
       <div class="columns large-8 large-centered text-center page-title">
         <h1><%= t(".sign_up") %></h1>
       </div>
     </div>
-  </div>
 
-  <%= render "decidim/devise/shared/omniauth_buttons" %>
-
-  <div class="wrapper" id="register_section">
     <div class="row collapse">
       <div class="row">
         <div class="columns large-6 medium-10 medium-centered">
@@ -27,18 +23,9 @@
               <%= t(".already_have_an_account?") %>
               <%= link_to t(".sign_in"), new_user_session_path %>
             </p>
-            <button class="h5" data-toggle="register register_closed register_open" id="register_toggle">
-              <%= t(".sign_up_service_account") %>
-              <span id="register_closed" data-toggler=".is-hidden">
-                <%= icon "chevron-bottom" %>
-              </span>
-              <span id="register_open" class="is-hidden" data-toggler=".is-hidden">
-                <%= icon "chevron-top" %>
-              </span>
-            </button>
           </div>
 
-          <div class="register-form-wrapper is-hidden" id="register" data-toggler=".is-hidden">
+          <div class="register-form-wrapper" id="register">
             <%= decidim_form_for(@form, as: resource_name, url: registration_path(resource_name), html: { class: "register-form new_user", id: "register-form" }) do |f| %>
               <%= invisible_captcha %>
               <div class="card">
