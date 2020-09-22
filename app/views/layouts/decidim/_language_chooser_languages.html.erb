@@ -1,6 +1,6 @@
 <ul class="menu">
   <% available_locales.each do |locale| %>
-    <li class="language-nav-link<%= " language-nav-link-current" if locale == I18n.locale.to_s %>">
+    <li class="language-nav-link<%= " language-nav-link-current" if locale == I18n.locale.to_s %>" lang="<%= locale %>">
       <%= link_to locale_name(locale), decidim.locale_path(locale: locale), method: :post %>
     </li>
   <% end %>
