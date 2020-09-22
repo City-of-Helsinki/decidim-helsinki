@@ -131,15 +131,17 @@ $menuitem-padding: 1em 2em;
     .menu{
       .language-nav-link{
         &:first-child{
-          &::before{
+          .language-nav-separator{
             display: none;
           }
         }
 
-        &::before{
-          content: "|";
-          display: inline-block;
-          padding: 0 .55rem;
+        .language-nav-separator{
+          &::before{
+            content: "|";
+            display: inline-block;
+            padding: 0 .55rem;
+          }
         }
 
         &.language-nav-link-current{
