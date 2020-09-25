@@ -12,6 +12,9 @@ Rails.application.configure do
   # environment. This is for the Ruuti instance.
   config.wrapper_class = "wrapper-ruuti"
 
+  # The feedback email in the footer of the site
+  config.feedback_email = "ruutibudjetti@hel.fi"
+
   # Color profile that changes the logo color for the footer
   # config.color_profile = "white"
 
