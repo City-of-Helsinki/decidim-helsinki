@@ -52,7 +52,7 @@ form.multipart = true
 
 <% @form.contents.each_with_index do |content, idx| %>
   <%= fields_for "contents[]", content do |content_form| %>
-    <%= render "decidim/plans/shared/section_content_field", form: content_form, id: tabs_id_for_content(idx) %>
+    <%= render "decidim/plans/shared/section_content_field", form: content_form, parent_form: form, id: tabs_id_for_content(idx) %>
   <% end %>
 <% end %>
 
