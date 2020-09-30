@@ -1,3 +1,9 @@
+.card{
+  &.border-primary{
+    border: 3px solid $primary;
+  }
+}
+
 .card__content{
   .card__content{
     &:not(:only-child){

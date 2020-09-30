@@ -1,38 +1,38 @@
 .d-flex{ display: flex !important; }
 
-$margins:(0, 10px, 20px, 30px, 40px, 50px, auto);
+$margins:(0: 0, 1: 10px, 2: 20px, 3: 30px, 4: 40px, 5: 50px, auto: auto);
 
-@each $margin in $margins{
-  .mt-#{$margin}{ margin-top: #{$margin} !important; }
-  .mb-#{$margin}{ margin-bottom: #{$margin} !important; }
-  .mr-#{$margin}{ margin-right: #{$margin} !important; }
-  .ml-#{$margin}{ margin-left: #{$margin} !important; }
+@each $name, $margin in $margins{
+  .mt-#{$name}{ margin-top: #{$margin} !important; }
+  .mb-#{$name}{ margin-bottom: #{$margin} !important; }
+  .mr-#{$name}{ margin-right: #{$margin} !important; }
+  .ml-#{$name}{ margin-left: #{$margin} !important; }
 
-  .mx-#{$margin}{
+  .mx-#{$name}{
     margin-right: #{$margin} !important;
     margin-left: #{$margin} !important;
   }
 
-  .my-#{$margin}{
+  .my-#{$name}{
     margin-top: #{$margin} !important;
     margin-bottom: #{$margin} !important;
   }
 }
 
-$paddings:(0, 10px, 20px, 30px, 40px, 50px);
+$paddings:(0: 0, 1: 10px, 2: 20px, 3: 30px, 4: 40px, 5: 50px);
 
-@each $padding in $paddings{
-  .pt-#{$padding}{ padding-top: #{$padding} !important; }
-  .pb-#{$padding}{ padding-bottom: #{$padding} !important; }
-  .pr-#{$padding}{ padding-right: #{$padding} !important; }
-  .pl-#{$padding}{ padding-left: #{$padding} !important; }
+@each $name, $padding in $paddings{
+  .pt-#{$name}{ padding-top: #{$padding} !important; }
+  .pb-#{$name}{ padding-bottom: #{$padding} !important; }
+  .pr-#{$name}{ padding-right: #{$padding} !important; }
+  .pl-#{$name}{ padding-left: #{$padding} !important; }
 
-  .px-#{$padding}{
+  .px-#{$name}{
     padding-right: #{$padding} !important;
     padding-left: #{$padding} !important;
   }
 
-  .py-#{$padding}{
+  .py-#{$name}{
     padding-top: #{$padding} !important;
     padding-bottom: #{$padding} !important;
   }
