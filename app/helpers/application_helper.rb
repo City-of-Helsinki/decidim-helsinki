@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  include Decidim::Devise::SessionsHelper
   include Decidim::Plans::LinksHelper
   include KoroHelper
 
