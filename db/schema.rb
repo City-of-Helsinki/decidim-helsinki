@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_22_112113) do
+ActiveRecord::Schema.define(version: 2020_10_02_111135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -500,6 +500,17 @@ ActiveRecord::Schema.define(version: 2020_09_22_112113) do
     t.index ["decidim_user_group_id"], name: "index_decidim_endorsements_on_decidim_user_group_id"
     t.index ["resource_type", "resource_id", "decidim_author_type", "decidim_author_id", "decidim_user_group_id"], name: "idx_endorsements_rsrcs_and_authors", unique: true
     t.index ["resource_type", "resource_id"], name: "index_decidim_endorsements_on_resource_type_and_resource_id"
+  end
+
+  create_table "decidim_favorites_favorites", force: :cascade do |t|
+    t.bigint "decidim_user_id", null: false
+    t.string "decidim_favoritable_type"
+    t.bigint "decidim_favoritable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_favoritable_id", "decidim_favoritable_type"], name: "index_on_favoritable"
+    t.index ["decidim_user_id", "decidim_favoritable_id", "decidim_favoritable_type"], name: "index_uniq_on_favorites_user_and_favoritable", unique: true
+    t.index ["decidim_user_id"], name: "index_decidim_favorites_favorites_on_decidim_user_id"
   end
 
   create_table "decidim_follows", force: :cascade do |t|
