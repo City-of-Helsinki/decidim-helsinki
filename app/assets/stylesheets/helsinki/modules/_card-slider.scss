@@ -74,6 +74,16 @@ $slick-opacity-default: 1;
       }
     }
   }
+
+  .card{
+    .card__support{
+      .card__button,
+      .favorite-button{
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
 }
 
 .slick-prev,

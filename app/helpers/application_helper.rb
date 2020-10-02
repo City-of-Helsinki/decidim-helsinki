@@ -30,6 +30,14 @@ module ApplicationHelper
           url: decidim.page_path(@page)
         }
       end
+    elsif controller.is_a?(Decidim::Favorites::FavoritesController)
+      links << { title: t("decidim.favorites.favorites.show.title"), url: decidim_favorites.favorites_path }
+      if @type
+        links << {
+          title: @type[:name],
+          url: decidim_favorites.favorite_path(@selected_type)
+        }
+      end
     end
 
     links
