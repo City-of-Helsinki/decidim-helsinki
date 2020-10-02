@@ -14,17 +14,18 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-initiatives", DECIDIM_VERSION
 
 gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "develop"
-gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "develop"
-gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "develop"
+gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "master"
+gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "master"
 gem "decidim-process_groups_content_block", github: "mainio/decidim-module-process_groups_content_block", branch: "develop"
-gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "develop"
-gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "develop"
+gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "master"
+gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "master"
 
 # Install the git modules until they have an actual release
 gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "develop"
 gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "develop"
 gem "decidim-combined_budgeting", github: "mainio/decidim-module-combined_budgeting", branch: "develop"
 gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "master"
+gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "master"
 gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "develop"
 gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "develop"
 
