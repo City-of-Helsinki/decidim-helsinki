@@ -102,6 +102,7 @@ module ApplicationHelper
 
   def meta_image_default
     return "helsinki-social/ideapaahtimo-wide.jpg" if Rails.application.config.wrapper_class == "wrapper-paahtimo"
+    return "helsinki-social/ruuti-wide.jpg" if Rails.application.config.wrapper_class == "wrapper-ruuti"
 
     "helsinki-social/omastadi-wide.jpg"
   end
