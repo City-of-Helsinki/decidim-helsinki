@@ -34,7 +34,7 @@ module Helsinki
             participatory_space: participatory_process,
             manifest_name: "ideas"
           )
-          Decidim::Ideas::Idea.published.where(component: components).order("RANDOM()").limit(6)
+          Decidim::Ideas::Idea.published.except_withdrawn.where(component: components).order("RANDOM()").limit(6)
         end
       end
 
