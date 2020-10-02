@@ -6,7 +6,7 @@
       <div class="card-slider center">
         <% ideas.each do |idea| %>
           <div class="card-slide-content">
-            <%= card_for idea, from: idea, context: { no_column: true } %>
+            <%= card_for idea, from: idea, context: { no_column: true, disable_favorite: true } %>
           </div>
         <% end %>
       </div>
