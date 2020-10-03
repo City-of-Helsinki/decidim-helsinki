@@ -127,6 +127,7 @@ sv:
         unfold: Öppna
       user_menu:
         conversations: Meddelanden
+        favorites: Favoriter
         profile: Kontoinformation
         profile_nav: Profil
         public_profile: Tidslinje

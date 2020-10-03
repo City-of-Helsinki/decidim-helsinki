@@ -127,6 +127,7 @@ en:
         unfold: Unfold
       user_menu:
         conversations: Messages
+        favorites: Favourites
         profile: Account information
         profile_nav: Profile
         public_profile: Timeline

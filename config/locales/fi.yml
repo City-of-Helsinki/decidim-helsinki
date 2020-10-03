@@ -127,6 +127,7 @@ fi:
         unfold: Avaa
       user_menu:
         conversations: Viestit
+        favorites: Suosikit
         profile: Omat tiedot
         profile_nav: Profiili
         public_profile: Oma toiminta
