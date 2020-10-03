@@ -287,8 +287,16 @@ GIT
       decidim-core (~> 0.22.0)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-feedback.git
+  revision: 1b4188467cf0389502d4ae407e6e63d951f4d7f0
+  branch: master
+  specs:
+    decidim-feedback (0.22.0)
+      decidim-core (~> 0.22.0)
+
+GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: e0b2df11bd23896b76f562442a7e276b30884b23
+  revision: 934b71fbbaad9349b13cc7fc8dd779f387f925de
   branch: master
   specs:
     decidim-ideas (0.22.0)
@@ -297,6 +305,7 @@ GIT
       cells-rails (~> 0.0.9)
       decidim-core (~> 0.22.0.rc1)
       decidim-favorites (~> 0.22.0.rc1)
+      decidim-feedback (~> 0.22.0.rc1)
       graphql (~> 1.9.19)
       kaminari (~> 1.2, >= 1.2.1)
       ransack (~> 2.1.1)
@@ -1068,6 +1077,7 @@ DEPENDENCIES
   decidim-combined_budgeting!
   decidim-dev!
   decidim-favorites!
+  decidim-feedback!
   decidim-ideas!
   decidim-initiatives!
   decidim-mpassid!

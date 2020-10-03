@@ -26,6 +26,7 @@ gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "develop
 gem "decidim-combined_budgeting", github: "mainio/decidim-module-combined_budgeting", branch: "develop"
 gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "master"
 gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "master"
+gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "master"
 gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "develop"
 gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "develop"
 

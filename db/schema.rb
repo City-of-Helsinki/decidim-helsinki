@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_111135) do
+ActiveRecord::Schema.define(version: 2020_10_03_140515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -511,6 +511,23 @@ ActiveRecord::Schema.define(version: 2020_10_02_111135) do
     t.index ["decidim_favoritable_id", "decidim_favoritable_type"], name: "index_on_favoritable"
     t.index ["decidim_user_id", "decidim_favoritable_id", "decidim_favoritable_type"], name: "index_uniq_on_favorites_user_and_favoritable", unique: true
     t.index ["decidim_user_id"], name: "index_decidim_favorites_favorites_on_decidim_user_id"
+  end
+
+  create_table "decidim_feedback_feedbacks", force: :cascade do |t|
+    t.integer "decidim_organization_id"
+    t.integer "rating"
+    t.text "body", null: false
+    t.boolean "contact_request", default: false
+    t.jsonb "metadata"
+    t.bigint "decidim_user_id", null: false
+    t.string "decidim_feedbackable_type"
+    t.bigint "decidim_feedbackable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_feedbackable_id", "decidim_feedbackable_type"], name: "index_on_feedbackable"
+    t.index ["decidim_organization_id"], name: "index_decidim_feedback_feedbacks_on_decidim_organization_id"
+    t.index ["decidim_user_id", "decidim_feedbackable_id", "decidim_feedbackable_type"], name: "index_uniq_on_feedbacks_user_and_feedbackable"
+    t.index ["decidim_user_id"], name: "index_decidim_feedback_feedbacks_on_decidim_user_id"
   end
 
   create_table "decidim_follows", force: :cascade do |t|
