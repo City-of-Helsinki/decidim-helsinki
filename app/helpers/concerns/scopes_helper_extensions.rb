@@ -43,8 +43,7 @@ module ScopesHelperExtensions
       label: false
     )
 
-    # In admin panel we don't have fieldset_wrapper
-    return picker_select unless form.respond_to?(:fieldset_wrapper)
+    return picker_select unless form.respond_to?(:fieldset_wrapper, true)
 
     # It's a private method in the filter form builder
     form.send(:fieldset_wrapper, label, "#{name}_scopes_picker_filter") do
