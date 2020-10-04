@@ -9,5 +9,14 @@ module CategoryExtensions
   included do
     validates_upload :category_image
     mount_uploader :category_image, Decidim::CategoryImageUploader
+
+    # Needed for the uploaders to get the allowed file extensions
+    attr_writer :organization
+
+    # The local @organization variable is set by the passthru validator. If not
+    # set, return the participatory space's organization.
+    def organization
+      @organization || participatory_space&.organization
+    end
   end
 end

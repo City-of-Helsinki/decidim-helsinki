@@ -10,5 +10,8 @@ module AdminCategoryFormExtensions
     attribute :category_image
 
     validates :category_image, passthru: { to: Decidim::Category }
+
+    # Needed for the passthru validator
+    alias_method :organization, :current_organization
   end
 end
