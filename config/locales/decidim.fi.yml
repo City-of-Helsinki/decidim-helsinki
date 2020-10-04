@@ -1,0 +1,12 @@
+fi:
+  decidim:
+    budgets:
+      admin:
+        projects:
+          form:
+            address_help: 'Osoite: käytetään karttapisteen etsimiseen geokoodauksen avulla'
+    components:
+      budgets:
+        settings:
+          global:
+            geocoding_enabled: Geokoodaus käytössä

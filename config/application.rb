@@ -147,6 +147,12 @@ module DecidimHelsinki
       end
     end
 
+    initializer "budgets_component_settings" do
+      Decidim.find_component_manifest(:budgets).settings(:global) do |settings|
+        settings.attribute :geocoding_enabled, type: :boolean
+      end
+    end
+
     initializer "decidim.core.homepage_content_blocks" do
       Decidim.content_blocks.register(:homepage, :process_steps) do |content_block|
         content_block.cell = "helsinki/content_blocks/process_steps"

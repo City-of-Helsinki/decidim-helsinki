@@ -1,0 +1,12 @@
+en:
+  decidim:
+    budgets:
+      admin:
+        projects:
+          form:
+            address_help: 'Address: used by Geocoder to find the location'
+    components:
+      budgets:
+        settings:
+          global:
+            geocoding_enabled: Geocoding enabled
