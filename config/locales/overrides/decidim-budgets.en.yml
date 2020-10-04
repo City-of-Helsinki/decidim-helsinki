@@ -1,0 +1,100 @@
+en:
+  decidim:
+    budgets:
+      actions:
+        edit_projects: Manage projects
+        new: New %{name}
+      admin:
+        budgets:
+          create:
+            invalid: There was a problem creating this budget
+            success: Budget successfully created
+          destroy:
+            invalid: There was a problem deleting this budget
+            success: Budget successfully deleted
+          edit:
+            title: Edit budget
+            update: Update budget
+          index:
+            title: Budgets
+          new:
+            create: Create budget
+            title: New budget
+          update:
+            invalid: There was a problem updating this budget
+            success: Budget successfully updated
+        models:
+          budget:
+            name: Budget
+      admin_log:
+        budget:
+          create: "%{user_name} created the %{resource_name} budget in the %{space_name} space"
+          delete: "%{user_name} deleted the %{resource_name} budget in the %{space_name} space"
+          update: "%{user_name} updated the %{resource_name} budget in the %{space_name} space"
+      budget_information_modal:
+        back_to: Back to %{component_name}
+        close_modal: Close modal
+        continue: Continue
+        more_information: More information
+      budgets_list:
+        cancel_order:
+          more_than_one: delete your vote on %{name} and start over
+          only_one: delete your vote and start over.
+        finished_message: You've finished the voting process. Thanks for participating!
+        highlighted_cta: Vote on %{name}
+        if_change_opinion: If you've changed your mind, you can
+        my_budgets: My budgets
+        voted_on: You've voted on %{links}
+      limit_announcement:
+        cant_vote: You can't vote on this budget. <a href="%{landing_path}">Try on another budget</a>.
+        limit_reached: You have already voted or started to vote in %{links}. To vote on this budget you must <a href="%{landing_path}">delete your vote and start over</a>.
+      models:
+        budget:
+          fields:
+            name: Name
+            projects_count: Projects count
+            total_budget: Total budget
+      order_summary_mailer:
+        order_summary:
+          voted_on_space: You have voted on the %{budget_name} budget for the %{space_name} participatory space.
+          voted_on_space_with_scope: You have voted on the %{budget_name} budget for the %{space_name} participatory space on %{scope_name} (%{scope_type}).
+      projects:
+        budget_confirm:
+          are_you_sure: If you change your mind, you can change your vote later.
+        budget_summary:
+          description_projects_rule: What projects do you think we should allocate budget for? Select %{minimum_number}-%{maximum_number} projects you want and vote with your preferences to define the budget.
+          total_budget: Total budget
+          total_votes: Total votes
+        project:
+          count:
+            one: "%{count} vote"
+            other: "%{count} votes"
+          votes:
+            one: vote
+            other: votes
+          you_voted: You voted
+    components:
+      budgets:
+        settings:
+          global:
+            landing_page_content: Budgets landing page
+            more_information_modal: More information modal
+            vote_rule_selected_projects_enabled: 'Enable rule: Selected projects'
+            vote_selected_projects_minimum: Minimum amount of projects to be selected
+            vote_selected_projects_maximum: Maximum amount of projects to be selected
+            workflow: Workflow
+            workflow_choices:
+              all: 'Vote in all: allows participants to vote in all budgets.'
+              one: 'Vote in one: allows participants to vote in any budget, but only in one.'
+          step:
+            highlighted_heading: Highlighted heading
+            landing_page_content: Budgets landing page
+            list_heading: List heading
+            more_information_modal: More information modal
+    events:
+      budgets:
+        budget_published:
+          email_intro: 'The %{resource_title} budget is now active for %{participatory_space_title}. You can see it from this page:'
+          email_outro: You have received this notification because you are following %{participatory_space_title}. You can stop receiving notifications following the previous link.
+          email_subject: The %{resource_title} budget is now active for %{participatory_space_title}.
+          notification_title: The <a href="%{resource_path}">%{resource_title}</a> budget is now active for %{participatory_space_title}.

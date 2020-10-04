@@ -1,0 +1,100 @@
+sv:
+  decidim:
+    budgets:
+      actions:
+        edit_projects: Hantera projekt
+        new: Nytt %{name}
+      admin:
+        budgets:
+          create:
+            invalid: There was a problem creating this budget
+            success: Budget successfully created
+          destroy:
+            invalid: There was a problem deleting this budget
+            success: Budget successfully deleted
+          edit:
+            title: Edit budget
+            update: Update budget
+          index:
+            title: Budgets
+          new:
+            create: Create budget
+            title: New budget
+          update:
+            invalid: There was a problem updating this budget
+            success: Budget successfully updated
+        models:
+          budget:
+            name: Budget
+      admin_log:
+        budget:
+          create: "%{user_name} created the %{resource_name} budget in the %{space_name} space"
+          delete: "%{user_name} deleted the %{resource_name} budget in the %{space_name} space"
+          update: "%{user_name} updated the %{resource_name} budget in the %{space_name} space"
+      budget_information_modal:
+        back_to: Tillbaka till %{component_name}
+        close_modal: Stäng modal
+        continue: Fortsätta
+        more_information: Mer information
+      budgets_list:
+        cancel_order:
+          more_than_one: ta bort din röst på %{name} och börja om igen
+          only_one: ta bort din röst och börja om igen.
+        finished_message: Du har avslutat omröstningsprocessen. Tack för att du deltog!
+        highlighted_cta: Rösta på %{name}
+        if_change_opinion: Om du ändrade dig kan du
+        my_budgets: Mina budgetar
+        voted_on: Du har röstat på %{links}
+      limit_announcement:
+        cant_vote: Du kan inte rösta om denna budget. <a href="%{landing_path}">Försök med en annan budget</a>.
+        limit_reached: Du har ännu röstat eller börjat rösta i %{links}. För att rösta om denna budget måste du <a href="%{landing_path}">ta bort din röst och börja om igen</a>.
+      models:
+        budget:
+          fields:
+            name: Namn
+            projects_count: Projekt räknas
+            total_budget: Total budget
+      order_summary_mailer:
+        order_summary:
+          voted_on_space: Du har röstat om %{budget_name} budget för %{space_name} deltagarutrymme.
+          voted_on_space_with_scope: Du har röstat om %{budget_name} budget för %{space_name} deltagarutrymme i %{scope_name} (%{scope_type}).
+      projects:
+        budget_confirm:
+          are_you_sure: Om du ändrar dig kan du ändra din röst senare.
+        budget_summary:
+          description_projects_rule: Vilka projekt tycker du att vi borde avsätta budget till? Välj %{minimum_number}-%{maximum_number} projekt som du vill ha och definiera budgeten genom att rösta med dina val.
+          total_budget: Total budget
+          total_votes: Total röster
+        project:
+          count:
+            one: "%{count} röst"
+            other: "%{count} röster"
+          votes:
+            one: röst
+            other: röster
+          you_voted: Du röstade
+    components:
+      budgets:
+        settings:
+          global:
+            landing_page_content: Budgets landing page
+            more_information_modal: More information modal
+            vote_rule_selected_projects_enabled: 'Aktivera regel: Valda projekt'
+            vote_selected_projects_minimum: Minsta antal projekt som ska väljas
+            vote_selected_projects_maximum: Maximum amount of projects to be selected
+            workflow: Workflow
+            workflow_choices:
+              all: 'Vote in all: allows participants to vote in all budgets.'
+              one: 'Vote in one: allows participants to vote in any budget, but only in one.'
+          step:
+            highlighted_heading: Highlighted heading
+            landing_page_content: Budgets landing page
+            list_heading: List heading
+            more_information_modal: More information modal
+    events:
+      budgets:
+        budget_published:
+          email_intro: '%{resource_title} budgeten är nu aktiv för %{participatory_space_title}. Du kan se det från den här sidan:'
+          email_outro: Du har fått detta meddelande eftersom du följer %{participatory_space_title}. Du kan sluta ta emot aviseringar efter föregående länk.
+          email_subject: '%{resource_title} budgeten är nu aktiv för %{participatory_space_title}.'
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> budget är nu aktiv för %{participatory_space_title}.
