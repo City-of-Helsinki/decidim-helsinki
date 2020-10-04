@@ -29,6 +29,10 @@
     </div>
 
     <div class="row column">
+      <%= form.upload :category_icon %>
+    </div>
+
+    <div class="row column">
       <%= form.label :parent_id %>
       <%= select :category, :parent_id, @form.parent_categories.collect { |c| [c.name[current_organization.default_locale], c.id] }, include_blank: true %>
     </div>

@@ -10,6 +10,9 @@ module CategoryExtensions
     validates_upload :category_image
     mount_uploader :category_image, Decidim::CategoryImageUploader
 
+    validates_upload :category_icon
+    mount_uploader :category_icon, Decidim::CategoryIconUploader
+
     # Needed for the uploaders to get the allowed file extensions
     attr_writer :organization
 

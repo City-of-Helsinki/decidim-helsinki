@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_173158) do
+ActiveRecord::Schema.define(version: 2020_10_04_173159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -365,6 +365,7 @@ ActiveRecord::Schema.define(version: 2020_10_04_173158) do
     t.string "color"
     t.integer "weight", default: 0, null: false
     t.string "category_image"
+    t.string "category_icon"
     t.index ["decidim_participatory_space_id", "decidim_participatory_space_type"], name: "index_decidim_categories_on_decidim_participatory_space"
     t.index ["parent_id"], name: "index_decidim_categories_on_parent_id"
   end

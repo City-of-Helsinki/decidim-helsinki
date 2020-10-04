@@ -55,7 +55,8 @@ module Decidim
 
       def uploader_attributes
         {
-          category_image: form.category_image
+          category_image: form.category_image,
+          category_icon: form.category_icon
         }.delete_if { |_k, val| val.is_a?(Decidim::ApplicationUploader) }
       end
     end
