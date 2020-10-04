@@ -2,6 +2,19 @@
   &.border-primary{
     border: 3px solid $primary;
   }
+
+  // Fixes an issue in the notifications view that the notification items are
+  // layed out incorrectly.
+  &.card--widget{
+    .card-data{
+      .card-data__item{
+        .notification-details{
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 
 .card__content{
