@@ -1,6 +1,6 @@
 <%
 if @proposal
-  meta_description = truncate(strip_tags(@proposal.body), length: 100)
+  meta_description = truncate(strip_tags(present(@proposal).body), length: 100)
   if attachment = @proposal.attachments.first
     meta_image = attachment.url
   end
