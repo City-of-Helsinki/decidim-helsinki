@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-divider">
+    <h2 class="card-title"><%= title %></h2>
+  </div>
+
+  <div class="card-section">
+    <div class="row column">
+      <%= form.translated :text_field, :name, autofocus: true %>
+    </div>
+
+    <div class="row column">
+      <%= form.number_field :weight %>
+    </div>
+
+    <div class="row column">
+      <%= form.translated :editor, :description %>
+    </div>
+
+    <div class="row column">
+      <%= form.check_box :has_color, checked: @form.color.present? %>
+    </div>
+
+    <div class="row column">
+      <%= form.color_field :color, value: @form.color, disabled: @form.parent_id.present? %>
+    </div>
+
+    <div class="row column">
+      <%= form.upload :category_image %>
+    </div>
+
+    <div class="row column">
+      <%= form.label :parent_id %>
+      <%= select :category, :parent_id, @form.parent_categories.collect { |c| [c.name[current_organization.default_locale], c.id] }, include_blank: true %>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "decidim/admin/color_field" %>
