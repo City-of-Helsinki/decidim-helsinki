@@ -1,6 +1,6 @@
 <li class="user-nav__link"><%= link_to t(".profile"), decidim.account_path %></li>
 <% unless current_user.managed? %>
-  <li class="user-nav__link"><%= link_to t(".public_profile"), decidim.profile_following_path(current_user.nickname) %></li>
+  <li class="user-nav__link"><%= link_to t(".public_profile"), decidim.profile_timeline_path(current_user.nickname) %></li>
 <% end %>
 <li class="user-nav__link">
   <%= link_to decidim.notifications_path do %>
