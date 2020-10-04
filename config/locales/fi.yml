@@ -128,6 +128,7 @@ fi:
       user_menu:
         conversations: Viestit
         favorites: Suosikit
+        notifications: Ilmoitukset
         profile: Omat tiedot
         profile_nav: Profiili
         public_profile: Oma toiminta
