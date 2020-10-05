@@ -27,7 +27,7 @@ class MoveProposalsFieldsToI18n < ActiveRecord::Migration[5.2]
           locale => proposal.body
         }
 
-        proposal.save!
+        proposal.save(validate: false)
       end
     end
 
