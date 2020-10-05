@@ -15,6 +15,24 @@
       }
     }
   }
+
+  .card__category{
+    position: relative;
+
+    .card__category__icon{
+      position: absolute;
+      display: block;
+
+      img{
+        width: 20px;
+      }
+    }
+
+    .card__category__name{
+      display: block;
+      margin-left: 35px;
+    }
+  }
 }
 
 .card__content{
