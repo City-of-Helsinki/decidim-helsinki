@@ -1,4 +1,11 @@
 fi:
+  decidim:
+    components:
+      budgets:
+        settings:
+          global:
+            workflow_choices:
+              ruuti_one: 'Ruuti äänestä yhdessä: sallii osallistujan äänestävän omalla Ruuti-alueellaan.'
   helsinki:
     areas:
       choose_your_area: Valitse alueesi kartalta

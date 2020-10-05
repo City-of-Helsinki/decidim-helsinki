@@ -153,6 +153,10 @@ module DecidimHelsinki
       end
     end
 
+    initializer "budget_workflows" do
+      Decidim::Budgets.workflows[:ruuti_one] = Helsinki::Budgets::Workflows::RuutiOne
+    end
+
     initializer "decidim.core.homepage_content_blocks" do
       Decidim.content_blocks.register(:homepage, :process_steps) do |content_block|
         content_block.cell = "helsinki/content_blocks/process_steps"

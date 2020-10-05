@@ -1,4 +1,11 @@
 en:
+  decidim:
+    components:
+      budgets:
+        settings:
+          global:
+            workflow_choices:
+              ruuti_one: 'Ruuti vote in one: allows participants to vote in the budget of their Ruuti area.'
   helsinki:
     areas:
       choose_your_area: Choose your area from the map
