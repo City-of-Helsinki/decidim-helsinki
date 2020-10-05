@@ -138,6 +138,7 @@ module Helsinki
       "03116" => { name: "Helsingin Juutalainen Yhteiskoulu", type: 11, postal_code: "00100", voting_unit: 6 },
       "03251" => { name: "Keinutien ala-asteen koulu", type: 11, postal_code: "00940", voting_unit: 3 },
       "03252" => { name: "Pihlajiston ala-asteen koulu", type: 11, postal_code: "00710", voting_unit: 15 },
+      "03279" => { name: "Sophie Mannerheimin koulu", type: 11, postal_code: "00260", voting_unit: 6 },
       "03289" => { name: "Malminkartanon ala-asteen koulu", type: 11, postal_code: "00410", voting_unit: 8 },
       "03295" => { name: "Maatullin ala-asteen koulu", type: 11, postal_code: "00750", voting_unit: 14 },
       "03311" => { name: "Suutarilan ala-asteen koulu", type: 11, postal_code: "00740", voting_unit: 14 },
