@@ -33,20 +33,24 @@ module Decidim
       attr_reader :form
 
       def create_category
-        Category.create!(
-          name: form.name,
-          weight: form.weight,
-          description: form.description,
-          parent_id: form.parent_id,
-          color: category_color,
-          participatory_space: @participatory_space
-        ).merge(uploader_attributes)
+        Category.create!(attributes)
       end
 
       def category_color
         return nil unless form.has_color
 
         form.color
+      end
+
+      def attributes
+        {
+          name: form.name,
+          weight: form.weight,
+          description: form.description,
+          parent_id: form.parent_id,
+          color: category_color,
+          participatory_space: @participatory_space
+        }.merge(uploader_attributes)
       end
 
       def uploader_attributes
