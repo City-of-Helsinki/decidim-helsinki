@@ -7,7 +7,11 @@
     </div>
   <% else %>
     <div class="budget-list__data__number budget-list__number show-for-medium">
-      <%= budget_to_currency(model.budget_amount) %>
+      <% if model.budget_amount > 1 %>
+        <%= budget_to_currency(model.budget_amount) %>
+      <% else %>
+        -
+      <% end %>
     </div>
 
     <div class="budget-list__data__votes budget-list__data__votes--activevoting">
