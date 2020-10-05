@@ -7,11 +7,19 @@ class FixProposalsDataToEnsureTitleAndBodyAreHashes < ActiveRecord::Migration[5.
 
     PaperTrail.request(enabled: false) do
       Decidim::Proposals::Proposal.find_each do |proposal|
+        next unless proposal.component
+        next unless proposal.component.participatory_space
         next if proposal.title.is_a?(Hash) && proposal.body.is_a?(Hash)
 
         author = proposal.coauthorships.first.author
 
-        locale = author.try(:locale).presence || author.try(:default_locale).presence || author.try(:organization).try(:default_locale).presence
+        locale = if author
+                   author.try(:locale).presence || author.try(:default_locale).presence || author.try(:organization).try(:default_locale).presence
+                 elsif proposal.component && proposal.component.participatory_space
+                   proposal.component.participatory_space.organization.default_locale
+                 else
+                   "fi"
+                 end
 
         proposal.title = {
           locale => proposal.title
