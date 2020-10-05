@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="columns">
+    <% if highlighted? || voted? %>
+      <div class="section">
+        <%= render :highlighted %>
+        <%= render :voted %>
+      </div>
+    <% end %>
+
+    <%= render :card_list %>
+  </div>
+</div>

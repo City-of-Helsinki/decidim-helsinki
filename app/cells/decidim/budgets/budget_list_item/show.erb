@@ -1,0 +1,42 @@
+<div class="<%= card_class %>">
+  <div class="card--list__text">
+    <h3 class="card--list__heading">
+      <% if voted? %>
+        <span class="button tiny success card--list__check card--list__check--disabled">
+          <%= icon "check", class: "icon--small", role: "img" %>
+        </span>
+      <% elsif progress? && can_vote? %>
+        <span class="button tiny hollow secondary card--list__check card--list__check--disabled">
+          <%= icon "bookmark", class: "icon--small", role: "img" %>
+        </span>
+      <% end %>
+
+      <%= link_to budget_path(budget), class: "card__link" do %>
+        <%= translated_attribute(title) %>
+        <%= icon "chevron-right", aria_hidden: true %>
+      <% end %>
+    </h3>
+
+    <div class="card-list__description">
+      <span class="mini-title">
+        <strong class="mini-title__strong mini-title__strong--highlight">
+          <%= budget_to_currency(total_budget) %>
+        </strong>
+      </span>
+
+      <% if description.presence %>
+        <%= translated_attribute(description) %>
+      <% end %>
+    </div>
+  </div>
+  <div class="card--list__data">
+    <%= link_to budget_path(budget), class: "button primary hollow card__button" do %>
+      <% if can_vote? %>
+        <%= t ".vote" %>
+      <% else %>
+        <%= t ".show" %>
+      <% end %>
+      <%= icon "chevron-right", aria_hidden: true %>
+    <% end %>
+  </div>
+</div>

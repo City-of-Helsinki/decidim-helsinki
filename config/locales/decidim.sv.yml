@@ -5,6 +5,16 @@ en:
         projects:
           form:
             address_help: 'Adress: som används av Geocoder för att hitta platsen'
+      budget_list_item:
+        budget: Budget
+        show: Visa
+        vote: Rösta
+      project_list_item:
+        more_info: Läs mer om denna plan
+        more_info_with_title: Läs mer o %{title}
+      projects:
+        index:
+          back_to_budgets: Visa alla budgetar
     components:
       budgets:
         settings:

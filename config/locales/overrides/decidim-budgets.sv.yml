@@ -72,7 +72,7 @@ sv:
           votes:
             one: röst
             other: röster
-          you_voted: Du röstade
+          you_voted: Du röstade detta
     components:
       budgets:
         settings:

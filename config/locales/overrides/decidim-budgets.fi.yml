@@ -71,8 +71,8 @@ fi:
             other: "%{count} ääntä"
           votes:
             one: ääni
-            other: äänet
-          you_voted: Äänestit
+            other: ääntä
+          you_voted: Äänestit tätä
     components:
       budgets:
         settings:

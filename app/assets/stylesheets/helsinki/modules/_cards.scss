@@ -106,3 +106,126 @@
     }
   }
 }
+
+.card--list.card--list--budgets{
+  display: flex;
+  flex-direction: column;
+  border: 0;
+
+  .card--list__item{
+    flex-direction: column;
+    border: $border;
+    border-radius: $card-border-radius;
+    margin-top: 1rem;
+    padding-left: 0;
+
+    @include breakpoint(medium){
+      flex-direction: row;
+    }
+
+    &:first-child{
+      margin-top: 0;
+    }
+
+    .card--list__data{
+      flex-basis: 30%;
+
+      @include breakpoint(large){
+        flex-basis: 20%;
+      }
+    }
+
+    .card__button{
+      font-size: 1rem;
+    }
+  }
+
+  .card--list__text{
+    flex-direction: column;
+    place-items: stretch;
+    padding-left: $card-padding-small;
+    width: 100%;
+
+    @include breakpoint(medium){
+      padding-left: $card-padding;
+      width: auto;
+    }
+
+    .card--list__heading{
+      .card--list__check{
+        display: inline-block;
+        top: -2px;
+      }
+    }
+
+    .card-list__description{
+      p{
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.card.budget-summary{
+  .budget-summary__progressbox{
+    .budget-progress__meter{
+      .progress-meter-text--right{
+        left: 0;
+
+        @include breakpoint(medium){
+          left: auto;
+        }
+      }
+    }
+  }
+}
+
+// This is the list of budgeting projects
+.budget-list{
+  .card-list__description{
+    margin-bottom: 0;
+  }
+
+  .budget-list__item{
+    border-bottom: $border;
+    flex-direction: column;
+    margin-bottom: 2rem;
+
+    @include breakpoint(medium){
+      flex-direction: row;
+    }
+  }
+
+  .budget-list__text{
+    // Without this, some of the items could be unclicable in mobile.
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .budget-list__data{
+    flex-direction: column;
+
+    @include breakpoint(medium){
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .budget-list__data__votes{
+      &.budget-list__data__votes--activevoting{
+        flex-grow: 0;
+        margin-bottom: 1rem;
+      }
+
+      > .project-votes,
+      > .text-success{
+        display: block;
+      }
+
+      > .text-success{
+        margin-top: 1rem;
+      }
+    }
+  }
+}

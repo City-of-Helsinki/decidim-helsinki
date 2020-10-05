@@ -289,6 +289,18 @@ module DecidimHelsinki
         Decidim::SanitizeHelper
       )
       Decidim::ContentBlocks::HeroCell.send(:include, KoroHelper)
+      Decidim::Budgets::BudgetListItemCell.send(
+        :include,
+        BudgetListItemCellExtensions
+      )
+      Decidim::Budgets::BudgetInformationModalCell.send(
+        :include,
+        BudgetInformationModalExtensions
+      )
+      Decidim::Budgets::ProjectListItemCell.send(
+        :include,
+        ProjectListItemCellExtensions
+      )
 
       # Form extensions
       Decidim::Admin::CategoryForm.send(:include, AdminCategoryFormExtensions)

@@ -5,6 +5,16 @@ fi:
         projects:
           form:
             address_help: 'Osoite: käytetään karttapisteen etsimiseen geokoodauksen avulla'
+      budget_list_item:
+        budget: Budjetti
+        show: Näytä
+        vote: Äänestä
+      project_list_item:
+        more_info: Tutustu tähän suunnitelmaan
+        more_info_with_title: Tutustu suunnitelmaan %{title}
+      projects:
+        index:
+          back_to_budgets: Näytä kaikki budjetit
     components:
       budgets:
         settings:
