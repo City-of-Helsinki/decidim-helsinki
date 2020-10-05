@@ -1,0 +1,11 @@
+en:
+  decidim:
+    comments:
+      comments:
+        create:
+          error: There was a problem creating the comment.
+      view: View
+      comments:
+        title:
+          one: "%{count} comment"
+          other: "%{count} comments"

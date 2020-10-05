@@ -133,6 +133,24 @@ module DecidimHelsinki
       end
     end
 
+    # Needed until this PR is merged:
+    # https://github.com/decidim/decidim/pull/6498
+    #
+    # Remember to also remove the comments routes, controllers, cells, views
+    # and the helper + the flag modal cell unless customizations are needed.
+    initializer "comments" do
+      # This needs to be renamed in order to avoid conflict.
+      # initializer "decidim_comments.register_resources"
+      Decidim.resource_registry.manifests.delete_if do |manifest|
+        manifest.name == :comment
+      end
+      Decidim.register_resource(:comment) do |resource|
+        resource.model_class_name = "Decidim::Comments::Comment"
+        resource.card = "decidim/comments/comment_card"
+        resource.searchable = true
+      end
+    end
+
     initializer "devise_overrides" do
       # Devise controller overrides to add some extra functionality into them.
       # Currently this is only for debugging purposes.

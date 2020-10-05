@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
+# Remove after the comments refactor is merged to the core.
+Decidim::Comments::Engine.routes.prepend do
+  resources :comments, only: [:index, :create] do
+    resources :votes, only: [:create]
+  end
+end
+
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount Decidim::Comments::Engine, at: "/", as: "decidim_comments"
 
   scope module: "helsinki" do
     devise_scope :user do
