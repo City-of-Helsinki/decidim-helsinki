@@ -18,11 +18,13 @@
     </h3>
 
     <div class="card-list__description">
-      <span class="mini-title">
-        <strong class="mini-title__strong mini-title__strong--highlight">
-          <%= budget_to_currency(total_budget) %>
-        </strong>
-      </span>
+      <% if total_budget > 0 %>
+        <span class="mini-title">
+          <strong class="mini-title__strong mini-title__strong--highlight">
+            <%= budget_to_currency(total_budget) %>
+          </strong>
+        </span>
+      <% end %>
 
       <% if description.presence %>
         <%= translated_attribute(description) %>
