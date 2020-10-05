@@ -10,6 +10,9 @@ class MoveProposalsFieldsToI18n < ActiveRecord::Migration[5.2]
 
     PaperTrail.request(enabled: false) do
       Decidim::Proposals::Proposal.find_each do |proposal|
+        next unless proposal.component
+        next unless proposal.component.participatory_space
+
         author = proposal.coauthorships.first&.author
 
         locale = if author
