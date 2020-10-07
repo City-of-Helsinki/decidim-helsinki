@@ -58,7 +58,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-feedback.git
-  revision: 1f0c5ae35e18225c24b023df6c5d78ce36603fd5
+  revision: 86779ac3a6bc2ba67355a79d7f04489ec4d80cbd
   branch: master
   specs:
     decidim-feedback (0.23.0)
