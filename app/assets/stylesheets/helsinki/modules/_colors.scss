@@ -67,6 +67,10 @@ $colors: (
     color: $secondary;
   }
 
+  a:not(.button){
+    color: $white;
+  }
+
   a,
   .link,
   .button{
