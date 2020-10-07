@@ -1,4 +1,4 @@
-en:
+sv:
   decidim:
     budgets:
       admin:
@@ -10,11 +10,11 @@ en:
         show: Visa
         vote: Rösta
       project_list_item:
-        more_info: Läs mer om denna plan
-        more_info_with_title: Läs mer o %{title}
+        more_info: Bekanta dig med planen
+        more_info_with_title: Bekanta dig med planen %{title}
       projects:
         index:
-          back_to_budgets: Visa alla budgetar
+          back_to_budgets: Visa alla budgeter
     components:
       budgets:
         settings:
