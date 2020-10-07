@@ -1,3 +1,5 @@
+$favorite-color: $hel-error;
+
 .favorite-button{
   position: relative;
   top: 4px;
@@ -10,7 +12,7 @@
     position: relative;
 
     .heart-icon{
-      color: $hel-suomenlinna;
+      color: $favorite-color;
 
       svg{
         fill: currentColor;
@@ -24,11 +26,11 @@
     right: -8px;
     width: 30px;
     height: 30px;
-    border: 3px solid $hel-suomenlinna;
+    border: 3px solid $favorite-color;
     line-height: 24px;
     border-radius: 50%;
     font-size: 2rem;
     background: $hel-white;
-    color: $hel-suomenlinna;
+    color: $favorite-color;
   }
 }
