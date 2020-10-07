@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_173159) do
+ActiveRecord::Schema.define(version: 2020_10_06_121114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -556,6 +556,14 @@ ActiveRecord::Schema.define(version: 2020_10_04_173159) do
     t.index ["decidim_organization_id"], name: "index_decidim_feedback_feedbacks_on_decidim_organization_id"
     t.index ["decidim_user_id", "decidim_feedbackable_id", "decidim_feedbackable_type"], name: "index_uniq_on_feedbacks_user_and_feedbackable"
     t.index ["decidim_user_id"], name: "index_decidim_feedback_feedbacks_on_decidim_user_id"
+  end
+
+  create_table "decidim_feedback_recipient_groups", force: :cascade do |t|
+    t.integer "decidim_organization_id"
+    t.jsonb "name"
+    t.text "recipient_emails", default: [], array: true
+    t.jsonb "metadata_conditions", default: {}
+    t.index ["decidim_organization_id"], name: "index_decidim_feedback_recipient_groups_on_organization_id"
   end
 
   create_table "decidim_follows", force: :cascade do |t|
