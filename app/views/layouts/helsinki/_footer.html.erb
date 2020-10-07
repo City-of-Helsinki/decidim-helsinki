@@ -12,7 +12,11 @@ feedback_subject = URI.encode("Yhteydenotto: #{current_organization.name}").gsub
     <div class="row">
       <div class="medium-4 large-2 column">
         <%= link_to current_organization.official_url, class: "main-footer__badge" do %>
-          <%= image_tag "helsinki/helsinki-logo-bus.svg", alt: "Helsinki" %>
+          <% if current_locale == "sv" %>
+            <%= image_tag "helsinki/helsinki-logo-bus-sv.svg", alt: "Helsingfors", class: "logo-sv" %>
+          <% else %>
+            <%= image_tag "helsinki/helsinki-logo-bus.svg", alt: "Helsinki", class: "logo-default" %>
+          <% end %>
         <% end %>
       </div>
       <div class="medium-4 large-3 column">

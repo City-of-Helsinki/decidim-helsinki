@@ -556,11 +556,16 @@ $menuitem-padding: 1em 2em;
   }
 
   img{
+    position: relative;
     display: block;
     max-height: 50px;
 
     @include breakpoint(medium){
       max-height: 75px;
+    }
+
+    &.logo-sv{
+      top: 7px;
     }
   }
 }
