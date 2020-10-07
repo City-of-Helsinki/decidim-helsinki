@@ -113,6 +113,10 @@ $colors: (
     .h6{
       color: $hel-black;
     }
+
+    a:not(.button){
+      color: $hel-black;
+    }
   }
 
   .bg-secondary{
