@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-accountability_simple.git
-  revision: 9462c3e7b8e825f9b56d1ee786ea11959f100d7a
+  revision: e1bfcba64a3c81e67406caaf4afd37b4525c3c17
   branch: develop
   specs:
     decidim-accountability_simple (0.23.0)
@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-favorites.git
-  revision: e248f1bf2bdf6e7e5484f1d9ad22ba584c4fe577
+  revision: bc5595671458a2d9ea3b67aa3813256e303ae4f2
   branch: master
   specs:
     decidim-favorites (0.23.0)
@@ -67,7 +67,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: ffc59d111843e1de9d0082faf9413cc2d4759791
+  revision: 2ec760ea99aa407addc7044b5f2fc7e174ceaa40
   branch: master
   specs:
     decidim-ideas (0.23.0)
