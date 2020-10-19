@@ -16,5 +16,6 @@ Rails.application.config.assets.paths << Rails.root.join("node_modules")
 Rails.application.config.assets.precompile += %w(
   show-internal-auth.js
   decidim/admin/color_field.js
+  decidim/map/provider/helsinki.js
   decidim/geocoding/provider/helsinki.js
 )
