@@ -13,7 +13,7 @@ module ParticipatoryProcessHelperExtensions
     end
 
     if current_component && step.cta_path.present?
-      cls << "phases-list-item-active" if step.cta_path =~ %r{^f/#{current_component.id}[^0-9]*}
+      cls << "phases-list-item-active" if step.cta_path =~ %r{^f/#{current_component.id}(/.*)?$}
     elsif current_participatory_space.blank?
       # When displayed outside of a participatory space, the active state is
       # shown for the active step instead of the active page.
@@ -27,13 +27,22 @@ module ParticipatoryProcessHelperExtensions
 
   def process_step_link(step)
     if step.cta_path.present?
+      current_step = begin
+        if current_component
+          step.cta_path =~ %r{^f/#{current_component.id}(/.*)?$}
+        else
+          false
+        end
+      end
+
       step_url = begin
-        base_url, params = decidim_participatory_processes.participatory_process_path(
-          step.participatory_process
+        base_url, current_params = decidim_participatory_processes.participatory_process_path(
+          step.participatory_process,
+          current_step ? filter_link_params : nil
         ).split("?")
 
-        if params.present?
-          [base_url, "/", step.cta_path, "?", params].join("")
+        if current_params.present?
+          [base_url, "/", step.cta_path, "?", current_params].join("")
         else
           [base_url, "/", step.cta_path].join("")
         end
