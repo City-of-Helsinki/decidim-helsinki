@@ -178,7 +178,7 @@ wrapper_class = Rails.application.config.wrapper_class
 
           <%= display_flash_messages %>
 
-          <%= koro("pulse", flip: true, position: "bottom") if display_header_koro? %>
+          <%= koro("pulse", flip: true) if display_header_koro? %>
         </div>
 
         <main id="content">
