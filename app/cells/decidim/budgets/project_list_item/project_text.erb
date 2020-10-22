@@ -7,10 +7,12 @@
     <% end %>
 
     <p class="card__text card-list__description">
-      <span class="show-for-small hide-for-medium">
-        <strong><%= budget_to_currency(model.budget_amount) %></strong>
-        <br><br>
-      </span>
+      <% if model.budget_amount > 1 %>
+        <span class="show-for-small hide-for-medium">
+          <strong><%= budget_to_currency(model.budget_amount) %></strong>
+          <br><br>
+        </span>
+      <% end %>
 
       <%= resource_description_teaser %>
       <br><br>
