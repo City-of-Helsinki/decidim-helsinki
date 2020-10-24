@@ -5,6 +5,8 @@ module Decidim
     # Controller that manages the comments for a commentable object.
     #
     class CommentsController < Decidim::Comments::ApplicationController
+      include Decidim::ResourceHelper
+
       before_action :authenticate_user!, only: [:create]
       before_action :set_commentable
       before_action :ensure_commentable!
@@ -26,6 +28,9 @@ module Decidim
               render :index
             end
           end
+
+          # This makes sure bots are not causing unnecessary log entries.
+          format.html { redirect_to resource_locator(commentable).path }
         end
       end
 
