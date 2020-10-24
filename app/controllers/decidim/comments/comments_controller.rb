@@ -18,7 +18,15 @@ module Decidim
           after: params.fetch(:after, 0).to_i
         )
 
-        render :reload if reload?
+        respond_to do |format|
+          format.js do
+            if reload?
+              render :reload
+            else
+              render :index
+            end
+          end
+        end
       end
 
       def create
@@ -31,12 +39,16 @@ module Decidim
         Decidim::Comments::CreateComment.call(form, current_user) do
           on(:ok) do |comment|
             handle_success(comment)
-            render :create
+            respond_to do |format|
+              format.js { render :create }
+            end
           end
 
           on(:invalid) do
             @error = t("create.error", scope: "decidim.comments.comments")
-            render :error
+            respond_to do |format|
+              format.js { render :error }
+            end
           end
         end
       end
