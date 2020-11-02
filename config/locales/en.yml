@@ -125,6 +125,10 @@ en:
         navigation: Menu
         sign_in: Sign in
         subtitle: 2020-2021
+      participatory_processes:
+        index:
+          active_processes: Ongoing now
+          past_processes: Past rounds
       process_header:
         unfold: Unfold
       user_menu:

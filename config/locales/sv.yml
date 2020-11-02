@@ -125,6 +125,10 @@ sv:
         navigation: Menu
         sign_in: Logga in
         subtitle: 2020-2021
+      participatory_processes:
+        index:
+          active_processes: Pågår nu
+          past_processes: Tidigare omgångar
       process_header:
         unfold: Öppna
       user_menu:
