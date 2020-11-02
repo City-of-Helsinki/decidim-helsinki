@@ -22,6 +22,10 @@ module AdminHelpSectionsExtensions
       OpenStruct.new(
         id: "help_index",
         content: Decidim::ContextualHelpSection.find_content(current_organization, "help_index")
+      ),
+      OpenStruct.new(
+        id: "footer_text",
+        content: Decidim::ContextualHelpSection.find_content(current_organization, "footer_text")
       )
     ]
   end

@@ -69,6 +69,8 @@ en:
         filters:
           category_prompt: Choose category
     help_sections:
+      footer_text:
+        name: Footer text
       help_index:
         name: Help section front page
     pages:

@@ -69,6 +69,8 @@ sv:
         filters:
           category_prompt: Välj ett ämne
     help_sections:
+      footer_text:
+        name: Sidfotstext
       help_index:
         name: Hjälpavsnittets första sida
     pages:

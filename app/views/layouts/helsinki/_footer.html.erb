@@ -1,5 +1,11 @@
 <%
 feedback_subject = URI.encode("Yhteydenotto: #{current_organization.name}").gsub(/,/, "%2C")
+
+footer_text_section = Decidim::ContextualHelpSection.find_content(
+  current_organization,
+  "footer_text"
+)
+footer_text = translated_attribute(footer_text_section)
 %>
 
 <div class="footer-wrapper">
@@ -69,13 +75,17 @@ feedback_subject = URI.encode("Yhteydenotto: #{current_organization.name}").gsub
       <div class="medium-12 large-4 column">
         <% if display_common_elements? %>
           <div class="main__footer__processes">
-            <p>
-              <%= t("layouts.footer.processes_info") %>
-              <br>
-              <%= link_to decidim_participatory_processes.participatory_processes_path do %>
-                <%= t("layouts.footer.processes_show") %>&nbsp;&raquo;
-              <% end %>
-            </p>
+            <% if footer_text.present? %>
+              <%== footer_text %>
+            <% else %>
+              <p>
+                <%= t("layouts.footer.processes_info") %>
+                <br>
+                <%= link_to decidim_participatory_processes.participatory_processes_path do %>
+                  <%= t("layouts.footer.processes_show") %>&nbsp;&raquo;
+                <% end %>
+              </p>
+            <% end %>
           </div>
         <% end %>
       </div>

@@ -69,6 +69,8 @@ fi:
         filters:
           category_prompt: Valitse aihepiiri
     help_sections:
+      footer_text:
+        name: Alaosion teksti
       help_index:
         name: Ohjeosion etusivu
     pages:
