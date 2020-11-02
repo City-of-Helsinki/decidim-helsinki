@@ -7,8 +7,9 @@ edit_link(
   :process_list
 )
 
-organization_participatory_processes = Decidim::ParticipatoryProcesses::OrganizationParticipatoryProcesses.new(
-  current_organization
+organization_participatory_processes = Decidim::ParticipatoryProcesses::OrganizationPublishedParticipatoryProcesses.new(
+  current_organization,
+  current_user
 ).query
 
 active_processes = organization_participatory_processes.active.or(
