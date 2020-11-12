@@ -1,420 +1,264 @@
 # frozen_string_literal: true
 
 require "rubyXL"
+require "rubyXL/convenience_methods"
 
 # Used to anonymize certain details of the voting results so that the individual
 # voters cannot be tracked. This is always different for each run.
 ANONYMIZER_SALT = SecureRandom.hex(64)
 
 namespace :hkiresult do
-  # Export budgeting results to XLSX.
-  # Usage: rake hkiresult:generate
+  # Export budgeting votes.
   #
-  # This has been built as a one time run script for the specific reporting
-  # needs of the participatory budgeting results. This does not scale, is not
-  # super efficient and could use a lot of refactoring. It was only built to be
-  # run once and left here for future reference.
-  #
-  # The above will generate the following XLSX files:
-  # - tmp/omastadi-votes-suomifi.xlsx - OmaStadi individual Suomi.fi votes
-  # - tmp/omastadi-votes-mpassid.xlsx - OmaStadi individual MPASSid votes
-  # - tmp/omastadi-votes-offline.xlsx - OmaStadi individual offline votes
-  # - tmp/omastadi-totals.xlsx - OmaStadi total votes
-  # - tmp/ruuti-votes-suomifi.xlsx - Ruuti individual Suomi.fi votes
-  # - tmp/ruuti-votes-mpassid.xlsx - Ruuti individual MPASSid votes
-  # - tmp/ruuti-votes-offline.xlsx - Ruuti individual offline votes
-  # - tmp/ruuti-totals.xlsx - Ruuti total votes
-  #
-  # Each spreadsheet contains an individual worksheet for each process.
-  # The totals spreadheet also contains a general totals sheet as the first
-  # sheet.
-  desc "Export budgeting voting results (2019)."
-  task generate: [:environment] do
-    export_components(
-      {
-        104 => "OmaStadi Kaakkoinen",
-        112 => "OmaStadi Läntinen",
-        109 => "OmaStadi Eteläinen",
-        107 => "OmaStadi Koko Helsinki",
-        106 => "OmaStadi Koillinen",
-        105 => "OmaStadi Itäinen",
-        110 => "OmaStadi Pohjoinen",
-        108 => "OmaStadi Keskinen"
-      },
-      "omastadi"
-    )
+  # Usage:
+  #   bundle exec rake hkiresult:export_budget_votes[1,tmp/budget_votes.xlsx]
+  desc "Export budgeting votes to an Excel file from a component."
+  task :export_budget_votes, [:component_id, :filename] => [:environment] do |_t, args|
+    component_id = args[:component_id]
+    filename = args[:filename]
 
-    export_components(
-      {
-        118 => "Ruuti Haaga",
-        126 => "Ruuti Viikki",
-        122 => "Ruuti Pasila",
-        114 => "Ruuti Kannelmäki",
-        138 => "Ruuti Ympäristötoiminta",
-        124 => "Ruuti Maunula",
-        140 => "Ruuti Vuosaari",
-        132 => "Ruuti Herttoniemi",
-        128 => "Ruuti Malmi",
-        134 => "Ruuti Itäkeskus",
-        136 => "Ruuti Kontula",
-        144 => "Ruuti Munkkiniemi",
-        130 => "Ruuti Koillinen",
-        142 => "Ruuti Eteläinen",
-        120 => "Ruuti Svenska ungdomsarbetsenhet"
-      },
-      "ruuti"
-    )
+    export_component(component_id, filename)
   end
 
-  desc "Export budgeting voting projects (2019)."
-  task projects: [:environment] do
-    export_projects(
-      {
-        104 => "OmaStadi Kaakkoinen",
-        112 => "OmaStadi Läntinen",
-        109 => "OmaStadi Eteläinen",
-        107 => "OmaStadi Koko Helsinki",
-        106 => "OmaStadi Koillinen",
-        105 => "OmaStadi Itäinen",
-        110 => "OmaStadi Pohjoinen",
-        108 => "OmaStadi Keskinen"
-      },
-      "omastadi"
-    )
+  private
 
-    export_projects(
-      {
-        118 => "Ruuti Haaga",
-        126 => "Ruuti Viikki",
-        122 => "Ruuti Pasila",
-        114 => "Ruuti Kannelmäki",
-        138 => "Ruuti Ympäristötoiminta",
-        124 => "Ruuti Maunula",
-        140 => "Ruuti Vuosaari",
-        132 => "Ruuti Herttoniemi",
-        128 => "Ruuti Malmi",
-        134 => "Ruuti Itäkeskus",
-        136 => "Ruuti Kontula",
-        144 => "Ruuti Munkkiniemi",
-        130 => "Ruuti Koillinen",
-        142 => "Ruuti Eteläinen",
-        120 => "Ruuti Svenska ungdomsarbetsenhet"
-      },
-      "ruuti"
-    )
+  def export_component(component_id, filename)
+    c = Decidim::Component.find_by(id: component_id)
+    if c.nil? || c.manifest_name != "budgets"
+      puts "Invalid component provided: #{component_id}."
+      return
+    end
+    unless filename
+      puts "Please provide an export file path."
+      return
+    end
+    if File.exist?(filename)
+      puts "File already exists at: #{filename}"
+      return
+    end
+
+    # Go through all votes in the component
+    budgets = {}
+    Decidim::Budgets::Budget.where(component: c).each do |budget|
+      votes = []
+      project_votes = {}
+
+      Decidim::Budgets::Order.finished.where(budget: budget).each do |order|
+        total = 0
+        project_ids = []
+        order.projects.each do |p|
+          total += p.budget_amount
+          project_ids << p.id
+
+          project_votes[p.id] ||= 0
+          project_votes[p.id] += 1
+        end
+
+        metadata = user_metadata(order.user)
+        impersonated = Decidim::ImpersonationLog.where(user: order.user).any?
+
+        user_hash = Digest::MD5.hexdigest("#{ANONYMIZER_SALT}:#{order.user.id}")
+        order_hash = Digest::MD5.hexdigest("#{ANONYMIZER_SALT}:#{order.id}")
+
+        votes << {
+          user_hash: user_hash,
+          impersonated_user: impersonated ? 1 : 0,
+          order_hash: order_hash,
+          voted_project_ids: project_ids.join(","),
+          voted_projects_count: order.projects.count,
+          voted_amount: total,
+          identity: metadata[:identity],
+          postal_code: metadata[:postal_code],
+          age: metadata[:age].to_s,
+          school_code: metadata[:school_code],
+          school_name: metadata[:school_name],
+          school_ruuti_unit: metadata[:school_ruuti_unit],
+          school_class: metadata[:school_class],
+          school_class_level: metadata[:school_class_level],
+          created_at: order.created_at,
+          checked_out_at: order.checked_out_at
+        }
+      end
+
+      projects = project_votes.map do |project_id, pvotes|
+        project = Decidim::Budgets::Project.find(project_id)
+        title = project.title.dig("fi") || project.title.dig("en")
+
+        {
+          id: project.id,
+          title: title,
+          budget: project.budget_amount,
+          votes: pvotes
+        }
+      end
+
+      budgets["#{budget.title["fi"]} - Votes"] = votes
+      budgets["#{budget.title["fi"]} - Projects"] = projects
+    end
+
+    write_excel(budgets, filename)
   end
 
-  def export_components(components, file_prefix)
-    target_path = Rails.root.join("tmp")
-
-    suomifi_book = RubyXL::Workbook.new
-    mpassid_book = RubyXL::Workbook.new
-    offline_book = RubyXL::Workbook.new
-
-    # Clear the books
-    suomifi_book.worksheets.delete_at(0)
-    mpassid_book.worksheets.delete_at(0)
-    offline_book.worksheets.delete_at(0)
-
-    totals_book = RubyXL::Workbook.new
-    totals_sheet = totals_book.worksheets[0]
-    totals_sheet.sheet_name = "Total"
-
-    voter_ids = []
-    suomifi_voter_ids = []
-    mpassid_voter_ids = []
-    offline_voter_ids = []
-    orders_count = 0
-    order_items_count = 0
-
+  def user_metadata(user)
     auth_names = %w(
       suomifi_eid
       mpassid_nids
       helsinki_documents_authorization_handler
     )
-    if file_prefix == "ruuti"
-      auth_names = %w(
-        mpassid_nids
-        suomifi_eid
-        helsinki_documents_authorization_handler
-      )
+    auth_name = auth_names.detect do |an|
+      Decidim::Authorization.where(user: user, name: an).count.positive?
     end
-    components.each do |id, name|
-      component_voter_ids = []
-      component_suomifi_voter_ids = []
-      component_mpassid_voter_ids = []
-      component_offline_voter_ids = []
-      component_orders_count = 0
-      component_order_items_count = 0
 
-      suomifi_sheet = suomifi_book.add_worksheet(name)
-      mpassid_sheet = mpassid_book.add_worksheet(name)
-      offline_sheet = offline_book.add_worksheet(name)
-      ctotals_sheet = totals_book.add_worksheet(name)
+    authorization = nil
+    if auth_name
+      authorization = Decidim::Authorization.where(
+        user: user,
+        name: auth_name
+      ).order(:created_at).last
+    end
+    unless authorization
+      return {
+        identity: nil,
+        gender: nil,
+        date_of_birth: nil,
+        age: nil,
+        postal_code: nil,
+        school_code: nil,
+        school_name: nil,
+        school_ruuti_unit: nil,
+        school_role: nil,
+        school_class: nil,
+        school_class_level: nil
+      }
+    end
 
-      %w(
-        process_id
-        process_name_fi
-        process_url
-        user_hash
-        vote_hash
-        vote_started
-        vote_verified
-        project_id
-        project_name_fi
-        project_url
-        category_id
-        category_name_fi
-        gender
-        postal_code
-        age
-      ).each_with_index do |header, index|
-        suomifi_sheet.add_cell(0, index, header)
-        mpassid_sheet.add_cell(0, index, header)
-        offline_sheet.add_cell(0, index, header)
-      end
+    rawdata = authorization.metadata
 
-      suomifi_row = 1
-      mpassid_row = 1
-      offline_row = 1
+    data = begin
+      case authorization.name
+      when "suomifi_eid"
+        {
+          identity: "suomifi",
+          date_of_birth: rawdata["date_of_birth"],
+          gender: rawdata["gender"],
+          postal_code: rawdata["postal_code"],
+          school_code: nil,
+          school_name: nil,
+          school_ruuti_unit: nil,
+          school_role: nil,
+          school_class: nil,
+          school_class_level: nil
+        }
+      when "mpassid_nids"
+        groups = rawdata["student_class"].to_s.split(",")
+        levels = groups.map { |grp| grp.gsub(/^[^0-9]*/, "").to_i }
 
-      comp = Decidim::Component.find(id)
-      space = comp.participatory_space
-
-      project_totals = {}
-
-      Decidim::Budgets::Order.where(
-        decidim_component_id: comp.id
-      ).where.not(
-        checked_out_at: nil
-      ).each do |order|
-        auth_name = auth_names.detect do |an|
-          Decidim::Authorization.where(
-            user: order.user,
-            name: an
-          ).count.positive?
-        end
-
-        unless auth_name
-          puts "No auth for order: #{order.id}"
-          next
-        end
-
-        orders_count += 1
-        component_orders_count += 1
-
-        auth = Decidim::Authorization.find_by(
-          user: order.user,
-          name: auth_name
-        )
-
-        voter_ids << order.user.id
-        component_voter_ids << order.user.id
-        if auth.name == "suomifi_eid"
-          suomifi_voter_ids << order.user.id
-          component_suomifi_voter_ids << order.user.id
-        elsif auth.name == "mpassid_nids"
-          mpassid_voter_ids << order.user.id
-          component_mpassid_voter_ids << order.user.id
-        elsif auth.name == "helsinki_documents_authorization_handler"
-          offline_voter_ids << order.user.id
-          component_offline_voter_ids << order.user.id
-        end
-
-        space_url = "https://omastadi.hel.fi/processes/#{space.slug}"
-        comp_url = "#{space_url}/f/#{comp.id}"
-
-        order.line_items.each do |order_item|
-          order_items_count += 1
-          component_order_items_count += 1
-          project_totals[order_item.project.id] ||= 0
-          project_totals[order_item.project.id] += 1
-
-          category = order_item.project.category
-
-          votedata = [
-            space.id,
-            space.title["fi"],
-            space_url,
-            Digest::MD5.hexdigest("#{ANONYMIZER_SALT}:#{order.user.id}"),
-            Digest::MD5.hexdigest("#{ANONYMIZER_SALT}:#{order.id}"),
-            order.created_at.strftime("%Y-%m-%d %H:%M:%S"),
-            order.checked_out_at.strftime("%Y-%m-%d %H:%M:%S"),
-            order_item.project.id,
-            order_item.project.title["fi"],
-            "#{comp_url}/projects/#{order_item.project.id}",
-            category ? category.id : "",
-            category ? category.name["fi"] : ""
-          ]
-
-          if auth.name == "suomifi_eid"
-            data = votedata + [
-              auth.metadata["gender"],
-              auth.metadata["postal_code"],
-              calculate_age(auth.metadata["date_of_birth"])
-            ]
-            data.each_with_index do |celldata, index|
-              suomifi_sheet.add_cell(suomifi_row, index, celldata)
-            end
-            suomifi_row += 1
-          elsif auth.name == "mpassid_nids"
-            groups = auth.metadata["student_class"].to_s.split(",")
-            levels = groups.map { |grp| grp.gsub(/^[^0-9]*/, "").to_i }
-
-            data = votedata + [
-              auth.metadata["school_code"],
-              auth.metadata["role"],
-              auth.metadata["student_class"],
-              levels.join(",")
-            ]
-            data.each_with_index do |celldata, index|
-              mpassid_sheet.add_cell(mpassid_row, index, celldata)
-            end
-            mpassid_row += 1
-          elsif auth.name == "helsinki_documents_authorization_handler"
-            data = votedata + [
-              auth.metadata["gender"],
-              auth.metadata["postal_code"],
-              calculate_age(auth.metadata["date_of_birth"])
-            ]
-            data.each_with_index do |celldata, index|
-              offline_sheet.add_cell(offline_row, index, celldata)
-            end
-            offline_row += 1
-          else
-            puts "Export format not defined for: #{auth.name}"
-          end
-        end
-      end
-
-      [
-        "project_id",
-        "project_name_fi",
-        "project_url",
-        "project_budget",
-        "category_id",
-        "category_name_fi",
-        "confirmed_votes",
-        "",
-        "",
-        "number_of_voters",
-        "number_of_votes",
-        "number_of_projects_selected",
-        "",
-        "suomifi_voters",
-        "mpassid_voters",
-        "offline_voters"
-      ].each_with_index do |header, index|
-        ctotals_sheet.add_cell(0, index, header)
-      end
-      ctotals_row = 1
-      project_totals.each do |project_id, votes|
-        project = Decidim::Budgets::Project.find(project_id)
-        category = project.category
-        comp = project.component
-        space = comp.participatory_space
-
-        space_url = "https://omastadi.hel.fi/processes/#{space.slug}"
-        comp_url = "#{space_url}/f/#{comp.id}"
-
-        [
-          project.id,
-          project.title["fi"],
-          "#{comp_url}/projects/#{project.id}",
-          project.budget,
-          category ? category.id : "",
-          category ? category.name["fi"] : "",
-          votes
-        ].each_with_index do |celldata, index|
-          ctotals_sheet.add_cell(ctotals_row, index, celldata)
-        end
-        ctotals_row += 1
-      end
-
-      [
-        "",
-        "",
-        component_voter_ids.uniq.count,
-        component_orders_count,
-        component_order_items_count,
-        "",
-        component_suomifi_voter_ids.uniq.count,
-        component_mpassid_voter_ids.uniq.count,
-        component_offline_voter_ids.uniq.count
-      ].each_with_index do |celldata, index|
-        ctotals_sheet.add_cell(1, 7 + index, celldata)
+        {
+          identity: "mpassid",
+          date_of_birth: nil,
+          gender: nil,
+          postal_code: rawdata["postal_code"],
+          school_code: rawdata["school_code"],
+          school_name: rawdata["school_name"],
+          school_ruuti_unit: rawdata["voting_unit"],
+          school_role: rawdata["school_role"],
+          school_class: rawdata["student_class"],
+          school_class_level: levels.join(",")
+        }
+      when "helsinki_documents_authorization_handler"
+        {
+          identity: "document_#{rawdata["document_type"]}",
+          date_of_birth: rawdata["date_of_birth"],
+          gender: rawdata["gender"],
+          postal_code: rawdata["postal_code"],
+          school_code: nil,
+          school_name: nil,
+          school_ruuti_unit: nil,
+          school_role: nil,
+          school_class: nil,
+          school_class_level: nil
+        }
       end
     end
 
-    totals_sheet.add_cell(0, 0, "Number of voters")
-    totals_sheet.add_cell(0, 1, voter_ids.uniq.count)
-    totals_sheet.add_cell(1, 0, "Number of votes")
-    totals_sheet.add_cell(1, 1, orders_count)
-    totals_sheet.add_cell(2, 0, "Number of projects selected")
-    totals_sheet.add_cell(2, 1, order_items_count)
-    totals_sheet.add_cell(4, 0, "Number of Suomi.fi voters")
-    totals_sheet.add_cell(4, 1, suomifi_voter_ids.uniq.count)
-    totals_sheet.add_cell(4, 0, "Number of MPASSid voters")
-    totals_sheet.add_cell(4, 1, mpassid_voter_ids.uniq.count)
-    totals_sheet.add_cell(4, 0, "Number of offline voters")
-    totals_sheet.add_cell(4, 1, offline_voter_ids.uniq.count)
+    # During testing, there may be unknown authorizations.
+    unless data
+      return {
+        identity: nil,
+        date_of_birth: nil,
+        age: nil,
+        gender: nil,
+        postal_code: nil,
+        school_code: nil,
+        school_role: nil,
+        school_class: nil,
+        school_class_level: nil
+      }
+    end
 
-    suomifi_book.write("#{target_path}/#{file_prefix}-votes-suomifi.xlsx")
-    mpassid_book.write("#{target_path}/#{file_prefix}-votes-mpassid.xlsx")
-    offline_book.write("#{target_path}/#{file_prefix}-votes-offline.xlsx")
-    totals_book.write("#{target_path}/#{file_prefix}-totals.xlsx")
+    data[:age] = nil
+    if data[:date_of_birth]
+      now = Time.now.utc.to_date
+      dob = data[:date_of_birth]
+      data[:age] = now.year - dob.year - (now.month > dob.month || (now.month == dob.month && now.day >= dob.day) ? 0 : 1)
+    end
+
+    data
   end
 
-  def export_projects(components, file_prefix)
-    target_path = Rails.root.join("tmp")
+  # Takes an array of hashes containing the data to put on each sheet.
+  # Each of the values in the hash needs to contain an array of the row data for
+  # that sheet.
+  # Each of the items in the row data array needs to be a hash containing the
+  # data for each row. The hash keys are the column headers for that sheet.
+  #
+  # Example:
+  # {
+  #   export: [
+  #     {id: 1, name: "Mark", nickname: "mark"}
+  #   ],
+  #   extra: [
+  #     {id: 1, code: "123"}
+  #   ]
+  # }
+  #
+  # hashes containing the export rows.
+  # The hash keys need to be the names of the columns.
+  def write_excel(sheets, filename)
+    return if sheets.empty?
 
     book = RubyXL::Workbook.new
     book.worksheets.delete_at(0)
 
-    components.each do |id, name|
-      sheet = book.add_worksheet(name)
+    sheets.each do |sheetname, data|
+      next if data.empty?
 
-      %w(
-        project_id
-        project_name_fi
-        project_url
-        project_budget
-        category_id
-        category_name_fi
-      ).each_with_index do |header, index|
-        sheet.add_cell(0, index, header)
+      sheet = book.add_worksheet(sheetname.to_s)
+
+      headers = data.first.keys
+      headers.each_with_index do |header, index|
+        sheet.add_cell(0, index, header.to_s)
+        sheet.change_column_width(index, 20)
+        sheet.sheet_data[0][index].change_font_bold(true)
+        sheet.sheet_data[0][index].change_horizontal_alignment("center")
       end
+      data.each_with_index do |rowdata, rowindex|
+        rowdata.each_with_index do |col, colindex|
+          value = col[1]
 
-      row = 1
-      Decidim::Budgets::Project.where(decidim_component_id: id).each do |project|
-        category = project.category
-        comp = project.component
-        space = comp.participatory_space
-
-        space_url = "https://omastadi.hel.fi/processes/#{space.slug}"
-        comp_url = "#{space_url}/f/#{comp.id}"
-
-        [
-          project.id,
-          project.title["fi"],
-          "#{comp_url}/projects/#{project.id}",
-          project.budget,
-          category ? category.id : "",
-          category ? category.name["fi"] : ""
-        ].each_with_index do |celldata, index|
-          sheet.add_cell(row, index, celldata)
+          if value.is_a?(Numeric)
+            sheet.add_cell(rowindex + 1, colindex, value)
+          elsif value.is_a?(Time) || value.is_a?(DateTime) || value.is_a?(Date)
+            c = sheet.add_cell(rowindex + 1, colindex)
+            c.set_number_format("yyyy-mm-dd hh:mm:ss")
+            c.change_contents(value)
+          else
+            sheet.add_cell(rowindex + 1, colindex, value.to_s)
+          end
         end
-        row += 1
       end
     end
 
-    book.write("#{target_path}/#{file_prefix}-projects.xlsx")
-  end
-
-  def calculate_age(date_of_birth)
-    dob = Date.strptime(date_of_birth, "%Y-%m-%d")
-    now = Time.now.utc.to_date
-    diff_year = now.month > dob.month || (now.month == dob.month && now.day >= dob.day) ? 0 : 1
-    now.year - dob.year - diff_year
+    book.write filename
   end
 end
