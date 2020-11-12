@@ -67,7 +67,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: e2f411a90101d44bea9c5e5a6332de76216f3f4c
+  revision: 1cb838c5e6e8ea384e3dd4f02e9ed4816c507084
   branch: master
   specs:
     decidim-ideas (0.23.0)
@@ -93,7 +93,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: b7334d364a4b3d6caf030d9d2ed97f8e7cc56c79
+  revision: 3da362917f947ddd4bf3ef0961864cf6f8f9e077
   branch: develop
   specs:
     decidim-plans (0.23.0)
@@ -751,7 +751,7 @@ GEM
     paper_trail (10.3.1)
       activerecord (>= 4.2)
       request_store (~> 1.1)
-    paper_trail-association_tracking (2.1.0)
+    paper_trail-association_tracking (2.1.1)
     parallel (1.19.2)
     parser (2.7.1.5)
       ast (~> 2.4.1)
