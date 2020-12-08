@@ -10,13 +10,17 @@ module Decidim
           class Builder < Decidim::Map::Autocomplete::Builder
             def initialize(template, options)
               super(template, options.merge(
-                url: template.main_app.geocoding_autocomplete_path
+                url: main_app.geocoding_autocomplete_path
               ))
             end
 
             # @see Decidim::Map::View::Builder#javascript_snippets
             def javascript_snippets
               template.javascript_include_tag("decidim/geocoding/provider/helsinki")
+            end
+
+            def main_app
+              Rails.application.routes.url_helpers
             end
           end
         end
