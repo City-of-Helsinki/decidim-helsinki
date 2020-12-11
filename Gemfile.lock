@@ -67,7 +67,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: a2ad7a394df9323c51b8fe0d956274e7c93b1f3e
+  revision: 82b0faf81ca4e6bed39c2de213072ed097e3f0cd
   branch: master
   specs:
     decidim-ideas (0.23.0)
