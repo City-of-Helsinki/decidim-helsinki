@@ -5,7 +5,13 @@ module Helsinki
     class OmastadiFormCell < Decidim::Plans::PlanFormCell
       include Decidim::LayoutHelper # For the icon helper
 
+      delegate :user_signed_in?, to: :controller
+
       private
+
+      def plan
+        context[:plan]
+      end
 
       def ideas_contents
         @ideas_contents ||= object.contents.select do |c|
