@@ -101,6 +101,25 @@ sv:
         creator: Författare till originalbilden
         license: Bildlicens
         note: Bildredigerad från original
+    plans:
+      layouts:
+        omastadi: OmaStadi
+      omastadi_form:
+        buttons:
+          create: Skapa
+          discard: Radera utkastet
+          save: Spara
+          you_can_invite_others: Om du skickar in ett förslag som grupp kan du bjuda in andra att samarbeta på förslaget.
+        characters_min: "(minst %count% tecken krävs)"
+        characters_used: "%count%/%total% tecken används"
+        info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+        required_fields_text: Obligatoriska fält är markerade med *-tecknet.
+      omastadi_view:
+        back: Tillbaka
+        close_window: Stäng fönstret
+        info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+        share: Dela
+        share_link: Länk som ska delas
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Din årskurs kan inte verifieras elektroniskt.

@@ -101,6 +101,25 @@ fi:
         creator: Alkuperäisen kuvan tekijä
         license: Kuvan lisenssi
         note: Kuvaa muokattu alkuperäisestä
+    plans:
+      layouts:
+        omastadi: OmaStadi
+      omastadi_form:
+        buttons:
+          create: Luo
+          discard: Tuhoa tämä luonnos
+          save: Tallenna
+          you_can_invite_others: Mikäli haluatte jättää ehdotuksen porukalla, voit kutsua muita ehdotuksen tekijöiksi sen jättämisen jälkeen.
+        characters_min: "(vähintään %count% merkkiä vaaditaan)"
+        characters_used: "%count%/%total% merkkiä käytetty"
+        info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
+        required_fields_text: Pakolliset kentät on merkitty *-merkillä.
+      omastadi_view:
+        back: Takaisin
+        close_window: Sulje ikkuna
+        info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
+        share: Jaa
+        share_link: Jaettava linkki
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Luokka-astettasi ei pystytty varmentamaan sähköisesti.

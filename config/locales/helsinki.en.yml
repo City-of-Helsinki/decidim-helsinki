@@ -101,6 +101,25 @@ en:
         creator: Original creator of the image
         license: Image license
         note: The image has been edited from the original
+    plans:
+      layouts:
+        omastadi: OmaStadi
+      omastadi_form:
+        buttons:
+          create: Create
+          discard: Discard this draft
+          save: Save
+          you_can_invite_others: If you are submitting a proposal as a group, you can invite others to collaborate on the proposal.
+        characters_min: "(at least %count% characters required)"
+        characters_used: "%count%/%total% characters used"
+        info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
+        required_fields_text: Required fields are marked with the *-character.
+      omastadi_view:
+        back: Back
+        close_window: Close window
+        info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
+        share: Share
+        share_link: Share link
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Your grade level cannot be verified electronically.

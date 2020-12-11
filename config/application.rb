@@ -275,6 +275,16 @@ module DecidimHelsinki
       end
     end
 
+    initializer "decidim_plans_layouts", after: "decidim_plans.register_layouts" do
+      registry = Decidim::Plans.layouts
+
+      registry.register(:omastadi) do |layout|
+        layout.form_layout = "helsinki/plans/omastadi_form"
+        layout.view_layout = "helsinki/plans/omastadi_view"
+        layout.public_name_key = "helsinki.plans.layouts.omastadi"
+      end
+    end
+
     # See:
     # https://guides.rubyonrails.org/configuring.html#initialization-events
     #

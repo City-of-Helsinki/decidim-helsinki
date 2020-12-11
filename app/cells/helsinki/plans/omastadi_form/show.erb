@@ -1,0 +1,77 @@
+<div class="row columns">
+  <div class="lead">
+    <p><%= t(".required_fields_text") %></p>
+  </div>
+</div>
+
+<% if false && (current_user.nil? || allowed_to?(:request_access, :plan, plan: plan)) %>
+  <div class="row">
+    <div class="columns">
+      <div class="callout secondary"><%= t(".info_message").html_safe %></div>
+    </div>
+  </div>
+<% end %>
+
+<%= render :steps_nav %>
+
+<div class="tabs-content" data-tabs-content="plan-tabs">
+  <div class="tabs-panel is-active" id="step-ideas">
+    <%= render :ideas_step %>
+
+    <div class="actions">
+      <a href="#step-edit" class="button icon-button primary" data-tab-change>Seuraava vaihe <%= icon "arrow-right" %></a>
+    </div>
+  </div>
+  <div class="tabs-panel" id="step-edit">
+    <%= user_group_field %>
+
+    <%= contents_edit %>
+
+    <%= render :buttons %>
+  </div>
+</div>
+
+<%
+js_options = {
+  messages: {
+    charactersMin: t(".characters_min"),
+    charactersUsed: t(".characters_used")
+  }
+}
+%>
+<script>
+$(function() {
+  DecidimPlansCharacters.configure(<%== js_options.to_json %>);
+  $(".field.with-character-counter").each(function(_i, el) {
+    var $wrapper = $(el);
+    var $input = $("input, textarea", $wrapper);
+    var $info = $(".field-character-counter-info", $wrapper);
+    DecidimPlansCharacters.bindCharacterCounter($input, $info);
+  });
+
+  var $tabs = $("#plan-tabs");
+
+  $("[data-tab-change]").on("click", function(ev) {
+    ev.preventDefault();
+
+    var tabSelector = $(this).attr("href");
+    $tabs.foundation("selectTab", $(tabSelector));
+  });
+
+  $tabs.on("change.zf.tabs", () => {
+    var $activePanel = $("[data-tabs-content='plan-tabs'] .tabs-panel.is-active");
+    $("html, body").animate({ scrollTop: $tabs.offset().top }, 0);
+    $("[data-decidim-map]", $activePanel).each(function (i, el) {
+      var $map = $(el);
+      var map = $map.data("map");
+      if (!map) {
+        return;
+      }
+
+      // See:
+      // https://leafletjs.com/reference-1.3.4.html#map-invalidatesize
+      map.invalidateSize(false);
+    });
+  });
+});
+</script>

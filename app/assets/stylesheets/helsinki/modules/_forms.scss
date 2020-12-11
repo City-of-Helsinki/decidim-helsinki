@@ -16,3 +16,19 @@ label{
     margin-top: 1rem;
   }
 }
+
+.actions{
+  .icon-button{
+    position: relative;
+    padding-right: 45px;
+
+    .icon{
+      position: absolute;
+      top: 19px;
+      right: 12px;
+      margin-left: 10px;
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+}

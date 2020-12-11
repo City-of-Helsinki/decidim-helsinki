@@ -1,0 +1,19 @@
+<% ideas_contents.each do |content| %>
+  <%= fields_for "contents[#{content.section.id}]", content, namespace: "plans_section_#{content.section.id}" do |content_form| %>
+    <% content = content_form.object %>
+
+    <%= cell(
+      content.section_type_manifest.edit_cell,
+      content,
+      multilingual_answers: component_settings.multilingual_answers?,
+      context: {
+        form: content_form,
+        parent_form: form,
+        current_component: current_component
+      }
+    ) %>
+
+    <%= content_form.hidden_field :id %>
+    <%= content_form.hidden_field :section_id %>
+  <% end %>
+<% end %>
