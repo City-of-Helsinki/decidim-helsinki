@@ -114,12 +114,64 @@ en:
         characters_used: "%count%/%total% characters used"
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         required_fields_text: Required fields are marked with the *-character.
+      omastadi_index:
+        draft_plan_title: You have a proposal draft!
+        draft_plan_continue: Continue your proposal
+        draft_plan_description: You have previously saved a proposal as a draft. You can now continue writing it.
+        empty_filters: There isn't any proposals with this criteria
+        filters:
+          activity:
+            all: All
+            my_favorites: My favorites
+            my_plans: My proposals
+            title: My activity
+          all_area_scopes: All areas
+          all_categories: All themes
+          area_scope: Area
+          category: Theme
+          close_modal: Close modal
+          filter: Filter
+          filter_by: Filter by
+          related_to: Related to
+          reset: Clear filters
+          search: Search
+          state:
+            legend: State
+            evaluating: Evaluating
+            rejected: Rejected
+            accepted: Accepted
+            all: All
+          tag: Tags
+          tag_prompt: Select tags
+          title: Search proposals
+          unfold: Unfold
+        leave_your_plan: Submit your own proposal!
+        new_plan: New proposal
+        see_all_withdrawn: See all withdrawn
+        subtitle: Find and explore proposals!
+        title: Browse proposals
+        view_plan: View proposal
       omastadi_view:
         back: Back
+        back_to_list: Show other proposals
         close_window: Close window
+        controls:
+          close_plan: Mark as done
+          close_plan_confirm_html: Are you sure you want to mark this proposal as done? Once the proposal is marked done, it can no longer be edited.
+          edit_plan: Edit proposal
+          withdraw_plan: Withdraw proposal
+          withdraw_confirmation_html: Are you sure you want to withdraw this proposal?
+        feedback_title: Thank you for submitting a proposal!
+        flag: Flag
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
+        manage_plan: Manage proposal
         share: Share
         share_link: Share link
+        show_comments: Show comments
+        show_on_map: Show on map
+        related_documents: Related documents
+      plan_m:
+        view_plan: View proposal
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Your grade level cannot be verified electronically.

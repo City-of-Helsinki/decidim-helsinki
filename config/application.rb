@@ -281,6 +281,7 @@ module DecidimHelsinki
       registry.register(:omastadi) do |layout|
         layout.form_layout = "helsinki/plans/omastadi_form"
         layout.view_layout = "helsinki/plans/omastadi_view"
+        layout.index_layout = "helsinki/plans/omastadi_index"
         layout.public_name_key = "helsinki.plans.layouts.omastadi"
       end
     end

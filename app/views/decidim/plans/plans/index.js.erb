@@ -1,0 +1,18 @@
+var $plans = $('#plans');
+var $map = $('#map');
+var $plansCount = $('#plans-count');
+var $orderFilterInput = $('.order_filter');
+
+$plans.html('<%= j(render partial: "plans", locals: { plans: @plans, card_cell: "helsinki/plans/plan_m" }).strip.html_safe %>');
+$plansCount.html('<%= j(render partial: "count", locals: { plans: @plans }).strip.html_safe %>');
+$orderFilterInput.val('<%= order %>');
+
+var $dropdownMenu = $('.dropdown.menu', $plans);
+$dropdownMenu.foundation();
+
+var mapController = $map.data("map-controller");
+if (mapController) {
+  var ideasData = JSON.parse('<%== escape_javascript plans_data_for_map(@geocoded_plans).to_json %>');
+  mapController.clearMarkers();
+  mapController.addMarkers(ideasData);
+}

@@ -1,0 +1,76 @@
+<%= filter_form_for filter do |form| %>
+  <div class="row columns">
+    <div class="filters__section filters__section--title">
+      <p class="h3"><%= t(".filters.title") %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns mediumlarge-6 large-8">
+      <% if current_user %>
+        <div class="filters__section activity_collection_radio_buttons_filter">
+          <fieldset>
+            <legend class="mini-title"><%= t(".filters.activity.title") %></legend>
+            <% activity_filter_values.each do |value|%>
+              <label>
+                <%= form.radio_button :activity, value[0], label: false, checked: value[0] == "all" %>
+                <%= value[1] %>
+              </label>
+            <% end %>
+          </fieldset>
+        </div>
+      <% end %>
+    </div>
+    <div class="columns mediumlarge-6 large-4">
+      <div class="filters__section text-right">
+        <button type="reset" class="button primary small"><%= t ".filters.reset" %></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <% if area_scopes_parent %>
+      <div class="columns mediumlarge-6 large-4">
+        <div class="filters__section area_scope_id_filter">
+          <fieldset>
+            <legend class="mini-title"><%= t(".filters.area_scope") %></legend>
+            <%= fields_for "filter[section][#{area_scope_section.id}]", nil do |section_form| %>
+              <%= area_scopes_picker_field(section_form, :scope_id, root: false, options: { label: false, include_blank: t(".filters.all_area_scopes") }) %>
+            <% end %>
+          </fieldset>
+        </div>
+      </div>
+    <% end %>
+    <% if component.categories.any? && category_section %>
+      <div class="columns mediumlarge-6 large-4">
+        <div class="filters__section category_id_filter">
+          <fieldset>
+            <legend class="mini-title"><%= t(".filters.category") %></legend>
+            <%= fields_for "filter[section][#{category_section.id}]", nil do |section_form| %>
+              <%= section_form.select(:category_id, filter_categories_values, label: false, include_blank: t(".filters.all_categories")) %>
+            <% end %>
+          </fieldset>
+        </div>
+      </div>
+    <% end %>
+    <div class="columns mediumlarge-6 large-4 end">
+      <div class="filters__section">
+        <div class="filters__search">
+          <fieldset>
+            <legend class="mini-title"><%= t(".filters.search") %></legend>
+            <div class="input-group">
+              <%= form.search_field :search_text, label: false, class: "input-group-field", placeholder: t(".filters.search"), title: t(".filters.search") %>
+              <div class="input-group-button">
+                <button type="submit" class="button button--muted" aria-label="<%= t(".filters.search") %>">
+                  <%= icon "magnifying-glass", aria_label: t(".filters.search"), role: "img" %>
+                </button>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>
+<% end %>

@@ -1,0 +1,9 @@
+<%= render_plan_index(
+  available_orders: available_orders,
+  order: order,
+  context: { plans: @plans, geocoded_plans: @geocoded_plans, filter: filter }
+) %>
+
+<%= javascript_include_tag "decidim/filters" %>
+<%= javascript_include_tag "decidim/results_listing" %>
+<%= javascript_include_tag "decidim/plans/plans_list" %>

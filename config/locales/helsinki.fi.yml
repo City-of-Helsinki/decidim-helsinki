@@ -114,12 +114,64 @@ fi:
         characters_used: "%count%/%total% merkkiä käytetty"
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         required_fields_text: Pakolliset kentät on merkitty *-merkillä.
+      omastadi_index:
+        draft_plan_title: Sinulla on keskeneräinen ehdotus!
+        draft_plan_continue: Jatka ehdotustasi
+        draft_plan_description: Olet aikaisemmin tallentanut ehdotuksen keskeneräisenä. Voit nyt jatkaa sen kirjoittamista.
+        empty_filters: Ehdotuksia ei löytynyt valituilla hakuehdoilla
+        filters:
+          activity:
+            all: Kaikki
+            my_favorites: Omat suosikit
+            my_plans: Omat ehdotukset
+            title: Oma toiminta
+          all_area_scopes: Kaikki alueet
+          all_categories: Kaikki teemat
+          area_scope: Alue
+          category: Teema
+          close_modal: Sulje ikkuna
+          filter: Suodata
+          filter_by: Suodata
+          related_to: Liittyy kohteeseen
+          reset: Tyhjennä rajaukset
+          search: Hae
+          state:
+            legend: Tila
+            evaluating: Arvioitavana
+            rejected: Hylätty
+            accepted: Hyväksytty
+            all: Kaikki
+          tag: Merkinnät
+          tag_prompt: Valitse merkinnät
+          title: Etsi ehdotuksia
+          unfold: Avaa
+        leave_your_plan: Käy jättämässä oma ehdotuksesi!
+        new_plan: Uusi ehdotus
+        see_all_withdrawn: Näytä kaikki peruutetut
+        subtitle: Etsi ja tutki ehdotuksia!
+        title: Tutustu ehdotuksiin
+        view_plan: Näytä ehdotus
       omastadi_view:
         back: Takaisin
+        back_to_list: Näytä muut ehdotukset
         close_window: Sulje ikkuna
+        controls:
+          close_plan: Merkitse valmiiksi
+          close_plan_confirm_html: Haluatko varmasti merkitä tämän ehdotuksen valmiiksi? Kun ehdotus on merkitty valmiiksi, sitä ei voi enää muokata.
+          edit_plan: Muokkaa ehdotusta
+          withdraw_plan: Peru ehdotus
+          withdraw_confirmation_html: Haluatko varmasti perua tämän ehdotuksen?
+        feedback_title: Kiitos ehdotuksen jättämisestä!
+        flag: Ilmoita
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
+        manage_plan: Hallitse ehdotusta
         share: Jaa
         share_link: Jaettava linkki
+        show_comments: Näytä kommentit
+        show_on_map: Näytä kartalla
+        related_documents: Liittyvät asiakirjat
+      plan_m:
+        view_plan: Näytä ehdotus
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Luokka-astettasi ei pystytty varmentamaan sähköisesti.

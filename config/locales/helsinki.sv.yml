@@ -114,12 +114,64 @@ sv:
         characters_used: "%count%/%total% tecken används"
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         required_fields_text: Obligatoriska fält är markerade med *-tecknet.
+      omastadi_index:
+        draft_plan_title: Du har ett oavslutat förslag!
+        draft_plan_continue: Fortsätt ditt förslag
+        draft_plan_description: Du har tidigare sparat ett pågående förslag. Du kan nu fortsätta skriva den.
+        empty_filters: Det finns inget förslag med dessa kriterier
+        filters:
+          activity:
+            all: Alla
+            my_favorites: Mina favoriter
+            my_plans: Mina förslag
+            title: Min aktivitet
+          all_area_scopes: Alla områden
+          all_categories: Alla teman
+          area_scope: Område
+          category: Tema
+          close_modal: Stäng fönstret
+          filter: Filtrera
+          filter_by: Filtrera
+          related_to: Anknyter till
+          reset: Rensa filter
+          search: Sök
+          state:
+            legend: Status
+            evaluating: Bedöms
+            rejected: Avslagen
+            accepted: Godkänd
+            all: Alla
+          tag: Taggar
+          tag_prompt: Välj taggar
+          title: Sök förslag
+          unfold: Öppna
+        leave_your_plan: Skicka in ditt eget förslag!
+        new_plan: Nytt förslag
+        see_all_withdrawn: Visa alla annullerade
+        subtitle: Hitta och utforska förslag!
+        title: Bläddra bland förslag
+        view_plan: Visa förslag
       omastadi_view:
         back: Tillbaka
+        back_to_list: Visa andra förslag
         close_window: Stäng fönstret
+        controls:
+          close_plan: Markera som gjort
+          close_plan_confirm_html: Är du säker på att du vill markera det här förslaget gjort? Efter att markeringen är klar kan förslaget inte längre redigeras.
+          edit_plan: Redigera förslaget
+          withdraw_plan: Annullera förslaget
+          withdraw_confirmation_html: Är du säker på att du vill annullera det här förslaget?
+        feedback_title: Tack för att du skickade ett förslag!
+        flag: Rapportera
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+        manage_plan: Hantera ditt förslag
         share: Dela
         share_link: Länk som ska delas
+        show_comments: Visa kommentarer
+        show_on_map: Visa på kartan
+        related_documents: Relaterade dokument
+      plan_m:
+        view_plan: Visa förslag
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Din årskurs kan inte verifieras elektroniskt.

@@ -14,6 +14,8 @@
 
 <%= render :steps_nav %>
 
+<%= render :prev_next %>
+
 <div class="tabs-content" data-tabs-content="plan-tabs">
   <div class="tabs-panel is-active" id="step-ideas">
     <%= render :ideas_step %>
@@ -26,6 +28,8 @@
     <%= user_group_field %>
 
     <%= contents_edit %>
+
+    <%= render :prev_next %>
 
     <%= render :buttons %>
   </div>
