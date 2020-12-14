@@ -67,7 +67,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: 25a0fe9fcc937ba3b5ec2e1f8b2250fa3b615652
+  revision: a16bf28370de9c5098339cc3305cc79ccf05b8c1
   branch: master
   specs:
     decidim-ideas (0.23.0)
@@ -93,12 +93,13 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: bc9a44c91559a06a4df792e046a4d015c5bfc2b8
+  revision: 47876f09111ac88c96041bcc4371d5816b2cfc25
   branch: develop
   specs:
     decidim-plans (0.23.0)
       decidim-core (~> 0.23.0.dev)
       decidim-favorites (~> 0.23.0.dev)
+      decidim-feedback (~> 0.23.0.dev)
       decidim-proposals (~> 0.23.0.dev)
       graphql (~> 1.9.19)
       paper_trail-association_tracking (~> 2.0)
