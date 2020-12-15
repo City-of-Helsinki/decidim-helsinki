@@ -1,0 +1,8 @@
+<% if allowed_to?(:edit, :plan, plan: plan) %>
+  <%= decidim_form_for(accept_request_form, url: request_accept_plan_path(plan)) do |form| %>
+    <%= form.hidden_field :id, value: plan.id %>
+    <%= form.hidden_field :state, value: plan.state %>
+    <%= form.hidden_field :requester_user_id, value: requester.id %>
+    <%= form.submit t("decidim.plans.requests.accept_request"), class: "button hollow secondary small", data: { disable: true } %>
+  <% end %>
+<% end %>

@@ -1,10 +1,22 @@
 <ul class="actionbox-links">
   <% if show_actions? %>
-    <% if false %>
+    <% if allowed_to?(:request_access, :plan, plan: plan) %>
       <li>
-      <%= cell("decidim/favorites/favorite_button", idea, button_class: "link action-link", disable_tooltip: true) %>
+        <%= decidim_form_for(request_access_form, url: request_access_plan_path(plan)) do |form| %>
+          <%= form.hidden_field :id, value: plan.id %>
+          <%= form.hidden_field :state, value: plan.state %>
+          <button type="submit" class="link action-link">
+            <%= icon "pencil", role: "img", "aria-hidden": true %>
+            <span class="link-text"><%= t ".request_access" %></span>
+          </button>
+        <% end %>
       </li>
     <% end %>
+
+
+    <li>
+      <%= cell("decidim/favorites/favorite_button", plan, button_class: "link action-link", disable_tooltip: true) %>
+    </li>
     <li>
       <button type="button" class="link action-link" data-open="socialShare" aria-haspopup="true">
         <%= icon "share", role: "img", "aria-hidden": true %>

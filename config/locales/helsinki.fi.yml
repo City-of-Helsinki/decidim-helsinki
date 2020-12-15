@@ -163,6 +163,7 @@ fi:
         back: Takaisin
         back_to_list: Näytä muut ehdotukset
         close_window: Sulje ikkuna
+        collaborator_requests: Muokkauspyynnöt
         controls:
           close_plan: Merkitse valmiiksi
           close_plan_confirm_html: Haluatko varmasti merkitä tämän ehdotuksen valmiiksi? Kun ehdotus on merkitty valmiiksi, sitä ei voi enää muokata.
@@ -174,6 +175,8 @@ fi:
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         linked_ideas: Ehdotukseen liitetyt ideat
         manage_plan: Hallitse ehdotusta
+        pending_access_request_message_html: <p>Olet pyytänyt muokkausoikeuksia tähän ehdotukseen. Odota, että ehdotuksen tekijät vastaavat pyyntöösi.</p><p>Saat viestin sähköpostiisi, kun pyyntöösi vastataan.</p>
+        request_access: Pyydä muokkausoikeuksia
         share: Jaa
         share_link: Jaettava linkki
         show_comments: Näytä kommentit

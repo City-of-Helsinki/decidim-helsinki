@@ -1,0 +1,10 @@
+<% if allowed_to?(:edit, :plan, plan: plan) %>
+  <%= decidim_form_for(reject_request_form, url: request_reject_plan_path(plan)) do |form| %>
+    <%= form.hidden_field :id, value: plan.id %>
+    <%= form.hidden_field :state, value: plan.state %>
+    <%= form.hidden_field :requester_user_id, value: requester.id %>
+    <%= button_tag type: "submit", data: { disable: true }, title: t("decidim.plans.requests.reject_request") do %>
+      <%= icon "x", class: "icon--small muted ml-xs" %>
+    <% end %>
+  <% end %>
+<% end %>

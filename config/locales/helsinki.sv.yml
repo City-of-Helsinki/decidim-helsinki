@@ -163,6 +163,7 @@ sv:
         back: Tillbaka
         back_to_list: Visa andra förslag
         close_window: Stäng fönstret
+        collaborator_requests: Begär att redigera
         controls:
           close_plan: Markera som gjort
           close_plan_confirm_html: Är du säker på att du vill markera det här förslaget gjort? Efter att markeringen är klar kan förslaget inte längre redigeras.
@@ -174,6 +175,8 @@ sv:
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         linked_ideas: Idéer bifogade detta förslag
         manage_plan: Hantera ditt förslag
+        request_access: Begär redigeringsrättigheter
+        pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
         share: Dela
         share_link: Länk som ska delas
         show_comments: Visa kommentarer

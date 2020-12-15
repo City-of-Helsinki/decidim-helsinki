@@ -28,6 +28,7 @@
   <div class="row">
     <div class="columns">
       <%= render :controls %>
+      <%= collaborator_requests %>
     </div>
   </div>
 <% end %>
@@ -70,6 +71,20 @@
 </div>
 
 <div class="resource-title">
+  <% if current_user.nil? || allowed_to?(:request_access, :plan, plan: plan) %>
+    <div class="row">
+      <div class="columns">
+        <div class="callout secondary"><%== t(".info_message") %></div>
+      </div>
+    </div>
+  <% elsif access_request_pending? %>
+    <div class="row">
+      <div class="columns">
+        <div class="callout secondary"><%== t(".pending_access_request_message_html") %></div>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row">
     <div class="columns mediumlarge-7">
       <h3 class="heading3"><%= present(plan).title %></h3>
@@ -82,14 +97,6 @@
     <div class="columns">
       <div class="section static__content">
         <%== cell("decidim/plans/plan_m", plan, full_badge: true).badge %>
-
-        <% if current_user.nil? || allowed_to?(:request_access, :plan, plan: plan) %>
-          <div class="row">
-            <div class="columns">
-              <div class="callout secondary"><%= t(".info_message").html_safe %></div>
-            </div>
-          </div>
-        <% end %>
 
         <%== description %>
 

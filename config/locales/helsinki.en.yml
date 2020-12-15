@@ -163,6 +163,7 @@ en:
         back: Back
         back_to_list: Show other proposals
         close_window: Close window
+        collaborator_requests: Requests to edit
         controls:
           close_plan: Mark as done
           close_plan_confirm_html: Are you sure you want to mark this proposal as done? Once the proposal is marked done, it can no longer be edited.
@@ -174,6 +175,8 @@ en:
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         linked_ideas: Ideas attached to this proposal
         manage_plan: Manage proposal
+        pending_access_request_message_html: <p>You have requested editing access to this proposal. Please wait for the collaborators to respond to your request.</p><p>You will receive an email notification once your request is answered.</p>
+        request_access: Request access to edit
         share: Share
         share_link: Share link
         show_comments: Show comments
