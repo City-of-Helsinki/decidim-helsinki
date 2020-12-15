@@ -5,6 +5,24 @@ module Helsinki
     class OmastadiViewCell < Decidim::Plans::PlanViewCell
       include Decidim::Plans::RichPresenter
 
+      def linked_ideas
+        return unless ideas
+        return unless ideas.any?
+
+        cell(
+          "helsinki/linked_resources",
+          ideas,
+          title: t(".linked_ideas"),
+          resource_cell: "helsinki/ideas/linked_idea"
+        )
+      end
+
+      def attachments
+        return unless attachments_content
+
+        cell("decidim/plans/attachments", attachments_content)
+      end
+
       private
 
       def preview_mode?
@@ -17,6 +35,41 @@ module Helsinki
 
       def show_controls?
         super && !preview_mode?
+      end
+
+      def main_image_path
+        if plan_image && plan_image.photo?
+          plan_image.file.url
+        elsif category && (cat_img = category_image_path(category))
+          cat_img
+        else
+          "decidim/ideas/idea-default.jpg"
+        end
+      end
+
+      def image_section
+        @image_section ||= first_section_with_type("field_image_attachments")
+      end
+
+      def image_content
+        @image_content ||= content_for(image_section)
+      end
+
+      def category_image_path(cat)
+        return unless has_category?
+        return unless cat.respond_to?(:category_image)
+        return unless cat.category_image
+
+        cat.category_image.url
+      end
+
+      def plan_image
+        return unless image_content
+        return if image_content.body["attachment_ids"].blank?
+
+        @plan_image ||= Decidim::Attachment.find_by(
+          id: image_content.body["attachment_ids"].first
+        )
       end
 
       def description
@@ -33,6 +86,33 @@ module Helsinki
         return unless description_section
 
         @description_content ||= content_for(description_section)
+      end
+
+      def ideas_section
+        @ideas_section ||= section_with_handle("ideas")
+      end
+
+      def ideas_content
+        return unless ideas_section
+
+        @ideas_content ||= content_for(ideas_section)
+      end
+
+      def ideas
+        return unless ideas_content
+        return if ideas_content.body["idea_ids"].blank?
+
+        @ideas ||= Decidim::Ideas::Idea.where(id: ideas_content.body["idea_ids"])
+      end
+
+      def attachments_section
+        @attachments_section ||= section_with_handle("attachments")
+      end
+
+      def attachments_content
+        return unless attachments_section
+
+        @attachments_content ||= content_for(attachments_section)
       end
 
       def has_map_position?

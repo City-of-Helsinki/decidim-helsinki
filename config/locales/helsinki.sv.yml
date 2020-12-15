@@ -106,14 +106,22 @@ sv:
         omastadi: OmaStadi
       omastadi_form:
         buttons:
-          create: Skapa
+          create: Skapa och förhandsgranska
           discard: Radera utkastet
           save: Spara
+          save_draft: Spara utkast
           you_can_invite_others: Om du skickar in ett förslag som grupp kan du bjuda in andra att samarbeta på förslaget.
         characters_min: "(minst %count% tecken krävs)"
         characters_used: "%count%/%total% tecken används"
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         required_fields_text: Obligatoriska fält är markerade med *-tecknet.
+        steps:
+          attach_ideas: Bifoga idéer
+          browse_proposals: Kolla in förslagen
+          edit: Förslagets detaljer
+          next: Nästa
+          preview: Granska och publicera
+          previous: Tidigare
       omastadi_index:
         draft_plan_title: Du har ett oavslutat förslag!
         draft_plan_continue: Fortsätt ditt förslag
@@ -164,6 +172,7 @@ sv:
         feedback_title: Tack för att du skickade ett förslag!
         flag: Rapportera
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+        linked_ideas: Idéer bifogade detta förslag
         manage_plan: Hantera ditt förslag
         share: Dela
         share_link: Länk som ska delas

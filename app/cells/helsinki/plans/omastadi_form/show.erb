@@ -16,13 +16,11 @@
 
 <%= render :prev_next %>
 
-<div class="tabs-content" data-tabs-content="plan-tabs">
+<div class="tabs-content" id="plan-tabs-content">
   <div class="tabs-panel is-active" id="step-ideas">
     <%= render :ideas_step %>
 
-    <div class="actions">
-      <a href="#step-edit" class="button icon-button primary" data-tab-change>Seuraava vaihe <%= icon "arrow-right" %></a>
-    </div>
+    <%= render :prev_next %>
   </div>
   <div class="tabs-panel" id="step-edit">
     <%= user_group_field %>
@@ -54,16 +52,52 @@ $(function() {
   });
 
   var $tabs = $("#plan-tabs");
+  var $tabsContent = $("#plan-tabs-content");
+  var $prevnext = $(".plan-prevnext");
 
-  $("[data-tab-change]").on("click", function(ev) {
+  var activateTab = function($tab) {
+    // Set the selected tab active
+    $(".tabs-panel", $tabsContent).removeClass("is-active");
+    $tab.addClass("is-active");
+
+    // Update the tabs state
+    var $selector = $("[data-tabs-target='#" + $tab.attr("id") + "']", $tabs);
+    $("> li", $tabs).removeClass("is-active");
+    $selector.parent().addClass("is-active");
+
+    // Update prev/next state
+    $(".prevnext-nav-link", $prevnext).removeClass("disabled");
+    if ($tab.prev().length < 1) {
+      $(".prevnext-nav-link[data-direction='prev']", $prevnext).addClass("disabled");
+    }
+    if ($tab.next().length < 1) {
+      $(".prevnext-nav-link[data-direction='next']", $prevnext).addClass("disabled");
+    }
+
+    // Trigger change to initiate the scroll position change and map display
+    $tabs.trigger("change.tabs");
+  };
+
+  $(".prevnext-nav-link", $prevnext).on("click", function(ev) {
     ev.preventDefault();
 
-    var tabSelector = $(this).attr("href");
-    $tabs.foundation("selectTab", $(tabSelector));
+    var $link = $(this);
+    if ($link.is(".disabled")) {
+      return;
+    }
+
+    var $activePanel = $(".tabs-panel.is-active", $tabsContent);
+    var $target = null;
+    if ($link.data("direction") === "prev") {
+      $target = $activePanel.prev();
+    } else {
+      $target = $activePanel.next();
+    }
+    activateTab($target);
   });
 
-  $tabs.on("change.zf.tabs", () => {
-    var $activePanel = $("[data-tabs-content='plan-tabs'] .tabs-panel.is-active");
+  $tabs.on("change.tabs", () => {
+    var $activePanel = $(".tabs-panel.is-active", $tabsContent);
     $("html, body").animate({ scrollTop: $tabs.offset().top }, 0);
     $("[data-decidim-map]", $activePanel).each(function (i, el) {
       var $map = $(el);

@@ -49,6 +49,13 @@ $step-selector-color: #cdcdcd;
       }
     }
 
+    &.is-active .step-selector{
+      .step-selector-number{
+        background: $secondary;
+        color: $primary;
+      }
+    }
+
     > a{
       padding: 0;
       color: $body-font-color;
@@ -65,13 +72,6 @@ $step-selector-color: #cdcdcd;
     a[aria-selected='true']{
       background: transparent;
       color: $body-font-color;
-    }
-
-    a[aria-selected='true'].step-selector{
-      .step-selector-number{
-        background: $secondary;
-        color: $primary;
-      }
     }
   }
 
@@ -107,7 +107,7 @@ $step-selector-color: #cdcdcd;
 .wrapper-ruuti{
   .tabs.tabs-stepper{
     .tabs-stepper-step{
-      a[aria-selected='true'].step-selector{
+      &.is-active .step-selector{
         .step-selector-number{
           background: $ruuti-secondary;
           color: $ruuti-primary;

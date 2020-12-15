@@ -106,14 +106,22 @@ fi:
         omastadi: OmaStadi
       omastadi_form:
         buttons:
-          create: Luo
+          create: Luo ja esikatsele
           discard: Tuhoa tämä luonnos
           save: Tallenna
+          save_draft: Tallenna luonnos
           you_can_invite_others: Mikäli haluatte jättää ehdotuksen porukalla, voit kutsua muita ehdotuksen tekijöiksi sen jättämisen jälkeen.
         characters_min: "(vähintään %count% merkkiä vaaditaan)"
         characters_used: "%count%/%total% merkkiä käytetty"
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         required_fields_text: Pakolliset kentät on merkitty *-merkillä.
+        steps:
+          attach_ideas: Liitä ideoita
+          browse_proposals: Tutustu ehdotuksiin
+          edit: Ehdotuksen tiedot
+          next: Seuraava
+          preview: Tarkasta ja julkaise
+          previous: Edellinen
       omastadi_index:
         draft_plan_title: Sinulla on keskeneräinen ehdotus!
         draft_plan_continue: Jatka ehdotustasi
@@ -164,6 +172,7 @@ fi:
         feedback_title: Kiitos ehdotuksen jättämisestä!
         flag: Ilmoita
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
+        linked_ideas: Ehdotukseen liitetyt ideat
         manage_plan: Hallitse ehdotusta
         share: Jaa
         share_link: Jaettava linkki

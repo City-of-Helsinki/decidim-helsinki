@@ -13,7 +13,7 @@
   <div class="row" data-equalizer>
     <div class="columns mediumlarge-7">
       <div class="resource-image" data-equalizer-watch>
-        <%= image_tag "decidim/ideas/idea-default.jpg", class:"idea-image", alt: strip_tags(present(plan).title) %>
+        <%= image_tag main_image_path, class:"idea-image", alt: strip_tags(present(plan).title) %>
       </div>
     </div>
     <div class="columns mediumlarge-4">
@@ -92,13 +92,12 @@
         <% end %>
 
         <%== description %>
+
+        <%= linked_ideas %>
+        <%= attachments %>
       </div>
 
       <%= cell("decidim/announcement", plan_reason_callout_args) if plan.answered? %>
-
-      <%= linked_resources_for plan, :ideas, "included_ideas" %>
-      <%= linked_resources_for plan, :results, "included_plans" %>
-      <%= linked_resources_for plan, :projects, "included_plans" %>
     </div>
   </div>
 </div>

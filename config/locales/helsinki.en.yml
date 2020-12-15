@@ -106,14 +106,22 @@ en:
         omastadi: OmaStadi
       omastadi_form:
         buttons:
-          create: Create
+          create: Create and preview
           discard: Discard this draft
           save: Save
+          save_draft: Save draft
           you_can_invite_others: If you are submitting a proposal as a group, you can invite others to collaborate on the proposal.
         characters_min: "(at least %count% characters required)"
         characters_used: "%count%/%total% characters used"
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         required_fields_text: Required fields are marked with the *-character.
+        steps:
+          attach_ideas: Attach ideas
+          browse_proposals: Browse proposals
+          edit: Proposal details
+          next: Next
+          preview: Preview and publish
+          previous: Previous
       omastadi_index:
         draft_plan_title: You have a proposal draft!
         draft_plan_continue: Continue your proposal
@@ -164,6 +172,7 @@ en:
         feedback_title: Thank you for submitting a proposal!
         flag: Flag
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
+        linked_ideas: Ideas attached to this proposal
         manage_plan: Manage proposal
         share: Share
         share_link: Share link

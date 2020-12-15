@@ -1,26 +1,27 @@
-<ul class="tabs tabs-stepper" data-tabs id="plan-tabs">
+<ul class="tabs tabs-stepper" id="plan-tabs">
   <li class="tabs-stepper-step">
     <div class="step-selector">
       <div class="step-selector-number">1</div>
-      <div class="step-selector-text">Tutustu ehdotuksiin</div>
+      <div class="step-selector-text"><%= t(".steps.browse_proposals") %></div>
     </div>
   </li>
   <li class="tabs-title tabs-stepper-step is-active">
-    <a href="#step-ideas" aria-selected="true" class="step-selector">
+    <div class="step-selector" data-tabs-target="#step-ideas">
       <div class="step-selector-number">2</div>
-      <div class="step-selector-text">Liitä ideoita</div>
-    </a>
+      <div class="step-selector-text"><%= t(".steps.attach_ideas") %></div>
+    </div>
   </li>
   <li class="tabs-title tabs-stepper-step">
-    <a href="#step-edit" class="step-selector">
+    <div class="step-selector" data-tabs-target="#step-edit">
       <div class="step-selector-number">3</div>
-      <div class="step-selector-text">Ehdotuksen tiedot</div>
-    </a>
+      <div class="step-selector-text"><%= t(".steps.edit") %></div>
+    </div>
   </li>
   <li class="tabs-stepper-step">
     <div class="step-selector">
       <div class="step-selector-number">4</div>
-      <div class="step-selector-text">Tarkasta ja julkaise</div>
+      <div class="step-selector-text"><%= t(".steps.preview") %></div>
     </div>
   </li>
 </ul>
+

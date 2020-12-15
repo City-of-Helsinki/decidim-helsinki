@@ -3,14 +3,13 @@
     <% if plan && plan.persisted? && plan.draft? %>
       <% # TODO: Show destroy draft plan %>
     <% end %>
-    <% if plan && (!plan.persisted? || plan.draft?) %>
-      <% # TODO: Show save as draft %>
-      <%#= form.submit t(".buttons.save"), name: "save", class: "button hollow primary large mr-2", data: { disable: true } %>
+    <% if plan.blank? || plan.draft? %>
+      <%= form.submit t(".buttons.save_draft"), name: "save", class: "button hollow primary large mr-2", data: { disable: true } %>
     <% end %>
-    <% if plan && plan.draft? %>
-      <%= form.submit t(".buttons.create"), class: "button large primary mt-s mb-none", data: { disable: true } %>
+    <% if plan.blank? || plan.draft? %>
+      <%= form.submit t(".buttons.create"), class: "button large primary", data: { disable: true } %>
     <% else %>
-      <%= form.submit t(".buttons.save"), class: "button large primary mt-s mb-none", data: { disable: true } %>
+      <%= form.submit t(".buttons.save"), class: "button large primary", data: { disable: true } %>
     <% end %>
   </div>
 <% else %>
