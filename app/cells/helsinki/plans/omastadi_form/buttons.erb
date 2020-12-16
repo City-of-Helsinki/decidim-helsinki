@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <div class="actions text-center">
     <% if plan && plan.persisted? && plan.draft? %>
-      <% # TODO: Show destroy draft plan %>
+      <%= link_to t(".buttons.discard"), plan_path(plan), method: :delete, class: "mr-2 discard-draft-link", data: { confirm: t(".buttons.discard_confirmation") } %>
     <% end %>
     <% if plan.blank? || plan.draft? %>
       <%= form.submit t(".buttons.save_draft"), name: "save", class: "button hollow primary large mr-2", data: { disable: true } %>

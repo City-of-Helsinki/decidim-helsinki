@@ -108,6 +108,7 @@ en:
         buttons:
           create: Create and preview
           discard: Discard this draft
+          discard_confirmation: Are you sure you want to discard this draft?
           save: Save
           save_draft: Save draft
           you_can_invite_others: If you are submitting a proposal as a group, you can invite others to collaborate on the proposal.

@@ -16,6 +16,15 @@
     }
   }
 
+  &.secondary,
+  &.primary,
+  &.success,
+  &.warning,
+  &.alert,
+  &.muted{
+    border-top-width: 1px;
+  }
+
   .card__category{
     position: relative;
 
@@ -94,6 +103,23 @@
 
 .card__info__item{
   flex: 1 1 0;
+}
+
+.card__state{
+  color: $white;
+
+  &.success{
+    background-color: var(--success);
+  }
+
+  &.warning{
+    background-color: var(--warning);
+    color: $black;
+  }
+
+  &.alert{
+    background-color: var(--alert);
+  }
 }
 
 // Keeps the data on one line but it can make it overflow

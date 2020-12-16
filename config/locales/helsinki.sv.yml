@@ -108,6 +108,7 @@ sv:
         buttons:
           create: Skapa och förhandsgranska
           discard: Radera utkastet
+          discard_confirmation: Är du säker på att du vill radera utkastet?
           save: Spara
           save_draft: Spara utkast
           you_can_invite_others: Om du skickar in ett förslag som grupp kan du bjuda in andra att samarbeta på förslaget.
