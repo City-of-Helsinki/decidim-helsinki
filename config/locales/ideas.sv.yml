@@ -1,0 +1,10 @@
+sv:
+  decidim:
+    ideas:
+      answers:
+        accepted: Vidare till samutveckling
+        rejected: Gick inte vidare
+      ideas:
+        show:
+          idea_accepted_reason: Denna idé gick vidare till samutveckling.
+          idea_rejected_reason: Denna idé gick inte vidare.

@@ -1,0 +1,10 @@
+fi:
+  decidim:
+    ideas:
+      answers:
+        accepted: Jatkoon yhteiskehittämisvaiheeseen
+        rejected: Ei jatkoon
+      ideas:
+        show:
+          idea_accepted_reason: Tämä idea etenee jatkoon yhteiskehittämisvaiheeseen.
+          idea_rejected_reason: Tämä idea ei päässyt jatkoon.
