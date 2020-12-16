@@ -55,11 +55,6 @@ sv:
         title: Titel
       ideas_carousel:
         name: Idéer karusell
-      ideas_carousel_settings_form:
-        button_text: Knapptext
-        button_url: Knapp URL
-        process: Process
-        title: Titel
       image_section:
         name: Image section
       image_section_settings_form:
@@ -75,11 +70,18 @@ sv:
         link_text: Länktext
         link_url: Länk URL
         title: Titel
+      plans_carousel:
+        name: Förslagskarusell
       process_steps:
         name: Process steg
         navigate: Navigera steg
       process_steps_settings_form:
         process: Process
+      records_carousel_settings_form:
+        button_text: Knapptext
+        button_url: Knapp URL
+        process: Process
+        title: Titel
     copyright: '%{year} Helsingfors stad'
     devise:
       shared:

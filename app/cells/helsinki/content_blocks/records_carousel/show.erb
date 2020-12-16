@@ -4,9 +4,9 @@
       <h2 class="heading2 hero-heading"><%= title %></h2>
 
       <div class="card-slider center">
-        <% ideas.each do |idea| %>
+        <% records.each do |record| %>
           <div class="card-slide-content">
-            <%= card_for idea, from: idea, context: { no_column: true, disable_favorite: true } %>
+            <%= card_for record, from: record, context: { no_column: true, disable_favorite: true } %>
           </div>
         <% end %>
       </div>

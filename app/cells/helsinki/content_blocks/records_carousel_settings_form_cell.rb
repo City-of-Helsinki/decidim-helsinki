@@ -1,8 +1,9 @@
+
 # frozen_string_literal: true
 
 module Helsinki
   module ContentBlocks
-    class IdeasCarouselSettingsFormCell < Decidim::ViewModel
+    class RecordsCarouselSettingsFormCell < Decidim::ViewModel
       alias form model
 
       def processes_options

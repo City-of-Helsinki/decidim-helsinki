@@ -2,15 +2,15 @@
 
 module Helsinki
   module ContentBlocks
-    class IdeasCarouselCell < Helsinki::ContentBlocks::RecordsCarouselCell
+    class PlansCarouselCell < Helsinki::ContentBlocks::RecordsCarouselCell
       private
 
       def records_manifest_name
-        "ideas"
+        "plans"
       end
 
       def records_for(components)
-        Decidim::Ideas::Idea.only_amendables.published.not_hidden.except_withdrawn.where(
+        Decidim::Plans::Plan.published.not_hidden.except_withdrawn.where(
           component: components
         )
       end

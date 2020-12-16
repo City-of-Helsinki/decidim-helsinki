@@ -55,11 +55,6 @@ en:
         title: Title
       ideas_carousel:
         name: Ideas carousel
-      ideas_carousel_settings_form:
-        button_text: Button text
-        button_url: Button URL
-        process: Process
-        title: Title
       image_section:
         name: Image section
       image_section_settings_form:
@@ -75,11 +70,18 @@ en:
         link_text: Link text
         link_url: Link URL
         title: Title
+      plans_carousel:
+        name: Proposals carousel
       process_steps:
         name: Process steps
         navigate: Navigate phases
       process_steps_settings_form:
         process: Process
+      records_carousel_settings_form:
+        button_text: Button text
+        button_url: Button URL
+        process: Process
+        title: Title
     copyright: '%{year} City of Helsinki'
     devise:
       shared:

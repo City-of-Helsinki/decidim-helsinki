@@ -55,11 +55,6 @@ fi:
         title: Otsikko
       ideas_carousel:
         name: Ideakaruselli
-      ideas_carousel_settings_form:
-        button_text: Napin teksti
-        button_url: Napin URL
-        process: Prosessi
-        title: Otsikko
       image_section:
         name: Kuvaosio
       image_section_settings_form:
@@ -75,11 +70,18 @@ fi:
         link_text: Linkin teksti
         link_url: Linkin URL
         title: Otsikko
+      plans_carousel:
+        name: Ehdotuskaruselli
       process_steps:
         name: Prosessin vaiheet
         navigate: Navigoi vaiheita
       process_steps_settings_form:
         process: Prosessi
+      records_carousel_settings_form:
+        button_text: Napin teksti
+        button_url: Napin URL
+        process: Prosessi
+        title: Otsikko
     copyright: '%{year} Helsingin kaupunki'
     devise:
       shared:

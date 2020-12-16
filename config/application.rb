@@ -261,8 +261,23 @@ module DecidimHelsinki
 
       Decidim.content_blocks.register(:homepage, :ideas_carousel) do |content_block|
         content_block.cell = "helsinki/content_blocks/ideas_carousel"
-        content_block.settings_form_cell = "helsinki/content_blocks/ideas_carousel_settings_form"
+        content_block.settings_form_cell = "helsinki/content_blocks/records_carousel_settings_form"
         content_block.public_name_key = "helsinki.content_blocks.ideas_carousel.name"
+
+        content_block.settings do |settings|
+          settings.attribute :process_id, type: :integer
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :button_url, type: :text
+          settings.attribute :button_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :plans_carousel) do |content_block|
+        content_block.cell = "helsinki/content_blocks/plans_carousel"
+        content_block.settings_form_cell = "helsinki/content_blocks/records_carousel_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.plans_carousel.name"
 
         content_block.settings do |settings|
           settings.attribute :process_id, type: :integer
