@@ -163,11 +163,19 @@ fi:
         title: Tutustu ehdotuksiin
         view_plan: Näytä ehdotus
       omastadi_view:
+        add_author:
+          add_users_placeholder: Kirjoita tekijän nimi tai nimimerkki
+          label: Etsi tekijöitä
+          modal_title: Lisää ehdotukselle tekijöitä
+          next: Seuraava
+          no_results: Ei yhtään hakua vastaavia käyttäjiä.
+        authors: Ehdotuksen tekijät
         back: Takaisin
         back_to_list: Näytä muut ehdotukset
         close_window: Sulje ikkuna
         collaborator_requests: Muokkauspyynnöt
         controls:
+          add_author: Lisää ehdotukselle tekijöitä
           close_plan: Merkitse valmiiksi
           close_plan_confirm_html: Haluatko varmasti merkitä tämän ehdotuksen valmiiksi? Kun ehdotus on merkitty valmiiksi, sitä ei voi enää muokata.
           edit_plan: Muokkaa ehdotusta

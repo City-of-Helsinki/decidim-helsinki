@@ -32,3 +32,10 @@ label{
     }
   }
 }
+
+.mentions__container,
+.hashtags__container{
+  .tribute-container{
+    top: -2rem - rem-calc(1);
+  }
+}

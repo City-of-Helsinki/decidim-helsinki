@@ -163,11 +163,19 @@ en:
         title: Browse proposals
         view_plan: View proposal
       omastadi_view:
+        add_author:
+          add_users_placeholder: Write the author's name or nickname
+          label: Search for authors
+          modal_title: Add authors for proposal
+          next: Next
+          no_results: No authors found matching your search.
+        authors: Proposal authors
         back: Back
         back_to_list: Show other proposals
         close_window: Close window
         collaborator_requests: Requests to edit
         controls:
+          add_author: Add authors for proposal
           close_plan: Mark as done
           close_plan_confirm_html: Are you sure you want to mark this proposal as done? Once the proposal is marked done, it can no longer be edited.
           edit_plan: Edit proposal

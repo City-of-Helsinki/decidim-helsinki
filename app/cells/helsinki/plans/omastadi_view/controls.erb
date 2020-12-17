@@ -1,6 +1,11 @@
 <div class="resource-control-panel text-center">
   <div class="title h3"><%= t ".manage_plan" %></div>
 
+  <div class="resource-control-panel-info static__content">
+    <%= t ".authors" %>:
+    <%= plan.authors.map(&:name).join(", ") %>
+  </div>
+
   <div class="resource-controls">
     <% if allowed_to?(:edit, :plan, plan: plan) %>
       <div class="resource-control">
@@ -12,12 +17,23 @@
         <%= link_to t(".controls.close_plan"), close_plan_path(plan), method: :post, class: "button primary large hollow", data: { confirm: t(".controls.close_plan_confirm_html") } %>
       </div>
     <% end %>
-    <% if withdrawable? %>
+    <% if withdrawable? && allowed_to?(:withdraw, :plan, plan: plan) %>
       <div class="resource-control">
-        <%= action_authorized_link_to :withdraw, withdraw_plan_path(plan), method: :put, class: "button primary large hollow", data: { confirm: t(".controls.withdraw_confirmation_html") } do %>
+        <%= link_to withdraw_plan_path(plan), method: :put, class: "button primary large hollow", data: { confirm: t(".controls.withdraw_confirmation_html") } do %>
           <%= t(".controls.withdraw_plan") %>
         <% end %>
       </div>
     <% end %>
+    <% if allowed_to?(:edit, :plan, plan: plan) %>
+      <div class="resource-control">
+        <button class="button primary large hollow" data-open="plan-author-add-modal">
+          <%= t(".controls.add_author") %>
+        </button>
+      </div>
+    <% end %>
   </div>
 </div>
+
+<% if allowed_to?(:edit, :plan, plan: plan) %>
+  <%= render :add_authors_modal %>
+<% end %>
