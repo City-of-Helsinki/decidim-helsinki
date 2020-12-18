@@ -93,7 +93,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 0996b4f6c9a692fbf93b46238250b1ec8deb0bc7
+  revision: 3d6a2e4849df7d2476afc94114d931d340033c65
   branch: develop
   specs:
     decidim-plans (0.23.0)
