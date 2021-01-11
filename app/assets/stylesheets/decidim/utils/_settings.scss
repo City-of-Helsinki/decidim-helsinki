@@ -181,6 +181,7 @@ $header-styles: (
 );
 $header-text-rendering: optimizeLegibility;
 $small-font-size: 90%;
+$large-font-size: 1.25rem;
 $header-small-font-color: lighten($body-font-color, 30);
 $paragraph-lineheight: 1.4;
 $paragraph-margin-bottom: 1.1rem;
@@ -251,7 +252,7 @@ $input-error-font-weight: $global-weight-bold;
 
 $accordion-background: $primary-color;
 $accordion-plusminus: true;
-$accordion-title-font-size: rem-calc(12);
+$accordion-title-font-size: $large-font-size;
 $accordion-item-color: $white;
 $accordion-item-background-hover: $light-gray;
 $accordion-item-padding: 1.25rem 1rem;
