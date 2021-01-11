@@ -116,6 +116,7 @@ en:
           you_can_invite_others: If you are submitting a proposal as a group, you can invite others to collaborate on the proposal.
         characters_min: "(at least %count% characters required)"
         characters_used: "%count%/%total% characters used"
+        edit_step_info: Write a brief description of your proposal and select the area in which it will be located. A good description describes you what should be done concretely and where funding is needed. When creating a proposal, you can utilise information about the city's services and plans.
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         required_fields_text: Required fields are marked with the *-character.
         steps:
@@ -157,7 +158,7 @@ en:
           tag_prompt: Select tags
           title: Search proposals
           unfold: Unfold
-        leave_your_plan: Submit your own proposal!
+        leave_your_plan: Create your own proposal!!
         new_plan: New proposal
         see_all_withdrawn: See all withdrawn
         subtitle: Find and explore proposals!

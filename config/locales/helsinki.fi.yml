@@ -116,6 +116,7 @@ fi:
           you_can_invite_others: Mikäli haluatte jättää ehdotuksen porukalla, voit kutsua muita ehdotuksen tekijöiksi sen jättämisen jälkeen.
         characters_min: "(vähintään %count% merkkiä vaaditaan)"
         characters_used: "%count%/%total% merkkiä käytetty"
+        edit_step_info: Kirjoita lyhyt kuvaus ehdotuksestasi ja valitse alue, johon se sijoittuu. Hyvässä kuvauksessa kerrotaan, mitä pitäisi konkreettisesti tehdä ja mihin rahoitusta tarvitaan. Hyödynnä ehdotuksen suunnittelussa tietoa kaupungin palveluista ja suunnitelmista.
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         required_fields_text: Pakolliset kentät on merkitty *-merkillä.
         steps:
@@ -157,7 +158,7 @@ fi:
           tag_prompt: Valitse merkinnät
           title: Etsi ehdotuksia
           unfold: Avaa
-        leave_your_plan: Käy jättämässä oma ehdotuksesi!
+        leave_your_plan: Tee oma ehdotuksesi!
         new_plan: Uusi ehdotus
         see_all_withdrawn: Näytä kaikki peruutetut
         subtitle: Etsi ja tutki ehdotuksia!

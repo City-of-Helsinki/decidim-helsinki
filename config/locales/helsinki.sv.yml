@@ -116,6 +116,7 @@ sv:
           you_can_invite_others: Om du skickar in ett förslag som grupp kan du bjuda in andra att samarbeta på förslaget.
         characters_min: "(minst %count% tecken krävs)"
         characters_used: "%count%/%total% tecken används"
+        edit_step_info: Skriv en kort beskrivning av ditt förslag och välj det område där det kommer att ligga. En bra beskrivning förklarar vad som ska göras konkret och vilken finansiering som behövs. När du planerar ett förslag kan du använda informationen om stadens tjänster och planer.
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         required_fields_text: Obligatoriska fält är markerade med *-tecknet.
         steps:
@@ -157,7 +158,7 @@ sv:
           tag_prompt: Välj taggar
           title: Sök förslag
           unfold: Öppna
-        leave_your_plan: Skicka in ditt eget förslag!
+        leave_your_plan: Gör ditt eget förslag!!
         new_plan: Nytt förslag
         see_all_withdrawn: Visa alla annullerade
         subtitle: Hitta och utforska förslag!
