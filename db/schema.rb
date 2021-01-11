@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_15_122541) do
+ActiveRecord::Schema.define(version: 2021_01_06_114553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_trgm"
-  enable_extension "pgaudit"
   enable_extension "plpgsql"
 
   create_table "decidim_accountability_results", id: :serial, force: :cascade do |t|
@@ -1294,6 +1293,7 @@ ActiveRecord::Schema.define(version: 2020_11_15_122541) do
     t.boolean "visible_view", default: true, null: false
     t.boolean "visible_api", default: true, null: false
     t.string "handle"
+    t.boolean "searchable", default: false, null: false
     t.index ["decidim_component_id"], name: "index_decidim_plans_sections_on_decidim_component_id"
     t.index ["position"], name: "index_decidim_plans_sections_on_position"
   end
