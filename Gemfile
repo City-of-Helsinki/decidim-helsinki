@@ -6,7 +6,7 @@ ruby RUBY_VERSION
 
 # Run updates by following the Decidim upgrade instructions:
 # https://github.com/decidim/decidim/blob/master/docs/getting_started.md#keeping-your-app-up-to-date
-DECIDIM_VERSION = { github: "mainio/decidim", branch: "feature/multibudget-maximum-votes" }
+DECIDIM_VERSION = { github: "mainio/decidim", branch: "feature/multibudget-maximum-votes" }.freeze
 # DECIDIM_VERSION = "0.23.0"
 # DECIDIM_MODULE_VERSION = "~> 0.23.0"
 
@@ -23,15 +23,15 @@ gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", 
 # Install the git modules until they have an actual release
 gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "develop"
 gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "develop"
-gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "master"
 gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "master"
 gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "master"
+gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "master"
 gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "develop"
 gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "develop"
 
 # Install the improved budgeting module until these improvements are hopefully
 # merged to the core.
-#gem "decidim-budgets_enhanced", github: "OpenSourcePolitics/decidim-module-budgets_enhanced", branch: "0.22-dev"
+# gem "decidim-budgets_enhanced", github: "OpenSourcePolitics/decidim-module-budgets_enhanced", branch: "0.22-dev"
 
 # For static maps, hasn't released an official release with the updated
 # dependencies. GitHub version works fine.
