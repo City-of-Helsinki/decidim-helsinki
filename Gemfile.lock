@@ -67,16 +67,16 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: 8a832503c2b3887dbdd8ac17aa37ae5056a91dfb
+  revision: 0a6652e3cd3e58746c73577b11f8123528728635
   branch: master
   specs:
     decidim-ideas (0.23.0)
       acts_as_list (~> 0.9)
       cells-erb (~> 0.1.0)
       cells-rails (~> 0.0.9)
-      decidim-core (~> 0.23.0.dev)
-      decidim-favorites (~> 0.23.0.dev)
-      decidim-feedback (~> 0.23.0.dev)
+      decidim-core (~> 0.23.0)
+      decidim-favorites (~> 0.23.0)
+      decidim-feedback (~> 0.23.0)
       graphql (~> 1.9.19)
       kaminari (~> 1.2, >= 1.2.1)
       ransack (~> 2.1.1)
@@ -93,14 +93,14 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 3d6a2e4849df7d2476afc94114d931d340033c65
+  revision: 4243a99b5604bae14ebecc0f9f48ee2c8644455a
   branch: develop
   specs:
     decidim-plans (0.23.0)
-      decidim-core (~> 0.23.0.dev)
-      decidim-favorites (~> 0.23.0.dev)
-      decidim-feedback (~> 0.23.0.dev)
-      decidim-proposals (~> 0.23.0.dev)
+      decidim-core (~> 0.23.0)
+      decidim-favorites (~> 0.23.0)
+      decidim-feedback (~> 0.23.0)
+      decidim-proposals (~> 0.23.0)
       graphql (~> 1.9.19)
       paper_trail-association_tracking (~> 2.0)
 
@@ -1098,4 +1098,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.0.2
+   2.2.3
