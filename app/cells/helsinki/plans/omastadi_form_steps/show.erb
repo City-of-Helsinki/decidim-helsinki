@@ -4,7 +4,7 @@
       <li class="tabs-title tabs-stepper-step<%= " is-active" if step[:active] %>">
         <div class="step-selector" data-tabs-target="<%= step[:target] %>">
           <div class="step-selector-number"><%= index + 1 %></div>
-          <div class="step-selector-text"><%= t(".attach_ideas") %></div>
+          <div class="step-selector-text"><%= step[:name] %></div>
         </div>
       </li>
     <% else %>
