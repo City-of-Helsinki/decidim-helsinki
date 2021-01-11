@@ -119,12 +119,13 @@ sv:
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         required_fields_text: Obligatoriska fält är markerade med *-tecknet.
         steps:
-          attach_ideas: Bifoga idéer
-          browse_proposals: Kolla in förslagen
-          edit: Förslagets detaljer
           next: Nästa
-          preview: Granska och publicera
           previous: Tidigare
+      omastadi_form_steps:
+        attach_ideas: Bifoga idéer
+        browse_proposals: Kolla in förslagen
+        edit: Förslagets detaljer
+        preview: Granska och publicera
       omastadi_index:
         draft_plan_title: Du har ett oavslutat förslag!
         draft_plan_continue: Fortsätt ditt förslag
@@ -170,7 +171,7 @@ sv:
           next: Nästa
           no_results: Inga författare hittades som matchade din sökning.
         authors: Förslagets författare
-        back: Tillbaka
+        back: Tillbaka till listan av förslag
         back_to_list: Visa andra förslag
         close_window: Stäng fönstret
         collaborator_requests: Begär att redigera

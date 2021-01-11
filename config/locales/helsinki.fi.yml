@@ -119,12 +119,13 @@ fi:
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         required_fields_text: Pakolliset kentät on merkitty *-merkillä.
         steps:
-          attach_ideas: Liitä ideoita
-          browse_proposals: Tutustu ehdotuksiin
-          edit: Ehdotuksen tiedot
           next: Seuraava
-          preview: Tarkasta ja julkaise
           previous: Edellinen
+      omastadi_form_steps:
+        attach_ideas: Liitä ideoita
+        browse_proposals: Tutustu ehdotuksiin
+        edit: Ehdotuksen tiedot
+        preview: Tarkasta ja julkaise
       omastadi_index:
         draft_plan_title: Sinulla on keskeneräinen ehdotus!
         draft_plan_continue: Jatka ehdotustasi
@@ -170,7 +171,7 @@ fi:
           next: Seuraava
           no_results: Ei yhtään hakua vastaavia käyttäjiä.
         authors: Ehdotuksen tekijät
-        back: Takaisin
+        back: Palaa takaisin ehdotuslistaukseen
         back_to_list: Näytä muut ehdotukset
         close_window: Sulje ikkuna
         collaborator_requests: Muokkauspyynnöt

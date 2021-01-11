@@ -9,6 +9,12 @@
   <% end %>
 </div>
 
+<% if preview_mode? %>
+  <div class="row column">
+    <%= cell("helsinki/plans/omastadi_form_steps", nil, active_step: 3) %>
+  </div>
+<% end %>
+
 <div class="resource-intro">
   <div class="row" data-equalizer>
     <div class="columns mediumlarge-7">

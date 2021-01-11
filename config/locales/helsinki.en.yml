@@ -119,12 +119,13 @@ en:
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         required_fields_text: Required fields are marked with the *-character.
         steps:
-          attach_ideas: Attach ideas
-          browse_proposals: Browse proposals
-          edit: Proposal details
           next: Next
-          preview: Preview and publish
           previous: Previous
+      omastadi_form_steps:
+        attach_ideas: Attach ideas
+        browse_proposals: Browse proposals
+        edit: Proposal details
+        preview: Preview and publish
       omastadi_index:
         draft_plan_title: You have a proposal draft!
         draft_plan_continue: Continue your proposal
@@ -170,7 +171,7 @@ en:
           next: Next
           no_results: No authors found matching your search.
         authors: Proposal authors
-        back: Back
+        back: Back to proposals list
         back_to_list: Show other proposals
         close_window: Close window
         collaborator_requests: Requests to edit
