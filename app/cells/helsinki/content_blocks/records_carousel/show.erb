@@ -6,7 +6,11 @@
       <div class="card-slider center">
         <% records.each do |record| %>
           <div class="card-slide-content">
-            <%= card_for record, from: record, context: { no_column: true, disable_favorite: true } %>
+            <%= card_for record, from: record, context: {
+              no_column: true,
+              disable_favorite: true,
+              utm_params: utm_params_for(record)
+            } %>
           </div>
         <% end %>
       </div>

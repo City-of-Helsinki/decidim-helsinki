@@ -52,6 +52,24 @@ module Helsinki
         translated_attribute(model.settings.title)
       end
 
+      def utm_content_name
+        records_manifest_name
+      end
+
+      def utm_params_base
+        {
+          source: request.host,
+          medium: "carousel",
+          campaign: "#{records_manifest_name}_carousel"
+        }
+      end
+
+      def utm_params_for(record)
+        utm_params_base.merge(
+          content: "#{utm_content_name}_#{record.id}"
+        )
+      end
+
       def button_url
         model.settings.button_url
       end

@@ -9,6 +9,10 @@ module Helsinki
         "ideas"
       end
 
+      def utm_content_name
+        "idea"
+      end
+
       def records_for(components)
         Decidim::Ideas::Idea.only_amendables.published.not_hidden.except_withdrawn.where(
           component: components

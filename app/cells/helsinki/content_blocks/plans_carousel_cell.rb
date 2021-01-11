@@ -9,6 +9,10 @@ module Helsinki
         "plans"
       end
 
+      def utm_content_name
+        "plan"
+      end
+
       def records_for(components)
         Decidim::Plans::Plan.published.not_hidden.except_withdrawn.where(
           component: components
