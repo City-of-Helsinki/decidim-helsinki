@@ -10,7 +10,7 @@ module Helsinki
       end
 
       def steps
-        @steps = [
+        @steps ||= [
           {
             name: t(".browse_proposals"),
             active: active_step.zero?
