@@ -116,7 +116,8 @@ sv:
           you_can_invite_others: Om du skickar in ett förslag som grupp kan du bjuda in andra att samarbeta på förslaget.
         characters_min: "(minst %count% tecken krävs)"
         characters_used: "%count%/%total% tecken används"
-        edit_step_info: Skriv en kort beskrivning av ditt förslag och välj det område där det kommer att ligga. En bra beskrivning förklarar vad som ska göras konkret och vilken finansiering som behövs. När du planerar ett förslag kan du använda informationen om stadens tjänster och planer.
+        edit_step_info: Skriv en kort beskrivning av ditt förslag. I beskrivningen av förslaget är det bra att berätta vilken typ av fråga som kan lösas med förslaget, vem som har nytta av det och vad är det som behöver göras konkret. Välj också ett område och lämpligt tema för förslaget.
+        ideas_step_info: Ett förslag består av en eller flera godkända idéer som lämnats på webbplatsen omastadi.hel.fi. Här kan du börja skapa förslag genom att välja en eller flera idéer som ditt förslag grundar sig på. Innan du gör ditt eget förslag bekanta dig med förslag som andra har gett.
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         required_fields_text: Obligatoriska fält är markerade med *-tecknet.
         steps:

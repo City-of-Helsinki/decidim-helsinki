@@ -117,6 +117,7 @@ fi:
         characters_min: "(vähintään %count% merkkiä vaaditaan)"
         characters_used: "%count%/%total% merkkiä käytetty"
         edit_step_info: Kirjoita lyhyt kuvaus ehdotuksestasi ja valitse alue, johon se sijoittuu. Hyvässä kuvauksessa kerrotaan, mitä pitäisi konkreettisesti tehdä ja mihin rahoitusta tarvitaan. Hyödynnä ehdotuksen suunnittelussa tietoa kaupungin palveluista ja suunnitelmista.
+        ideas_step_info: Ehdotuksia tehdään kaupunkilaisten jättämien, kriteerit täyttäneiden ideoiden pohjalta. Aloita ehdotuksen luominen valitsemalla yksi tai useampi idea, johon ehdotuksesi perustuu. Jokaiseen ehdotukseen tulee liittää vähintään yksi idea. Ennen kuin teet oman ehdotuksen, käy tutustumassa muiden tekemiin ehdotuksiin.
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         required_fields_text: Pakolliset kentät on merkitty *-merkillä.
         steps:
