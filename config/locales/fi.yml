@@ -89,6 +89,9 @@ fi:
       omniauth_callbacks:
         failure:
           security_denial: Henkilöllisyyttäsi ei pystytä varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
+  errors:
+    messages:
+      extension_whitelist_error: Lataamasi tiedostomuoto ei ole sallittu.
   forms:
     scopes_picker:
       others: Muut
