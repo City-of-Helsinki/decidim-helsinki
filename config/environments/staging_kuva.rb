@@ -4,9 +4,6 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.search_indexing = false
 
-  # Sending address for mails
-  config.mailer_sender = "no-reply@paahtimo.hel.ninja"
-
   # String identifier, this defines the main mode of Decidim
   # See README.md for more explation on this.
   config.use_mode = "private"
@@ -71,7 +68,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   config.active_job.queue_adapter = :resque
-  config.active_job.queue_name_prefix = "decidim-helsinkistaging_kuva_#{Rails.env}"
+  config.active_job.queue_name_prefix = "decidim-paahtimostaging_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
