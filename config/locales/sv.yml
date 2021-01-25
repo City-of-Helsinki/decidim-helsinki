@@ -68,6 +68,16 @@ sv:
       projects:
         filters:
           category_prompt: Välj ett ämne
+    forms:
+      file_help:
+        file:
+          explanation: 'Vägledning för fil:'
+          message_1: Måste vara en bild eller ett dokument.
+          message_2: För bilder, använd företrädesvis liggande bilder, tjänsten beskär bilden.
+        image:
+          explanation: 'Vägledning för bild:'
+          message_1: Helst en landskapsbild som inte har någon text.
+          message_2: Tjänsten beskär bilden.
     help_sections:
       footer_text:
         name: Sidfotstext

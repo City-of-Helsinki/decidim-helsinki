@@ -68,6 +68,16 @@ en:
       projects:
         filters:
           category_prompt: Choose category
+    forms:
+      file_help:
+        file:
+          explanation: 'Guidance for file:'
+          message_1: Has to be an image or a document.
+          message_2: For images, use preferrably landscape images, the service crops the image.
+        image:
+          explanation: 'Guidance for image:'
+          message_1: Preferrably a landscape image that does not have any text.
+          message_2: The service crops the image.
     help_sections:
       footer_text:
         name: Footer text
