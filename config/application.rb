@@ -326,6 +326,8 @@ module DecidimHelsinki
         :include,
         AdminHelpSectionsExtensions
       )
+      Decidim::UserActivitiesController.send(:include, ActivityResourceTypes)
+      Decidim::UserTimelineController.send(:include, ActivityResourceTypes)
 
       # Cell extensions
       Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
@@ -362,6 +364,9 @@ module DecidimHelsinki
         :include,
         Helsinki::ProposalParserExtensions
       )
+
+      # Service extensions
+      Decidim::ActivitySearch.send(:include, ActivitySearchExtensions)
 
       # Model extensions
       Decidim::Category.send(:include, CategoryExtensions)
