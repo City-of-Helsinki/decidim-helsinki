@@ -23,7 +23,9 @@ en:
               used: the personal identity number is already in use
   activerecord:
     models:
-      decidim/plans/plan: Plan
+      decidim/plans/plan:
+        one: Proposal
+        other: Proposals
   auth:
     sign_in_with_tunnistamo: 'Use Tunnistamo to sign in'
   decidim:
@@ -68,6 +70,11 @@ en:
       projects:
         filters:
           category_prompt: Choose category
+    components:
+      component_order_selector:
+        order:
+          idea: Idea
+          plan: Proposal
     forms:
       file_help:
         file:

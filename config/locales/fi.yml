@@ -23,7 +23,9 @@ fi:
               used: henkilötunnus on jo käytössä
   activerecord:
     models:
-      decidim/plans/plan: Suunnitelma
+      decidim/plans/plan:
+        one: Ehdotus
+        other: Ehdotukset
   auth:
     sign_in_with_tunnistamo: 'Käytä Tunnistamoa kirjautuaksesi sisään'
   decidim:
@@ -68,6 +70,11 @@ fi:
       projects:
         filters:
           category_prompt: Valitse aihepiiri
+    components:
+      component_order_selector:
+        order:
+          idea: Idea
+          plan: Ehdotus
     forms:
       file_help:
         file:

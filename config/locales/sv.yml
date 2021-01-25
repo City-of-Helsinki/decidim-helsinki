@@ -23,7 +23,9 @@ sv:
               used: personnummer har redan använts
   activerecord:
     models:
-      decidim/plans/plan: Plan
+      decidim/plans/plan:
+        one: Förslag
+        other: Förslag
   auth:
     sign_in_with_tunnistamo: 'Logga in med Tunnistamo'
   decidim:
@@ -68,6 +70,11 @@ sv:
       projects:
         filters:
           category_prompt: Välj ett ämne
+    components:
+      component_order_selector:
+        order:
+          idea: Idé
+          plan: Förslag
     forms:
       file_help:
         file:
