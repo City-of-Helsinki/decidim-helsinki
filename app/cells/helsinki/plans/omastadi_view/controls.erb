@@ -1,11 +1,6 @@
 <div class="resource-control-panel text-center">
   <div class="title h3"><%= t ".manage_plan" %></div>
 
-  <div class="resource-control-panel-info static__content">
-    <%= t ".authors" %>:
-    <%= plan.authors.map(&:name).join(", ") %>
-  </div>
-
   <div class="resource-controls">
     <% if allowed_to?(:edit, :plan, plan: plan) %>
       <div class="resource-control">
