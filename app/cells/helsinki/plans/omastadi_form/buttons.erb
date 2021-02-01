@@ -1,5 +1,10 @@
 <% if user_signed_in? %>
   <div class="actions text-center">
+    <div class="form-submit-message text-center hide">
+      <div class="loading-spinner"></div>
+      <p><%= t(".buttons.loading_message") %></p>
+    </div>
+
     <% if plan && plan.persisted? && plan.draft? %>
       <%= link_to t(".buttons.discard"), plan_path(plan), method: :delete, class: "mr-2 discard-draft-link", data: { confirm: t(".buttons.discard_confirmation") } %>
     <% end %>

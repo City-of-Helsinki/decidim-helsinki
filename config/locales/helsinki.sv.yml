@@ -111,6 +111,7 @@ sv:
           create: Skapa och förhandsgranska
           discard: Radera utkastet
           discard_confirmation: Är du säker på att du vill radera utkastet?
+          loading_message: Sparar... Bearbetning av bilder och bilagor tar ett tag, var god vänta ett ögonblick.
           save: Spara
           save_draft: Spara utkast
           you_can_invite_others: Om du skickar in ett förslag som grupp kan du bjuda in andra att samarbeta på förslaget.
