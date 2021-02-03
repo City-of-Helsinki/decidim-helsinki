@@ -84,7 +84,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-mpassid.git
-  revision: ad91ae86dc798723868583b3e428b12c6ffd4511
+  revision: e695b5cd63c3b2c9389246cd2a7a60a95871d66b
   branch: develop
   specs:
     decidim-mpassid (0.23.0)
@@ -123,13 +123,13 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-suomifi.git
-  revision: dc024eb5938a47c570f779b3a67efd10e3397e28
+  revision: a5c15cd9c1a87f944920af7472a2c09d777e1f63
   branch: develop
   specs:
     decidim-suomifi (0.23.0)
       decidim-core (~> 0.23.0.dev)
       henkilotunnus (~> 1.1.0)
-      omniauth-suomifi (~> 0.3.0)
+      omniauth-suomifi (~> 0.4.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-term_customizer.git
@@ -710,8 +710,8 @@ GEM
       oauth2 (~> 1.1)
       omniauth (>= 1.1.1)
       omniauth-oauth2 (>= 1.6)
-    omniauth-mpassid (0.2.0)
-      omniauth-saml (~> 1.10.1)
+    omniauth-mpassid (0.2.1)
+      omniauth-saml (~> 1.10.3)
     omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
@@ -721,11 +721,11 @@ GEM
     omniauth-rails_csrf_protection (0.1.2)
       actionpack (>= 4.2)
       omniauth (>= 1.3.1)
-    omniauth-saml (1.10.2)
+    omniauth-saml (1.10.3)
       omniauth (~> 1.3, >= 1.3.2)
       ruby-saml (~> 1.9)
-    omniauth-suomifi (0.3.0)
-      omniauth-saml (~> 1.10.1)
+    omniauth-suomifi (0.4.1)
+      omniauth-saml (~> 1.10.3)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
