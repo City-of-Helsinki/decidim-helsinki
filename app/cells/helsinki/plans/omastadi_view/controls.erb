@@ -21,7 +21,7 @@
     <% end %>
     <% if allowed_to?(:edit, :plan, plan: plan) %>
       <div class="resource-control">
-        <button class="button primary large hollow" data-open="plan-author-add-modal">
+        <button class="button primary large hollow" data-open="plan-author-add-modal-for-<%= plan.id %>">
           <%= t(".controls.add_author") %>
         </button>
       </div>
@@ -30,5 +30,5 @@
 </div>
 
 <% if allowed_to?(:edit, :plan, plan: plan) %>
-  <%= render :add_authors_modal %>
+  <%= cell("decidim/plans/plan_add_authors", plan) %>
 <% end %>

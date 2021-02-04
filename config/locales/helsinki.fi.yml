@@ -167,16 +167,9 @@ fi:
         title: Tutustu ehdotuksiin
         view_plan: Näytä ehdotus
       omastadi_view:
-        add_author:
-          add_users_placeholder: Kirjoita tekijän nimi tai nimimerkki
-          label: Etsi tekijöitä
-          modal_title: Lisää ehdotukselle tekijöitä
-          next: Seuraava
-          no_results: Ei yhtään hakua vastaavia käyttäjiä.
         authors: Ehdotuksen tekijät
         back: Palaa takaisin ehdotuslistaukseen
         back_to_list: Näytä muut ehdotukset
-        close_window: Sulje ikkuna
         collaborator_requests: Muokkauspyynnöt
         controls:
           add_author: Lisää ehdotukselle tekijöitä

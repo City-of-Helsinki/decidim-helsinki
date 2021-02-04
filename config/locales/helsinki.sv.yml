@@ -167,16 +167,9 @@ sv:
         title: Bläddra bland förslag
         view_plan: Visa förslag
       omastadi_view:
-        add_author:
-          add_users_placeholder: Skriv författarens namn eller smeknamn
-          label: Sök efter författare
-          modal_title: Lägg till författare för förslag
-          next: Nästa
-          no_results: Inga författare hittades som matchade din sökning.
         authors: Förslagets författare
         back: Tillbaka till listan av förslag
         back_to_list: Visa andra förslag
-        close_window: Stäng fönstret
         collaborator_requests: Begär att redigera
         controls:
           add_author: Lägg till författare för förslag
