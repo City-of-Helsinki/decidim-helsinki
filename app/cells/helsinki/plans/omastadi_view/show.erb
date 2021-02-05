@@ -80,13 +80,13 @@
   <% if current_user.nil? || allowed_to?(:request_access, :plan, plan: plan) %>
     <div class="row">
       <div class="columns">
-        <div class="callout secondary"><%== t(".info_message") %></div>
+        <div class="callout primary"><%== t(".info_message") %></div>
       </div>
     </div>
   <% elsif access_request_pending? %>
     <div class="row">
       <div class="columns">
-        <div class="callout secondary"><%== t(".pending_access_request_message_html") %></div>
+        <div class="callout primary"><%== t(".pending_access_request_message_html") %></div>
       </div>
     </div>
   <% end %>
