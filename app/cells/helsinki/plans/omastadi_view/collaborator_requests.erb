@@ -6,9 +6,8 @@
       <%= cell "decidim/author", present(requester), options: { extra_classes: ["author-data--small"] }, has_actions: false %>
 
       <div>
-        <%= render partial: "helsinki/plans/omastadi_view/request_access_accept_form", locals: { requester: requester } %>
-
         <%= render partial: "helsinki/plans/omastadi_view/request_access_reject_form", locals: { requester: requester } %>
+        <%= render partial: "helsinki/plans/omastadi_view/request_access_accept_form", locals: { requester: requester } %>
       </div>
     </div>
   <% end %>

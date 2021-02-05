@@ -1,10 +1,11 @@
 <% if allowed_to?(:edit, :plan, plan: plan) %>
-  <%= decidim_form_for(reject_request_form, url: request_reject_plan_path(plan)) do |form| %>
+  <%= decidim_form_for(reject_request_form, url: request_reject_plan_path(plan), html: { class: "field-inline" }) do |form| %>
     <%= form.hidden_field :id, value: plan.id %>
     <%= form.hidden_field :state, value: plan.state %>
     <%= form.hidden_field :requester_user_id, value: requester.id %>
-    <%= button_tag type: "submit", data: { disable: true }, title: t("decidim.plans.requests.reject_request") do %>
-      <%= icon "x", class: "icon--small muted ml-xs" %>
+    <%= button_tag type: "submit", class: "button hollow alert small", data: { disable: true } do %>
+      <%= t("decidim.plans.requests.reject_request") %>
+      <%= icon "x", class: "icon--small ml-xs", aria_hidden: true %>
     <% end %>
   <% end %>
 <% end %>
