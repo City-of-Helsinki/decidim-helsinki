@@ -35,14 +35,6 @@ module Helsinki
         end
       end
 
-      def image_section
-        @image_section ||= first_section_with_type("field_image_attachments")
-      end
-
-      def image_content
-        @image_content ||= content_for(image_section)
-      end
-
       def category_image_path(cat)
         return unless has_category?
         return unless cat.respond_to?(:category_image)
@@ -51,19 +43,14 @@ module Helsinki
         cat.category_image.url
       end
 
-      def plan_image
-        return unless image_content
-        return if image_content.body["attachment_ids"].blank?
-
-        @plan_image ||= Decidim::Attachment.find_by(
-          id: image_content.body["attachment_ids"].first
-        )
-      end
-
       def description
         return unless description_content
 
         rich_content(translated_attribute(description_content.body))
+      end
+
+      def share_description
+        description
       end
 
       def description_section
