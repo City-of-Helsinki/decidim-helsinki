@@ -322,6 +322,7 @@ module DecidimHelsinki
 
       # Controller extensions
       # Keep after helpers because these can load in helpers!
+      Decidim::ApplicationController.send(:include, LongLocationUrlStoring)
       Decidim::Admin::HelpSectionsController.send(
         :include,
         AdminHelpSectionsExtensions
