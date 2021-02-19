@@ -75,6 +75,7 @@ module Helsinki
 
       def ideas
         return unless ideas_content
+        return unless ideas_content.body
         return if ideas_content.body["idea_ids"].blank?
 
         @ideas ||= Decidim::Ideas::Idea.where(id: ideas_content.body["idea_ids"])
@@ -102,6 +103,7 @@ module Helsinki
 
       def address
         return unless address_content
+        return unless address_content.body
 
         @address ||= address_content.body["address"]
       end
@@ -129,6 +131,7 @@ module Helsinki
 
       def area_scope
         return unless area_scope_content
+        return unless area_scope_content.body
 
         @area_scope ||= begin
           scope_id = area_scope_content.body["scope_id"].to_i
@@ -150,6 +153,7 @@ module Helsinki
 
       def category
         return unless category_content
+        return unless category_content.body
 
         @category ||= begin
           category_id = category_content.body["category_id"].to_i
