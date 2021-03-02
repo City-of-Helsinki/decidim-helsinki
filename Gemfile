@@ -8,7 +8,7 @@ ruby RUBY_VERSION
 # https://github.com/decidim/decidim/blob/master/docs/getting_started.md#keeping-your-app-up-to-date
 DECIDIM_VERSION = { github: "mainio/decidim", branch: "feature/multibudget-maximum-votes" }.freeze
 # DECIDIM_VERSION = "0.23.0"
-# DECIDIM_MODULE_VERSION = "~> 0.23.0"
+DECIDIM_MODULE_VERSION = "~> 0.23.0"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-initiatives", DECIDIM_VERSION
@@ -18,7 +18,7 @@ gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "dev
 gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "develop"
 gem "decidim-process_groups_content_block", github: "mainio/decidim-module-process_groups_content_block", branch: "develop"
 gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "develop"
-gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "develop"
+gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
 
 # Install the git modules until they have an actual release
 gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "develop"

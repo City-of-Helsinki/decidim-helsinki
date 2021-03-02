@@ -93,7 +93,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 15fe6035b1e3a53c7f2aa84d37f4e615fc428e91
+  revision: e6a62ec679daa130e7ace1d33e367329f0c63f2b
   branch: develop
   specs:
     decidim-plans (0.23.0)
@@ -130,15 +130,6 @@ GIT
       decidim-core (~> 0.23.0.dev)
       henkilotunnus (~> 1.1.0)
       omniauth-suomifi (~> 0.4.0)
-
-GIT
-  remote: https://github.com/mainio/decidim-module-term_customizer.git
-  revision: f8825dc7c575c5d0cebab7bc2579a07f3a66e9ee
-  branch: develop
-  specs:
-    decidim-term_customizer (0.23.0)
-      decidim-admin (~> 0.23.0.dev)
-      decidim-core (~> 0.23.0.dev)
 
 GIT
   remote: https://github.com/mainio/decidim.git
@@ -483,6 +474,9 @@ GEM
     db-query-matchers (0.9.0)
       activesupport (>= 4.0, <= 6.0)
       rspec (~> 3.0)
+    decidim-term_customizer (0.23.0)
+      decidim-admin (~> 0.23.0)
+      decidim-core (~> 0.23.0)
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
     declarative-option (0.1.0)
@@ -1070,7 +1064,7 @@ DEPENDENCIES
   decidim-process_groups_content_block!
   decidim-redirects!
   decidim-suomifi!
-  decidim-term_customizer!
+  decidim-term_customizer (~> 0.23.0)
   dotenv-rails (~> 2.1, >= 2.1.1)
   faker (~> 1.9)
   font-awesome-rails (~> 4.7.0)
