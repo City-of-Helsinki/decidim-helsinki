@@ -151,11 +151,12 @@ sv:
           reset: Rensa filter
           search: Sök
           state:
-            legend: Status
-            evaluating: Bedöms
-            rejected: Avslagen
-            accepted: Godkänd
+            accepted: Fortsätter till omröstningen
             all: Alla
+            evaluating: Bedöms
+            legend: Status
+            not_answered: Ej besvarade
+            rejected: Går inte vidare till omröstningen
           tag: Taggar
           tag_prompt: Välj taggar
           title: Sök förslag

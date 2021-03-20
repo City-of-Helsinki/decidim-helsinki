@@ -7,6 +7,33 @@ module Helsinki
 
       private
 
+      def filters_main_row_column_class
+        if display_answer_filter? && display_area_scopes_filter? && display_category_filter?
+          "columns mediumlarge-6 large-3"
+        else
+          "columns mediumlarge-6 large-4"
+        end
+      end
+
+      def display_answer_filter?
+        return false unless component.settings.plan_answering_enabled
+        return false unless component.current_settings.plan_answering_enabled
+
+        @display_answer_filter ||= begin
+          Decidim::Plans::Plan.published.not_hidden.where(
+            component: component
+          ).where.not(answered_at: nil).any?
+        end
+      end
+
+      def display_area_scopes_filter?
+        area_scopes_parent.present?
+      end
+
+      def display_category_filter?
+        component.categories.any? && category_section
+      end
+
       def ideas_contents
         @ideas_contents ||= object.contents.select do |c|
           c.section.handle == "ideas"
@@ -57,6 +84,14 @@ module Helsinki
 
       def category_section
         @category_section ||= section_with_handle("category")
+      end
+
+      def filter_states_values
+        [
+          [t(".filters.state.accepted"), "accepted"],
+          [t(".filters.state.rejected"), "rejected"],
+          [t(".filters.state.not_answered"), "not_answered"]
+        ]
       end
 
       def filter_categories_values

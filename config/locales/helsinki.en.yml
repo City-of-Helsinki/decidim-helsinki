@@ -151,11 +151,12 @@ en:
           reset: Clear filters
           search: Search
           state:
-            legend: State
-            evaluating: Evaluating
-            rejected: Rejected
-            accepted: Accepted
+            accepted: Proceeds to voting
             all: All
+            evaluating: Evaluating
+            legend: State
+            not_answered: Not answered
+            rejected: Will not proceed to voting
           tag: Tags
           tag_prompt: Select tags
           title: Search proposals

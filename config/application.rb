@@ -329,6 +329,7 @@ module DecidimHelsinki
       )
       Decidim::UserActivitiesController.send(:include, ActivityResourceTypes)
       Decidim::UserTimelineController.send(:include, ActivityResourceTypes)
+      Decidim::Plans::PlansController.send(:include, PlansExtensions)
 
       # Cell extensions
       Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(

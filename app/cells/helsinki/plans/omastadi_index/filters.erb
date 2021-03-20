@@ -29,8 +29,18 @@
   </div>
 
   <div class="row">
-    <% if area_scopes_parent %>
-      <div class="columns mediumlarge-6 large-4">
+    <% if display_answer_filter? %>
+      <div class="<%= filters_main_row_column_class %>">
+        <div class="filters__section area_scope_id_filter">
+          <fieldset>
+            <legend class="mini-title"><%= t(".filters.state.legend") %></legend>
+            <%= form.select(:state, filter_states_values, label: false, include_blank: t(".filters.state.all")) %>
+          </fieldset>
+        </div>
+      </div>
+    <% end %>
+    <% if display_area_scopes_filter? %>
+      <div class="<%= filters_main_row_column_class %>">
         <div class="filters__section area_scope_id_filter">
           <fieldset>
             <legend class="mini-title"><%= t(".filters.area_scope") %></legend>
@@ -41,8 +51,8 @@
         </div>
       </div>
     <% end %>
-    <% if component.categories.any? && category_section %>
-      <div class="columns mediumlarge-6 large-4">
+    <% if display_category_filter? %>
+      <div class="<%= filters_main_row_column_class %>">
         <div class="filters__section category_id_filter">
           <fieldset>
             <legend class="mini-title"><%= t(".filters.category") %></legend>
@@ -53,7 +63,7 @@
         </div>
       </div>
     <% end %>
-    <div class="columns mediumlarge-6 large-4 end">
+    <div class="<%= filters_main_row_column_class %> end">
       <div class="filters__section">
         <div class="filters__search">
           <fieldset>

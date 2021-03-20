@@ -151,11 +151,12 @@ fi:
           reset: Tyhjennä rajaukset
           search: Hae
           state:
-            legend: Tila
-            evaluating: Arvioitavana
-            rejected: Hylätty
-            accepted: Hyväksytty
+            accepted: Etenee äänestykseen
             all: Kaikki
+            evaluating: Arvioitavana
+            legend: Tila
+            not_answered: Ei vastattu
+            rejected: Ei etene äänestykseen
           tag: Merkinnät
           tag_prompt: Valitse merkinnät
           title: Etsi ehdotuksia
