@@ -6,5 +6,5 @@ en:
         rejected: Not accepted
       ideas:
         show:
-          idea_accepted_reason: This idea was accepted to co-creation.
-          idea_rejected_reason: This idea was not accepted.
+          idea_accepted_reason: This idea was accepted to co-creation
+          idea_rejected_reason: This idea was not accepted
