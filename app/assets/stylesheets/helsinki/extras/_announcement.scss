@@ -1,6 +1,23 @@
-.callout.main-announcement{
-  margin: 1rem 0 4rem;
+.callout{
   padding: 2rem map-get($callout-sizes, default);
   font-weight: inherit;
   font-size: 125%;
+
+  &.main-announcement{
+    margin: 1rem 0 4rem;
+  }
+
+  &.primary{
+    background: $primary;
+    border-color: $primary;
+    border-left: 8px solid var(--primary);
+
+    &,
+    .h2,
+    .h3,
+    a,
+    .link{
+      color: $white;
+    }
+  }
 }

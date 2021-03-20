@@ -3,7 +3,14 @@
 module Helsinki
   module Plans
     class OmastadiViewCell < Decidim::Plans::PlanViewCell
+      include ActionView::Helpers::NumberHelper
       include Decidim::Plans::RichPresenter
+
+      def answer
+        return if !plan.answered? && !budget_estimate.present? && !final_budget_estimate.present?
+
+        render :answer
+      end
 
       def linked_ideas
         return unless ideas
@@ -24,6 +31,62 @@ module Helsinki
       end
 
       private
+
+      def answer_callout_class
+        return "success" if plan.accepted?
+        return "alert" if plan.rejected?
+        return "warning" if plan.answered?
+
+        "primary"
+      end
+
+      def final_answer_available?
+        plan.answered? || final_budget_estimate.present?
+      end
+
+      def budget_estimate
+        return unless budget_estimate_content
+
+        @budget_estimate ||= translated_attribute(budget_estimate_content.body).presence
+      end
+
+      def budget_estimate_section
+        @budget_estimate_section ||= section_with_handle("budget_estimate")
+      end
+
+      def budget_estimate_content
+        @budget_estimate_content ||= begin
+          return unless budget_estimate_section
+
+          content_for(budget_estimate_section)
+        end
+      end
+
+      def final_budget_estimate
+        @final_budget_estimate ||= begin
+          return unless final_budget_estimate_content
+          return unless final_budget_estimate_content.body["value"].present?
+
+          estimate = final_budget_estimate_content.body["value"]
+          return unless estimate.positive?
+
+          number_to_currency(
+            estimate,
+            precision: 0,
+            unit: Decidim.currency_unit
+          )
+        end
+      end
+
+      def final_budget_estimate_section
+        @final_budget_estimate_section ||= section_with_handle("final_budget_estimate")
+      end
+
+      def final_budget_estimate_content
+        return unless final_budget_estimate_section
+
+        @final_budget_estimate_content ||= content_for(final_budget_estimate_section)
+      end
 
       def main_image_path
         if plan_image && plan_image.photo?

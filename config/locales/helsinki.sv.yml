@@ -167,6 +167,13 @@ sv:
         title: Bläddra bland förslag
         view_plan: Visa förslag
       omastadi_view:
+        answer:
+          final_estimate: 'Slutlig budgetberäkning: %{amount}'
+          generic_title: Answer
+          initial_estimate: Preliminär budgetberäkning
+          reasoning: Resonemang
+          show_final_estimate: Visa slutlig budgetberäkning
+          show_initial_estimate: Visa preliminär budgetberäkning
         authors: Förslagets författare
         back: Tillbaka till listan av förslag
         back_to_list: Visa andra förslag

@@ -2,6 +2,8 @@
   <%= trigger_feedback_modal(plan, title: t(".feedback_title"), metadata: { context: "plan", action: "publish" }) %>
 <% end %>
 
+<%= answer %>
+
 <div class="row column view-header">
   <%= link_to plans_path(filter_link_params), class: "small hollow" do %>
     <%= icon "chevron-left", class: "icon--small" %>
@@ -114,8 +116,6 @@
         <%= linked_ideas %>
         <%= attachments %>
       </div>
-
-      <%= cell("decidim/announcement", plan_reason_callout_args) if plan.answered? %>
     </div>
   </div>
 </div>

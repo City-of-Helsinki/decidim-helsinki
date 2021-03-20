@@ -167,6 +167,13 @@ fi:
         title: Tutustu ehdotuksiin
         view_plan: Näytä ehdotus
       omastadi_view:
+        answer:
+          final_estimate: 'Lopullinen budjettiarvio: %{amount}'
+          generic_title: Vastaus
+          initial_estimate: Alustava budjettiarvio
+          reasoning: Perustelu
+          show_final_estimate: Näytä lopullinen budjettiarvio
+          show_initial_estimate: Näytä alustava budjettiarvio
         authors: Ehdotuksen tekijät
         back: Palaa takaisin ehdotuslistaukseen
         back_to_list: Näytä muut ehdotukset
