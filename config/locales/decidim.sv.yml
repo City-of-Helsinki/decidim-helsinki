@@ -16,6 +16,15 @@ sv:
         index:
           back_to_budgets: Visa alla budgeter
     components:
+      add_comment_form:
+        opinion:
+          label: Din åsikt om detta ämne
+          positive: Positiv
+          positive_selected: 'Din åsikt om detta ämne är positiv'
+          negative: Negative
+          negative_selected: 'Din åsikt om detta ämne är negativ'
+          neutral: Neutral
+          neutral_selected: 'Din åsikt om detta ämne är neutral'
       budgets:
         settings:
           global:

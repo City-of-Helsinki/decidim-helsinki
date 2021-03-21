@@ -16,6 +16,15 @@ fi:
         index:
           back_to_budgets: Näytä kaikki budjetit
     components:
+      add_comment_form:
+        opinion:
+          label: Mielipiteesi tästä aiheesta
+          positive: Positiivinen
+          positive_selected: 'Mielipiteesi tästä aiheesta on positiivinen'
+          negative: Negatiivinen
+          negative_selected: 'Mielipiteesi tästä aiheesta on negatiivinen'
+          neutral: Neutraali
+          neutral_selected: 'Mielipiteesi tästä aiheesta on neutraali'
       budgets:
         settings:
           global:
