@@ -25,6 +25,13 @@
     border-top-width: 1px;
   }
 
+  .card__header{
+    .card__link{
+      // Fix focus outline on the card link
+      display: inline-block;
+    }
+  }
+
   .card__category{
     position: relative;
 
