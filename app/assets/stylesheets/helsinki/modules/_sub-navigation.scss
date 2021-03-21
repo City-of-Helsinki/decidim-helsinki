@@ -56,9 +56,20 @@
     }
   }
 
+  .sub-navigation-nav{
+    display: none;
+
+    @include breakpoint(mediumlarge){
+      display: block;
+    }
+
+    &.active{
+      display: block;
+    }
+  }
+
   .sub-navigation-content{
     position: relative;
-    display: none;
     z-index: 1;
     padding: 2rem .5rem;
     border: 2px solid $black;
@@ -67,11 +78,6 @@
     @include breakpoint(mediumlarge){
       padding: 0;
       border: 0;
-      display: block;
-    }
-
-    &.active{
-      display: block;
     }
   }
 }
