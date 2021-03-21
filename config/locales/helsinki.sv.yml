@@ -77,6 +77,9 @@ sv:
         navigate: Navigera steg
       process_steps_settings_form:
         process: Process
+      records_carousel:
+        next: Nästa
+        previous: Tidigare
       records_carousel_settings_form:
         button_text: Knapptext
         button_url: Knapp URL

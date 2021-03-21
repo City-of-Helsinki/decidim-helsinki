@@ -77,6 +77,9 @@ fi:
         navigate: Navigoi vaiheita
       process_steps_settings_form:
         process: Prosessi
+      records_carousel:
+        next: Seuraava
+        previous: Edellinen
       records_carousel_settings_form:
         button_text: Napin teksti
         button_url: Napin URL

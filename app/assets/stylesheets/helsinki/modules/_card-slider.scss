@@ -75,6 +75,22 @@ $slick-opacity-default: 1;
     }
   }
 
+  .slick-arrow{
+    &.focus,
+    &:focus{
+      outline: $button-outline-focus;
+      outline-offset: $button-outline-offset;
+    }
+  }
+
+  .slick-dots button{
+    &.focus,
+    &:focus{
+      outline: $button-outline-focus;
+      outline-offset: $button-outline-offset;
+    }
+  }
+
   .card{
     .card__support{
       .card__button,
