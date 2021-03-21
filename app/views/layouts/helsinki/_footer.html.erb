@@ -8,7 +8,7 @@ footer_text_section = Decidim::ContextualHelpSection.find_content(
 footer_text = translated_attribute(footer_text_section)
 %>
 
-<div class="footer-wrapper">
+<div class="footer-wrapper" aria-role="contentinfo">
   <% if content_for? :footer_koro %>
     <%= yield :footer_koro %>
   <% else %>
