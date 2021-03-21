@@ -374,6 +374,16 @@ $menuitem-padding: 1em 2em;
       transform: scaleX(1.4);
     }
   }
+
+  a,
+  .link,
+  button,
+  .button{
+    &.focus,
+    &:focus{
+      outline: 2px solid $highlight-secondary;
+    }
+  }
 }
 
 .wrapper-ruuti{

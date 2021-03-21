@@ -35,6 +35,16 @@ $ruuti-footer-fg: $hel-bus;
   a{
     color: $footer-fg;
   }
+
+  a,
+  .link,
+  button,
+  .button{
+    &.focus,
+    &:focus{
+      outline: 2px solid $highlight-secondary;
+    }
+  }
 }
 
 .wrapper-paahtimo{

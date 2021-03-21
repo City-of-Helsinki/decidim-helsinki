@@ -28,6 +28,8 @@ $hel-engel:             #ffe977;
 $hel-engel-rgb:         255,233,119;
 $hel-tram:              #009246;
 $hel-tram-rgb:          0,146,70;
+$hel-tram-dark:         #006631;
+$hel-tram-dark-rgb:     0,102,49;
 $hel-summer:            #ffc61e;
 $hel-summer-rgb:        255,198,30;
 $hel-silver:            #dedfe1;
@@ -75,8 +77,18 @@ $alert: $hel-error !default;
 $alert-rgb: $hel-error-rgb !default;
 $highlight: $hel-info !default;
 $highlight-rgb: $hel-info-rgb !default;
-$highlight-alternative: $hel-copper !default;
-$highlight-alternative-rgb: $hel-copper-rgb !default;
+// The alternative highlight color is used as the input focus color, so it needs
+// to have enough color contrast against the following colors:
+// - #ffffff (body background) [4.6:1]
+// - #e4e6ec (filter section background) [3.69:1]
+// - #000000 (input border) [4.56:1]
+$highlight-alternative: #0071eb !default;
+$highlight-alternative-rgb: $hel-tram-dark-rgb !default;
+// The highlight color against the primary and secondary color backgrounds.
+$highlight-primary: $secondary;
+$highlight-primary-rgb: $secondary-rgb;
+$highlight-secondary: $hel-bus;
+$highlight-secondary-rgb: $hel-bus-rgb;
 
 // Ruuti variables
 $ruuti-primary: $hel-coat !default;

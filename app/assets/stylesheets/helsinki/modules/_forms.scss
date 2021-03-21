@@ -17,6 +17,14 @@ label{
   }
 }
 
+input[type="checkbox"],
+input[type="radio"]{
+  &.focus,
+  &:focus{
+    outline: $input-radiocheck-outline-focus;
+  }
+}
+
 .actions{
   .icon-button{
     position: relative;
