@@ -353,6 +353,8 @@ module DecidimHelsinki
         :include,
         ProjectListItemCellExtensions
       )
+      # Needed to fix the search page
+      Decidim::CardMCell.send(:include, CardMCellExtensions)
       # Needed to fix the avatar image ALT texts
       Decidim::AuthorCell.send(:include, Decidim::SanitizeHelper)
       Decidim::UserProfileCell.send(:include, Decidim::SanitizeHelper)
