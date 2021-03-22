@@ -67,7 +67,7 @@ module Helsinki
           return unless final_budget_estimate_content
           return unless final_budget_estimate_content.body["value"].present?
 
-          estimate = final_budget_estimate_content.body["value"]
+          estimate = final_budget_estimate_content.body["value"].to_i
           return unless estimate.positive?
 
           number_to_currency(
