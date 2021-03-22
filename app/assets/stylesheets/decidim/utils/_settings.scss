@@ -324,7 +324,13 @@ $button-sizes: (
   default: 1rem,
   large: 1.35rem,
 );
-$button-palette: $foundation-palette;
+$button-palette: (
+  primary: map-get($foundation-palette, primary),
+  secondary: map-get($foundation-palette, primary),
+  success: map-get($foundation-palette, success),
+  warning: map-get($foundation-palette, warning),
+  alert: map-get($foundation-palette, alert),
+);
 $button-opacity-disabled: .25;
 $button-background-hover-lightness: -50%;
 $button-hollow-hover-lightness: -50%;

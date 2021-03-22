@@ -64,7 +64,8 @@
   &:hover,
   &:focus{
     &.primary{
-      $primary-hover: scale-color($primary, $lightness: $button-background-hover-lightness);
+      $button-primary: map-get($button-palette, primary);
+      $primary-hover: scale-color($button-primary, $lightness: $button-background-hover-lightness);
       $primary-color: color-pick-contrast($primary-hover, ($button-color, $button-color-alt));
       // $primary-color: $secondary;
 
@@ -74,7 +75,8 @@
     }
 
     &.secondary{
-      $secondary-hover: scale-color($secondary, $lightness: $button-background-hover-lightness);
+      $button-secondary: map-get($button-palette, primary);
+      $secondary-hover: scale-color($button-secondary, $lightness: $button-background-hover-lightness);
       $secondary-color: color-pick-contrast($secondary-hover, ($button-color, $button-color-alt));
 
       color: $secondary-color;
@@ -128,22 +130,22 @@
 .button.hollow.disabled:hover{
   background-color: transparent;
   border-color: inherit;
-  color: $primary;
+  color: map-get($button-palette, primary);
 
   &.secondary{
-    color: $secondary;
+    color: map-get($button-palette, secondary);
   }
 
   &.success{
-    color: $success;
+    color: map-get($button-palette, success);
   }
 
   &.alert{
-    color: $alert;
+    color: map-get($button-palette, alert);
   }
 
   &.warning{
-    color: $warning;
+    color: map-get($button-palette, warning);
   }
 }
 
@@ -196,11 +198,11 @@
 
 .button--shadow{
   $shadows:(
-    primary: shade($primary, 50),
-    secondary: shade($secondary, 50),
-    success: shade($success, 50),
-    warning: shade($warning, 50),
-    alert: shade($alert, 50),
+    primary: shade(map-get($button-palette, primary), 50),
+    secondary: shade(map-get($button-palette, secondary), 50),
+    success: shade(map-get($button-palette, success), 50),
+    warning: shade(map-get($button-palette, warning), 50),
+    alert: shade(map-get($button-palette, alert), 50),
     muted: shade($muted, 50)
   );
 
@@ -238,7 +240,7 @@
   background-color: $muted;
 
   &:hover{
-    background-color: $secondary;
+    background-color: map-get($button-palette, secondary);
   }
 
   &.hollow{
