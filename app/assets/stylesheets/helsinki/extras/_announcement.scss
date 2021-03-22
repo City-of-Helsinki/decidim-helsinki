@@ -19,5 +19,12 @@
     .link{
       color: $white;
     }
+
+    a,
+    .link,
+    button,
+    .button{
+      outline-color: $highlight-primary;
+    }
   }
 }
