@@ -1,5 +1,8 @@
 en:
   decidim:
+    author:
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar for multiple users
     budgets:
       admin:
         projects:

@@ -353,6 +353,9 @@ module DecidimHelsinki
         :include,
         ProjectListItemCellExtensions
       )
+      # Needed to fix the avatar image ALT texts
+      Decidim::AuthorCell.send(:include, Decidim::SanitizeHelper)
+      Decidim::UserProfileCell.send(:include, Decidim::SanitizeHelper)
 
       # Form extensions
       Decidim::Admin::CategoryForm.send(:include, AdminCategoryFormExtensions)

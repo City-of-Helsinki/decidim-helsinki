@@ -1,5 +1,8 @@
 fi:
   decidim:
+    author:
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar useammalle käyttäjälle
     budgets:
       admin:
         projects:
