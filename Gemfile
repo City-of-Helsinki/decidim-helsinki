@@ -22,7 +22,7 @@ gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
 
 # Install the git modules until they have an actual release
 gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "develop"
-gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "develop"
+gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "master"
 gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "master"
 gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "master"
 gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "master"
