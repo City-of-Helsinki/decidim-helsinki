@@ -81,7 +81,7 @@ namespace :research do
         vote_data[:count] += 1
         vote_data[:categories].push(*order.projects.map { |p| p.category&.id })
         vote_data[:scopes].push(*order.projects.map { |p| p.scope&.id })
-        timestamps[:timestamps].push(order.checked_out_at.strftime("%Y-%m-%dT%H:%M:%S%z"))
+        vote_data[:timestamps].push(order.checked_out_at.strftime("%Y-%m-%dT%H:%M:%S%z"))
 
         order.projects
       end
