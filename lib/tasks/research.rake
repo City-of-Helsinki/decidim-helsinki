@@ -17,6 +17,10 @@ namespace :research do
     process = Decidim::ParticipatoryProcess.find_by(slug: args[:process_slug])
     raise "Unknown process slug: #{process.slug}" unless process
 
+    # Write to the log immidiately which would not otherwise happen when the
+    # output is forwarded.
+    $stdout.sync = true
+
     filename = args[:filename]
 
     record_types = {
@@ -39,7 +43,21 @@ namespace :research do
 
     rows = []
 
-    Decidim::User.all.each do |user|
+    user_count = Decidim::User.count
+
+    logger = Logger.new(STDOUT)
+    logger.level = Logger::INFO
+    report_threshold = 5
+    reported_percentage = 0
+
+    logger.info "Processing users (#{user_count} items to process)"
+    Decidim::User.all.each_with_index do |user, index|
+      percentage = (index + 1).to_f / user_count * 100
+      if percentage - reported_percentage > report_threshold
+        logger.info "Processed: #{percentage.round(2)}%"
+        reported_percentage = percentage
+      end
+
       row = {
         user_hash: Digest::MD5.hexdigest("#{RESEARCH_ANONYMIZER_SALT}:#{user.id}")
       }
@@ -91,10 +109,22 @@ namespace :research do
 
       rows << row
     end
+    logger.info "Processed: 100% -- DONE!"
+    logger.info ""
 
-    data = rows.shuffle!.map do |row|
+    reported_percentage = 0
+
+    logger.info "Preparing rows (#{rows.length} rows to process)"
+    data = rows.shuffle!.each_with_index.map do |row, index|
+      percentage = (index + 1).to_f / rows.length * 100
+      if percentage - reported_percentage > report_threshold
+        logger.info "Processed: #{percentage.round(2)}%"
+        reported_percentage = percentage
+      end
       prepare_data_row(row)
     end
+    logger.info "Processed: 100% -- DONE!"
+    logger.info ""
 
     book = RubyXL::Workbook.new
     book.worksheets.delete_at(0)
@@ -103,9 +133,19 @@ namespace :research do
     data.first.keys.each_with_index do |colname, index|
       sheet.add_cell(0, index, colname.to_s)
     end
+
+    reported_percentage = 0
+
+    logger.info "Writing rows (#{data.length} rows to process)"
     row = 1
     exclude_empty_comparison_keys = %w(user_hash postal_code)
-    data.each do |datarow|
+    data.each_with_index do |datarow, rowindex|
+      percentage = (rowindex + 1).to_f / data.length * 100
+      if percentage - reported_percentage > report_threshold
+        logger.info "Processed: #{percentage.round(2)}%"
+        reported_percentage = percentage
+      end
+
       # Exclude all user rows that do not have any interactions.
       next if datarow.all? do |key, val|
         if exclude_empty_comparison_keys.include?(key)
@@ -122,7 +162,10 @@ namespace :research do
       end
       row += 1
     end
+    logger.info "Processed: 100% -- DONE!"
+    logger.info ""
 
+    logger.info "Writing the data document..."
     book.write(filename)
   end
 
