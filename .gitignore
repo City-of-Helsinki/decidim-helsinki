@@ -34,4 +34,3 @@ public/uploads
 +# Comments component
 .graphqlconfig
 schema.json
-app/assets/javascripts/decidim/comments/bundle.js.map
