@@ -45,6 +45,18 @@
         background-color: darken($secondary, 15%);
         color: $primary;
       }
+
+      &.hollow{
+        border-color: $secondary;
+        background-color: transparent;
+        color: $secondary;
+
+        &:hover,
+        &:focus{
+          background-color: darken($secondary, 15%);
+          color: $primary;
+        }
+      }
     }
   }
 }
@@ -71,6 +83,17 @@
       &:focus{
         background-color: scale-color($ruuti-secondary, $lightness: 20%);
         color: $white;
+      }
+
+      &.hollow{
+        border-color: $ruuti-secondary;
+        color: $ruuti-secondary;
+
+        &:hover,
+        &:focus{
+          background-color: darken($ruuti-secondary, 15%);
+          color: $white;
+        }
       }
     }
   }
