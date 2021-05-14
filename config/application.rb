@@ -297,6 +297,7 @@ module DecidimHelsinki
         layout.form_layout = "helsinki/plans/omastadi_form"
         layout.view_layout = "helsinki/plans/omastadi_view"
         layout.index_layout = "helsinki/plans/omastadi_index"
+        layout.card_layout = "helsinki/plans/plan_m"
         layout.public_name_key = "helsinki.plans.layouts.omastadi"
       end
     end
