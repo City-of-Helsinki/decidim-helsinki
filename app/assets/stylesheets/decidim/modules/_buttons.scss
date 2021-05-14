@@ -34,6 +34,21 @@
   }
 }
 
+.bg-primary{
+  .button{
+    &.secondary{
+      background-color: $secondary;
+      color: $primary;
+
+      &:hover,
+      &:focus{
+        background-color: darken($secondary, 15%);
+        color: $primary;
+      }
+    }
+  }
+}
+
 .wrapper-ruuti{
   .button,
   a.button{
@@ -55,6 +70,7 @@
       &:hover,
       &:focus{
         background-color: scale-color($ruuti-secondary, $lightness: 20%);
+        color: $white;
       }
     }
   }
