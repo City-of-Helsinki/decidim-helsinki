@@ -1,1 +1,5 @@
-<%= render "tabbed", page: page %>
+<% if page.slug == "terms-and-conditions" && user_signed_in? && current_user.accepted_tos_version.nil? %>
+  <%= render "full", page: page %>
+<% else %>
+  <%= render "tabbed", page: page %>
+<% end %>
