@@ -208,10 +208,19 @@ sv:
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Din årskurs kan inte verifieras elektroniskt.
-      class_level_not_allowed: Du kan vara för ung eller för gammal för att rösta.
-      voting_unit_not_allowed: Du kan inte rösta på detta område från din skola.
+      class_level_not_allowed_max: Din årskurs ska inte vara över %{max}.
+      class_level_not_allowed_min: Din årskurs ska inte vara lägre %{min}.
+      class_level_not_allowed_one: Din årskurs ska vara %{level}.
+      class_level_not_defined: Din årskurs är inte definierad.
+      disallowed_municipality: Omröstningen är endast begränsad till Helsingforsbor.
+      disallowed_role: Wilma-identifieringen är endast begränsad till elever.
+      disallowed_school: Omröstning är inte tillåten i denna skola.
+      disallowed_voting_unit: Du kan inte rösta på detta område från din skola.
       voting_unit_required: Information som behövs om ditt Ruuti-område.
   suomifi_action_authorizer:
     restrictions:
-      district_not_allowed: Du har redan valt att rösta i ett annat stordistrikt.
-      district_required: Stordistriktinformation krävs.
+      disallowed_district: Denna omröstning är inte tillåten från ditt större distrikt.
+      disallowed_municipality: Omröstningen är endast begränsad till Helsingforsbor.
+      district_required: Information om ditt stordistrikt behövs.
+      physically_identified: Du har redan identifierat dig fysiskt. Vänligen kontakta Helsingfors stad.
+      too_young: Du är för ung för att rösta.

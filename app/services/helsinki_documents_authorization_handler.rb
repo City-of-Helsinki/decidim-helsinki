@@ -22,6 +22,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
 
   validate :validate_impersonation
   validate :validate_pin
+  validate :validate_not_voted
 
   # Sets up the handler for the different contexts based on the controller.
   # The context is obfuscated to make it harder for the potential attackers to
@@ -113,16 +114,21 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   def validate_pin
     return if pin.blank?
 
-    errors.add(:pin, :invalid_pin) unless hetu.valid?
+    # errors.add(:pin, :invalid_pin) unless hetu.valid?
+    errors.add(:pin, :invalid_pin) if !hetu.send(:valid_format?) || !hetu.send(:valid_checksum?)
+  end
 
-    # Check that the pin number is not already used through Suomi.fi
-    authorization = Decidim::Authorization.where(
-      "metadata->>'pin_digest' =?", pin_digest
-    ).find_by(name: "suomifi_eid")
-    if authorization
-      errors.add(:pin, :used)
-      return
-    end
+  def validate_not_voted
+    return if pin.blank?
+
+    voted = Decidim::Authorization.exists?(
+      [
+        "name =? AND metadata->>'pin_digest' =?",
+        "suomifi_eid",
+        pin_digest
+      ]
+    )
+    errors.add(:pin, :electronically_identified) if voted
   end
 
   def sanitized_document_type
