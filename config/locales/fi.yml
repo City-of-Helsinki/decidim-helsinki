@@ -17,8 +17,8 @@ fi:
         helsinki_documents_authorization_handler:
           attributes:
             pin:
+              electronically_identified: Henkilö on jo tunnistettu sähköisesti
               invalid_pin: virheellinen henkilötunnus
-              used: henkilötunnus on jo käytössä
   activerecord:
     models:
       decidim/plans/plan:
@@ -50,14 +50,17 @@ fi:
       mpassid_nids:
         fields:
           allowed_units: Sallitut Ruuti-alueet
-          max_class_level: Suurin luokka-aste
-          min_class_level: Pienin luokka-aste
+          maximum_class_level: Suurin luokka-aste
+          minimum_class_level: Pienin luokka-aste
           student_class_level: Luokka-aste
           voting_unit: Ruuti-alue
+        name: Oppilaiden Wilma-tunnukset
       suomifi_eid:
         fields:
           allowed_districts: Sallitut suurpiirit
           district: Suurpiiri
+          minimum_age: Ikä vähintään
+        name: Pankkitunnukset tai mobiilivarmenne
     budgets:
       projects:
         filters:

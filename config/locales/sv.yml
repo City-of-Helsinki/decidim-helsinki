@@ -17,8 +17,8 @@ sv:
         helsinki_documents_authorization_handler:
           attributes:
             pin:
+              electronically_identified: Personen har redan identifierats elektroniskt.
               invalid_pin: ogiltigt personnummer
-              used: personnummer har redan använts
   activerecord:
     models:
       decidim/plans/plan:
@@ -50,14 +50,17 @@ sv:
       mpassid_nids:
         fields:
           allowed_units: Tillåtna Ruuti områden
-          max_class_level: Störst årskurs
-          min_class_level: Minst årskurs
+          maximum_class_level: Störst årskurs
+          minimum_class_level: Minst årskurs
           student_class_level: Årskurs
           voting_unit: Ruuti område
+        name: Bankkoder eller mobilcertifikat
       suomifi_eid:
         fields:
           allowed_districts: Tillåtna distrikt
           district: Distrikt
+          minimum_age: Lägsta ålder
+        name: Wilma ID för skoleelever
     budgets:
       projects:
         filters:

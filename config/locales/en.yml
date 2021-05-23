@@ -17,8 +17,8 @@ en:
         helsinki_documents_authorization_handler:
           attributes:
             pin:
+              electronically_identified: The person has been already identified electronically.
               invalid_pin: invalid personal identity number
-              used: the personal identity number is already in use
   activerecord:
     models:
       decidim/plans/plan:
@@ -49,15 +49,19 @@ en:
         user_explanation: Go to a physical location to identify yourself with an identity document.
       mpassid_nids:
         fields:
+          allowed_roles: Allowed roles
           allowed_units: Allowed Ruuti areas
-          max_class_level: Maximum grade level
-          min_class_level: Minimum grade level
+          maximum_class_level: Maximum grade level
+          minimum_class_level: Minimum grade level
           student_class_level: Grade level
           voting_unit: Ruuti area
+        name: Wilma ID for school students
       suomifi_eid:
         fields:
           allowed_districts: Allowed districts
           district: District
+          minimum_age: Minimum age
+        name: Bank ID or mobile ID
     budgets:
       projects:
         filters:
