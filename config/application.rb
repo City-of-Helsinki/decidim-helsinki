@@ -162,12 +162,6 @@ module DecidimHelsinki
       end
     end
 
-    initializer "budgets_component_settings" do
-      Decidim.find_component_manifest(:budgets).settings(:global) do |settings|
-        settings.attribute :geocoding_enabled, type: :boolean
-      end
-    end
-
     initializer "budget_workflows" do
       Decidim::Budgets.workflows[:ruuti_one] = Helsinki::Budgets::Workflows::RuutiOne
     end
@@ -347,17 +341,12 @@ module DecidimHelsinki
         :include,
         BudgetInformationModalExtensions
       )
-      Decidim::Budgets::ProjectListItemCell.send(
-        :include,
-        ProjectListItemCellExtensions
-      )
       # Needed to fix the avatar image ALT texts
       Decidim::AuthorCell.send(:include, Decidim::SanitizeHelper)
       Decidim::UserProfileCell.send(:include, Decidim::SanitizeHelper)
 
       # Form extensions
       Decidim::Admin::CategoryForm.send(:include, AdminCategoryFormExtensions)
-      Decidim::Budgets::Admin::ProjectForm.send(:include, AdminBudgetProjectFormExtensions)
 
       # Builder extensions
       Decidim::FormBuilder.send(:include, FormBuilderExtensions)
