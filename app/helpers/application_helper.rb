@@ -69,7 +69,7 @@ module ApplicationHelper
   def display_header_koro?
     return false if flash.any?
 
-    controller.controller_name != "homepage"
+    %(homepage votes).exclude? controller.controller_name
   end
 
   def private_mode?
