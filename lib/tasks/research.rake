@@ -15,7 +15,7 @@ namespace :research do
   desc "Export some general data about the users in a process for research purposes."
   task :export_data, [:process_slug, :filename] => [:environment] do |_t, args|
     process = Decidim::ParticipatoryProcess.find_by(slug: args[:process_slug])
-    raise "Unknown process slug: #{process.slug}" unless process
+    raise "Unknown process slug: #{args[:process_slug]}" unless process
 
     # Write to the log immidiately which would not otherwise happen when the
     # output is forwarded.
