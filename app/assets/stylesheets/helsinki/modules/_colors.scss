@@ -3,6 +3,7 @@
 $colors: (
   primary: $primary,
   secondary: $secondary,
+  light: $hel-suomenlinna-light,
   hel-copper: $hel-copper,
   hel-bus: $hel-bus,
   hel-coat: $hel-coat,
@@ -77,6 +78,12 @@ $colors: (
     &:focus{
       outline-color: $highlight-alternative;
       outline-color: var(--highlight-alternative);
+    }
+  }
+
+  .card{
+    a:not(.button){
+      color: $anchor-color;
     }
   }
 }
