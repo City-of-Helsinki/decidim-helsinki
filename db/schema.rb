@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_11_065952) do
+ActiveRecord::Schema.define(version: 2021_05_12_152952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -315,13 +315,31 @@ ActiveRecord::Schema.define(version: 2021_05_11_065952) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "decidim_scope_id"
+    t.float "center_latitude"
+    t.float "center_longitude"
     t.index ["decidim_component_id"], name: "index_decidim_budgets_budgets_on_decidim_component_id"
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_budgets_on_decidim_scope_id"
+  end
+
+  create_table "decidim_budgets_help_sections", force: :cascade do |t|
+    t.string "key", null: false
+    t.integer "weight", default: 0, null: false
+    t.jsonb "title"
+    t.jsonb "description"
+    t.string "link"
+    t.jsonb "link_text"
+    t.string "image"
+    t.bigint "decidim_component_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_component_id"], name: "index_decidim_budgets_help_sections_on_decidim_component_id"
+    t.index ["key"], name: "index_decidim_budgets_help_sections_on_key"
   end
 
   create_table "decidim_budgets_line_items", id: :serial, force: :cascade do |t|
     t.integer "decidim_order_id"
     t.integer "decidim_project_id"
+    t.boolean "confirmed", default: false, null: false
     t.index ["decidim_order_id", "decidim_project_id"], name: "decidim_budgets_line_items_order_project_unique", unique: true
     t.index ["decidim_order_id"], name: "index_decidim_budgets_line_items_on_decidim_order_id"
     t.index ["decidim_project_id"], name: "index_decidim_budgets_line_items_on_decidim_project_id"
@@ -351,6 +369,7 @@ ActiveRecord::Schema.define(version: 2021_05_11_065952) do
     t.bigint "decidim_budgets_budget_id"
     t.date "selected_at"
     t.integer "comments_count", default: 0, null: false
+    t.string "main_image"
     t.index ["decidim_budgets_budget_id"], name: "index_decidim_budgets_projects_on_decidim_budgets_budget_id"
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_projects_on_decidim_scope_id"
   end

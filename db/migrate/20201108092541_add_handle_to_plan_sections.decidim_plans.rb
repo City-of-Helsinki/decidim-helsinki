@@ -5,6 +5,8 @@ class AddHandleToPlanSections < ActiveRecord::Migration[5.2]
   def change
     add_column :decidim_plans_sections, :handle, :string, index: true
 
+    Decidim::Plans::Section.reset_column_information
+
     reversible do |dir|
       dir.up do
         Decidim::Plans::Section.all.each do |section|
