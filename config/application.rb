@@ -9,9 +9,6 @@ require "cldr"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-# Require the application specific engines for the custom verifications.
-require File.expand_path("../lib/engines", __dir__)
-
 module DecidimHelsinki
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
