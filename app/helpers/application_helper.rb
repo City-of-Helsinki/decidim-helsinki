@@ -5,6 +5,7 @@ module ApplicationHelper
   include Decidim::Plans::LinksHelper
   include KoroHelper
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def breadcrumbs
     links = []
     links << { title: t("decidim.menu.home"), url: decidim.root_path }
@@ -21,6 +22,18 @@ module ApplicationHelper
           title: translated_attribute(current_component.name),
           url: main_component_path(current_component)
         }
+
+        if controller.is_a?(Decidim::Budgets::ProjectsController) && action_name == "show"
+          links << {
+            title: translated_attribute(project.title),
+            url: project_path(project)
+          }
+        elsif controller.is_a?(Decidim::Budgets::ResultsController)
+          links << {
+            title: t("decidim.budgets.results.show.title", organization_name: current_organization.name),
+            url: results_path
+          }
+        end
       end
     elsif controller.is_a?(Decidim::PagesController) || controller.is_a?(Decidim::Pages::ApplicationController)
       links << { title: t("layouts.decidim.header.help"), url: decidim.pages_path }
@@ -42,6 +55,7 @@ module ApplicationHelper
 
     links
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
   # Defines whether the "common" content elements are displayed. In the
   # 'private' application mode these should be hidden in case the user is not
