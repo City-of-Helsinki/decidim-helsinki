@@ -18,6 +18,7 @@ meta_description ||= translated_attribute(current_participatory_space.short_desc
 
 <%= render "layouts/decidim/application" do %>
   <%= render partial: "layouts/decidim/process_header" %>
+  <%= yield :top if content_for? :top %>
   <div class="wrapper">
     <%= yield %>
   </div>

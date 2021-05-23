@@ -8,6 +8,7 @@
 
 <%= render "layouts/decidim/application" do %>
   <%= render partial: "layouts/decidim/assembly_header" %>
+  <%= yield :top if content_for? :top %>
   <div class="wrapper">
     <%= yield %>
   </div>
