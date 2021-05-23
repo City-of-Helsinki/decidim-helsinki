@@ -380,6 +380,12 @@ module DecidimHelsinki
 
       # View extensions
       ActionView::Base.send :include, Decidim::WidgetUrlsHelper
+
+      # Authorizer extensions
+      ::Decidim::ActionAuthorizer::AuthorizationStatusCollection.send(
+        :include,
+        AuthorizationStatusCollectionExtensions
+      )
     end
   end
 end
