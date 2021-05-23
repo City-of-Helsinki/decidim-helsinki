@@ -181,6 +181,10 @@ wrapper_class = Rails.application.config.wrapper_class
           <%= koro("pulse", flip: true) if display_header_koro? %>
         </div>
 
+        <% if display_omnipresent_banner? %>
+          <%= render partial: "layouts/decidim/omnipresent_banner" %>
+        <% end %>
+
         <main id="content">
           <%= yield %>
         </main>

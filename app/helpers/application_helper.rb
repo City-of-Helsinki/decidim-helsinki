@@ -68,8 +68,15 @@ module ApplicationHelper
 
   def display_header_koro?
     return false if flash.any?
+    return false if display_omnipresent_banner?
 
     %(homepage votes).exclude? controller.controller_name
+  end
+
+  def display_omnipresent_banner?
+    return false unless current_organization.enable_omnipresent_banner
+
+    controller.controller_name != "votes"
   end
 
   def private_mode?
