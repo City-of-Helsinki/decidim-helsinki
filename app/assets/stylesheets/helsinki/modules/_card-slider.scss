@@ -59,6 +59,7 @@ $slick-opacity-default: 1;
 
     > div{
       display: flex;
+      width: 100%;
     }
 
     .card-slide-content{
@@ -67,6 +68,7 @@ $slick-opacity-default: 1;
 
     .card{
       display: flex;
+      flex: 1 1 0;
       flex-direction: column;
 
       .card__content{
@@ -164,6 +166,12 @@ $slick-opacity-default: 1;
 
   li{
     margin: 0 20px;
+  }
+}
+
+.card-slider.single{
+  .slick-dots{
+    bottom: -40px;
   }
 }
 

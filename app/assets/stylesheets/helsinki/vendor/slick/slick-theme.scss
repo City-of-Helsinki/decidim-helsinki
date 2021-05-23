@@ -108,6 +108,15 @@ $slick-opacity-not-active: 1 !default;
   }
 }
 
+.bg-primary{
+  .slick-prev,
+  .slick-next{
+    &::before{
+      color: $secondary;
+    }
+  }
+}
+
 .slick-prev{
   left: -25px;
 
@@ -212,6 +221,20 @@ $slick-opacity-not-active: 1 !default;
     &.slick-active button::before{
       background: $slick-dot-color-active;
       opacity: $slick-opacity-default;
+    }
+  }
+}
+
+.bg-primary{
+  .slick-dots li{
+    &.slick-active{
+      button::before{
+        background: $secondary;
+      }
+    }
+
+    button::before{
+      border-color: $secondary;
     }
   }
 }
