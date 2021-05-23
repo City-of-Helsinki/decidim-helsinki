@@ -19,7 +19,7 @@ en:
         mpassid:
           description: 'If you are a student in comprehensive school, you can verify your identity through the MPASSid service using your school account.'
           sign_in_with: 'MPASSid-identification'
-          sign_in_button: 'Wilma ID for comprehensive school students'
+          sign_in_button: 'Wilma ID for school students'
         weak:
           description: 'You can also sign in with social media accounts (Facebook, Yle, Google, among others) or with an Omastadi account you have created earlier.'
           sign_in_with: 'Sign in without identity verification'

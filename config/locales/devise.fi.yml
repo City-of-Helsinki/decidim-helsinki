@@ -19,7 +19,7 @@ fi:
         mpassid:
           description: 'Koululaisena voit kirjautua MPASSid-palvelun avulla koulusi tunnuksella.'
           sign_in_with: 'MPASSid-tunnistautuminen'
-          sign_in_button: 'Peruskoululaisten Wilma-tunnukset'
+          sign_in_button: 'Oppilaiden Wilma-tunnukset'
         weak:
           description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa tai aiemmin luomillasi Omastadi –tunnuksilla.'
           sign_in_with: 'Kirjaudu  ilman tunnistautumista'

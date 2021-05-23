@@ -19,7 +19,7 @@ sv:
         mpassid:
           description: 'Som grundskolestudent kan du identifiera dig själv genom MPASSid-tjänsten med ditt skolkonto.'
           sign_in_with: 'MPASSid-identifikation'
-          sign_in_button: 'Wilma ID för grundskoleelever'
+          sign_in_button: 'Wilma ID för skoleelever'
         weak:
           description: 'Du kan också logga in på Tunnistamo-tjänsten med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med Omastadi-kontot du skapade tidigare.'
           sign_in_with: 'Logga in utan identifikation'
