@@ -49,6 +49,16 @@ GIT
       devise-jwt (~> 0.7.0)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
+  revision: b11ad5fd1b2dad4a0067a7658e2d33ed308f2d1b
+  branch: main
+  specs:
+    decidim-budgeting_pipeline (0.23.0)
+      decidim-budgets (~> 0.23.0)
+      decidim-core (~> 0.23.0)
+      decidim-favorites (~> 0.23.0)
+
+GIT
   remote: https://github.com/mainio/decidim-module-favorites.git
   revision: 8d7eb325ac21f1e1dc9d1ba842365e6bec6af910
   branch: release/0.23-stable
@@ -1080,6 +1090,7 @@ DEPENDENCIES
   decidim-accountability_simple!
   decidim-antivirus!
   decidim-apiauth!
+  decidim-budgeting_pipeline!
   decidim-dev!
   decidim-favorites!
   decidim-feedback!
