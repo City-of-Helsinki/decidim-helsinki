@@ -339,6 +339,7 @@ module DecidimHelsinki
       Decidim::Plans::PlansController.send(:include, PlansExtensions)
 
       # Cell extensions
+      Decidim::CardMCell.send(:include, CardMCellExtensions)
       Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
         :include,
         Decidim::ApplicationHelper
