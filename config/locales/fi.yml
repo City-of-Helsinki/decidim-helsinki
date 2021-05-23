@@ -1,8 +1,6 @@
 fi:
   activemodel:
     attributes:
-      budgeting_verification:
-        district: Suurpiiri (oletuksena sinulle suositeltu suurpiiri)
       helsinki_documents_authorization_handler:
         document_type: Henkilöllisyystodistuksen tyyppi
         first_name: Etunimi
@@ -37,12 +35,6 @@ fi:
             - An admin will review the request
             - Admin will either approve or reject the access request
             - The user will get notified that their access request has been either approved or rejected
-      budgeting_identity:
-        explanation: Tunnista itsesi budjetointia varten
-        name: Budjetointi
-        fields:
-          allowed_districts: Sallitut suurpiirit
-          district: Suurpiiri
       cocreation:
         explanation: Pyydä oikeutta luoda yhteistyöstämissuunnitelmia
         name: Yhteiskehittäminen

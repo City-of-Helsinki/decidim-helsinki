@@ -1,8 +1,6 @@
 sv:
   activemodel:
     attributes:
-      budgeting_verification:
-        district: Distrikt (ditt rekommenderade distrikt som standard)
       helsinki_documents_authorization_handler:
         document_type: Typ av identitetsdokument
         first_name: Förnamn
@@ -37,12 +35,6 @@ sv:
             - An admin will review the request
             - Admin will either approve or reject the access request
             - The user will get notified that their access request has been either approved or rejected
-      budgeting_identity:
-        explanation: Identifiera dig själv för deltagande budgetering
-        name: Budgetering
-        fields:
-          allowed_districts: Tillåtna distrikt
-          district: Distrikt
       cocreation:
         explanation: Be om tillstånd att skapa samskapande planer
         name: Samskapande

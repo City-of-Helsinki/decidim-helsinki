@@ -1,8 +1,6 @@
 en:
   activemodel:
     attributes:
-      budgeting_verification:
-        district: District (your recommended district by default)
       helsinki_documents_authorization_handler:
         document_type: Identity document type
         first_name: First name
@@ -37,12 +35,6 @@ en:
             - An admin will review the request
             - Admin will either approve or reject the access request
             - The user will get notified that their access request has been either approved or rejected
-      budgeting_identity:
-        explanation: Identify yourself for participatory budgeting
-        name: Budgeting
-        fields:
-          allowed_districts: Allowed districts
-          district: District
       cocreation:
         explanation: Ask for permission to create cocreation plans
         name: Cocreation
