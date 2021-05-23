@@ -10,6 +10,42 @@
       const prevLabel = $slider.data("prev-label");
       const nextLabel = $slider.data("next-label");
 
+      let config = {
+        prevArrow: `<button class="slick-prev" aria-label="${prevLabel}" type="button">${prevLabel}</button>`,
+        nextArrow: `<button class="slick-next" aria-label="${nextLabel}" type="button">${nextLabel}</button>`,
+        dots: true,
+        adaptiveHeight: true
+      };
+      if ($slider.hasClass("single")) {
+        config = $.extend(config, {
+          slidesToShow: 1,
+        });
+      } else { // center
+        config = $.extend(config, {
+          centerMode: true,
+          centerPadding: 0,
+          slidesToShow: 3,
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                centerMode: false,
+                centerPadding: "40px",
+                slidesToShow: 2
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                centerMode: false,
+                centerPadding: "40px",
+                slidesToShow: 1
+              }
+            }
+          ]
+        });
+      }
+
       $slider.on("init", () => {
         // When the dot is changed from the keyboard, update the focused dot.
         const $dots = $(".slick-dots", $slider);
@@ -25,33 +61,7 @@
 
           $(".slick-active button", $dots).focus();
         });
-      }).slick({
-        centerMode: true,
-        dots: true,
-        adaptiveHeight: true,
-        centerPadding: 0,
-        slidesToShow: 3,
-        prevArrow: `<button class="slick-prev" aria-label="${prevLabel}" type="button">${prevLabel}</button>`,
-        nextArrow: `<button class="slick-next" aria-label="${nextLabel}" type="button">${nextLabel}</button>`,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 2
-            }
-          },
-          {
-            breakpoint: 768,
-            settings: {
-              centerMode: false,
-              centerPadding: "40px",
-              slidesToShow: 1
-            }
-          }
-        ]
-      });
+      }).slick(config);
     });
   }
 })(window);
