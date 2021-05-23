@@ -1,4 +1,4 @@
-$step-selector-color: #cdcdcd;
+$step-selector-color: $primary;
 
 .tabs.tabs-stepper{
   display: none;
@@ -6,6 +6,21 @@ $step-selector-color: #cdcdcd;
 
   @include breakpoint(mediumlarge){
     display: block;
+  }
+
+  &.expanded{
+    @include breakpoint(mediumlarge){
+      display: flex;
+    }
+
+    .tabs-stepper-step{
+      float: none;
+      flex: 1 1 0;
+
+      .step-selector{
+        width: auto;
+      }
+    }
   }
 
   .tabs-stepper-step{
@@ -54,6 +69,10 @@ $step-selector-color: #cdcdcd;
         background: $secondary;
         color: $primary;
       }
+
+      .step-selector-text{
+        font-weight: $global-weight-bold;
+      }
     }
 
     > a{
@@ -82,7 +101,6 @@ $step-selector-color: #cdcdcd;
     flex-direction: column;
     align-items: center;
     width: 100px;
-    font-size: 1.3rem;
     line-height: 1.2;
 
     .step-selector-number{
@@ -91,11 +109,12 @@ $step-selector-color: #cdcdcd;
       height: 60px;
       margin-bottom: 10px;
       border-radius: 50%;
-      background: $step-selector-color;
+      border: 3px solid $primary;
+      background: $body-background;
       text-align: center;
       font-size: 1.5rem;
       font-weight: 800;
-      line-height: 1;
+      line-height: .75;
     }
 
     .step-selector-text{
