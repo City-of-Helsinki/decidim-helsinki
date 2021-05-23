@@ -5,6 +5,7 @@ sv:
         settings:
           global:
             workflow_choices:
+              omastadi: 'OmaStadi: tillåter deltagare att rösta i Hela Helsingfors området och i ett större distrikt efter eget val.'
               ruuti_one: 'Ruuti röstar i ett: tillåter deltagare att rösta i budgeten för deras Ruuti-område.'
   helsinki:
     areas:

@@ -163,6 +163,7 @@ module DecidimHelsinki
     end
 
     initializer "budget_workflows" do
+      Decidim::Budgets.workflows[:omastadi] = Helsinki::Budgets::Workflows::OmaStadi
       Decidim::Budgets.workflows[:ruuti_one] = Helsinki::Budgets::Workflows::RuutiOne
     end
 
