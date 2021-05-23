@@ -77,6 +77,8 @@ fi:
         navigate: Navigoi vaiheita
       process_steps_settings_form:
         process: Prosessi
+      projects_carousel:
+        name: Ehdotuskaruselli, äänestysvaihe
       records_carousel:
         next: Seuraava
         previous: Edellinen
@@ -213,3 +215,4 @@ fi:
     restrictions:
       district_not_allowed: Olet jo valinnut äänestäväsi toisessa suurpiirissä.
       district_required: Suurpiiritieto tarvitaan.
+

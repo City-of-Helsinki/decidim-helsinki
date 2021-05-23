@@ -77,6 +77,8 @@ en:
         navigate: Navigate phases
       process_steps_settings_form:
         process: Process
+      projects_carousel:
+        name: Proposals carousel, voting phase
       records_carousel:
         next: Next
         previous: Previous
@@ -213,3 +215,4 @@ en:
     restrictions:
       district_not_allowed: You have already chosen to vote in another major district.
       district_required: Major district information is requred.
+

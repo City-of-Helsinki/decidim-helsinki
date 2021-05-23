@@ -77,6 +77,8 @@ sv:
         navigate: Navigera steg
       process_steps_settings_form:
         process: Process
+      projects_carousel:
+        name: Förslagskarusell, omröstningsfas
       records_carousel:
         next: Nästa
         previous: Tidigare
