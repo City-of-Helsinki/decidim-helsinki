@@ -66,8 +66,8 @@ module Helsinki
             4 => "SUURPIIRI-POHJOINEN",
             5 => "SUURPIIRI-KOILLINEN",
             6 => "SUURPIIRI-KAAKKOINEN",
-            7 => "ITÄINEN",
-            8 => "ITÄINEN" # Östersundom is not an area in PB
+            7 => "SUURPIIRI-ITÄINEN",
+            8 => "SUURPIIRI-ITÄINEN" # Östersundom is not an area in PB
           }
         end
 
