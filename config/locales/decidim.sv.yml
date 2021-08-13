@@ -31,4 +31,4 @@ sv:
       budgets:
         settings:
           global:
-            geocoding_enabled: Geokodning aktiverad
+            vote_success_mpassid_content: Innehåll som visas efter framgångsrik omröstning för MPASSid-användare

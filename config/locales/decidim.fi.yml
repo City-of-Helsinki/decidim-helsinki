@@ -31,4 +31,4 @@ fi:
       budgets:
         settings:
           global:
-            geocoding_enabled: Geokoodaus käytössä
+            vote_success_mpassid_content: Onnistuneen äänestyksen jälkeen näytettävä sisältö MPASSid-käyttäjille

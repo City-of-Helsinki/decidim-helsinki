@@ -309,6 +309,19 @@ module DecidimHelsinki
       end
     end
 
+    initializer "component_settings" do
+      Decidim.find_component_manifest(:budgets).tap do |component|
+        component.settings(:global) do |settings|
+          # Add extra attributes specific to the instance
+          settings.attribute :vote_success_mpassid_content, type: :text, translated: true, editor: true
+
+          # Move it to the correct position after :vote_success_content
+          m = Decidim::BudgetingPipeline::SettingsManipulator.new(settings)
+          m.move_attribute_after(:vote_success_mpassid_content, :vote_success_content)
+        end
+      end
+    end
+
     # See:
     # https://guides.rubyonrails.org/configuring.html#initialization-events
     #
