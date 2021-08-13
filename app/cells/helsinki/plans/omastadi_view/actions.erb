@@ -18,7 +18,7 @@
       <%= cell("decidim/favorites/favorite_button", plan, button_class: "link action-link", disable_tooltip: true) %>
     </li>
     <li>
-      <button type="button" class="link action-link" data-open="socialShare" aria-haspopup="true">
+      <button type="button" class="link action-link" data-open="socialShare" aria-controls="socialShare" aria-haspopup="dialog">
         <%= icon "share", role: "img", "aria-hidden": true %>
         <span class="link-text"><%= t ".share" %></span>
       </button>
@@ -48,7 +48,7 @@
   <% end %>
   <% if flaggable? %>
     <li>
-    <button type="button" class="link action-link" data-open="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-controls="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-haspopup="true">
+    <button type="button" class="link action-link" data-open="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-controls="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-haspopup="dialog">
       <%= icon "flag", role: "img", "aria-hidden": true %>
       <span class="link-text"><%= t ".flag" %></span>
     </button>
