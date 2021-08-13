@@ -1,5 +1,3 @@
-$step-selector-color: $primary;
-
 .tabs.tabs-stepper{
   display: none;
   margin-bottom: 40px;
@@ -37,7 +35,7 @@ $step-selector-color: $primary;
       display: block;
       height: 2px;
       width: 50%;
-      background: $step-selector-color;
+      background: $medium-gray;
     }
 
     &::before{
@@ -64,10 +62,19 @@ $step-selector-color: $primary;
       }
     }
 
+    &.done{
+      .step-selector-number{
+        background: $body-background;
+        border-color: $primary;
+        color: $primary;
+      }
+    }
+
     &.is-active .step-selector{
       .step-selector-number{
-        background: $secondary;
-        color: $primary;
+        background: $primary;
+        border-color: $primary;
+        color: $secondary;
       }
 
       .step-selector-text{
@@ -75,7 +82,8 @@ $step-selector-color: $primary;
       }
     }
 
-    > a{
+    > a,
+    > .link{
       padding: 0;
       color: $body-font-color;
       font-weight: normal;
@@ -84,11 +92,18 @@ $step-selector-color: $primary;
       &:focus{
         text-decoration: none;
       }
+
+      &.disabled{
+        cursor: not-allowed;
+      }
     }
 
     a:hover,
     a:focus,
-    a[aria-selected='true']{
+    a[aria-selected='true'],
+    .link:hover,
+    .link:focus,
+    .link[aria-selected='true']{
       background: transparent;
       color: $body-font-color;
     }
@@ -104,15 +119,15 @@ $step-selector-color: $primary;
     line-height: 1.2;
 
     .step-selector-number{
-      padding: 18px;
+      padding: 16px;
       width: 60px;
       height: 60px;
       margin-bottom: 10px;
       border-radius: 50%;
-      border: 3px solid $primary;
-      background: $body-background;
+      border: 3px solid $medium-gray;
+      background: $medium-gray;
       text-align: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: 800;
       line-height: .75;
     }

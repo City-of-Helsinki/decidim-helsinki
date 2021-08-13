@@ -85,7 +85,7 @@ $dark-gray: $hel-dark-grey;
 $black: $hel-black;
 $white: $hel-white;
 $light-gray-dark: darken($light-gray, 2.5) !default;
-$body-background: $light-gray;
+$body-background: $white;
 $body-font-color: $hel-black;
 $muted: lighten($body-font-color, 30) !default;
 $body-font-family: $hel-grotesk;
@@ -766,11 +766,11 @@ $responsive-embed-ratios: (
 // 47. Reveal
 // ----------
 
-$reveal-background: $light-gray;
+$reveal-background: $white;
 $reveal-width: 600px;
 $reveal-max-width: $global-width;
 $reveal-padding: $global-padding;
-$reveal-border: 1px solid $medium-gray;
+$reveal-border: 1px solid $black;
 $reveal-radius: $global-radius;
 $reveal-zindex: 1005;
 $reveal-overlay-background: rgba($black, .45);

@@ -42,8 +42,8 @@
 
       &:hover,
       &:focus{
-        background-color: darken($secondary, 15%);
-        color: $primary;
+        background-color: darken($secondary, 35%);
+        color: $white;
       }
 
       &.hollow{
@@ -53,8 +53,8 @@
 
         &:hover,
         &:focus{
-          background-color: darken($secondary, 15%);
-          color: $primary;
+          background-color: darken($secondary, 35%);
+          color: $white;
         }
       }
     }

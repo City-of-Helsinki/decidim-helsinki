@@ -86,7 +86,8 @@ a,
   }
 }
 
-button{
+button,
+.button{
   &:focus{
     outline: $button-outline-focus;
     // outline-color: var(--highlight);

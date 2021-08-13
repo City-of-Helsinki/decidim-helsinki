@@ -386,6 +386,15 @@ $menuitem-padding: 1em 2em;
   }
 }
 
+.voting-header{
+  .koro{
+    svg{
+      fill: $titlebar-bg;
+      transform: scaleX(1.4);
+    }
+  }
+}
+
 .wrapper-ruuti{
   .koro{
     svg{
