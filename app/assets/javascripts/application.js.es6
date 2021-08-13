@@ -17,6 +17,7 @@
 // = require ie-polyfills
 // = require app/toggle-checkbox
 // = require app/fix-map-toggle
+// = require app/modal-accessibility
 // = require app/remaining-characters
 // = require app/youtube-modal
 // = require app/slider
@@ -34,6 +35,10 @@
     $(".card-slider").slider();
     $("a[data-open]").on("click", (ev) => {
       ev.preventDefault();
+    });
+
+    $(document).on("open.zf.reveal", (ev) => {
+      $(ev.target).modalAccessibility();
     });
 
     // Open process nav with enter
