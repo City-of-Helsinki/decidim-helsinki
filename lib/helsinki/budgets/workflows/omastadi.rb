@@ -12,6 +12,17 @@ module Helsinki
       # to suggest certain budgets for the user based on their authorization
       # details.
       class OmaStadi < Decidim::Budgets::Workflows::Base
+        # Determines whether the user can proceed to casting their votes and
+        # everything is ready for completing the voting process.
+        #
+        # Returns Boolean.
+        def can_cast_votes?
+          return false unless user
+          return false unless orders.values.any? { |order_info| order_info[:order].projects.any? }
+
+          orders.values.all? { |order_info| order_info[:order].valid_for_checkout? }
+        end
+
         def vote_allowed?(_resource, _consider_progress = true)
           return false unless authorization.present?
 
