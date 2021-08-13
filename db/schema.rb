@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_12_152952) do
+ActiveRecord::Schema.define(version: 2021_06_04_105249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -370,6 +370,7 @@ ActiveRecord::Schema.define(version: 2021_05_12_152952) do
     t.date "selected_at"
     t.integer "comments_count", default: 0, null: false
     t.string "main_image"
+    t.jsonb "summary"
     t.index ["decidim_budgets_budget_id"], name: "index_decidim_budgets_projects_on_decidim_budgets_budget_id"
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_projects_on_decidim_scope_id"
   end
