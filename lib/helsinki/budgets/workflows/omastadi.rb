@@ -18,9 +18,14 @@ module Helsinki
         # Returns Boolean.
         def can_cast_votes?
           return false unless user
+          return false unless orders.any?
           return false unless orders.values.any? { |order_info| order_info[:order].projects.any? }
 
           orders.values.all? { |order_info| order_info[:order].valid_for_checkout? }
+        end
+
+        def highlighted?(_resource)
+          false
         end
 
         def vote_allowed?(_resource, _consider_progress = true)
