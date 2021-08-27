@@ -1,0 +1,9 @@
+.reveal{
+  min-width: 320px; // Minimum mobile body width
+
+  .reveal__title{
+    // Give small space to the closing X button in reveals so that the title
+    // does not go underneath the title.
+    padding-right: 25px;
+  }
+}
