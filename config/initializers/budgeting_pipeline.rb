@@ -19,5 +19,4 @@ Decidim::BudgetingPipeline.configure do |config|
     # Just to make sure the providers are in correct order
     possible.select { |k| providers.include?(k) }
   end
-  config.pipeline_header_background_image = "helsinki/budgets/pipeline-header.jpg"
 end
