@@ -348,7 +348,7 @@ module DecidimHelsinki
         :include,
         AdminHelpSectionsExtensions
       )
-      Decidim::UserActivitiesController.send(:include, ActivityResourceTypes)
+      Decidim::UserActivitiesController.send(:include, UserActivitiesExtensions)
       Decidim::UserTimelineController.send(:include, ActivityResourceTypes)
       Decidim::Plans::PlansController.send(:include, PlansExtensions)
 
