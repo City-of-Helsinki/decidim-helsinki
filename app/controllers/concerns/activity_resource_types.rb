@@ -10,12 +10,19 @@ module ActivityResourceTypes
     private
 
     def resource_types
-      @resource_types = %w(Decidim::Ideas::Idea
-                           Decidim::Plans::Plan
-                           Decidim::Debates::Debate
-                           Decidim::Meetings::Meeting
-                           Decidim::Blogs::Post
-                           Decidim::Consultations::Question)
+      @resource_types ||= begin
+        types = %w(
+          Decidim::Ideas::Idea
+          Decidim::Plans::Plan
+          Decidim::Debates::Debate
+          Decidim::Meetings::Meeting
+          Decidim::Blogs::Post
+          Decidim::Consultations::Question
+        )
+        types << "Decidim::Budgets::Vote" if current_user == user
+
+        types
+      end
     end
   end
 end
