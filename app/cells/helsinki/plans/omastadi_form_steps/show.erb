@@ -1,20 +1,21 @@
-<ul class="tabs tabs-stepper" id="plan-tabs">
-  <% steps.each_with_index do |step, index| %>
-    <% if step[:target] %>
-      <li class="tabs-title tabs-stepper-step<%= " is-active" if step[:active] %>">
-        <div class="step-selector" data-tabs-target="<%= step[:target] %>">
-          <div class="step-selector-number"><%= index + 1 %></div>
-          <div class="step-selector-text"><%= step[:name] %></div>
-        </div>
-      </li>
-    <% else %>
-      <li class="tabs-stepper-step<%= " is-active" if step[:active] %>">
-        <div class="step-selector">
-          <div class="step-selector-number"><%= index + 1 %></div>
-          <div class="step-selector-text"><%= step[:name] %></div>
-        </div>
-      </li>
+<div class="tabs-stepper show-for-mediumlarge">
+  <ol class="tabs" id="plan-tabs">
+    <% steps.each_with_index do |step, index| %>
+      <% if step[:target] %>
+        <li class="tabs-title tabs-stepper-step<%= " is-active" if step[:active] %>">
+          <div class="step-selector" data-tabs-target="<%= step[:target] %>">
+            <div class="step-selector-number"><%= index + 1 %></div>
+            <div class="step-selector-text"><%= step[:name] %></div>
+          </div>
+        </li>
+      <% else %>
+        <li class="tabs-stepper-step<%= " is-active" if step[:active] %>">
+          <div class="step-selector">
+            <div class="step-selector-number"><%= index + 1 %></div>
+            <div class="step-selector-text"><%= step[:name] %></div>
+          </div>
+        </li>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
-
+  </ol>
+</div>
