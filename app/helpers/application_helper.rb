@@ -70,7 +70,7 @@ module ApplicationHelper
     return false if flash.any?
     return false if display_omnipresent_banner?
 
-    %(homepage votes).exclude? controller.controller_name
+    controller.controller_name != "homepage"
   end
 
   def display_omnipresent_banner?
