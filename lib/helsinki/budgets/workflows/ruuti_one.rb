@@ -8,35 +8,19 @@ module Helsinki
       # vote in their school area to make voting workflow easier allowing to
       # bypass the voting unit selection.
       class RuutiOne < Decidim::Budgets::Workflows::One
-        # In case the user has an MPASSid authorization, turn the workflow into
-        # a single mode in case the authorization matches a scope which
-        def single?
-          return authorized_budgets.one? if authorized_budgets.any?
-
-          super
+        # The suggested budget is highlighted which means the user can proceed
+        # quickly to the next step.
+        def highlighted?(resource)
+          suggested.include?(resource)
         end
 
-        # In case the user has an MPASSid authorization, return the authorized
-        # budged.
-        def single
-          return authorized_budgets.first if single?
-
-          super
+        def vote_allowed?(_resource, _consider_progress = true)
+          voted.none?
         end
 
-        # In case the user has an MPASSid authorization, only allow voting in
-        # the budget which the user is authorized for.
-        def vote_allowed?(resource, consider_progress = true)
-          if authorized_budgets.any?
-            return false unless authorized_budgets.include?(resource)
-          end
-
-          super
-        end
-
-        private
-
-        def authorized_budgets
+        # Determines which budget/s should be suggested for the user based on
+        # their authorization metadata.
+        def suggested
           units = voting_units
           # Rudolf Steiner school (00729) belongs to an extra unit in addition
           # to the default unit:
@@ -55,6 +39,14 @@ module Helsinki
             end
           end
         end
+
+        # This returns the discardable budgets that the user could discard their
+        # vote from. This is not allowed in the Ruuti voting right now.
+        def discardable
+          []
+        end
+
+        private
 
         def voting_units
           @voting_units ||= begin
