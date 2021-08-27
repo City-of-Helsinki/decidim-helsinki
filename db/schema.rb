@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_105249) do
+ActiveRecord::Schema.define(version: 2021_08_20_193657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -339,7 +339,6 @@ ActiveRecord::Schema.define(version: 2021_06_04_105249) do
   create_table "decidim_budgets_line_items", id: :serial, force: :cascade do |t|
     t.integer "decidim_order_id"
     t.integer "decidim_project_id"
-    t.boolean "confirmed", default: false, null: false
     t.index ["decidim_order_id", "decidim_project_id"], name: "decidim_budgets_line_items_order_project_unique", unique: true
     t.index ["decidim_order_id"], name: "index_decidim_budgets_line_items_on_decidim_order_id"
     t.index ["decidim_project_id"], name: "index_decidim_budgets_line_items_on_decidim_project_id"
@@ -351,6 +350,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_105249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "decidim_budgets_budget_id"
+    t.integer "decidim_budgets_vote_id"
     t.index ["decidim_budgets_budget_id"], name: "index_decidim_budgets_orders_on_decidim_budgets_budget_id"
     t.index ["decidim_user_id"], name: "index_decidim_budgets_orders_on_decidim_user_id"
   end
@@ -373,6 +373,15 @@ ActiveRecord::Schema.define(version: 2021_06_04_105249) do
     t.jsonb "summary"
     t.index ["decidim_budgets_budget_id"], name: "index_decidim_budgets_projects_on_decidim_budgets_budget_id"
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_projects_on_decidim_scope_id"
+  end
+
+  create_table "decidim_budgets_votes", force: :cascade do |t|
+    t.bigint "decidim_user_id"
+    t.bigint "decidim_component_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_component_id"], name: "index_decidim_budgets_votes_on_decidim_component_id"
+    t.index ["decidim_user_id"], name: "index_decidim_budgets_votes_on_decidim_user_id"
   end
 
   create_table "decidim_categories", id: :serial, force: :cascade do |t|
