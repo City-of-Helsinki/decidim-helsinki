@@ -1,3 +1,5 @@
+<% extra_locals ||= {} %>
+
 <div class="wrapper<%= local_assigns[:wrapper_class] ? " #{wrapper_class}" : "" %>">
   <div class="row collapse">
     <div class="text-center">
@@ -46,7 +48,7 @@
                 <%= f.submit t("devise.sessions.new.sign_in"), class: "button expanded" %>
               </div>
             <% end %>
-            <%= render "decidim/devise/shared/links" %>
+            <%= render "decidim/devise/shared/links", extra_locals %>
           </div>
         </div>
       </div>
