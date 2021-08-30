@@ -17,7 +17,7 @@ module MpassidAuthorizationRule
     private
 
     def allowed_municipalities
-      options[:allowed_municipalities]
+      @allowed_municipalities ||= %w(091)
     end
   end
 end
