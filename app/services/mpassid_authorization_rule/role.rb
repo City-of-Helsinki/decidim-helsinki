@@ -17,7 +17,7 @@ module MpassidAuthorizationRule
     private
 
     def allowed_roles
-      options[:allowed_roles]
+      @allowed_roles ||= %w(oppilas)
     end
   end
 end
