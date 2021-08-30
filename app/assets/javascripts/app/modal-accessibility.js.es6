@@ -76,6 +76,14 @@
     return $(this).each((_i, element) => {
       const $container = $("body");
       const $modal = $(element);
+      const $title = $(".reveal__title", $modal);
+
+      if ($title.length > 0) {
+        // Focus on the title to make the screen reader to start reading the
+        // content within the modal.
+        $title.attr("tabindex", $title.attr("tabindex") || -1);
+        $title.focus();
+      }
 
       // Once the final modal closes, remove the focus guards from the container
       $modal.off("closed.zf.reveal.focusguard").on("closed.zf.reveal.focusguard", () => {
