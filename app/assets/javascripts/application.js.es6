@@ -38,7 +38,12 @@
     });
 
     $(document).on("open.zf.reveal", (ev) => {
-      $(ev.target).modalAccessibility();
+      const $modal = $(ev.target);
+      $modal.modalAccessibility();
+
+      if ($(".off-canvas-wrapper").hasClass("wrapper-ruuti")) {
+        $modal.addClass("wrapper-ruuti");
+      }
     });
 
     // Open process nav with enter
