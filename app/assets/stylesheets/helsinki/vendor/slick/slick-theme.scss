@@ -117,6 +117,17 @@ $slick-opacity-not-active: 1 !default;
   }
 }
 
+.wrapper-ruuti{
+  .bg-primary{
+    .slick-prev,
+    .slick-next{
+      &::before{
+        color: $ruuti-secondary;
+      }
+    }
+  }
+}
+
 .slick-prev{
   left: -25px;
 
@@ -235,6 +246,20 @@ $slick-opacity-not-active: 1 !default;
 
     button::before{
       border-color: $secondary;
+    }
+  }
+}
+
+.wrapper-ruuti{
+  .slick-dots li{
+    &.slick-active{
+      button::before{
+        background: $ruuti-secondary;
+      }
+    }
+
+    button::before{
+      border-color: $ruuti-secondary;
     }
   }
 }

@@ -249,12 +249,30 @@
 
 .wrapper-ruuti{
   .tabs-stepper{
+    background: $hel-gold;
+
+    @include breakpoint(mediumlarge){
+      background: transparent;
+    }
+
     .tabs-stepper-step{
       &.is-active .step-selector{
         .step-selector-number{
           background: $ruuti-secondary;
-          color: $ruuti-primary;
+          border-color: $ruuti-secondary;
+          color: $white;
         }
+      }
+
+      &.done .step-selector-number{
+        border-color: $ruuti-secondary;
+        color: $ruuti-secondary;
+      }
+    }
+
+    .tabs-stepper-navigation{
+      a{
+        color: $body-font-color;
       }
     }
   }
