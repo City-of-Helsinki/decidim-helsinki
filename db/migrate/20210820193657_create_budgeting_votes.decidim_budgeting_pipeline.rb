@@ -24,6 +24,7 @@ class CreateBudgetingVotes < ActiveRecord::Migration[5.2]
         ActiveRecord::Base.connection.select_all(
           <<~SQL.squish
             SELECT c.id AS cid,
+              c.name AS cname,
               c.participatory_space_type AS spacetype,
               c.participatory_space_id AS spaceid,
               CASE c.participatory_space_type
@@ -46,6 +47,7 @@ class CreateBudgetingVotes < ActiveRecord::Migration[5.2]
           SQL
         ).each do |row|
           component_id = row["cid"]
+          component_title = row["cname"]
           space_type = row["spacetype"]
           space_id = row["spaceid"]
           space_manifest = row["spacemanifest"]
@@ -64,7 +66,7 @@ class CreateBudgetingVotes < ActiveRecord::Migration[5.2]
           space_cols = ActiveRecord::Base.connection.columns(space_table).map(&:name)
           space_component_details = ActiveRecord::Base.connection.select_all(
             <<~SQL
-              SELECT c.name AS ctitle, s.title AS stitle,
+              SELECT s.title AS stitle,
                 #{space_cols.include?("decidim_scope_id") ? "s.decidim_scope_id" : "NULL"} AS scopeid,
                 #{space_cols.include?("decidim_area_id") ? "s.decidim_area_id" : "NULL"} AS areaid
                 FROM decidim_components c
@@ -72,10 +74,11 @@ class CreateBudgetingVotes < ActiveRecord::Migration[5.2]
                 WHERE c.id = #{component_id}
             SQL
           ).first
-          component_title = space_component_details["ctitle"]
-          space_title = space_component_details["stitle"]
-          area_id = space_component_details["areaid"]
-          scope_id = space_component_details["scopeid"]
+          # In case the space has been removed, the above query returns zero
+          # results when the array is empty.
+          space_title = space_component_details.try(:[], "stitle") || I18n.available_locales.map { |l| [l.to_s, ""] }.to_h
+          area_id = space_component_details.try(:[], "areaid")
+          scope_id = space_component_details.try(:[], "scopeid")
 
           # Insert the vote
           vote_id = insert_data(
