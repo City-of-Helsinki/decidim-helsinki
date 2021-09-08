@@ -4,9 +4,9 @@ module Decidim
   module Devise
     module SessionsHelper
       def enabled_strong_providers
-        @enabled_strong_providers ||= current_organization.enabled_omniauth_providers.keys.select do |p|
-          [:suomifi, :mpassid].include?(p)
-        end
+        possible = [:suomifi, :mpassid].map { |key| decidim.respond_to?("user_#{key}_omniauth_authorize_path") }
+
+        @enabled_strong_providers ||= current_organization.enabled_omniauth_providers.keys & possible
       end
 
       def strong_providers_enabled?
