@@ -1,6 +1,3 @@
-// = require slick
-// = require_self
-
 ((exports) => {
   const $ = exports.$; // eslint-disable-line id-length
 
