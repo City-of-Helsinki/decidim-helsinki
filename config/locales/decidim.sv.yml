@@ -32,3 +32,6 @@ sv:
         settings:
           global:
             vote_success_mpassid_content: Innehåll som visas efter framgångsrik omröstning för MPASSid-användare
+    resource_links:
+      included_plans:
+        project_plan: Relaterade förslag om samutveckling

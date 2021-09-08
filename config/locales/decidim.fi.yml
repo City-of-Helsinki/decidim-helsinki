@@ -32,3 +32,6 @@ fi:
         settings:
           global:
             vote_success_mpassid_content: Onnistuneen äänestyksen jälkeen näytettävä sisältö MPASSid-käyttäjille
+    resource_links:
+      included_plans:
+        project_plan: Liitetyt yhteiskehittämisen ehdotukset

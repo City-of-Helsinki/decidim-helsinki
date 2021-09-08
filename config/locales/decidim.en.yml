@@ -32,3 +32,6 @@ en:
         settings:
           global:
             vote_success_mpassid_content: Content displayed after successful voting for MPASSid users
+    resource_links:
+      included_plans:
+        project_plan: Related co-creation proposals
