@@ -52,6 +52,11 @@ input[type="radio"]{
     display: none;
   }
 
+  &.focus,
+  &:focus{
+    outline: $input-radiocheck-outline-focus;
+  }
+
   &:checked{
     &::before{
       border-color: $primary;
@@ -96,11 +101,30 @@ input[type="radio"]{
   }
 }
 
-input[type="checkbox"],
-input[type="radio"]{
-  &.focus,
-  &:focus{
-    outline: $input-radiocheck-outline-focus;
+.wrapper-ruuti{
+  input[type="checkbox"],
+  input[type="radio"]{
+    &:checked{
+      &::before{
+        border-color: $ruuti-primary;
+      }
+    }
+  }
+
+  input[type="checkbox"]{
+    &:checked{
+      &::before{
+        background-color: $ruuti-primary;
+      }
+    }
+  }
+
+  input[type="radio"]{
+    &:checked{
+      &::after{
+        background-color: $ruuti-primary;
+      }
+    }
   }
 }
 

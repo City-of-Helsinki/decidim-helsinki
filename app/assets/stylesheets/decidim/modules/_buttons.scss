@@ -319,6 +319,12 @@
   color: inherit;
 }
 
+.wrapper-ruuti{
+  .link{
+    color: $ruuti-primary;
+  }
+}
+
 .muted-link{
   font-weight: 600;
   color: $muted;

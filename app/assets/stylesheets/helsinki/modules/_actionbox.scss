@@ -1,0 +1,9 @@
+.wrapper-ruuti{
+  .actionbox{
+    background: $ruuti-primary;
+
+    .action-link.favorite-button .indicator-wrap{
+      background: $ruuti-primary;
+    }
+  }
+}

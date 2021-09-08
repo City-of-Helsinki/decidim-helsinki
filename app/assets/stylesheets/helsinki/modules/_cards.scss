@@ -66,6 +66,14 @@
   }
 }
 
+.wrapper-ruuti{
+  .card{
+    &.border-primary{
+      border: 3px solid $ruuti-primary;
+    }
+  }
+}
+
 .card__category,
 .card__info{
   padding: .5rem;

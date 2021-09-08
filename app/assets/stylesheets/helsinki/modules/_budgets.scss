@@ -7,3 +7,31 @@
     }
   }
 }
+
+.wrapper-ruuti{
+  .detail-selector{
+    .detail-selector-item.selected{
+      background: $ruuti-primary;
+      border-color: $ruuti-primary;
+    }
+
+    .detail-selector-title{
+      &,
+      label,
+      button{
+        color: $ruuti-primary;
+      }
+    }
+  }
+
+  .infobox .infobox-title{
+    color: $ruuti-primary;
+  }
+
+  #projects.voting{
+    .card.selected{
+      outline-color: $ruuti-primary;
+      border-color: $ruuti-primary;
+    }
+  }
+}

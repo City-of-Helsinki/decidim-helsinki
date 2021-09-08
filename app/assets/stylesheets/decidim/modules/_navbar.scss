@@ -71,7 +71,8 @@ $menuitem-padding: 1em 2em;
     background: $ruuti-top-bar-bg;
     color: $ruuti-top-bar-fg;
 
-    a{
+    a,
+    .link{
       color: $ruuti-top-bar-fg;
     }
   }
