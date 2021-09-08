@@ -23,7 +23,7 @@ module DecidimHelsinki
     config.mailer_sender = "no-reply@omastadi.hel.fi"
 
     # Tracking
-    config.snoobi_account = nil
+    config.matomo_site_id = nil
 
     # Can the site be indexed by search engines
     config.search_indexing = true

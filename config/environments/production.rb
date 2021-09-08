@@ -7,7 +7,7 @@ Rails.application.configure do
   config.mpassid_enabled = true
 
   # Tracking
-  config.snoobi_account = "omastadi_hel_fi"
+  config.matomo_site_id = 349
 
   # Code is not reloaded between requests.
   config.cache_classes = true

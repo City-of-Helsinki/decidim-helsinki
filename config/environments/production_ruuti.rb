@@ -6,7 +6,7 @@ Rails.application.configure do
   config.mpassid_enabled = true
 
   # Tracking
-  config.snoobi_account = "omastadi_hel_fi"
+  config.matomo_site_id = 370
 
   # Wrapper class can be used to customize the coloring of the platform per
   # environment. This is for the Ruuti instance.
