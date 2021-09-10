@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: 4788f40ebed74934eb4b68315db9d2e19f518627
+  revision: 21c820a8ba680e9d2fabca4ef2cb24ca9dfffb74
   branch: main
   specs:
     decidim-budgeting_pipeline (0.23.0)
