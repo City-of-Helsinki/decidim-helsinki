@@ -17,6 +17,14 @@ $slick-opacity-default: 1;
 
     &.slick-dotted{
       margin-bottom: 50px;
+
+      @include breakpoint(medium){
+        margin-bottom: 80px;
+      }
+
+      @include breakpoint(large){
+        margin-bottom: 120px;
+      }
     }
   }
 
