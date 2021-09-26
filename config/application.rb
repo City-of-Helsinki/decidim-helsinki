@@ -72,6 +72,15 @@ module DecidimHelsinki
     config.suomifi_enabled = false
     config.mpassid_enabled = false
 
+    # Re-configure some of the Decidim internals
+    config.before_configuration do
+      # This would override the cookie store configuration which is why we want
+      # to disable it as it is defined manually for the environments.
+      Decidim::Core::Engine.instance.initializers.reject! do |initializer|
+        initializer.name == "Expire sessions"
+      end
+    end
+
     # Passes a block of code to do after initialization.
     config.after_initialize do
       # Override the main menu
