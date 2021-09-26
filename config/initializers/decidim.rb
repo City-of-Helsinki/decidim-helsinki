@@ -34,6 +34,9 @@ Decidim.configure do |config|
   # Currency unit
   # config.currency_unit = "€"
 
+  # How long can a user remained logged in before the session expires.
+  config.expire_session_after = Rails.application.config.session_validity_period
+
   config.maximum_attachment_size = 15.megabytes
 end
 

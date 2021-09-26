@@ -28,6 +28,9 @@ module DecidimHelsinki
     # Can the site be indexed by search engines
     config.search_indexing = true
 
+    # How long the sessions are valid
+    config.session_validity_period = 1.hours
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
