@@ -192,8 +192,19 @@ module Helsinki
       "10120" => { name: "Perho Liiketalousopisto", type: 21, postal_code: "00100", voting_unit: nil }
     }.freeze
 
+    def self.exists?(school_code)
+      metadata_for_school(school_code).present?
+    end
+
     def self.metadata_for_school(school_code)
       MAPPING[school_code]
+    end
+
+    def self.type_for_school(school_code)
+      data = metadata_for_school(school_code)
+      return nil unless data
+
+      data[:type]
     end
 
     def self.postal_code_for_school(school_code)
