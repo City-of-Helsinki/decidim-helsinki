@@ -34,7 +34,7 @@ module Helsinki
               end
 
             orders = []
-            Decidim::Budgets::Budget.where(component: component).order("RANDOM()").limit(2).find_each do |budget|
+            Decidim::Budgets::Budget.where(component: component).order(Arel.sql("RANDOM()")).limit(2).each do |budget|
               order = Decidim::Budgets::Order.create!(user: user, budget: budget)
 
               amount_left = budget.total_budget
@@ -42,14 +42,14 @@ module Helsinki
               Decidim::Budgets::Project.where(budget: budget).where(
                 "budget_amount <= ?",
                 budget.total_budget
-              ).order("RANDOM()").limit(rand(min_projects..max_projects)).find_each do |project|
-                if project.budget_amount <= amount_left
-                  order.projects << project
-                  amount_left -= project.budget_amount
-                  projects_left -= 1
+              ).order(Arel.sql("RANDOM()")).limit(rand(min_projects..max_projects)).each do |project|
+                next if project.budget_amount > amount_left
 
-                  break if order.line_items.count == max_projects || projects_left.zero?
-                end
+                order.projects << project
+                amount_left -= project.budget_amount
+                projects_left -= 1
+
+                break if order.line_items.count == max_projects || projects_left.zero?
               end
               next if order.invalid?
 
