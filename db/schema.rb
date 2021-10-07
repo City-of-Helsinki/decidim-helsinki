@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_193657) do
+ActiveRecord::Schema.define(version: 2021_09_29_141201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1587,6 +1587,40 @@ ActiveRecord::Schema.define(version: 2021_08_20_193657) do
     t.index ["topic_id"], name: "index_decidim_static_pages_on_topic_id"
   end
 
+  create_table "decidim_stats_collections", force: :cascade do |t|
+    t.bigint "decidim_organization_id"
+    t.string "decidim_measurable_type", null: false
+    t.bigint "decidim_measurable_id", null: false
+    t.string "key"
+    t.jsonb "metadata", null: false
+    t.boolean "finalized", default: false
+    t.datetime "last_value_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_measurable_type", "decidim_measurable_id"], name: "index_on_decidim_stats_collection_measurable"
+    t.index ["decidim_organization_id", "decidim_measurable_type", "decidim_measurable_id", "key"], name: "index_on_decidim_stats_collections_org_measurable_key", unique: true
+    t.index ["decidim_organization_id"], name: "index_decidim_stats_collections_on_decidim_organization_id"
+  end
+
+  create_table "decidim_stats_measurements", force: :cascade do |t|
+    t.bigint "decidim_stats_set_id", null: false
+    t.bigint "parent_id"
+    t.string "label"
+    t.integer "value", default: 0
+    t.index ["decidim_stats_set_id", "parent_id", "label"], name: "index_on_decidim_stats_measurements_set_parent_label", unique: true
+    t.index ["decidim_stats_set_id"], name: "index_decidim_stats_measurements_on_decidim_stats_set_id"
+    t.index ["parent_id"], name: "index_decidim_stats_measurements_on_parent_id"
+  end
+
+  create_table "decidim_stats_sets", force: :cascade do |t|
+    t.bigint "decidim_stats_collection_id", null: false
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_stats_collection_id", "key"], name: "index_on_decidim_stats_sets_collection_key", unique: true
+    t.index ["decidim_stats_collection_id"], name: "index_decidim_stats_sets_on_decidim_stats_collection_id"
+  end
+
   create_table "decidim_surveys_surveys", id: :serial, force: :cascade do |t|
     t.integer "decidim_component_id"
     t.datetime "created_at", null: false
@@ -1836,6 +1870,10 @@ ActiveRecord::Schema.define(version: 2021_08_20_193657) do
   add_foreign_key "decidim_scopes", "decidim_scope_types", column: "scope_type_id"
   add_foreign_key "decidim_scopes", "decidim_scopes", column: "parent_id"
   add_foreign_key "decidim_static_pages", "decidim_organizations"
+  add_foreign_key "decidim_stats_collections", "decidim_organizations"
+  add_foreign_key "decidim_stats_measurements", "decidim_stats_measurements", column: "parent_id"
+  add_foreign_key "decidim_stats_measurements", "decidim_stats_sets"
+  add_foreign_key "decidim_stats_sets", "decidim_stats_collections"
   add_foreign_key "decidim_tags_tags", "decidim_organizations"
   add_foreign_key "decidim_term_customizer_constraints", "decidim_organizations"
   add_foreign_key "decidim_term_customizer_constraints", "decidim_term_customizer_translation_sets", column: "translation_set_id"
