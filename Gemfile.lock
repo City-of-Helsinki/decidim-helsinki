@@ -50,13 +50,14 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: 8123c32856e67a2d0b86f1ac324265f7c0e8733b
+  revision: cf4912e40f1d7c812dfa9d094951b865a0a19ddb
   branch: main
   specs:
     decidim-budgeting_pipeline (0.23.0)
       decidim-budgets (~> 0.23.0)
       decidim-core (~> 0.23.0)
       decidim-favorites (~> 0.23.0)
+      decidim-stats (~> 0.23.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-favorites.git
@@ -130,6 +131,14 @@ GIT
   branch: release/0.23-stable
   specs:
     decidim-redirects (0.23.0)
+      decidim-core (~> 0.23.0)
+
+GIT
+  remote: https://github.com/mainio/decidim-module-stats.git
+  revision: 5ef27f4c0a17dc810edccf0cb169f2372f3a473e
+  branch: main
+  specs:
+    decidim-stats (0.23.0)
       decidim-core (~> 0.23.0)
 
 GIT
@@ -1100,6 +1109,7 @@ DEPENDENCIES
   decidim-plans!
   decidim-process_groups_content_block!
   decidim-redirects!
+  decidim-stats!
   decidim-suomifi!
   decidim-tags!
   decidim-term_customizer (~> 0.23.0)
