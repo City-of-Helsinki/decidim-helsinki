@@ -44,6 +44,7 @@ en:
           drivers_license: Driver's license
           idcard: ID card
           kela_card: KELA card
+          none: None
           passport: Passport
         name: Identity document at an office
         user_explanation: Go to a physical location to identify yourself with an identity document.

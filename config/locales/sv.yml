@@ -44,6 +44,7 @@ sv:
           drivers_license: Körkort
           idcard: Identitetskort
           kela_card: FPA-kort
+          none: Ingen
           passport: Pass
         name: Identity document at an office
         user_explanation: Gå till en fysisk plats för att identifiera dig med ett identitetsdokument.

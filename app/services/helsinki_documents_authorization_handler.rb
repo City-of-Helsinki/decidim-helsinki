@@ -14,7 +14,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :postal_code, String
 
   validates :context, presence: true
-  validates :document_type, presence: true, inclusion: { in: [:passport, :idcard, :drivers_license, :kela_card] }
+  validates :document_type, presence: true, inclusion: { in: [:none, :passport, :idcard, :drivers_license, :kela_card] }
   validates :pin, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -68,7 +68,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def document_types
-    [:passport, :idcard, :drivers_license, :kela_card].map do |type|
+    [:none, :passport, :idcard, :drivers_license, :kela_card].map do |type|
       [I18n.t(type, scope: "decidim.authorization_handlers.helsinki_documents_authorization_handler.document_types"), type]
     end
   end
@@ -133,6 +133,8 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
 
   def sanitized_document_type
     case document_type&.to_sym
+    when :none
+      "00"
     when :passport
       "01"
     when :idcard

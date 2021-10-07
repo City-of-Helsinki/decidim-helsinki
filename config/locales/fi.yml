@@ -44,6 +44,7 @@ fi:
           drivers_license: Ajokortti
           idcard: Henkilökortti
           kela_card: KELA-kortti
+          none: Ei mitään
           passport: Passi
         name: Henkilöllisyystodistus toimipisteessä
         user_explanation: Käy fyysisessä toimipisteessä varmentamassa itsesi henkilöllisyystodistuksen avulla.
