@@ -6,6 +6,7 @@ require "helsinki/school_metadata"
 require "helsinki/query_extensions"
 require "helsinki/neighborhood_search"
 require "helsinki/budgets/workflows"
+require "helsinki/stats"
 
 if Rails.application.config.use_mode == "private"
   Rails.application.config.to_prepare do
@@ -14,3 +15,5 @@ if Rails.application.config.use_mode == "private"
     end
   end
 end
+
+Decidim::Stats.register_aggregator(Helsinki::Stats::Voting::Aggregator)
