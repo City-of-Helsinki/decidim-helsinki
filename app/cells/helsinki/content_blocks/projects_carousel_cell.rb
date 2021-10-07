@@ -14,7 +14,7 @@ module Helsinki
       end
 
       def records_for(components)
-        tmp = Decidim::Budgets::Project.includes(:budget).where(
+        Decidim::Budgets::Project.includes(:budget).where(
           decidim_budgets_budgets: { decidim_component_id: components }
         )
       end
