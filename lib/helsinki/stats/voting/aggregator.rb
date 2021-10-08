@@ -5,7 +5,7 @@ module Helsinki
     module Voting
       class Aggregator < Decidim::Stats::Aggregator
         def run
-          Decidim::Component.where(manifest_name: "budgets").find_each do |component|
+          Decidim::Component.where(manifest_name: "budgets").each do |component|
             @postal_codes = []
 
             aggregate_component(component)
