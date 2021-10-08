@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-accountability_simple.git
-  revision: 8ee79c8ace2d9704fdb730531d091cafd28282f9
+  revision: 338f76ed7b51ca6b1f07f14850b2704747a64be9
   branch: release/0.23-stable
   specs:
     decidim-accountability_simple (0.23.0)
@@ -27,6 +27,7 @@ GIT
       decidim-admin (~> 0.23.0)
       decidim-core (~> 0.23.0)
       decidim-participatory_processes (~> 0.23.0)
+      decidim-tags (~> 0.23.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-antivirus.git
@@ -50,7 +51,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: 193a86d5695b967ba5aae8ae2d7a5384e4938de2
+  revision: e366ad2bb29613c33e5b5544407924258bc333ee
   branch: main
   specs:
     decidim-budgeting_pipeline (0.23.0)
@@ -78,7 +79,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: a161210260b8326f4eef06f3e28d127d8d48f938
+  revision: 146f417533e29bed09264565a54fa6a80fbbb3f9
   branch: master
   specs:
     decidim-ideas (0.23.0)
@@ -104,7 +105,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 603cc1e622c5f22f1e864ef17a2742594ae1c10c
+  revision: b05d96aec3e6a2150aea72874df56bf830e1ce93
   branch: develop
   specs:
     decidim-plans (0.23.0)
@@ -153,8 +154,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-tags.git
-  revision: 2329aeaf9200b814085e6d3ab334d70556584ba8
-  branch: main
+  revision: cb7d7a30ad280faf4bbcb810bf33e6c33823ea80
+  branch: release/0.23-stable
   specs:
     decidim-tags (0.23.0)
       decidim-core (~> 0.23.0)
