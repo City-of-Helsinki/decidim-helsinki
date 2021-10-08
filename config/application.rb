@@ -369,6 +369,7 @@ module DecidimHelsinki
       Decidim::SearchesController.send(:helper, Decidim::ScopesHelper)
 
       # Cell extensions
+      Decidim::AddressCell.send(:include, AddressCellExtensions)
       Decidim::CardMCell.send(:include, CardMCellExtensions)
       Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
         :include,
