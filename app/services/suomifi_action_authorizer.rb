@@ -103,6 +103,8 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
   end
 
   def authorized_age_allowed?
+    return false unless authorization_age
+
     authorization_age >= minimum_age
   end
 
@@ -114,6 +116,14 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
       bd = Date.strptime(authorization.metadata["date_of_birth"], "%Y-%m-%d")
       now.year - bd.year - (bd.to_date.change(year: now.year) > now ? 1 : 0)
     end
+  rescue ArgumentError
+    # This can happen in case the date of birth is not a valid date when it is
+    # passed to Date.strptime(). Really rare edge case but apparently it is
+    # possible. Add the log message for further debugging.
+    Rails.logger.warn(
+      "[ERROR] Could not parse date of birth for Suomi.fi authorization #{authorization.id} (value: #{authorization.metadata["date_of_birth"]})"
+    )
+    nil
   end
 
   def minimum_age
