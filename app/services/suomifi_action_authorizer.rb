@@ -120,7 +120,7 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
     # This can happen in case the date of birth is not a valid date when it is
     # passed to Date.strptime(). Really rare edge case but apparently it is
     # possible. Add the log message for further debugging.
-    Rails.logger.warn(
+    Rails.logger.error(
       "[ERROR] Could not parse date of birth for Suomi.fi authorization #{authorization.id} (value: #{authorization.metadata["date_of_birth"]})"
     )
     nil
