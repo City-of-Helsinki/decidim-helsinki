@@ -10,13 +10,13 @@
         <% end %>
         <%= render "decidim/devise/shared/omniauth_buttons_mini_weak" %>
       <% else %>
-        <%= render "decidim/devise/shared/omniauth_buttons_mini_weak" %>
+        <%= render "decidim/devise/shared/omniauth_buttons_mini_strong" %>
         <% if weak_providers_enabled? %>
           <span class="register__separator">
             <span class="register__separator__text"><%= t('or', scope: "decidim.devise.shared.omniauth_buttons") %></span>
           </span>
         <% end %>
-        <%= render "decidim/devise/shared/omniauth_buttons_mini_strong" %>
+        <%= render "decidim/devise/shared/omniauth_buttons_mini_weak" %>
       <% end %>
     </div>
   </div>

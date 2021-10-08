@@ -20,7 +20,7 @@
     <% end %>
     <%= render "decidim/devise/shared/login_modal_form" %>
   <% else %>
-    <%= render "decidim/devise/shared/login_modal_form" %>
+    <%= render "decidim/devise/shared/omniauth_buttons_mini", hide_form: true %>
     <% if strong_providers_enabled? || weak_providers_enabled? %>
       <div class="row">
         <div class="columns">
@@ -30,6 +30,6 @@
         </div>
       </div>
     <% end %>
-    <%= render "decidim/devise/shared/omniauth_buttons_mini" %>
+    <%= render "decidim/devise/shared/login_modal_form" %>
   <% end %>
 </div>
