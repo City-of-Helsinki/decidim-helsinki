@@ -364,6 +364,9 @@ module DecidimHelsinki
       Decidim::UserActivitiesController.send(:include, UserActivitiesExtensions)
       Decidim::UserTimelineController.send(:include, ActivityResourceTypes)
       Decidim::Plans::PlansController.send(:include, PlansExtensions)
+      # Initiated before the ScopesHelper has been extended, so include the
+      # helper again.
+      Decidim::SearchesController.send(:helper, Decidim::ScopesHelper)
 
       # Cell extensions
       Decidim::CardMCell.send(:include, CardMCellExtensions)
