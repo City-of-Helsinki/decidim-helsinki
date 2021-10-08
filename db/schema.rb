@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_29_141201) do
+ActiveRecord::Schema.define(version: 2021_10_08_180738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 2021_09_29_141201) do
     t.string "theme_color"
     t.boolean "use_default_details", default: true
     t.integer "comments_count", default: 0, null: false
+    t.jsonb "summary"
+    t.integer "coauthorships_count", default: 0, null: false
+    t.index ["coauthorships_count"], name: "idx_decidim_accountability_results_on_result_coauth_count"
     t.index ["decidim_accountability_status_id"], name: "decidim_accountability_results_on_status_id"
     t.index ["decidim_component_id"], name: "index_decidim_accountability_results_on_decidim_component_id"
     t.index ["decidim_scope_id"], name: "index_decidim_accountability_results_on_decidim_scope_id"
@@ -62,6 +65,14 @@ ActiveRecord::Schema.define(version: 2021_09_29_141201) do
     t.index ["accountability_result_detailable_id", "accountability_result_detailable_type"], name: "index_decidim_accountability_simple_result_dets_on_detailable"
   end
 
+  create_table "decidim_accountability_simple_result_links", force: :cascade do |t|
+    t.bigint "decidim_accountability_result_id"
+    t.integer "position"
+    t.jsonb "label"
+    t.jsonb "url"
+    t.index ["decidim_accountability_result_id"], name: "index_decidim_accountability_result_links_on_results_id"
+  end
+
   create_table "decidim_accountability_statuses", id: :serial, force: :cascade do |t|
     t.string "key"
     t.jsonb "name"
@@ -70,6 +81,7 @@ ActiveRecord::Schema.define(version: 2021_09_29_141201) do
     t.datetime "updated_at", null: false
     t.jsonb "description"
     t.integer "progress"
+    t.string "color"
     t.index ["decidim_component_id"], name: "index_decidim_accountability_statuses_on_decidim_component_id"
   end
 
