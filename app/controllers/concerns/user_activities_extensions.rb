@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Passes the current user to activity search.
-# TODO: Remove after DEcidim upgrade.
+# Passes the current user to activity search + ensures there is user.
+# TODO: Remove after Decidim upgrade.
 module UserActivitiesExtensions
   extend ActiveSupport::Concern
 
@@ -21,5 +21,11 @@ module UserActivitiesExtensions
         ).run
       )
     end
+  end
+
+  public
+
+  def index
+    raise ActionController::RoutingError, "Missing user: #{params[:nickname]}" unless user
   end
 end
