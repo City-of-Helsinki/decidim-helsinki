@@ -28,7 +28,7 @@ gem "decidim-process_groups_content_block", github: "mainio/decidim-module-proce
 gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "release/0.23-stable"
 gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "main"
 gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "release/0.23-stable"
-gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "main"
+gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.23-stable"
 gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
 
 # For static maps, hasn't released an official release with the updated
