@@ -107,7 +107,8 @@ module Helsinki
               organization: organization
             ),
             admin: false,
-            tos_agreement: true
+            tos_agreement: true,
+            locale: %w(fi en sv).sample
           )
         end
 
@@ -146,6 +147,8 @@ module Helsinki
                 municipality: "091"
               }
             else # "suomifi_eid"
+              postal_code = random_postal_code
+
               {
                 eidas: false,
                 gender: %w(m f).sample,
@@ -155,8 +158,8 @@ module Helsinki
                 last_name: Faker::Name.last_name,
                 municipality: "091",
                 municipality_name: "Helsinki",
-                postal_code: random_postal_code,
-                permanent_address: Helsinki::DistrictMetadata::MAPPING.values.sample.sample
+                postal_code: postal_code,
+                permanent_address: postal_code.present?
               }
             end
           Decidim::Authorization.create!(
