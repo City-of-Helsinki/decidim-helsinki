@@ -114,7 +114,9 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
     @authorization_age ||= begin
       now = Time.now.utc.to_date
       bd = Date.strptime(authorization.metadata["date_of_birth"], "%Y-%m-%d")
-      now.year - bd.year - (bd.to_date.change(year: now.year) > now ? 1 : 0)
+      age = now.year - bd.year
+      age -= 1 if now.month > bd.month || (now.month == bd.month && now.day > bd.day)
+      age
     end
   rescue ArgumentError
     # This can happen in case the date of birth is not a valid date when it is
