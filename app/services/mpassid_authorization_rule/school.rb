@@ -64,7 +64,7 @@ module MpassidAuthorizationRule
     end
 
     def authorized_class_levels
-      return authorization.metadata["student_class_level"].split(",") unless authorization.metadata["student_class_level"].blank?
+      return authorization.metadata["student_class_level"].split(",").map(&:to_i) unless authorization.metadata["student_class_level"].blank?
 
       @authorized_class_levels ||= begin
         student_classes = authorization.metadata["student_class"].split(",")
