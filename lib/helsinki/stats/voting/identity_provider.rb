@@ -25,6 +25,9 @@ module Helsinki
             }
           when "mpassid_nids"
             postal_code = Helsinki::SchoolMetadata.postal_code_for_school(rawdata["school_code"])
+            # Note: high school students can have class level 1-4 in some
+            # occasions.
+            class_level = parse_class_level(rawdata)
 
             {
               identity: "mpassid_nids",
@@ -34,7 +37,7 @@ module Helsinki
               school_code: rawdata["school_code"],
               school_name: rawdata["school_name"],
               school_class: rawdata["student_class"],
-              school_class_level: rawdata["student_class_level"].presence || parse_class_level(rawdata["student_class"])
+              school_class_level: class_level&.zero? ? nil : class_level
             }
           when "helsinki_documents_authorization_handler"
             age = calculate_age(rawdata["date_of_birth"], at_date)
@@ -52,10 +55,13 @@ module Helsinki
           end
         end
 
-        def parse_class_level(student_classes)
-          student_classes.split(",").map do |group|
-            group.gsub(/^[^0-9]*/, "").to_i
-          end.join(",")
+        def parse_class_level(rawdata)
+          class_level = rawdata["student_class_level"]
+          return class_level.split(",").first.to_i unless class_level.empty?
+          return if rawdata["student_class"].empty?
+
+          cls = rawdata["student_class"].split(",").first
+          cls.gsub(/^[^0-9]*/, "").to_i
         end
 
         def calculate_age(date_of_birth, at_date = Time.zone.now)
