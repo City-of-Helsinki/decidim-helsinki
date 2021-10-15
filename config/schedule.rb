@@ -15,7 +15,7 @@ job_type :rake, "cd :path && :environment_variable=:environment #{rvm_do} bundle
 # DEFINE THE SCHEDULED TASKS BELOW
 
 # Remove expired data portability files
-every :day, at: "00:05", roles: [:app] do
+every :day, at: "00:05", roles: [:webfront] do
   rake "decidim:delete_data_portability_files"
 end
 
@@ -25,16 +25,16 @@ end
 # end
 
 # Compute open data
-every :day, at: "02:05", roles: [:app] do
+every :day, at: "02:05", roles: [:webfront] do
   rake "decidim:open_data:export"
 end
 
 # Delete old registrations forms
-every :day, at: "03:05", roles: [:db] do
+every :day, at: "03:05", roles: [:background] do
   rake "decidim_meetings:clean_registration_forms"
 end
 
 # bundle exec rails decidim:stats:aggregate
-every :hour, roles: [:db] do
+every :hour, roles: [:background] do
   rake "decidim:stats:aggregate"
 end
