@@ -66,8 +66,10 @@ module Helsinki
         end
 
         def accumulate_citizen(meta)
-          accumulation[:postal][meta[:postal_code]] ||= 0
-          accumulation[:postal][meta[:postal_code]] += 1
+          postal_code = meta[:postal_code] || "00000"
+
+          accumulation[:postal][postal_code] ||= 0
+          accumulation[:postal][postal_code] += 1
 
           accumulation[:demographic][meta[:age_group]] ||= { total: 0, gender: { m: 0, f: 0 } }
           accumulation[:demographic][meta[:age_group]][:total] += 1
@@ -75,7 +77,8 @@ module Helsinki
         end
 
         def accumilate_pupil(meta)
-          school_code = meta[:school_code].split(",").first
+          school_code = meta[:school_code] || "00000"
+          school_code = school_code.split(",").first
           accumulation[:school][school_code] ||= { total: 0, klass: {} }
           accumulation[:school][school_code][:total] += 1
           if meta[:school_class_level].present?
