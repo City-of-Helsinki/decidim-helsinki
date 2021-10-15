@@ -94,6 +94,7 @@ describe Helsinki::Stats::Voting::Aggregator do
   end
 
   before do
+    # Create actual votes
     [managed_user, suomifi_user, mpassid_user].each do |user|
       vote = Decidim::Budgets::Vote.new(
         component: component,
@@ -103,6 +104,9 @@ describe Helsinki::Stats::Voting::Aggregator do
       order = create(:order, :with_projects, budget: budget, user: user, vote: vote)
       order.update!(checked_out_at: creation_dates[user.id][0])
     end
+
+    # Create pending votes to test that they are not aggregated
+    create_list(:order, 2, :with_projects, budget: budget)
 
     # Run the aggregator
     described_class.new.run
@@ -252,7 +256,7 @@ describe Helsinki::Stats::Voting::Aggregator do
     it "updates the correct last_value_at for the collection" do
       collection = measurable.stats.find_by(key: "votes")
       expect(collection.last_value_at).to eq(
-        Decidim::Budgets::Order.where(budget: measurable).order(checked_out_at: :desc).pluck(:checked_out_at).first
+        Decidim::Budgets::Order.finished.where(budget: measurable).order(checked_out_at: :desc).pluck(:checked_out_at).first
       )
     end
 
