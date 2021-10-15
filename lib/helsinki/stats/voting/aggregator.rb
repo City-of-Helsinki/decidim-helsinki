@@ -6,6 +6,9 @@ module Helsinki
       class Aggregator < Decidim::Stats::Aggregator
         def run
           Decidim::Component.where(manifest_name: "budgets").each do |component|
+            # There can be components which have removed participatory spaces
+            next unless component.participatory_space
+
             @postal_codes = []
 
             aggregate_component(component)
