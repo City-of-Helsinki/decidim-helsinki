@@ -76,10 +76,10 @@ module Helsinki
           return if collection.finalized?
 
           votes = Decidim::Budgets::Order.where(budget: budget).order(:created_at)
-          votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
+          votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
           accumulator = Accumulator.new(budget.component, votes, identity_provider)
 
-          update_collection(budget.component, collection, accumulator, votes.last.created_at) if votes.any?
+          update_collection(budget.component, collection, accumulator, votes.last.checked_out_at) if votes.any?
         end
 
         def aggregate_project(project)
@@ -93,10 +93,10 @@ module Helsinki
           votes = Decidim::Budgets::Order.joins(
             "LEFT JOIN decidim_budgets_line_items li ON li.decidim_order_id = decidim_budgets_orders.id"
           ).where(li: { decidim_project_id: project }).group(:id).order(:created_at)
-          votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
+          votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
           accumulator = Accumulator.new(project.component, votes, identity_provider)
 
-          update_collection(project.component, collection, accumulator, votes.last.created_at) if votes.any?
+          update_collection(project.component, collection, accumulator, votes.last.checked_out_at) if votes.any?
         end
 
         def update_collection(component, collection, accumulator, last_value_at)
