@@ -84,6 +84,9 @@ group :production, :production_kuva, :production_ruuti, :production_discussion, 
   # https://github.com/resque/resque-scheduler/pull/661
   gem "resque", "~> 1.26"
   gem "resque-scheduler", "~> 4.0"
+
+  # Cronjobs
+  gem "whenever", require: false
 end
 
 group :test do
