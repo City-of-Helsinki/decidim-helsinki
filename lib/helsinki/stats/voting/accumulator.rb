@@ -44,7 +44,14 @@ module Helsinki
 
         def accumulate_datetime(vote)
           # The hour of the vote
-          datetime = vote.created_at.utc.strftime("%Y-%m-%dT%H:00:00Z")
+          vote_time =
+            case vote
+            when Decidim::Budgets::Order
+              vote.checked_out_at
+            else # Decidim::Budgets::Vote
+              vote.created_at
+            end
+          datetime = vote_time.utc.strftime("%Y-%m-%dT%H:00:00Z")
           accumulation[:datetime][datetime] ||= 0
           accumulation[:datetime][datetime] += 1
         end
