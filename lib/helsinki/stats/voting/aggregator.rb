@@ -61,7 +61,7 @@ module Helsinki
           return if collection.finalized?
 
           auth_types = %w(suomifi_eid helsinki_documents_authorization_handler)
-          votes = Decidim::Budgets::Vote.joins(:user).joins(
+          votes = Decidim::Budgets::Vote.joins(:user).where(component: component).joins(
             "INNER JOIN decidim_authorizations auth ON auth.decidim_user_id = decidim_users.id"
           ).where("auth.name IN (?, ?)", *auth_types).where("auth.metadata->>'postal_code' =?", code)
           votes = votes.where("decidim_budgets_votes.created_at > ?", collection.last_value_at) if collection.last_value_at
