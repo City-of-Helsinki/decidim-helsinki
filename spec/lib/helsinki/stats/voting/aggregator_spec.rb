@@ -108,6 +108,23 @@ describe Helsinki::Stats::Voting::Aggregator do
     # Create pending votes to test that they are not aggregated
     create_list(:order, 2, :with_projects, budget: budget)
 
+    # Create votes in another component to test that they are not added within the target component results
+    other_component = create(
+      :budgets_component,
+      :with_minimum_budget_projects,
+      vote_minimum_budget_projects_number: 1,
+      organization: organization
+    )
+    other_budget = create(:budget, component: other_component, total_budget: total_budget)
+    [managed_user, suomifi_user, mpassid_user].each do |user|
+      vote = Decidim::Budgets::Vote.new(
+        component: other_component,
+        user: user
+      )
+      order = create(:order, :with_projects, budget: other_budget, user: user, vote: vote)
+      order.update!(checked_out_at: Time.now)
+    end
+
     # Run the aggregator
     described_class.new.run
   end
