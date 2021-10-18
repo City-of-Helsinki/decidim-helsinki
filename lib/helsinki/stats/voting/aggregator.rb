@@ -63,7 +63,9 @@ module Helsinki
           auth_types = %w(suomifi_eid helsinki_documents_authorization_handler)
           votes = Decidim::Budgets::Vote.joins(:user).where(component: component).joins(
             "INNER JOIN decidim_authorizations auth ON auth.decidim_user_id = decidim_users.id"
-          ).where("auth.name IN (?, ?)", *auth_types).where("auth.metadata->>'postal_code' =?", code)
+          ).where("auth.name IN (?, ?)", *auth_types).where("auth.metadata->>'postal_code' =?", code).order(
+            "decidim_budgets_votes.created_at"
+          )
           votes = votes.where("decidim_budgets_votes.created_at > ?", collection.last_value_at) if collection.last_value_at
           accumulator = Accumulator.new(component, votes, identity_provider)
 
@@ -78,7 +80,7 @@ module Helsinki
           )
           return if collection.finalized?
 
-          votes = Decidim::Budgets::Order.finished.where(budget: budget).order(:created_at)
+          votes = Decidim::Budgets::Order.finished.where(budget: budget).order(:checked_out_at)
           votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
           accumulator = Accumulator.new(budget.component, votes, identity_provider)
 
@@ -95,7 +97,7 @@ module Helsinki
 
           votes = Decidim::Budgets::Order.joins(
             "LEFT JOIN decidim_budgets_line_items li ON li.decidim_order_id = decidim_budgets_orders.id"
-          ).finished.where(li: { decidim_project_id: project }).group(:id).order(:created_at)
+          ).finished.where(li: { decidim_project_id: project }).group(:id).order(:checked_out_at)
           votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
           accumulator = Accumulator.new(project.component, votes, identity_provider)
 
