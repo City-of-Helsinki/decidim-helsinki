@@ -47,7 +47,7 @@ module Helsinki
           votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
           accumulator = Accumulator.new(component, votes, identity_provider)
 
-          update_collection(component, collection, accumulator, votes.last.created_at) if votes.any?
+          update_collection(component, collection, accumulator) if votes.any?
         end
 
         def aggregate_postal_code(component, code)
@@ -69,7 +69,7 @@ module Helsinki
           votes = votes.where("decidim_budgets_votes.created_at > ?", collection.last_value_at) if collection.last_value_at
           accumulator = Accumulator.new(component, votes, identity_provider)
 
-          update_collection(component, collection, accumulator, votes.last.created_at) if votes.any?
+          update_collection(component, collection, accumulator) if votes.any?
         end
 
         def aggregate_budget(budget)
@@ -84,7 +84,7 @@ module Helsinki
           votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
           accumulator = Accumulator.new(budget.component, votes, identity_provider)
 
-          update_collection(budget.component, collection, accumulator, votes.last.checked_out_at) if votes.any?
+          update_collection(budget.component, collection, accumulator) if votes.any?
         end
 
         def aggregate_project(project)
@@ -101,10 +101,10 @@ module Helsinki
           votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
           accumulator = Accumulator.new(project.component, votes, identity_provider)
 
-          update_collection(project.component, collection, accumulator, votes.last.checked_out_at) if votes.any?
+          update_collection(project.component, collection, accumulator) if votes.any?
         end
 
-        def update_collection(component, collection, accumulator, last_value_at)
+        def update_collection(component, collection, accumulator)
           accumulation = accumulator.accumulate
 
           set_total = collection.sets.find_or_create_by!(key: "total")
@@ -157,7 +157,7 @@ module Helsinki
             m_datetime.update!(value: m_datetime.value + amount)
           end
 
-          collection.update!(last_value_at: last_value_at)
+          collection.update!(last_value_at: accumulator.last_value_at)
 
           # Mark finalized when the voting has ended
           collection.update!(finalized: true) if component.current_settings.votes == "finished"

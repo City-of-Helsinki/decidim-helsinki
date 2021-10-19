@@ -4,6 +4,8 @@ module Helsinki
   module Stats
     module Voting
       class Accumulator
+        attr_reader :last_value_at
+
         def initialize(component, votes, identity_provider)
           @component = component
           @votes = votes
@@ -33,6 +35,9 @@ module Helsinki
             accumulate_datetime(vote)
             accumulate_locale(vote)
             accumulate_total
+
+            vote_time = vote_time_for(vote)
+            self.last_value_at = vote_time if last_value_at.blank? || last_value_at < vote_time
           end
 
           accumulation
@@ -41,16 +46,20 @@ module Helsinki
         private
 
         attr_reader :component, :votes, :accumulation, :identity_provider
+        attr_writer :last_value_at
+
+        def vote_time_for(vote)
+          case vote
+          when Decidim::Budgets::Order
+            vote.checked_out_at
+          else # Decidim::Budgets::Vote
+            vote.created_at
+          end
+        end
 
         def accumulate_datetime(vote)
           # The hour of the vote
-          vote_time =
-            case vote
-            when Decidim::Budgets::Order
-              vote.checked_out_at
-            else # Decidim::Budgets::Vote
-              vote.created_at
-            end
+          vote_time = vote_time_for(vote)
           datetime = vote_time.utc.strftime("%Y-%m-%dT%H:00:00Z")
           accumulation[:datetime][datetime] ||= 0
           accumulation[:datetime][datetime] += 1
