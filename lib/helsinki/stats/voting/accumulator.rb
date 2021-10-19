@@ -19,7 +19,7 @@ module Helsinki
         end
 
         def accumulate
-          votes.find_each do |vote|
+          votes.each do |vote|
             meta = identity_provider.for(vote.user, vote.created_at)
             if meta
               case meta[:identity]

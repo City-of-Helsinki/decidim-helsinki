@@ -13,10 +13,10 @@ module Helsinki
 
             aggregate_component(component)
 
-            Decidim::Budgets::Budget.where(component: component).find_each do |budget|
+            Decidim::Budgets::Budget.where(component: component).each do |budget|
               aggregate_budget(budget)
 
-              Decidim::Budgets::Project.where(budget: budget).find_each do |project|
+              Decidim::Budgets::Project.where(budget: budget).each do |project|
                 aggregate_project(project)
               end
             end
