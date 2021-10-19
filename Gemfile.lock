@@ -51,7 +51,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: f124595a57c6383502b53cb482872f151abf2ea2
+  revision: 7250e71ec453c503e105db0d2ddd2a5be15b3c6a
   branch: main
   specs:
     decidim-budgeting_pipeline (0.23.0)
@@ -1144,4 +1144,4 @@ RUBY VERSION
    ruby 2.6.6p146
 
 BUNDLED WITH
-   2.2.3
+   2.2.29
