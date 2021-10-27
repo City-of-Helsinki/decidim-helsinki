@@ -5,7 +5,10 @@ module Helsinki
     module Voting
       class IdentityProvider
         def for(user, at_date = Time.zone.now)
-          authorization = Decidim::Authorization.where(user: user).order(:created_at).last
+          authorization = Decidim::Authorization.where(
+            name: possible_authorizations,
+            user: user
+          ).order(updated_at: :desc).first
           return unless authorization
 
           rawdata = authorization.metadata
@@ -53,6 +56,10 @@ module Helsinki
               postal_code: rawdata["postal_code"]
             }
           end
+        end
+
+        def possible_authorizations
+          @possible_authorizations ||= %w(suomifi_eid mpassid_nids helsinki_documents_authorization_handler)
         end
 
         def parse_class_level(rawdata)
