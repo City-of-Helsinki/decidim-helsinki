@@ -183,6 +183,7 @@ module Helsinki
       "03782" => { name: "Helsingin eurooppalainen koulu", type: 19, postal_code: "00120", voting_unit: 6 },
       "03845" => { name: "Kalasataman peruskolu", type: 11, postal_code: "00540", voting_unit: 6 },
       "03852" => { name: "Jätkäsaaren peruskoulu", type: 11, postal_code: "00220", voting_unit: 6 },
+      "03886" => { name: "Kruunuvuorenrannan peruskoulu", type: 11, postal_code: "00590", voting_unit: 5 },
       "03861" => { name: "Helsingin Montessorikoulu", type: 11, postal_code: "00800", voting_unit: 1 },
       "05676" => { name: "Östersundom skola", type: 11, postal_code: "00890", voting_unit: 10 },
       "10016" => { name: "Yrkesinstitutet Prakticum", type: 21, postal_code: "00560", voting_unit: nil },
