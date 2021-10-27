@@ -35,6 +35,6 @@ every :day, at: "03:05", roles: [:background] do
 end
 
 # bundle exec rails decidim:stats:aggregate
-every :hour, roles: [:background] do
+every :hour, at: 5, roles: [:background] do
   rake "decidim:stats:aggregate"
 end
