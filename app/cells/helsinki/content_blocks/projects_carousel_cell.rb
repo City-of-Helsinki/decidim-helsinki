@@ -14,6 +14,13 @@ module Helsinki
       end
 
       def records_for(components)
+        query = query_for(components).where.not(selected_at: nil)
+        return query_for(components) if query.count < 1
+
+        query
+      end
+
+      def query_for(components)
         Decidim::Budgets::Project.includes(:budget).where(
           decidim_budgets_budgets: { decidim_component_id: components }
         )
