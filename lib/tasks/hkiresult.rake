@@ -54,7 +54,7 @@ namespace :hkiresult do
           project_votes[p.id] += 1
         end
 
-        metadata = user_metadata(order.user)
+        metadata = user_metadata(order.user, order.checked_out_at)
         impersonated = Decidim::ImpersonationLog.where(user: order.user).any?
 
         user_hash = Digest::MD5.hexdigest("#{ANONYMIZER_SALT}:#{order.user.id}")
@@ -70,6 +70,7 @@ namespace :hkiresult do
           identity: metadata[:identity],
           postal_code: metadata[:postal_code],
           age: metadata[:age].to_s,
+          gender: metadata[:gender].to_s,
           school_code: metadata[:school_code],
           school_name: metadata[:school_name],
           school_ruuti_unit: metadata[:school_ruuti_unit],
@@ -92,37 +93,103 @@ namespace :hkiresult do
         }
       end
 
-      budgets["#{budget.title["fi"]} - Votes"] = votes
-      budgets["#{budget.title["fi"]} - Projects"] = projects
+      budgets["#{budget.title["fi"]} - Votes"] = votes.shuffle
+      budgets["#{budget.title["fi"]} - Projects"] = projects.sort do |adata, bdata|
+        if adata[:votes] < bdata[:votes]
+          -1
+        elsif adata[:votes] > bdata[:votes]
+          1
+        else
+          0
+        end
+      end
     end
 
     write_excel(budgets, filename)
   end
 
-  def user_metadata(user)
+  def user_metadata(user, at_date = Time.zone.now)
     auth_names = %w(
       suomifi_eid
       mpassid_nids
       helsinki_documents_authorization_handler
     )
-    auth_name = auth_names.detect do |an|
-      Decidim::Authorization.where(user: user, name: an).count.positive?
-    end
+    auths = Decidim::Authorization.where(user: user, name: auth_names)
 
-    authorization = nil
-    if auth_name
-      authorization = Decidim::Authorization.where(
-        user: user,
-        name: auth_name
-      ).order(:created_at).last
+    fulldata = {
+      identity: nil,
+      date_of_birth: nil,
+      age: nil,
+      gender: nil,
+      postal_code: nil,
+      school_code: nil,
+      school_name: nil,
+      school_ruuti_unit: nil,
+      school_role: nil,
+      school_class: nil,
+      school_class_level: nil
+    }
+    return fulldata if auths.count < 1
+
+    metas = auths.map { |auth| authorization_metadata(auth, at_date) }.compact
+
+    # Always set the details based on the school metadata first because the
+    # school identity postal code is based on the school and the user may have
+    # more accurate postal code along with the other data if they have
+    # authorized themselves with multiple authorization methods.
+    schoolmeta = metas.find { |meta| meta[:identity] == "mpassid" }
+    fulldata = schoolmeta if schoolmeta
+    metas.each do |meta|
+      next if meta[:identity] == "mpassid"
+
+      fulldata = fulldata.merge(meta)
     end
-    unless authorization
-      return {
-        identity: nil,
-        gender: nil,
+    fulldata[:identity] = metas.map { |meta| meta[:identity] }.join(",")
+
+    fulldata
+  end
+
+  def authorization_metadata(authorization, at_date = Time.zone.now)
+    rawdata = authorization.metadata
+
+    case authorization.name
+    when "suomifi_eid"
+      {
+        identity: "suomifi",
+        date_of_birth: rawdata["date_of_birth"],
+        age: calculate_age(rawdata["date_of_birth"], at_date),
+        gender: rawdata["gender"],
+        postal_code: rawdata["postal_code"],
+        school_code: nil,
+        school_name: nil,
+        school_ruuti_unit: nil,
+        school_role: nil,
+        school_class: nil,
+        school_class_level: nil
+      }
+    when "mpassid_nids"
+      levels = parse_class_levels(rawdata)
+
+      {
+        identity: "mpassid",
         date_of_birth: nil,
         age: nil,
-        postal_code: nil,
+        gender: nil,
+        postal_code: rawdata["postal_code"],
+        school_code: rawdata["school_code"],
+        school_name: rawdata["school_name"],
+        school_ruuti_unit: rawdata["voting_unit"],
+        school_role: rawdata["school_role"],
+        school_class: rawdata["student_class"],
+        school_class_level: levels.join(",")
+      }
+    when "helsinki_documents_authorization_handler"
+      {
+        identity: "document_#{rawdata["document_type"]}",
+        date_of_birth: rawdata["date_of_birth"],
+        age: calculate_age(rawdata["date_of_birth"], at_date),
+        gender: rawdata["gender"],
+        postal_code: rawdata["postal_code"],
         school_code: nil,
         school_name: nil,
         school_ruuti_unit: nil,
@@ -131,79 +198,23 @@ namespace :hkiresult do
         school_class_level: nil
       }
     end
+  end
 
-    rawdata = authorization.metadata
+  def calculate_age(date_of_birth, at_date = Time.zone.now)
+    dob = Date.strptime(date_of_birth, "%Y-%m-%d")
+    now = at_date.utc.to_date
+    diff_year = now.month > dob.month || (now.month == dob.month && now.day >= dob.day) ? 0 : 1
+    now.year - dob.year - diff_year
+  end
 
-    data = begin
-      case authorization.name
-      when "suomifi_eid"
-        {
-          identity: "suomifi",
-          date_of_birth: rawdata["date_of_birth"],
-          gender: rawdata["gender"],
-          postal_code: rawdata["postal_code"],
-          school_code: nil,
-          school_name: nil,
-          school_ruuti_unit: nil,
-          school_role: nil,
-          school_class: nil,
-          school_class_level: nil
-        }
-      when "mpassid_nids"
-        groups = rawdata["student_class"].to_s.split(",")
-        levels = groups.map { |grp| grp.gsub(/^[^0-9]*/, "").to_i }
+  def parse_class_levels(rawdata)
+    class_level = rawdata["student_class_level"]
+    return class_level.split(",").map(&:to_i) if !class_level.nil? && !class_level.empty?
 
-        {
-          identity: "mpassid",
-          date_of_birth: nil,
-          gender: nil,
-          postal_code: rawdata["postal_code"],
-          school_code: rawdata["school_code"],
-          school_name: rawdata["school_name"],
-          school_ruuti_unit: rawdata["voting_unit"],
-          school_role: rawdata["school_role"],
-          school_class: rawdata["student_class"],
-          school_class_level: levels.join(",")
-        }
-      when "helsinki_documents_authorization_handler"
-        {
-          identity: "document_#{rawdata["document_type"]}",
-          date_of_birth: rawdata["date_of_birth"],
-          gender: rawdata["gender"],
-          postal_code: rawdata["postal_code"],
-          school_code: nil,
-          school_name: nil,
-          school_ruuti_unit: nil,
-          school_role: nil,
-          school_class: nil,
-          school_class_level: nil
-        }
-      end
-    end
+    cls = rawdata["student_class"]
+    return [] if cls.nil? || cls.empty?
 
-    # During testing, there may be unknown authorizations.
-    unless data
-      return {
-        identity: nil,
-        date_of_birth: nil,
-        age: nil,
-        gender: nil,
-        postal_code: nil,
-        school_code: nil,
-        school_role: nil,
-        school_class: nil,
-        school_class_level: nil
-      }
-    end
-
-    data[:age] = nil
-    if data[:date_of_birth]
-      now = Time.now.utc.to_date
-      dob = data[:date_of_birth]
-      data[:age] = now.year - dob.year - (now.month > dob.month || (now.month == dob.month && now.day >= dob.day) ? 0 : 1)
-    end
-
-    data
+    cls.split(",").map { |cl| cl.gsub(/^[^0-9]*/, "").to_i }
   end
 
   # Takes an array of hashes containing the data to put on each sheet.
