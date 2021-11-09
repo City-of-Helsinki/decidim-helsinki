@@ -20,6 +20,40 @@ namespace :hkiresult do
     export_component(component_id, filename)
   end
 
+  task :export_categories, [:participatory_space_slug, :filename] => [:environment] do |_t, args|
+    slug = args[:participatory_space_slug]
+    filename = args[:filename]
+
+    process = Decidim::ParticipatoryProcess.find_by(slug: slug)
+    unless process
+      puts "Invalid slug provided: #{slug}."
+      next
+    end
+    unless filename
+      puts "Please provide an export file path."
+      next
+    end
+
+    categories = []
+    Decidim::Category.where(parent: nil, participatory_space: process).order(:weight).each do |category|
+      categories << {
+        id: category.id,
+        parent_id: nil,
+        name: category.name["fi"]
+      }
+
+      Decidim::Category.where(parent: category).order(:weight).each do |subcategory|
+        categories << {
+          id: subcategory.id,
+          parent_id: subcategory.parent_id,
+          name: subcategory.name["fi"]
+        }
+      end
+    end
+
+    write_excel({ "Categories" => categories }, filename)
+  end
+
   private
 
   def export_component(component_id, filename)
@@ -39,7 +73,7 @@ namespace :hkiresult do
 
     # Go through all votes in the component
     budgets = {}
-    Decidim::Budgets::Budget.where(component: c).each do |budget|
+    Decidim::Budgets::Budget.where(component: c).order(:weight).each do |budget|
       votes = []
       project_votes = {}
 
@@ -81,31 +115,44 @@ namespace :hkiresult do
         }
       end
 
-      projects = project_votes.map do |project_id, pvotes|
-        project = Decidim::Budgets::Project.find(project_id)
-        title = project.title.dig("fi") || project.title.dig("en")
-
-        {
-          id: project.id,
-          title: title,
-          budget: project.budget_amount,
-          votes: pvotes
-        }
-      end
-
       budgets["#{budget.title["fi"]} - Votes"] = votes.shuffle
-      budgets["#{budget.title["fi"]} - Projects"] = projects.sort do |adata, bdata|
-        if adata[:votes] < bdata[:votes]
-          -1
-        elsif adata[:votes] > bdata[:votes]
-          1
-        else
-          0
-        end
-      end
+      budgets["#{budget.title["fi"]} - Projects"] = project_data(project_votes)
     end
 
     write_excel(budgets, filename)
+  end
+
+  def project_data(project_votes)
+    data = project_votes.map do |project_id, pvotes|
+      project = Decidim::Budgets::Project.find(project_id)
+      title = project.title.dig("fi") || project.title.dig("en")
+      sub_category = project.category
+      parent_category = sub_category&.parent
+      unless parent_category
+        parent_category = sub_category
+        sub_category = nil
+      end
+
+      {
+        id: project.id,
+        title: title,
+        category_parent_id: parent_category&.id,
+        category_sub_id: sub_category&.id,
+        scope_id: project.scope&.id,
+        budget: project.budget_amount,
+        votes: pvotes
+      }
+    end
+
+    data.sort do |adata, bdata|
+      if adata[:votes] < bdata[:votes]
+        1
+      elsif adata[:votes] > bdata[:votes]
+        -1
+      else
+        0
+      end
+    end
   end
 
   def user_metadata(user, at_date = Time.zone.now)
