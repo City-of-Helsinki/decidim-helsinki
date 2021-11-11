@@ -20,6 +20,11 @@ namespace :hkiresult do
     export_component(component_id, filename)
   end
 
+  # Export categories from a participatory space (process).
+  #
+  # Usage:
+  #   bundle exec rake hkiresult:export_budget_votes[process-slug,tmp/categories.xlsx]
+  desc "Export the categories from a participatory space for researchers."
   task :export_categories, [:participatory_space_slug, :filename] => [:environment] do |_t, args|
     slug = args[:participatory_space_slug]
     filename = args[:filename]
@@ -32,6 +37,10 @@ namespace :hkiresult do
     unless filename
       puts "Please provide an export file path."
       next
+    end
+    if File.exist?(filename)
+      puts "File already exists at: #{filename}"
+      return
     end
 
     categories = []
