@@ -23,27 +23,37 @@ namespace :research do
 
     filename = args[:filename]
 
-    record_types = {
-      proposals: {
-        klass: Decidim::Proposals::Proposal,
-        components: process.components.where(manifest_name: "proposals")
-      },
-      ideas: {
-        klass: Decidim::Ideas::Idea,
-        components: process.components.where(manifest_name: "ideas")
-      },
-      plans: {
-        klass: Decidim::Plans::Plan,
-        components: process.components.where(manifest_name: "plans")
-      }
-    }
     budgets = Decidim::Budgets::Budget.where(
       component: process.components.where(manifest_name: "budgets")
     )
+    record_types = {
+      proposals: {
+        authorable: true,
+        klass: Decidim::Proposals::Proposal,
+        filter: { component: process.components.where(manifest_name: "proposals") }
+      },
+      ideas: {
+        authorable: true,
+        klass: Decidim::Ideas::Idea,
+        filter: { component: process.components.where(manifest_name: "ideas") }
+      },
+      plans: {
+        authorable: true,
+        klass: Decidim::Plans::Plan,
+        filter: { component: process.components.where(manifest_name: "plans") }
+      },
+      projects: {
+        authorable: false,
+        klass: Decidim::Budgets::Project,
+        filter: { budget: budgets }
+      }
+    }
 
     rows = []
 
-    user_count = Decidim::User.count
+    # Use order to avoid PostgreSQL randomizing the order on updates
+    users = Decidim::User.all.order(:id)
+    user_count = users.count
 
     logger = Logger.new(STDOUT)
     logger.level = Logger::INFO
@@ -51,7 +61,7 @@ namespace :research do
     reported_percentage = 0
 
     logger.info "Processing users (#{user_count} items to process)"
-    Decidim::User.all.each_with_index do |user, index|
+    users.each_with_index do |user, index|
       percentage = (index + 1).to_f / user_count * 100
       if percentage - reported_percentage > report_threshold
         logger.info "Processed: #{percentage.round(2)}%"
@@ -59,32 +69,46 @@ namespace :research do
       end
 
       row = {
-        user_hash: Digest::MD5.hexdigest("#{RESEARCH_ANONYMIZER_SALT}:#{user.id}")
+        user_hash: Digest::MD5.hexdigest("#{RESEARCH_ANONYMIZER_SALT}:#{user.id}"),
+        postal_code: nil
       }
 
       authorization = Decidim::Authorization.where(
         user: user,
         name: %w(suomifi_eid helsinki_documents_authorization_handler)
       ).order(:created_at).last
-      row[:postal_code] = authorization ? authorization.metadata["postal_code"] : nil
+      row[:postal_code] = authorization.metadata["postal_code"] if authorization
 
+      # Fetch the author data for authorable records
       record_types.each do |type, definitions|
+        next unless definitions[:authorable]
+
         records = definitions[:klass].user_collection(user).where(
-          component: definitions[:components]
+          definitions[:filter]
         ).published.not_hidden
+
         row[type] = {
           public: records.except_withdrawn.count,
           withdrawn: records.withdrawn.count,
-          favorites: favorites_data(user, records),
-          comments: comments_data(user, records),
           categories: record_categories(records),
           scopes: record_scopes(records)
         }
       end
+      # Fetch the participation data for all component records
+      record_types.each do |type, definitions|
+        component_records = definitions[:klass].where(definitions[:filter])
+        component_records = component_records.published if component_records.respond_to?(:published)
+        component_records = component_records.not_hidden if component_records.respond_to?(:not_hidden)
+
+        row[type] ||= {}
+        row[type][:favorites] = favorites_data(user, component_records)
+        row[type][:comments] = comments_data(user, component_records)
+      end
+
       row[:comments_total] = record_types.keys.sum { |k| row[k][:comments][:count] }
       row[:favorites_total] = record_types.keys.sum { |k| row[k][:favorites][:count] }
-      row[:categories] = record_types.keys.sum { |k| row[k][:categories] }.flatten.uniq.sort
-      row[:scopes] = record_types.keys.sum { |k| row[k][:scopes] }.flatten.uniq.sort
+      row[:categories] = record_types.keys.sum { |k| row[k][:categories] || [] }.flatten.uniq.sort
+      row[:scopes] = record_types.keys.sum { |k| row[k][:scopes] || [] }.flatten.uniq.sort
 
       vote_data = {
         count: 0,
@@ -92,16 +116,16 @@ namespace :research do
         scopes: [],
         timestamps: []
       }
-      Decidim::Budgets::Order.where(
+      # Only consider those orders which have at least one item selected to be
+      # considered a vote.
+      Decidim::Budgets::Order.joins(:line_items).where(
         budget: budgets,
         decidim_user_id: user.id
-      ).where.not(checked_out_at: nil).each do |order|
+      ).finished.group(:id).having("COUNT(decidim_budgets_line_items.id) > 0").each do |order|
         vote_data[:count] += 1
         vote_data[:categories].push(*order.projects.map { |p| p.category&.id })
         vote_data[:scopes].push(*order.projects.map { |p| p.scope&.id })
         vote_data[:timestamps].push(order.checked_out_at.strftime("%Y-%m-%dT%H:%M:%S%z"))
-
-        order.projects
       end
       vote_data[:categories] = vote_data[:categories].compact.uniq.sort
       vote_data[:scopes] = vote_data[:scopes].compact.uniq.sort
