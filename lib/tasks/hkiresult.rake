@@ -20,6 +20,85 @@ namespace :hkiresult do
     export_component(component_id, filename)
   end
 
+  # Exports the contact details (email) of the users who have submitted the
+  # proposals that are linked to the winning (selected) projects. The terms of
+  # service allow the admins to be in contact with the users e.g. for the
+  # implementation details.
+  #
+  # Usage:
+  #   bundle exec rake hkiresult:export_winning_user_contacts[1,tmp/winning_contacts.xlsx]
+  task :export_winning_user_contacts, [:component_id, :filename] => [:environment] do |_t, args|
+    component_id = args[:component_id]
+    filename = args[:filename]
+
+    c = Decidim::Component.find_by(id: component_id, manifest_name: "budgets")
+    if c.nil?
+      puts "Invalid component provided: #{component_id}."
+      next
+    end
+    unless filename
+      puts "Please provide an export file path."
+      next
+    end
+    if File.exist?(filename)
+      puts "File already exists at: #{filename}"
+      next
+    end
+
+    winning = []
+
+    Decidim::Budgets::Budget.where(component: c).order(:weight).each do |budget|
+      Decidim::Budgets::Project.where(budget: budget).where.not(selected_at: nil).each do |project|
+        # Find the linked plans
+        linked_plans = project.linked_resources(:plans, "included_plans")
+        if linked_plans.any?
+          linked_plans.each do |plan|
+            if plan.authors.any?
+              plan.authors.each do |author|
+                email = author&.email # Organization cannot have email if author
+                email = nil if email.match?(/^(suomifi|mpassid)-[a-z0-9]{32}@omastadi.hel.fi/)
+
+                winning << {
+                  "budget/id" => budget.id,
+                  "budget/title" => budget.title["fi"],
+                  "project/id" => project.id,
+                  "project/title" => project.title["fi"],
+                  "plan/id" => plan.id,
+                  "plan/title" => plan.title["fi"],
+                  "author/email" => email
+                }
+              end
+            else
+              # No authors
+              winning << {
+                "budget/id" => budget.id,
+                "budget/title" => budget.title["fi"],
+                "project/id" => project.id,
+                "project/title" => project.title["fi"],
+                "plan/id" => plan.id,
+                "plan/title" => plan.title["fi"],
+                "author/email" => nil
+              }
+            end
+          end
+        else
+          # No linked plans
+          winning << {
+            "budget/id" => budget.id,
+            "budget/title" => budget.title["fi"],
+            "project/id" => project.id,
+            "project/title" => project.title["fi"],
+            "plan/id" => nil,
+            "plan/title" => nil,
+            "author/email" => nil
+          }
+        end
+      end
+    end
+
+    write_excel({ "Contacts" => winning }, filename)
+  end
+
   # Export categories from a participatory space (process).
   #
   # Usage:
