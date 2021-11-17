@@ -20,18 +20,22 @@ namespace :hkiresult do
     export_component(component_id, filename)
   end
 
-  # Exports the contact details (email) of the users who have submitted the
-  # proposals that are linked to the winning (selected) projects. The terms of
-  # service allow the admins to be in contact with the users e.g. for the
-  # implementation details.
+  # Exports the contact details (email) of the users who have authored plans
+  # (proposals) in the given component. The export also contains some
+  # information about the plans, such as their state and area. Those proposals
+  # that have been linked to projects are also linked with the project details
+  # and the the winning state of the project (selected/not selected) is
+  # indicated. The terms of service allow the admins to be in contact with the
+  # users e.g. for the implementation details or to thank them for
+  # participating.
   #
   # Usage:
-  #   bundle exec rake hkiresult:export_winning_user_contacts[1,tmp/winning_contacts.xlsx]
-  task :export_winning_user_contacts, [:component_id, :filename] => [:environment] do |_t, args|
+  #   bundle exec rake hkiresult:export_plan_author_contacts[1,tmp/plan_contacts.xlsx]
+  task :export_plan_author_contacts, [:component_id, :filename] => [:environment] do |_t, args|
     component_id = args[:component_id]
     filename = args[:filename]
 
-    c = Decidim::Component.find_by(id: component_id, manifest_name: "budgets")
+    c = Decidim::Component.find_by(id: component_id, manifest_name: "plans")
     if c.nil?
       puts "Invalid component provided: #{component_id}."
       next
@@ -45,58 +49,46 @@ namespace :hkiresult do
       next
     end
 
-    winning = []
+    # Get the area section to determine the area scope for each plan
+    area_section = Decidim::Plans::Section.order(:position).find_by(
+      component: c,
+      handle: "area"
+    )
 
-    Decidim::Budgets::Budget.where(component: c).order(:weight).each do |budget|
-      Decidim::Budgets::Project.where(budget: budget).where.not(selected_at: nil).each do |project|
-        # Find the linked plans
-        linked_plans = project.linked_resources(:plans, "included_plans")
-        if linked_plans.any?
-          linked_plans.each do |plan|
-            if plan.authors.any?
-              plan.authors.each do |author|
-                email = author&.email # Organization cannot have email if author
-                email = nil if email.match?(/^(suomifi|mpassid)-[a-z0-9]{32}@omastadi.hel.fi/)
+    contacts = []
+    Decidim::Plans::Plan.where(component: c).published.not_hidden.except_withdrawn.each do |plan|
+      project = plan.linked_resources(:projects, "included_plans").first
+      budget = project&.budget
 
-                winning << {
-                  "budget/id" => budget.id,
-                  "budget/title" => budget.title["fi"],
-                  "project/id" => project.id,
-                  "project/title" => project.title["fi"],
-                  "plan/id" => plan.id,
-                  "plan/title" => plan.title["fi"],
-                  "author/email" => email
-                }
-              end
-            else
-              # No authors
-              winning << {
-                "budget/id" => budget.id,
-                "budget/title" => budget.title["fi"],
-                "project/id" => project.id,
-                "project/title" => project.title["fi"],
-                "plan/id" => plan.id,
-                "plan/title" => plan.title["fi"],
-                "author/email" => nil
-              }
-            end
-          end
-        else
-          # No linked plans
-          winning << {
-            "budget/id" => budget.id,
-            "budget/title" => budget.title["fi"],
-            "project/id" => project.id,
-            "project/title" => project.title["fi"],
-            "plan/id" => nil,
-            "plan/title" => nil,
-            "author/email" => nil
-          }
-        end
+      area = nil
+      if area_section
+        area_content = plan.contents.where(section: area_section).first
+        area = Decidim::Scope.find_by(id: area_content.body["scope_id"])
+      end
+
+      # Also include those plans in the list that do not have any authors.
+      authors = plan.authors.any? ? plan.authors : [nil]
+      authors.each do |author|
+        email = author&.email # Organization cannot have email if author
+        email = nil if email.match?(/^(suomifi|mpassid)-[a-z0-9]{32}@omastadi.hel.fi/)
+
+        contacts << {
+          "plan/id" => plan.id,
+          "plan/title" => plan.title["fi"],
+          "plan/state" => plan.state,
+          "plan/area/id" => area&.id,
+          "plan/area/name" => area&.name.try(:[], "fi"),
+          "budget/id" => budget&.id,
+          "budget/title" => budget&.title.try(:[], "fi"),
+          "project/id" => project&.id,
+          "project/title" => project&.title.try(:[], "fi"),
+          "project/selected" => project&.selected? ? 1 : 0,
+          "author/email" => email
+        }
       end
     end
 
-    write_excel({ "Contacts" => winning }, filename)
+    write_excel({ "Contacts" => contacts }, filename)
   end
 
   # Export categories from a participatory space (process).
