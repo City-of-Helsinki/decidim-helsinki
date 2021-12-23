@@ -68,7 +68,7 @@ wrapper_class = Rails.application.config.wrapper_class
               <div class="top-bar-left">
                 <div class="site-bar">
                   <div class="logo-wrapper">
-                    <%= link_to decidim.root_path do %>
+                    <%= link_to decidim.root_path, aria: { label: t("layouts.decidim.header.front_page_link") } do %>
                       <%= render partial: "layouts/decidim/logo", locals: { organization: current_organization } %>
                     <% end %>
                   </div>
@@ -76,6 +76,7 @@ wrapper_class = Rails.application.config.wrapper_class
                     <%= link_to decidim.root_path do %>
                       <div class="site-title-main"><%= current_organization.name %></div>
                       <div class="site-title-sub"><%= t("layouts.decidim.header.subtitle") %></div>
+                      <span class="show-for-sr"><%= t("layouts.decidim.header.front_page_link") %></span>
                     <% end %>
                   </div>
                   <div class="topbar__language-menu show-for-large">
@@ -87,7 +88,7 @@ wrapper_class = Rails.application.config.wrapper_class
                 <div class="hide-for-large topbar__menu">
                   <ul class="menu">
                     <li>
-                      <button type="button" class="button-language" data-toggle="offCanvasLanguage">
+                      <button type="button" class="button-language" data-toggle="offCanvasLanguage" aria-label="<%= t("layouts.decidim.header.choose_language") %>">
                         <span class="text-small">
                           <%= I18n.locale %>
                         </span>
