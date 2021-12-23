@@ -168,9 +168,24 @@ module DecidimHelsinki
       end
     end
 
+    # initializer "graphql_api", after: "decidim.graphql_api" do
     initializer "graphql_api" do
+      # API type extensions
+      Decidim::AccountabilitySimple::ResultMutationType.include(
+        ResultMutationTypeExtensions
+      )
+
       Decidim::Api::QueryType.define do
         Helsinki::QueryExtensions.define(self)
+      end
+
+      # TODO: Update to 0.24+
+      Decidim::Accountability::ResultType.redefine do
+        field :budgetAmount, types.Int, "The budget amount for this result", property: :budget_amount
+        field :budgetBreakdown, Decidim::Core::TranslatedFieldType, "The budget breakdown for this result (HTML)", property: :budget_breakdown
+        field :plansDescription, Decidim::Core::TranslatedFieldType, "The plans description for this result (HTML)", property: :plans_description
+        field :interactionDescription, Decidim::Core::TranslatedFieldType, "The interaction for this result (HTML)", property: :interaction_description
+        field :newsDescription, Decidim::Core::TranslatedFieldType, "The news for this result (HTML)", property: :news_description
       end
     end
 
@@ -394,6 +409,7 @@ module DecidimHelsinki
 
       # Form extensions
       Decidim::Admin::CategoryForm.send(:include, AdminCategoryFormExtensions)
+      Decidim::Accountability::Admin::ResultForm.send(:include, AdminResultFormExtensions)
 
       # Builder extensions
       Decidim::FormBuilder.send(:include, FormBuilderExtensions)
