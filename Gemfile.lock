@@ -19,13 +19,14 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-accountability_simple.git
-  revision: eeac79b8021c139f82ae04d4c9a705d96264a5ca
+  revision: 898d34c3cd02975af32b19a4de53fafa2a7e030d
   branch: release/0.23-stable
   specs:
     decidim-accountability_simple (0.23.0)
       decidim-accountability (~> 0.23.0)
       decidim-admin (~> 0.23.0)
       decidim-core (~> 0.23.0)
+      decidim-locations (~> 0.23.0)
       decidim-participatory_processes (~> 0.23.0)
       decidim-tags (~> 0.23.0)
 
@@ -51,7 +52,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: 6cfc7e44f3b61051e985b0f2c89af25bdcefb446
+  revision: 6567f63ab0a82cd5ae20b6739333472eacfaafc2
   branch: main
   specs:
     decidim-budgeting_pipeline (0.23.0)
@@ -79,7 +80,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: 146f417533e29bed09264565a54fa6a80fbbb3f9
+  revision: 8653431270cfa693f351fb588bb4bef3e6454564
   branch: master
   specs:
     decidim-ideas (0.23.0)
@@ -95,6 +96,14 @@ GIT
       social-share-button (~> 1.2, >= 1.2.1)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-locations.git
+  revision: 0230f45422d8cdf08b77de2916c09d026dbbccab
+  branch: main
+  specs:
+    decidim-locations (0.23.0)
+      decidim-core (~> 0.23.0)
+
+GIT
   remote: https://github.com/mainio/decidim-module-mpassid.git
   revision: ecb5373c39bec0b1619d626c96be56426ad5fe08
   branch: release/0.23-stable
@@ -105,7 +114,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: b05d96aec3e6a2150aea72874df56bf830e1ce93
+  revision: ce0c445c930a2f5520c9b47eda4931730105c9ef
   branch: develop
   specs:
     decidim-plans (0.23.0)
@@ -1109,6 +1118,7 @@ DEPENDENCIES
   decidim-feedback!
   decidim-ideas!
   decidim-initiatives!
+  decidim-locations!
   decidim-mpassid!
   decidim-plans!
   decidim-process_groups_content_block!
