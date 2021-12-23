@@ -12,6 +12,12 @@ fi:
         voting_unit: Ruuti-alue
       suomifi_eid:
         district: Suurpiiri
+      result:
+        budget_amount: Hankkeen kokonaisbudjetti
+        budget_breakdown: Budjetin perustelut
+        interaction_description: Vuorovaikutuksen kuvaus
+        news_description: Ajankohtaisia asioita
+        plans_description: Suunnitelmien kuvaus
     errors:
       models:
         helsinki_documents_authorization_handler:
@@ -137,6 +143,8 @@ fi:
       breadcrumbs:
         current: Nykyinen sivu
       header:
+        choose_language: Valitse kieli
+        front_page_link: Siirry etusivulle
         help: Ohjeet
         navigation: Menu
         sign_in: Kirjaudu

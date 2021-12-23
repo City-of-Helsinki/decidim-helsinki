@@ -12,6 +12,12 @@ sv:
         voting_unit: Ruuti område
       suomifi_eid:
         district: Distrikt
+      result:
+        budget_amount: Total budget för projektet
+        budget_breakdown: Budgetfördelning
+        interaction_description: Interaktionsbeskrivning
+        news_description: Nyheter
+        plans_description: Planbeskrivning
     errors:
       models:
         helsinki_documents_authorization_handler:
@@ -137,6 +143,8 @@ sv:
       breadcrumbs:
         current: Nuvarande sida
       header:
+        choose_language: Välj språk
+        front_page_link: Gå till hemsidan
         help: Hjälp
         navigation: Menu
         sign_in: Logga in

@@ -12,6 +12,12 @@ en:
         voting_unit: Ruuti area
       suomifi_eid:
         district: District
+      result:
+        budget_amount: Total budget for the project
+        budget_breakdown: Budget breakdown
+        interaction_description: Interaction description
+        news_description: News
+        plans_description: Plans description
     errors:
       models:
         helsinki_documents_authorization_handler:
@@ -138,6 +144,8 @@ en:
       breadcrumbs:
         current: Current page
       header:
+        choose_language: Select language
+        front_page_link: Go to front page
         help: Help
         navigation: Menu
         sign_in: Sign in
