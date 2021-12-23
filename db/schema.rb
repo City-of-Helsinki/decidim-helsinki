@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_08_180738) do
+ActiveRecord::Schema.define(version: 2021_12_20_135806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -35,11 +35,15 @@ ActiveRecord::Schema.define(version: 2021_10_08_180738) do
     t.string "external_id"
     t.string "main_image"
     t.string "list_image"
-    t.string "theme_color"
     t.boolean "use_default_details", default: true
     t.integer "comments_count", default: 0, null: false
     t.jsonb "summary"
     t.integer "coauthorships_count", default: 0, null: false
+    t.integer "budget_amount"
+    t.jsonb "budget_breakdown"
+    t.jsonb "plans_description"
+    t.jsonb "interaction_description"
+    t.jsonb "news_description"
     t.index ["coauthorships_count"], name: "idx_decidim_accountability_results_on_result_coauth_count"
     t.index ["decidim_accountability_status_id"], name: "decidim_accountability_results_on_status_id"
     t.index ["decidim_component_id"], name: "index_decidim_accountability_results_on_decidim_component_id"
@@ -92,6 +96,7 @@ ActiveRecord::Schema.define(version: 2021_10_08_180738) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.jsonb "title"
+    t.date "end_date"
     t.index ["decidim_accountability_result_id"], name: "index_decidim_accountability_timeline_entries_on_results_id"
     t.index ["entry_date"], name: "index_decidim_accountability_timeline_entries_on_entry_date"
   end
@@ -893,6 +898,17 @@ ActiveRecord::Schema.define(version: 2021_10_08_180738) do
     t.index ["decidim_author_id"], name: "index_decidim_initiatives_votes_on_decidim_author_id"
     t.index ["decidim_initiative_id"], name: "index_decidim_initiatives_votes_on_decidim_initiative_id"
     t.index ["hash_id"], name: "index_decidim_initiatives_votes_on_hash_id"
+  end
+
+  create_table "decidim_locations_locations", force: :cascade do |t|
+    t.text "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "decidim_locations_locatable_type", null: false
+    t.bigint "decidim_locations_locatable_id", null: false
+    t.index ["decidim_locations_locatable_type", "decidim_locations_locatable_id"], name: "index_on_decidim_locations_locatable"
   end
 
   create_table "decidim_meetings_agenda_items", force: :cascade do |t|
