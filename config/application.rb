@@ -180,7 +180,7 @@ module DecidimHelsinki
       end
 
       # TODO: Update to 0.24+
-      Decidim::Accountability::ResultType.redefine do
+      Decidim::Accountability::ResultType.define do
         field :budgetAmount, types.Int, "The budget amount for this result", property: :budget_amount
         field :budgetBreakdown, Decidim::Core::TranslatedFieldType, "The budget breakdown for this result (HTML)", property: :budget_breakdown
         field :plansDescription, Decidim::Core::TranslatedFieldType, "The plans description for this result (HTML)", property: :plans_description
