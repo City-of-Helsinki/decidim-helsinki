@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_20_135806) do
+ActiveRecord::Schema.define(version: 2022_01_05_130726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_12_20_135806) do
     t.jsonb "plans_description"
     t.jsonb "interaction_description"
     t.jsonb "news_description"
+    t.datetime "published_at"
     t.index ["coauthorships_count"], name: "idx_decidim_accountability_results_on_result_coauth_count"
     t.index ["decidim_accountability_status_id"], name: "decidim_accountability_results_on_status_id"
     t.index ["decidim_component_id"], name: "index_decidim_accountability_results_on_decidim_component_id"
