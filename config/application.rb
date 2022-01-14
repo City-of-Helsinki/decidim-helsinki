@@ -368,6 +368,10 @@ module DecidimHelsinki
         ScopesHelperExtensions
       )
 
+      # Command extensions
+      Decidim::Accountability::Admin::CreateResult.include(ResultExtraAttributes)
+      Decidim::Accountability::Admin::UpdateResult.include(ResultExtraAttributes)
+
       # Controller extensions
       # Keep after helpers because these can load in helpers!
       Decidim::ApplicationController.send(:include, LongLocationUrlStoring)
