@@ -81,6 +81,8 @@ $alert: $hel-error !default;
 $alert-rgb: $hel-error-rgb !default;
 $highlight: $hel-info !default;
 $highlight-rgb: $hel-info-rgb !default;
+$info: $hel-fog;
+$info-rgb: $hel-fog-rgb;
 // The alternative highlight color is used as the input focus color, so it needs
 // to have enough color contrast against the following colors:
 // - #ffffff (body background) [4.6:1]
@@ -132,6 +134,8 @@ $hel-grotesk: "HelsinkiGrotesk", Helvetica, Arial, "MS Gothic", Meiryo, Osaka,
   --warning-rgb: #{$warning-rgb};
   --alert: #{$alert};
   --alert-rgb: #{$alert-rgb};
+  --info: #{$info};
+  --info-rgb: #{$info-rgb};
   --highlight: #{$highlight};
   --highlight-rgb: #{$highlight-rgb};
   --highlight-alternative: #{$highlight-alternative};

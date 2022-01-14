@@ -3,7 +3,7 @@
 
 /* Variables */
 
-$timeline-color: $primary;
+$timeline-color: $black;
 $timeline-inactive-color: $hel-medium-grey;
 
 $timeline-padding: 1rem;
@@ -24,7 +24,7 @@ $timeline-padding: 1rem;
     width: 3px;
     height: 100%;
     background: $timeline-color;
-    left: 1rem;
+    left: 30px;
     top: 0;
     position: absolute;
   }
@@ -39,12 +39,22 @@ $timeline-padding: 1rem;
   &:last-of-type::before{
     width: 0;
   }
+
+  &.timeline__item--active{
+    .timeline__phase{
+      background: $timeline-color;
+    }
+
+    .timeline__phase__number{
+      color: $white;
+    }
+  }
 }
 
 .timeline__phase{
-  width: 30px;
-  height: 30px;
-  margin-left: -13px;
+  width: 60px;
+  height: 60px;
+  margin-left: -15px;
   position: absolute;
   top: 0;
   left: 1rem;
@@ -52,18 +62,17 @@ $timeline-padding: 1rem;
   justify-content: center;
   overflow: hidden;
   border-radius: 50%;
-  background: $timeline-color;
-  border: 2px solid $white;
-  box-shadow: 0 0 0 1px $medium-gray;
+  background: $white;
+  border: 2px solid $timeline-color;
 }
 
 .timeline__phase__number{
   display: block;
   text-align: center;
   line-height: 1;
-  color: $white;
+  color: $timeline-color;
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.3em;
   align-self: center;
   margin-left: 1px;
   margin-top: -1px;
@@ -71,10 +80,11 @@ $timeline-padding: 1rem;
 
 .timeline__info{
   width: 90%;
-  width: calc(100% - 45px);
+  width: calc(100% - 75px);
   float: right;
   background-color: $white;
   border: $border;
+  padding-bottom: 1rem;
 
   .timeline__item--current &{
     border-color: $timeline-color;
@@ -101,6 +111,7 @@ $timeline-padding: 1rem;
 
 .timeline__title{
   margin-bottom: 0;
+  color: $timeline-color;
 }
 
 .timeline__content{

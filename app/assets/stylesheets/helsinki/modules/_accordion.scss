@@ -1,0 +1,18 @@
+.accordion-title,
+.accordion-content{
+  border-left: 0;
+  border-right: 0;
+}
+
+.accordion-title{
+  &::before{
+    margin-top: -20px;
+    font-size: 2rem;
+  }
+}
+
+.is-active > .accordion-title{
+  &::before{
+    margin-top: -6px;
+  }
+}
