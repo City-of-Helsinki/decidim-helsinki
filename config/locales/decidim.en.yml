@@ -1,5 +1,25 @@
 en:
   decidim:
+    accountability:
+      results:
+        show_result_body:
+          comments_amount:
+            one: '%{count} comment'
+            other: '%{count} comments'
+          news: News
+          section:
+            budget_breakdown:
+              name: Budget breakdown
+            description:
+              name: Project description
+            interaction_description:
+              name: Interaction
+            plans_description:
+              name: Plans
+        stats_box:
+          location: Location
+          price: Budget
+          time: Time
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar for multiple users

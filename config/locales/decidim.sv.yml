@@ -1,5 +1,25 @@
 sv:
   decidim:
+    accountability:
+      results:
+        show_result_body:
+          comments_amount:
+            one: '%{count} kommentar'
+            other: '%{count} kommentarer'
+          news: Nyheter
+          section:
+            budget_breakdown:
+              name: Budgetfördelning
+            description:
+              name: Projekt beskrivning
+            interaction_description:
+              name: Interaktion
+            plans_description:
+              name: Planer
+        stats_box:
+          location: Plats
+          price: Budget
+          time: Tid
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar för flera användare

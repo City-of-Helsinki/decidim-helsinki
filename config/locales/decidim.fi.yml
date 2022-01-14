@@ -1,5 +1,25 @@
 fi:
   decidim:
+    accountability:
+      results:
+        show_result_body:
+          comments_amount:
+            one: '%{count} kommentti'
+            other: '%{count} kommenttia'
+          news: Ajankohtaista
+          section:
+            budget_breakdown:
+              name: Budjetin erittely
+            description:
+              name: Hankkeen kuvaus
+            interaction_description:
+              name: Vuorovaikutus
+            plans_description:
+              name: Suunnitelmat
+        stats_box:
+          location: Sijainti
+          price: Hinta
+          time: Ajankohta
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar useammalle käyttäjälle

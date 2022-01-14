@@ -1,0 +1,81 @@
+<%
+root_result = result
+root_result = root_result.parent while root_result.parent
+%>
+<div class="columns section mediumlarge-4 large-3">
+
+  <% if component_settings.display_progress_enabled? && result.progress.present? %>
+    <%= result_progress_info(root_result) do %>
+      <div class="progress-label">
+        <span class="progress-figure">
+          <%= display_percentage result.progress %>
+        </span>
+      </div>
+
+      <div class="progress">
+        <div class="progress-meter" style="width:<%= result.progress %>%"></div>
+      </div>
+
+      <p class="text-small">
+        <%= t(".average_progress", progress: display_percentage(progress_calculator(current_scope, nil))) %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <%= result_detail_info(root_result) do %>
+    <% if result.start_date || result.end_date %>
+      <div class="definition-data__item result_detail">
+        <span class="definition-data__icon">
+          <%= accountability_icon("calendar") %>
+        </span>
+        <span class="definition-data__info">
+          <span class="definition-data__title with_description"><%= t ".time" %></span>
+          <span class="definition-data__description"><%= human_range_time result.start_date, result.end_date %></span>
+        </span>
+      </div>
+    <% end %>
+
+    <% if result.budget_amount && result.budget_amount > 0 %>
+      <div class="definition-data__item result_detail">
+        <span class="definition-data__icon">
+          <%= accountability_icon("budget") %>
+        </span>
+        <span class="definition-data__info">
+          <span class="definition-data__title with_description"><%= t ".price" %></span>
+          <span class="definition-data__description"><%= number_with_delimiter result.budget_amount %></span>
+        </span>
+      </div>
+    <% end %>
+
+    <% result.result_all_details.each do |detail| %>
+      <div class="definition-data__item result_detail">
+        <span class="definition-data__icon">
+          <%= result_detail_icon(result, detail) %>
+        </span>
+        <span class="definition-data__info">
+          <% if translated_attribute(detail.description_for(result)).empty? %>
+            <span class="definition-data__title"><%= translated_attribute detail.title %></span>
+          <% else %>
+            <span class="definition-data__title with_description"><%= translated_attribute detail.title %></span>
+            <span class="definition-data__description"><%= translated_attribute detail.description_for(result) %></span>
+          <% end %>
+        </span>
+      </div>
+    <% end %>
+
+    <% if result.locations.any? %>
+      <div class="definition-data__item result_detail">
+        <span class="definition-data__icon">
+          <%= accountability_icon("map-marker") %>
+        </span>
+        <span class="definition-data__info">
+          <span class="definition-data__title with_description"><%= t ".location" %></span>
+          <span class="definition-data__description"><%= result.locations.map(&:address).join(", ") %></span>
+        </span>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= resource_reference(result) %>
+  <%= render partial: "decidim/shared/share_modal" %>
+</div>
