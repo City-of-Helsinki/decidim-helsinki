@@ -493,6 +493,8 @@ GEM
     childprocess (3.0.0)
     chronic (0.10.2)
     clamby (1.6.6)
+    cld (0.10.0)
+      ffi
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (5.0.0)
@@ -1106,6 +1108,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug (~> 11.0)
+  cld
   database_cleaner
   decidim!
   decidim-access_requests!

@@ -58,6 +58,9 @@ gem "roo", "~> 2.8"
 # HKI export
 gem "rubyXL", "~> 3.4", ">= 3.4.6"
 
+# Language detection for spammers
+gem "cld"
+
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
