@@ -22,57 +22,81 @@ root_result = root_result.parent while root_result.parent
     <% end %>
   <% end %>
 
-  <%= result_detail_info(root_result) do %>
-    <% if result.start_date || result.end_date %>
-      <div class="definition-data__item result_detail">
-        <span class="definition-data__icon">
-          <%= accountability_icon("calendar") %>
-        </span>
-        <span class="definition-data__info">
-          <span class="definition-data__title with_description"><%= t ".time" %></span>
-          <span class="definition-data__description"><%= human_range_time result.start_date, result.end_date %></span>
-        </span>
-      </div>
-    <% end %>
-
+  <% if result.result_all_details.any? || !root_result.scope.nil? || !result.category.nil? || result.locations.any? %>
     <% if result.budget_amount && result.budget_amount > 0 %>
       <div class="definition-data__item result_detail">
         <span class="definition-data__icon">
           <%= accountability_icon("budget") %>
         </span>
         <span class="definition-data__info">
-          <span class="definition-data__title with_description"><%= t ".price" %></span>
+          <span class="definition-data__title with_description"><%= t ".budget" %></span>
           <span class="definition-data__description"><%= number_with_delimiter result.budget_amount %></span>
         </span>
       </div>
     <% end %>
 
-    <% result.result_all_details.each do |detail| %>
-      <div class="definition-data__item result_detail">
-        <span class="definition-data__icon">
-          <%= result_detail_icon(result, detail) %>
-        </span>
-        <span class="definition-data__info">
-          <% if translated_attribute(detail.description_for(result)).empty? %>
-            <span class="definition-data__title"><%= translated_attribute detail.title %></span>
-          <% else %>
-            <span class="definition-data__title with_description"><%= translated_attribute detail.title %></span>
-            <span class="definition-data__description"><%= translated_attribute detail.description_for(result) %></span>
-          <% end %>
-        </span>
-      </div>
-    <% end %>
+    <%= result_detail_info(root_result) do %>
+      <% result.result_all_details.each do |detail| %>
+        <div class="definition-data__item result_detail">
+          <span class="definition-data__icon">
+            <%= result_detail_icon(result, detail) %>
+          </span>
+          <span class="definition-data__info">
+            <% if translated_attribute(detail.description_for(result)).empty? %>
+              <span class="definition-data__title"><%= translated_attribute detail.title %></span>
+            <% else %>
+              <span class="definition-data__title with_description"><%= translated_attribute detail.title %></span>
+              <span class="definition-data__description"><%= translated_attribute detail.description_for(result) %></span>
+            <% end %>
+          </span>
+        </div>
+      <% end %>
 
-    <% if result.locations.any? %>
-      <div class="definition-data__item result_detail">
-        <span class="definition-data__icon">
-          <%= accountability_icon("map-marker") %>
-        </span>
-        <span class="definition-data__info">
-          <span class="definition-data__title with_description"><%= t ".location" %></span>
-          <span class="definition-data__description"><%= result.locations.map(&:address).join(", ") %></span>
-        </span>
-      </div>
+      <% if root_result.scope %>
+        <div class="definition-data__item result_detail">
+          <span class="definition-data__icon">
+            <%= result_detail_icon(result) %>
+          </span>
+          <span class="definition-data__info">
+            <% if root_result.scope.parent %>
+              <span class="definition-data__title with_description"><%= translated_attribute root_result.scope.parent.name %></span>
+            <% else %>
+              <span class="definition-data__title with_description"><%= t("results.show.stats.scope", scope: "decidim.accountability") %></span>
+            <% end %>
+            <span class="definition-data__description"><%= translated_attribute root_result.scope.name %></span>
+          </span>
+        </div>
+      <% end %>
+
+      <% if root_result.category %>
+        <div class="definition-data__item result_detail">
+          <span class="definition-data__icon">
+            <%= result_detail_icon(result) %>
+          </span>
+          <span class="definition-data__info">
+            <span class="definition-data__title with_description"><%= t("results.show.stats.category", scope: "decidim.accountability") %></span>
+            <span class="definition-data__description"><%= translated_attribute root_result.category.name %></span>
+          </span>
+        </div>
+      <% end %>
+
+      <% if result.locations.any? %>
+        <div class="definition-data__item result_detail">
+          <span class="definition-data__icon">
+            <%= accountability_icon("map-marker") %>
+          </span>
+          <span class="definition-data__info">
+            <span class="definition-data__title with_description"><%= t ".location" %></span>
+            <span class="definition-data__description">
+              <%= result.locations.map(&:address).join(", ") %>
+              <% if geocoded_result.any? %>
+                <br>
+                <a href="#result_map"><%= t(".show_on_map") %></a>
+              <% end %>
+            </span>
+          </span>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 
