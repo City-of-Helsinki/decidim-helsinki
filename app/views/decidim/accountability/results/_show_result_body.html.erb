@@ -28,7 +28,13 @@ news = translated_attribute(result.news_description)
   </div>
 <% end %>
 
+<div class="row">
+  <%= render partial: "timeline", locals: { result: result } if result.timeline_entries.any? %>
+</div>
+
 <div class="description mb-5">
+  <h2><%= t(".details") %></h2>
+
   <div class="accordion" data-accordion>
     <div class="accordion-item is-active" data-accordion-item>
       <a href="#" class="accordion-title"><%= t(".section.description.name") %></a>
