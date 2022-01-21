@@ -2,6 +2,9 @@ en:
   decidim:
     accountability:
       results:
+        show:
+          stats:
+            category: Theme
         show_result_body:
           comments_amount:
             one: '%{count} comment'
@@ -17,9 +20,7 @@ en:
             plans_description:
               name: Plans
         stats_box:
-          location: Location
-          price: Budget
-          time: Time
+          budget: Budget
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar for multiple users

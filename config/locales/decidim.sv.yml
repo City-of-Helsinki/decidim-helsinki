@@ -2,6 +2,9 @@ sv:
   decidim:
     accountability:
       results:
+        show:
+          stats:
+            category: Tema
         show_result_body:
           comments_amount:
             one: '%{count} kommentar'
@@ -17,9 +20,7 @@ sv:
             plans_description:
               name: Planer
         stats_box:
-          location: Plats
-          price: Budget
-          time: Tid
+          budget: Budget
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar för flera användare

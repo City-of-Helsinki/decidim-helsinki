@@ -2,6 +2,9 @@ fi:
   decidim:
     accountability:
       results:
+        show:
+          stats:
+            category: Teema
         show_result_body:
           comments_amount:
             one: '%{count} kommentti'
@@ -17,9 +20,7 @@ fi:
             plans_description:
               name: Suunnitelmat
         stats_box:
-          location: Sijainti
-          price: Hinta
-          time: Ajankohta
+          budget: Budjetti
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar useammalle käyttäjälle
