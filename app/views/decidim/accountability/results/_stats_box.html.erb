@@ -23,19 +23,19 @@ root_result = root_result.parent while root_result.parent
   <% end %>
 
   <% if result.result_all_details.any? || !root_result.scope.nil? || !result.category.nil? || result.locations.any? %>
-    <% if result.budget_amount && result.budget_amount > 0 %>
-      <div class="definition-data__item result_detail">
-        <span class="definition-data__icon">
-          <%= accountability_icon("budget") %>
-        </span>
-        <span class="definition-data__info">
-          <span class="definition-data__title with_description"><%= t ".budget" %></span>
-          <span class="definition-data__description"><%= number_with_delimiter result.budget_amount %></span>
-        </span>
-      </div>
-    <% end %>
-
     <%= result_detail_info(root_result) do %>
+      <% if result.budget_amount && result.budget_amount > 0 %>
+        <div class="definition-data__item result_detail">
+          <span class="definition-data__icon">
+            <%= accountability_icon("budget") %>
+          </span>
+          <span class="definition-data__info">
+            <span class="definition-data__title with_description"><%= t ".budget" %></span>
+            <span class="definition-data__description"><%= number_with_delimiter result.budget_amount %></span>
+          </span>
+        </div>
+      <% end %>
+
       <% result.result_all_details.each do |detail| %>
         <div class="definition-data__item result_detail">
           <span class="definition-data__icon">
