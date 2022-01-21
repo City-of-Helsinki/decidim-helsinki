@@ -9,6 +9,7 @@ en:
           comments_amount:
             one: '%{count} comment'
             other: '%{count} comments'
+          details: Project details
           news: News
           section:
             budget_breakdown:

@@ -9,6 +9,7 @@ sv:
           comments_amount:
             one: '%{count} kommentar'
             other: '%{count} kommentarer'
+          details: Projekt detaljer
           news: Nyheter
           section:
             budget_breakdown:

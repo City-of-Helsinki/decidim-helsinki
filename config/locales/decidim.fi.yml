@@ -9,6 +9,7 @@ fi:
           comments_amount:
             one: '%{count} kommentti'
             other: '%{count} kommenttia'
+          details: Hankkeen tiedot
           news: Ajankohtaista
           section:
             budget_breakdown:
