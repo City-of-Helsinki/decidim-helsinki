@@ -46,6 +46,31 @@
       }
     });
 
+    // Move the scroll position at the top of the accordion when it is opened if
+    // it is outside of the current view.
+    $(".accordion").each((_i, element) => {
+      const $accordion = $(element);
+      const accordionPlugin = $accordion.data("zfPlugin");
+      let accordionTo = null;
+
+      $(".accordion-item .accordion-title", $accordion).on("click", (ev) => {
+        const $title = $(ev.target);
+        const $item = $title.parents(".accordion-item");
+
+        // Wait for the accordion to open
+        clearTimeout(accordionTo);
+        accordionTo = setTimeout(() => {
+          const currentTop = $(window).scrollTop();
+          const currentBottom = currentTop + window.innerHeight;
+          const targetPos = $item.offset().top;
+
+          if (targetPos < currentTop || targetPos > currentBottom) {
+            $(window).scrollTop(targetPos);
+          }
+        }, accordionPlugin.options.slideSpeed + 50);
+      })
+    });
+
     // Open process nav with enter
     const $processNavState = $("#phases_navigation_state");
     $processNavState.on("keypress", (event) => {
