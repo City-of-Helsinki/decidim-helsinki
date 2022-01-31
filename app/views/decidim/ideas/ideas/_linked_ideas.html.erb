@@ -1,0 +1,19 @@
+<div class="card card--action card--list">
+  <% resources.each do |idea| %>
+    <%= link_to resource_locator(idea).path, class: "card--list__item" do %>
+      <div class="card--list__text">
+        <div>
+          <div class="card--list__heading h4"><%== decidim_html_escape(present(idea).title) %></div>
+          <% present(idea) do |idea| %>
+            <div class="author">
+              <span class="author__name">
+                <strong><%= idea.authors.first.name %></strong>
+                <%= idea.authors.first.nickname %>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

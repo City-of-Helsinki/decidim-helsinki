@@ -1,0 +1,26 @@
+<div class="card card--action card--list">
+  <% resources.each do |proposal| %>
+    <%= link_to resource_locator(proposal).path, class: "card--list__item" do %>
+      <div class="card--list__text">
+        <div>
+          <div class="card--list__heading h4"><%== decidim_html_escape(present(proposal).title) %></div>
+          <% present(proposal) do |proposal| %>
+            <div class="author">
+              <span class="author__name">
+                <strong><%= proposal.author.name %></strong>
+                <%= proposal.author.nickname %>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <% if !current_settings.try(:votes_hidden?) && !proposal.component.current_settings.votes_hidden? %>
+        <div class="card--list__data">
+          <span class="card--list__data__number">
+            <%= proposal.votes.size %>
+          </span> <%= t(".proposal_votes", count: proposal.votes.size) %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
