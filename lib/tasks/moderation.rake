@@ -47,4 +47,79 @@ namespace :moderation do
     puts "Deleted user '#{user_handle}' and moderated all their comments."
     puts "User IP: #{user_ip}"
   end
+
+  # Usage:
+  #  bundle exec rails moderation:suspicious[tmp/suspicious-users.csv]
+  desc "Gets a list of suspicious users and saves it to a CSV file stored at the given location."
+  task :suspicious, [:filepath] => [:environment] do |_t, args|
+    path = args[:filepath]
+    if File.exist?(path)
+      print "A file already exists at #{path}"
+      next
+    end
+
+    # Patterns allowed for the personal URLs
+    allowed_url_patterns = [
+      %r{^(https?://)?((www|edu|omastadi)\.)?hel.fi},
+      %r{^(https?://)?(www\.)?twitter.com(/|$)},
+      %r{^(https?://)?(www\.)?instagram.com(/|$)},
+      %r{^(https?://)?(www\.)?linkedin.com(/|$)}
+    ]
+
+    CSV.open(path, "w", col_sep: ";") do |csv|
+      csv << %w(
+        nickname
+        confirmed
+        spammer_score
+        profile_url
+        email_service
+        personal_url
+        comment_count
+        comments_with_links
+        comment_languages
+        comment_1
+        comment_2
+        comment_3
+        comment_4
+        comment_5
+      )
+
+      # Go through only all users who are not authorized as the spammer users
+      # are never authorized.
+      Decidim::User.joins(
+        "LEFT JOIN decidim_authorizations auth ON auth.decidim_user_id = decidim_users.id"
+      ).where(auth: { id: nil }).find_each do |user|
+        # Users with confirmed emails ending at @hel.fi or @edu.hel.fi should be
+        # trustworthy in this context, i.e. not spammers in general.
+        next if user.confirmed? && user.email.match?(/@(edu\.)?hel.fi/)
+
+        comments = Decidim::Comments::Comment.not_hidden.where(author: user).order(created_at: :desc)
+        languages = []
+        comments_with_links = 0
+        comments.map do |comment|
+          text = comment.body.values.first
+          languages << CLD.detect_language(text)[:code]
+          comments_with_links += 1 if text.match?(/<a href="/)
+        end
+
+        score = 0
+        score += 1 if languages.count == 1 && languages.first == "en"
+        score += 1 if comments_with_links > 1
+        score += 1 if user.personal_url.present? && allowed_url_patterns.none? { |p| user.personal_url.match?(p) }
+        next if score.zero?
+
+        csv << [
+          user.nickname,
+          user.confirmed? ? 1 : 0,
+          (score.to_f / 3).round(2),
+          "https://#{user.organization.host}/profiles/#{user.nickname}",
+          user.email.sub(/^[^@]+@/, ""),
+          user.personal_url,
+          comments.count,
+          comments_with_links,
+          languages.uniq.join(",")
+        ] + comments.first(5).map { |c| c.body.values.first }
+      end
+    end
+  end
 end
