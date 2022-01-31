@@ -167,6 +167,46 @@
   }
 }
 
+.card.card--list{
+  border: 1px solid $hel-silver;
+}
+
+.card--list{
+  a.card--list__item{
+    &,
+    .card--list__data{
+      background-color: $hel-silver-light;
+    }
+
+    &,
+    .author__name{
+      color: $body-font-color;
+    }
+
+    &:not(:last-child){
+      border-bottom: 1px solid $hel-silver;
+    }
+
+    &:hover,
+    &:focus{
+      color: $body-font-color;
+      text-decoration: none;
+
+      .card--list__heading{
+        text-decoration: underline;
+      }
+
+      .author__name{
+        text-decoration: none;
+      }
+    }
+
+    .card--list__data{
+      border-left: 1px solid $hel-silver;
+    }
+  }
+}
+
 .card--list.card--list--budgets{
   display: flex;
   flex-direction: column;
