@@ -99,7 +99,7 @@ namespace :moderation do
         comments.map do |comment|
           text = comment.body.values.first
           languages << CLD.detect_language(text)[:code]
-          comments_with_links += 1 if text.match?(/<a href="/)
+          comments_with_links += 1 if text.match?(/<a href=["']/)
         end
 
         score = 0
