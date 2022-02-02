@@ -93,7 +93,7 @@ namespace :moderation do
       # are never authorized.
       Decidim::User.joins(
         "LEFT JOIN decidim_authorizations auth ON auth.decidim_user_id = decidim_users.id"
-      ).where(auth: { id: nil }).find_each do |user|
+      ).where(auth: { id: nil }, deleted_at: nil).find_each do |user|
         # Users with confirmed emails ending at @hel.fi or @edu.hel.fi should be
         # trustworthy in this context, i.e. not spammers in general.
         next if user.confirmed? && user.email.match?(/@(edu\.)?hel.fi/)
