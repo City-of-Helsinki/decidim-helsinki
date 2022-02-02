@@ -72,14 +72,14 @@ en:
         link_url: Link URL
         title: Title
       plans_carousel:
-        name: Proposals carousel
+        name: Proposals carousel (cocreation)
       process_steps:
         name: Process steps
         navigate: Navigate phases
       process_steps_settings_form:
         process: Process
       projects_carousel:
-        name: Proposals carousel, voting phase
+        name: Proposals carousel (voting)
       records_carousel:
         next: Next
         previous: Previous
@@ -88,6 +88,8 @@ en:
         button_url: Button URL
         process: Process
         title: Title
+      results_carousel:
+        name: Project carousel (implementation)
     copyright: '%{year} City of Helsinki'
     devise:
       shared:

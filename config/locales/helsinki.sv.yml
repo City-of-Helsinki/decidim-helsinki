@@ -72,14 +72,14 @@ sv:
         link_url: Länk URL
         title: Titel
       plans_carousel:
-        name: Förslagskarusell
+        name: Förslagskarusell (samutveckling)
       process_steps:
         name: Process steg
         navigate: Navigera steg
       process_steps_settings_form:
         process: Process
       projects_carousel:
-        name: Förslagskarusell, omröstningsfas
+        name: Förslagskarusell (omröstning)
       records_carousel:
         next: Nästa
         previous: Tidigare
@@ -88,6 +88,8 @@ sv:
         button_url: Knapp URL
         process: Process
         title: Titel
+      results_carousel:
+        name: Projektkarusell (genomförande)
     copyright: '%{year} Helsingfors stad'
     devise:
       shared:

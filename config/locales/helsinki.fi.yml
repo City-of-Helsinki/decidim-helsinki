@@ -72,14 +72,14 @@ fi:
         link_url: Linkin URL
         title: Otsikko
       plans_carousel:
-        name: Ehdotuskaruselli
+        name: Ehdotuskaruselli (yhteiskehittäminen)
       process_steps:
         name: Prosessin vaiheet
         navigate: Navigoi vaiheita
       process_steps_settings_form:
         process: Prosessi
       projects_carousel:
-        name: Ehdotuskaruselli, äänestysvaihe
+        name: Ehdotuskaruselli (äänestys)
       records_carousel:
         next: Seuraava
         previous: Edellinen
@@ -88,6 +88,8 @@ fi:
         button_url: Napin URL
         process: Prosessi
         title: Otsikko
+      results_carousel:
+        name: Hankekaruselli (seuranta)
     copyright: '%{year} Helsingin kaupunki'
     devise:
       shared:
