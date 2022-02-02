@@ -71,9 +71,14 @@ namespace :moderation do
         nickname
         confirmed
         spammer_score
+        profile_spammer
         profile_url
         email_service
         personal_url
+        about
+        proposals_count
+        ideas_count
+        plans_count
         comment_count
         comments_with_links
         comment_languages
@@ -102,20 +107,38 @@ namespace :moderation do
           comments_with_links += 1 if text.match?(/<a href=["']/)
         end
 
+        counts = [
+          Decidim::Proposals::Proposal.from_author(user).count,
+          Decidim::Ideas::Idea.from_author(user).count,
+          Decidim::Plans::Plan.from_author(user).count,
+          comments.count
+        ]
+        profile_spammer =
+          if user.personal_url.present? && user.about.present? && counts.all?(&:zero?)
+            1
+          else
+            0
+          end
+
         score = 0
         score += 1 if languages.count == 1 && languages.first == "en"
         score += 1 if comments_with_links > 1
         score += 1 if user.personal_url.present? && allowed_url_patterns.none? { |p| user.personal_url.match?(p) }
-        next if score.zero?
+        next if score.zero? && profile_spammer.zero?
 
         csv << [
           user.nickname,
           user.confirmed? ? 1 : 0,
           (score.to_f / 3).round(2),
+          profile_spammer,
           "https://#{user.organization.host}/profiles/#{user.nickname}",
           user.email.sub(/^[^@]+@/, ""),
           user.personal_url,
-          comments.count,
+          user.about,
+          counts[0],
+          counts[1],
+          counts[2],
+          counts[3],
           comments_with_links,
           languages.uniq.join(",")
         ] + comments.first(5).map { |c| c.body.values.first }
