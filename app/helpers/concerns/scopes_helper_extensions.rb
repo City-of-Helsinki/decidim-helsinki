@@ -5,10 +5,18 @@ module ScopesHelperExtensions
   extend ActiveSupport::Concern
 
   included do
+    alias_method :scopes_picker_filter_orig, :scopes_picker_filter unless method_defined?(:scopes_picker_filter_orig)
+
     # Overrides the scopes picker filter to use our customized one-dimensional
     # "simple" scope picker.
-    def scopes_picker_filter(form, name, _checkboxes_on_top = true, _filtering_context_id = "content")
-      scopes_picker_filter_simple(form, name)
+    def scopes_picker_filter(form, name, checkboxes_on_top = true, _filtering_context_id = "content")
+      if respond_to?(:scopes_picker_filter_simple)
+        scopes_picker_filter_simple(form, name)
+      else
+        # For some reason in the admin panel the scopes_filter_simple method is
+        # not always defined. Fall back to the original method in this case.
+        scopes_picker_filter_orig(form, name, checkboxes_on_top)
+      end
     end
   end
 
