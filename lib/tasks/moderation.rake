@@ -117,6 +117,8 @@ namespace :moderation do
         profile_spammer =
           if user.personal_url.present? && user.about.present? && counts.all?(&:zero?)
             1
+          elsif user.personal_url.present? && counts.all?(&:zero?)
+            0.5
           else
             0
           end
