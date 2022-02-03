@@ -77,6 +77,7 @@ namespace :moderation do
         email_service
         personal_url
         about
+        about_language
         proposals_count
         ideas_count
         plans_count
@@ -129,6 +130,9 @@ namespace :moderation do
         score += 1 if user.personal_url.present? && allowed_url_patterns.none? { |p| user.personal_url.match?(p) }
         next if score.zero? && profile_spammer.zero?
 
+        about_language = ""
+        about_language = CLD.detect_language(user.about)[:code] if user.about.present?
+
         csv << [
           user.nickname,
           user.confirmed? ? 1 : 0,
@@ -138,6 +142,7 @@ namespace :moderation do
           user.email.sub(/^[^@]+@/, ""),
           user.personal_url,
           user.about,
+          about_language,
           counts[0],
           counts[1],
           counts[2],
