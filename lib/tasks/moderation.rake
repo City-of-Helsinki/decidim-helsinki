@@ -70,6 +70,8 @@ namespace :moderation do
     CSV.open(path, "w", col_sep: ";") do |csv|
       csv << %w(
         nickname
+        created_at
+        last_sign_in_at
         confirmed
         spammer_score
         profile_spammer
@@ -135,6 +137,8 @@ namespace :moderation do
 
         csv << [
           user.nickname,
+          user.created_at.strftime("%Y-%m-%dT%H:%M"),
+          user.last_sign_in_at.strftime("%Y-%m-%dT%H:%M"),
           user.confirmed? ? 1 : 0,
           (score.to_f / 3).round(2),
           profile_spammer,
