@@ -73,6 +73,7 @@ namespace :moderation do
         created_at
         last_sign_in_at
         confirmed
+        sign_in_count
         spammer_score
         profile_spammer
         profile_url
@@ -140,6 +141,7 @@ namespace :moderation do
           user.created_at.strftime("%Y-%m-%dT%H:%M"),
           user.last_sign_in_at.strftime("%Y-%m-%dT%H:%M"),
           user.confirmed? ? 1 : 0,
+          user.sign_in_count,
           (score.to_f / 3).round(2),
           profile_spammer,
           "https://#{user.organization.host}/profiles/#{user.nickname}",
