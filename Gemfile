@@ -22,7 +22,7 @@ gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipel
 gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.23-stable"
 gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.23-stable"
 gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "master"
-gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "main"
+gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "release/0.23-stable"
 gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "release/0.23-stable"
 gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "develop"
 gem "decidim-process_groups_content_block", github: "mainio/decidim-module-process_groups_content_block", branch: "develop"

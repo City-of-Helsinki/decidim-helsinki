@@ -98,8 +98,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-locations.git
-  revision: c00938e99cd73cdb8a75f169d3ff9e3e78d821fa
-  branch: main
+  revision: 27207d3a78416126f3fcd8201d77422f24590d5b
+  branch: release/0.23-stable
   specs:
     decidim-locations (0.23.0)
       decidim-core (~> 0.23.0)
