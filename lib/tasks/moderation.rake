@@ -1,24 +1,42 @@
 # frozen_string_literal: true
 
 namespace :moderation do
-  desc "Moderates and hides all the comments from a specific user and deletes the account + prints their IP."
-  task :user, [:user_ids_or_nicknames] => [:environment] do |_t, args|
+  # Usage:
+  #   bundle exec rails moderation:users[path/to/input-file.txt]
+  desc "Moderates and hides all the comments from specific users and deletes the account + prints their IP."
+  task :users, [:input_file] => [:environment] do |_t, args|
+    input_file = args[:input_file]
+    unless File.exist?(input_file)
+      puts "File does not exist: #{input_file}"
+      next
+    end
+
     moderator = Decidim::User.find(1)
 
-    args[:user_ids_or_nicknames].split(",").each do |user_handle|
+    File.open(input_file).each do |user_handle|
+      user_handle = user_handle.strip
+      next if user_handle.blank?
+
       user =
-        if user_handle.match(/^[0-9]+$/)
-          Decidim::User.find_by(id: user_handle)
+        if (idmatch = user_handle.match(/^#([0-9]+)$/))
+          Decidim::User.find_by(id: idmatch[1])
         else
           Decidim::User.find_by(nickname: user_handle)
         end
 
       unless user
-        print "Unknown user with ID or nickname: #{user_handle}"
+        puts "Unknown user with ID or nickname: #{user_handle}"
         next
       end
 
       Decidim::Comments::Comment.where(author: user).each do |comment|
+        unless comment.participatory_space
+          # If the participatory space no longer exists, the comment cannot be
+          # moderated.
+          comment.delete
+          next
+        end
+
         moderation = Decidim::Moderation.find_or_create_by!(
           reportable: comment,
           participatory_space: comment.participatory_space
@@ -109,7 +127,7 @@ namespace :moderation do
         comments.map do |comment|
           text = comment.body.values.first
           languages << CLD.detect_language(text)[:code]
-          comments_with_links += 1 if text.match?(/<a href=["']/)
+          comments_with_links += 1 if text.match?(/<a href=["']/) || text.match(%r{https?://[^ ]+})
         end
 
         counts = [
