@@ -75,6 +75,15 @@ en:
         link_text: Link text
         link_url: Link URL
         title: Title
+      linked_events:
+        name: Linked Events - Upcoming events
+      linked_events_settings_form:
+        button_text: Button text
+        button_url: Button URL
+        event_url: Event page URL
+        keywords: Keywords (separated with a comma without spaces)
+        publisher: Publisher
+        title: Title
       plans_carousel:
         name: Proposals carousel (cocreation)
       process_steps:

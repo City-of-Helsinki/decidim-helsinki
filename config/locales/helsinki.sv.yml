@@ -75,6 +75,15 @@ sv:
         link_text: Länktext
         link_url: Länk URL
         title: Titel
+      linked_events:
+        name: Linked Events - Uppkommande händelser
+      linked_events_settings_form:
+        button_text: Knapp text
+        button_url: Knapp URL
+        event_url: Händelsesidans URL
+        keywords: Nyckelord (avgränsade med kommatecken utan mellanslag)
+        publisher: Utgivare
+        title: Titel
       plans_carousel:
         name: Förslagskarusell (samutveckling)
       process_steps:

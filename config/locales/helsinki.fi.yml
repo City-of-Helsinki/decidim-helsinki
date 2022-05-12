@@ -75,6 +75,15 @@ fi:
         link_text: Linkin teksti
         link_url: Linkin URL
         title: Otsikko
+      linked_events:
+        name: Linked Events - Tulevat tapahtumat
+      linked_events_settings_form:
+        button_text: Napin teksti
+        button_url: Napin URL
+        event_url: Tapahtumasivun URL
+        keywords: Avainsanat (pilkulla erotettu ilman välilyöntiä)
+        publisher: Julkaisija
+        title: Otsikko
       plans_carousel:
         name: Ehdotuskaruselli (yhteiskehittäminen)
       process_steps:

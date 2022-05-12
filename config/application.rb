@@ -349,6 +349,23 @@ module DecidimHelsinki
 
         content_block.default!
       end
+
+      Decidim.content_blocks.register(:homepage, :linked_events) do |content_block|
+        content_block.cell = "helsinki/content_blocks/linked_events"
+        content_block.settings_form_cell = "helsinki/content_blocks/linked_events_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.linked_events.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :publisher, type: :text
+          settings.attribute :keywords, type: :text
+          settings.attribute :event_url, type: :text
+          settings.attribute :button_url, type: :text
+          settings.attribute :button_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
     end
 
     initializer "decidim_plans_layouts", after: "decidim_plans.register_layouts" do
