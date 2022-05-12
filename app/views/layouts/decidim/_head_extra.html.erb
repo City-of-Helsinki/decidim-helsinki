@@ -2,6 +2,7 @@
   <meta name="robots" content="noindex,nofollow">
 <% end %>
 
+<% unless Rails.env.development? %>
 <!-- Cookiehub / Cookie consent -->
 <script type="text/javascript">
 var cpm = {};
@@ -12,6 +13,7 @@ e.onload=function(){u.cookiehub.load(b);}
 d.parentNode.insertBefore(e,d);
 })(document,window,cpm);
 </script>
+<% end %>
 
 <% if Rails.application.config.matomo_site_id %>
 <% domain = request.host %>
