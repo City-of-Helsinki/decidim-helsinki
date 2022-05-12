@@ -1,0 +1,22 @@
+<% add_decidim_page_title(t(".posts")) %>
+
+<%= render partial: "layouts/decidim/breadcrumbs" %>
+
+<div class="row columns mt-m">
+  <div class="text-center">
+    <h2 class="heading1 page-title"><%= t(".posts") %></h2>
+  </div>
+</div>
+
+<div class="row columns">
+  <%= render partial: "filters_small_view" %>
+  <div class="card card--secondary show-for-mediumlarge">
+    <div class="record-filters">
+      <%= render partial: "filters" %>
+    </div>
+  </div>
+</div>
+
+<div class="row columns mb-m">
+  <%= render partial: "decidim/blogs/posts/listing", locals: { posts: posts } %>
+</div>

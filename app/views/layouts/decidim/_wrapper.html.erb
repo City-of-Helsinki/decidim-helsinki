@@ -63,7 +63,7 @@ wrapper_class = Rails.application.config.wrapper_class
         <!-- Topbar -->
         <div class="header" role="banner">
           <div class="top-bar">
-            <%= link_to t("skip_button", scope: "decidim.accessibility"), url_for(anchor: "content"), class: "skip" %>
+            <%= link_to t("skip_button", scope: "decidim.accessibility"), current_url(anchor: "content"), class: "skip" %>
             <div class="row column">
               <div class="top-bar-left">
                 <div class="site-bar">

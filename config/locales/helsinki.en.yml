@@ -54,6 +54,10 @@ en:
         button2_text: Button 2 text
         button2_url: Button 2 URL
         title: Title
+      highlighted_blogs:
+        name: Highlighted blogs
+      highlighted_blogs_settings_form:
+        title: Title
       ideas_carousel:
         name: Ideas carousel
       image_section:

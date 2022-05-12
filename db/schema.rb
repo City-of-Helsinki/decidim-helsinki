@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_05_130726) do
+ActiveRecord::Schema.define(version: 2022_04_29_105038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -319,6 +319,9 @@ ActiveRecord::Schema.define(version: 2022_01_05_130726) do
     t.integer "decidim_user_group_id"
     t.integer "endorsements_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
+    t.string "card_image"
+    t.string "main_image"
+    t.jsonb "summary"
     t.index ["decidim_author_id", "decidim_author_type"], name: "index_decidim_blogs_posts_on_decidim_author"
     t.index ["decidim_component_id"], name: "index_decidim_blogs_posts_on_decidim_component_id"
     t.index ["decidim_user_group_id"], name: "index_decidim_blogs_posts_on_decidim_user_group_id"
@@ -1847,6 +1850,10 @@ ActiveRecord::Schema.define(version: 2022_01_05_130726) do
     t.boolean "confidential", default: true, null: false
     t.index ["decidim_organization_id"], name: "index_oauth_applications_on_decidim_organization_id"
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
+  end
+
+  create_table "test", id: false, force: :cascade do |t|
+    t.text "foo"
   end
 
   create_table "version_associations", force: :cascade do |t|

@@ -25,6 +25,48 @@
     border-top-width: 1px;
   }
 
+  &.card-simple{
+    border: 0;
+
+    .card-section{
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-section,
+    .card__info{
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .card__header{
+      margin-bottom: 0;
+
+      h3{
+        color: $body-font-color;
+        margin-bottom: 0;
+      }
+    }
+
+    .card__text{
+      flex-grow: 1;
+      font-weight: normal;
+      line-height: 1.6;
+    }
+
+    .card__arrow{
+      justify-self: end;
+      margin-top: .8rem;
+
+      .icon{
+        width: 1.3rem;
+        height: 1.3rem;
+        color: $primary;
+      }
+    }
+  }
+
   .card__header{
     .card__link{
       // Fix focus outline on the card link
@@ -52,6 +94,13 @@
   }
 }
 
+a.card-simple{
+  &:hover,
+  &:focus{
+    color: $body-font-color;
+  }
+}
+
 .card__content{
   .card__content{
     &:not(:only-child){
@@ -70,6 +119,10 @@
   .card{
     &.border-primary{
       border: 3px solid $ruuti-primary;
+    }
+
+    &.card-simple.card__arrow.icon{
+      color: $ruuti-primary;
     }
   }
 }

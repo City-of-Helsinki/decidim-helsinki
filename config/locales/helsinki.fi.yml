@@ -54,6 +54,10 @@ fi:
         button2_text: Napin 2 teksti
         button2_url: Napin 2 URL
         title: Otsikko
+      highlighted_blogs:
+        name: Bloginostot
+      highlighted_blogs_settings_form:
+        title: Otsikko
       ideas_carousel:
         name: Ideakaruselli
       image_section:

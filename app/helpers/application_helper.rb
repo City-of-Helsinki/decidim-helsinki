@@ -5,6 +5,18 @@ module ApplicationHelper
   include Decidim::Plans::LinksHelper
   include KoroHelper
 
+  def current_url(params = {})
+    if respond_to?(:current_participatory_space) || respond_to?(:current_component)
+      url_for(request.parameters.merge(params))
+    else
+      decidim.url_for(request.parameters.merge(params))
+    end
+  rescue ActionController::UrlGenerationError
+    main_app.url_for(request.parameters.merge(params))
+  rescue ActionController::UrlGenerationError
+    nil
+  end
+
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting
   def breadcrumbs
     links = []
@@ -44,7 +56,20 @@ module ApplicationHelper
               url: result_path(current)
             }
           end
+        elsif controller.is_a?(Decidim::Blogs::PostsController) && action_name == "show"
+          links << {
+            title: translated_attribute(post.title),
+            url: post_path(post)
+          }
         end
+      end
+    elsif controller.is_a?(Decidim::Blogs::Directory::PostsController)
+      links << { title: t("decidim.blogs.directory.posts.index.posts"), url: main_app.posts_path }
+      if post
+        links << {
+          title: translated_attribute(post.title),
+          url: main_app.post_path(post)
+        }
       end
     elsif controller.is_a?(Decidim::PagesController) || controller.is_a?(Decidim::Pages::ApplicationController)
       links << { title: t("layouts.decidim.header.help"), url: decidim.pages_path }

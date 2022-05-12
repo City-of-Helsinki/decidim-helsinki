@@ -337,6 +337,18 @@ module DecidimHelsinki
 
         content_block.default!
       end
+
+      Decidim.content_blocks.register(:homepage, :highlighted_blogs) do |content_block|
+        content_block.cell = "helsinki/content_blocks/highlighted_blogs"
+        content_block.settings_form_cell = "helsinki/content_blocks/highlighted_blogs_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.highlighted_blogs.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
     end
 
     initializer "decidim_plans_layouts", after: "decidim_plans.register_layouts" do
@@ -386,6 +398,8 @@ module DecidimHelsinki
       # Command extensions
       Decidim::Accountability::Admin::CreateResult.include(ResultExtraAttributes)
       Decidim::Accountability::Admin::UpdateResult.include(ResultExtraAttributes)
+      Decidim::Blogs::Admin::CreatePost.include(CreateBlogPostOverrides)
+      Decidim::Blogs::Admin::UpdatePost.include(UpdateBlogPostOverrides)
 
       # Controller extensions
       # Keep after helpers because these can load in helpers!
@@ -393,6 +407,9 @@ module DecidimHelsinki
       Decidim::Admin::HelpSectionsController.send(
         :include,
         AdminHelpSectionsExtensions
+      )
+      Decidim::Blogs::Admin::PostsController.include(
+        AdminBlogPostsControllerExtensions
       )
       Decidim::Components::BaseController.send(:include, ComponentsBaseExtensions)
       Decidim::UserActivitiesController.send(:include, UserActivitiesExtensions)
@@ -414,6 +431,7 @@ module DecidimHelsinki
         Decidim::SanitizeHelper
       )
       Decidim::ContentBlocks::HeroCell.send(:include, KoroHelper)
+      Decidim::Blogs::PostMCell.include(BlogPostMCellExtensions)
       Decidim::Budgets::BudgetListItemCell.send(
         :include,
         BudgetListItemCellExtensions
@@ -429,6 +447,7 @@ module DecidimHelsinki
       # Form extensions
       Decidim::Admin::CategoryForm.send(:include, AdminCategoryFormExtensions)
       Decidim::Accountability::Admin::ResultForm.send(:include, AdminResultFormExtensions)
+      Decidim::Blogs::Admin::PostForm.include(AdminBlogPostFormExtensions)
 
       # Builder extensions
       Decidim::FormBuilder.send(:include, FormBuilderExtensions)
@@ -444,6 +463,7 @@ module DecidimHelsinki
 
       # Model extensions
       Decidim::Category.send(:include, CategoryExtensions)
+      Decidim::Blogs::Post.include(BlogPostExtensions)
 
       # View extensions
       ActionView::Base.send :include, Decidim::WidgetUrlsHelper

@@ -54,6 +54,10 @@ sv:
         button2_text: Knapp 2 text
         button2_url: Knapp 2 URL
         title: Titel
+      highlighted_blogs:
+        name: Markerade bloggar
+      highlighted_blogs_settings_form:
+        title: Titel
       ideas_carousel:
         name: Idéer karusell
       image_section:

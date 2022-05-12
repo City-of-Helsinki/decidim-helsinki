@@ -1,0 +1,10 @@
+var $posts = $('#blogs');
+var $postsCount = $('#blogs-count');
+
+$posts.html('<%= j(render partial: "decidim/blogs/posts/posts", locals: { posts: posts }).strip.html_safe %>');
+$postsCount.html('<%= j(render partial: "decidim/blogs/posts/count", locals: { posts: posts }).strip.html_safe %>');
+
+var $dropdownMenu = $('.dropdown.menu', $posts);
+if ($dropdownMenu.length > 0) {
+  $dropdownMenu.foundation();
+}

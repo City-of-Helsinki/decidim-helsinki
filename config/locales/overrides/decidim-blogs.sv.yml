@@ -1,0 +1,43 @@
+en:
+  activemodel:
+    attributes:
+      post:
+        card_image: Kort bild
+        main_image: Huvudbild
+        summary: Sammanfattning
+        title: Titel
+  decidim:
+    blogs:
+      actions:
+        user_group_id: Skapa artikel som
+      directory:
+        posts:
+          index:
+            posts: Aktuell
+            description: I aktuell sektionen kan du hitta aktuell information om tjänsten.
+      post_m:
+        card_label: "Artikel: %{title}"
+        view: Visa artikel
+        view_detailed: "Visa artikel: %{name}"
+      posts:
+        count:
+          posts_count:
+            one: 1 artikel
+            other: "%{count} artiklar"
+        filters:
+          label: Artikelsökning
+          reset: Rensa filter
+          search: Sök
+          term: Nyckelord
+          title: Sök artiklar
+        filters_small_view:
+          close_modal: Stäng modal
+          filter: Filtera
+          filter_by: Filtera efter
+          unfold: Veckla ut
+        index:
+          title: Aktuell
+        posts:
+          empty: Inga artiklar hittades med sökkriterierna.
+        show:
+          view_all_articles: Gå till aktuell sektionen
