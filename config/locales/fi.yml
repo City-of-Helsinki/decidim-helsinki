@@ -32,6 +32,9 @@ fi:
         other: Ehdotukset
   auth:
     sign_in_with_tunnistamo: 'Käytä Tunnistamoa kirjautuaksesi sisään'
+  date:
+    formats:
+      decidim_short: "%d.%m.%Y"
   decidim:
     authorization_handlers:
       admin:

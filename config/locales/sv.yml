@@ -32,6 +32,9 @@ sv:
         other: Förslag
   auth:
     sign_in_with_tunnistamo: 'Logga in med Tunnistamo'
+  date:
+    formats:
+      decidim_short: "%d.%m.%Y"
   decidim:
     authorization_handlers:
       admin:

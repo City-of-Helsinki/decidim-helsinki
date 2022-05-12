@@ -32,6 +32,9 @@ en:
         other: Proposals
   auth:
     sign_in_with_tunnistamo: 'Use Tunnistamo to sign in'
+  date:
+    formats:
+      decidim_short: "%d.%m.%Y"
   decidim:
     authorization_handlers:
       admin:
