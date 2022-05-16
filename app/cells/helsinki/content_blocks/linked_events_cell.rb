@@ -45,11 +45,13 @@ module Helsinki
         "#{model.settings.event_url}?event_id=#{event["id"]}"
       end
 
-      def image_tag_for(event, index)
-        cls = []
+      def imagebox_for(event, index)
+        cls = ["imagebox"]
         cls << "show-for-medium" if index.positive?
 
-        image_tag(image_for(event), alt: translated_attribute(event["name"]), class: cls.join(" "))
+        content_tag :div, aria: { hidden: true }, class: cls.join(" ") do
+          image_tag(image_for(event), alt: translated_attribute(event["name"]))
+        end
       end
 
       def image_for(event)
@@ -62,9 +64,15 @@ module Helsinki
       def dates_for(event)
         start_date = Date.parse(event["start_time"])
         end_date = Date.parse(event["end_time"])
-        return l(start_date, format: :decidim_short) if start_date == end_date
+        if start_date == end_date
+          return content_tag :time, datetime: start_date.iso8601 do
+            l(start_date, format: :decidim_short)
+          end
+        end
 
-        "#{l(start_date, format: :decidim_short)} - #{l(end_date, format: :decidim_short)}"
+        content_tag :time, datetime: "#{start_date.iso8601}/#{end_date.iso8601}" do
+          "#{l(start_date, format: :decidim_short)} - #{l(end_date, format: :decidim_short)}"
+        end
       end
 
       def summary_for(event)
