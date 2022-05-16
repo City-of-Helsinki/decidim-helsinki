@@ -28,7 +28,7 @@
       <% if post.main_image.url %>
         <%= image_tag post.main_image.url, alt: translated_attribute(post.title), class: "hero-heading" %>
       <% end %>
-      <h1 class="heading2"><%= translated_attribute post.title %></h1>
+      <h1 class="heading1"><%= translated_attribute post.title %></h1>
       <%= decidim_sanitize translated_attribute post.body %>
     </div>
   </div>
