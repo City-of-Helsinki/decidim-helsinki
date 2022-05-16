@@ -1,5 +1,50 @@
+$card-grid-margin-bottom: map-get($grid-column-gutter, medium);
+
 .listing-section{
   padding: 4rem 0;
+
+  .card-grid{
+    .column{
+      margin-bottom: 0;
+
+      @include breakpoint(medium){
+        margin-bottom: $card-grid-margin-bottom;
+      }
+    }
+  }
+
+  .column{
+    &:first-child{
+      .card.card-simple{
+        .card__text{
+          display: block;
+        }
+
+        .card__text--paragraph{
+          display: block;
+          margin-right: 0;
+        }
+
+        .card__arrow{
+          display: block;
+          margin-top: .8rem;
+
+          .icon{
+            width: 1.3rem;
+            height: 1.3rem;
+          }
+        }
+      }
+    }
+
+    .card{
+      border-bottom: $border;
+
+      @include breakpoint(medium){
+        border-bottom: 0;
+      }
+    }
+  }
 
   .listing-section-heading{
     margin-bottom: 1rem;

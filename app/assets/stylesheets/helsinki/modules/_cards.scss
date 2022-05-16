@@ -29,9 +29,11 @@
     border: 0;
 
     .card-section{
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
+      @include breakpoint(medium){
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
     }
 
     .card-section,
@@ -50,19 +52,42 @@
     }
 
     .card__text{
-      flex-grow: 1;
+      display: inline;
       font-weight: normal;
       line-height: 1.6;
+
+      @include breakpoint(medium){
+        display: block;
+        flex-grow: 1;
+      }
+    }
+
+    .card__text--paragraph{
+      display: inline;
+      margin-right: .5rem;
+
+      @include breakpoint(medium){
+        display: block;
+        margin-right: 0;
+      }
     }
 
     .card__arrow{
-      justify-self: end;
-      margin-top: .8rem;
+      display: inline;
+
+      @include breakpoint(medium){
+        display: block;
+        justify-self: end;
+        margin-top: .8rem;
+      }
 
       .icon{
-        width: 1.3rem;
-        height: 1.3rem;
         color: $primary;
+
+        @include breakpoint(medium){
+          width: 1.3rem;
+          height: 1.3rem;
+        }
       }
     }
   }
