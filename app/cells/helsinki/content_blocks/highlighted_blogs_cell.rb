@@ -25,7 +25,7 @@ module Helsinki
         cls = []
         cls << "show-for-medium" if index.positive?
 
-        image_tag(resource_image_path_for(post), alt: translated_attribute(post.title), class: cls.join(" "))
+        image_tag(resource_image_path_for(post), alt: translated_attribute(post.title), aria: { hidden: true }, class: cls.join(" "))
       end
 
       def summary_for(post)
@@ -40,6 +40,10 @@ module Helsinki
         return post.main_image.highlight.url if post.main_image.url
 
         "decidim/blogs/post-highlight-default.jpg"
+      end
+
+      def button_url
+        Rails.application.routes.url_helpers.posts_path
       end
 
       def decidim_blogs
