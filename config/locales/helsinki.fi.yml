@@ -56,6 +56,8 @@ fi:
         title: Otsikko
       highlighted_blogs:
         name: Bloginostot
+        show_more: Näytä lisää
+        show_more_detailed: Näytä lisää ajankohtaisia asioita
       highlighted_blogs_settings_form:
         title: Otsikko
       ideas_carousel:

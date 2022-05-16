@@ -56,6 +56,8 @@ en:
         title: Title
       highlighted_blogs:
         name: Highlighted blogs
+        show_more: Show more
+        show_more_detailed: Show more news
       highlighted_blogs_settings_form:
         title: Title
       ideas_carousel:
