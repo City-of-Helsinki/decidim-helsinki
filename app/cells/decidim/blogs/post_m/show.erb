@@ -1,5 +1,5 @@
-<div class="column" id="<%= dom_id(model) %>">
-  <div class="card <%= card_classes %>" role="region" aria-label="<%= t(".card_label", title: title) %>">
+<%= column_wrapper do %>
+  <div class="card <%= card_classes.join(" ") %>" role="region" aria-label="<%= t(".card_label", title: title) %>">
     <%= render :image %>
     <div class="card__content">
       <%= render :header %>
@@ -15,4 +15,4 @@
     <%= render :status %>
     <%= render :footer %>
   </div>
-</div>
+<% end %>

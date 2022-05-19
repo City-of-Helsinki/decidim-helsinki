@@ -23,5 +23,11 @@ module BlogPostExtensions
     def organization
       @organization || participatory_space&.organization
     end
+
+    def has_localized_content_for?(attr, locale)
+      return unless public_send(attr)[locale.to_s]
+
+      public_send(attr)[locale.to_s].strip.present?
+    end
   end
 end

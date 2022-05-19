@@ -4,6 +4,10 @@ module BlogPostMCellExtensions
   extend ActiveSupport::Concern
 
   included do
+    include BlogContentHelper
+
+    delegate :current_locale, to: :controller
+
     def description
       translated_summary = translated_attribute(model.summary)
       return translated_summary unless translated_summary.blank?
@@ -25,6 +29,14 @@ module BlogPostMCellExtensions
       else
         resource_locator(model).path
       end
+    end
+  end
+
+  private
+
+  def column_wrapper
+    localized_content_tag_for(model, :div, id: dom_id(model), class: "column") do
+      yield
     end
   end
 

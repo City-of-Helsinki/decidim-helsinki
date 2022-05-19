@@ -26,13 +26,13 @@
 
 <div class="row">
   <div class="columns mediumlarge-8">
-    <div class="section">
+    <%= localized_content_tag_for(post, :div, class: "section") do %>
       <% if post.main_image.url %>
         <%= image_tag post.main_image.url, alt: translated_attribute(post.title), class: "hero-heading" %>
       <% end %>
       <h1 class="heading1"><%= translated_attribute post.title %></h1>
       <%= decidim_sanitize translated_attribute post.body %>
-    </div>
+    <% end %>
   </div>
 </div>
 

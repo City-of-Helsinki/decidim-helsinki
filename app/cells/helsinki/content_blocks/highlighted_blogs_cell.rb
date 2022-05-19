@@ -5,6 +5,9 @@ module Helsinki
     class HighlightedBlogsCell < Decidim::ViewModel
       include Decidim::ApplicationHelper # needed for html_truncate
       include Decidim::IconHelper
+      include BlogContentHelper
+
+      delegate :current_locale, to: :controller
 
       def title
         translated_attribute(model.settings.title)

@@ -4,7 +4,7 @@
   </div>
   <div class="row small-up-1 medium-up-2 mediumlarge-up-4 card-grid">
     <% posts.each_with_index do |post, index| %>
-      <div class="column">
+      <%= localized_content_tag_for(post, :div, class: "column") do %>
         <%= link_to post_path(post), class: "card card-simple" do %>
           <%= image_tag_for(post, index) %>
           <div class="card-section">
@@ -21,7 +21,7 @@
             </div>
           </div>
         <% end %>
-      </div>
+      <% end %>
     <% end %>
   </div>
   <div class="row columns mt-m">
