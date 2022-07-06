@@ -8,15 +8,26 @@ module Helsinki
         @version = "v1"
       end
 
-      def events(publisher: nil, keywords: nil, ongoing: nil, sort: "start_time")
+      # Note that `ongoing` in this context means currently ongoing or upcoming
+      # as per Linked Events documentation. This parameter needs a specified
+      # text search, so it is not a boolean flag. For example to search ongoing
+      # or upcoming that match the text "nuoret", use `ongoing: "nuoret"`.
+      def events(publisher: nil, keywords: nil, start: nil, ongoing: nil, sort: "start_time")
         keywords = keywords.join(",") if keywords.is_a?(Array)
 
         result = fetch(
           "event",
-          publisher: publisher,
-          keyword_set_AND: keywords,
-          all_ongoing_AND: ongoing,
-          sort: sort
+          # Undocumented `event_type` parameter used at tapahtumat.hel.fi
+          event_type: "general",
+          # Types used at tapahtumat.hel.fi, removes the recurring super events
+          # which have their own occurrences for each event day. Otherwise the
+          # list might show duplicates during the first occurrence of the event.
+          super_event_type: "umbrella,none",
+          publisher: publisher.presence,
+          keyword: keywords.presence,
+          start: start.presence,
+          all_ongoing_AND: ongoing.presence,
+          sort: sort.presence
         )
         return [] unless result
 
@@ -24,7 +35,7 @@ module Helsinki
       end
 
       def upcoming_events(publisher: nil, keywords: nil)
-        events(publisher: publisher, keywords: keywords, ongoing: true).select do |event|
+        events(publisher: publisher, keywords: keywords, start: "now").select do |event|
           start_time = Time.parse(event["start_time"])
           end_time = Time.parse(event["end_time"])
           current_time = Time.now
