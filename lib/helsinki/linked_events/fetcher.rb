@@ -8,6 +8,10 @@ module Helsinki
         @version = "v1"
       end
 
+      def debug!
+        @debug = true
+      end
+
       # Note that `ongoing` in this context means currently ongoing or upcoming
       # as per Linked Events documentation. This parameter needs a specified
       # text search, so it is not a boolean flag. For example to search ongoing
@@ -56,9 +60,16 @@ module Helsinki
 
       attr_reader :base_path, :version
 
+      def debug?
+        @debug
+      end
+
       def fetch(endpoint, params = {})
-        response = Faraday.get(
-          "https://api.hel.fi/#{base_path}/#{version}/#{endpoint}/",
+        conn = Faraday.new(url: "https://api.hel.fi") do |faraday|
+          faraday.response :logger, Rails.logger if debug?
+        end
+        response = conn.get(
+          "/#{base_path}/#{version}/#{endpoint}/",
           { format: "json" }.merge(params.compact)
         )
 
