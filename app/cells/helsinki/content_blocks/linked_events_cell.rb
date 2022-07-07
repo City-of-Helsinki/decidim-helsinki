@@ -34,7 +34,7 @@ module Helsinki
       end
 
       def button_url
-        model.settings.button_url
+        translated_attribute(model.settings.button_url)
       end
 
       def button_text

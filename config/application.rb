@@ -360,7 +360,7 @@ module DecidimHelsinki
           settings.attribute :publisher, type: :text
           settings.attribute :keywords, type: :text
           settings.attribute :event_url, type: :text
-          settings.attribute :button_url, type: :text
+          settings.attribute :button_url, type: :text, translated: true
           settings.attribute :button_text, type: :text, translated: true
         end
 
