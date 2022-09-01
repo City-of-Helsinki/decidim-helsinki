@@ -2,9 +2,16 @@
 
 require "helsinki/mpassid_metadata_collector"
 
+cert_file = Rails.application.secrets.omniauth[:mpassid][:certificate_file]
+pkey_file = Rails.application.secrets.omniauth[:mpassid][:private_key_file]
+
 if Rails.application.config.mpassid_enabled
   Decidim::Mpassid.configure do |config|
     config.sp_entity_id = Rails.application.secrets.omniauth[:mpassid][:entity_id]
+    if cert_file && File.exist?(cert_file) && pkey_file && File.exist?(pkey_file)
+      config.certificate_file = cert_file
+      config.private_key_file = pkey_file
+    end
     config.auto_email_domain = Rails.application.config.auto_email_domain
     config.workflow_configurator = lambda do |workflow|
       workflow.expires_in = 0.minutes
