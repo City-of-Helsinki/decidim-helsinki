@@ -19,7 +19,7 @@ module Helsinki
     # 2: Itäkeskus
     # 3: Kontula
     # 4: Vuosaari
-    # 5: Ympäristötoiminta
+    # 5: Ympäristötoiminta (discontinued 2022-09)
     # 6: Eteläinen
     # 7: Haaga
     # 8: Kannelmäki
@@ -91,10 +91,10 @@ module Helsinki
       "03038" => { name: "Puotilan ala-asteen koulu", type: 11, postal_code: "00910", voting_unit: 2 },
       "03039" => { name: "Itäkeskuksen peruskoulu", type: 11, postal_code: "00900", voting_unit: 2 },
       "03040" => { name: "Roihuvuoren ala-asteen koulu", type: 11, postal_code: "00820", voting_unit: 1 },
-      "03041" => { name: "Santahaminan ala-asteen koulu", type: 11, postal_code: "00860", voting_unit: 5 },
+      "03041" => { name: "Santahaminan ala-asteen koulu", type: 11, postal_code: "00860", voting_unit: 1 },
       "03043" => { name: "Snellmanin ala-asteen koulu", type: 11, postal_code: "00120", voting_unit: 6 },
       "03044" => { name: "Suomenlinnan ala-asteen koulu", type: 11, postal_code: "00190", voting_unit: 6 },
-      "03045" => { name: "Tahvonlahden ala-aste", type: 11, postal_code: "00870", voting_unit: 5 },
+      "03045" => { name: "Tahvonlahden ala-aste", type: 11, postal_code: "00870", voting_unit: 1 },
       "03046" => { name: "Taivallahden peruskoulu", type: 11, postal_code: "00100", voting_unit: 9 },
       "03047" => { name: "Tapanilan ala-asteen koulu", type: 11, postal_code: "00730", voting_unit: 12 },
       "03048" => { name: "Tehtaankadun ala-asteen koulu", type: 11, postal_code: "00140", voting_unit: 6 },
@@ -114,7 +114,7 @@ module Helsinki
       "03082" => { name: "Käpylän peruskoulu", type: 11, postal_code: "00610", voting_unit: 11 },
       "03083" => { name: "Kankarepuiston peruskoulu", type: 11, postal_code: "00770", voting_unit: 14 },
       "03085" => { name: "Kruununhaan yläasteen koulu", type: 11, postal_code: "00170", voting_unit: 6 },
-      "03086" => { name: "Laajasalon peruskoulu", type: 11, postal_code: "00840", voting_unit: 5 },
+      "03086" => { name: "Laajasalon peruskoulu", type: 11, postal_code: "00840", voting_unit: 1 },
       "03087" => { name: "Suutarinkylän peruskoulu", type: 11, postal_code: "00740", voting_unit: 14 },
       "03088" => { name: "Meilahden yläasteen koulu", type: 11, postal_code: "00270", voting_unit: 9 },
       "03089" => { name: "Myllypuron peruskoulu", type: 11, postal_code: "00920", voting_unit: 2 },
@@ -175,16 +175,16 @@ module Helsinki
       "03674" => { name: "Nordsjö lågstadieskola", type: 11, postal_code: "00980", voting_unit: 10 },
       "03705" => { name: "Torpparinmäen peruskoulu", type: 11, postal_code: "00690", voting_unit: 13 },
       "03716" => { name: "Strömbergin ala-asteen koulu", type: 11, postal_code: "00380", voting_unit: 7 },
-      "03723" => { name: "Poikkilaakson ala-asteen koulu", type: 11, postal_code: "00850", voting_unit: 5 },
+      "03723" => { name: "Poikkilaakson ala-asteen koulu", type: 11, postal_code: "00850", voting_unit: 1 },
       "03724" => { name: "Aurinkolahden peruskoulu", type: 11, postal_code: "00980", voting_unit: 4 },
       "03743" => { name: "Arabian peruskoulu", type: 11, postal_code: "00560", voting_unit: 11 },
-      "03763" => { name: "Sakarinmäen peruskoulu", type: 11, postal_code: "00890", voting_unit: 5 },
+      "03763" => { name: "Sakarinmäen peruskoulu", type: 11, postal_code: "00890", voting_unit: 3 },
       "03769" => { name: "Latokartanon peruskoulu", type: 11, postal_code: "00790", voting_unit: 15 },
       "03782" => { name: "Helsingin eurooppalainen koulu", type: 19, postal_code: "00120", voting_unit: 6 },
       "03845" => { name: "Kalasataman peruskolu", type: 11, postal_code: "00540", voting_unit: 6 },
       "03852" => { name: "Jätkäsaaren peruskoulu", type: 11, postal_code: "00220", voting_unit: 6 },
       "03880" => { name: "Vattuniemen ala-aste", type: 11, postal_code: "00210", voting_unit: 6 },
-      "03886" => { name: "Kruunuvuorenrannan peruskoulu", type: 11, postal_code: "00590", voting_unit: 5 },
+      "03886" => { name: "Kruunuvuorenrannan peruskoulu", type: 11, postal_code: "00590", voting_unit: 1 },
       "03861" => { name: "Helsingin Montessorikoulu", type: 11, postal_code: "00800", voting_unit: 1 },
       "05676" => { name: "Östersundom skola", type: 11, postal_code: "00890", voting_unit: 10 },
       "10016" => { name: "Yrkesinstitutet Prakticum", type: 21, postal_code: "00560", voting_unit: nil },
