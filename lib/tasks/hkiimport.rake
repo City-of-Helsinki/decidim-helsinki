@@ -101,4 +101,36 @@ namespace :hkiimport do
 
     puts "Processing done."
   end
+
+  # Allows importing paper votes count to the budgets component.
+  desc "Import paper votes counts to budgets"
+  task :budget_paper_votes, [:component_id, :filename] => [:environment] do |_t, args|
+    component_id = args[:component_id]
+    filename = args[:filename]
+
+    component = Decidim::Component.find_by(id: component_id, manifest_name: "budgets")
+    if component.nil?
+      puts "Invalid component provided: #{component_id}."
+      next
+    end
+    unless File.exist?(filename)
+      puts "The import file does not exist at: #{filename}"
+      next
+    end
+
+    updated_projects = {}
+    budgets = Decidim::Budgets::Budget.where(component: component)
+    CSV.parse(File.read(filename), headers: true, col_sep: ";").each_with_index do |row, index|
+      project = Decidim::Budgets::Project.find_by(budget: budgets, id: row["project_id"])
+      unless project
+        puts "Invalid project on row #{index}: ##{row["project_id"]}"
+        next
+      end
+
+      project.update!(paper_orders_count: row["paper_votes_count"].to_i)
+      updated_projects[row["project_id"]] = row["paper_votes_count"].to_i
+    end
+
+    puts "Successfully updated paper votes count for #{updated_projects.keys.count} projects."
+  end
 end
