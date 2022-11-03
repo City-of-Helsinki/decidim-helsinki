@@ -12,6 +12,8 @@ module ApplicationHelper
       decidim.url_for(request.parameters.merge(params))
     end
   rescue ActionController::UrlGenerationError
+    decidim_verifications.url_for(request.parameters.merge(params))
+  rescue ActionController::UrlGenerationError
     main_app.url_for(request.parameters.merge(params))
   rescue ActionController::UrlGenerationError
     nil
