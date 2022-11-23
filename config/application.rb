@@ -393,6 +393,14 @@ module DecidimHelsinki
       end
     end
 
+    initializer "accountability" do
+      Decidim.find_component_manifest(:accountability).tap do |component|
+        export = component.export_manifests.find { |ex| ex.name == :results }
+        export.remove_instance_variable(:@serializer)
+        export.serializer Helsinki::Accountability::ResultSerializer
+      end
+    end
+
     # See:
     # https://guides.rubyonrails.org/configuring.html#initialization-events
     #
