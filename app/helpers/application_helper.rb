@@ -12,11 +12,15 @@ module ApplicationHelper
       decidim.url_for(request.parameters.merge(params))
     end
   rescue ActionController::UrlGenerationError
-    decidim_verifications.url_for(request.parameters.merge(params))
-  rescue ActionController::UrlGenerationError
-    main_app.url_for(request.parameters.merge(params))
-  rescue ActionController::UrlGenerationError
-    nil
+    begin
+      decidim_verifications.url_for(request.parameters.merge(params))
+    rescue ActionController::UrlGenerationError
+      begin
+        main_app.url_for(request.parameters.merge(params))
+      rescue ActionController::UrlGenerationError
+        nil
+      end
+    end
   end
 
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting
