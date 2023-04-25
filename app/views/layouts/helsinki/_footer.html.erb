@@ -25,12 +25,6 @@ footer_text = translated_attribute(footer_text_section)
           <% end %>
         <% end %>
       </div>
-      <div class="medium-4 large-3 column">
-        <div class="main__footer__contact">
-          <h4><%= t("layouts.footer.contact").html_safe %></h4>
-          <p><a href="mailto:<%= feedback_email %>?subject=<%= feedback_subject %>"><%= feedback_email %></a></p>
-        </div>
-      </div>
 
       <% if display_common_elements? %>
         <div class="medium-4 large-3 column">
