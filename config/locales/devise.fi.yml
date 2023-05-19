@@ -1,5 +1,7 @@
 fi:
   devise:
+    omniauth_callbacks:
+      disabled: Sisäänkirjautuminen on tilapäisesti poissa käytöstä.
     sessions:
       new:
         sign_in: 'Kirjaudu sisään'

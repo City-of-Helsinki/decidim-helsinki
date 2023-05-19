@@ -1,5 +1,7 @@
 en:
   devise:
+    omniauth_callbacks:
+      disabled: Signing in is temporarily disabled.
     sessions:
       new:
         sign_in: 'Sign in'

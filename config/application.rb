@@ -443,6 +443,11 @@ module DecidimHelsinki
       # Initiated before the ScopesHelper has been extended, so include the
       # helper again.
       Decidim::SearchesController.send(:helper, Decidim::ScopesHelper)
+      # For ensuring that the disabled omniauth strategies cannot be used
+      Decidim::Suomifi::OmniauthCallbacksController.include(OmniauthExtensions)
+      Decidim::Suomifi::OmniauthCallbacksController.ensure_strategy_enabled_for(:suomifi)
+      Decidim::Mpassid::OmniauthCallbacksController.include(OmniauthExtensions)
+      Decidim::Mpassid::OmniauthCallbacksController.ensure_strategy_enabled_for(:mpassid)
 
       # Cell extensions
       Decidim::AddressCell.send(:include, AddressCellExtensions)

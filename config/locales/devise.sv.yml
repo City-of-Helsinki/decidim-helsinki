@@ -1,5 +1,7 @@
 sv:
   devise:
+    omniauth_callbacks:
+      disabled: Inloggning är tillfälligt inaktiverad.
     sessions:
       new:
         sign_in: 'Logga in'
