@@ -1,6 +1,19 @@
 # frozen_string_literal: true
 
 namespace :accountability do
+  task :export_results, [:component_id] => [:environment] do |_t, args|
+    component = Decidim::Component.find_by(id: args[:component_id], manifest_name: "accountability")
+    unless component
+      puts "Invalid target component provided: #{args[:component_id]}."
+      next
+    end
+
+    collection = Decidim::Accountability::Result.where(component: component)
+    exporter = Decidim::Exporters::Excel.new(collection, Helsinki::Accountability::ResultSerializer)
+    export_data = exporter.export
+    File.write(export_data.filename("results-#{component.id}"), export_data.read, binmode: true)
+  end
+
   # Imports accountability results from the budgets component.
   #
   # Usage:
