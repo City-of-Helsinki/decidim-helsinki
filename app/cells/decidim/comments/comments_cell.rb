@@ -9,6 +9,7 @@ module Decidim
       delegate :user_signed_in?, to: :controller
 
       def add_comment
+        return if !current_organization.sign_up_enabled? && !user_signed_in?
         return if single_comment?
         return if comments_blocked?
         return if user_comments_blocked?

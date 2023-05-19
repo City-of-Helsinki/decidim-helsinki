@@ -155,7 +155,7 @@ wrapper_class = Rails.application.config.wrapper_class
                           </ul>
                         </div>
                       </div>
-                    <% else %>
+                    <% elsif current_organization.sign_up_enabled? %>
                       <div class="top-bar-links__item">
                         <%= link_to t("layouts.decidim.header.sign_in"), decidim.new_user_session_path, class: "sign-in-link" %>
                       </div>
