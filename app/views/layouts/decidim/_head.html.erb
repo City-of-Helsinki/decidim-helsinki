@@ -7,6 +7,10 @@
   <% end %>
 <% end %>
 
+<% if [Decidim::ProfilesController, Decidim::UserActivitiesController].include?(controller.class) %>
+  <meta name="robots" content="noindex,nofollow,noarchive,nositelinkssearchbox">
+<% end %>
+
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@<%= decidim_meta_twitter_handler %>">
 <meta name="twitter:title" content="<%= decidim_page_title %>">
