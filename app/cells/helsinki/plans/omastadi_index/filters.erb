@@ -21,20 +21,24 @@
         </div>
       <% end %>
     </div>
-    <div class="columns mediumlarge-6 large-4">
-      <div class="filters__section text-right">
-        <button type="reset" class="button primary small"><%= t ".filters.reset" %></button>
-      </div>
-    </div>
   </div>
 
   <div class="row">
+    <div class="<%= filters_main_row_column_class %>">
+      <div class="filters__section text_filter">
+        <fieldset>
+          <legend class="mini-title"><%= t(".filters.search") %></legend>
+          <%= form.search_field :search_text, label: false, placeholder: t(".filters.search"), title: t(".filters.search"), "aria-label": t(".filters.search"), data: { disable_dynamic_change: true } %>
+        </fieldset>
+      </div>
+    </div>
+
     <% if display_answer_filter? %>
       <div class="<%= filters_main_row_column_class %>">
         <div class="filters__section area_scope_id_filter">
           <fieldset>
             <legend class="mini-title"><%= t(".filters.state.legend") %></legend>
-            <%= form.select(:state, filter_states_values, { label: false, include_blank: t(".filters.state.all") }, "aria-label": t(".filters.state.legend")) %>
+            <%= form.select(:state, filter_states_values, { label: false, include_blank: t(".filters.state.all") }, "aria-label": t(".filters.state.legend"), data: { disable_dynamic_change: true }) %>
           </fieldset>
         </div>
       </div>
@@ -45,7 +49,7 @@
           <fieldset>
             <legend class="mini-title"><%= t(".filters.area_scope") %></legend>
             <%= fields_for "filter[section][#{area_scope_section.id}]", nil do |section_form| %>
-              <%= area_scopes_picker_field(section_form, :scope_id, root: false, options: { label: false, include_blank: t(".filters.all_area_scopes") }, html_options: { "aria-label": t(".filters.area_scope") }) %>
+              <%= area_scopes_picker_field(section_form, :scope_id, root: false, options: { label: false, include_blank: t(".filters.all_area_scopes") }, html_options: { "aria-label": t(".filters.area_scope"), data: { disable_dynamic_change: true } }) %>
             <% end %>
           </fieldset>
         </div>
@@ -57,30 +61,22 @@
           <fieldset>
             <legend class="mini-title"><%= t(".filters.category") %></legend>
             <%= fields_for "filter[section][#{category_section.id}]", nil do |section_form| %>
-              <%= section_form.select(:category_id, filter_categories_values, { label: false, include_blank: t(".filters.all_categories") }, "aria-label": t(".filters.category")) %>
+              <%= section_form.select(:category_id, filter_categories_values, { label: false, include_blank: t(".filters.all_categories") }, "aria-label": t(".filters.category"), data: { disable_dynamic_change: true }) %>
             <% end %>
           </fieldset>
         </div>
       </div>
     <% end %>
-    <div class="<%= filters_main_row_column_class %> end">
-      <div class="filters__section">
-        <div class="filters__search">
-          <fieldset>
-            <legend class="mini-title"><%= t(".filters.search") %></legend>
-            <div class="input-group">
-              <%= form.search_field :search_text, label: false, class: "input-group-field", placeholder: t(".filters.search"), title: t(".filters.search") %>
-              <div class="input-group-button">
-                <button type="submit" class="button button--muted" aria-label="<%= t(".filters.search") %>">
-                  <%= icon "magnifying-glass", aria_label: t(".filters.search"), role: "img" %>
-                </button>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      </div>
-    </div>
   </div>
 
   <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>
+
+  <div class="row columns">
+    <div class="filters__section">
+      <button type="submit" class="button primary" aria-label="<%= t(".filters.search") %>" aria-controls="projects-count projects" data-close>
+        <%= t(".filters.search") %>
+      </button>
+      <button type="reset" class="button clear"><%= t ".filters.reset" %></button>
+    </div>
+  </div>
 <% end %>
