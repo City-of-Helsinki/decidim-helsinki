@@ -33,7 +33,7 @@ gem "bootsnap", "~> 1.4"
 gem "puma", ">= 5.3.1"
 gem "uglifier", "~> 4.1"
 
-gem "faker", "~> 1.9"
+gem "faker", "~> 2.14"
 
 # For static maps, hasn't released an official release with the updated
 # dependencies. GitHub version works fine.
