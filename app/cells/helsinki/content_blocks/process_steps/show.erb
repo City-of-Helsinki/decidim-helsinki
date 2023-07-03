@@ -10,7 +10,7 @@
             <% past_step = true %>
             <% steps.each_with_index do |step, index| %>
               <% past_step = false if step.active? %>
-              <%= helper.process_step_tag(step, past_step) do %>
+              <%= helper.process_step_tag(step, past: past_step) do %>
                 <div class="phases-list-item-phase">
                   <span class="phases-list-item-number"><%= index + 1 %></span>
                 </div>

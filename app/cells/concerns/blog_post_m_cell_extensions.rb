@@ -10,7 +10,7 @@ module BlogPostMCellExtensions
 
     def description
       translated_summary = translated_attribute(model.summary)
-      return translated_summary unless translated_summary.blank?
+      return translated_summary if translated_summary.present?
 
       decidim_sanitize(html_truncate(translated_attribute(model.body), length: 100, separator: "..."))
     end

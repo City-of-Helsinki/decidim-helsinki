@@ -127,11 +127,11 @@ module Helsinki
 
       def fix_categories(process)
         process.categories.each do |cat|
-          cat_name = cat.name["fi"]
-          if cat_name == "Oppinen ja osaaminen"
+          case cat.name["fi"]
+          when "Oppinen ja osaaminen"
             cat.name["fi"] = "Oppiminen ja osaaminen"
             cat.save!
-          elsif cat_name == "Puisto ja luonto"
+          when "Puisto ja luonto"
             cat.name["fi"] = "Puistot ja luonto"
             cat.save!
           end
@@ -142,7 +142,7 @@ module Helsinki
         combined_process = Decidim::ParticipatoryProcess.find_by(slug: "osbu-2019")
         return combined_process if combined_process
 
-        base_path = File.expand_path(File.join(Rails.root, "app", "assets", "images", "helsinki", "osbu-2019"))
+        base_path = File.expand_path(Rails.root.join("app/assets/images/helsinki/osbu-2019"))
 
         hero_image = Pathname.new("#{base_path}/hero.jpg").open
         banner_image = Pathname.new("#{base_path}/banner.png").open
@@ -905,7 +905,7 @@ module Helsinki
               "comments_blocked" => false
             )
           },
-          published_at: Time.now
+          published_at: Time.current
         )
       end
 
@@ -1042,7 +1042,7 @@ module Helsinki
               "proposal_answering_enabled" => true
             )
           },
-          published_at: Time.now
+          published_at: Time.current
         )
       end
 
@@ -1124,7 +1124,7 @@ module Helsinki
               "plan_answering_enabled" => false
             )
           },
-          published_at: Time.now
+          published_at: Time.current
         )
 
         # Create sections
@@ -1295,7 +1295,7 @@ module Helsinki
               {}
             )
           },
-          published_at: Time.now
+          published_at: Time.current
         )
       end
 
@@ -1415,7 +1415,7 @@ module Helsinki
               "comments_blocked" => false
             )
           },
-          published_at: Time.now
+          published_at: Time.current
         )
 
         # Add the default details

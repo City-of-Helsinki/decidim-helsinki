@@ -7,7 +7,7 @@ module Helsinki
       include Decidim::Plans::RichPresenter
 
       def answer
-        return if !plan.answered? && !budget_estimate.present? && !final_budget_estimate.present?
+        return if !plan.answered? && budget_estimate.blank? && final_budget_estimate.blank?
 
         render :answer
       end
@@ -65,7 +65,7 @@ module Helsinki
       def final_budget_estimate
         @final_budget_estimate ||= begin
           return unless final_budget_estimate_content
-          return unless final_budget_estimate_content.body["value"].present?
+          return if final_budget_estimate_content.body["value"].blank?
 
           estimate = final_budget_estimate_content.body["value"].to_i
           return unless estimate.positive?

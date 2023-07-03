@@ -122,7 +122,7 @@ describe Helsinki::Stats::Voting::Aggregator do
         user: user
       )
       order = create(:order, :with_projects, budget: other_budget, user: user, vote: vote)
-      order.update!(checked_out_at: Time.now)
+      order.update!(checked_out_at: Time.current)
     end
 
     # Run the aggregator

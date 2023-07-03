@@ -9,7 +9,7 @@ module Helsinki
     URL_REGEX_SCHEME = '(?:http(s)?:\/\/)'
     URL_REGEX_CONTENT = '[\w.-]+[\w\-\._~:\/?#\[\]@!\$&\'\(\)\*\+,;=.]+'
     URL_REGEX_END_CHAR = '[\d]'
-    URL_REGEX = %r{#{URL_REGEX_SCHEME}#{URL_REGEX_CONTENT}/proposals/#{URL_REGEX_END_CHAR}+}i
+    URL_REGEX = %r{#{URL_REGEX_SCHEME}#{URL_REGEX_CONTENT}/proposals/#{URL_REGEX_END_CHAR}+}i.freeze
 
     Decidim::ContentParsers::ProposalParser.send(:remove_const, :URL_REGEX_END_CHAR)
     Decidim::ContentParsers::ProposalParser.const_set(:URL_REGEX_END_CHAR, URL_REGEX_END_CHAR)

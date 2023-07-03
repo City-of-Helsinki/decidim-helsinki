@@ -14,7 +14,7 @@ module Helsinki
           suggested.include?(resource)
         end
 
-        def vote_allowed?(_resource, _consider_progress = true)
+        def vote_allowed?(_resource, _consider_progress: true)
           voted.none?
         end
 

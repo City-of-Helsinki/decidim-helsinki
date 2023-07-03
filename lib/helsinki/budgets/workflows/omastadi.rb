@@ -28,8 +28,8 @@ module Helsinki
           false
         end
 
-        def vote_allowed?(_resource, _consider_progress = true)
-          return false unless authorization.present?
+        def vote_allowed?(_resource, _consider_progress: true)
+          return false if authorization.blank?
 
           voted.none?
         end

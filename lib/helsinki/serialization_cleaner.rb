@@ -26,9 +26,7 @@ module Helsinki
 
     def html_to_text(value)
       if value.is_a?(Hash)
-        value.map do |key, val|
-          [key, html_to_text(val)]
-        end.to_h
+        value.transform_values { |val| html_to_text(val) }
       else
         HtmlConverter.new(value).convert
       end

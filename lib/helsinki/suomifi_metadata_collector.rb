@@ -8,7 +8,7 @@ module Helsinki
       base.tap do |data|
         postal_code = base[:postal_code]
 
-        unless postal_code.blank?
+        if postal_code.present?
           data[:district] = Helsinki::DistrictMetadata.subdivision_for_postal_code(
             postal_code
           )

@@ -4,6 +4,7 @@ module Helsinki
   module ContentBlocks
     class ProcessStepsCell < Decidim::ViewModel
       delegate :decidim_participatory_processes, to: :controller
+      delegate :steps, to: :participatory_process
 
       def current_component
         controller.current_component if controller.respond_to?(:current_component)
@@ -25,10 +26,6 @@ module Helsinki
         @participatory_process ||= Decidim::ParticipatoryProcess.find_by(
           id: model.settings.process_id
         )
-      end
-
-      def steps
-        participatory_process.steps
       end
 
       def helper

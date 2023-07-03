@@ -7,7 +7,7 @@ namespace :custom_upgrade do
     puts "Modifying authorizations, this takes a while..."
     puts "-- Total records to process: #{Decidim::Authorization.count}"
     Decidim::Authorization.all.each_with_index do |auth, ind|
-      puts "-- Processed #{ind} records" if ind > 0 && ind % 50 == 0
+      puts "-- Processed #{ind} records" if ind.positive? && (ind % 50).zero?
 
       # Re-setting these values will internally convert the hash values to
       # encypted values

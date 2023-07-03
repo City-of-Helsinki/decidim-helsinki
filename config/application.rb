@@ -29,7 +29,7 @@ module DecidimHelsinki
     config.search_indexing = true
 
     # How long the sessions are valid
-    config.session_validity_period = 1.hours
+    config.session_validity_period = 1.hour
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -37,13 +37,13 @@ module DecidimHelsinki
 
     # Add the override translations to the load path
     config.i18n.load_path += Dir[
-      Rails.root.join("config", "locales", "crowdin-master/*.yml").to_s,
-      Rails.root.join("config", "locales", "overrides/*.yml").to_s,
+      Rails.root.join("config/locales/crowdin-master/*.yml").to_s,
+      Rails.root.join("config/locales/overrides/*.yml").to_s,
     ]
 
     # Add extra asset paths
     config.assets.paths += Dir[
-      Rails.root.join("app", "assets", "fonts").to_s,
+      Rails.root.join("app/assets/fonts").to_s,
     ]
 
     # Wrapper class can be used to customize the coloring of the platform per

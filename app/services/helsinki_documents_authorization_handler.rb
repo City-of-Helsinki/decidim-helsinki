@@ -132,18 +132,17 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def sanitized_document_type
-    case document_type&.to_sym
-    when :none
-      "00"
-    when :passport
-      "01"
-    when :idcard
-      "02"
-    when :drivers_license
-      "03"
-    when :kela_card
-      "04"
-    end
+    document_type_mapping[document_type&.to_sym]
+  end
+
+  def document_type_mapping
+    {
+      none: "00",
+      passport: "01",
+      idcard: "02",
+      drivers_license: "03",
+      kela_card: "04"
+    }
   end
 
   def age

@@ -23,7 +23,7 @@ module ApplicationHelper
     end
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting, Rails/HelperInstanceVariable
   def breadcrumbs
     links = []
     links << { title: t("decidim.menu.home"), url: decidim.root_path }
@@ -97,7 +97,7 @@ module ApplicationHelper
 
     links
   end
-  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting, Rails/HelperInstanceVariable
 
   # Defines whether the "common" content elements are displayed. In the
   # 'private' application mode these should be hidden in case the user is not

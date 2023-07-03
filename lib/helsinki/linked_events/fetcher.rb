@@ -40,9 +40,9 @@ module Helsinki
 
       def upcoming_events(publisher: nil, keywords: nil)
         events(publisher: publisher, keywords: keywords, start: "now").select do |event|
-          start_time = Time.parse(event["start_time"]) if event["start_time"]
-          end_time = Time.parse(event["end_time"]) if event["end_time"]
-          current_time = Time.now
+          start_time = Time.zone.parse(event["start_time"]) if event["start_time"]
+          end_time = Time.zone.parse(event["end_time"]) if event["end_time"]
+          current_time = Time.zone.now
 
           if start_time && end_time
             start_time >= current_time || end_time < current_time

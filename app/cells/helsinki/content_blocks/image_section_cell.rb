@@ -4,7 +4,7 @@ module Helsinki
   module ContentBlocks
     class ImageSectionCell < IntroCell
       def has_image?
-        !model.images_container.image.blank?
+        model.images_container.image.present?
       end
 
       def image

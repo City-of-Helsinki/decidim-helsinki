@@ -36,10 +36,12 @@ module Decidim
       end
 
       def processes_count_status
-        content_tag(
+        tag = content_tag(
           :strong,
           t("layouts.decidim.participatory_process_groups.participatory_process_group.processes_count")
-        ) + " " + model.participatory_processes.published.count.to_s
+        )
+
+        "#{tag} #{model.participatory_processes.published.count}"
       end
     end
   end

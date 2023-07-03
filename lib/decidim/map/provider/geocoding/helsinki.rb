@@ -273,9 +273,10 @@ module Decidim
             # (i.e. Finnish for Swedish original language, and vice versa). This
             # will serve the users better as especially Swedish speaking users
             # could be searching with Finnish place names.
-            if language == "sv"
+            case language
+            when "fi"
               geocoder_lookup.search(query.text, options.merge(language: "fi"))
-            elsif language == "fi"
+            when "sv"
               geocoder_lookup.search(query.text, options.merge(language: "sv"))
             else
               results
