@@ -14,20 +14,20 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-initiatives", DECIDIM_VERSION
 
 # External Decidim modules
-gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "develop"
+gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "release/0.23-stable"
 gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "release/0.23-stable"
-gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "develop"
+gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "release/0.23-stable"
 gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "release/0.23-stable"
-gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "main"
+gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "release/0.23-stable"
 gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.23-stable"
 gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.23-stable"
-gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "master"
+gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "release/0.23-stable"
 gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "release/0.23-stable"
 gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "release/0.23-stable"
-gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "develop"
-gem "decidim-process_groups_content_block", github: "mainio/decidim-module-process_groups_content_block", branch: "develop"
+gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "release/0.23-stable"
+gem "decidim-process_groups_content_block", github: "mainio/decidim-module-process_groups_content_block", branch: "release/0.23-stable"
 gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "release/0.23-stable"
-gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "main"
+gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "release/0.23-stable"
 gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "release/0.23-stable"
 gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.23-stable"
 gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
