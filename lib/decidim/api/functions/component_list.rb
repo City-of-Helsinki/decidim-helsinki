@@ -4,24 +4,37 @@ module Decidim
   module Core
     # Overridden ComponentList GraphQL function in order to provide admins the
     # possibility to fetch unpublished components.
-    class ComponentList < GraphQL::Function
+    #
+    # An abstract resolver for the GraphQL component endpoints inside a participatory_space.
+    # Used in the keyword "components", ie:
+    #
+    # participatoryProcesses {
+    #   components {...}
+    # }
+    #
+    # Needs to be extended and add arguments.
+    #
+    # This is used by ParticipatorySpaceInterface to apply filter/orders when
+    # searching raw components. When listing properly defined components,
+    # use ComponentListBase instead
+    class ComponentList
       include NeedsApiFilterAndOrder
+      include NeedsApiDefaultOrder
       attr_reader :model_class
 
       def initialize
-        @model_class = Decidim::Component
+        @model_class = Component
       end
 
       def call(participatory_space, args, ctx)
         @query = Decidim::Component
         # remove default ordering if custom order required
         @query = @query.unscoped if args[:order]
-        @query = @query.where(
-          participatory_space: participatory_space
-        )
+        @query = @query.where(participatory_space: participatory_space)
         @query = @query.published unless ctx[:current_user]&.admin?
         add_filter_keys(args[:filter])
         add_order_keys(args[:order].to_h)
+        add_default_order
         @query
       end
     end
