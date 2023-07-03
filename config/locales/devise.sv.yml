@@ -1,17 +1,19 @@
 sv:
   devise:
+    omniauth_callbacks:
+      disabled: Inloggning är tillfälligt inaktiverad.
     sessions:
       new:
         sign_in: 'Logga in'
     shared:
       omniauth:
         tunnistamo:
-          description: ''
-          sign_in_with: 'Med hjälp av Tunnistamo kan du logga in i tjänsten bl.a. genom Google, Facebook eller YLE.'
+          description: 'Du kan logga in också i tjänsten bl.a. genom Google, Facebook eller YLE med hjälp av Tunnistamo.'
+          sign_in_with: 'Logga in utan att verifiera din identitet'
           sign_in_button: 'Logga in'
         strong:
-          description: 'Genom att logga in på omastadi.hel.fi-tjänsten med dina bankkoder eller ett mobilcertifikat kan du genast komma åt att rösta.  Klass 6–9 i grundskolan kan logga in och identifiera sig för att rösta med Wilma ID.'
-          sign_in_with: 'Logga in och identifiera dig för att rösta'
+          description: 'Logga in på omastadi.hel.fi-tjänsten med dina bankkoder eller ett mobilcertifikat. Studenter i grundskolan kan logga in med Wilma ID.'
+          sign_in_with: 'Logga in och identifiera dig elektroniskt'
         suomifi:
           description: 'Suomi.fi bjuder på möjligheten att identifiera sig bl.a. genom finska bankkoder och mobilcertifikat.'
           sign_in_with: 'Suomi.fi-identifiering'
@@ -19,9 +21,9 @@ sv:
         mpassid:
           description: 'Som grundskolestudent kan du identifiera dig själv genom MPASSid-tjänsten med ditt skolkonto.'
           sign_in_with: 'MPASSid-identifikation'
-          sign_in_button: 'Wilma ID för grundskoleelever'
+          sign_in_button: 'Wilma ID för skoleelever'
         weak:
-          description: 'Du kan också logga in på Tunnistamo-tjänsten med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med Omastadi-kontot du skapade tidigare. Första gången du röstar måste du också identifiera dig med ditt bankkonto, mobilcertifikat eller Wilma-ID för grundskoleelever.'
+          description: 'Du kan också logga in på Tunnistamo-tjänsten med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med Omastadi-kontot du skapade tidigare.'
           sign_in_with: 'Logga in utan identifikation'
           sign_in_button: 'Logga in med Tunnistamo-tjänsten'
   decidim:

@@ -1,29 +1,5 @@
-@import "social-share-button";
-
-$size: 45px;
-
 .login-icons{
   img{
     max-width: 100px;
-  }
-}
-
-.social-share-button{
-  display: inline-block;
-  vertical-align: top;
-
-  .ssb-icon{
-    margin-right: 5px;
-    background-size: $size $size;
-    height: $size;
-    width: $size;
-  }
-
-  .ssb-yle{
-    background-image: asset-url('social-share-button/yle.svg');
-  }
-
-  .ssb-hel{
-    background-image: asset-url('social-share-button/hel.svg');
   }
 }

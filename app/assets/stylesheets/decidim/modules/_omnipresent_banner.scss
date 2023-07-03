@@ -1,9 +1,9 @@
-$omnipresent-banner-bg: $hel-copper;
+$omnipresent-banner-bg: $primary;
 $omnipresent-banner-bg-paahtimo: $hel-coat;
-$omnipresent-banner-bg-ruuti: $hel-copper;
-$omnipresent-banner-fg: $black;
+$omnipresent-banner-bg-ruuti: $ruuti-secondary;
+$omnipresent-banner-fg: $white;
 $omnipresent-banner-fg-paahtimo: $white;
-$omnipresent-banner-fg-ruuti: $black;
+$omnipresent-banner-fg-ruuti: $white;
 
 .omnipresent-banner{
   background-color: $omnipresent-banner-bg;
@@ -27,7 +27,7 @@ $omnipresent-banner-fg-ruuti: $black;
 
     &:hover,
     &:focus{
-      color: rgba($white, .8);
+      color: rgba($white, .9);
     }
   }
 }
@@ -42,7 +42,7 @@ $omnipresent-banner-fg-ruuti: $black;
 
       &:hover,
       &:focus{
-        color: rgba($omnipresent-banner-fg-paahtimo, .8);
+        color: rgba($omnipresent-banner-fg-paahtimo, .9);
       }
     }
   }
@@ -58,7 +58,7 @@ $omnipresent-banner-fg-ruuti: $black;
 
       &:hover,
       &:focus{
-        color: rgba($omnipresent-banner-fg-ruuti, .8);
+        color: rgba($omnipresent-banner-fg-ruuti, .9);
       }
     }
   }

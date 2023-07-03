@@ -1,0 +1,43 @@
+en:
+  activemodel:
+    attributes:
+      post:
+        card_image: Card image
+        main_image: Main image
+        summary: Summary
+        title: Title
+  decidim:
+    blogs:
+      actions:
+        user_group_id: Create article as
+      directory:
+        posts:
+          index:
+            posts: News
+            description: In the news section, you can find recent information about the service.
+      post_m:
+        card_label: "Article: %{title}"
+        view: Show article
+        view_detailed: "Show article: %{name}"
+      posts:
+        count:
+          posts_count:
+            one: 1 article
+            other: "%{count} articles"
+        filters:
+          label: Article search
+          reset: Clear filters
+          search: Search
+          term: Keyword
+          title: Search articles
+        filters_small_view:
+          close_modal: Close modal
+          filter: Filter
+          filter_by: Filter by
+          unfold: Unfold
+        index:
+          title: News
+        posts:
+          empty: No articles found with the search criteria.
+        show:
+          view_all_articles: Go to the news section

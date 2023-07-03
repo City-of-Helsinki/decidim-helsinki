@@ -1,0 +1,82 @@
+<%= filter_form_for filter do |form| %>
+  <div class="row columns">
+    <div class="filters__section filters__section--title">
+      <p class="h3"><%= t(".filters.title") %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns mediumlarge-6 large-8">
+      <% if current_user %>
+        <div class="filters__section activity_collection_radio_buttons_filter">
+          <fieldset>
+            <legend class="mini-title"><%= t(".filters.activity.title") %></legend>
+            <% activity_filter_values.each do |value|%>
+              <label>
+                <%= form.radio_button :activity, value[0], label: false, checked: value[0] == "all" %>
+                <%= value[1] %>
+              </label>
+            <% end %>
+          </fieldset>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="<%= filters_main_row_column_class %>">
+      <div class="filters__section text_filter">
+        <fieldset>
+          <legend class="mini-title"><%= t(".filters.search") %></legend>
+          <%= form.search_field :search_text, label: false, placeholder: t(".filters.search"), title: t(".filters.search"), "aria-label": t(".filters.search"), data: { disable_dynamic_change: true } %>
+        </fieldset>
+      </div>
+    </div>
+
+    <% if display_answer_filter? %>
+      <div class="<%= filters_main_row_column_class %>">
+        <div class="filters__section area_scope_id_filter">
+          <fieldset>
+            <legend class="mini-title"><%= t(".filters.state.legend") %></legend>
+            <%= form.select(:state, filter_states_values, { label: false, include_blank: t(".filters.state.all") }, "aria-label": t(".filters.state.legend"), data: { disable_dynamic_change: true }) %>
+          </fieldset>
+        </div>
+      </div>
+    <% end %>
+    <% if display_area_scopes_filter? %>
+      <div class="<%= filters_main_row_column_class %>">
+        <div class="filters__section area_scope_id_filter">
+          <fieldset>
+            <legend class="mini-title"><%= t(".filters.area_scope") %></legend>
+            <%= fields_for "filter[section][#{area_scope_section.id}]", nil do |section_form| %>
+              <%= area_scopes_picker_field(section_form, :scope_id, root: false, options: { label: false, include_blank: t(".filters.all_area_scopes") }, html_options: { "aria-label": t(".filters.area_scope"), data: { disable_dynamic_change: true } }) %>
+            <% end %>
+          </fieldset>
+        </div>
+      </div>
+    <% end %>
+    <% if display_category_filter? %>
+      <div class="<%= filters_main_row_column_class %>">
+        <div class="filters__section category_id_filter">
+          <fieldset>
+            <legend class="mini-title"><%= t(".filters.category") %></legend>
+            <%= fields_for "filter[section][#{category_section.id}]", nil do |section_form| %>
+              <%= section_form.select(:category_id, filter_categories_values, { label: false, include_blank: t(".filters.all_categories") }, "aria-label": t(".filters.category"), data: { disable_dynamic_change: true }) %>
+            <% end %>
+          </fieldset>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>
+
+  <div class="row columns">
+    <div class="filters__section">
+      <button type="submit" class="button primary" aria-label="<%= t(".filters.search") %>" aria-controls="projects-count projects" data-close>
+        <%= t(".filters.search") %>
+      </button>
+      <button type="reset" class="button clear"><%= t ".filters.reset" %></button>
+    </div>
+  </div>
+<% end %>

@@ -1,4 +1,12 @@
 en:
+  decidim:
+    components:
+      budgets:
+        settings:
+          global:
+            workflow_choices:
+              omastadi: 'OmaStadi: allows participants to vote in the Entire Helsinki area and in one major district of their choice.'
+              ruuti_one: 'Ruuti vote in one: allows participants to vote in the budget of their Ruuti area.'
   helsinki:
     areas:
       choose_your_area: Choose your area from the map
@@ -27,6 +35,76 @@ en:
           help: You can vote both on the plans for entire Helsinki and plans for the district you select below. The service automatically suggests a major district based on your postal code (or postal code of your school if you identify with Wilma), but you can change it using the drop-down menu. If you want to vote for a particular plan, please check beforehand what districts it belongs to. If you want to change the district later, please see Instructions.
           title: Accept the major district
           submit: Accept
+    content_blocks:
+      background_section:
+        name: Background section
+      background_section_settings_form:
+        description: Description
+        button1_text: Button 1 text
+        button1_url: Button 1 URL
+        button2_text: Button 2 text
+        button2_url: Button 2 URL
+        title: Title
+      help_section:
+        name: Help section
+      help_section_settings_form:
+        description: Description
+        button1_text: Button 1 text
+        button1_url: Button 1 URL
+        button2_text: Button 2 text
+        button2_url: Button 2 URL
+        title: Title
+      highlighted_blogs:
+        name: Highlighted blogs
+        show_more: Show more
+        show_more_detailed: Show more news
+      highlighted_blogs_settings_form:
+        title: Title
+      ideas_carousel:
+        name: Ideas carousel
+      image_section:
+        name: Image section
+      image_section_settings_form:
+        description: Description
+        image: Image
+        link_text: Link text
+        link_url: Link URL
+        title: Title
+      intro:
+        name: Intro
+      intro_settings_form:
+        description: Description
+        link_text: Link text
+        link_url: Link URL
+        title: Title
+      linked_events:
+        name: Linked Events - Upcoming events
+      linked_events_settings_form:
+        button_text: Button text
+        button_url: Button URL
+        event_url: Event page URL
+        keywords: Keywords (separated with a comma without spaces)
+        publisher: Publisher
+        title: Title
+      plans_carousel:
+        name: Proposals carousel (cocreation)
+      process_steps:
+        name: Process steps
+        navigate: Navigate phases
+      process_steps_settings_form:
+        process: Process
+      projects_carousel:
+        name: Proposals carousel (voting)
+      records_carousel:
+        next: Next
+        previous: Previous
+      records_carousel_settings_form:
+        button_text: Button text
+        button_url: Button URL
+        process: Process
+        title: Title
+      results_carousel:
+        name: Project carousel (implementation)
     copyright: '%{year} City of Helsinki'
     devise:
       shared:
@@ -48,13 +126,119 @@ en:
         creator: Original creator of the image
         license: Image license
         note: The image has been edited from the original
+    plans:
+      layouts:
+        omastadi: OmaStadi
+      omastadi_form:
+        buttons:
+          create: Create and preview
+          discard: Discard this draft
+          discard_confirmation: Are you sure you want to discard this draft?
+          loading_message: Saving... Processing of images and attachments takes a while, please wait.
+          save: Save
+          save_draft: Save draft
+          you_can_invite_others: If you are submitting a proposal as a group, you can invite others to collaborate on the proposal.
+        characters_min: "(at least %count% characters required)"
+        characters_used: "%count%/%total% characters used"
+        edit_step_info: Write a brief description of your proposal and select the area in which it will be located. A good description explains what should be done concretely and where the funding is needed. When creating a proposal, you can utilise information about the city's services and plans.
+        ideas_step_info: Proposals are made on the basis of ideas submitted by citizens that meet the criteria. Begin developing your proposal by selecting one or more ideas as its foundation. Every proposal must be based on at least one of the ideas which is accepted and fulfills the Omastadi criteria. Before you start creating your proposal, learn about the other proposals made for your area.
+        info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
+        required_fields_text: Required fields are marked with the *-character.
+        steps:
+          next: Next
+          previous: Previous
+      omastadi_form_steps:
+        attach_ideas: Attach ideas
+        browse_proposals: Browse proposals
+        edit: Proposal details
+        preview: Preview and publish
+      omastadi_index:
+        draft_plan_title: You have a proposal draft!
+        draft_plan_continue: Continue your proposal
+        draft_plan_description: You have previously saved a proposal as a draft. You can now continue writing it.
+        empty_filters: There isn't any proposals with this criteria
+        filters:
+          activity:
+            all: All
+            my_favorites: My favorites
+            my_plans: My proposals
+            title: My activity
+          all_area_scopes: All areas
+          all_categories: All themes
+          area_scope: Area
+          category: Theme
+          close_modal: Close modal
+          filter: Filter
+          filter_by: Filter by
+          related_to: Related to
+          reset: Clear filters
+          search: Search
+          state:
+            accepted: Proceeds to voting
+            all: All
+            evaluating: Evaluating
+            legend: State
+            not_answered: Not answered
+            rejected: Will not proceed to voting
+          tag: Tags
+          tag_prompt: Select tags
+          title: Search proposals
+          unfold: Unfold
+        leave_your_plan: Create your own proposal!!
+        new_plan: New proposal
+        see_all_withdrawn: See all withdrawn
+        subtitle: Find and explore proposals!
+        title: Browse proposals
+        view_plan: View proposal
+      omastadi_view:
+        answer:
+          final_estimate: 'Final budget estimate: %{amount}'
+          generic_title: Answer
+          initial_estimate: Initial budget estimate
+          reasoning: Reasoning
+          show_final_estimate: Show final budget estimate
+          show_initial_estimate: Show initial budget estimate
+        authors: Proposal authors
+        back: Back to proposals list
+        back_to_list: Show other proposals
+        collaborator_requests: Requests to edit
+        controls:
+          add_author: Add authors for proposal
+          close_plan: Mark as done
+          close_plan_confirm_html: Are you sure you want to mark this proposal as done? Once the proposal is marked done, it can no longer be edited.
+          edit_plan: Edit proposal
+          withdraw_plan: Withdraw proposal
+          withdraw_confirmation_html: Are you sure you want to withdraw this proposal?
+        feedback_title: Thank you for submitting a proposal!
+        flag: Flag
+        info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
+        linked_ideas: Ideas attached to this proposal
+        manage_plan: Manage proposal
+        pending_access_request_message_html: <p>You have requested editing access to this proposal. Please wait for the collaborators to respond to your request.</p><p>You will receive an email notification once your request is answered.</p>
+        request_access: Request access to edit
+        share: Share
+        share_link: Share link
+        show_comments: Show comments
+        show_on_map: Show on map
+        related_documents: Related documents
+      plan_m:
+        view_plan: View proposal
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Your grade level cannot be verified electronically.
-      class_level_not_allowed: You may be too young or too old to vote.
-      voting_unit_not_allowed: You cannot vote in this area from your school.
-      voting_unit_required: Information needed about your Ruuti area.
+      class_level_not_allowed_max: Your grade level should not be above %{max}.
+      class_level_not_allowed_min: Your grade level should not be below %{min}.
+      class_level_not_allowed_one: Your grade level should be %{level}.
+      class_level_not_defined: Your grade level is not defined.
+      disallowed_municipality: The voting is limited only to Helsinki residents.
+      disallowed_role: The Wilma identification is limited only to pupils.
+      disallowed_school: Voting is not allowed in this school.
+      disallowed_voting_unit: You cannot vote on this area from your school.
+      voting_unit_required: Information about your Ruuti area is not defined.
   suomifi_action_authorizer:
     restrictions:
-      district_not_allowed: You have already chosen to vote in another major district.
-      district_required: Major district information is requred.
+      disallowed_district: This voting is not allowed from your major district.
+      disallowed_municipality: Voting is limited only to Helsinki residents.
+      district_required: Information about your major district is needed.
+      physically_identified: You have already identified yourself physically. Please contact the City of Helsinki.
+      too_young: You are too young to vote.

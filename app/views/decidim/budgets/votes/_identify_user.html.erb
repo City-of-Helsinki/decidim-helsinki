@@ -1,0 +1,33 @@
+<%
+extra_locals = {
+  resource: Decidim::User.new,
+  resource_class: Decidim::User,
+  resource_name: :user,
+  devise_mapping: Devise.mappings[:user]
+}
+%>
+
+<% if !user_signed_in? && !authorization_required? %>
+  <div>
+    <div class="wrapper pb-0">
+      <div class="row collapse">
+        <div class="columns large-8 large-centered text-center page-title">
+          <h2><%= t("devise.sessions.new.sign_in") %></h2>
+          <%== translated_attribute component_settings.vote_identify_page_content %>
+        </div>
+      </div>
+    </div>
+
+    <% if Rails.application.config.wrapper_class == "wrapper-ruuti" %>
+      <%= render "decidim/devise/sessions/ruuti", extra_locals: extra_locals %>
+    <% elsif private_mode? %>
+      <%= render "decidim/devise/sessions/private", extra_locals: extra_locals %>
+    <% else %>
+      <%= render "decidim/devise/sessions/default", extra_locals: extra_locals %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="wrapper">
+    <%= render partial: "identify_options" %>
+  </div>
+<% end %>

@@ -1,0 +1,152 @@
+.input-group{
+  > :last-child.input-group-button > *{
+    // Move the last child on top of the input element's border.
+    margin-left: -2px;
+  }
+}
+
+.input-group-button{
+  .button{
+    height: 3.45rem;
+  }
+}
+
+label.checkbox-field{
+  margin-bottom: 1rem;
+}
+
+label{
+  + .help-text,
+  + .form-error{
+    margin-top: 1rem;
+  }
+}
+
+input[type="checkbox"],
+input[type="radio"]{
+  position: relative;
+  top: 4px;
+  z-index: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  outline: none;
+
+  &::before,
+  &::after{
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -2px;
+    left: -2px;
+    width: 24px;
+    height: 24px;
+    background-color: $white;
+  }
+
+  &::before{
+    border: 2px solid $dark-medium-gray;
+  }
+
+  &::after{
+    display: none;
+  }
+
+  &.focus,
+  &:focus{
+    outline: $input-radiocheck-outline-focus;
+  }
+
+  &:checked{
+    &::before{
+      border-color: $primary;
+    }
+
+    &::after{
+      display: block;
+    }
+  }
+}
+
+input[type="checkbox"]{
+  &:checked{
+    &::before{
+      background-color: $primary;
+    }
+
+    &::after{
+      mask-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 0h24v24H0z'/%3E%3Cpath fill='currentColor' d='M21 7L10 18l-5.5-5.5L6 11l4 4 9.5-9.5z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+  }
+}
+
+input[type="radio"]{
+  &::before,
+  &::after{
+    border-radius: 50%;
+  }
+
+  &::after{
+    width: 12px;
+    height: 12px;
+    top: 4px;
+    left: 4px;
+  }
+
+  &:checked{
+    &::after{
+      display: block;
+      background-color: $primary;
+    }
+  }
+}
+
+.wrapper-ruuti{
+  input[type="checkbox"],
+  input[type="radio"]{
+    &:checked{
+      &::before{
+        border-color: $ruuti-primary;
+      }
+    }
+  }
+
+  input[type="checkbox"]{
+    &:checked{
+      &::before{
+        background-color: $ruuti-primary;
+      }
+    }
+  }
+
+  input[type="radio"]{
+    &:checked{
+      &::after{
+        background-color: $ruuti-primary;
+      }
+    }
+  }
+}
+
+.actions{
+  .icon-button{
+    position: relative;
+    padding-right: 45px;
+
+    .icon{
+      position: absolute;
+      top: 19px;
+      right: 12px;
+      margin-left: 10px;
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+}
+
+.mentions__container,
+.hashtags__container{
+  .tribute-container{
+    top: -2rem - rem-calc(1);
+  }
+}

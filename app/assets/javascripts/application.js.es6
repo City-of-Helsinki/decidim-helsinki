@@ -13,13 +13,15 @@
 // = require rails-ujs
 // = require activestorage
 // = require cable
-// = require_self
 // = require decidim
 // = require ie-polyfills
 // = require app/toggle-checkbox
 // = require app/fix-map-toggle
+// = require app/modal-accessibility
 // = require app/remaining-characters
 // = require app/youtube-modal
+// = require app/slider
+// = require_self
 
 ((exports) => {
   // eslint-disable-next-line id-length
@@ -30,8 +32,56 @@
     $("[data-toggle-checkbox]").toggleCheckbox();
     $(".remaining-characters-container [data-remaining-characters]").remainingCharacters();
     $("[data-open-youtube]").youtubeModal();
+    $(".card-slider").slider();
     $("a[data-open]").on("click", (ev) => {
       ev.preventDefault();
+    });
+
+    $(document).on("open.zf.reveal", (ev) => {
+      const $modal = $(ev.target);
+      $modal.modalAccessibility();
+
+      if ($(".off-canvas-wrapper").hasClass("wrapper-ruuti")) {
+        $modal.addClass("wrapper-ruuti");
+      }
+    });
+
+    // Move the scroll position at the top of the accordion when it is opened if
+    // it is outside of the current view.
+    $(".accordion").each((_i, element) => {
+      const $accordion = $(element);
+      const accordionPlugin = $accordion.data("zfPlugin");
+      let accordionTo = null;
+
+      $(".accordion-item .accordion-title", $accordion).on("click", (ev) => {
+        const $title = $(ev.target);
+        const $item = $title.parents(".accordion-item");
+
+        // Wait for the accordion to open
+        clearTimeout(accordionTo);
+        accordionTo = setTimeout(() => {
+          const currentTop = $(window).scrollTop();
+          const currentBottom = currentTop + window.innerHeight;
+          const targetPos = $item.offset().top;
+
+          if (targetPos < currentTop || targetPos > currentBottom) {
+            $(window).scrollTop(targetPos);
+          }
+        }, accordionPlugin.options.slideSpeed + 50);
+      })
+    });
+
+    // Open process nav with enter
+    const $processNavState = $("#phases_navigation_state");
+    $processNavState.on("keypress", (event) => {
+      if (event.which !== 13) {
+        return;
+      }
+      if ($processNavState.is(":checked")) {
+        $processNavState.prop("checked", false);
+      } else {
+        $processNavState.prop("checked", true);
+      }
     });
 
     // IE polyfills

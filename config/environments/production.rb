@@ -7,7 +7,7 @@ Rails.application.configure do
   config.mpassid_enabled = true
 
   # Tracking
-  config.snoobi_account = "omastadi_hel_fi"
+  config.matomo_site_id = 349
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -49,6 +49,9 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
+
+  # Secure cookies only
+  config.session_store :cookie_store, secure: true, httponly: true, expire_after: Rails.application.config.session_validity_period
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.

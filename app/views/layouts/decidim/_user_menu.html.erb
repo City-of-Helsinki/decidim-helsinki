@@ -1,9 +1,36 @@
 <li class="user-nav__link"><%= link_to t(".profile"), decidim.account_path %></li>
 <% unless current_user.managed? %>
-  <li class="user-nav__link"><%= link_to t(".public_profile"), decidim.profile_following_path(current_user.nickname) %></li>
+  <li class="user-nav__link"><%= link_to t(".public_profile"), decidim.profile_activity_path(current_user.nickname) %></li>
 <% end %>
-<li class="user-nav__link"><%= link_to t(".notifications"), decidim.notifications_path %></li>
-<li class="user-nav__link"><%= link_to t(".conversations"), decidim.conversations_path %></li>
+<li class="user-nav__link">
+  <%= link_to decidim.notifications_path do %>
+    <%= t(".notifications") %>
+    <% if current_user.notifications.any? %>
+      <span class="menu-notification">
+        <% if current_user.notifications.count < 100 %>
+          <%= current_user.notifications.count %>
+        <% else %>
+          <%= icon "bell" %>
+        <% end %>
+      </span>
+    <% end %>
+  <% end %>
+</li>
+<li class="user-nav__link">
+  <%= link_to decidim.conversations_path do %>
+    <%= t(".conversations") %>
+    <% if current_user.unread_messages_count > 0 %>
+      <span class="menu-notification">
+        <% if current_user.unread_messages_count < 100 %>
+          <%= current_user.unread_messages_count %>
+        <% else %>
+          <%= icon "bell" %>
+        <% end %>
+      </span>
+    <% end %>
+  <% end %>
+</li>
+<li class="user-nav__link"><%= link_to t(".favorites"), decidim_favorites.favorites_path %></li>
 <% if allowed_to? :read, :admin_dashboard %>
   <li class="user-nav__link"><%= link_to t(".admin_dashboard"), decidim_admin.root_path %></li>
 <% end %>

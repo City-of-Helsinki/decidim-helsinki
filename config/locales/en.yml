@@ -1,8 +1,6 @@
 en:
   activemodel:
     attributes:
-      budgeting_verification:
-        district: District (your recommended district by default)
       helsinki_documents_authorization_handler:
         document_type: Identity document type
         first_name: First name
@@ -14,18 +12,29 @@ en:
         voting_unit: Ruuti area
       suomifi_eid:
         district: District
+      result:
+        budget_amount: Total budget for the project
+        budget_breakdown: Budget breakdown
+        interaction_description: Interaction description
+        news_description: News
+        plans_description: Plans description
     errors:
       models:
         helsinki_documents_authorization_handler:
           attributes:
             pin:
+              electronically_identified: The person has been already identified electronically.
               invalid_pin: invalid personal identity number
-              used: the personal identity number is already in use
   activerecord:
     models:
-      decidim/plans/plan: Plan
+      decidim/plans/plan:
+        one: Proposal
+        other: Proposals
   auth:
     sign_in_with_tunnistamo: 'Use Tunnistamo to sign in'
+  date:
+    formats:
+      decidim_short: "%d.%m.%Y"
   decidim:
     authorization_handlers:
       admin:
@@ -35,12 +44,6 @@ en:
             - An admin will review the request
             - Admin will either approve or reject the access request
             - The user will get notified that their access request has been either approved or rejected
-      budgeting_identity:
-        explanation: Identify yourself for participatory budgeting
-        name: Budgeting
-        fields:
-          allowed_districts: Allowed districts
-          district: District
       cocreation:
         explanation: Ask for permission to create cocreation plans
         name: Cocreation
@@ -50,28 +53,68 @@ en:
           drivers_license: Driver's license
           idcard: ID card
           kela_card: KELA card
+          none: None
           passport: Passport
         name: Identity document at an office
         user_explanation: Go to a physical location to identify yourself with an identity document.
       mpassid_nids:
         fields:
+          allowed_roles: Allowed roles
           allowed_units: Allowed Ruuti areas
-          max_class_level: Maximum grade level
-          min_class_level: Minimum grade level
+          maximum_class_level: Maximum grade level
+          minimum_class_level: Minimum grade level
           student_class_level: Grade level
           voting_unit: Ruuti area
+        name: Wilma ID for school students
       suomifi_eid:
         fields:
           allowed_districts: Allowed districts
           district: District
+          minimum_age: Minimum age
+        name: Bank ID or mobile ID
+    budgets:
+      projects:
+        filters:
+          category_prompt: Choose category
+    components:
+      component_order_selector:
+        order:
+          idea: Idea
+          plan: Proposal
+    forms:
+      file_help:
+        file:
+          explanation: 'Guidance for file:'
+          message_1: Has to be an image or a document.
+          message_2: For images, use preferrably landscape images, the service crops the image.
+        image:
+          explanation: 'Guidance for image:'
+          message_1: Preferrably a landscape image that does not have any text.
+          message_2: The service crops the image.
+    help_sections:
+      footer_text:
+        name: Footer text
+      help_index:
+        name: Help section front page
     pages:
       home:
         statistics:
           plans_count: Plans
+      index:
+        title: Help
+      side_panel:
+        show_navigation: Show navigation
+    proposals:
+      proposals:
+        filters:
+          category_prompt: Choose category
     suomifi:
       omniauth_callbacks:
         failure:
           security_denial: Your identity cannot be verified electronically. You can vote at the polling stations announced separately by showing an ID.
+  errors:
+    messages:
+      extension_whitelist_error: The file type you tried to upload is not allowed.
   forms:
     scopes_picker:
       others: Others
@@ -101,8 +144,31 @@ en:
     decidim:
       assembly_header:
         unfold: Unfold
+      breadcrumbs:
+        current: Current page
+      header:
+        choose_language: Select language
+        front_page_link: Go to front page
+        help: Help
+        navigation: Menu
+        sign_in: Sign in
+        subtitle: 2020-2021
+      participatory_processes:
+        index:
+          active_processes: Ongoing now
+          past_processes: Past rounds
       process_header:
         unfold: Unfold
+      user_menu:
+        conversations: Messages
+        favorites: Favourites
+        notifications: Notifications
+        profile: Account information
+        profile_nav: Profile
+        public_profile: My activity
     footer:
-      feedback: Give feedback
       about: About the service
+      contact: Contact information
+      feedback: Give feedback
+      processes_info: You can see all the processes in this service from the processes page
+      processes_show: Show all processes

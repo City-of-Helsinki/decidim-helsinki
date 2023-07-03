@@ -1,6 +1,7 @@
-<ul class="menu vertical hide-on-load">
-  <% (available_locales - [I18n.locale.to_s]).each do |locale| %>
-    <li class="language-nav__link">
+<ul class="menu">
+  <% available_locales.each do |locale| %>
+    <li class="language-nav-link<%= " language-nav-link-current" if locale == I18n.locale.to_s %>" lang="<%= locale %>">
+      <span class="language-nav-separator" aria-hidden="true"></span>
       <%= link_to locale_name(locale), decidim.locale_path(locale: locale), method: :post %>
     </li>
   <% end %>

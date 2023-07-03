@@ -13,13 +13,11 @@
  *= require_self
  */
 
-@import 'decidim';
-@import 'helsinki';
-
-// Foundation override
-.callout{
-  font-weight: 800;
-}
+@import "decidim";
+@import "decidim/feedback/feedback-form";
+@import "decidim/budgeting_pipeline/budgets";
+@import "decidim/accountability_simple/result";
+@import "helsinki";
 
 // Fix the flickering navs on load
 html.js .hide-on-load{

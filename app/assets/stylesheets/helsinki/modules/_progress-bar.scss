@@ -1,0 +1,19 @@
+.progress-meter{
+  &.progress-meter--low{
+    .progress-meter-text{
+      // When the progress is less than 10%, the text could otherwise span
+      // outside of the progress bar.
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+.wrapper-ruuti{
+  .progress-meter{
+    position: relative;
+    display: block;
+    width: 0%;
+    height: 100%;
+    background-color: $ruuti-primary;
+  }
+}

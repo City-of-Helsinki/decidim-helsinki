@@ -15,6 +15,24 @@ input{
   }
 }
 
+.wrapper-ruuti{
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4,
+  h5,
+  .h5,
+  h6,
+  .h6,
+  a{
+    color: $ruuti-primary;
+  }
+}
+
 .heading1{
   font-weight: 600;
 
@@ -51,8 +69,30 @@ input{
   font-size: 1rem;
 }
 
-a{
+a,
+.link{
   font-weight: $anchor-font-weight;
+  cursor: pointer;
+
+  &:hover{
+    color: $anchor-color-hover;
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+  }
+
+  &:focus{
+    outline: $anchor-outline-focus;
+    outline-offset: $anchor-outline-offset;
+  }
+}
+
+button,
+.button{
+  &:focus{
+    outline: $button-outline-focus;
+    // outline-color: var(--highlight);
+    outline-offset: $button-outline-offset;
+  }
 }
 
 hr{

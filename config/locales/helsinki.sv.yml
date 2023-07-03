@@ -1,4 +1,12 @@
 sv:
+  decidim:
+    components:
+      budgets:
+        settings:
+          global:
+            workflow_choices:
+              omastadi: 'OmaStadi: tillåter deltagare att rösta i Hela Helsingfors området och i ett större distrikt efter eget val.'
+              ruuti_one: 'Ruuti röstar i ett: tillåter deltagare att rösta i budgeten för deras Ruuti-område.'
   helsinki:
     areas:
       choose_your_area: Välj din region på kartan
@@ -27,6 +35,76 @@ sv:
           help: Dur kan rösta i det stordistrikt som du väljer och dessutom hela Helsingfors röstningsområde. Programmet föreslår som standard ditt postnummers stordistrikt, men du kan om du vill ändra på röstningsområdet i rullgardinsmenyn. Om du vill rösta för en viss plan, vänligen se i förväg vilka distrikt den tillhör. Om du vill ändra distriktet senare, se Instruktioner.
           title: Godkänn stordistriktet
           submit: Godkänn
+    content_blocks:
+      background_section:
+        name: Bakgrundssektion
+      background_section_settings_form:
+        description: Beskrivning
+        button1_text: Knapp 1 text
+        button1_url: Knapp 1 URL
+        button2_text: Knapp 2 text
+        button2_url: Knapp 2 URL
+        title: Titel
+      help_section:
+        name: Hjälpsektion
+      help_section_settings_form:
+        description: Beskrivning
+        button1_text: Knapp 1 text
+        button1_url: Knapp 1 URL
+        button2_text: Knapp 2 text
+        button2_url: Knapp 2 URL
+        title: Titel
+      highlighted_blogs:
+        name: Markerade bloggar
+        show_more: Visa mer
+        show_more_detailed: Visa mer aktuella saker
+      highlighted_blogs_settings_form:
+        title: Titel
+      ideas_carousel:
+        name: Idéer karusell
+      image_section:
+        name: Image section
+      image_section_settings_form:
+        description: Beskrivning
+        image: Bild
+        link_text: Länktext
+        link_url: Länk URL
+        title: Titel
+      intro:
+        name: Intro
+      intro_settings_form:
+        description: Beskrivning
+        link_text: Länktext
+        link_url: Länk URL
+        title: Titel
+      linked_events:
+        name: Linked Events - Uppkommande händelser
+      linked_events_settings_form:
+        button_text: Knapp text
+        button_url: Knapp URL
+        event_url: Händelsesidans URL
+        keywords: Nyckelord (avgränsade med kommatecken utan mellanslag)
+        publisher: Utgivare
+        title: Titel
+      plans_carousel:
+        name: Förslagskarusell (samutveckling)
+      process_steps:
+        name: Process steg
+        navigate: Navigera steg
+      process_steps_settings_form:
+        process: Process
+      projects_carousel:
+        name: Förslagskarusell (omröstning)
+      records_carousel:
+        next: Nästa
+        previous: Tidigare
+      records_carousel_settings_form:
+        button_text: Knapptext
+        button_url: Knapp URL
+        process: Process
+        title: Titel
+      results_carousel:
+        name: Projektkarusell (genomförande)
     copyright: '%{year} Helsingfors stad'
     devise:
       shared:
@@ -48,13 +126,119 @@ sv:
         creator: Författare till originalbilden
         license: Bildlicens
         note: Bildredigerad från original
+    plans:
+      layouts:
+        omastadi: OmaStadi
+      omastadi_form:
+        buttons:
+          create: Skapa och förhandsgranska
+          discard: Radera utkastet
+          discard_confirmation: Är du säker på att du vill radera utkastet?
+          loading_message: Sparar... Bearbetning av bilder och bilagor tar ett tag, var god vänta ett ögonblick.
+          save: Spara
+          save_draft: Spara utkast
+          you_can_invite_others: Om du skickar in ett förslag som grupp kan du bjuda in andra att samarbeta på förslaget.
+        characters_min: "(minst %count% tecken krävs)"
+        characters_used: "%count%/%total% tecken används"
+        edit_step_info: Skriv en kort beskrivning av ditt förslag. I beskrivningen av förslaget är det bra att berätta vilken typ av fråga som kan lösas med förslaget, vem som har nytta av det och vad är det som behöver göras konkret. Välj också ett område och lämpligt tema för förslaget.
+        ideas_step_info: Ett förslag består av en eller flera godkända idéer som lämnats på webbplatsen omastadi.hel.fi. Här kan du börja skapa förslag genom att välja en eller flera idéer som ditt förslag grundar sig på. Innan du gör ditt eget förslag bekanta dig med förslag som andra har gett.
+        info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+        required_fields_text: Obligatoriska fält är markerade med *-tecknet.
+        steps:
+          next: Nästa
+          previous: Tidigare
+      omastadi_form_steps:
+        attach_ideas: Bifoga idéer
+        browse_proposals: Kolla in förslagen
+        edit: Förslagets detaljer
+        preview: Granska och publicera
+      omastadi_index:
+        draft_plan_title: Du har ett oavslutat förslag!
+        draft_plan_continue: Fortsätt ditt förslag
+        draft_plan_description: Du har tidigare sparat ett pågående förslag. Du kan nu fortsätta skriva den.
+        empty_filters: Det finns inget förslag med dessa kriterier
+        filters:
+          activity:
+            all: Alla
+            my_favorites: Mina favoriter
+            my_plans: Mina förslag
+            title: Min aktivitet
+          all_area_scopes: Alla områden
+          all_categories: Alla teman
+          area_scope: Område
+          category: Tema
+          close_modal: Stäng fönstret
+          filter: Filtrera
+          filter_by: Filtrera
+          related_to: Anknyter till
+          reset: Rensa filter
+          search: Sök
+          state:
+            accepted: Fortsätter till omröstningen
+            all: Alla
+            evaluating: Bedöms
+            legend: Status
+            not_answered: Ej besvarade
+            rejected: Går inte vidare till omröstningen
+          tag: Taggar
+          tag_prompt: Välj taggar
+          title: Sök förslag
+          unfold: Öppna
+        leave_your_plan: Gör ditt eget förslag!!
+        new_plan: Nytt förslag
+        see_all_withdrawn: Visa alla annullerade
+        subtitle: Hitta och utforska förslag!
+        title: Bläddra bland förslag
+        view_plan: Visa förslag
+      omastadi_view:
+        answer:
+          final_estimate: 'Slutlig budgetberäkning: %{amount}'
+          generic_title: Answer
+          initial_estimate: Preliminär budgetberäkning
+          reasoning: Resonemang
+          show_final_estimate: Visa slutlig budgetberäkning
+          show_initial_estimate: Visa preliminär budgetberäkning
+        authors: Förslagets författare
+        back: Tillbaka till listan av förslag
+        back_to_list: Visa andra förslag
+        collaborator_requests: Begär att redigera
+        controls:
+          add_author: Lägg till författare för förslag
+          close_plan: Markera som gjort
+          close_plan_confirm_html: Är du säker på att du vill markera det här förslaget gjort? Efter att markeringen är klar kan förslaget inte längre redigeras.
+          edit_plan: Redigera förslaget
+          withdraw_plan: Annullera förslaget
+          withdraw_confirmation_html: Är du säker på att du vill annullera det här förslaget?
+        feedback_title: Tack för att du skickade ett förslag!
+        flag: Rapportera
+        info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+        linked_ideas: Idéer bifogade detta förslag
+        manage_plan: Hantera ditt förslag
+        request_access: Begär redigeringsrättigheter
+        pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
+        share: Dela
+        share_link: Länk som ska delas
+        show_comments: Visa kommentarer
+        show_on_map: Visa på kartan
+        related_documents: Relaterade dokument
+      plan_m:
+        view_plan: Visa förslag
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Din årskurs kan inte verifieras elektroniskt.
-      class_level_not_allowed: Du kan vara för ung eller för gammal för att rösta.
-      voting_unit_not_allowed: Du kan inte rösta på detta område från din skola.
+      class_level_not_allowed_max: Din årskurs ska inte vara över %{max}.
+      class_level_not_allowed_min: Din årskurs ska inte vara lägre %{min}.
+      class_level_not_allowed_one: Din årskurs ska vara %{level}.
+      class_level_not_defined: Din årskurs är inte definierad.
+      disallowed_municipality: Omröstningen är endast begränsad till Helsingforsbor.
+      disallowed_role: Wilma-identifieringen är endast begränsad till elever.
+      disallowed_school: Omröstning är inte tillåten i denna skola.
+      disallowed_voting_unit: Du kan inte rösta på detta område från din skola.
       voting_unit_required: Information som behövs om ditt Ruuti-område.
   suomifi_action_authorizer:
     restrictions:
-      district_not_allowed: Du har redan valt att rösta i ett annat stordistrikt.
-      district_required: Stordistriktinformation krävs.
+      disallowed_district: Denna omröstning är inte tillåten från ditt större distrikt.
+      disallowed_municipality: Omröstningen är endast begränsad till Helsingforsbor.
+      district_required: Information om ditt stordistrikt behövs.
+      physically_identified: Du har redan identifierat dig fysiskt. Vänligen kontakta Helsingfors stad.
+      too_young: Du är för ung för att rösta.

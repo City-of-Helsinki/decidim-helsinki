@@ -1,0 +1,13 @@
+<% add_decidim_meta_tags({
+  description: translated_attribute(@page.body),
+}) %>
+
+<div class="row column">
+  <div class="row">
+    <div class="columns medium-7 mediumlarge-8">
+      <div class="section static__content">
+        <%= decidim_sanitize translated_attribute(@page.body) %>
+      </div>
+    </div>
+  </div>
+</div>

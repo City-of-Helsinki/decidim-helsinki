@@ -1,3 +1,41 @@
 <% unless Rails.application.config.search_indexing %>
   <meta name="robots" content="noindex,nofollow">
 <% end %>
+
+<% unless Rails.env.development? %>
+<!-- Cookiehub / Cookie consent -->
+<script type="text/javascript">
+var cpm = {};
+(function(h,u,b){
+var d=h.getElementsByTagName("script")[0],e=h.createElement("script");
+e.async=true;e.src='https://cookiehub.net/c2/c7e96adf.js';
+e.onload=function(){u.cookiehub.load(b);}
+d.parentNode.insertBefore(e,d);
+})(document,window,cpm);
+</script>
+<% end %>
+
+<% if Rails.application.config.matomo_site_id %>
+<% domain = request.host %>
+<!-- Matomo -->
+<script type="text/plain" data-consent="analytics">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.<%= domain %>"]);
+  _paq.push(["setDomains", ["*.<%= domain %>","*.<%= domain %>"]]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//webanalytics.digiaiiris.com/js/";
+    _paq.push(['setTrackerUrl', u+'tracker.php']);
+    _paq.push(['setSiteId', '<%=Rails.application.config.matomo_site_id %>']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'piwik.min.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//digiaiiris.com/web-analytics/matomo.php?idsite=<%=Rails.application.config.matomo_site_id %>&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Matomo Code -->
+<% end %>

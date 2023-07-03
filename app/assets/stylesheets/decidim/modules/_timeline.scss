@@ -3,49 +3,58 @@
 
 /* Variables */
 
-$timeline-color: $primary;
+$timeline-color: $black;
 $timeline-inactive-color: $hel-medium-grey;
 
 $timeline-padding: 1rem;
 
-
 /* Timeline */
 
-.timeline {
+.timeline{
   list-style: none;
   margin: 2rem 0 0;
 }
 
-.timeline__item {
+.timeline__item{
   padding-bottom: 2em;
   position: relative;
 
-  &::before {
+  &::before{
     content: "";
     width: 3px;
     height: 100%;
     background: $timeline-color;
-    left: 1rem;
+    left: 30px;
     top: 0;
     position: absolute;
   }
 
-  &::after {
+  &::after{
     content: "";
     clear: both;
     display: table;
     width: 100%;
   }
 
-  &:last-of-type:before{
+  &:last-of-type::before{
     width: 0;
+  }
+
+  &.timeline__item--active{
+    .timeline__phase{
+      background: $timeline-color;
+    }
+
+    .timeline__phase__number{
+      color: $white;
+    }
   }
 }
 
 .timeline__phase{
-  width: 30px;
-  height: 30px;
-  margin-left: -13px;
+  width: 60px;
+  height: 60px;
+  margin-left: -15px;
   position: absolute;
   top: 0;
   left: 1rem;
@@ -53,18 +62,17 @@ $timeline-padding: 1rem;
   justify-content: center;
   overflow: hidden;
   border-radius: 50%;
-  background: $timeline-color;
-  border: 2px solid $white;
-  box-shadow: 0 0 0 1px $medium-gray;
+  background: $white;
+  border: 2px solid $timeline-color;
 }
 
 .timeline__phase__number{
   display: block;
   text-align: center;
   line-height: 1;
-  color: $white;
+  color: $timeline-color;
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.3em;
   align-self: center;
   margin-left: 1px;
   margin-top: -1px;
@@ -72,10 +80,11 @@ $timeline-padding: 1rem;
 
 .timeline__info{
   width: 90%;
-  width: calc(100% - 45px);
+  width: calc(100% - 75px);
   float: right;
   background-color: $white;
   border: $border;
+  padding-bottom: 1rem;
 
   .timeline__item--current &{
     border-color: $timeline-color;
@@ -96,12 +105,13 @@ $timeline-padding: 1rem;
   color: $muted;
 
   .timeline__item--current &{
-    color: rgba($white,.8);
+    color: rgba($white, .8);
   }
 }
 
 .timeline__title{
   margin-bottom: 0;
+  color: $timeline-color;
 }
 
 .timeline__content{
@@ -155,7 +165,7 @@ $timeline-padding: 1rem;
 .timeline__item-text{
   display: block;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: .03em;
   font-size: 90%;
   color: $body-font-color;
   font-weight: 600;
@@ -165,13 +175,13 @@ $timeline-padding: 1rem;
 /* Inactive timeline */
 
 .timeline__item--current{
-  &::before {
+  &::before{
     background: $timeline-inactive-color;
   }
 }
 
 .timeline__item--inactive{
-  &::before {
+  &::before{
     background: $timeline-inactive-color;
   }
 
@@ -180,6 +190,6 @@ $timeline-padding: 1rem;
   }
 
   .timeline__phase__number{
-    text-shadow: 0 1px 2px rgba(black, 0.1);
+    text-shadow: 0 1px 2px rgba(black, .1);
   }
 }

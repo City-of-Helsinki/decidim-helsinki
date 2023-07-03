@@ -19,6 +19,7 @@ if Rails.application.config.suomifi_enabled
         workflow.action_authorizer = "SuomifiActionAuthorizer"
         workflow.options do |options|
           options.attribute :allowed_districts, type: :string, required: false
+          options.attribute :minimum_age, type: :integer, required: false
         end
       end
       config.authenticator_class = Helsinki::SuomifiAuthenticator

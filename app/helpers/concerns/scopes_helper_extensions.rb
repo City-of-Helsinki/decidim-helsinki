@@ -5,10 +5,18 @@ module ScopesHelperExtensions
   extend ActiveSupport::Concern
 
   included do
+    alias_method :scopes_picker_filter_orig, :scopes_picker_filter unless method_defined?(:scopes_picker_filter_orig)
+
     # Overrides the scopes picker filter to use our customized one-dimensional
     # "simple" scope picker.
-    def scopes_picker_filter(form, name, _checkboxes_on_top = true, _filtering_context_id = "content")
-      scopes_picker_filter_simple(form, name)
+    def scopes_picker_filter(form, name, checkboxes_on_top = true, _filtering_context_id = "content")
+      if respond_to?(:scopes_picker_filter_simple)
+        scopes_picker_filter_simple(form, name)
+      else
+        # For some reason in the admin panel the scopes_filter_simple method is
+        # not always defined. Fall back to the original method in this case.
+        scopes_picker_filter_orig(form, name, checkboxes_on_top)
+      end
     end
   end
 
@@ -34,17 +42,20 @@ module ScopesHelperExtensions
 
     selected = selected_scopes(form, name).first
 
-    # It's a private method in the filter form builder
-    # form.send(:fieldset_wrapper, label, "#{name}_scopes_picker_filter") do
-    form.send(:fieldset_wrapper, label) do
-      prompt_label = label[0].downcase + label[1..-1]
+    prompt_label = label[0].downcase + label[1..-1]
 
-      form.select(
-        name,
-        scope_picker_options(scopes, selected&.id),
-        include_blank: options[:prompt] || I18n.t("forms.scopes_picker.prompt", item_name: prompt_label),
-        label: false
-      )
+    picker_select = form.select(
+      name,
+      scope_picker_options(scopes, selected&.id),
+      include_blank: options[:prompt] || I18n.t("forms.scopes_picker.prompt", item_name: prompt_label),
+      label: false
+    )
+
+    return picker_select unless form.respond_to?(:fieldset_wrapper, true)
+
+    # It's a private method in the filter form builder
+    form.send(:fieldset_wrapper, label, "#{name}_scopes_picker_filter") do
+      picker_select
     end
   end
 

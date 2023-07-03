@@ -1,0 +1,121 @@
+<% if trigger_feedback? %>
+  <%= trigger_feedback_modal(plan, title: t(".feedback_title"), metadata: { context: "plan", action: "publish" }) %>
+<% end %>
+
+<%= answer %>
+
+<div class="row column view-header">
+  <%= link_to plans_path(filter_link_params), class: "small hollow" do %>
+    <%= icon "chevron-left", class: "icon--small" %>
+    <%= t(".back_to_list") %>
+  <% end %>
+</div>
+
+<% if preview_mode? %>
+  <div class="row column">
+    <%= cell("helsinki/plans/omastadi_form_steps", nil, active_step: 3) %>
+  </div>
+<% end %>
+
+<div class="resource-intro">
+  <div class="row" data-equalizer>
+    <div class="columns mediumlarge-7">
+      <div class="resource-image" data-equalizer-watch>
+        <%= image_tag main_image_path, class:"idea-image", alt: strip_tags(present(plan).title) %>
+      </div>
+    </div>
+    <div class="columns mediumlarge-4">
+      <div class="actionbox" data-equalizer-watch>
+        <%= render :actions %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if show_controls? %>
+  <div class="row">
+    <div class="columns">
+      <%= render :controls %>
+      <%= collaborator_requests %>
+    </div>
+  </div>
+<% end %>
+
+<div class="resource-details">
+  <div class="row">
+    <div class="columns mediumlarge-7">
+      <div class="resource-details-row">
+        <div class="resource-detail">#<%= plan.id %></div>
+        <div class="resource-detail">
+          <% if area_scope.present? %>
+            <%= translated_attribute(area_scope.name) %>
+          <% end %>
+        </div>
+      </div>
+      <% if address.present? %>
+        <div class="resource-details-row">
+          <div class="resource-detail"><%= address %></div>
+        </div>
+      <% end %>
+    </div>
+    <div class="columns mediumlarge-4 text-right">
+      <% if plan.published? %>
+        <div class="resource-details-row">
+          <div class="resource-detail"><%= l(plan.published_at.to_date, format: :decidim_short) %></div>
+        </div>
+      <% end %>
+      <% if category.present? %>
+        <div class="resource-details-row">
+          <div class="resource-detail">
+            <% if category.parent %>
+              <%= translated_attribute(category.parent.name) %> -
+            <% end %>
+            <%= translated_attribute(category.name) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="resource-title">
+  <% if current_user.nil? || allowed_to?(:request_access, :plan, plan: plan) %>
+    <div class="row">
+      <div class="columns">
+        <div class="callout primary"><%== t(".info_message") %></div>
+      </div>
+    </div>
+  <% elsif access_request_pending? %>
+    <div class="row">
+      <div class="columns">
+        <div class="callout primary"><%== t(".pending_access_request_message_html") %></div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="columns mediumlarge-7">
+      <h3 class="heading3"><%= present(plan).title %></h3>
+    </div>
+  </div>
+</div>
+
+<div class="resource-body">
+  <div class="row">
+    <div class="columns">
+      <div class="section static__content">
+        <%== cell("decidim/plans/plan_m", plan, full_badge: true).badge %>
+
+        <%== description %>
+
+        <div class="authors">
+          <h3><%= t ".authors" %></h3>
+          <p><%= plan.authors.map(&:name).join(", ") %></p>
+        </div>
+
+        <%= linked_ideas %>
+        <%= attachments %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<% if has_link_to_resource? %>
+  <div class="card__footer">
+    <div class="card__support">
+      <%= link_to resource_path, class: "card__button button hollow large primary", aria: {
+        label: t(".view_detailed", name: title)
+      } do %>
+        <%= t(".view") %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

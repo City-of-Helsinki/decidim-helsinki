@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <div class="row column">
+    <div class="main-container tabbed-container">
+      <%= cell "decidim/tos_page", :announcement %>
+
+      <div class="row collapse main-container--side-panel">
+        <div class="columns">
+          <div class="main-container__content">
+            <div class="tabs-content vertical">
+              <div class="static__content">
+                <h1>
+                  <%= translated_attribute page.title %>
+                </h1>
+                <%= decidim_sanitize translated_attribute page.content %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%= cell "decidim/tos_page", :form %>
+    </div>
+  </div>
+</div>

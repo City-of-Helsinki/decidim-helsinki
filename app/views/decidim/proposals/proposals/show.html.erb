@@ -63,10 +63,10 @@
         <% end %>
         <%= follow_button_for(@proposal) %>
         <%= render partial: "decidim/shared/share_modal" %>
-        <%= embed_modal_for proposal_proposal_widget_url(@proposal, format: :js) %>
+        <%= embed_modal_for proposal_widget_url(@proposal, format: :js) %>
 
         <div class="text-center">
-          <button type="button" class="share-link link" data-open="<%= current_user.present? ? "flagModal" : "loginModal" %>" title="<%= t("report", scope: "decidim.proposals.proposals.show") %>" aria-controls="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-haspopup="true" tabindex="0">
+          <button type="button" class="share-link link" data-open="<%= current_user.present? ? "flagModal" : "loginModal" %>" title="<%= t("report", scope: "decidim.proposals.proposals.show") %>" aria-controls="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-haspopup="dialog" tabindex="0">
             <%= t(".report") %>
             <%= icon "flag", aria_label: t("report", scope: "decidim.proposals.proposals.show"), class: "icon--after" %>
           </button>
@@ -100,7 +100,7 @@
     <%= linked_resources_for @proposal, :meetings, "proposals_from_meeting" %>
     <%= linked_resources_for @proposal, :proposals, "copied_from_component" %>
 
-    <%= cell "decidim/proposals/endorsers_list", @proposal %>
+    <%= cell "decidim/endorsers_list", @proposal %>
   </div>
 </div>
 <%= attachments_for @proposal %>

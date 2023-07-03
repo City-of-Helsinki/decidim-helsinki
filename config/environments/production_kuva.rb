@@ -11,7 +11,7 @@ Rails.application.configure do
   config.use_mode = "private"
 
   # Tracking
-  config.snoobi_account = "ideapaahtimo_hel_fi"
+  config.matomo_site_id = nil
 
   # Wrapper class can be used to customize the coloring of the platform per
   # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
@@ -60,6 +60,9 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
+
+  # Secure cookies only
+  config.session_store :cookie_store, secure: true, httponly: true, expire_after: Rails.application.config.session_validity_period
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.

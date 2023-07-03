@@ -1,0 +1,37 @@
+.reveal.reveal--vote-finished.wrapper-ruuti{
+  .reveal__header{
+    .icon-wrapper{
+      svg{
+        fill: $ruuti-primary;
+      }
+    }
+  }
+}
+
+.wrapper-ruuti{
+  .detail-selector{
+    .detail-selector-item.selected{
+      background: $ruuti-primary;
+      border-color: $ruuti-primary;
+    }
+
+    .detail-selector-title{
+      &,
+      label,
+      button{
+        color: $ruuti-primary;
+      }
+    }
+  }
+
+  .infobox .infobox-title{
+    color: $ruuti-primary;
+  }
+
+  #projects.voting{
+    .card.selected{
+      outline-color: $ruuti-primary;
+      border-color: $ruuti-primary;
+    }
+  }
+}

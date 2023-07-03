@@ -1,0 +1,36 @@
+<div class="extended home-section listing-section">
+  <div class="row columns listing-section-heading text-center">
+    <h2 class="heading2 hero-heading"><%== title %></h2>
+  </div>
+  <div class="row small-up-1 medium-up-2 mediumlarge-up-4 card-grid">
+    <% events.each_with_index do |event, index| %>
+      <div class="column">
+        <%= link_to event_url_for(event), target: "_blank", class: "card card-simple", data: {
+          external_link_spacer: "",
+          external_link_target: ".card-section"
+        } do %>
+          <%= imagebox_for(event, index) %>
+
+          <div class="card-section">
+            <div class="card__info">
+              <div class="card__info__item">
+                <%= dates_for(event) %>
+              </div>
+            </div>
+            <div class="card__header">
+              <h3 class="h5"><%= translated_attribute event["name"] %></h3>
+            </div>
+            <div class="card__text">
+              <div class="card__text--paragraph">
+                <%== strip_tags summary_for(event) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row columns mt-m">
+    <%= button %>
+  </div>
+</div>

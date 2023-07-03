@@ -31,7 +31,9 @@ public/uploads
 # Ignore webpack stuff
 /webpack.report.html
 
-+# Comments component
+# Ignore RSpec related stuff
+/.rspec-failures
+
+# Comments component
 .graphqlconfig
 schema.json
-app/assets/javascripts/decidim/comments/bundle.js.map

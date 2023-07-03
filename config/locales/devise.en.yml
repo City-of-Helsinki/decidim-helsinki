@@ -1,17 +1,19 @@
 en:
   devise:
+    omniauth_callbacks:
+      disabled: Signing in is temporarily disabled.
     sessions:
       new:
         sign_in: 'Sign in'
     shared:
       omniauth:
         tunnistamo:
-          description: 'Tunnistamo allows you to sign in using services such as Google, Facebook or YLE.'
-          sign_in_with: 'Sign in with Tunnistamo'
+          description: 'You can sign in also using services such as Google, Facebook or YLE through Tunnistamo.'
+          sign_in_with: 'Sign in without verifying your identity'
           sign_in_button: 'Sign in'
         strong:
-          description: 'If you sign in to omastadi.hel.fi with your online banking ID or mobile ID, you will be able to vote directly.  Students in grades 6–9 at comprehensive school can sign in and verify their identity for voting with their Wilma ID.'
-          sign_in_with: 'Sign in and verify your identity to vote'
+          description: 'Sign in to omastadi.hel.fi with your online banking ID or mobile ID. Students at comprehensive school can sign in with their Wilma ID.'
+          sign_in_with: 'Sign in and verify your identity electronically'
         suomifi:
           description: 'Suomi.fi allows users to verify their identity using Finnish online banking IDs and mobile IDs, among others.'
           sign_in_with: 'Suomi.fi e-Identification'
@@ -19,9 +21,9 @@ en:
         mpassid:
           description: 'If you are a student in comprehensive school, you can verify your identity through the MPASSid service using your school account.'
           sign_in_with: 'MPASSid-identification'
-          sign_in_button: 'Wilma ID for comprehensive school students'
+          sign_in_button: 'Wilma ID for school students'
         weak:
-          description: 'You can also sign in with social media accounts (Facebook, Yle, Google, among others) or with an Omastadi account you have created earlier. The first time you vote, you also need to verify your identity with an online banking ID, mobile ID, or a Wilma ID for comprehensive school students.'
+          description: 'You can also sign in with social media accounts (Facebook, Yle, Google, among others) or with an Omastadi account you have created earlier.'
           sign_in_with: 'Sign in without identity verification'
           sign_in_button: 'Sign in with Tunnistamo'
   decidim:

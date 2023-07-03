@@ -1,0 +1,32 @@
+<% if steps.any? %>
+  <div class="extended page-section">
+    <div class="row columns">
+      <div class="phases-navigation sub-navigation">
+        <button class="sub-navigation-opener hide-for-mediumlarge" data-toggle="phases_navigation">
+          <%= t(".navigate") %>
+        </button>
+        <nav id="phases_navigation" class="sub-navigation-nav" data-toggler=".active">
+          <ol class="sub-navigation-content phases-list">
+            <% past_step = true %>
+            <% steps.each_with_index do |step, index| %>
+              <% past_step = false if step.active? %>
+              <%= helper.process_step_tag(step, past_step) do %>
+                <div class="phases-list-item-phase">
+                  <span class="phases-list-item-number"><%= index + 1 %></span>
+                </div>
+                <div class="phases-list-item-info">
+                  <%= helper.process_step_link(step) do %>
+                    <p class="phases-list-item-title">
+                      <%= translated_attribute step.title %>
+                    </p>
+                  <% end %>
+                  <div class="phases-list-item-date"><%= helper.step_date_info step %></div>
+                </div>
+              <% end %>
+            <% end %>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,279 @@
+.tabs-stepper{
+  position: relative;
+  z-index: 1;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  background: $light-gray;
+
+  @include breakpoint(mediumlarge){
+    margin-top: 0;
+    background: transparent;
+  }
+
+  .tabs{
+    display: block;
+    background: transparent;
+    margin-bottom: 20px;
+
+    @include breakpoint(mediumlarge){
+      margin-bottom: 0;
+    }
+
+    &.expanded{
+      @include breakpoint(mediumlarge){
+        display: flex;
+      }
+
+      .tabs-stepper-step{
+        float: none;
+        flex: 1 1 0;
+
+        .step-selector{
+          width: auto;
+        }
+      }
+    }
+  }
+
+  .tabs-stepper-navigation{
+    display: flex;
+
+    @include breakpoint(mediumlarge){
+      display: none;
+    }
+
+    .tabs-stepper-navigation-link{
+      display: block;
+      flex: 1 1 0;
+      margin-left: 20px;
+
+      &:first-child{
+        margin-left: 0;
+      }
+
+      .tabs-stepper-navigation-text{
+        position: relative;
+        display: block;
+      }
+
+      .icon{
+        position: absolute;
+        top: 5px;
+      }
+
+      &.prev{
+        text-align: left;
+        padding-left: 20px;
+
+        .icon{
+          left: -20px;
+        }
+      }
+
+      &.next{
+        text-align: right;
+        padding-right: 20px;
+
+        .icon{
+          right: -20px;
+        }
+      }
+    }
+  }
+
+  .tabs-stepper-step{
+    position: relative;
+    display: none;
+    z-index: 0;
+    float: left;
+
+    @include breakpoint(mediumlarge){
+      display: block;
+      padding: 0 30px;
+    }
+
+    &::before,
+    &::after{
+      content: "";
+      position: absolute;
+      top: 30px;
+      display: none;
+      height: 2px;
+      width: 50%;
+      background: $medium-gray;
+
+      @include breakpoint(mediumlarge){
+        display: block;
+      }
+    }
+
+    &::before{
+      left: 0;
+    }
+
+    &::after{
+      right: 0;
+    }
+
+    &:first-child{
+      padding-left: 0;
+
+      &::before{
+        display: none;
+      }
+    }
+
+    &:last-child{
+      padding-right: 0;
+
+      &::after{
+        display: none;
+      }
+    }
+
+    &.done{
+      .step-selector-number{
+        background: $body-background;
+        border-color: $primary;
+        color: $primary;
+      }
+    }
+
+    &.is-active{
+      display: block;
+
+      .step-selector{
+        .step-selector-number{
+          background: $primary;
+          border-color: $primary;
+          color: $secondary;
+        }
+
+        .step-selector-text{
+          font-weight: $global-weight-bold;
+        }
+      }
+    }
+
+    > a,
+    > .link{
+      padding: 0;
+      color: $body-font-color;
+      font-weight: normal;
+
+      &:hover,
+      &:focus{
+        text-decoration: none;
+      }
+
+      &.disabled{
+        cursor: not-allowed;
+      }
+    }
+
+    a:hover,
+    a:focus,
+    a[aria-selected='true'],
+    .link:hover,
+    .link:focus,
+    .link[aria-selected='true']{
+      background: transparent;
+      color: $body-font-color;
+    }
+  }
+
+  .step-selector{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    width: 100px;
+    line-height: 1.2;
+
+    @include breakpoint(mediumlarge){
+      flex-direction: column;
+    }
+
+    .step-selector-number{
+      padding: 16px 0;
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      border: 3px solid $medium-gray;
+      background: $medium-gray;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: .75;
+
+      .step-selector-total{
+        @include breakpoint(mediumlarge){
+          display: none;
+        }
+      }
+    }
+
+    .step-selector-text{
+      margin-left: 1.2rem;
+      padding-bottom: .5rem;
+
+      @include breakpoint(mediumlarge){
+        margin-left: 0;
+        padding-bottom: 0;
+        text-align: center;
+      }
+
+      .step-selector-detail{
+        margin-bottom: .4rem;
+        font-weight: normal;
+
+        @include breakpoint(mediumlarge){
+          display: none;
+        }
+      }
+
+      .step-selector-title{
+        font-size: 1.2rem;
+
+        @include breakpoint(mediumlarge){
+          margin-bottom: 0;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.wrapper-ruuti{
+  .tabs-stepper{
+    background: $hel-gold;
+
+    @include breakpoint(mediumlarge){
+      background: transparent;
+    }
+
+    .tabs-stepper-step{
+      &.is-active .step-selector{
+        .step-selector-number{
+          background: $ruuti-secondary;
+          border-color: $ruuti-secondary;
+          color: $white;
+        }
+      }
+
+      &.done .step-selector-number{
+        border-color: $ruuti-secondary;
+        color: $ruuti-secondary;
+      }
+    }
+
+    .tabs-stepper-navigation{
+      a{
+        color: $body-font-color;
+      }
+    }
+  }
+}

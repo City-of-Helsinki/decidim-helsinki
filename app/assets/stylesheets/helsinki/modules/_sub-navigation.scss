@@ -1,0 +1,93 @@
+.sub-navigation{
+  position: relative;
+  padding: 1rem 0;
+
+  .sub-navigation-opener{
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+    background: $white;
+    border: 2px solid $black;
+    font-size: 1.3rem;
+    text-align: left;
+    line-height: 1.8;
+
+    &::after{
+      content: "";
+      position: absolute;
+      top: 20px;
+      right: 1rem;
+      display: inline-block;
+      border: 0 solid $black;
+      border-width: 0 4px 4px 0;
+      padding: 8px;
+      transform: rotate(45deg);
+    }
+  }
+
+  .sub-navigation-state{
+    position: absolute;
+    opacity: 0;
+
+    &:focus,
+    &:active{
+      outline: 0;
+
+      + .sub-navigation-opener{
+        outline: $anchor-outline-focus;
+        outline-color: var(--highlight);
+        outline-offset: $anchor-outline-offset;
+      }
+    }
+
+    &:checked{
+      + .sub-navigation-opener{
+        &::after{
+          top: 27px;
+          transform: rotate(-135deg);
+        }
+      }
+
+      + .sub-navigation-opener + .sub-navigation-content{
+        display: block;
+      }
+    }
+  }
+
+  .sub-navigation-nav{
+    display: none;
+
+    @include breakpoint(mediumlarge){
+      display: block;
+    }
+
+    &.active{
+      display: block;
+    }
+  }
+
+  .sub-navigation-content{
+    position: relative;
+    z-index: 1;
+    padding: 2rem .5rem;
+    border: 2px solid $black;
+    border-top: 0;
+
+    @include breakpoint(mediumlarge){
+      padding: 0;
+      border: 0;
+    }
+  }
+}
+
+.side-panel{
+  .sub-navigation{
+    padding: 1rem;
+
+    @include breakpoint(mediumlarge){
+      padding: 0;
+    }
+  }
+}

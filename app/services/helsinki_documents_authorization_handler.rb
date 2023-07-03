@@ -14,7 +14,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :postal_code, String
 
   validates :context, presence: true
-  validates :document_type, presence: true, inclusion: { in: [:passport, :idcard, :drivers_license, :kela_card] }
+  validates :document_type, presence: true, inclusion: { in: [:none, :passport, :idcard, :drivers_license, :kela_card] }
   validates :pin, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -22,6 +22,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
 
   validate :validate_impersonation
   validate :validate_pin
+  validate :validate_not_voted
 
   # Sets up the handler for the different contexts based on the controller.
   # The context is obfuscated to make it harder for the potential attackers to
@@ -67,7 +68,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def document_types
-    [:passport, :idcard, :drivers_license, :kela_card].map do |type|
+    [:none, :passport, :idcard, :drivers_license, :kela_card].map do |type|
       [I18n.t(type, scope: "decidim.authorization_handlers.helsinki_documents_authorization_handler.document_types"), type]
     end
   end
@@ -113,20 +114,27 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   def validate_pin
     return if pin.blank?
 
-    errors.add(:pin, :invalid_pin) unless hetu.valid?
+    # errors.add(:pin, :invalid_pin) unless hetu.valid?
+    errors.add(:pin, :invalid_pin) if !hetu.send(:valid_format?) || !hetu.send(:valid_checksum?)
+  end
 
-    # Check that the pin number is not already used through Suomi.fi
-    authorization = Decidim::Authorization.where(
-      "metadata->>'pin_digest' =?", pin_digest
-    ).find_by(name: "suomifi_eid")
-    if authorization
-      errors.add(:pin, :used)
-      return
-    end
+  def validate_not_voted
+    return if pin.blank?
+
+    voted = Decidim::Authorization.exists?(
+      [
+        "name =? AND metadata->>'pin_digest' =?",
+        "suomifi_eid",
+        pin_digest
+      ]
+    )
+    errors.add(:pin, :electronically_identified) if voted
   end
 
   def sanitized_document_type
     case document_type&.to_sym
+    when :none
+      "00"
     when :passport
       "01"
     when :idcard

@@ -1,4 +1,12 @@
 fi:
+  decidim:
+    components:
+      budgets:
+        settings:
+          global:
+            workflow_choices:
+              omastadi: 'OmaStadi: sallii osallistujan äänestyksen Koko Helsinki -alueella ja yhdellä valitsemallaan suurpiirillä.'
+              ruuti_one: 'Ruuti äänestä yhdessä: sallii osallistujan äänestyksen omalla Ruuti-alueellaan.'
   helsinki:
     areas:
       choose_your_area: Valitse alueesi kartalta
@@ -27,6 +35,76 @@ fi:
           help: Voit äänestää koko Helsingin suunnitelmista ja valitsemasi suurpiirin suunnitelmista. Sinulle ehdotetaan kotiosoitteeesi postinumeron (tai Wilma-tunnistautuvilla koulun postinumeron) mukaista suurpiiriä, mutta voit vaihtaa sen alla olevasta putodusvalikosta. Jos haluat äänestää tiettyä suunnitelmaa, tarkista etukäteen minkä suurpiirin alueella se sijaitsee. Jos haluat vaihtaa tässä tekemäsi valinnan jälkikäteen, katso ylävalikosta Ohjeet.
           title: Hyväksy suurpiiri
           submit: Hyväksy
+    content_blocks:
+      background_section:
+        name: Taustaosio
+      background_section_settings_form:
+        description: Kuvaus
+        button1_text: Napin 1 teksti
+        button1_url: Napin 1 URL
+        button2_text: Napin 2 teksti
+        button2_url: Napin 2 URL
+        title: Otsikko
+      help_section:
+        name: Apuosio
+      help_section_settings_form:
+        description: Kuvaus
+        button1_text: Napin 1 teksti
+        button1_url: Napin 1 URL
+        button2_text: Napin 2 teksti
+        button2_url: Napin 2 URL
+        title: Otsikko
+      highlighted_blogs:
+        name: Bloginostot
+        show_more: Näytä lisää
+        show_more_detailed: Näytä lisää ajankohtaisia asioita
+      highlighted_blogs_settings_form:
+        title: Otsikko
+      ideas_carousel:
+        name: Ideakaruselli
+      image_section:
+        name: Kuvaosio
+      image_section_settings_form:
+        description: Kuvaus
+        image: Kuva
+        link_text: Linkin teksti
+        link_url: Linkin URL
+        title: Otsikko
+      intro:
+        name: Intro
+      intro_settings_form:
+        description: Kuvaus
+        link_text: Linkin teksti
+        link_url: Linkin URL
+        title: Otsikko
+      linked_events:
+        name: Linked Events - Tulevat tapahtumat
+      linked_events_settings_form:
+        button_text: Napin teksti
+        button_url: Napin URL
+        event_url: Tapahtumasivun URL
+        keywords: Avainsanat (pilkulla erotettu ilman välilyöntiä)
+        publisher: Julkaisija
+        title: Otsikko
+      plans_carousel:
+        name: Ehdotuskaruselli (yhteiskehittäminen)
+      process_steps:
+        name: Prosessin vaiheet
+        navigate: Navigoi vaiheita
+      process_steps_settings_form:
+        process: Prosessi
+      projects_carousel:
+        name: Ehdotuskaruselli (äänestys)
+      records_carousel:
+        next: Seuraava
+        previous: Edellinen
+      records_carousel_settings_form:
+        button_text: Napin teksti
+        button_url: Napin URL
+        process: Prosessi
+        title: Otsikko
+      results_carousel:
+        name: Hankekaruselli (seuranta)
     copyright: '%{year} Helsingin kaupunki'
     devise:
       shared:
@@ -48,13 +126,120 @@ fi:
         creator: Alkuperäisen kuvan tekijä
         license: Kuvan lisenssi
         note: Kuvaa muokattu alkuperäisestä
+    plans:
+      layouts:
+        omastadi: OmaStadi
+      omastadi_form:
+        buttons:
+          create: Luo ja esikatsele
+          discard: Tuhoa tämä luonnos
+          discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
+          loading_message: Tallennetaan... Kuvien ja liitetiedostojen käsittelyssä kestää hetki, odota rauhassa.
+          save: Tallenna
+          save_draft: Tallenna luonnos
+          you_can_invite_others: Mikäli haluatte jättää ehdotuksen porukalla, voit kutsua muita ehdotuksen tekijöiksi sen jättämisen jälkeen.
+        characters_min: "(vähintään %count% merkkiä vaaditaan)"
+        characters_used: "%count%/%total% merkkiä käytetty"
+        edit_step_info: Kirjoita lyhyt kuvaus ehdotuksestasi ja valitse alue, johon se sijoittuu. Hyvässä kuvauksessa kerrotaan, mitä pitäisi konkreettisesti tehdä ja mihin rahoitusta tarvitaan. Hyödynnä ehdotuksen suunnittelussa tietoa kaupungin palveluista ja suunnitelmista.
+        ideas_step_info: Ehdotuksia tehdään kaupunkilaisten jättämien, kriteerit täyttäneiden ideoiden pohjalta. Aloita ehdotuksen luominen valitsemalla yksi tai useampi idea, johon ehdotuksesi perustuu. Jokaiseen ehdotukseen tulee liittää vähintään yksi idea. Ennen kuin teet oman ehdotuksen, käy tutustumassa muiden tekemiin ehdotuksiin.
+        info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
+        required_fields_text: Pakolliset kentät on merkitty *-merkillä.
+        steps:
+          next: Seuraava
+          previous: Edellinen
+      omastadi_form_steps:
+        attach_ideas: Liitä ideoita
+        browse_proposals: Tutustu ehdotuksiin
+        edit: Ehdotuksen tiedot
+        preview: Tarkasta ja julkaise
+      omastadi_index:
+        draft_plan_title: Sinulla on keskeneräinen ehdotus!
+        draft_plan_continue: Jatka ehdotustasi
+        draft_plan_description: Olet aikaisemmin tallentanut ehdotuksen keskeneräisenä. Voit nyt jatkaa sen kirjoittamista.
+        empty_filters: Ehdotuksia ei löytynyt valituilla hakuehdoilla
+        filters:
+          activity:
+            all: Kaikki
+            my_favorites: Omat suosikit
+            my_plans: Omat ehdotukset
+            title: Oma toiminta
+          all_area_scopes: Kaikki alueet
+          all_categories: Kaikki teemat
+          area_scope: Alue
+          category: Teema
+          close_modal: Sulje ikkuna
+          filter: Suodata
+          filter_by: Suodata
+          related_to: Liittyy kohteeseen
+          reset: Tyhjennä rajaukset
+          search: Hae
+          state:
+            accepted: Etenee äänestykseen
+            all: Kaikki
+            evaluating: Arvioitavana
+            legend: Tila
+            not_answered: Ei vastattu
+            rejected: Ei etene äänestykseen
+          tag: Merkinnät
+          tag_prompt: Valitse merkinnät
+          title: Etsi ehdotuksia
+          unfold: Avaa
+        leave_your_plan: Tee oma ehdotuksesi!
+        new_plan: Uusi ehdotus
+        see_all_withdrawn: Näytä kaikki peruutetut
+        subtitle: Etsi ja tutki ehdotuksia!
+        title: Tutustu ehdotuksiin
+        view_plan: Näytä ehdotus
+      omastadi_view:
+        answer:
+          final_estimate: 'Lopullinen budjettiarvio: %{amount}'
+          generic_title: Vastaus
+          initial_estimate: Alustava budjettiarvio
+          reasoning: Perustelu
+          show_final_estimate: Näytä lopullinen budjettiarvio
+          show_initial_estimate: Näytä alustava budjettiarvio
+        authors: Ehdotuksen tekijät
+        back: Palaa takaisin ehdotuslistaukseen
+        back_to_list: Näytä muut ehdotukset
+        collaborator_requests: Muokkauspyynnöt
+        controls:
+          add_author: Lisää ehdotukselle tekijöitä
+          close_plan: Merkitse valmiiksi
+          close_plan_confirm_html: Haluatko varmasti merkitä tämän ehdotuksen valmiiksi? Kun ehdotus on merkitty valmiiksi, sitä ei voi enää muokata.
+          edit_plan: Muokkaa ehdotusta
+          withdraw_plan: Peru ehdotus
+          withdraw_confirmation_html: Haluatko varmasti perua tämän ehdotuksen?
+        feedback_title: Kiitos ehdotuksen jättämisestä!
+        flag: Ilmoita
+        info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
+        linked_ideas: Ehdotukseen liitetyt ideat
+        manage_plan: Hallitse ehdotusta
+        pending_access_request_message_html: <p>Olet pyytänyt muokkausoikeuksia tähän ehdotukseen. Odota, että ehdotuksen tekijät vastaavat pyyntöösi.</p><p>Saat viestin sähköpostiisi, kun pyyntöösi vastataan.</p>
+        request_access: Pyydä muokkausoikeuksia
+        share: Jaa
+        share_link: Jaettava linkki
+        show_comments: Näytä kommentit
+        show_on_map: Näytä kartalla
+        related_documents: Liittyvät asiakirjat
+      plan_m:
+        view_plan: Näytä ehdotus
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Luokka-astettasi ei pystytty varmentamaan sähköisesti.
-      class_level_not_allowed: Olet ehkä liian nuori tai vanha äänestämään.
-      voting_unit_not_allowed: Koulustasi ei voi äänestää tällä alueella.
-      voting_unit_required: Tieto Ruuti-alueesta tarvitaan.
+      class_level_not_allowed_max: Luokka-asteesi tulisi olla enintään %{max}.
+      class_level_not_allowed_min: Luokka-asteesi tulisi olla vähintään %{min}.
+      class_level_not_allowed_one: Luokka-asteesi tulisi olla %{level}.
+      class_level_not_defined: Luokka-astettasi ei ole määritetty.
+      disallowed_municipality: Äänestys on rajattu vain helsinkiläisille.
+      disallowed_role: Wilma-tunnistautumisella äänestäminen on rajattu vain oppilaille.
+      disallowed_school: Äänestys ei ole sallittu tässä koulussa.
+      disallowed_voting_unit: Koulustasi ei voi äänestää tällä alueella.
+      voting_unit_required: Tietoa Ruuti-alueestasi ei tiedetä.
   suomifi_action_authorizer:
     restrictions:
-      district_not_allowed: Olet jo valinnut äänestäväsi toisessa suurpiirissä.
+      disallowed_district: Tämä äänestys ei ole sallittu suurpiiristäsi.
+      disallowed_municipality: Äänestys on rajattu vain helsinkiläisille.
       district_required: Suurpiiritieto tarvitaan.
+      physically_identified: Olet jo tunnistautunut fyysisessä pisteessä. Ota yhteyttä Helsingin kaupunkiin.
+      too_young: Olet liian nuori äänestääksesi.
+

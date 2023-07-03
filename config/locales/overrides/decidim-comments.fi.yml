@@ -1,0 +1,11 @@
+fi:
+  decidim:
+    comments:
+      comments:
+        create:
+          error: Kommentin tallennuksessa tapahtui virhe.
+      view: Näytä
+      comments:
+        title:
+          one: "%{count} kommentti"
+          other: "%{count} kommenttia"

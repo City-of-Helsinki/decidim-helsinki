@@ -4,6 +4,11 @@ require "omniauth/strategies/openid_connect_helsinki"
 require "helsinki/devise_failure_app"
 
 Devise.setup do |config|
+  # This is needed because of a bug in 0.24 which forces the sessions to close
+  # after 30 minutes. In future Decidim versions we can remove this as it will
+  # be set using Decidim's own `expire_session_after` configuration.
+  config.timeout_in = Rails.application.config.session_validity_period
+
   # ==> Warden configuration
   # Needed to fix:
   # https://github.com/decidim/decidim/issues/4660

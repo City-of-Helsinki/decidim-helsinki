@@ -1,0 +1,23 @@
+.record-filters{
+  .input-group-label{
+    background: transparent;
+    border: 0;
+  }
+
+  .filters__section{
+    padding: .7rem 1rem;
+
+    &.filters__section--title{
+      p{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  input,
+  select,
+  textarea,
+  .input-group{
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,59 @@
+sv:
+  decidim:
+    accountability:
+      results:
+        show:
+          stats:
+            category: Tema
+        show_result_body:
+          comments_amount:
+            one: '%{count} kommentar'
+            other: '%{count} kommentarer'
+          details: Projekt detaljer
+          news: Nyheter
+          section:
+            budget_breakdown:
+              name: Budgetfördelning
+            description:
+              name: Projekt beskrivning
+            interaction_description:
+              name: Interaktion
+            plans_description:
+              name: Planer
+        stats_box:
+          budget: Budget
+    author:
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar för flera användare
+    budgets:
+      admin:
+        projects:
+          form:
+            address_help: 'Adress: som används av Geocoder för att hitta platsen'
+      budget_list_item:
+        budget: Budget
+        show: Visa
+        vote: Rösta
+      project_list_item:
+        more_info: Bekanta dig med planen
+        more_info_with_title: Bekanta dig med planen %{title}
+      projects:
+        index:
+          back_to_budgets: Visa alla budgeter
+    components:
+      add_comment_form:
+        opinion:
+          label: Din åsikt om detta ämne
+          positive: Positiv
+          positive_selected: 'Din åsikt om detta ämne är positiv'
+          negative: Negative
+          negative_selected: 'Din åsikt om detta ämne är negativ'
+          neutral: Neutral
+          neutral_selected: 'Din åsikt om detta ämne är neutral'
+      budgets:
+        settings:
+          global:
+            vote_success_mpassid_content: Innehåll som visas efter framgångsrik omröstning för MPASSid-användare
+    resource_links:
+      included_plans:
+        project_plan: Relaterade förslag om samutveckling

@@ -1,0 +1,12 @@
+.wrapper-ruuti{
+  .author-data .author__name{
+    color: $ruuti-primary;
+  }
+
+  .comment__reply,
+  .comment__reply[data-toggle]{
+    &.muted-link{
+      color: $ruuti-primary;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+en:
+  decidim:
+    accountability:
+      results:
+        show:
+          stats:
+            category: Theme
+        show_result_body:
+          comments_amount:
+            one: '%{count} comment'
+            other: '%{count} comments'
+          details: Project details
+          news: News
+          section:
+            budget_breakdown:
+              name: Budget breakdown
+            description:
+              name: Project description
+            interaction_description:
+              name: Interaction
+            plans_description:
+              name: Plans
+        stats_box:
+          budget: Budget
+    author:
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar for multiple users
+    budgets:
+      admin:
+        projects:
+          form:
+            address_help: 'Address: used by Geocoder to find the location'
+      budget_list_item:
+        budget: Budget
+        show: Show
+        vote: Vote
+      project_list_item:
+        more_info: Read more about this plan
+        more_info_with_title: Read more about %{title}
+      projects:
+        index:
+          back_to_budgets: Show all budgets
+    components:
+      add_comment_form:
+        opinion:
+          label: Your opinion about this topic
+          positive: Positive
+          positive_selected: 'Your opinion about this topic is positive'
+          negative: Negative
+          negative_selected: 'Your opinion about this topic is negative'
+          neutral: Neutral
+          neutral_selected: 'Your opinion about this topic is neutral'
+      budgets:
+        settings:
+          global:
+            vote_success_mpassid_content: Content displayed after successful voting for MPASSid users
+    resource_links:
+      included_plans:
+        project_plan: Related co-creation proposals

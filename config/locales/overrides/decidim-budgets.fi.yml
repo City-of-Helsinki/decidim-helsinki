@@ -1,0 +1,100 @@
+fi:
+  decidim:
+    budgets:
+      actions:
+        edit_projects: Hallinnoi projekteja
+        new: Uusi %{name}
+      admin:
+        budgets:
+          create:
+            invalid: Budjetin luonti epäonnistui
+            success: Budjetin luonti onnistui
+          destroy:
+            invalid: Budjetin poisto epäonnistui
+            success: Budjetin poisto onnistui
+          edit:
+            title: Muokkaa budjettia
+            update: Päivitä budjetti
+          index:
+            title: Budjetit
+          new:
+            create: Luo budjetti
+            title: Uusi budjetti
+          update:
+            invalid: Budjetin päivittäminen epäonnistui
+            success: Budjetin päivittäminen onnistui
+        models:
+          budget:
+            name: Budjetti
+      admin_log:
+        budget:
+          create: "%{user_name} loi budjetin %{resource_name} osallistumistilassa %{space_name}"
+          delete: "%{user_name} poisti budjetin %{resource_name} osallistumistilassa %{space_name}"
+          update: "%{user_name} päivitti budjettia %{resource_name} osallistumistilassa %{space_name}"
+      budget_information_modal:
+        back_to: Takaisin %{component_name}
+        close_modal: Sulje ikkuna
+        continue: Jatka
+        more_information: Lisätietoja
+      budgets_list:
+        cancel_order:
+          more_than_one: poistaa äänesi budjetissa %{name} ja aloittaa alusta
+          only_one: poistaa äänesi ja aloittaa alusta.
+        finished_message: Äänestyksesi on nyt valmis. Kiitos osallistumisestasi!
+        highlighted_cta: Äänestä budjetista %{name}
+        if_change_opinion: Jos muutit mielesi, voit
+        my_budgets: Omat budjettini
+        voted_on: Olet äänestänyt budjetissa %{links}
+      limit_announcement:
+        cant_vote: Et voi äänestää tässä budjetissa. <a href="%{landing_path}">Yritä toista budjettia</a>.
+        limit_reached: 'Olet jo äänestänyt tai aloittanut äänestyksen budjetissa %{links}. Äänestääksesi tässä budjetissa, sinun täytyy <a href="%{landing_path}">poistaa äänesi ja aloittaa alusta</a>.'
+      models:
+        budget:
+          fields:
+            name: Nimi
+            projects_count: Projektien määrä
+            total_budget: Kokonaisbudjetti
+      order_summary_mailer:
+        order_summary:
+          voted_on_space: Äänestit budjetista %{budget_name} osallistumistilassa %{space_name}.
+          voted_on_space_with_scope: Äänestit budjetista %{budget_name} osallistumistilassa %{space_name} teemalle %{scope_name} (%{scope_type}).
+      projects:
+        budget_confirm:
+          are_you_sure: Jos muutit mielesi, voit muuttaa ääntäsi myöhemmin.
+        budget_summary:
+          description_projects_rule: Mille hankkeille budjetin rahaa tulisi jakaa? Valitse %{minimum_number}-%{maximum_number} toivomaasi hanketta ja äänestä haluamallasi tavalla vaikuttaaksesi budjetin jakautumiseen.
+          total_budget: Koko budjetti
+          total_votes: Käytettävissä olevat äänet
+        project:
+          count:
+            one: "%{count} ääni"
+            other: "%{count} ääntä"
+          votes:
+            one: ääni
+            other: ääntä
+          you_voted: Äänestit tätä
+    components:
+      budgets:
+        settings:
+          global:
+            landing_page_content: Budjetoinnin laskeutumissivu
+            more_information_modal: Lisätietoikkuna
+            vote_rule_selected_projects_enabled: 'Ota sääntö käyttöön: Valittavien projektien määrä'
+            vote_selected_projects_minimum: Valittavien projektien vähimmäismäärä
+            vote_selected_projects_maximum: Valittavien projektien enimmäismäärä
+            workflow: Työnkulku
+            workflow_choices:
+              all: 'Äänestä kaikissa: mahdollistaa osallistujien äänestämisen kaikissa budjeteissa.'
+              one: 'Äänestä yhdessä: mahdollistaa osallistujien äänestämisen yhdessä budjetissa.'
+          step:
+            highlighted_heading: Korostettu otsikkoteksti
+            landing_page_content: Budjetoinnin laskeutumissivu
+            list_heading: Listan otsikkoteksti
+            more_information_modal: Lisätietoikkuna
+    events:
+      budgets:
+        budget_published:
+          email_intro: 'Budjetointi %{resource_title} on nyt aktiivisena osallistumistilassa %{participatory_space_title}. Näet sen tältä sivulta:'
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat %{participatory_space_title}. Voit lopettaa ilmoitusten vastaanottamisen edellä esitetyn linkin kautta.
+          email_subject: Budjetointi %{resource_title} on nyt aktiivisena osallistumistilassa %{participatory_space_title}.
+          notification_title: Budjetointi <a href="%{resource_path}">%{resource_title}</aon nyt aktiivisena osallistumistilassa %{participatory_space_title}.

@@ -1,0 +1,49 @@
+.wrapper-ruuti{
+  .menu .is-active > a,
+  .menu .active > a{
+    background: $ruuti-primary;
+  }
+}
+
+.prevnext-nav{
+  display: flex;
+  max-width: 580px;
+  margin: 4rem 0;
+  font-size: 1.4rem;
+
+  .prevnext-nav-item{
+    flex: 1 1 0;
+
+    &:last-child{
+      text-align: right;
+    }
+  }
+
+  .prevnext-nav-link{
+    position: relative;
+
+    &:hover,
+    &:focus{
+      text-decoration: none;
+
+      .prevnext-nav-link-text{
+        text-decoration: underline;
+      }
+    }
+
+    &.disabled{
+      color: $muted;
+    }
+
+    .icon{
+      position: relative;
+      top: 7px;
+      width: 1.2em;
+      height: 1.2em;
+    }
+  }
+
+  .prevnext-nav-link-text{
+    margin: 0 .7rem;
+  }
+}

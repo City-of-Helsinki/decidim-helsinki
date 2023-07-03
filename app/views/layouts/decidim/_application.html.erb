@@ -21,15 +21,16 @@ wrapper_class = Rails.application.config.wrapper_class
     <div class="<%= wrapper_class %>">
       <%= render partial: "layouts/decidim/impersonation_warning" %>
       <%= render partial: "layouts/decidim/cookie_warning" %>
-      <%= render partial: "layouts/decidim/omnipresent_banner" %>
     </div>
 
     <%= render "layouts/decidim/wrapper" do %>
       <%= yield %>
     <% end %>
 
+    <%= render partial: "decidim/shared/confirm_modal" %>
     <%= render partial: "decidim/shared/login_modal" %>
     <%= render partial: "decidim/shared/authorization_modal" %>
+    <%= render partial: "layouts/decidim/js_configuration" %>
     <%= render partial: "layouts/decidim/foot_extra" %>
   </body>
 </html>

@@ -32,23 +32,25 @@ module Decidim
 
       html_properties["width"] = options[:width]
       html_properties["height"] = options[:height]
-      html_properties["aria-label"] = options[:aria_label]
-      html_properties["role"] = options[:role]
-      html_properties["aria-hidden"] = options[:aria_hidden]
+      html_properties["aria-label"] = options[:aria_label] || options[:"aria-label"] || options["aria-label"]
+      html_properties["role"] = options[:role] || "img"
+      html_properties["aria-hidden"] = options[:aria_hidden] || options[:"aria-hidden"] || options["aria-hidden"]
 
       html_properties["class"] = (["icon--#{name}"] + _icon_classes(options)).join(" ")
 
       if name == "tunnistamo"
-        # Fetch Tunnistamo icon from the local icon files instead of the main
-        # icons.svg so that we don't need to customize the whole icon file.
-        html_properties["alt"] = options[:alt] || "Tunnistamo"
-
         content_tag :svg, html_properties do
-          content_tag :use, nil, "xlink:href" => "#{asset_path("hkilogo-symbol.svg")}#icon-helsinki"
+          inner = content_tag :title, options["title"] || html_properties["aria-label"]
+          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_path("hkilogo-symbol.svg")}#icon-helsinki"
+
+          inner
         end
       else
         content_tag :svg, html_properties do
-          content_tag :use, nil, "xlink:href" => "#{asset_path("decidim/icons.svg")}#icon-#{name}"
+          inner = content_tag :title, options["title"] || html_properties["aria-label"]
+          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_path("decidim/icons.svg")}#icon-#{name}"
+
+          inner
         end
       end
     end

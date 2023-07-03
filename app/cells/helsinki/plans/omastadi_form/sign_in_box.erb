@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="columns large-8 large-push-2">
+    <div class="text-center">
+    <p class="lead"><%= t("decidim.plans.plans.edit.sign_in_before_submitting") %></p>
+    <p><%= t(".you_can_invite_others") %></p>
+    <p>
+        <%= action_authorized_link_to :create, new_plan_path, class: "title-action__action button large primary", data: { "redirect_url" => new_plan_path } do %>
+        <%= t("decidim.plans.plans.edit.sign_in") %>
+        <% end %>
+    </p>
+    </div>
+  </div>
+</div>

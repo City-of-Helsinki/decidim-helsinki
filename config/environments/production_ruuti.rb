@@ -6,11 +6,14 @@ Rails.application.configure do
   config.mpassid_enabled = true
 
   # Tracking
-  config.snoobi_account = "omastadi_hel_fi"
+  config.matomo_site_id = 370
 
   # Wrapper class can be used to customize the coloring of the platform per
   # environment. This is for the Ruuti instance.
   config.wrapper_class = "wrapper-ruuti"
+
+  # The feedback email in the footer of the site
+  config.feedback_email = "ruutibudjetti@hel.fi"
 
   # Color profile that changes the logo color for the footer
   # config.color_profile = "white"
@@ -42,7 +45,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "https://ruutibudjetti.hel.fi"
+  config.action_controller.asset_host = "https://nuortenbudjetti.hel.fi"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -55,6 +58,9 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
+
+  # Secure cookies only
+  config.session_store :cookie_store, secure: true, httponly: true, expire_after: Rails.application.config.session_validity_period
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -114,14 +120,14 @@ Rails.application.configure do
   # Default URL for application (Devise)
   config.action_controller.default_url_options = {
     # protocol: "https", # Breaks login redirection
-    host: "ruutibudjetti.hel.fi",
+    host: "nuortenbudjetti.hel.fi",
     port: 443
   }
 
   # Default URL for mailer (Devise)
   config.action_mailer.default_url_options = {
     protocol: "https",
-    host: "ruutibudjetti.hel.fi"
+    host: "nuortenbudjetti.hel.fi"
     # from: "no-reply@hel.fi" # Causes forms to break e.g. when publishing proposal
   }
 

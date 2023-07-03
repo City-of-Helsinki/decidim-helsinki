@@ -1,0 +1,10 @@
+en:
+  decidim:
+    ideas:
+      answers:
+        accepted: Accepted to co-creation
+        rejected: Not accepted
+      ideas:
+        show:
+          idea_accepted_reason: This idea was accepted to co-creation
+          idea_rejected_reason: This idea was not accepted

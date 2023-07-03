@@ -1,0 +1,7 @@
+sv:
+  decidim:
+    plans:
+      answers:
+        accepted: Fortsätter till omröstningen
+        not_answered: Ej besvarade
+        rejected: Går inte vidare till omröstningen

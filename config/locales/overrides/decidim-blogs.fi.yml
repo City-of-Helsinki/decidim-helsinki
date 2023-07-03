@@ -1,0 +1,43 @@
+fi:
+  activemodel:
+    attributes:
+      post:
+        card_image: Kuva korteissa
+        main_image: Pääkuva
+        summary: Tiivistelmä
+        title: Otsikko
+  decidim:
+    blogs:
+      actions:
+        user_group_id: Luo artikkeli käyttäjänä
+      directory:
+        posts:
+          index:
+            posts: Ajankohtaista
+            description: Ajankohtaista-osiosta löydät ajankohtaista tietoa palvelusta.
+      post_m:
+        card_label: "Artikkeli: %{title}"
+        view: Näytä artikkeli
+        view_detailed: "Näytä artikkeli: %{name}"
+      posts:
+        count:
+          posts_count:
+            one: Löytyi 1 artikkeli
+            other: "Löytyi %{count} artikkelia"
+        filters:
+          label: Artikkelien haku
+          reset: Tyhjennä rajaukset
+          search: Hae
+          term: Hakusana
+          title: Etsi artikkeleista
+        filters_small_view:
+          close_modal: Sulje ikkuna
+          filter: Suodata
+          filter_by: Suodata
+          unfold: Avaa
+        index:
+          title: Ajankohtaista
+        posts:
+          empty: Hakuehdoilla ei löytynyt yhtään artikkelia.
+        show:
+          view_all_articles: Siirry ajankohtaista-osioon

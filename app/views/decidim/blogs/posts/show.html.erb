@@ -1,0 +1,38 @@
+<% provide(:title, translated_attribute(post.title)) %>
+
+<% add_decidim_meta_tags({
+  title: translated_attribute(post.title),
+  description: translated_attribute(post.body),
+  url: main_app.post_url(post.id)
+}) %>
+
+<%
+  edit_link(
+    resource_locator(post).edit,
+    :update,
+    :blogpost,
+    blogpost: post
+  )
+%>
+
+<div class="row column view-header mt-m">
+  <%= link_to main_app.posts_path, class: "small hollow" do %>
+    <%= icon "chevron-left", class: "icon--small" %>
+    <%= t(".view_all_articles") %>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="columns mediumlarge-8">
+    <%= localized_content_tag_for(post, :div, class: "section") do %>
+      <% if post.main_image.url %>
+        <%= image_tag post.main_image.url, alt: translated_attribute(post.title), class: "hero-heading" %>
+      <% end %>
+      <h1 class="heading1"><%= translated_attribute post.title %></h1>
+      <%= decidim_sanitize translated_attribute post.body %>
+    <% end %>
+  </div>
+</div>
+
+<%= attachments_for post %>
+<%= comments_for post %>

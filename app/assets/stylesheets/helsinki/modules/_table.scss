@@ -1,0 +1,12 @@
+table.transparent{
+  thead,
+  tbody,
+  tfoot{
+    background-color: transparent;
+    border: 0;
+
+    tr{
+      background-color: transparent;
+    }
+  }
+}

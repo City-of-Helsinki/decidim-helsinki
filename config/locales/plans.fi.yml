@@ -1,0 +1,7 @@
+fi:
+  decidim:
+    plans:
+      answers:
+        accepted: Etenee äänestykseen
+        not_answered: Ei vastattu
+        rejected: Ei etene äänestykseen

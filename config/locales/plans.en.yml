@@ -1,0 +1,7 @@
+en:
+  decidim:
+    plans:
+      answers:
+        accepted: Proceeds to voting
+        not_answered: Not answered
+        rejected: Will not proceed to voting

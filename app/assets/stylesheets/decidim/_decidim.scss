@@ -1,11 +1,6 @@
 @import "variables";
-@import "foundation";
-@import "utils/settings";
-
-@include foundation-everything($flex: false);
-
+@import "foundation_and_overrides";
 @import "utils/fontface";
-@import "utils/koro";
 @import "decidim/utils/helpers";
 @import "decidim/utils/keyframes";
 @import "decidim/utils/mixins";
@@ -13,12 +8,14 @@
 @import "modules/modules";
 @import "layouts/highlighted_banner";
 @import "layouts/home";
+@import "decidim/layouts/logo";
 @import "decidim/layouts/user";
 @import "decidim/layouts/view";
 @import "decidim/extras/add_comments";
 @import "decidim/extras/announcement";
 @import "decidim/extras/collection-sort-controls";
 @import "decidim/extras/embed";
+@import "decidim/extras/external-links";
 @import "decidim/extras/impersonation-bar";
 @import "decidim/extras/label-required";
 @import "decidim/extras/leaflet";
@@ -29,6 +26,7 @@
 @import "decidim/extras/reference";
 @import "decidim/extras/results-per-page";
 @import "decidim/extras/social_icons_mini";
+@import "decidim/extras/social_share";
 @import "decidim/extras/status-labels";
 @import "extras/*";
 @import "decidim/vizzs/areachart";

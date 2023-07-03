@@ -1,8 +1,6 @@
 fi:
   activemodel:
     attributes:
-      budgeting_verification:
-        district: Suurpiiri (oletuksena sinulle suositeltu suurpiiri)
       helsinki_documents_authorization_handler:
         document_type: Henkilöllisyystodistuksen tyyppi
         first_name: Etunimi
@@ -14,18 +12,29 @@ fi:
         voting_unit: Ruuti-alue
       suomifi_eid:
         district: Suurpiiri
+      result:
+        budget_amount: Hankkeen kokonaisbudjetti
+        budget_breakdown: Budjetin perustelut
+        interaction_description: Vuorovaikutuksen kuvaus
+        news_description: Ajankohtaisia asioita
+        plans_description: Suunnitelmien kuvaus
     errors:
       models:
         helsinki_documents_authorization_handler:
           attributes:
             pin:
+              electronically_identified: Henkilö on jo tunnistettu sähköisesti
               invalid_pin: virheellinen henkilötunnus
-              used: henkilötunnus on jo käytössä
   activerecord:
     models:
-      decidim/plans/plan: Suunnitelma
+      decidim/plans/plan:
+        one: Ehdotus
+        other: Ehdotukset
   auth:
     sign_in_with_tunnistamo: 'Käytä Tunnistamoa kirjautuaksesi sisään'
+  date:
+    formats:
+      decidim_short: "%d.%m.%Y"
   decidim:
     authorization_handlers:
       admin:
@@ -35,12 +44,6 @@ fi:
             - An admin will review the request
             - Admin will either approve or reject the access request
             - The user will get notified that their access request has been either approved or rejected
-      budgeting_identity:
-        explanation: Tunnista itsesi budjetointia varten
-        name: Budjetointi
-        fields:
-          allowed_districts: Sallitut suurpiirit
-          district: Suurpiiri
       cocreation:
         explanation: Pyydä oikeutta luoda yhteistyöstämissuunnitelmia
         name: Yhteiskehittäminen
@@ -50,28 +53,67 @@ fi:
           drivers_license: Ajokortti
           idcard: Henkilökortti
           kela_card: KELA-kortti
+          none: Ei mitään
           passport: Passi
         name: Henkilöllisyystodistus toimipisteessä
         user_explanation: Käy fyysisessä toimipisteessä varmentamassa itsesi henkilöllisyystodistuksen avulla.
       mpassid_nids:
         fields:
           allowed_units: Sallitut Ruuti-alueet
-          max_class_level: Suurin luokka-aste
-          min_class_level: Pienin luokka-aste
+          maximum_class_level: Suurin luokka-aste
+          minimum_class_level: Pienin luokka-aste
           student_class_level: Luokka-aste
           voting_unit: Ruuti-alue
+        name: Oppilaiden Wilma-tunnukset
       suomifi_eid:
         fields:
           allowed_districts: Sallitut suurpiirit
           district: Suurpiiri
+          minimum_age: Ikä vähintään
+        name: Pankkitunnukset tai mobiilivarmenne
+    budgets:
+      projects:
+        filters:
+          category_prompt: Valitse aihepiiri
+    components:
+      component_order_selector:
+        order:
+          idea: Idea
+          plan: Ehdotus
+    forms:
+      file_help:
+        file:
+          explanation: 'Tiedoston ohjeistus:'
+          message_1: On oltava kuva tai asiakirja.
+          message_2: Käytä kuvina mieluiten vaakasuuntaisia kuvia, palvelu rajaa kuvaa sopivaksi näkymään.
+        image:
+          explanation: 'Kuvan ohjeistus:'
+          message_1: Käytä mieluiten vaakasuuntaista kuvaa, jossa ei ole tekstiä.
+          message_2: Palvelu rajaa kuvaa.
+    help_sections:
+      footer_text:
+        name: Alaosion teksti
+      help_index:
+        name: Ohjeosion etusivu
     pages:
       home:
         statistics:
           plans_count: Suunnitelmia
+      index:
+        title: Ohjeet
+      side_panel:
+        show_navigation: Näytä navigaatio
+    proposals:
+      proposals:
+        filters:
+          category_prompt: Valitse aihepiiri
     suomifi:
       omniauth_callbacks:
         failure:
           security_denial: Henkilöllisyyttäsi ei pystytä varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
+  errors:
+    messages:
+      extension_whitelist_error: Lataamasi tiedostomuoto ei ole sallittu.
   forms:
     scopes_picker:
       others: Muut
@@ -101,8 +143,31 @@ fi:
     decidim:
       assembly_header:
         unfold: Avaa
+      breadcrumbs:
+        current: Nykyinen sivu
+      header:
+        choose_language: Valitse kieli
+        front_page_link: Siirry etusivulle
+        help: Ohjeet
+        navigation: Menu
+        sign_in: Kirjaudu
+        subtitle: 2020-2021
+      participatory_processes:
+        index:
+          active_processes: Käynnissä nyt
+          past_processes: Aikaisemmat kierrokset
       process_header:
         unfold: Avaa
+      user_menu:
+        conversations: Viestit
+        favorites: Suosikit
+        notifications: Ilmoitukset
+        profile: Omat tiedot
+        profile_nav: Profiili
+        public_profile: Oma toiminta
     footer:
-      feedback: Anna palautetta
       about: Tietoa palvelusta
+      contact: Yhteystiedot
+      feedback: Anna palautetta
+      processes_info: Prosessit-sivulta voit tutustua palvelun muihin prosesseihin
+      processes_show: Näytä kaikki prosessit

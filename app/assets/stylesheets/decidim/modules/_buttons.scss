@@ -1,6 +1,8 @@
-/* Foundation button overrides*/
+/* Foundation button overrides */
+
 .button{
   font-weight: $button-font-weight;
+  border: $button-border; // not needed in more recent versions of Foundation
 
   &.small{
     padding-top: .5rem;
@@ -12,6 +14,7 @@
       letter-spacing: 0;
     }
   }
+
   &.tiny{
     padding-top: .25rem;
     padding-bottom: .25rem;
@@ -22,6 +25,148 @@
       letter-spacing: 0;
     }
   }
+
+  &.secondary{
+    &:hover,
+    &:focus{
+      color: $white;
+    }
+  }
+}
+
+.bg-primary{
+  .button{
+    &.secondary{
+      background-color: $secondary;
+      color: $primary;
+
+      &:hover,
+      &:focus{
+        background-color: darken($secondary, 35%);
+        color: $white;
+      }
+
+      &.hollow{
+        border-color: $secondary;
+        background-color: transparent;
+        color: $secondary;
+
+        &:hover,
+        &:focus{
+          background-color: darken($secondary, 35%);
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.wrapper-ruuti{
+  .button,
+  a.button{
+    &,
+    &.primary{
+      background-color: $ruuti-primary;
+      color: $white;
+
+      &:hover,
+      &:focus{
+        background-color: scale-color($ruuti-primary, $lightness: -50%);
+      }
+    }
+
+    &.secondary{
+      background-color: $ruuti-secondary;
+      color: $white;
+
+      &:hover,
+      &:focus{
+        background-color: scale-color($ruuti-secondary, $lightness: 20%);
+        color: $white;
+      }
+
+      &.hollow{
+        border-color: $ruuti-secondary;
+        color: $ruuti-secondary;
+
+        &:hover,
+        &:focus{
+          background-color: darken($ruuti-secondary, 15%);
+          color: $white;
+        }
+      }
+    }
+
+    &.clear{
+      background-color: transparent;
+      color: $ruuti-secondary;
+    }
+  }
+}
+
+.button.hollow{
+  &:hover,
+  &:focus{
+    &.primary{
+      $button-primary: map-get($button-palette, primary);
+      $primary-hover: scale-color($button-primary, $lightness: $button-background-hover-lightness);
+      $primary-color: color-pick-contrast($primary-hover, ($button-color, $button-color-alt));
+      // $primary-color: $secondary;
+
+      color: $primary-color;
+      background: $primary-hover;
+      border-color: $primary-hover;
+    }
+
+    &.secondary{
+      $button-secondary: map-get($button-palette, primary);
+      $secondary-hover: scale-color($button-secondary, $lightness: $button-background-hover-lightness);
+      $secondary-color: color-pick-contrast($secondary-hover, ($button-color, $button-color-alt));
+
+      color: $secondary-color;
+      background: $secondary-hover;
+      border-color: $secondary-hover;
+    }
+  }
+}
+
+.wrapper-ruuti{
+  .button.hollow{
+    &,
+    &.primary{
+      background-color: transparent;
+      border-color: $ruuti-primary;
+      color: $ruuti-primary;
+    }
+
+    &.secondary{
+      background-color: transparent;
+      border-color: $ruuti-secondary;
+      color: $ruuti-secondary;
+    }
+
+    &:hover,
+    &:focus{
+      $ruuti-primary-hover: $ruuti-primary;
+      $ruuti-primary-color: $white;
+
+      &,
+      &.primary{
+        color: $ruuti-primary-color;
+        background: $ruuti-primary-hover;
+        border-color: $ruuti-primary-hover;
+      }
+
+      &.secondary{
+        $ruuti-secondary-hover: $ruuti-secondary;
+        $ruuti-secondary-color: $white;
+
+        color: $ruuti-secondary-color;
+        background: $ruuti-secondary-hover;
+        border-color: $ruuti-secondary-hover;
+      }
+    }
+  }
 }
 
 // Overwrite Foundation hover styles in hollow disabled buttons
@@ -29,22 +174,22 @@
 .button.hollow.disabled:hover{
   background-color: transparent;
   border-color: inherit;
-  color: $primary;
+  color: map-get($button-palette, primary);
 
   &.secondary{
-    color: $secondary;
+    color: map-get($button-palette, secondary);
   }
 
   &.success{
-    color: $success;
+    color: map-get($button-palette, success);
   }
 
   &.alert{
-    color: $alert;
+    color: map-get($button-palette, alert);
   }
 
   &.warning{
-    color: $warning;
+    color: map-get($button-palette, warning);
   }
 }
 
@@ -93,16 +238,15 @@
   @include flexgap(.5rem, column);
 }
 
-
 /* Extra buttons styles */
 
 .button--shadow{
   $shadows:(
-    primary: shade($primary, 50),
-    secondary: shade($secondary, 50),
-    success: shade($success, 50),
-    warning: shade($warning, 50),
-    alert: shade($alert, 50),
+    primary: shade(map-get($button-palette, primary), 50),
+    secondary: shade(map-get($button-palette, secondary), 50),
+    success: shade(map-get($button-palette, success), 50),
+    warning: shade(map-get($button-palette, warning), 50),
+    alert: shade(map-get($button-palette, alert), 50),
     muted: shade($muted, 50)
   );
 
@@ -118,6 +262,7 @@
   .icon{
     margin: 0 2px;
   }
+
   &.small{
     .icon{
       width: 12px;
@@ -139,7 +284,7 @@
   background-color: $muted;
 
   &:hover{
-    background-color: $secondary;
+    background-color: map-get($button-palette, secondary);
   }
 
   &.hollow{
@@ -174,6 +319,12 @@
   color: inherit;
 }
 
+.wrapper-ruuti{
+  .link{
+    color: $ruuti-primary;
+  }
+}
+
 .muted-link{
   font-weight: 600;
   color: $muted;
@@ -196,8 +347,8 @@
   display: block;
   min-width: 250px;
 
-  &.button--tunnistamo {
-    .icon {
+  &.button--tunnistamo{
+    .icon{
       width: 90px;
       height: 40px;
     }
@@ -207,7 +358,7 @@
 .button--social__icon{
   display: inline-block;
   vertical-align: middle;
-  padding: 0.85em 1rem;
+  padding: .85em 1rem;
   //border-right: 1px solid rgba(black, .075);
   margin-right: .5rem;
   min-width: 3rem;
@@ -218,20 +369,22 @@
   background-color: $twitter;
 
   &:hover{
-    background-color: lighten($twitter,5);
+    background-color: lighten($twitter, 5);
   }
 }
+
 .button--facebook{
   background-color: $facebook;
 
   &:hover{
-    background-color: lighten($facebook,5);
+    background-color: lighten($facebook, 5);
   }
 }
+
 .button--google{
   background-color: $google;
 
   &:hover{
-    background-color: lighten($google,5);
+    background-color: lighten($google, 5);
   }
 }

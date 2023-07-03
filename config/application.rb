@@ -9,9 +9,6 @@ require "cldr"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-# Require the application specific engines for the custom verifications.
-require File.expand_path("../lib/engines", __dir__)
-
 module DecidimHelsinki
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -26,10 +23,13 @@ module DecidimHelsinki
     config.mailer_sender = "no-reply@omastadi.hel.fi"
 
     # Tracking
-    config.snoobi_account = nil
+    config.matomo_site_id = nil
 
     # Can the site be indexed by search engines
     config.search_indexing = true
+
+    # How long the sessions are valid
+    config.session_validity_period = 1.hours
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -39,6 +39,11 @@ module DecidimHelsinki
     config.i18n.load_path += Dir[
       Rails.root.join("config", "locales", "crowdin-master/*.yml").to_s,
       Rails.root.join("config", "locales", "overrides/*.yml").to_s,
+    ]
+
+    # Add extra asset paths
+    config.assets.paths += Dir[
+      Rails.root.join("app", "assets", "fonts").to_s,
     ]
 
     # String identifier, this defines the main mode of Decidim
@@ -66,6 +71,15 @@ module DecidimHelsinki
 
     config.suomifi_enabled = false
     config.mpassid_enabled = false
+
+    # Re-configure some of the Decidim internals
+    config.before_configuration do
+      # This would override the cookie store configuration which is why we want
+      # to disable it as it is defined manually for the environments.
+      Decidim::Core::Engine.instance.initializers.reject! do |initializer|
+        initializer.name == "Expire sessions"
+      end
+    end
 
     # Passes a block of code to do after initialization.
     config.after_initialize do
@@ -128,11 +142,262 @@ module DecidimHelsinki
       end
     end
 
+    # Needed until this PR is merged:
+    # https://github.com/decidim/decidim/pull/6498
+    #
+    # Remember to also remove the comments routes, controllers, cells, views
+    # and the helper + the flag modal cell unless customizations are needed.
+    initializer "comments" do
+      # This needs to be renamed in order to avoid conflict.
+      # initializer "decidim_comments.register_resources"
+      Decidim.resource_registry.manifests.delete_if do |manifest|
+        manifest.name == :comment
+      end
+      Decidim.register_resource(:comment) do |resource|
+        resource.model_class_name = "Decidim::Comments::Comment"
+        resource.card = "decidim/comments/comment_card"
+        resource.searchable = true
+      end
+    end
+
     initializer "devise_overrides" do
       # Devise controller overrides to add some extra functionality into them.
       # Currently this is only for debugging purposes.
       ActiveSupport.on_load(:action_controller) do
         include DeviseOverrides
+      end
+    end
+
+    # initializer "graphql_api", after: "decidim.graphql_api" do
+    initializer "graphql_api" do
+      # API type extensions
+      Decidim::AccountabilitySimple::ResultMutationType.include(
+        ResultMutationTypeExtensions
+      )
+
+      Decidim::Api::QueryType.define do
+        Helsinki::QueryExtensions.define(self)
+      end
+
+      # TODO: Update to 0.24+
+      Decidim::Accountability::ResultType.define do
+        field :budgetAmount, types.Int, "The budget amount for this result", property: :budget_amount
+        field :budgetBreakdown, Decidim::Core::TranslatedFieldType, "The budget breakdown for this result (HTML)", property: :budget_breakdown
+        field :plansDescription, Decidim::Core::TranslatedFieldType, "The plans description for this result (HTML)", property: :plans_description
+        field :interactionDescription, Decidim::Core::TranslatedFieldType, "The interaction for this result (HTML)", property: :interaction_description
+        field :newsDescription, Decidim::Core::TranslatedFieldType, "The news for this result (HTML)", property: :news_description
+      end
+    end
+
+    initializer "budget_workflows" do
+      Decidim::Budgets.workflows[:omastadi] = Helsinki::Budgets::Workflows::OmaStadi
+      Decidim::Budgets.workflows[:ruuti_one] = Helsinki::Budgets::Workflows::RuutiOne
+    end
+
+    initializer "decidim.core.homepage_content_blocks" do
+      Decidim.content_blocks.register(:homepage, :process_steps) do |content_block|
+        content_block.cell = "helsinki/content_blocks/process_steps"
+        content_block.settings_form_cell = "helsinki/content_blocks/process_steps_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.process_steps.name"
+
+        content_block.settings do |settings|
+          settings.attribute :process_id, type: :integer
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :intro) do |content_block|
+        content_block.cell = "helsinki/content_blocks/intro"
+        content_block.settings_form_cell = "helsinki/content_blocks/intro_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.intro.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :link_url, type: :text
+          settings.attribute :link_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :help_section) do |content_block|
+        content_block.cell = "helsinki/content_blocks/help_section"
+        content_block.settings_form_cell = "helsinki/content_blocks/help_section_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.help_section.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :button1_url, type: :text
+          settings.attribute :button1_text, type: :text, translated: true
+          settings.attribute :button2_url, type: :text
+          settings.attribute :button2_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :background_section) do |content_block|
+        content_block.cell = "helsinki/content_blocks/background_section"
+        content_block.settings_form_cell = "helsinki/content_blocks/background_section_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.background_section.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :button1_url, type: :text
+          settings.attribute :button1_text, type: :text, translated: true
+          settings.attribute :button2_url, type: :text
+          settings.attribute :button2_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :image_section) do |content_block|
+        content_block.cell = "helsinki/content_blocks/image_section"
+        content_block.settings_form_cell = "helsinki/content_blocks/image_section_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.image_section.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :link_url, type: :text
+          settings.attribute :link_text, type: :text, translated: true
+        end
+
+        content_block.images = [
+          {
+            name: :image,
+            uploader: "Helsinki::ImageSectionImageUploader"
+          }
+        ]
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :ideas_carousel) do |content_block|
+        content_block.cell = "helsinki/content_blocks/ideas_carousel"
+        content_block.settings_form_cell = "helsinki/content_blocks/records_carousel_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.ideas_carousel.name"
+
+        content_block.settings do |settings|
+          settings.attribute :process_id, type: :integer
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :button_url, type: :text
+          settings.attribute :button_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :plans_carousel) do |content_block|
+        content_block.cell = "helsinki/content_blocks/plans_carousel"
+        content_block.settings_form_cell = "helsinki/content_blocks/records_carousel_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.plans_carousel.name"
+
+        content_block.settings do |settings|
+          settings.attribute :process_id, type: :integer
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :button_url, type: :text
+          settings.attribute :button_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :projects_carousel) do |content_block|
+        content_block.cell = "helsinki/content_blocks/projects_carousel"
+        content_block.settings_form_cell = "helsinki/content_blocks/records_carousel_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.projects_carousel.name"
+
+        content_block.settings do |settings|
+          settings.attribute :process_id, type: :integer
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :button_url, type: :text
+          settings.attribute :button_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :results_carousel) do |content_block|
+        content_block.cell = "helsinki/content_blocks/results_carousel"
+        content_block.settings_form_cell = "helsinki/content_blocks/records_carousel_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.results_carousel.name"
+
+        content_block.settings do |settings|
+          settings.attribute :process_id, type: :integer
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :button_url, type: :text
+          settings.attribute :button_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :highlighted_blogs) do |content_block|
+        content_block.cell = "helsinki/content_blocks/highlighted_blogs"
+        content_block.settings_form_cell = "helsinki/content_blocks/highlighted_blogs_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.highlighted_blogs.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :linked_events) do |content_block|
+        content_block.cell = "helsinki/content_blocks/linked_events"
+        content_block.settings_form_cell = "helsinki/content_blocks/linked_events_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.linked_events.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :publisher, type: :text
+          settings.attribute :keywords, type: :text
+          settings.attribute :event_url, type: :text
+          settings.attribute :button_url, type: :text, translated: true
+          settings.attribute :button_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+    end
+
+    initializer "decidim_plans_layouts", after: "decidim_plans.register_layouts" do
+      registry = Decidim::Plans.layouts
+
+      registry.register(:omastadi) do |layout|
+        layout.form_layout = "helsinki/plans/omastadi_form"
+        layout.view_layout = "helsinki/plans/omastadi_view"
+        layout.index_layout = "helsinki/plans/omastadi_index"
+        layout.card_layout = "helsinki/plans/plan_m"
+        layout.public_name_key = "helsinki.plans.layouts.omastadi"
+      end
+    end
+
+    initializer "component_settings" do
+      Decidim.find_component_manifest(:budgets).tap do |component|
+        component.settings(:global) do |settings|
+          # Add extra attributes specific to the instance
+          settings.attribute :vote_success_mpassid_content, type: :text, translated: true, editor: true
+
+          # Move it to the correct position after :vote_success_content
+          m = Decidim::BudgetingPipeline::SettingsManipulator.new(settings)
+          m.move_attribute_after(:vote_success_mpassid_content, :vote_success_content)
+        end
+      end
+    end
+
+    initializer "accountability" do
+      Decidim.find_component_manifest(:accountability).tap do |component|
+        export = component.export_manifests.find { |ex| ex.name == :results }
+        export.remove_instance_variable(:@serializer)
+        export.serializer Helsinki::Accountability::ResultSerializer
       end
     end
 
@@ -146,26 +411,47 @@ module DecidimHelsinki
         :include,
         CommentsHelperExtensions
       )
+      Decidim::ParticipatoryProcesses::ParticipatoryProcessHelper.send(
+        :include,
+        ParticipatoryProcessHelperExtensions
+      )
       Decidim::ScopesHelper.send(
         :include,
         ScopesHelperExtensions
       )
 
-      # Parser extensions
-      Decidim::ContentParsers::ProposalParser.send(
+      # Command extensions
+      Decidim::Accountability::Admin::CreateResult.include(ResultExtraAttributes)
+      Decidim::Accountability::Admin::UpdateResult.include(ResultExtraAttributes)
+      Decidim::Blogs::Admin::CreatePost.include(CreateBlogPostOverrides)
+      Decidim::Blogs::Admin::UpdatePost.include(UpdateBlogPostOverrides)
+
+      # Controller extensions
+      # Keep after helpers because these can load in helpers!
+      Decidim::ApplicationController.send(:include, LongLocationUrlStoring)
+      Decidim::Admin::HelpSectionsController.send(
         :include,
-        Helsinki::ProposalParserExtensions
+        AdminHelpSectionsExtensions
       )
+      Decidim::Blogs::Admin::PostsController.include(
+        AdminBlogPostsControllerExtensions
+      )
+      Decidim::Components::BaseController.send(:include, ComponentsBaseExtensions)
+      Decidim::UserActivitiesController.send(:include, UserActivitiesExtensions)
+      Decidim::UserTimelineController.send(:include, ActivityResourceTypes)
+      Decidim::Plans::PlansController.send(:include, PlansExtensions)
+      # Initiated before the ScopesHelper has been extended, so include the
+      # helper again.
+      Decidim::SearchesController.send(:helper, Decidim::ScopesHelper)
+      # For ensuring that the disabled omniauth strategies cannot be used
+      Decidim::Suomifi::OmniauthCallbacksController.include(OmniauthExtensions)
+      Decidim::Suomifi::OmniauthCallbacksController.ensure_strategy_enabled_for(:suomifi)
+      Decidim::Mpassid::OmniauthCallbacksController.include(OmniauthExtensions)
+      Decidim::Mpassid::OmniauthCallbacksController.ensure_strategy_enabled_for(:mpassid)
 
-      # View extensions
-      ActionView::Base.send :include, Decidim::MapHelper
-      ActionView::Base.send :include, Decidim::WidgetUrlsHelper
-
-      # Controller concern extensions
-      # See: https://github.com/decidim/decidim/pull/5313
-      Decidim::NeedsTosAccepted.send(:include, TosRedirectFix)
-
-      # Extra helpers
+      # Cell extensions
+      Decidim::AddressCell.send(:include, AddressCellExtensions)
+      Decidim::CardMCell.send(:include, CardMCellExtensions)
       Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
         :include,
         Decidim::ApplicationHelper
@@ -173,6 +459,49 @@ module DecidimHelsinki
       Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
         :include,
         Decidim::SanitizeHelper
+      )
+      Decidim::ContentBlocks::HeroCell.send(:include, KoroHelper)
+      Decidim::Blogs::PostMCell.include(BlogPostMCellExtensions)
+      Decidim::Budgets::BudgetListItemCell.send(
+        :include,
+        BudgetListItemCellExtensions
+      )
+      Decidim::Budgets::BudgetInformationModalCell.send(
+        :include,
+        BudgetInformationModalExtensions
+      )
+      # Needed to fix the avatar image ALT texts
+      Decidim::AuthorCell.send(:include, Decidim::SanitizeHelper)
+      Decidim::UserProfileCell.send(:include, Decidim::SanitizeHelper)
+
+      # Form extensions
+      Decidim::Admin::CategoryForm.send(:include, AdminCategoryFormExtensions)
+      Decidim::Accountability::Admin::ResultForm.send(:include, AdminResultFormExtensions)
+      Decidim::Blogs::Admin::PostForm.include(AdminBlogPostFormExtensions)
+
+      # Builder extensions
+      Decidim::FormBuilder.send(:include, FormBuilderExtensions)
+
+      # Parser extensions
+      Decidim::ContentParsers::ProposalParser.send(
+        :include,
+        Helsinki::ProposalParserExtensions
+      )
+
+      # Service extensions
+      Decidim::ActivitySearch.send(:include, ActivitySearchExtensions)
+
+      # Model extensions
+      Decidim::Category.send(:include, CategoryExtensions)
+      Decidim::Blogs::Post.include(BlogPostExtensions)
+
+      # View extensions
+      ActionView::Base.send :include, Decidim::WidgetUrlsHelper
+
+      # Authorizer extensions
+      ::Decidim::ActionAuthorizer::AuthorizationStatusCollection.send(
+        :include,
+        AuthorizationStatusCollectionExtensions
       )
     end
   end

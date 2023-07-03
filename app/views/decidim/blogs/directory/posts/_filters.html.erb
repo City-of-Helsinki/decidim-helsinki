@@ -1,0 +1,31 @@
+<%= filter_form_for filter, main_app.posts_path, role: "region", "aria-label": t("decidim.blogs.posts.filters.label") do |form| %>
+  <div class="row columns show-for-medium">
+    <div class="filters__section filters__section--title">
+      <div class="row">
+        <div class="columns mediumlarge-6 large-8">
+          <h3><%= t("decidim.blogs.posts.filters.title") %></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns mediumlarge-6 large-4">
+      <div class="filters__section text_filter">
+        <fieldset>
+          <legend class="mini-title"><%= t("decidim.blogs.posts.filters.term") %></legend>
+          <%= form.search_field :search_text, label: false, placeholder: t("decidim.blogs.posts.filters.term"), title: t("decidim.blogs.posts.filters.term"), "aria-label": t("decidim.blogs.posts.filters.term"), data: { disable_dynamic_change: true } %>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+  <div class="row columns">
+    <div class="filters__section">
+      <button type="submit" class="button primary" aria-label="<%= t("decidim.blogs.posts.filters.search") %>" aria-controls="projects-count projects" data-close>
+        <%= t("decidim.blogs.posts.filters.search") %>
+      </button>
+      <button type="reset" class="button clear"><%= t "decidim.blogs.posts.filters.reset" %></button>
+    </div>
+  </div>
+<% end %>

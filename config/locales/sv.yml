@@ -1,8 +1,6 @@
 sv:
   activemodel:
     attributes:
-      budgeting_verification:
-        district: Distrikt (ditt rekommenderade distrikt som standard)
       helsinki_documents_authorization_handler:
         document_type: Typ av identitetsdokument
         first_name: Förnamn
@@ -14,18 +12,29 @@ sv:
         voting_unit: Ruuti område
       suomifi_eid:
         district: Distrikt
+      result:
+        budget_amount: Total budget för projektet
+        budget_breakdown: Budgetfördelning
+        interaction_description: Interaktionsbeskrivning
+        news_description: Nyheter
+        plans_description: Planbeskrivning
     errors:
       models:
         helsinki_documents_authorization_handler:
           attributes:
             pin:
+              electronically_identified: Personen har redan identifierats elektroniskt.
               invalid_pin: ogiltigt personnummer
-              used: personnummer har redan använts
   activerecord:
     models:
-      decidim/plans/plan: Plan
+      decidim/plans/plan:
+        one: Förslag
+        other: Förslag
   auth:
     sign_in_with_tunnistamo: 'Logga in med Tunnistamo'
+  date:
+    formats:
+      decidim_short: "%d.%m.%Y"
   decidim:
     authorization_handlers:
       admin:
@@ -35,12 +44,6 @@ sv:
             - An admin will review the request
             - Admin will either approve or reject the access request
             - The user will get notified that their access request has been either approved or rejected
-      budgeting_identity:
-        explanation: Identifiera dig själv för deltagande budgetering
-        name: Budgetering
-        fields:
-          allowed_districts: Tillåtna distrikt
-          district: Distrikt
       cocreation:
         explanation: Be om tillstånd att skapa samskapande planer
         name: Samskapande
@@ -50,28 +53,67 @@ sv:
           drivers_license: Körkort
           idcard: Identitetskort
           kela_card: FPA-kort
+          none: Ingen
           passport: Pass
         name: Identity document at an office
         user_explanation: Gå till en fysisk plats för att identifiera dig med ett identitetsdokument.
       mpassid_nids:
         fields:
           allowed_units: Tillåtna Ruuti områden
-          max_class_level: Störst årskurs
-          min_class_level: Minst årskurs
+          maximum_class_level: Störst årskurs
+          minimum_class_level: Minst årskurs
           student_class_level: Årskurs
           voting_unit: Ruuti område
+        name: Bankkoder eller mobilcertifikat
       suomifi_eid:
         fields:
           allowed_districts: Tillåtna distrikt
           district: Distrikt
+          minimum_age: Lägsta ålder
+        name: Wilma ID för skoleelever
+    budgets:
+      projects:
+        filters:
+          category_prompt: Välj ett ämne
+    components:
+      component_order_selector:
+        order:
+          idea: Idé
+          plan: Förslag
+    forms:
+      file_help:
+        file:
+          explanation: 'Vägledning för fil:'
+          message_1: Måste vara en bild eller ett dokument.
+          message_2: För bilder, använd företrädesvis liggande bilder, tjänsten beskär bilden.
+        image:
+          explanation: 'Vägledning för bild:'
+          message_1: Helst en landskapsbild som inte har någon text.
+          message_2: Tjänsten beskär bilden.
+    help_sections:
+      footer_text:
+        name: Sidfotstext
+      help_index:
+        name: Hjälpavsnittets första sida
     pages:
       home:
         statistics:
           plans_count: Planer
+      index:
+        title: Hjälp
+      side_panel:
+        show_navigation: Visa navigering
+    proposals:
+      proposals:
+        filters:
+          category_prompt: Välj ett ämne
     suomifi:
       omniauth_callbacks:
         failure:
           security_denial: Din identitet kan inte verifieras elektroniskt. Du kan rösta på röstningsplatserna som har meddelats separat genom att visa upp ett identitetsbevis.
+  errors:
+    messages:
+      extension_whitelist_error: Filtypen du försökte ladda upp är inte tillåten.
   forms:
     scopes_picker:
       others: Andra
@@ -101,8 +143,31 @@ sv:
     decidim:
       assembly_header:
         unfold: Öppna
+      breadcrumbs:
+        current: Nuvarande sida
+      header:
+        choose_language: Välj språk
+        front_page_link: Gå till hemsidan
+        help: Hjälp
+        navigation: Menu
+        sign_in: Logga in
+        subtitle: 2020-2021
+      participatory_processes:
+        index:
+          active_processes: Pågår nu
+          past_processes: Tidigare omgångar
       process_header:
         unfold: Öppna
+      user_menu:
+        conversations: Meddelanden
+        favorites: Favoriter
+        notifications: Notifikationer
+        profile: Kontoinformation
+        profile_nav: Profil
+        public_profile: Den egna verksamheten
     footer:
-      feedback: Ge feedback
       about: Om tjänsten
+      contact: Kontaktuppgifter
+      feedback: Ge feedback
+      processes_info: Du kan se alla processer i den här tjänsten från processidan
+      processes_show: Visa alla processer

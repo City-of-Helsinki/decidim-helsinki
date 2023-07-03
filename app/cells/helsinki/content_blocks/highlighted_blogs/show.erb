@@ -1,0 +1,32 @@
+<div class="extended home-section listing-section">
+  <div class="row columns listing-section-heading text-center">
+    <h2 class="heading2 hero-heading"><%== title %></h2>
+  </div>
+  <div class="row small-up-1 medium-up-2 mediumlarge-up-4 card-grid">
+    <% posts.each_with_index do |post, index| %>
+      <%= localized_content_tag_for(post, :div, class: "column") do %>
+        <%= link_to post_path(post), class: "card card-simple" do %>
+          <%= image_tag_for(post, index) %>
+          <div class="card-section">
+            <div class="card__header">
+              <h3 class="h5"><%= translated_attribute post.title %></h3>
+            </div>
+            <div class="card__text">
+              <div class="card__text--paragraph">
+                <%== strip_tags summary_for(post) %>
+              </div>
+            </div>
+            <div class="card__arrow" aria-hidden="true">
+              <%= icon "arrow-thin-right", role: "img" %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="row columns mt-m">
+    <div class="text-center">
+      <%= link_to t(".show_more"), button_url, class: "button large secondary", aria: { label: t(".show_more_detailed") } %>
+    </div>
+  </div>
+</div>

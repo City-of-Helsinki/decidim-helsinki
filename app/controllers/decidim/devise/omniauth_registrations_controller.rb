@@ -84,6 +84,11 @@ module Decidim
 
       # Customized tunnistamo callback to bypass setting up the user parameters
       def tunnistamo
+        unless current_organization.enabled_omniauth_providers.has_key?(:tunnistamo)
+          flash[:alert] = t("devise.omniauth_callbacks.disabled")
+          return redirect_to stored_location_for(resource || :user) || decidim.root_path
+        end
+
         info = oauth_data[:info] || {}
 
         # Fetch the nickname passed form Tunnistamo

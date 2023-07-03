@@ -1,0 +1,11 @@
+sv:
+  decidim:
+    comments:
+      comments:
+        create:
+          error: Ett fel uppstod när kommentaren sparades.
+      view: Visa
+      comments:
+        title:
+          one: "%{count} kommentar"
+          other: "%{count} kommentarer"

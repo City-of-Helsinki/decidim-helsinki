@@ -1,0 +1,59 @@
+fi:
+  decidim:
+    accountability:
+      results:
+        show:
+          stats:
+            category: Teema
+        show_result_body:
+          comments_amount:
+            one: '%{count} kommentti'
+            other: '%{count} kommenttia'
+          details: Hankkeen tiedot
+          news: Ajankohtaista
+          section:
+            budget_breakdown:
+              name: Budjetin erittely
+            description:
+              name: Hankkeen kuvaus
+            interaction_description:
+              name: Vuorovaikutus
+            plans_description:
+              name: Suunnitelmat
+        stats_box:
+          budget: Budjetti
+    author:
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar useammalle käyttäjälle
+    budgets:
+      admin:
+        projects:
+          form:
+            address_help: 'Osoite: käytetään karttapisteen etsimiseen geokoodauksen avulla'
+      budget_list_item:
+        budget: Budjetti
+        show: Näytä
+        vote: Äänestä
+      project_list_item:
+        more_info: Tutustu tähän suunnitelmaan
+        more_info_with_title: Tutustu suunnitelmaan %{title}
+      projects:
+        index:
+          back_to_budgets: Näytä kaikki budjetit
+    components:
+      add_comment_form:
+        opinion:
+          label: Mielipiteesi tästä aiheesta
+          positive: Positiivinen
+          positive_selected: 'Mielipiteesi tästä aiheesta on positiivinen'
+          negative: Negatiivinen
+          negative_selected: 'Mielipiteesi tästä aiheesta on negatiivinen'
+          neutral: Neutraali
+          neutral_selected: 'Mielipiteesi tästä aiheesta on neutraali'
+      budgets:
+        settings:
+          global:
+            vote_success_mpassid_content: Onnistuneen äänestyksen jälkeen näytettävä sisältö MPASSid-käyttäjille
+    resource_links:
+      included_plans:
+        project_plan: Liitetyt yhteiskehittämisen ehdotukset

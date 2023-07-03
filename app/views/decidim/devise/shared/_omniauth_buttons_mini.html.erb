@@ -1,46 +1,23 @@
-<% if Devise.mappings[:user].omniauthable? && any_social_provider_enabled? %>
-  <%
-  enabled_strong_providers = [:suomifi, :mpassid].select { |p| social_provider_enabled?(p) }
-  %>
-
+<% if strong_providers_enabled? || weak_providers_enabled? %>
   <div class="row">
     <div class="columns">
-      <div class="social-register text-center">
-        <% if enabled_strong_providers.any? %>
-          <h3 class="h5 margin-bottom-1">
-            <%= t("devise.shared.omniauth.strong.sign_in_with") %>
-          </h3>
-          <p>
-            <%= t("devise.shared.omniauth.strong.description") %>
-          </p>
-
-          <% enabled_strong_providers.each_with_index do |provider, index| %>
-            <% if index > 0 %>
-              <br>
-            <% end %>
-            <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(provider)}", method: :post do %>
-              <%= t("devise.shared.omniauth.#{provider}.sign_in_button") %>
-            <% end %>
-          <% end %>
+      <% if Rails.application.config.wrapper_class == "wrapper-ruuti" %>
+        <%= render "decidim/devise/shared/omniauth_buttons_mini_strong" %>
+        <% if strong_providers_enabled? %>
+          <span class="register__separator">
+            <span class="register__separator__text"><%= t('or', scope: "decidim.devise.shared.omniauth_buttons") %></span>
+          </span>
         <% end %>
-      </div>
-      <% if social_provider_enabled? :tunnistamo %>
-        <span class="register__separator">
-          <span class="register__separator__text"><%= t('or', scope: "decidim.devise.shared.omniauth_buttons") %></span>
-        </span>
-
-        <div class="social-register text-center">
-          <h3 class="h5 margin-bottom-1">
-            <%= t("devise.shared.omniauth.weak.sign_in_with") %>
-          </h3>
-          <p>
-            <%= t("devise.shared.omniauth.weak.description") %>
-          </p>
-          <%= link_to decidim.send("user_tunnistamo_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(:tunnistamo)}", method: :post do %>
-            <%= t("devise.shared.omniauth.weak.sign_in_button") %>
-          <% end %>
-        </div>
+        <%= render "decidim/devise/shared/omniauth_buttons_mini_weak" %>
+      <% else %>
+        <%= render "decidim/devise/shared/omniauth_buttons_mini_strong" %>
+        <% if weak_providers_enabled? %>
+          <span class="register__separator">
+            <span class="register__separator__text"><%= t('or', scope: "decidim.devise.shared.omniauth_buttons") %></span>
+          </span>
+        <% end %>
+        <%= render "decidim/devise/shared/omniauth_buttons_mini_weak" %>
       <% end %>
-      </div>
+    </div>
   </div>
 <% end %>

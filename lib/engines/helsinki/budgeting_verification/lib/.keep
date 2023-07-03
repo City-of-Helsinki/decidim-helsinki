@@ -1,4 +1,0 @@
-# Please keep this file here as Rails will find the engine root by finding the
-# closest "lib" directory for the engine class definition file. If this is not
-# here, the engine root will be the application root which will cause problems
-# with the double loading.
