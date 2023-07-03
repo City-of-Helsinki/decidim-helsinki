@@ -9,22 +9,22 @@ module Helsinki
     # type - A GraphQL::BaseType to extend.
     #
     # Returns nothing.
-    def self.define(type)
-      type.field :scopeTypes,
-                 type: !type.types[Decidim::Core::ScopeTypeType],
-                 description: "Lists all scope types",
-                 function: Decidim::Core::ScopeTypeListHelper.new
-
-      type.field :scopes do
-        type !types[Decidim::Core::ScopeApiType]
-        description "Lists all scopes"
-
-        resolve lambda { |_obj, _args, ctx|
-          Decidim::Scope.where(
-            organization: ctx[:current_organization]
-          )
-        }
+    def self.included(type)
+      type.field :scope_types, [Decidim::Core::ScopeTypeType], "Lists all scope types", null: false do
+        argument :name, ScopeTypeNameInputFilter, "Allows to filter the scopes by name", required: false
       end
+
+      type.field :scopes, [Decidim::Core::ScopeApiType], "Lists all scopes", null: false
+    end
+
+    def scope_types(name: nil)
+      query = Decidim::ScopeType.where(organization: context[:current_organization])
+      query = query.where("name->>? =?", name.locale, name.text) if name
+      query
+    end
+
+    def scopes
+      Decidim::Scope.where(organization: context[:current_organization])
     end
   end
 end

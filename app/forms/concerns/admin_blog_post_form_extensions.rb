@@ -5,7 +5,7 @@ module AdminBlogPostFormExtensions
   extend ActiveSupport::Concern
 
   included do
-    attribute :user_group_id, Integer # Brings the ability to create blog posts as a group from 0.24.
+    attribute :user_group_id, Integer # Brings the ability to create blog posts as a group from 0.25.
 
     translatable_attribute :summary, String
 

@@ -117,19 +117,6 @@
         background: transparent;
         color: $theme-primary-dark;
       }
-
-      .fa{
-        margin-right: 2px;
-        font-size: 1.4rem;
-
-        &.fa-chevron-up{
-          color: $brand-success;
-        }
-
-        &.fa-chevron-down{
-          color: $brand-danger;
-        }
-      }
     }
 
     .comment__footer{

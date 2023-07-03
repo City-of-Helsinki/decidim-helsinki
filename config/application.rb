@@ -46,15 +46,6 @@ module DecidimHelsinki
       Rails.root.join("app", "assets", "fonts").to_s,
     ]
 
-    # String identifier, this defines the main mode of Decidim
-    # See README.md for more explation on this.
-    #
-    # Available throughout code as: Rails.application.config.use_mode
-    # Allowed values are:
-    #   "private" : string = Private mode (force logging in)
-    #   "normal" : string = Normal mode without modifications
-    config.use_mode = "normal"
-
     # Wrapper class can be used to customize the coloring of the platform per
     # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
     config.wrapper_class = "wrapper-default"
@@ -104,7 +95,7 @@ module DecidimHelsinki
     end
 
     initializer "user_authentication" do |app|
-      Decidim::User.send(:include, UserAuthentication)
+      Decidim::User.include(UserAuthentication)
 
       # The following hook is for the development environment and it is needed
       # to load the correct omniauth configurations to the Decidim::User model
@@ -138,7 +129,7 @@ module DecidimHelsinki
       # NOTE: This problem only occurs when the models and routes are reloaded,
       #       i.e. in development environment.
       app.reloader.after_class_unload do
-        Decidim::User.send(:include, UserAuthentication)
+        Decidim::User.include(UserAuthentication)
       end
     end
 
@@ -171,22 +162,11 @@ module DecidimHelsinki
     # initializer "graphql_api", after: "decidim.graphql_api" do
     initializer "graphql_api" do
       # API type extensions
-      Decidim::AccountabilitySimple::ResultMutationType.include(
-        ResultMutationTypeExtensions
-      )
+      Decidim::Accountability::ResultType.include(Helsinki::ResultTypeExtensions)
+      Decidim::AccountabilitySimple::ResultMutationType.include(Helsinki::ResultMutationTypeExtensions)
+      Decidim::ParticipatoryProcesses::ParticipatoryProcessType.include(Helsinki::ParticipatoryProcessesTypeExtensions)
 
-      Decidim::Api::QueryType.define do
-        Helsinki::QueryExtensions.define(self)
-      end
-
-      # TODO: Update to 0.24+
-      Decidim::Accountability::ResultType.define do
-        field :budgetAmount, types.Int, "The budget amount for this result", property: :budget_amount
-        field :budgetBreakdown, Decidim::Core::TranslatedFieldType, "The budget breakdown for this result (HTML)", property: :budget_breakdown
-        field :plansDescription, Decidim::Core::TranslatedFieldType, "The plans description for this result (HTML)", property: :plans_description
-        field :interactionDescription, Decidim::Core::TranslatedFieldType, "The interaction for this result (HTML)", property: :interaction_description
-        field :newsDescription, Decidim::Core::TranslatedFieldType, "The news for this result (HTML)", property: :news_description
-      end
+      Decidim::Api::QueryType.include(Helsinki::QueryExtensions)
     end
 
     initializer "budget_workflows" do
@@ -407,18 +387,9 @@ module DecidimHelsinki
     # Run before every request in development.
     config.to_prepare do
       # Helper extensions
-      Decidim::Comments::CommentsHelper.send(
-        :include,
-        CommentsHelperExtensions
-      )
-      Decidim::ParticipatoryProcesses::ParticipatoryProcessHelper.send(
-        :include,
-        ParticipatoryProcessHelperExtensions
-      )
-      Decidim::ScopesHelper.send(
-        :include,
-        ScopesHelperExtensions
-      )
+      Decidim::Comments::CommentsHelper.include(CommentsHelperExtensions)
+      Decidim::ParticipatoryProcesses::ParticipatoryProcessHelper.include(ParticipatoryProcessHelperExtensions)
+      Decidim::ScopesHelper.include(ScopesHelperExtensions)
 
       # Command extensions
       Decidim::Accountability::Admin::CreateResult.include(ResultExtraAttributes)
@@ -428,21 +399,16 @@ module DecidimHelsinki
 
       # Controller extensions
       # Keep after helpers because these can load in helpers!
-      Decidim::ApplicationController.send(:include, LongLocationUrlStoring)
-      Decidim::Admin::HelpSectionsController.send(
-        :include,
+      Decidim::ApplicationController.include(LongLocationUrlStoring)
+      Decidim::Admin::HelpSectionsController.include(
         AdminHelpSectionsExtensions
       )
-      Decidim::Blogs::Admin::PostsController.include(
-        AdminBlogPostsControllerExtensions
-      )
-      Decidim::Components::BaseController.send(:include, ComponentsBaseExtensions)
-      Decidim::UserActivitiesController.send(:include, UserActivitiesExtensions)
-      Decidim::UserTimelineController.send(:include, ActivityResourceTypes)
-      Decidim::Plans::PlansController.send(:include, PlansExtensions)
-      # Initiated before the ScopesHelper has been extended, so include the
-      # helper again.
-      Decidim::SearchesController.send(:helper, Decidim::ScopesHelper)
+      Decidim::Blogs::Admin::PostsController.include(AdminBlogPostsControllerExtensions)
+      Decidim::Components::BaseController.include(ComponentsBaseExtensions)
+      Decidim::UserActivitiesController.include(UserActivitiesExtensions)
+      Decidim::UserTimelineController.include(ActivityResourceTypes)
+      Decidim::Plans::PlansController.include(PlansExtensions)
+      Decidim::Meetings::RegistrationsController.include(MeetingsRegistrationsControllerExtensions)
       # For ensuring that the disabled omniauth strategies cannot be used
       Decidim::Suomifi::OmniauthCallbacksController.include(OmniauthExtensions)
       Decidim::Suomifi::OmniauthCallbacksController.ensure_strategy_enabled_for(:suomifi)
@@ -450,59 +416,41 @@ module DecidimHelsinki
       Decidim::Mpassid::OmniauthCallbacksController.ensure_strategy_enabled_for(:mpassid)
 
       # Cell extensions
-      Decidim::AddressCell.send(:include, AddressCellExtensions)
-      Decidim::CardMCell.send(:include, CardMCellExtensions)
-      Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
-        :include,
-        Decidim::ApplicationHelper
-      )
-      Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.send(
-        :include,
-        Decidim::SanitizeHelper
-      )
-      Decidim::ContentBlocks::HeroCell.send(:include, KoroHelper)
+      Decidim::AddressCell.include(AddressCellExtensions)
+      Decidim::CardMCell.include(CardMCellExtensions)
+      Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::ApplicationHelper)
+      Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::SanitizeHelper)
+      Decidim::ContentBlocks::HeroCell.include(KoroHelper)
       Decidim::Blogs::PostMCell.include(BlogPostMCellExtensions)
-      Decidim::Budgets::BudgetListItemCell.send(
-        :include,
-        BudgetListItemCellExtensions
-      )
-      Decidim::Budgets::BudgetInformationModalCell.send(
-        :include,
-        BudgetInformationModalExtensions
-      )
+      Decidim::Budgets::BudgetListItemCell.include(BudgetListItemCellExtensions)
+      Decidim::Budgets::BudgetInformationModalCell.include(BudgetInformationModalExtensions)
       # Needed to fix the avatar image ALT texts
-      Decidim::AuthorCell.send(:include, Decidim::SanitizeHelper)
-      Decidim::UserProfileCell.send(:include, Decidim::SanitizeHelper)
+      Decidim::AuthorCell.include(Decidim::SanitizeHelper)
+      Decidim::UserProfileCell.include(Decidim::SanitizeHelper)
 
       # Form extensions
-      Decidim::Admin::CategoryForm.send(:include, AdminCategoryFormExtensions)
-      Decidim::Accountability::Admin::ResultForm.send(:include, AdminResultFormExtensions)
+      Decidim::Admin::CategoryForm.include(AdminCategoryFormExtensions)
+      Decidim::Accountability::Admin::ResultForm.include(AdminResultFormExtensions)
       Decidim::Blogs::Admin::PostForm.include(AdminBlogPostFormExtensions)
 
       # Builder extensions
-      Decidim::FormBuilder.send(:include, FormBuilderExtensions)
+      Decidim::FormBuilder.include(FormBuilderExtensions)
 
       # Parser extensions
-      Decidim::ContentParsers::ProposalParser.send(
-        :include,
-        Helsinki::ProposalParserExtensions
-      )
+      Decidim::ContentParsers::ProposalParser.include(Helsinki::ProposalParserExtensions)
 
       # Service extensions
-      Decidim::ActivitySearch.send(:include, ActivitySearchExtensions)
+      Decidim::ActivitySearch.include(ActivitySearchExtensions)
 
       # Model extensions
-      Decidim::Category.send(:include, CategoryExtensions)
+      Decidim::Category.include(CategoryExtensions)
       Decidim::Blogs::Post.include(BlogPostExtensions)
 
       # View extensions
-      ActionView::Base.send :include, Decidim::WidgetUrlsHelper
+      ActionView::Base.include(Decidim::WidgetUrlsHelper)
 
       # Authorizer extensions
-      ::Decidim::ActionAuthorizer::AuthorizationStatusCollection.send(
-        :include,
-        AuthorizationStatusCollectionExtensions
-      )
+      ::Decidim::ActionAuthorizer::AuthorizationStatusCollection.include(AuthorizationStatusCollectionExtensions)
     end
   end
 end
