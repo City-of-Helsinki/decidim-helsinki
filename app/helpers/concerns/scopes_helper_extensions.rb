@@ -47,8 +47,11 @@ module ScopesHelperExtensions
     picker_select = form.select(
       name,
       scope_picker_options(scopes, selected&.id),
-      include_blank: options[:prompt] || I18n.t("forms.scopes_picker.prompt", item_name: prompt_label),
-      label: false
+      {
+        include_blank: options[:prompt] || I18n.t("forms.scopes_picker.prompt", item_name: prompt_label),
+        label: false
+      },
+      "aria-controls": "proposals"
     )
 
     return picker_select unless form.respond_to?(:fieldset_wrapper, true)
