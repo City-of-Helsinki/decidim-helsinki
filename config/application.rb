@@ -3,6 +3,8 @@
 require_relative "boot"
 
 require "decidim/rails"
+# Add the frameworks used by your app that are not loaded by Decidim.
+require "action_cable/engine"
 require "cldr"
 
 # Require the gems listed in Gemfile, including any gems
