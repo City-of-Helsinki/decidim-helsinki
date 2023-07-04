@@ -1,21 +1,5 @@
 # frozen_string_literal: true
 
-# Configure the default certificate path for swd, webfinger and openid_connect
-# because of expired Let's Encrypt root certificate. Otherwise these gems would
-# throw a "certificate expired" or "unable to get local issuer certificate"
-# error. If not configured, the HTTPClient (used by SWD, Webfinger and
-# OpenIDConnect) would use its own root CA chain instead as defined here:
-# https://github.com/nahi/httpclient/blob/4658227a46f7caa633ef8036f073bbd1f0a955a2/lib/httpclient/ssl_config.rb#L426-L429
-SWD.http_config do |http_client|
-  http_client.ssl_config.set_default_paths
-end
-WebFinger.http_config do |http_client|
-  http_client.ssl_config.set_default_paths
-end
-OpenIDConnect.http_config do |http_client|
-  http_client.ssl_config.set_default_paths
-end
-
 module OmniAuth
   module Strategies
     class OpenIDConnectHelsinki < OpenIDConnect
