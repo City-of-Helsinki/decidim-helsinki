@@ -1,3 +1,45 @@
 inherit_from:
   - .rubocop_ruby.yml
   - .rubocop_rails.yml
+
+# Additions to the default rules
+inherit_mode:
+  merge:
+    - Include
+    - Exclude
+
+AllCops:
+  Include:
+    - .simplecov
+    - "**/*.rb"
+    - "**/*.rake"
+    - "**/*.gemspec"
+    - "**/*.ru"
+    - "**/Gemfile"
+    - "**/Rakefile"
+  Exclude:
+    - "**/vendor/**/*"
+    - "development_app/**/*"
+    - "spec/decidim_dummy_app/**/*"
+    - "node_modules/**/*"
+    - "db/**/*"
+    - "tmp/**/*"
+
+Rails/Output:
+  Include:
+    - app/**/*.rb
+    - config/**/*.rb
+    - db/**/*.rb
+    - lib/**/*.rb
+
+Rails/ReadWriteAttribute:
+  Include:
+    - app/models/**/*.rb
+
+Rails/ScopeArgs:
+  Include:
+    - app/models/**/*.rb
+
+Rails/Validation:
+  Include:
+    - app/models/**/*.rb

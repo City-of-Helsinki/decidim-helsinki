@@ -253,7 +253,7 @@ describe Helsinki::Stats::Voting::Aggregator do
     it "updates the correct last_value_at for the collection" do
       collection = measurable.stats.find_by(key: "votes")
       expect(collection.last_value_at).to eq(
-        Decidim::Budgets::Vote.where(component: measurable).order(created_at: :desc).pluck(:created_at).first
+        Decidim::Budgets::Vote.where(component: measurable).order(created_at: :desc).pick(:created_at)
       )
     end
 
@@ -273,7 +273,7 @@ describe Helsinki::Stats::Voting::Aggregator do
     it "updates the correct last_value_at for the collection" do
       collection = measurable.stats.find_by(key: "votes")
       expect(collection.last_value_at).to eq(
-        Decidim::Budgets::Order.finished.where(budget: measurable).order(checked_out_at: :desc).pluck(:checked_out_at).first
+        Decidim::Budgets::Order.finished.where(budget: measurable).order(checked_out_at: :desc).pick(:checked_out_at)
       )
     end
 
