@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# This brings the user group author ability to blog posts from 0.24.
+# This brings the user group author ability to blog posts from 0.25.
 #
-# This can be removed after upgrade to 0.24.
+# This can be removed after upgrade to 0.25.
 module AdminBlogPostsControllerExtensions
   extend ActiveSupport::Concern
 

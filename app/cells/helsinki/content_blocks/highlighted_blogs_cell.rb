@@ -33,7 +33,7 @@ module Helsinki
 
       def summary_for(post)
         translated_summary = translated_attribute(post.summary)
-        return translated_summary unless translated_summary.blank?
+        return translated_summary if translated_summary.present?
 
         html_truncate(translated_attribute(post.body), length: 100, separator: "...")
       end

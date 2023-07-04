@@ -136,6 +136,7 @@ namespace :hkiresult do
 
   private
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def export_component(component_id, filename)
     c = Decidim::Component.find_by(id: component_id)
     if c.nil? || c.manifest_name != "budgets"
@@ -201,11 +202,13 @@ namespace :hkiresult do
 
     write_excel(budgets, filename)
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def project_data(project_votes)
     data = project_votes.map do |project_id, pvotes|
       project = Decidim::Budgets::Project.find(project_id)
-      title = project.title.dig("fi") || project.title.dig("en")
+      title = project.title["fi"] || project.title["en"]
       sub_category = project.category
       parent_category = sub_category&.parent
       unless parent_category
@@ -234,6 +237,7 @@ namespace :hkiresult do
       end
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
   def user_metadata(user, at_date = Time.zone.now)
     auth_names = %w(
@@ -336,10 +340,10 @@ namespace :hkiresult do
 
   def parse_class_levels(rawdata)
     class_level = rawdata["student_class_level"]
-    return class_level.split(",").map(&:to_i) if !class_level.nil? && !class_level.empty?
+    return class_level.split(",").map(&:to_i) if class_level.present?
 
     cls = rawdata["student_class"]
-    return [] if cls.nil? || cls.empty?
+    return [] if cls.blank?
 
     cls.split(",").map { |cl| cl.gsub(/^[^0-9]*/, "").to_i }
   end
@@ -384,9 +388,10 @@ namespace :hkiresult do
         rowdata.each_with_index do |col, colindex|
           value = col[1]
 
-          if value.is_a?(Numeric)
+          case value
+          when Numeric
             sheet.add_cell(rowindex + 1, colindex, value)
-          elsif value.is_a?(Time) || value.is_a?(DateTime) || value.is_a?(Date)
+          when Time, DateTime, Date
             c = sheet.add_cell(rowindex + 1, colindex)
             c.set_number_format("yyyy-mm-dd hh:mm:ss")
             c.change_contents(value)

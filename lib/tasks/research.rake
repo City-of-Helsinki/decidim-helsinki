@@ -55,7 +55,7 @@ namespace :research do
     users = Decidim::User.all.order(:id)
     user_count = users.count
 
-    logger = Logger.new(STDOUT)
+    logger = Logger.new($stdout)
     logger.level = Logger::INFO
     report_threshold = 5
     reported_percentage = 0
@@ -95,6 +95,7 @@ namespace :research do
         }
       end
       # Fetch the participation data for all component records
+      # rubocop:disable Style/CombinableLoops
       record_types.each do |type, definitions|
         component_records = definitions[:klass].where(definitions[:filter])
         component_records = component_records.published if component_records.respond_to?(:published)
@@ -104,6 +105,7 @@ namespace :research do
         row[type][:favorites] = favorites_data(user, component_records)
         row[type][:comments] = comments_data(user, component_records)
       end
+      # rubocop:enable Style/CombinableLoops
 
       row[:comments_total] = record_types.keys.sum { |k| row[k][:comments][:count] }
       row[:favorites_total] = record_types.keys.sum { |k| row[k][:favorites][:count] }
@@ -267,6 +269,7 @@ namespace :research do
     records.map { |r| r.category&.id }.compact
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def record_scopes(records)
     return [] unless records.any?
 
@@ -290,4 +293,5 @@ namespace :research do
 
     records.map { |r| r.scope&.id }.compact
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 end

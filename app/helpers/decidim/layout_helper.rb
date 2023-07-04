@@ -63,16 +63,22 @@ module Decidim
     #
     # Returns an <img /> tag with the SVG icon.
     def external_icon(path, options = {})
-      # Ugly hack to prevent PhantomJS from freaking out with SVGs.
       classes = _icon_classes(options) + ["external-icon"]
-      return content_tag(:span, "?", class: classes.join(" "), "data-src" => path) if Rails.env.test?
 
       if path.split(".").last == "svg"
+        attributes = { class: classes.join(" ") }.merge(options)
         asset = Rails.application.assets_manifest.find_sources(path).first
-        asset.gsub("<svg ", "<svg class=\"#{classes.join(" ")}\" ").html_safe
+        asset.gsub("<svg ", "<svg#{tag_builder.tag_options(attributes)} ").html_safe
       else
         image_tag(path, class: classes.join(" "), style: "display: none")
       end
+    end
+
+    # Allows to create role attribute according to accessibility rules
+    #
+    # Returns role attribute string if role option is specified
+    def role(options = {})
+      "role=\"#{options[:role]}\" " if options[:role]
     end
 
     def _icon_classes(options = {})
@@ -115,6 +121,12 @@ module Decidim
     def organization_colors
       css = current_organization.colors.each.map { |k, v| "--#{k}: #{v};--#{k}-rgb: #{v[1..2].hex},#{v[3..4].hex},#{v[5..6].hex};" }.join
       render partial: "layouts/decidim/organization_colors", locals: { css: css }
+    end
+
+    private
+
+    def tag_builder
+      @tag_builder ||= ActionView::Helpers::TagHelper::TagBuilder.new(self)
     end
   end
 end

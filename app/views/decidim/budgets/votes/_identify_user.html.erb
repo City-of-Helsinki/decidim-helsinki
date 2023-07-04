@@ -20,8 +20,6 @@ extra_locals = {
 
     <% if Rails.application.config.wrapper_class == "wrapper-ruuti" %>
       <%= render "decidim/devise/sessions/ruuti", extra_locals: extra_locals %>
-    <% elsif private_mode? %>
-      <%= render "decidim/devise/sessions/private", extra_locals: extra_locals %>
     <% else %>
       <%= render "decidim/devise/sessions/default", extra_locals: extra_locals %>
     <% end %>

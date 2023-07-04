@@ -4,7 +4,7 @@
 module ParticipatoryProcessHelperExtensions
   extend ActiveSupport::Concern
 
-  def process_step_tag(step, past = false)
+  def process_step_tag(step, past: false)
     cls = ["phases-list-item"]
     if past
       cls << "phases-list-item-past"

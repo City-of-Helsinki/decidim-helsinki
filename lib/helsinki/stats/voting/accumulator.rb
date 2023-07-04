@@ -22,7 +22,7 @@ module Helsinki
 
         def accumulate
           votes.each do |vote|
-            meta = identity_provider.for(vote.user, vote.created_at)
+            meta = identity_provider.for(vote.user, vote_time_for(vote))
             if meta
               case meta[:identity]
               when "suomifi_eid", "helsinki_documents_authorization_handler"

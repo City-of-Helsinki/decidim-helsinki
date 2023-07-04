@@ -17,7 +17,7 @@ class OrganizationResourceFetcher
   def filter_spaces(query, published: false)
     Decidim.participatory_space_manifests.each do |space|
       cls = space.model_class_name.constantize
-      join_query = <<~SQL
+      join_query = <<~SQL.squish
         LEFT JOIN #{cls.table_name} ON #{cls.table_name}.id = decidim_components.participatory_space_id
           AND #{cls.table_name}.decidim_organization_id = #{cls.sanitize_sql(organization.id)}
           AND decidim_components.participatory_space_type = #{cls.sanitize_sql("'#{cls}'")}

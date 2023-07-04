@@ -9,10 +9,6 @@ module Decidim
       include Decidim::DeviseControllers
       include NeedsTosAccepted
 
-      # Normal login enabled -> comment out the before_action below
-      # To Disable login     -> comment the line below
-      before_action :disable_controller if Rails.application.config.use_mode == "private"
-
       before_action :ensure_registration_enabled
       before_action :configure_permitted_parameters
 
@@ -54,10 +50,6 @@ module Decidim
         return if current_organization.sign_up_enabled? && devise_mapping.registerable?
 
         raise ActionController::RoutingError, "Not Found"
-      end
-
-      def disable_controller
-        redirect_to "/"
       end
 
       protected

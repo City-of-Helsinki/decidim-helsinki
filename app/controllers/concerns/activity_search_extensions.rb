@@ -25,10 +25,7 @@ module ActivitySearchExtensions
       query = query.where(user: options[:user]) if options[:user]
       query = query.where(resource_type: options[:resource_name]) if options[:resource_name]
 
-      query = filter_follows(query)
-      # query = filter_hidden(query)
-
-      query
+      filter_follows(query)
     end
 
     # All the resource types that are eligible to be included as an activity.
@@ -49,9 +46,7 @@ module ActivitySearchExtensions
           klass.safe_constantize.present?
         end
 
-        if options[:current_user] == options[:user]
-          klasses << "Decidim::Budgets::Vote" if Decidim::Budgets::Vote.where(user: options[:current_user]).present?
-        end
+        klasses << "Decidim::Budgets::Vote" if options[:current_user] == options[:user] && Decidim::Budgets::Vote.where(user: options[:current_user]).present?
 
         klasses
       end

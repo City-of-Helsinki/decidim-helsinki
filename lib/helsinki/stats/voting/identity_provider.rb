@@ -64,10 +64,10 @@ module Helsinki
 
         def parse_class_level(rawdata)
           class_level = rawdata["student_class_level"]
-          return class_level.split(",").first.to_i if !class_level.nil? && !class_level.empty?
+          return class_level.split(",").first.to_i if class_level.present?
 
           cls = rawdata["student_class"]
-          return if cls.nil? || cls.empty?
+          return if cls.blank?
 
           cls = cls.split(",").first
           cls.gsub(/^[^0-9]*/, "").to_i

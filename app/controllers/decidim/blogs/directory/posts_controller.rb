@@ -15,6 +15,7 @@ module Decidim
         helper Decidim::SanitizeHelper
         helper Decidim::FilterParamsHelper
         helper Decidim::AttachmentsHelper
+        helper Decidim::Comments::CommentsHelper
         helper BlogContentHelper
 
         helper_method :posts, :post

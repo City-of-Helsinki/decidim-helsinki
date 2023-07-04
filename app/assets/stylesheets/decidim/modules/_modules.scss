@@ -26,6 +26,7 @@
 @import "decidim/modules/callout";
 
 //Shared modules
+@import "decidim/modules/confirm";
 @import "decidim/modules/comments";
 @import "decidim/modules/messages";
 @import "decidim/modules/opinion-toggle";
@@ -51,6 +52,9 @@
 @import "decidim/modules/list-request";
 @import "floating-helper";
 @import "decidim/modules/versions";
+@import "decidim/modules/sticky";
+@import "decidim/modules/notification";
+@import "decidim/modules/space-stats";
 
 //Process elements
 @import "process-header";
@@ -63,7 +67,6 @@
 @import "decidim/modules/inline-filters";
 @import "decidim/modules/reference";
 @import "decidim/modules/status-labels";
-@import "decidim/modules/process-stats";
 
 //Conference elements
 @import "decidim/modules/conference-nav";

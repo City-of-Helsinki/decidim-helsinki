@@ -1,19 +1,25 @@
 # frozen_string_literal: true
 
+# frozen_string_literal: true
+
 module Decidim
   # A ParticipatoryProcess is composed of many steps that hold different
-  # features that will show up in the depending on what step is currently
+  # components that will show up in the depending on what step is currently
   # active.
+  #
+  # Overridden to allow equal start and end dates.
   class ParticipatoryProcessStep < ApplicationRecord
+    include Decidim::TranslatableResource
     include Traceable
     include Loggable
+
+    translatable_fields :title, :description, :cta_text
 
     belongs_to :participatory_process, foreign_key: "decidim_participatory_process_id", class_name: "Decidim::ParticipatoryProcess"
     has_one :organization, through: :participatory_process
 
     alias participatory_space participatory_process
 
-    # Customize the start and end date validation: allow equal dates
     validates :start_date, date: { before_or_equal_to: :end_date, allow_blank: true, if: proc { |obj| obj.end_date.present? } }
     validates :end_date, date: { after_or_equal_to: :start_date, allow_blank: true, if: proc { |obj| obj.start_date.present? } }
 
@@ -22,7 +28,11 @@ module Decidim
     validates :position, numericality: { greater_than_or_equal_to: 0, only_integer: true }, allow_blank: true
     validates :position, uniqueness: { scope: :decidim_participatory_process_id }
 
-    before_create :set_position
+    before_validation :set_position, on: :create
+
+    def self.log_presenter_class_for(_log)
+      Decidim::ParticipatoryProcesses::AdminLog::StepPresenter
+    end
 
     private
 
@@ -39,7 +49,7 @@ module Decidim
       return if position.present?
       return self.position = 0 if participatory_process.steps.select(&:persisted?).empty?
 
-      self.position = participatory_process.steps.pluck(:position).last + 1
+      self.position = participatory_process.steps.maximum(:position) + 1
     end
   end
 end

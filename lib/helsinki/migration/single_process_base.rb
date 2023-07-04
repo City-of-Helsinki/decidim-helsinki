@@ -120,9 +120,11 @@ module Helsinki
           )
           next unless new_detail
 
+          # rubocop:disable Rails/SkipsModelValidations
           Decidim::AccountabilitySimple::ResultDetailValue.where(
             detail: old_detail
           ).update_all(decidim_accountability_result_detail_id: new_detail.id)
+          # rubocop:enable Rails/SkipsModelValidations
         end
       end
 
@@ -137,10 +139,12 @@ module Helsinki
           )
           next unless new_status
 
+          # rubocop:disable Rails/SkipsModelValidations
           Decidim::Accountability::Result.where(
             component: to_component,
             status: old_status
           ).update_all(decidim_accountability_status_id: new_status.id)
+          # rubocop:enable Rails/SkipsModelValidations
         end
       end
 
@@ -228,7 +232,7 @@ module Helsinki
         end
 
         page = Decidim::Pages::Page.find_or_create_by!(component: budgets_overview_component)
-        page.update!(body: page_contents.map { |lang, contents| [lang, contents.join("\n")] }.to_h)
+        page.update!(body: page_contents.transform_values { |contents| contents.join("\n") })
       end
     end
   end
