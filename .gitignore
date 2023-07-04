@@ -41,7 +41,7 @@ storage
 .graphqlconfig
 schema.json
 
-/public/packs
+/public/decidim-packs
 /public/packs-test
 /node_modules
 /yarn-error.log
