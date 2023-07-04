@@ -6,32 +6,31 @@ ruby RUBY_VERSION
 
 # Run updates by following the Decidim upgrade instructions:
 # https://docs.decidim.org/en/develop/install/update.html
-DECIDIM_VERSION = "~> 0.24.0"
+DECIDIM_VERSION = "~> 0.25.0"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-initiatives", DECIDIM_VERSION
 
 # External Decidim modules
-gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "release/0.24-stable"
-gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "release/0.24-stable"
-gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "release/0.24-stable"
-gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "release/0.24-stable"
-gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "release/0.24-stable"
-gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.24-stable"
-gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.24-stable"
-gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "release/0.24-stable"
-gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "release/0.24-stable"
-gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "release/0.24-stable"
-gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "release/0.24-stable"
-gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "release/0.24-stable"
-gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "release/0.24-stable"
-gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "release/0.24-stable"
-gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.24-stable"
-gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "0.24-stable"
+gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "release/0.25-stable"
+gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "release/0.25-stable"
+gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "release/0.25-stable"
+gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "release/0.25-stable"
+gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "release/0.25-stable"
+gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.25-stable"
+gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.25-stable"
+gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "release/0.25-stable"
+gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "release/0.25-stable"
+gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "release/0.25-stable"
+gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "release/0.25-stable"
+gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "release/0.25-stable"
+gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "release/0.25-stable"
+gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "release/0.25-stable"
+gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.25-stable"
+gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "release/0.25-stable"
 
 gem "bootsnap", "~> 1.4"
-gem "puma", ">= 5.3.1"
-gem "uglifier", "~> 4.1"
+gem "puma", ">= 5.5.1"
 
 gem "faker", "~> 2.14"
 
@@ -67,11 +66,11 @@ group :development do
   gem "rubocop-faker"
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
-  gem "web-console", "~> 3.5"
+  gem "web-console", "4.0.4"
 end
 
 group :production, :production_ruuti, :staging do
-  gem "dotenv-rails", "~> 2.1", ">= 2.1.1"
+  gem "dotenv-rails", "~> 2.8"
 
   gem "resque", "~> 2.2.0"
   gem "resque-scheduler", "~> 4.5"

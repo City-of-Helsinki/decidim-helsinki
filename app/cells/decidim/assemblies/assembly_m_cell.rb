@@ -15,6 +15,9 @@ module Decidim
       private
 
       def has_image?
+        return false unless model.hero_image
+        return false unless model.hero_image.attached?
+
         true
       end
 
@@ -27,7 +30,9 @@ module Decidim
       end
 
       def resource_image_path
-        model.hero_image.url
+        return unless has_image?
+
+        model.attached_uploader(:hero_image).path
       end
 
       def statuses

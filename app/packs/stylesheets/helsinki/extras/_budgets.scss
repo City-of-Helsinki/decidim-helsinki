@@ -1,0 +1,10 @@
+@media print, screen and (min-width: 40em){
+  .budget-list__data{
+    flex-basis: 18rem;
+  }
+}
+
+.progressbox-fixed-wrapper{
+  top: 62px;
+  z-index: 10000;
+}

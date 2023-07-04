@@ -25,6 +25,9 @@
 # Ignore public uploads
 public/uploads
 
+# Ignore storage folder
+storage
+
 # Ignore local environment variables
 /.rbenv-vars
 
@@ -37,3 +40,10 @@ public/uploads
 # Comments component
 .graphqlconfig
 schema.json
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

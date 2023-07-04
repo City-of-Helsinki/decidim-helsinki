@@ -1,0 +1,35 @@
+.comment__votes{
+  form{
+    display: inline-block;
+  }
+
+  button,
+  .button{
+    &.focus,
+    &:focus{
+      background-color: transparent;
+      outline: $button-outline-focus;
+      outline-offset: $button-outline-offset;
+    }
+
+    &.comment__votes--up{
+      color: darken($comment-vote-up-color, 10%);
+    }
+
+    &.comment__votes--down{
+      color: darken($comment-vote-down-color, 10%);
+    }
+  }
+}
+
+.add-comment{
+  a,
+  .link{
+    &.focus,
+    &:focus{
+      background-color: transparent;
+      color: $anchor-color;
+      outline: $anchor-outline-focus;
+    }
+  }
+}

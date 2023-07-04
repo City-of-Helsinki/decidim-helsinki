@@ -9,9 +9,11 @@ module Decidim
     # Returns a safe String with the versions.
     def favicon
       return if current_organization.favicon.blank?
+      return unless current_organization.favicon.attached?
 
+      uploader = current_organization.attached_uploader(:favicon)
       safe_join(Decidim::OrganizationFaviconUploader::SIZES.map do |version, size|
-        favicon_link_tag(current_organization.favicon.send(version).url, sizes: "#{size}x#{size}")
+        favicon_link_tag(uploader.path(variant: version), sizes: "#{size}x#{size}")
       end)
     end
 
@@ -41,14 +43,14 @@ module Decidim
       if name == "tunnistamo"
         content_tag :svg, html_properties do
           inner = content_tag :title, options["title"] || html_properties["aria-label"]
-          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_path("hkilogo-symbol.svg")}#icon-helsinki"
+          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_pack_path("media/images/hkilogo-symbol.svg")}#icon-helsinki"
 
           inner
         end
       else
         content_tag :svg, html_properties do
           inner = content_tag :title, options["title"] || html_properties["aria-label"]
-          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_path("decidim/icons.svg")}#icon-#{name}"
+          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_pack_path("media/images/icons.svg")}#icon-#{name}"
 
           inner
         end

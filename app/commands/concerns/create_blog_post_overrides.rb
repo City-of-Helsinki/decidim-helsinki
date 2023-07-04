@@ -4,6 +4,8 @@
 module CreateBlogPostOverrides
   extend ActiveSupport::Concern
 
+  include ::Decidim::AttachmentAttributesMethods
+
   included do
     def create_post!
       attributes = {
@@ -12,7 +14,7 @@ module CreateBlogPostOverrides
         body: @form.body,
         component: @form.current_component,
         author: @form.author
-      }.merge(uploader_attributes)
+      }.merge(attachment_attributes(:card_image, :main_image))
 
       @post = Decidim.traceability.create!(
         Decidim::Blogs::Post,
@@ -21,14 +23,5 @@ module CreateBlogPostOverrides
         visibility: "all"
       )
     end
-  end
-
-  private
-
-  def uploader_attributes
-    {
-      card_image: @form.card_image,
-      main_image: @form.main_image
-    }.delete_if { |_k, val| val.is_a?(Decidim::ApplicationUploader) }
   end
 end

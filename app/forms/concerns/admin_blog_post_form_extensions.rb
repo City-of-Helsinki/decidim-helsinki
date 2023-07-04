@@ -5,12 +5,15 @@ module AdminBlogPostFormExtensions
   extend ActiveSupport::Concern
 
   included do
-    attribute :user_group_id, Integer # Brings the ability to create blog posts as a group from 0.25.
-
     translatable_attribute :summary, String
 
+    # For 0.27
+    # attribute :card_image, Decidim::Attributes::Blob
+    # attribute :main_image, Decidim::Attributes::Blob
     attribute :card_image
     attribute :main_image
+    attribute :remove_card_image, Decidim::Form::Boolean, default: false
+    attribute :remove_main_image, Decidim::Form::Boolean, default: false
 
     validates :card_image, passthru: { to: Decidim::Blogs::Post }
     validates :main_image, passthru: { to: Decidim::Blogs::Post }
@@ -21,24 +24,5 @@ module AdminBlogPostFormExtensions
     # In development environment we can end up in an endless loop if we alias
     # the already overridden method as then it will call itself.
     alias_method :map_model_orig, :map_model unless method_defined?(:map_model_orig)
-
-    def map_model(model)
-      map_model_orig(model)
-
-      self.user_group_id ||= model.author.id if model.author.is_a?(Decidim::UserGroup)
-    end
-  end
-
-  # Brings the ability to create blog posts as a group from 0.24.
-  def user_group
-    @user_group ||= Decidim::UserGroup.find_by(
-      organization: current_organization,
-      id: user_group_id
-    )
-  end
-
-  # Brings the ability to create blog posts as a group from 0.24.
-  def author
-    user_group || current_user
   end
 end

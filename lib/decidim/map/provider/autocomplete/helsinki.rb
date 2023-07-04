@@ -16,7 +16,7 @@ module Decidim
 
             # @see Decidim::Map::View::Builder#javascript_snippets
             def javascript_snippets
-              template.javascript_include_tag("decidim/geocoding/provider/helsinki")
+              template.javascript_pack_tag("decidim_geocoding_provider_helsinki", defer: false)
             end
 
             def main_app

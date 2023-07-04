@@ -1,7 +1,6 @@
 **/*{.,-}min.js
 **/vendor/**/*.js
 **/node_modules/**
-app/assets/javascripts/modernizr.js
 bundle.js
 karma.conf.js
 webpack.config.js

@@ -41,11 +41,6 @@ module DecidimHelsinki
       Rails.root.join("config/locales/overrides/*.yml").to_s,
     ]
 
-    # Add extra asset paths
-    config.assets.paths += Dir[
-      Rails.root.join("app/assets/fonts").to_s,
-    ]
-
     # Wrapper class can be used to customize the coloring of the platform per
     # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
     config.wrapper_class = "wrapper-default"
@@ -251,7 +246,7 @@ module DecidimHelsinki
         content_block.images = [
           {
             name: :image,
-            uploader: "Helsinki::ImageSectionImageUploader"
+            uploader: "Decidim::Helsinki::ImageSectionImageUploader"
           }
         ]
 
@@ -381,76 +376,95 @@ module DecidimHelsinki
       end
     end
 
-    # See:
-    # https://guides.rubyonrails.org/configuring.html#initialization-events
-    #
-    # Run before every request in development.
-    config.to_prepare do
-      # Helper extensions
-      Decidim::Comments::CommentsHelper.include(CommentsHelperExtensions)
-      Decidim::ParticipatoryProcesses::ParticipatoryProcessHelper.include(ParticipatoryProcessHelperExtensions)
-      Decidim::ScopesHelper.include(ScopesHelperExtensions)
+    # Needed for the 0.25 active storage migration
+    initializer "activestorage_migration" do
+      next unless Decidim.const_defined?("CarrierWaveMigratorService")
 
-      # Command extensions
-      Decidim::Accountability::Admin::CreateResult.include(ResultExtraAttributes)
-      Decidim::Accountability::Admin::UpdateResult.include(ResultExtraAttributes)
-      Decidim::Blogs::Admin::CreatePost.include(CreateBlogPostOverrides)
-      Decidim::Blogs::Admin::UpdatePost.include(UpdateBlogPostOverrides)
+      Decidim::CarrierWaveMigratorService.send(:remove_const, :MIGRATION_ATTRIBUTES).tap do |attributes|
+        additional_attributes = [
+          [Decidim::Blogs::Post, "card_image", Decidim::Cw::BlogPostImageUploader, "card_image"],
+          [Decidim::Blogs::Post, "main_image", Decidim::Cw::BlogPostImageUploader, "main_image"],
+          [Decidim::Category, "category_image", Decidim::Cw::CategoryImageUploader, "category_image"],
+          [Decidim::Category, "category_icon", Decidim::Cw::CategoryIconUploader, "category_icon"]
+        ]
 
-      # Controller extensions
-      # Keep after helpers because these can load in helpers!
-      Decidim::ApplicationController.include(LongLocationUrlStoring)
-      Decidim::Admin::HelpSectionsController.include(
-        AdminHelpSectionsExtensions
-      )
-      Decidim::Blogs::Admin::PostsController.include(AdminBlogPostsControllerExtensions)
-      Decidim::Components::BaseController.include(ComponentsBaseExtensions)
-      Decidim::UserActivitiesController.include(UserActivitiesExtensions)
-      Decidim::UserTimelineController.include(ActivityResourceTypes)
-      Decidim::Plans::PlansController.include(PlansExtensions)
-      Decidim::Meetings::RegistrationsController.include(MeetingsRegistrationsControllerExtensions)
-      # For ensuring that the disabled omniauth strategies cannot be used
-      Decidim::Suomifi::OmniauthCallbacksController.include(OmniauthExtensions)
-      Decidim::Suomifi::OmniauthCallbacksController.ensure_strategy_enabled_for(:suomifi)
-      Decidim::Mpassid::OmniauthCallbacksController.include(OmniauthExtensions)
-      Decidim::Mpassid::OmniauthCallbacksController.ensure_strategy_enabled_for(:mpassid)
+        Decidim::CarrierWaveMigratorService.const_set(:MIGRATION_ATTRIBUTES, (attributes + additional_attributes).freeze)
+      end
+    end
 
-      # Cell extensions
-      Decidim::AddressCell.include(AddressCellExtensions)
-      Decidim::CardMCell.include(CardMCellExtensions)
-      Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::ApplicationHelper)
-      Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::SanitizeHelper)
-      Decidim::ContentBlocks::HeroCell.include(KoroHelper)
-      Decidim::Blogs::PostMCell.include(BlogPostMCellExtensions)
-      Decidim::Budgets::BudgetListItemCell.include(BudgetListItemCellExtensions)
-      Decidim::Budgets::BudgetInformationModalCell.include(BudgetInformationModalExtensions)
-      # Needed to fix the avatar image ALT texts
-      Decidim::AuthorCell.include(Decidim::SanitizeHelper)
-      Decidim::UserProfileCell.include(Decidim::SanitizeHelper)
+    # Add the to_prepare hook AFTER the decidim.action_controller initializer
+    # because otherwise a necessary helper would be missing from some of the
+    # controllers.
+    initializer "customizations", after: "decidim.action_controller" do
+      # See:
+      # https://guides.rubyonrails.org/configuring.html#initialization-events
+      #
+      # Run before every request in development.
+      config.to_prepare do
+        # Helper extensions
+        Decidim::Comments::CommentsHelper.include(CommentsHelperExtensions)
+        Decidim::ParticipatoryProcesses::ParticipatoryProcessHelper.include(ParticipatoryProcessHelperExtensions)
+        Decidim::ScopesHelper.include(ScopesHelperExtensions)
 
-      # Form extensions
-      Decidim::Admin::CategoryForm.include(AdminCategoryFormExtensions)
-      Decidim::Accountability::Admin::ResultForm.include(AdminResultFormExtensions)
-      Decidim::Blogs::Admin::PostForm.include(AdminBlogPostFormExtensions)
+        # Command extensions
+        Decidim::Accountability::Admin::CreateResult.include(ResultExtraAttributes)
+        Decidim::Accountability::Admin::UpdateResult.include(ResultExtraAttributes)
+        Decidim::Blogs::Admin::CreatePost.include(CreateBlogPostOverrides)
+        Decidim::Blogs::Admin::UpdatePost.include(UpdateBlogPostOverrides)
 
-      # Builder extensions
-      Decidim::FormBuilder.include(FormBuilderExtensions)
+        # Controller extensions
+        # Keep after helpers because these can load in helpers!
+        Decidim::ApplicationController.include(LongLocationUrlStoring)
+        Decidim::Admin::HelpSectionsController.include(AdminHelpSectionsExtensions)
+        Decidim::Admin::CategoriesController.include(AdminCategoriesControllerExtensions)
+        Decidim::Components::BaseController.include(ComponentsBaseExtensions)
+        Decidim::UserActivitiesController.include(UserActivitiesExtensions)
+        Decidim::UserTimelineController.include(ActivityResourceTypes)
+        Decidim::Plans::PlansController.include(PlansExtensions)
+        Decidim::Meetings::RegistrationsController.include(MeetingsRegistrationsControllerExtensions)
+        # For ensuring that the disabled omniauth strategies cannot be used
+        Decidim::Suomifi::OmniauthCallbacksController.include(OmniauthExtensions)
+        Decidim::Suomifi::OmniauthCallbacksController.ensure_strategy_enabled_for(:suomifi)
+        Decidim::Mpassid::OmniauthCallbacksController.include(OmniauthExtensions)
+        Decidim::Mpassid::OmniauthCallbacksController.ensure_strategy_enabled_for(:mpassid)
 
-      # Parser extensions
-      Decidim::ContentParsers::ProposalParser.include(Helsinki::ProposalParserExtensions)
+        # Cell extensions
+        Decidim::AddressCell.include(AddressCellExtensions)
+        Decidim::CardMCell.include(CardMCellExtensions)
+        Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::ApplicationHelper)
+        Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::SanitizeHelper)
+        Decidim::ContentBlocks::HeroCell.include(KoroHelper)
+        Decidim::Blogs::PostMCell.include(BlogPostMCellExtensions)
+        Decidim::Budgets::BudgetListItemCell.include(BudgetListItemCellExtensions)
+        Decidim::Budgets::BudgetInformationModalCell.include(BudgetInformationModalExtensions)
+        # Needed to fix the avatar image ALT texts
+        Decidim::AuthorCell.include(Decidim::SanitizeHelper)
+        Decidim::UserProfileCell.include(Decidim::SanitizeHelper)
 
-      # Service extensions
-      Decidim::ActivitySearch.include(ActivitySearchExtensions)
+        # Form extensions
+        Decidim::Admin::CategoryForm.include(AdminCategoryFormExtensions)
+        Decidim::Accountability::Admin::ResultForm.include(AdminResultFormExtensions)
+        Decidim::Blogs::Admin::PostForm.include(AdminBlogPostFormExtensions)
 
-      # Model extensions
-      Decidim::Category.include(CategoryExtensions)
-      Decidim::Blogs::Post.include(BlogPostExtensions)
+        # Builder extensions
+        Decidim::FormBuilder.include(FormBuilderExtensions)
 
-      # View extensions
-      ActionView::Base.include(Decidim::WidgetUrlsHelper)
+        # Parser extensions
+        Decidim::ContentParsers::ProposalParser.include(Helsinki::ProposalParserExtensions)
 
-      # Authorizer extensions
-      ::Decidim::ActionAuthorizer::AuthorizationStatusCollection.include(AuthorizationStatusCollectionExtensions)
+        # Service extensions
+        Decidim::ActivitySearch.include(ActivitySearchExtensions)
+
+        # Model extensions
+        Decidim::Category.include(CategoryExtensions)
+        Decidim::Blogs::Post.include(BlogPostExtensions)
+
+        # View extensions
+        ActionView::Base.include(Decidim::WidgetUrlsHelper)
+
+        # Authorizer extensions
+        ::Decidim::ActionAuthorizer::AuthorizationStatusCollection.include(AuthorizationStatusCollectionExtensions)
+      end
     end
   end
 end
