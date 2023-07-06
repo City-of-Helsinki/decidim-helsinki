@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim (originally 20170126151123)
 class AddExtraInfoToProcesses < ActiveRecord::Migration[5.0]
   def change

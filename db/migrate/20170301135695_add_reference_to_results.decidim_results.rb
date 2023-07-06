@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim_results (originally 20170215132624)
 class AddReferenceToResults < ActiveRecord::Migration[5.0]
   def change

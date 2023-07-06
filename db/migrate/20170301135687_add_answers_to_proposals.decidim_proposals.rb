@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim_proposals (originally 20170131092413)
 class AddAnswersToProposals < ActiveRecord::Migration[5.0]
   def change

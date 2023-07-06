@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim_proposals (originally 20170120151202)
 class AddUserGroupIdToProposals < ActiveRecord::Migration[5.0]
   def change

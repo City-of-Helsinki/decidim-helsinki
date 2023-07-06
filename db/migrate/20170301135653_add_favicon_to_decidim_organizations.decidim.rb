@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim (originally 20170130132833)
 class AddFaviconToDecidimOrganizations < ActiveRecord::Migration[5.0]
   def change

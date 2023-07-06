@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim_plans (originally 20201113123837)
 class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2]
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Lint/UselessAssignment
   def up
     Decidim::Component.where(manifest_name: "plans").find_each do |component|
       space = component.participatory_space
       max_position = Decidim::Plans::Section.where(
         component: component
-      ).order(position: :desc).limit(1).pluck(:position).first || 0
+      ).order(position: :desc).limit(1).pick(:position) || 0
 
       settings = component.read_attribute(:settings)
       global_hash = settings.is_a?(Hash) ? settings["global"] : {}
@@ -132,6 +135,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       end
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Lint/UselessAssignment
 
   def down
     Decidim::Component.where(manifest_name: "plans").find_each do |component|
@@ -201,6 +205,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
     end
   end
 
+  # rubocop:disable Metrics/ParameterLists
   def section_attributes(
     component:,
     type:,
@@ -227,6 +232,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       settings: settings
     }
   end
+  # rubocop:enable Metrics/ParameterLists
 
   def translations
     @translations ||= {

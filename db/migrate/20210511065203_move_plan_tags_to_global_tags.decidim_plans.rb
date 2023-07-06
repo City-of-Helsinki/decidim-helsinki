@@ -45,6 +45,7 @@ class MovePlanTagsToGlobalTags < ActiveRecord::Migration[5.2]
     drop_table :decidim_plans_plan_taggings
   end
 
+  # rubocop:disable Rails/SkipsModelValidations
   def down
     create_table :decidim_plans_tags do |t|
       t.jsonb :name
@@ -96,4 +97,5 @@ class MovePlanTagsToGlobalTags < ActiveRecord::Migration[5.2]
     # Destroy the tags after the taggings have been moved
     Decidim::Tags::Tag.where(id: map.keys).destroy_all
   end
+  # rubocop:enable Rails/SkipsModelValidations
 end

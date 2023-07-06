@@ -44,6 +44,10 @@ Rails/FindEach:
   Include:
     - app/models/**/*.rb
 
+Rails/BulkChangeTable:
+  Exclude:
+    - db/migrate/*.rb
+
 Rails/HasAndBelongsToMany:
   Include:
     - app/models/**/*.rb

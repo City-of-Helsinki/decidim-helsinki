@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim_meetings (originally 20170123151650)
 class AddLatitudeAndLongitudeToMeetings < ActiveRecord::Migration[5.0]
   def change

@@ -66,7 +66,7 @@ class CreateBudgetingVotes < ActiveRecord::Migration[5.2]
           space_table = manifest.model_class_name.constantize.table_name
           space_cols = ActiveRecord::Base.connection.columns(space_table).map(&:name)
           space_component_details = ActiveRecord::Base.connection.select_all(
-            <<~SQL
+            <<~SQL.squish
               SELECT s.title AS stitle,
                 #{space_cols.include?("decidim_scope_id") ? "s.decidim_scope_id" : "NULL"} AS scopeid,
                 #{space_cols.include?("decidim_area_id") ? "s.decidim_area_id" : "NULL"} AS areaid
@@ -152,6 +152,6 @@ class CreateBudgetingVotes < ActiveRecord::Migration[5.2]
     insert.relation = Arel::Table.new(table)
     insert.columns = data.keys.map { |k| insert.relation[k] }
     insert.values = Arel::Nodes::Values.new(data.values, insert.columns)
-    ActiveRecord::Base.connection.insert(insert.to_sql)
+    ActiveRecord::Base.connection.insert(insert.to_sql) # rubocop:disable Rails/SkipsModelValidations
   end
 end

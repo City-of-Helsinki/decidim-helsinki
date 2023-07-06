@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim_proposals (originally 20170307085300)
 class MigrateProposalReportsDataToReports < ActiveRecord::Migration[5.0]
   class Decidim::Proposals::ProposalReport < ApplicationRecord
@@ -17,7 +19,7 @@ class MigrateProposalReportsDataToReports < ActiveRecord::Migration[5.0]
                                 reason: proposal_report.reason,
                                 details: proposal_report.details
                               })
-      moderation.update_attributes!(report_count: moderation.report_count + 1)
+      moderation.update!(report_count: moderation.report_count + 1)
     end
 
     drop_table :decidim_proposals_proposal_reports

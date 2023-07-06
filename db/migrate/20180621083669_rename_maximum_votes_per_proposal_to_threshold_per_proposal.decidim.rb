@@ -4,7 +4,7 @@
 
 class RenameMaximumVotesPerProposalToThresholdPerProposal < ActiveRecord::Migration[5.1]
   def up
-    execute <<~SQL
+    execute <<~SQL.squish
       UPDATE decidim_components
       SET settings = jsonb_set(
         settings::jsonb,
@@ -16,7 +16,7 @@ class RenameMaximumVotesPerProposalToThresholdPerProposal < ActiveRecord::Migrat
   end
 
   def down
-    execute <<~SQL
+    execute <<~SQL.squish
       UPDATE decidim_components
       SET settings = jsonb_set(
         settings::jsonb,

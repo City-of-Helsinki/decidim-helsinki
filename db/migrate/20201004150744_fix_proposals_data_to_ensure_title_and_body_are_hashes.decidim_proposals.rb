@@ -3,6 +3,7 @@
 # This migration comes from decidim_proposals (originally 20200915151348)
 
 class FixProposalsDataToEnsureTitleAndBodyAreHashes < ActiveRecord::Migration[5.2]
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def up
     reset_column_information
 
@@ -35,6 +36,7 @@ class FixProposalsDataToEnsureTitleAndBodyAreHashes < ActiveRecord::Migration[5.
 
     reset_column_information
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
   def down; end
 
