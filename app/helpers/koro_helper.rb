@@ -64,13 +64,13 @@ module KoroHelper
   def koro_svg_pattern(type)
     case type
     when "beat"
-      # rubocop:disable Metrics/LineLength
+      # rubocop:disable Layout/LineLength
       %(
         <path
           d="M106,76h-106v-76c14.84 0 18.55 12.19 18.55 12.19l14.84 44.52c3.18 7.95 10.07 13.25 19.08 13.25 14.84 0 19.08-13.25 19.08-13.25s14.84-42.93 14.84-43.46c3.71-7.95 10.6-13.25 19.61-13.25z"
         />
       )
-      # rubocop:enable Metrics/LineLength
+      # rubocop:enable Layout/LineLength
     when "pulse"
       %(<path d="M0,40h106v-40c-27.03 0-27.03 34.217-53 34.217s-27.03-34.217-53-34.217z" />)
     when "storm"
