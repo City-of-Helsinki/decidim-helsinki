@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helsinki/api"
-require "helsinki/proposal_parser_extensions"
 require "helsinki/district_metadata"
 require "helsinki/school_metadata"
 require "helsinki/query_extensions"

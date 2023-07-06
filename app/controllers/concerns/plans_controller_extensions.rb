@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Adds an extra help section in order to store and display the
-module PlansExtensions
+module PlansControllerExtensions
   extend ActiveSupport::Concern
 
   included do

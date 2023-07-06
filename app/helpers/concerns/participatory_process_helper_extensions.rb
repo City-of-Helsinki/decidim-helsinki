@@ -27,18 +27,9 @@ module ParticipatoryProcessHelperExtensions
 
   def process_step_link(step)
     if step.cta_path.present?
-      current_step = begin
-        if current_component
-          step.cta_path =~ %r{^f/#{current_component.id}(/.*)?$}
-        else
-          false
-        end
-      end
-
       step_url = begin
         base_url, current_params = decidim_participatory_processes.participatory_process_path(
-          step.participatory_process,
-          current_step ? filter_link_params : nil
+          step.participatory_process
         ).split("?")
 
         if current_params.present?
