@@ -19,9 +19,9 @@ footer_text = translated_attribute(footer_text_section)
       <div class="medium-4 large-2 column">
         <%= link_to current_organization.official_url, class: "main-footer__badge" do %>
           <% if current_locale == "sv" %>
-            <%= image_tag "helsinki/helsinki-logo-bus-sv.svg", alt: "Helsingfors", class: "logo-sv" %>
+            <%= image_pack_tag "media/images/helsinki-logo-bus-sv.svg", alt: "Helsingfors", class: "logo-sv" %>
           <% else %>
-            <%= image_tag "helsinki/helsinki-logo-bus.svg", alt: "Helsinki", class: "logo-default" %>
+            <%= image_pack_tag "media/images/helsinki-logo-bus.svg", alt: "Helsinki", class: "logo-default" %>
           <% end %>
         <% end %>
       </div>
@@ -92,7 +92,7 @@ footer_text = translated_attribute(footer_text_section)
         <a rel="license" class="cc-badge"
            href="http://creativecommons.org/licenses/by-sa/4.0/"
            target="_blank">
-          <%= image_tag("decidim/cc-badge.png", alt: "Creative Commons License" ) %></a>
+          <%= image_pack_tag("media/images/cc-badge.png", alt: "Creative Commons License" ) %></a>
         <%= t("layouts.decidim.footer.made_with_open_source").html_safe %>
       </div>
     </div>

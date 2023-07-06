@@ -5,7 +5,7 @@ if @proposal
     meta_image = attachment.url
   end
 end
-#meta_image ||= current_participatory_space.banner_image.url
+#meta_image ||= current_participatory_space.attached_uploader(:banner_image).path
 meta_image ||= image_url(meta_image_default)
 meta_description ||= translated_attribute(current_participatory_space.short_description)
 %>

@@ -89,12 +89,12 @@ module Helsinki
       end
 
       def main_image_path
-        if plan_image && plan_image.photo?
-          plan_image.file.url
+        if plan_image && plan_image.photo? && plan_image.file && plan_image.file.attached?
+          plan_image.attached_uploader(:file).path
         elsif category && (cat_img = category_image_path(category))
           cat_img
         else
-          "decidim/ideas/idea-default.jpg"
+          asset_pack_path("media/images/idea-default.jpg")
         end
       end
 
@@ -103,7 +103,7 @@ module Helsinki
         return unless cat.respond_to?(:category_image)
         return unless cat.category_image
 
-        cat.category_image.url
+        cat.attached_uploader(:category_image).path
       end
 
       def description

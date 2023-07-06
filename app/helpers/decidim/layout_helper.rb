@@ -9,9 +9,11 @@ module Decidim
     # Returns a safe String with the versions.
     def favicon
       return if current_organization.favicon.blank?
+      return unless current_organization.favicon.attached?
 
+      uploader = current_organization.attached_uploader(:favicon)
       safe_join(Decidim::OrganizationFaviconUploader::SIZES.map do |version, size|
-        favicon_link_tag(current_organization.favicon.send(version).url, sizes: "#{size}x#{size}")
+        favicon_link_tag(uploader.path(variant: version), sizes: "#{size}x#{size}")
       end)
     end
 
@@ -41,14 +43,14 @@ module Decidim
       if name == "tunnistamo"
         content_tag :svg, html_properties do
           inner = content_tag :title, options["title"] || html_properties["aria-label"]
-          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_path("hkilogo-symbol.svg")}#icon-helsinki"
+          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_pack_path("media/images/hkilogo-symbol.svg")}#icon-helsinki"
 
           inner
         end
       else
         content_tag :svg, html_properties do
           inner = content_tag :title, options["title"] || html_properties["aria-label"]
-          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_path("decidim/icons.svg")}#icon-#{name}"
+          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_pack_path("media/images/icons.svg")}#icon-#{name}"
 
           inner
         end
@@ -66,12 +68,29 @@ module Decidim
       classes = _icon_classes(options) + ["external-icon"]
 
       if path.split(".").last == "svg"
+        icon_path = application_path(path)
+        return unless icon_path
+
         attributes = { class: classes.join(" ") }.merge(options)
-        asset = Rails.application.assets_manifest.find_sources(path).first
+        asset = File.read(icon_path)
         asset.gsub("<svg ", "<svg#{tag_builder.tag_options(attributes)} ").html_safe
       else
-        image_tag(path, class: classes.join(" "), style: "display: none")
+        image_pack_tag(path, class: classes.join(" "), style: "display: none")
       end
+    end
+
+    def application_path(path)
+      # Force the path to be returned without the protocol and host even when a
+      # custom asset host has been defined. The host parameter needs to be a
+      # non-nil because otherwise it will be set to the asset host at
+      # ActionView::Helpers::AssetUrlHelper#compute_asset_host.
+      img_path = asset_pack_path(path, host: "", protocol: :relative)
+      path = Rails.public_path.join(img_path.sub(%r{^/}, ""))
+      return unless File.exist?(path)
+
+      path
+    rescue ::Webpacker::Manifest::MissingEntryError
+      nil
     end
 
     # Allows to create role attribute according to accessibility rules

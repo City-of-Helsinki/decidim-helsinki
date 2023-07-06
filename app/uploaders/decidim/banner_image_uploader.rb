@@ -4,6 +4,10 @@ module Decidim
   # This class deals with uploading banner images to ParticipatoryProcesses.
   class BannerImageUploader < ImageUploader
     # Increase the dimensions from Decidim defaults
-    process resize_to_limit: [2000, 600]
+    set_variants do
+      {
+        default: { resize_to_limit: [2000, 600] }
+      }
+    end
   end
 end

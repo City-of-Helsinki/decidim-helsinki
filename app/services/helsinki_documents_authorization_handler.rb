@@ -123,7 +123,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
 
     voted = Decidim::Authorization.exists?(
       [
-        "name =? AND metadata->>'pin_digest' =?",
+        "name =? AND pseudonymized_pin =?",
         "suomifi_eid",
         pin_digest
       ]
