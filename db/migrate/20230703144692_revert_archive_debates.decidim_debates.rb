@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_debates (originally 20210125101735)
 
 class RevertArchiveDebates < ActiveRecord::Migration[5.2]

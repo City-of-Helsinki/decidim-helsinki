@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_blogs (originally 20200128094730)
 
 class AddEndorsementsCounterCacheToBlogs < ActiveRecord::Migration[5.2]

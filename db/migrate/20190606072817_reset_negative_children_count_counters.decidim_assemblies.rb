@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_assemblies (originally 20190215093700)
 
 class ResetNegativeChildrenCountCounters < ActiveRecord::Migration[5.2]

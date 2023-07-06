@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_suomifi (originally 20220412122947)
 
 class AddPseudonimizedPinToAuthorizations < ActiveRecord::Migration[6.0]

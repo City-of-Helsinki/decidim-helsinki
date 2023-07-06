@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_plans (originally 20230412190967)
 
 class AddFollowableCounterCacheToPlans < ActiveRecord::Migration[5.2]

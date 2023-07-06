@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20180726112510)
 
 class CreateDecidimHashtags < ActiveRecord::Migration[5.2]

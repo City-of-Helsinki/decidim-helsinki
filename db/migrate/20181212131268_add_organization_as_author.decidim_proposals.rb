@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_proposals (originally 20181016132225)
 
 class AddOrganizationAsAuthor < ActiveRecord::Migration[5.2]
@@ -8,9 +9,7 @@ class AddOrganizationAsAuthor < ActiveRecord::Migration[5.2]
     end
 
     official_proposals.each do |proposal|
-      if proposal.organization
-        proposal.add_coauthor(proposal.organization)
-      end
+      proposal.add_coauthor(proposal.organization) if proposal.organization
     end
   end
 end

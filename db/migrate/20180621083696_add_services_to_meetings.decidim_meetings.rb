@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_meetings (originally 20180407110934)
 
 class AddServicesToMeetings < ActiveRecord::Migration[5.1]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_budgets (originally 20200717140012)
 
 class AddScopeToBudgets < ActiveRecord::Migration[5.2]

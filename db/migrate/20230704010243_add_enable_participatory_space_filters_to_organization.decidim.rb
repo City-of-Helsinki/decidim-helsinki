@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20210412120115)
 
 class AddEnableParticipatorySpaceFiltersToOrganization < ActiveRecord::Migration[5.2]

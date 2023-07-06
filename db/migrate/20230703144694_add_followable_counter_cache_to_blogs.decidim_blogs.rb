@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_blogs (originally 20210310120514)
 
 class AddFollowableCounterCacheToBlogs < ActiveRecord::Migration[5.2]

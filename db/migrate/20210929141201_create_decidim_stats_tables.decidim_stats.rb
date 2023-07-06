@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_stats (originally 20211004013445)
 
 class CreateDecidimStatsTables < ActiveRecord::Migration[5.2]

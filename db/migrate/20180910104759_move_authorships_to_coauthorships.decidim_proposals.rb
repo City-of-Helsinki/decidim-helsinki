@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_proposals (originally 20180529110230)
 
 class MoveAuthorshipsToCoauthorships < ActiveRecord::Migration[5.1]

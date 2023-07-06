@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20180226140756)
 
 class AddVersionToActionLogs < ActiveRecord::Migration[5.1]
@@ -12,6 +13,7 @@ class AddVersionToActionLogs < ActiveRecord::Migration[5.1]
     ActionLog.find_each do |action_log|
       version_id = action_log.extra.dig("version", "id")
       next unless version_id
+
       # rubocop:disable Rails/SkipsModelValidations
       action_log.update_column(:version_id, version_id)
       # rubocop:enable Rails/SkipsModelValidations

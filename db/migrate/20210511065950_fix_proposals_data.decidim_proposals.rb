@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_proposals (originally 20201002085508)
 
 class FixProposalsData < ActiveRecord::Migration[5.2]

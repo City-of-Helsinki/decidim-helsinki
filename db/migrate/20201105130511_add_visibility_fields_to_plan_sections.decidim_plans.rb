@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_plans (originally 20201104160720)
 
 class AddVisibilityFieldsToPlanSections < ActiveRecord::Migration[5.2]

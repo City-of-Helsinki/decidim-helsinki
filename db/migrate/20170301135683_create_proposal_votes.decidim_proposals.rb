@@ -4,7 +4,7 @@ class CreateProposalVotes < ActiveRecord::Migration[5.0]
     create_table :decidim_proposals_proposal_votes do |t|
       t.references :decidim_proposal, null: false, index: { name: "decidim_proposals_proposal_vote_proposal" }
       t.references :decidim_author, null: false, index: { name: "decidim_proposals_proposal_vote_author" }
-      
+
       t.timestamps
     end
 

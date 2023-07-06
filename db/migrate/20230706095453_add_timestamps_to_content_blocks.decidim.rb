@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20211126183540)
 
 class AddTimestampsToContentBlocks < ActiveRecord::Migration[6.0]

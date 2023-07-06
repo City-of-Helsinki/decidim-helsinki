@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_ideas (originally 20201004103522)
 
 class AddCommentableCounterCacheToIdeas < ActiveRecord::Migration[5.2]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_meetings (originally 20181107175558)
 
 class AddQuestionnaireToExistingMeetings < ActiveRecord::Migration[5.2]

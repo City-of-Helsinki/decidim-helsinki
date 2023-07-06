@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_locations (originally 20211202091118)
 
 class CreateDecidimLocations < ActiveRecord::Migration[5.2]

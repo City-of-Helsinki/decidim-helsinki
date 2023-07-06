@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_apiauth (originally 20200228062305)
 
 class CreateDecidimApiauthJwtBlacklist < ActiveRecord::Migration[5.2]

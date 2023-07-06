@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_participatory_processes (originally 20200114142253)
 
 class AddScopeTypeToParticipatoryProcesses < ActiveRecord::Migration[5.2]

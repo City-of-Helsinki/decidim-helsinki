@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_accountability_simple (originally 20200115070752)
 
 class CreateAccountabilityResultDetailValues < ActiveRecord::Migration[5.2]

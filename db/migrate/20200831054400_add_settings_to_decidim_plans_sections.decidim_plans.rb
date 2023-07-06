@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_plans (originally 20200824125843)
 
 class AddSettingsToDecidimPlansSections < ActiveRecord::Migration[5.2]

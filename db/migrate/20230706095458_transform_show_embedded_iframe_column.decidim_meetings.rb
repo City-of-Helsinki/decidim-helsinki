@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_meetings (originally 20210922140454)
 
 class TransformShowEmbeddedIframeColumn < ActiveRecord::Migration[6.0]

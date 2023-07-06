@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20180123125308)
 
 class AddEnableOmnipresentBannerToDecidimOrganizations < ActiveRecord::Migration[5.1]

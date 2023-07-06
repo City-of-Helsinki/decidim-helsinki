@@ -8,15 +8,15 @@ class MigrateProposalReportsDataToReports < ActiveRecord::Migration[5.0]
   def change
     Decidim::Proposals::ProposalReport.all.each do |proposal_report|
       moderation = Decidim::Moderation.find_or_create_by!({
-        reportable: proposal_report.proposal,
-        participatory_process: proposal_report.proposal.feature.participatory_process
-      })
+                                                            reportable: proposal_report.proposal,
+                                                            participatory_process: proposal_report.proposal.feature.participatory_process
+                                                          })
       Decidim::Report.create!({
-        moderation: moderation,
-        user: proposal_report.user,
-        reason: proposal_report.reason,
-        details: proposal_report.details
-      })
+                                moderation: moderation,
+                                user: proposal_report.user,
+                                reason: proposal_report.reason,
+                                details: proposal_report.details
+                              })
       moderation.update_attributes!(report_count: moderation.report_count + 1)
     end
 

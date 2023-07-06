@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_debates (originally 20200827154116)
 
 class AddCommentableCounterCacheToDebates < ActiveRecord::Migration[5.2]
