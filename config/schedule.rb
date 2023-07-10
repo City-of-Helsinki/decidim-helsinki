@@ -16,7 +16,7 @@ job_type :rake, "cd :path && :environment_variable=:environment #{rvm_do} bundle
 
 # Remove expired data portability files
 every :day, at: "00:05", roles: [:webfront] do
-  rake "decidim:delete_data_portability_files"
+  rake "decidim:delete_download_your_data_files"
 end
 
 # # Compute metrics
@@ -34,7 +34,22 @@ every :day, at: "03:05", roles: [:background] do
   rake "decidim_meetings:clean_registration_forms"
 end
 
+# Generate reminders
+every :day, at: "04:05", roles: [:app] do
+  rake "decidim:reminders:all"
+end
+
 # bundle exec rails decidim:stats:aggregate
 every :hour, at: 5, roles: [:background] do
   rake "decidim:stats:aggregate"
 end
+
+# # Send notification mail digest weekly on saturdays
+# every :saturday, at: "05:05", roles: [:app] do
+#   rake "decidim:mailers:notifications_digest_weekly"
+# end
+
+# # Send notification mail digest daily
+# every :day, at: "06:05", roles: [:app] do
+#   rake "decidim:mailers:notifications_digest_daily"
+# end
