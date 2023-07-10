@@ -242,12 +242,12 @@
 
 .button--shadow{
   $shadows:(
-    primary: shade(map-get($button-palette, primary), 50),
-    secondary: shade(map-get($button-palette, secondary), 50),
-    success: shade(map-get($button-palette, success), 50),
-    warning: shade(map-get($button-palette, warning), 50),
-    alert: shade(map-get($button-palette, alert), 50),
-    muted: shade($muted, 50)
+    primary: shade(map-get($button-palette, primary), 50%),
+    secondary: shade(map-get($button-palette, secondary), 50%),
+    success: shade(map-get($button-palette, success), 50%),
+    warning: shade(map-get($button-palette, warning), 50%),
+    alert: shade(map-get($button-palette, alert), 50%),
+    muted: shade($muted, 50%)
   );
 
   @include modifiers(background-color, $shadows){

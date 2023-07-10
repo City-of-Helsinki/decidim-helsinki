@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .floating-helper{
   position: absolute;
   width: 100%;
@@ -35,13 +37,13 @@
   font-weight: $global-weight-bold;
   border-bottom-left-radius: 100px;
   border-top-left-radius: 100px;
-  padding: $global-padding / 8 $global-padding / 2 $global-padding / 8 $global-padding;
+  padding: math.div($global-padding, 8) $global-padding * .5 math.div($global-padding, 8) $global-padding;
 }
 
 .floating-helper__icon{
   color: $body-font-color;
   background-color: $hel-coat;
-  padding: $global-padding / 8 $global-padding / 2;
+  padding: math.div($global-padding, 8) $global-padding * .5;
 }
 
 .floating-helper__wrapper{

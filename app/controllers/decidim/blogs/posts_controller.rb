@@ -28,20 +28,20 @@ module Decidim
       private
 
       def post
-        @post ||= search.results.find(params[:id])
+        @post ||= search.result.find(params[:id])
       end
 
       def posts
-        @posts ||= search.results.order(created_at: :desc).page(params[:page]).per(24)
+        @posts ||= search.result.order(created_at: :desc).page(params[:page]).per(24)
       end
 
-      def search_klass
-        PostSearch
+      def search_collection
+        Post.all
       end
 
       def default_filter_params
         {
-          search_text: ""
+          search_text_cont: ""
         }
       end
 

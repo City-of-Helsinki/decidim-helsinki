@@ -4,6 +4,7 @@
 module BlogPostExtensions
   extend ActiveSupport::Concern
 
+  include Decidim::FilterableResource
   include Decidim::HasUploadValidations
 
   included do
@@ -18,6 +19,17 @@ module BlogPostExtensions
     # Needed for the uploaders to get the allowed file extensions
     attr_writer :organization
 
+    scope :with_component, ->(component) { joins(:component).where(component: component) }
+
+    scope :with_organization, ->(organization) { OrganizationResourceFetcher.new(self, organization).query }
+    scope :published_with_organization, ->(organization) { PublishedResourceFetcher.new(self, organization).query }
+
+    scope :published, -> { joins(:component).where.not(decidim_components: { published_at: nil }) }
+
+    # Create i18n ransackers for :title and :body.
+    # Create the :search_text ransacker alias for searching from both of these.
+    ransacker_i18n_multi :search_text, [:title, :body]
+
     # The local @organization variable is set by the passthru validator. If not
     # set, return the participatory space's organization.
     def organization
@@ -28,6 +40,10 @@ module BlogPostExtensions
       return unless public_send(attr)[locale.to_s]
 
       public_send(attr)[locale.to_s].strip.present?
+    end
+
+    def self.ransack(params = {}, options = {})
+      Decidim::Blogs::PostSearch.new(self, params, options)
     end
   end
 end

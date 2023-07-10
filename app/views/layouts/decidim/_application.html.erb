@@ -19,8 +19,11 @@ wrapper_class = Rails.application.config.wrapper_class
 
   <body>
     <div class="<%= wrapper_class %>">
+      <!--noindex--><!--googleoff: all-->
       <%= render partial: "layouts/decidim/impersonation_warning" %>
-      <%= render partial: "layouts/decidim/cookie_warning" %>
+      <%= render partial: "layouts/decidim/timeout_modal" %>
+      <%= render partial: "layouts/decidim/offline_banner" %>
+      <!--googleon: all--><!--/noindex-->
     </div>
 
     <%= render "layouts/decidim/wrapper" do %>
@@ -30,7 +33,8 @@ wrapper_class = Rails.application.config.wrapper_class
     <%= render partial: "decidim/shared/confirm_modal" %>
     <%= render partial: "decidim/shared/login_modal" %>
     <%= render partial: "decidim/shared/authorization_modal" %>
-    <%= render partial: "layouts/decidim/js_configuration" %>
+    <%= render partial: "layouts/decidim/decidim_javascript" %>
+    <%= render partial: "layouts/decidim/data_consent_warning" %>
     <%= render partial: "layouts/decidim/foot_extra" %>
   </body>
 </html>

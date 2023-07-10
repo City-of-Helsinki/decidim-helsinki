@@ -10,7 +10,7 @@ module UpdateBlogPostOverrides
     def update_post!
       attributes = {
         title: form.title,
-        summary: @form.summary,
+        summary: form.summary,
         body: form.body,
         author: form.author
       }.merge(attachment_attributes(:card_image, :main_image))

@@ -19,11 +19,9 @@ module Helsinki
         return false unless component.settings.plan_answering_enabled
         return false unless component.current_settings.plan_answering_enabled
 
-        @display_answer_filter ||= begin
-          Decidim::Plans::Plan.published.not_hidden.where(
-            component: component
-          ).where.not(answered_at: nil).any?
-        end
+        @display_answer_filter ||= Decidim::Plans::Plan.published.not_hidden.where(
+          component: component
+        ).where.not(answered_at: nil).any?
       end
 
       def display_area_scopes_filter?
@@ -51,14 +49,13 @@ module Helsinki
       end
 
       def area_scopes_parent
+        return @area_scopes_parent if @area_scopes_parent
         return unless area_scope_section
 
-        @area_scopes_parent ||= begin
-          parent_id = area_scope_section.settings["area_scope_parent"].to_i
-          return unless parent_id
+        parent_id = area_scope_section.settings["area_scope_parent"].to_i
+        return unless parent_id
 
-          Decidim::Scope.find_by(id: parent_id)
-        end
+        @area_scopes_parent ||= Decidim::Scope.find_by(id: parent_id)
       end
 
       def area_scopes_picker_field(form, name, root: false, options: {}, html_options: {})
@@ -79,7 +76,7 @@ module Helsinki
       end
 
       def scope_children(scope)
-        scope.children.order("code, name->>'#{current_locale}'")
+        scope.children.order(Arel.sql("code, name->>'#{current_locale}'"))
       end
 
       def category_section

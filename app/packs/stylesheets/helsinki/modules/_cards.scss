@@ -129,12 +129,12 @@ a.card-simple{
 .card__content{
   .card__content{
     &:not(:only-child){
-      padding-top: $card-padding-small / 2;
+      padding-top: $card-padding-small * .5;
     }
 
     @include breakpoint(medium){
       &:not(:only-child){
-        padding-top: $card-padding / 2;
+        padding-top: $card-padding * .5;
       }
     }
   }

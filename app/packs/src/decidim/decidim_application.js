@@ -44,4 +44,4 @@ $(() => {
 
   // Event to determine when the application scripts have finished their setup
   $(document).trigger("app-ready");
-})
+});

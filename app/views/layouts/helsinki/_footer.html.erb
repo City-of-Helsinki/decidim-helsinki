@@ -1,5 +1,5 @@
 <%
-feedback_subject = URI.encode("Yhteydenotto: #{current_organization.name}").gsub(/,/, "%2C")
+feedback_subject = CGI.escape("Yhteydenotto: #{current_organization.name}").gsub(/,/, "%2C")
 
 footer_text_section = Decidim::ContextualHelpSection.find_content(
   current_organization,

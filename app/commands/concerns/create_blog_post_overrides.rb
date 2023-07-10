@@ -9,11 +9,11 @@ module CreateBlogPostOverrides
   included do
     def create_post!
       attributes = {
-        title: @form.title,
-        summary: @form.summary,
-        body: @form.body,
-        component: @form.current_component,
-        author: @form.author
+        title: form.title,
+        summary: form.summary,
+        body: form.body,
+        component: form.current_component,
+        author: form.author
       }.merge(attachment_attributes(:card_image, :main_image))
 
       @post = Decidim.traceability.create!(
@@ -23,5 +23,10 @@ module CreateBlogPostOverrides
         visibility: "all"
       )
     end
+
+    private
+
+    # Required for `attachment_attributes`.
+    attr_reader :form
   end
 end

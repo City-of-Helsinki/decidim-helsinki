@@ -4,7 +4,7 @@ module Decidim
   module Admin
     # A command with all the business logic to create a new category in the
     # system.
-    class CreateCategory < Rectify::Command
+    class CreateCategory < Decidim::Command
       include ::Decidim::AttachmentAttributesMethods
 
       # Public: Initializes the command.

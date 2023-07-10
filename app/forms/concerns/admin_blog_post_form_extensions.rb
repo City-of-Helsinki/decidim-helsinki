@@ -7,13 +7,10 @@ module AdminBlogPostFormExtensions
   included do
     translatable_attribute :summary, String
 
-    # For 0.27
-    # attribute :card_image, Decidim::Attributes::Blob
-    # attribute :main_image, Decidim::Attributes::Blob
-    attribute :card_image
-    attribute :main_image
-    attribute :remove_card_image, Decidim::Form::Boolean, default: false
-    attribute :remove_main_image, Decidim::Form::Boolean, default: false
+    attribute :card_image, Decidim::Attributes::Blob
+    attribute :main_image, Decidim::Attributes::Blob
+    attribute :remove_card_image, Decidim::AttributeObject::Model::Boolean, default: false
+    attribute :remove_main_image, Decidim::AttributeObject::Model::Boolean, default: false
 
     validates :card_image, passthru: { to: Decidim::Blogs::Post }
     validates :main_image, passthru: { to: Decidim::Blogs::Post }

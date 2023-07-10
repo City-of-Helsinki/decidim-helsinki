@@ -93,13 +93,15 @@
 <% end %>
 
 <% if form_has_address? %>
-<script type="text/javascript">
-  $(document).on('app-ready', function() {
-    setTimeout(function() {
-      $('#address_toggle').trigger('click');
-    }, 500);
-  });
-</script>
+  <% content_for(:js_content) do %>
+    <script type="text/javascript">
+      $(document).on('app-ready', function() {
+        setTimeout(function() {
+          $('#address_toggle').trigger('click');
+        }, 500);
+      });
+    </script>
+  <% end %>
 <% end %>
 
 <% if @form.errors[:attachment].any? || (
@@ -107,11 +109,13 @@
     @form.attachment && (@form.attachment.file || @form.attachment.errors.any?)
   )
 ) %>
-<script type="text/javascript">
-  $(document).on('app-ready', function() {
-    setTimeout(function() {
-      $('#attachment_toggle').trigger('click');
-    }, 500);
-  });
-</script>
+  <% content_for(:js_content) do %>
+    <script type="text/javascript">
+      $(document).on('app-ready', function() {
+        setTimeout(function() {
+          $('#attachment_toggle').trigger('click');
+        }, 500);
+      });
+    </script>
+  <% end %>
 <% end %>

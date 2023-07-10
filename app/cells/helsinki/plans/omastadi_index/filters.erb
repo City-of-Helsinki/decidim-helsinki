@@ -38,7 +38,7 @@
         <div class="filters__section area_scope_id_filter">
           <fieldset>
             <legend class="mini-title"><%= t(".filters.state.legend") %></legend>
-            <%= form.select(:state, filter_states_values, { label: false, include_blank: t(".filters.state.all") }, "aria-label": t(".filters.state.legend"), data: { disable_dynamic_change: true }) %>
+            <%= form.select(:with_any_state, filter_states_values, { label: false, include_blank: t(".filters.state.all") }, "aria-label": t(".filters.state.legend"), data: { disable_dynamic_change: true }) %>
           </fieldset>
         </div>
       </div>

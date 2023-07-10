@@ -420,9 +420,8 @@ module DecidimHelsinki
         Decidim::Admin::HelpSectionsController.include(AdminHelpSectionsExtensions)
         Decidim::Admin::CategoriesController.include(AdminCategoriesControllerExtensions)
         Decidim::Components::BaseController.include(ComponentsBaseExtensions)
-        Decidim::UserActivitiesController.include(UserActivitiesExtensions)
-        Decidim::UserTimelineController.include(ActivityResourceTypes)
-        Decidim::Plans::PlansController.include(PlansControllerExtensions)
+        Decidim::UserActivitiesController.include(ActivityResourceTypes)
+        Decidim::UserTimelineController.include(TimelineResourceTypes)
         Decidim::Meetings::RegistrationsController.include(MeetingsRegistrationsControllerExtensions)
         # For ensuring that the disabled omniauth strategies cannot be used
         Decidim::Suomifi::OmniauthCallbacksController.include(OmniauthExtensions)
@@ -439,19 +438,15 @@ module DecidimHelsinki
         Decidim::Blogs::PostMCell.include(BlogPostMCellExtensions)
         Decidim::Budgets::BudgetListItemCell.include(BudgetListItemCellExtensions)
         Decidim::Budgets::BudgetInformationModalCell.include(BudgetInformationModalExtensions)
+        Decidim::Meetings::MeetingMCell.include(MeetingMCellExtensions)
 
         # Form extensions
         Decidim::Admin::CategoryForm.include(AdminCategoryFormExtensions)
         Decidim::Accountability::Admin::ResultForm.include(AdminResultFormExtensions)
         Decidim::Blogs::Admin::PostForm.include(AdminBlogPostFormExtensions)
 
-        # Builder extensions
-        Decidim::FormBuilder.include(FormBuilderExtensions)
-
-        # Service extensions
-        Decidim::ActivitySearch.include(ActivitySearchExtensions)
-
         # Model extensions
+        Decidim::ActionLog.include(ActionLogExtensions)
         Decidim::Category.include(CategoryExtensions)
         Decidim::Blogs::Post.include(BlogPostExtensions)
 
