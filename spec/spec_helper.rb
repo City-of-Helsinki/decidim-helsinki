@@ -104,7 +104,7 @@ RSpec.configure do |config|
     Decidim.default_locale = :fi
   end
 
-  around do |example|
+  config.around do |example|
     I18n.with_locale(:fi) { example.run }
   end
 end
