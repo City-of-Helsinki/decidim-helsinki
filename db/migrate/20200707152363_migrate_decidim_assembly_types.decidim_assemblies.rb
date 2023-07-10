@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_assemblies (originally 20200108123050)
 
 # Migrates freezed assembly types to a table where to configure them

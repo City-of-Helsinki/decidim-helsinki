@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_budgeting_pipeline (originally 20210424081314)
 
 class AddCenterCoordinatesToBudgets < ActiveRecord::Migration[5.2]

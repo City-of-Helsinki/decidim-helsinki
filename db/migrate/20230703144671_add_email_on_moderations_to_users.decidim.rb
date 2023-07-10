@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20210208134328)
 
 class AddEmailOnModerationsToUsers < ActiveRecord::Migration[5.2]

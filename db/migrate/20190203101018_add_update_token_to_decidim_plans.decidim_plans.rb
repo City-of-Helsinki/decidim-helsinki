@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_plans (originally 20190202200716)
 
 class AddUpdateTokenToDecidimPlans < ActiveRecord::Migration[5.2]

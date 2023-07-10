@@ -22,8 +22,39 @@ AllCops:
     - "development_app/**/*"
     - "spec/decidim_dummy_app/**/*"
     - "node_modules/**/*"
-    - "db/**/*"
     - "tmp/**/*"
+
+Rails/ActionFilter:
+  Include:
+    - app/controllers/**/*.rb
+
+Rails/EnumUniqueness:
+  Include:
+    - app/models/**/*.rb
+
+Rails/Exit:
+  Include:
+    - app/**/*.rb
+    - config/**/*.rb
+    - lib/**/*.rb
+  Exclude:
+    - lib/**/*.rake
+
+Rails/FindEach:
+  Include:
+    - app/models/**/*.rb
+
+Rails/BulkChangeTable:
+  Exclude:
+    - db/migrate/*.rb
+
+Rails/HasAndBelongsToMany:
+  Include:
+    - app/models/**/*.rb
+
+Rails/HasManyOrHasOneDependent:
+  Include:
+    - app/models/**/*.rb
 
 Rails/Output:
   Include:

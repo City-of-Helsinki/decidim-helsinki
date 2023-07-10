@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_initiatives (originally 20170928160912)
 
 class RemoveScopeFromDecidimInitiativesVotes < ActiveRecord::Migration[5.1]

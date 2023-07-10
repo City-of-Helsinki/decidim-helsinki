@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_accountability (originally 20200827154103)
 
 class AddCommentableCounterCacheToResults < ActiveRecord::Migration[5.2]

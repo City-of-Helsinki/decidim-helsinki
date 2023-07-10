@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_meetings (originally 20210518133236)
 
 class MergeMinutesWithClosingReportInMeetingsTable < ActiveRecord::Migration[6.0]

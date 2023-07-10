@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_term_customizer (originally 20190217132503)
 
 class CreateDecidimTermCustomizerTranslationSets < ActiveRecord::Migration[5.2]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_ideas (originally 20201015170004)
 
 class RemoveFollowersFromIdeaEmendations < ActiveRecord::Migration[5.2]

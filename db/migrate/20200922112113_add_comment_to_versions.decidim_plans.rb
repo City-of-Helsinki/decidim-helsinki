@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim_plans (originally 20200922111951)
 class AddCommentToVersions < ActiveRecord::Migration[5.2]
   def change

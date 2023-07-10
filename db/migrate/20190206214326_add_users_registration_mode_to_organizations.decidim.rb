@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20181108131058)
 
 class AddUsersRegistrationModeToOrganizations < ActiveRecord::Migration[5.2]

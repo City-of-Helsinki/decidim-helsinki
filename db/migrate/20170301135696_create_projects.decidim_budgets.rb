@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim_budgets (originally 20170127114122)
 class CreateProjects < ActiveRecord::Migration[5.0]
   def change

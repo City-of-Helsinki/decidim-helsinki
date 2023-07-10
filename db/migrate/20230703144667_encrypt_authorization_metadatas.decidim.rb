@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20201127114444)
 
 class EncryptAuthorizationMetadatas < ActiveRecord::Migration[5.2]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_proposals (originally 20190215113158)
 
 class UseMd5Indexes < ActiveRecord::Migration[5.2]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20200320105909)
 
 class IndexForeignKeysInDecidimAuthorizations < ActiveRecord::Migration[5.2]

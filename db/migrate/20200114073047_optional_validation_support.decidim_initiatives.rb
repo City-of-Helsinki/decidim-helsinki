@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_initiatives (originally 20171023141639)
 
 class OptionalValidationSupport < ActiveRecord::Migration[5.1]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_budgets (originally 20200714103519)
 
 class MoveBudgetsToOwnModel < ActiveRecord::Migration[5.2]

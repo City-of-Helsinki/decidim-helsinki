@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_initiatives (originally 20171017095143)
 
 class UpdateInitiativeScopedType < ActiveRecord::Migration[5.1]
@@ -34,7 +35,6 @@ class UpdateInitiativeScopedType < ActiveRecord::Migration[5.1]
     self.table_name = :decidim_initiatives
 
     belongs_to :scoped_type,
-               foreign_key: "scoped_type_id",
                class_name: "InitiativesTypeScope"
 
     belongs_to :organization,

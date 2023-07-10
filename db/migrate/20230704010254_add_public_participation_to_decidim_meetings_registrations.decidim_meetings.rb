@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_meetings (originally 20210430123416)
 
 class AddPublicParticipationToDecidimMeetingsRegistrations < ActiveRecord::Migration[6.0]

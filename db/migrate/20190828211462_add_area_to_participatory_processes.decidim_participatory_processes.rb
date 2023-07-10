@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_participatory_processes (originally 20190322125517)
 
 class AddAreaToParticipatoryProcesses < ActiveRecord::Migration[5.2]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_tags (originally 20210403141058)
 
 class CreateDecidimTagsAndTaggings < ActiveRecord::Migration[5.2]

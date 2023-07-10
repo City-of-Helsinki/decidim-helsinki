@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_initiatives (originally 20200528151456)
 
 class RemoveUserGroupsFromInitiativeVotes < ActiveRecord::Migration[5.2]

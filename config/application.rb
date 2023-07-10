@@ -422,7 +422,7 @@ module DecidimHelsinki
         Decidim::Components::BaseController.include(ComponentsBaseExtensions)
         Decidim::UserActivitiesController.include(UserActivitiesExtensions)
         Decidim::UserTimelineController.include(ActivityResourceTypes)
-        Decidim::Plans::PlansController.include(PlansExtensions)
+        Decidim::Plans::PlansController.include(PlansControllerExtensions)
         Decidim::Meetings::RegistrationsController.include(MeetingsRegistrationsControllerExtensions)
         # For ensuring that the disabled omniauth strategies cannot be used
         Decidim::Suomifi::OmniauthCallbacksController.include(OmniauthExtensions)
@@ -439,9 +439,6 @@ module DecidimHelsinki
         Decidim::Blogs::PostMCell.include(BlogPostMCellExtensions)
         Decidim::Budgets::BudgetListItemCell.include(BudgetListItemCellExtensions)
         Decidim::Budgets::BudgetInformationModalCell.include(BudgetInformationModalExtensions)
-        # Needed to fix the avatar image ALT texts
-        Decidim::AuthorCell.include(Decidim::SanitizeHelper)
-        Decidim::UserProfileCell.include(Decidim::SanitizeHelper)
 
         # Form extensions
         Decidim::Admin::CategoryForm.include(AdminCategoryFormExtensions)
@@ -450,9 +447,6 @@ module DecidimHelsinki
 
         # Builder extensions
         Decidim::FormBuilder.include(FormBuilderExtensions)
-
-        # Parser extensions
-        Decidim::ContentParsers::ProposalParser.include(Helsinki::ProposalParserExtensions)
 
         # Service extensions
         Decidim::ActivitySearch.include(ActivitySearchExtensions)

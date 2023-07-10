@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_blogs (originally 20181017084519)
 
 class MakeBlogpostsAuthorsPolymorphics < ActiveRecord::Migration[5.2]

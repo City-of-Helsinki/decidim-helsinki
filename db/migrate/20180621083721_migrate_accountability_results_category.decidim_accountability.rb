@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_accountability (originally 20170623094200)
 
 class MigrateAccountabilityResultsCategory < ActiveRecord::Migration[5.1]

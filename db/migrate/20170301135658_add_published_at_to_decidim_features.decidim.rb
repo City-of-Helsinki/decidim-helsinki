@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim (originally 20170206142116)
 class AddPublishedAtToDecidimFeatures < ActiveRecord::Migration[5.0]
   def change

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_plans (originally 20190603211538)
 
 class ChangePlansRelatedProposalsToResourceLinks < ActiveRecord::Migration[5.2]

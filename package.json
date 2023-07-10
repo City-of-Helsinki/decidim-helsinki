@@ -11,14 +11,14 @@
     "extends @decidim/browserslist-config"
   ],
   "dependencies": {
-    "@decidim/browserslist-config": "^0.25.2",
-    "@decidim/core": "^0.25.2",
-    "@decidim/elections": "^0.25.2",
-    "@decidim/webpacker": "^0.25.2"
+    "@decidim/browserslist-config": "^0.26.7",
+    "@decidim/core": "^0.26.7",
+    "@decidim/elections": "^0.26.7",
+    "@decidim/webpacker": "^0.26.7"
   },
   "devDependencies": {
-    "@decidim/dev": "^0.25.2",
-    "@decidim/eslint-config": "^0.25.2",
-    "@decidim/stylelint-config": "^0.25.2"
+    "@decidim/dev": "^0.26.7",
+    "@decidim/eslint-config": "^0.26.7",
+    "@decidim/stylelint-config": "^0.26.7"
   }
 }

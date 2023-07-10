@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_debates (originally 20200716143929)
 
 class AddEndorsableToDebates < ActiveRecord::Migration[5.2]

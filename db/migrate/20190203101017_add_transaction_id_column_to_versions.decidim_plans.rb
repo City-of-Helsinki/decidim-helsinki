@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_plans (originally 20190202123045)
 
 # This migration and CreateVersionAssociations provide the necessary

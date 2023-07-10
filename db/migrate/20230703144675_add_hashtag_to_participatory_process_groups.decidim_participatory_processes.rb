@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_participatory_processes (originally 20201007215105)
 
 class AddHashtagToParticipatoryProcessGroups < ActiveRecord::Migration[5.2]

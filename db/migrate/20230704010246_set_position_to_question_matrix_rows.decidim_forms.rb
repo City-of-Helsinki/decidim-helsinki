@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_forms (originally 20210616153042)
 
 class SetPositionToQuestionMatrixRows < ActiveRecord::Migration[5.2]

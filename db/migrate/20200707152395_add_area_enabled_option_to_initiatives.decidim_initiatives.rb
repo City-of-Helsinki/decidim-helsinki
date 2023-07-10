@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_initiatives (originally 20200514102631)
 
 class AddAreaEnabledOptionToInitiatives < ActiveRecord::Migration[5.2]

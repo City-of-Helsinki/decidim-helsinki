@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_comments (originally 20181003080320)
 
 class FixUserGroupsIdsInComments < ActiveRecord::Migration[5.2]

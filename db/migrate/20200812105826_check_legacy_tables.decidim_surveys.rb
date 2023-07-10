@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_surveys (originally 20200609090533)
 
 # rubocop:disable Rails/Output

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_forms (originally 20180405015147)
 
 class CreateDecidimFormsAnswerChoices < ActiveRecord::Migration[5.1]

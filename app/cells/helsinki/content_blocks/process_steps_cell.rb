@@ -3,6 +3,8 @@
 module Helsinki
   module ContentBlocks
     class ProcessStepsCell < Decidim::ViewModel
+      include Decidim::ParticipatoryProcesses::ParticipatoryProcessHelper
+
       delegate :decidim_participatory_processes, to: :controller
       delegate :steps, to: :participatory_process
 
@@ -28,18 +30,19 @@ module Helsinki
         )
       end
 
-      def helper
-        @helper ||= begin
-          if context[:participatory_space_helpers]
-            context[:participatory_space_helpers]
-          else
-            pp_helper = participatory_process.manifest.context(:public).helper
-            Class.new(SimpleDelegator) do
-              include pp_helper.constantize if pp_helper
-            end.new(self)
-          end
-        end
-      end
+      # def helper
+      #   @helper ||= begin
+      #     if context[:participatory_space_helpers]
+      #       context[:participatory_space_helpers]
+      #     else
+      #       pp_helper = participatory_process.manifest.context(:public).helper
+      #       Class.new(SimpleDelegator) do
+      #         include ActionView::Context
+      #         include pp_helper.constantize if pp_helper
+      #       end.new(self)
+      #     end
+      #   end
+      # end
     end
   end
 end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_budgets (originally 20200706142609)
 
 class AddBudgetReferenceToOrder < ActiveRecord::Migration[5.2]

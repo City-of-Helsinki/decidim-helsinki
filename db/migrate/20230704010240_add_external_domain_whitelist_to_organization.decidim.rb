@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20210210114657)
 
 class AddExternalDomainWhitelistToOrganization < ActiveRecord::Migration[5.2]

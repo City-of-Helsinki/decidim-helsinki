@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_assemblies (originally 20180124083729)
 
 class AddPrivateToAssemblies < ActiveRecord::Migration[5.1]

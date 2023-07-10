@@ -200,7 +200,7 @@ describe Helsinki::Stats::Voting::Aggregator do
   shared_examples "correct project stats for citizen" do
     it "creates the correct stats for the citizen user vote" do
       authorization = Decidim::Authorization.find_by(user: voter)
-      order = Decidim::Budgets::Order.find_by(user: voter)
+      order = Decidim::Budgets::Order.order(:checked_out_at).find_by(user: voter)
       order.projects.each do |project|
         collection = project.stats.find_by(key: "votes")
 
@@ -225,7 +225,7 @@ describe Helsinki::Stats::Voting::Aggregator do
     end
 
     it "does not create school stats" do
-      order = Decidim::Budgets::Order.find_by(user: voter)
+      order = Decidim::Budgets::Order.order(:checked_out_at).find_by(user: voter)
       order.projects.each do |project|
         collection = project.stats.find_by(key: "votes")
 
@@ -236,7 +236,7 @@ describe Helsinki::Stats::Voting::Aggregator do
 
     it "does not create separate postal code stats collections" do
       authorization = Decidim::Authorization.find_by(user: voter)
-      order = Decidim::Budgets::Order.find_by(user: voter)
+      order = Decidim::Budgets::Order.order(:checked_out_at).find_by(user: voter)
       order.projects.each do |project|
         collection = project.stats.find_by(key: "votes_postal_#{authorization.metadata["postal_code"]}")
         expect(collection).to be(nil)
@@ -318,7 +318,7 @@ describe Helsinki::Stats::Voting::Aggregator do
 
     context "with MPASSid user" do
       it "creates the correct stats for the pupil user vote" do
-        order = Decidim::Budgets::Order.find_by(user: mpassid_user)
+        order = Decidim::Budgets::Order.order(:checked_out_at).find_by(user: mpassid_user)
         order.projects.each do |project|
           collection = project.stats.find_by(key: "votes")
 
@@ -337,7 +337,7 @@ describe Helsinki::Stats::Voting::Aggregator do
       end
 
       it "does not create demographic or postal code stats" do
-        order = Decidim::Budgets::Order.find_by(user: mpassid_user)
+        order = Decidim::Budgets::Order.order(:checked_out_at).find_by(user: mpassid_user)
         order.projects.each do |project|
           collection = project.stats.find_by(key: "votes")
 

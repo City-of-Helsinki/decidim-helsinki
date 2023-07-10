@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_meetings (originally 20201016065302)
 
 class FixMeetingsRegistrationTerms < ActiveRecord::Migration[5.2]
