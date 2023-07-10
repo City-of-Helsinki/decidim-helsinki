@@ -55,27 +55,26 @@ module Helsinki
       end
 
       def budget_estimate_content
-        @budget_estimate_content ||= begin
-          return unless budget_estimate_section
+        return @budget_estimate_content if @budget_estimate_content
+        return unless budget_estimate_section
 
-          content_for(budget_estimate_section)
-        end
+        @budget_estimate_content ||= content_for(budget_estimate_section)
       end
 
       def final_budget_estimate
-        @final_budget_estimate ||= begin
-          return unless final_budget_estimate_content
-          return if final_budget_estimate_content.body["value"].blank?
+        return @final_budget_estimate if @final_budget_estimate
+        return unless final_budget_estimate_content
+        return if final_budget_estimate_content.body["value"].blank?
 
-          estimate = final_budget_estimate_content.body["value"].to_i
-          return unless estimate.positive?
+        estimate = final_budget_estimate_content.body["value"].to_i
+        return unless estimate.positive?
 
+        @final_budget_estimate ||=
           number_to_currency(
             estimate,
             precision: 0,
             unit: Decidim.currency_unit
           )
-        end
       end
 
       def final_budget_estimate_section
@@ -182,26 +181,24 @@ module Helsinki
       end
 
       def area_scopes_parent
+        return @area_scopes_parent if @area_scopes_parent
         return unless area_scope_section
 
-        @area_scopes_parent ||= begin
-          parent_id = area_scope_section.settings["area_scope_parent"].to_i
-          return unless parent_id
+        parent_id = area_scope_section.settings["area_scope_parent"].to_i
+        return unless parent_id
 
-          Decidim::Scope.find_by(id: parent_id)
-        end
+        @area_scopes_parent ||= Decidim::Scope.find_by(id: parent_id)
       end
 
       def area_scope
+        return @area_scope if @area_scope
         return unless area_scope_content
         return unless area_scope_content.body
 
-        @area_scope ||= begin
-          scope_id = area_scope_content.body["scope_id"].to_i
-          return unless scope_id
+        scope_id = area_scope_content.body["scope_id"].to_i
+        return unless scope_id
 
-          Decidim::Scope.find_by(id: scope_id)
-        end
+        @area_scope ||= Decidim::Scope.find_by(id: scope_id)
       end
 
       def category_section
@@ -215,15 +212,14 @@ module Helsinki
       end
 
       def category
+        return @category if @category
         return unless category_content
         return unless category_content.body
 
-        @category ||= begin
-          category_id = category_content.body["category_id"].to_i
-          return unless category_id
+        category_id = category_content.body["category_id"].to_i
+        return unless category_id
 
-          Decidim::Category.find_by(id: category_id)
-        end
+        @category ||= Decidim::Category.find_by(id: category_id)
       end
 
       def section_with_handle(handle)

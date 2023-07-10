@@ -5,6 +5,7 @@
 class AddScopedTypeToInitiative < ActiveRecord::Migration[5.1]
   def change
     add_column :decidim_initiatives,
-               :scoped_type_id, :integer, index: true
+               :scoped_type_id, :integer
+    add_index :decidim_initiatives, :scoped_type_id
   end
 end

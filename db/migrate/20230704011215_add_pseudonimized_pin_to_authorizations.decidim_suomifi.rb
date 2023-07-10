@@ -4,6 +4,7 @@
 
 class AddPseudonimizedPinToAuthorizations < ActiveRecord::Migration[6.0]
   def change
-    add_column :decidim_authorizations, :pseudonymized_pin, :string, index: true
+    add_column :decidim_authorizations, :pseudonymized_pin, :string
+    add_index :decidim_authorizations, :pseudonymized_pin
   end
 end

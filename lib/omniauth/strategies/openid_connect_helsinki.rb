@@ -20,7 +20,7 @@ module OmniAuth
         locale = request.params["locale"]
         opts[:lang] = locale if locale
 
-        client.authorization_uri(opts.reject { |_k, v| v.nil? })
+        client.authorization_uri(opts.compact)
       end
 
       def redirect_uri

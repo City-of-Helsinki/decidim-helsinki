@@ -33,9 +33,9 @@ module ParticipatoryProcessHelperExtensions
         ).split("?")
 
         if current_params.present?
-          [base_url, "/", step.cta_path, "?", current_params].join("")
+          [base_url, "/", step.cta_path, "?", current_params].join
         else
-          [base_url, "/", step.cta_path].join("")
+          [base_url, "/", step.cta_path].join
         end
       end
 

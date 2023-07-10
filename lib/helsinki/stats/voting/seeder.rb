@@ -80,12 +80,12 @@ module Helsinki
         attr_reader :component
 
         def random_date_of_birth
-          to = Time.current - 13.years
+          to = 13.years.ago
           random_time_between(to - rand(0..90).years, to)
         end
 
         def random_time_between(from, to)
-          Time.zone.at(from + rand * (to.to_f - from.to_f))
+          Time.zone.at(from + (rand * (to.to_f - from.to_f)))
         end
 
         def random_postal_code

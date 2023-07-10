@@ -4,7 +4,8 @@
 
 class AddPublishedAtToAccountabilityResults < ActiveRecord::Migration[5.2]
   def change
-    add_column :decidim_accountability_results, :published_at, :datetime, index: true
+    add_column :decidim_accountability_results, :published_at, :datetime
+    add_index :decidim_accountability_results, :published_at
 
     reversible do |direction|
       direction.up do

@@ -4,6 +4,7 @@
 
 class AddPromotedFlagToDecidimParticipatoryProcessGroups < ActiveRecord::Migration[5.2]
   def change
-    add_column :decidim_participatory_process_groups, :promoted, :boolean, default: false, index: true
+    add_column :decidim_participatory_process_groups, :promoted, :boolean, default: false
+    add_index :decidim_participatory_process_groups, :promoted
   end
 end

@@ -13,16 +13,14 @@ Devise.setup do |config|
     urlopts = Rails.application.config.action_controller.default_url_options
 
     # Fallback to localhost (development, testing, etc.)
-    app_root_url = begin
-      if urlopts && urlopts[:host]
-        url = urlopts[:protocol] || (urlopts[:port] == 443 ? "https" : "http")
-        url += "://#{urlopts[:host]}"
-        url += ":#{urlopts[:port]}" if urlopts[:port] && !urlopts[:port].to_s.match(/^80|443$/)
-        url
-      else
-        "http://localhost:3000"
-      end
-    end
+    app_root_url = if urlopts && urlopts[:host]
+                     url = urlopts[:protocol] || (urlopts[:port] == 443 ? "https" : "http")
+                     url += "://#{urlopts[:host]}"
+                     url += ":#{urlopts[:port]}" if urlopts[:port] && !urlopts[:port].to_s.match(/^80|443$/)
+                     url
+                   else
+                     "http://localhost:3000"
+                   end
 
     client_id = Rails.application.secrets.dig(:omniauth, :tunnistamo, :app_id)
     client_secret = Rails.application.secrets.dig(:omniauth, :tunnistamo, :app_secret)

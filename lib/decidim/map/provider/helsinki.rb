@@ -10,12 +10,15 @@ module Decidim
       module Autocomplete
         autoload :Helsinki, "decidim/map/provider/autocomplete/helsinki"
       end
+
       module Geocoding
         autoload :Helsinki, "decidim/map/provider/geocoding/helsinki"
       end
+
       module DynamicMap
         autoload :Helsinki, "decidim/map/provider/dynamic_map/helsinki"
       end
+
       module StaticMap
         autoload :Helsinki, "decidim/map/provider/static_map/helsinki"
       end

@@ -55,7 +55,7 @@ describe Helsinki::Stats::Voting::Aggregator do
     )
   end
   let(:demographic_data) do
-    [managed_authorization, suomifi_authorization].map do |auth|
+    [managed_authorization, suomifi_authorization].to_h do |auth|
       dob = Date.strptime(auth.metadata["date_of_birth"], "%Y-%m-%d")
       now = Time.parse(creation_dates[auth.user.id][0]).utc.to_date
       diff_year = now.month > dob.month || (now.month == dob.month && now.day >= dob.day) ? 0 : 1
@@ -82,7 +82,7 @@ describe Helsinki::Stats::Voting::Aggregator do
         end
 
       [auth.id, { group: group, gender: auth.metadata["gender"] }]
-    end.to_h
+    end
   end
 
   let(:creation_dates) do
@@ -139,7 +139,7 @@ describe Helsinki::Stats::Voting::Aggregator do
       postal = collection.sets.find_by(key: "postal")
       expect(postal.measurements.find_by(label: "00200").value).to eq(1)
       expect(postal.measurements.find_by(label: "00210").value).to eq(1)
-      expect(postal.measurements.find_by(label: "00170")).to be(nil) # no postal accumulation for schools
+      expect(postal.measurements.find_by(label: "00170")).to be_nil # no postal accumulation for schools
 
       school = collection.sets.find_by(key: "school")
       expect(school.measurements.find_by(label: "03085").value).to eq(1)
@@ -156,14 +156,14 @@ describe Helsinki::Stats::Voting::Aggregator do
       expect(locale.measurements.find_by(label: "fi").value).to eq(1)
       expect(locale.measurements.find_by(label: "sv").value).to eq(1)
       expect(locale.measurements.find_by(label: "").value).to eq(1)
-      expect(locale.measurements.find_by(label: "en")).to be(nil)
+      expect(locale.measurements.find_by(label: "en")).to be_nil
 
       datetime = collection.sets.find_by(key: "datetime")
       creation_dates.each do |_user_id, dates|
         expect(datetime.measurements.find_by(label: dates[1]).value).to eq(1)
       end
 
-      expect(collection.finalized).to eq(false)
+      expect(collection.finalized).to be(false)
     end
   end
 
@@ -239,7 +239,7 @@ describe Helsinki::Stats::Voting::Aggregator do
       order = Decidim::Budgets::Order.order(:checked_out_at).find_by(user: voter)
       order.projects.each do |project|
         collection = project.stats.find_by(key: "votes_postal_#{authorization.metadata["postal_code"]}")
-        expect(collection).to be(nil)
+        expect(collection).to be_nil
       end
     end
   end
@@ -280,7 +280,7 @@ describe Helsinki::Stats::Voting::Aggregator do
     it "does not create separate postal code stats collections" do
       [managed_authorization, suomifi_authorization].each do |auth|
         collection = measurable.stats.find_by(key: "votes_postal_#{auth.metadata["postal_code"]}")
-        expect(collection).to be(nil)
+        expect(collection).to be_nil
       end
     end
 

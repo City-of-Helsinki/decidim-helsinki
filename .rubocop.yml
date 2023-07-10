@@ -1,6 +1,7 @@
 inherit_from:
   - .rubocop_ruby.yml
   - .rubocop_rails.yml
+  - .rubocop-disabled.yml
 
 # Additions to the default rules
 inherit_mode:

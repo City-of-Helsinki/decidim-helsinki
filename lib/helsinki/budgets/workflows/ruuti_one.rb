@@ -49,23 +49,19 @@ module Helsinki
         private
 
         def voting_units
-          @voting_units ||= begin
-            if authorization && authorization.metadata["voting_unit"].present?
-              authorization.metadata["voting_unit"].split(",").map(&:to_i)
-            else
-              []
-            end
-          end
+          @voting_units ||= if authorization && authorization.metadata["voting_unit"].present?
+                              authorization.metadata["voting_unit"].split(",").map(&:to_i)
+                            else
+                              []
+                            end
         end
 
         def school_codes
-          @school_codes ||= begin
-            if authorization && authorization.metadata["school_code"].present?
-              authorization.metadata["school_code"].split(",")
-            else
-              []
-            end
-          end
+          @school_codes ||= if authorization && authorization.metadata["school_code"].present?
+                              authorization.metadata["school_code"].split(",")
+                            else
+                              []
+                            end
         end
 
         def authorization

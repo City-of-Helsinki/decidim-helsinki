@@ -23,22 +23,19 @@ module ScopesHelperExtensions
   def scopes_picker_filter_simple(form, name, options = {})
     root = options[:root] || try(:current_participatory_space).try(:scope)
 
-    label = begin
-      if options[:label]
-        options[:label]
-      elsif root
-        translated_attribute(root.name)
-      else
-        scopes_label
-      end
-    end
-    scopes = begin
-      if root
-        root.children
-      else
-        current_organization.scopes.top_level
-      end
-    end
+    label = if options[:label]
+              options[:label]
+            elsif root
+              translated_attribute(root.name)
+            else
+              scopes_label
+            end
+
+    scopes = if root
+               root.children
+             else
+               current_organization.scopes.top_level
+             end
 
     selected = selected_scopes(form, name).first
 
@@ -65,12 +62,10 @@ module ScopesHelperExtensions
   def scopes_label(options = {})
     root = options[:root] || try(:current_participatory_space).try(:scope)
 
-    begin
-      if root
-        translated_attribute(root.name)
-      else
-        I18n.t("decidim.scopes.scopes")
-      end
+    if root
+      translated_attribute(root.name)
+    else
+      I18n.t("decidim.scopes.scopes")
     end
   end
 

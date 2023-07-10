@@ -4,6 +4,7 @@
 
 class AddStatusToMeetingsQuestions < ActiveRecord::Migration[6.0]
   def change
-    add_column :decidim_meetings_questions, :status, :integer, default: 0, index: true
+    add_column :decidim_meetings_questions, :status, :integer, default: 0
+    add_index :decidim_meetings_questions, :status
   end
 end

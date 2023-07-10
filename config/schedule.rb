@@ -6,7 +6,7 @@
 # http://en.wikipedia.org/wiki/Cron
 
 # Path definition needed so that we can run the commands without whole paths
-env :PATH, ENV["PATH"]
+env :PATH, ENV.fetch("PATH", nil)
 
 # Define how to run the rake task
 rvm_do = "/usr/local/rvm/bin/rvm #{RUBY_VERSION} do"

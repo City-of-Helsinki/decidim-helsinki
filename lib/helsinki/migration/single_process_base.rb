@@ -44,7 +44,7 @@ module Helsinki
       end
 
       def generate_category_map(from_process, to_process)
-        Decidim::Category.where(participatory_space: from_process).map do |cat|
+        Decidim::Category.where(participatory_space: from_process).to_h do |cat|
           cat_name = cat.name["fi"].strip
           corresponding = Decidim::Category.find_by(
             "decidim_participatory_space_type =? AND decidim_participatory_space_id =? AND TRIM(name->>'fi') =?",
@@ -54,7 +54,7 @@ module Helsinki
           )
 
           [cat.id, corresponding]
-        end.to_h
+        end
       end
 
       def transfer_attachments(from_item, to_item)
@@ -175,11 +175,11 @@ module Helsinki
         budgets_component = process.components.find_by(manifest_name: "budgets")
         return unless budgets_component
 
-        name = budgets_component.name.map do |locale, localname|
+        name = budgets_component.name.to_h do |locale, localname|
           scope_name = scope.name[locale] || scope.name["fi"]
 
           [locale, "#{localname} - #{scope_name}"]
-        end.to_h
+        end
 
         budgets_component.update!(
           name: name,

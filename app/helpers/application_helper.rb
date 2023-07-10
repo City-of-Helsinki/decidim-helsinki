@@ -54,7 +54,7 @@ module ApplicationHelper
         elsif controller.is_a?(Decidim::Accountability::ResultsController) && action_name == "show"
           ancestors = []
           target = result
-          ancestors << target && target = target.parent while target
+          (ancestors << target) && target = target.parent while target
 
           ancestors.reverse_each do |current|
             links << {
@@ -146,13 +146,11 @@ module ApplicationHelper
 
   def link_to_or_back(*args, &block)
     body = args.shift
-    path = begin
-      if block_given?
-        body
-      else
-        args.shift
-      end
-    end
+    path = if block_given?
+             body
+           else
+             args.shift
+           end
 
     path = params[:back_to] if params[:back_to] =~ %r{^(/[a-z0-9-]*)+$}
 

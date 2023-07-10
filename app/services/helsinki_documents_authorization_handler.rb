@@ -30,7 +30,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   # when the form is submitted with the obfuscated context.
   def setup(controller)
     self.handler_context_verification = begin
-      if controller.class == Decidim::Admin::ImpersonationsController
+      if controller.instance_of?(Decidim::Admin::ImpersonationsController)
         generate_context_verification(:impersonation)
       else
         generate_context_verification(:user)

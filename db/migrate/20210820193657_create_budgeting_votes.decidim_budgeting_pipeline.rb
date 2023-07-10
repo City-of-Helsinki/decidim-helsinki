@@ -12,7 +12,8 @@ class CreateBudgetingVotes < ActiveRecord::Migration[5.2]
     end
 
     # Add reference to votes for the orders
-    add_column :decidim_budgets_orders, :decidim_budgets_vote_id, :integer, index: true
+    add_column :decidim_budgets_orders, :decidim_budgets_vote_id, :integer
+    add_index :decidim_budgets_orders, :decidim_budgets_vote_id
 
     # Migrate the votes and their action log entries for old orders
     reversible do |dir|
@@ -77,7 +78,7 @@ class CreateBudgetingVotes < ActiveRecord::Migration[5.2]
           ).first
           # In case the space has been removed, the above query returns zero
           # results when the array is empty.
-          space_title = space_component_details.try(:[], "stitle") || I18n.available_locales.map { |l| [l.to_s, ""] }.to_h
+          space_title = space_component_details.try(:[], "stitle") || I18n.available_locales.to_h { |l| [l.to_s, ""] }
           area_id = space_component_details.try(:[], "areaid")
           scope_id = space_component_details.try(:[], "scopeid")
 
