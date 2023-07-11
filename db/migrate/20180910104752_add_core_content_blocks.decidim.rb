@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20180730071851)
 
 class AddCoreContentBlocks < ActiveRecord::Migration[5.2]
@@ -12,7 +13,7 @@ class AddCoreContentBlocks < ActiveRecord::Migration[5.2]
 
   def change
     # In 0.14.0 these are statically defined
-    #default_blocks = Decidim.content_blocks.for(:homepage).select(&:default)
+    # default_blocks = Decidim.content_blocks.for(:homepage).select(&:default)
     default_blocks = [:hero, :sub_hero, :highlighted_content_banner, :how_to_participate, :stats, :footer_sub_hero]
 
     Organization.pluck(:id).each do |organization_id|

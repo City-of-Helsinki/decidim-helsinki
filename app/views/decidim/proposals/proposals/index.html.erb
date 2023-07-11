@@ -1,5 +1,3 @@
-<%= render partial: "decidim/shared/component_announcement" %>
-
 <%= render partial: "voting_rules" %>
 
 <div class="row columns">
@@ -63,8 +61,6 @@
           </div>
         </div>
       </template>
-      <%= stylesheet_link_tag "decidim/map" %>
-      <%= javascript_include_tag "decidim/map" %>
     <% end %>
   </div>
 <% end %>
@@ -85,5 +81,3 @@
   <%= link_to t(".see_all_withdrawn"), proposals_path("filter[state][]" => "withdrawn") %>
 </div>
 </div>
-<%= javascript_include_tag("decidim/filters") %>
-<%= javascript_include_tag "decidim/results_listing" %>

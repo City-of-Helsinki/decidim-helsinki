@@ -11,8 +11,6 @@
 
   <% if Rails.application.config.wrapper_class == "wrapper-ruuti" %>
     <%= render "ruuti" %>
-  <% elsif private_mode? %>
-    <%= render "private" %>
   <% else %>
     <%= render "default" %>
   <% end %>

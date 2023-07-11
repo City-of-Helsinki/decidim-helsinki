@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_redirects (originally 20200422143135)
 
 class CreateDecidimRedirectsRedirections < ActiveRecord::Migration[5.2]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_plans (originally 20181230110225)
 
 class EnablePgTrgmExtensionForPlans < ActiveRecord::Migration[5.2]

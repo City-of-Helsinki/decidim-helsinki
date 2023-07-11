@@ -7,11 +7,11 @@ module CategoryExtensions
   include Decidim::HasUploadValidations
 
   included do
-    validates_upload :category_image
-    mount_uploader :category_image, Decidim::CategoryImageUploader
+    validates_upload :category_image, uploader: Decidim::CategoryImageUploader
+    has_one_attached :category_image
 
-    validates_upload :category_icon
-    mount_uploader :category_icon, Decidim::CategoryIconUploader
+    validates_upload :category_icon, uploader: Decidim::CategoryIconUploader
+    has_one_attached :category_icon
 
     # Needed for the uploaders to get the allowed file extensions
     attr_writer :organization

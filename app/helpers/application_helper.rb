@@ -23,7 +23,7 @@ module ApplicationHelper
     end
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting, Rails/HelperInstanceVariable
   def breadcrumbs
     links = []
     links << { title: t("decidim.menu.home"), url: decidim.root_path }
@@ -54,7 +54,7 @@ module ApplicationHelper
         elsif controller.is_a?(Decidim::Accountability::ResultsController) && action_name == "show"
           ancestors = []
           target = result
-          ancestors << target && target = target.parent while target
+          (ancestors << target) && target = target.parent while target
 
           ancestors.reverse_each do |current|
             links << {
@@ -97,14 +97,12 @@ module ApplicationHelper
 
     links
   end
-  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting, Rails/HelperInstanceVariable
 
   # Defines whether the "common" content elements are displayed. In the
   # 'private' application mode these should be hidden in case the user is not
   # signed in.
   def display_common_elements?
-    return user_signed_in? if private_mode?
-
     true
   end
 
@@ -119,10 +117,6 @@ module ApplicationHelper
     return false unless current_organization.enable_omnipresent_banner
 
     controller.controller_name != "votes"
-  end
-
-  def private_mode?
-    Rails.application.config.use_mode == "private"
   end
 
   def feedback_email
@@ -152,13 +146,11 @@ module ApplicationHelper
 
   def link_to_or_back(*args, &block)
     body = args.shift
-    path = begin
-      if block_given?
-        body
-      else
-        args.shift
-      end
-    end
+    path = if block_given?
+             body
+           else
+             args.shift
+           end
 
     path = params[:back_to] if params[:back_to] =~ %r{^(/[a-z0-9-]*)+$}
 
@@ -172,9 +164,8 @@ module ApplicationHelper
   end
 
   def meta_image_default
-    return "helsinki-social/ideapaahtimo-wide.jpg" if Rails.application.config.wrapper_class == "wrapper-paahtimo"
-    return "helsinki-social/ruuti-wide.jpg" if Rails.application.config.wrapper_class == "wrapper-ruuti"
+    return asset_pack_path("media/images/social-ruuti-wide.jpg") if Rails.application.config.wrapper_class == "wrapper-ruuti"
 
-    "helsinki-social/omastadi-wide.jpg"
+    asset_pack_path("media/images/social-omastadi-wide.jpg")
   end
 end

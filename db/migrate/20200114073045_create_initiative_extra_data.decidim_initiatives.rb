@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_initiatives (originally 20171023075942)
 
 class CreateInitiativeExtraData < ActiveRecord::Migration[5.1]

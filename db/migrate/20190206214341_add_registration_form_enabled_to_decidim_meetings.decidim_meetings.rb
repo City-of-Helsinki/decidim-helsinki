@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_meetings (originally 20180801150031)
 
 class AddRegistrationFormEnabledToDecidimMeetings < ActiveRecord::Migration[5.2]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_proposals (originally 20210318082934)
 
 class FixCountersForCopiedProposals < ActiveRecord::Migration[5.2]

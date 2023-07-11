@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_assemblies (originally 20200108113855)
 
 class CreateDecidimAssemblyTypes < ActiveRecord::Migration[5.2]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_initiatives (originally 20191002082220)
 
 class MoveSignatureTypeToInitativeType < ActiveRecord::Migration[5.2]
@@ -7,21 +8,23 @@ class MoveSignatureTypeToInitativeType < ActiveRecord::Migration[5.2]
   end
 
   def change
-    unless ActiveRecord::Base.connection.table_exists?("decidim_initiatives_types")
+    if !ActiveRecord::Base.connection.table_exists?("decidim_initiatives_types")
       Rails.logger.info "Skipping migration since there's no InitiativesType table"
       return
+    elsif InitiativesType.count.positive?
+      raise "You need to edit this migration to continue"
     end
 
     # This flag says when mixed and face-to-face voting methods
     # are allowed. If set to false, only online voting will be
     # allowed
-    face_to_face_voting_allowed = true
+    # face_to_face_voting_allowed = true
 
     add_column :decidim_initiatives_types, :signature_type, :integer, null: false, default: 0
 
     InitiativesType.reset_column_information
 
-    Decidim::Initiatives::InitiativesType.find_each do |type|
+    InitiativesType.find_each do |type|
       type.signature_type = if type.online_signature_enabled && face_to_face_voting_allowed
                               :any
                             elsif type.online_signature_enabled && !face_to_face_voting_allowed

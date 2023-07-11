@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_combined_budgeting (originally 20190814220251)
 
 class CreateCombinedBudgetingProcesses < ActiveRecord::Migration[5.2]

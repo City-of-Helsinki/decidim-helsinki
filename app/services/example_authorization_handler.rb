@@ -21,7 +21,7 @@
 # See Decidim::AuthorizationHandler for more documentation.
 class ExampleAuthorizationHandler < Decidim::AuthorizationHandler
   # Define the attributes you need for this authorization handler. Attributes
-  # are defined using Virtus.
+  # are defined using Decidim::AttributeObject.
   #
   # Example:
   # attribute :document_number, String

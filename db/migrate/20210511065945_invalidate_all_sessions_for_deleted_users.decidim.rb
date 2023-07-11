@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20210302150803)
 
 class InvalidateAllSessionsForDeletedUsers < ActiveRecord::Migration[5.2]

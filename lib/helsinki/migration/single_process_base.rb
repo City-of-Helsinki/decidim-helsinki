@@ -44,7 +44,7 @@ module Helsinki
       end
 
       def generate_category_map(from_process, to_process)
-        Decidim::Category.where(participatory_space: from_process).map do |cat|
+        Decidim::Category.where(participatory_space: from_process).to_h do |cat|
           cat_name = cat.name["fi"].strip
           corresponding = Decidim::Category.find_by(
             "decidim_participatory_space_type =? AND decidim_participatory_space_id =? AND TRIM(name->>'fi') =?",
@@ -54,7 +54,7 @@ module Helsinki
           )
 
           [cat.id, corresponding]
-        end.to_h
+        end
       end
 
       def transfer_attachments(from_item, to_item)
@@ -120,9 +120,11 @@ module Helsinki
           )
           next unless new_detail
 
+          # rubocop:disable Rails/SkipsModelValidations
           Decidim::AccountabilitySimple::ResultDetailValue.where(
             detail: old_detail
           ).update_all(decidim_accountability_result_detail_id: new_detail.id)
+          # rubocop:enable Rails/SkipsModelValidations
         end
       end
 
@@ -137,10 +139,12 @@ module Helsinki
           )
           next unless new_status
 
+          # rubocop:disable Rails/SkipsModelValidations
           Decidim::Accountability::Result.where(
             component: to_component,
             status: old_status
           ).update_all(decidim_accountability_status_id: new_status.id)
+          # rubocop:enable Rails/SkipsModelValidations
         end
       end
 
@@ -171,11 +175,11 @@ module Helsinki
         budgets_component = process.components.find_by(manifest_name: "budgets")
         return unless budgets_component
 
-        name = budgets_component.name.map do |locale, localname|
+        name = budgets_component.name.to_h do |locale, localname|
           scope_name = scope.name[locale] || scope.name["fi"]
 
           [locale, "#{localname} - #{scope_name}"]
-        end.to_h
+        end
 
         budgets_component.update!(
           name: name,
@@ -228,7 +232,7 @@ module Helsinki
         end
 
         page = Decidim::Pages::Page.find_or_create_by!(component: budgets_overview_component)
-        page.update!(body: page_contents.map { |lang, contents| [lang, contents.join("\n")] }.to_h)
+        page.update!(body: page_contents.transform_values { |contents| contents.join("\n") })
       end
     end
   end

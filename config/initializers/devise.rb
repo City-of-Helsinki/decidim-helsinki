@@ -1,21 +1,8 @@
 # frozen_string_literal: true
 
 require "omniauth/strategies/openid_connect_helsinki"
-require "helsinki/devise_failure_app"
 
 Devise.setup do |config|
-  # This is needed because of a bug in 0.24 which forces the sessions to close
-  # after 30 minutes. In future Decidim versions we can remove this as it will
-  # be set using Decidim's own `expire_session_after` configuration.
-  config.timeout_in = Rails.application.config.session_validity_period
-
-  # ==> Warden configuration
-  # Needed to fix:
-  # https://github.com/decidim/decidim/issues/4660
-  config.warden do |manager|
-    manager.failure_app = Helsinki::DeviseFailureApp
-  end
-
   config.secret_key = Rails.application.secrets.secret_key_devise.inspect
 
   ###################################
@@ -26,16 +13,14 @@ Devise.setup do |config|
     urlopts = Rails.application.config.action_controller.default_url_options
 
     # Fallback to localhost (development, testing, etc.)
-    app_root_url = begin
-      if urlopts && urlopts[:host]
-        url = urlopts[:protocol] || (urlopts[:port] == 443 ? "https" : "http")
-        url += "://#{urlopts[:host]}"
-        url += ":#{urlopts[:port]}" if urlopts[:port] && !urlopts[:port].to_s.match(/^80|443$/)
-        url
-      else
-        "http://localhost:3000"
-      end
-    end
+    app_root_url = if urlopts && urlopts[:host]
+                     url = urlopts[:protocol] || (urlopts[:port] == 443 ? "https" : "http")
+                     url += "://#{urlopts[:host]}"
+                     url += ":#{urlopts[:port]}" if urlopts[:port] && !urlopts[:port].to_s.match(/^80|443$/)
+                     url
+                   else
+                     "http://localhost:3000"
+                   end
 
     client_id = Rails.application.secrets.dig(:omniauth, :tunnistamo, :app_id)
     client_secret = Rails.application.secrets.dig(:omniauth, :tunnistamo, :app_secret)

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_sortitions (originally 20181017110803)
 
 class MakeSortitionsAuthorsPolymorphic < ActiveRecord::Migration[5.2]

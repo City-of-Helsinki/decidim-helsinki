@@ -33,16 +33,16 @@ module Helsinki
 
       def summary_for(post)
         translated_summary = translated_attribute(post.summary)
-        return translated_summary unless translated_summary.blank?
+        return translated_summary if translated_summary.present?
 
         html_truncate(translated_attribute(post.body), length: 100, separator: "...")
       end
 
       def resource_image_path_for(post)
-        return post.card_image.highlight.url if post.card_image.url
-        return post.main_image.highlight.url if post.main_image.url
+        return post.attached_uploader(:card_image).path(variant: :highlight) if post.card_image && post.card_image.attached?
+        return post.attached_uploader(:main_image).path(variant: :highlight) if post.main_image && post.main_image.attached?
 
-        "decidim/blogs/post-highlight-default.jpg"
+        asset_pack_path("media/images/blogs-post-highlight-default.jpg")
       end
 
       def button_url

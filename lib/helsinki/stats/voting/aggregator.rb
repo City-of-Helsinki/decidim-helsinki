@@ -61,11 +61,12 @@ module Helsinki
           return if collection.finalized?
 
           auth_types = %w(suomifi_eid helsinki_documents_authorization_handler)
-          votes = Decidim::Budgets::Vote.joins(:user).where(component: component).joins(
-            "INNER JOIN decidim_authorizations auth ON auth.decidim_user_id = decidim_users.id"
-          ).where("auth.name IN (?, ?)", *auth_types).where("auth.metadata->>'postal_code' =?", code).order(
+          votes = Decidim::Budgets::Vote.joins(:user).where(component: component).order(
             "decidim_budgets_votes.created_at"
-          )
+          ).select do |vote|
+            metadata = Decidim::Authorization.where(user: vote.user, name: auth_types).order(updated_at: :desc).first&.metadata
+            metadata.try(:[], "postal_code") == code
+          end
           votes = votes.where("decidim_budgets_votes.created_at > ?", collection.last_value_at) if collection.last_value_at
           accumulator = Accumulator.new(component, votes, identity_provider)
 
@@ -104,6 +105,7 @@ module Helsinki
           update_collection(project.component, collection, accumulator) if votes.any?
         end
 
+        # rubocop:disable Metrics/CyclomaticComplexity
         def update_collection(component, collection, accumulator)
           accumulation = accumulator.accumulate
 
@@ -162,6 +164,7 @@ module Helsinki
           # Mark finalized when the voting has ended
           collection.update!(finalized: true) if component.current_settings.votes == "finished"
         end
+        # rubocop:enable Metrics/CyclomaticComplexity
       end
     end
   end

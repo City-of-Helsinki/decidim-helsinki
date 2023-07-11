@@ -23,6 +23,9 @@ Rails.application.configure do
     "Cache-Control" => "public, max-age=3600"
   }
 
+  # Store uploaded files on the local file system (see config/storage.yml for options)
+  config.active_storage.service = :test
+
   # Show full error reports and disable caching.
   config.consider_all_requests_local = true
   config.action_controller.perform_caching = false

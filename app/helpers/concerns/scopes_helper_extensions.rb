@@ -9,13 +9,13 @@ module ScopesHelperExtensions
 
     # Overrides the scopes picker filter to use our customized one-dimensional
     # "simple" scope picker.
-    def scopes_picker_filter(form, name, checkboxes_on_top = true, _filtering_context_id = "content")
+    def scopes_picker_filter(form, name, checkboxes_on_top: true)
       if respond_to?(:scopes_picker_filter_simple)
         scopes_picker_filter_simple(form, name)
       else
         # For some reason in the admin panel the scopes_filter_simple method is
         # not always defined. Fall back to the original method in this case.
-        scopes_picker_filter_orig(form, name, checkboxes_on_top)
+        scopes_picker_filter_orig(form, name, checkboxes_on_top: checkboxes_on_top)
       end
     end
   end
@@ -23,22 +23,19 @@ module ScopesHelperExtensions
   def scopes_picker_filter_simple(form, name, options = {})
     root = options[:root] || try(:current_participatory_space).try(:scope)
 
-    label = begin
-      if options[:label]
-        options[:label]
-      elsif root
-        translated_attribute(root.name)
-      else
-        scopes_label
-      end
-    end
-    scopes = begin
-      if root
-        root.children
-      else
-        current_organization.scopes.top_level
-      end
-    end
+    label = if options[:label]
+              options[:label]
+            elsif root
+              translated_attribute(root.name)
+            else
+              scopes_label
+            end
+
+    scopes = if root
+               root.children
+             else
+               current_organization.scopes.top_level
+             end
 
     selected = selected_scopes(form, name).first
 
@@ -47,8 +44,11 @@ module ScopesHelperExtensions
     picker_select = form.select(
       name,
       scope_picker_options(scopes, selected&.id),
-      include_blank: options[:prompt] || I18n.t("forms.scopes_picker.prompt", item_name: prompt_label),
-      label: false
+      {
+        include_blank: options[:prompt] || I18n.t("forms.scopes_picker.prompt", item_name: prompt_label),
+        label: false
+      },
+      "aria-controls": "proposals"
     )
 
     return picker_select unless form.respond_to?(:fieldset_wrapper, true)
@@ -62,12 +62,10 @@ module ScopesHelperExtensions
   def scopes_label(options = {})
     root = options[:root] || try(:current_participatory_space).try(:scope)
 
-    begin
-      if root
-        translated_attribute(root.name)
-      else
-        I18n.t("decidim.scopes.scopes")
-      end
+    if root
+      translated_attribute(root.name)
+    else
+      I18n.t("decidim.scopes.scopes")
     end
   end
 

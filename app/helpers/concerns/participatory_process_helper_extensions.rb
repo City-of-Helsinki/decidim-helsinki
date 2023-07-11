@@ -4,7 +4,7 @@
 module ParticipatoryProcessHelperExtensions
   extend ActiveSupport::Concern
 
-  def process_step_tag(step, past = false)
+  def process_step_tag(step, past: false)
     cls = ["phases-list-item"]
     if past
       cls << "phases-list-item-past"
@@ -27,24 +27,15 @@ module ParticipatoryProcessHelperExtensions
 
   def process_step_link(step)
     if step.cta_path.present?
-      current_step = begin
-        if current_component
-          step.cta_path =~ %r{^f/#{current_component.id}(/.*)?$}
-        else
-          false
-        end
-      end
-
       step_url = begin
         base_url, current_params = decidim_participatory_processes.participatory_process_path(
-          step.participatory_process,
-          current_step ? filter_link_params : nil
+          step.participatory_process
         ).split("?")
 
         if current_params.present?
-          [base_url, "/", step.cta_path, "?", current_params].join("")
+          [base_url, "/", step.cta_path, "?", current_params].join
         else
-          [base_url, "/", step.cta_path].join("")
+          [base_url, "/", step.cta_path].join
         end
       end
 

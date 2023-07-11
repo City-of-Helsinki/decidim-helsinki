@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_debates (originally 20180305133556)
 
 class RenameFeaturesToComponentsAtDebates < ActiveRecord::Migration[5.1]

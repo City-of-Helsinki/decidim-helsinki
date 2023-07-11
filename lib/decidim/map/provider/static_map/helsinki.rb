@@ -48,7 +48,7 @@ module Decidim
 
             Tempfile.create(["hkistaticmap-attribution", ".png"]) do |temp|
               MiniMagick::Tool::Convert.new do |img|
-                img.size "#{width - padding[0] * 2}x"
+                img.size "#{width - (padding[0] * 2)}x"
                 img.background "#ffffff80"
                 img.fill "#6f6f6f"
                 img.font "#{fonts_path}/Roboto-Regular.ttf"

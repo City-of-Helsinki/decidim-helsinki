@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_accountability (originally 20170620154712)
 
 class CreateAccountabilityTimelineEntries < ActiveRecord::Migration[5.0]

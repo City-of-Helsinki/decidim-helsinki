@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim_meetings (originally 20170215132546)
 class AddReferenceToMeetings < ActiveRecord::Migration[5.0]
   def change

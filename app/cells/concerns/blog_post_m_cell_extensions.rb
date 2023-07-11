@@ -10,7 +10,7 @@ module BlogPostMCellExtensions
 
     def description
       translated_summary = translated_attribute(model.summary)
-      return translated_summary unless translated_summary.blank?
+      return translated_summary if translated_summary.present?
 
       decidim_sanitize(html_truncate(translated_attribute(model.body), length: 100, separator: "..."))
     end
@@ -45,9 +45,9 @@ module BlogPostMCellExtensions
   end
 
   def resource_image_path
-    return model.card_image.thumbnail.url if model.card_image.url
-    return model.main_image.thumbnail.url if model.main_image.url
+    return model.attached_uploader(:card_image).path(variant: :thumbnail) if model.card_image && model.card_image.attached?
+    return model.attached_uploader(:main_image).path(variant: :thumbnail) if model.main_image && model.main_image.attached?
 
-    "decidim/blogs/post-default.jpg"
+    asset_pack_path("media/images/blogs-post-default.jpg")
   end
 end

@@ -8,11 +8,16 @@ module Decidim
       private
 
       def has_image?
+        return false unless model.hero_image
+        return false unless model.hero_image.attached?
+
         true
       end
 
       def resource_image_path
-        model.hero_image.url
+        return unless has_image?
+
+        model.attached_uploader(:hero_image).path
       end
 
       def title
@@ -36,10 +41,12 @@ module Decidim
       end
 
       def processes_count_status
-        content_tag(
+        tag = content_tag(
           :strong,
           t("layouts.decidim.participatory_process_groups.participatory_process_group.processes_count")
-        ) + " " + model.participatory_processes.published.count.to_s
+        )
+
+        "#{tag} #{model.participatory_processes.published.count}"
       end
     end
   end

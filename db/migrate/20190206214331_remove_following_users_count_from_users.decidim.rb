@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20181204110723)
 
 class RemoveFollowingUsersCountFromUsers < ActiveRecord::Migration[5.2]

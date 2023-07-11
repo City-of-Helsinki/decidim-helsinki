@@ -80,7 +80,7 @@ module Decidim
 
       def endorsements_count
         with_tooltip t("decidim.endorsable.endorsements") do
-          icon("thumb-up", class: "icon--small") + " " + model.endorsements_count.to_s
+          "#{icon("thumb-up", class: "icon--small")} #{model.endorsements_count}"
         end
       end
 
@@ -121,17 +121,15 @@ module Decidim
       end
 
       def has_image?
-        return true if resource_image_attachment
+        return false unless resource_image_attachment
+        return false unless resource_image_attachment.file
+        return false unless resource_image_attachment.file.attached?
 
-        false
+        true
       end
 
       def resource_image_path
-        if has_image?
-          versions = resource_image_attachment.file.versions
-          vhandle = :big
-          return versions[vhandle].url if versions.has_key?(vhandle)
-        end
+        resource_image_attachment.attached_uploader(:file).path(variant: :big) if has_image?
       end
 
       def resource_image_attachment

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20180611121852)
 
 class ChangeNewsletterNotificationTypeValue < ActiveRecord::Migration[5.2]

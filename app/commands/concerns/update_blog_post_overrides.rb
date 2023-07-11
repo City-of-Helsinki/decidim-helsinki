@@ -4,25 +4,18 @@
 module UpdateBlogPostOverrides
   extend ActiveSupport::Concern
 
+  include ::Decidim::AttachmentAttributesMethods
+
   included do
     def update_post!
       attributes = {
         title: form.title,
-        summary: @form.summary,
+        summary: form.summary,
         body: form.body,
         author: form.author
-      }.merge(uploader_attributes)
+      }.merge(attachment_attributes(:card_image, :main_image))
 
       post.update!(attributes)
     end
-  end
-
-  private
-
-  def uploader_attributes
-    {
-      card_image: @form.card_image,
-      main_image: @form.main_image
-    }.delete_if { |_k, val| val.is_a?(Decidim::ApplicationUploader) }
   end
 end

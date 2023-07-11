@@ -4,7 +4,7 @@ module Helsinki
   class GeocodingController < Decidim::ApplicationController
     include Decidim::ApplicationHelper
 
-    before_action :ensure_geocoder!, only: [:index]
+    before_action :ensure_geocoder!, only: [:autocomplete]
 
     def autocomplete
       enforce_permission_to :show, :user, current_user: current_user

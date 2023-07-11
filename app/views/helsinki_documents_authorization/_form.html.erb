@@ -25,12 +25,14 @@
     <p><%= t("user_explanation", scope: "decidim.authorization_handlers.helsinki_documents_authorization_handler") %></p>
   </div>
 
-<script>
-$(function() {
-  var $explanation = $("#documents_disabled");
-  $(".actions", $explanation.parents("form")).hide();
-});
-</script>
+  <% content_for(:js_content) do %>
+    <script>
+    $(function() {
+      var $explanation = $("#documents_disabled");
+      $(".actions", $explanation.parents("form")).hide();
+    });
+    </script>
+  <% end %>
 <% end %>
 
 <%= form.hidden_field :handler_name %>

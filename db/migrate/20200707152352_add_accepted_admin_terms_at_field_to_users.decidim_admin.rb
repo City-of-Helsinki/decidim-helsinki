@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_admin (originally 20191118112040)
 
 class AddAcceptedAdminTermsAtFieldToUsers < ActiveRecord::Migration[5.2]

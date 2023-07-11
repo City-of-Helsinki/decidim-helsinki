@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20170914092117)
 
 class AddStatusToAuthorizations < ActiveRecord::Migration[5.1]

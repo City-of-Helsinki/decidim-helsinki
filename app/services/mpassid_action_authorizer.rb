@@ -41,9 +41,11 @@ class MpassidActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
     if status_code == :unauthorized && allow_reauthorization?
       return [
         :incomplete,
-        extra_explanation: data[:extra_explanation],
-        action: :reauthorize,
-        cancel: true
+        {
+          extra_explanation: data[:extra_explanation],
+          action: :reauthorize,
+          cancel: true
+        }
       ]
     end
 

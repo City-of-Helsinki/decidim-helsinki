@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_proposals (originally 20180927111721)
 
 class CreateParticipatoryTexts < ActiveRecord::Migration[5.2]

@@ -3,11 +3,11 @@
 module Decidim
   # This class deals with uploading the category icons.
   class CategoryIconUploader < ApplicationUploader
-    def content_type_whitelist
+    def content_type_allowlist
       %w(image/svg+xml image/svg image/png)
     end
 
-    def extension_whitelist
+    def extension_allowlist
       %w(svg png)
     end
   end

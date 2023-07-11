@@ -58,7 +58,7 @@ module Helsinki
         image = event["images"].first
         return image["url"] if image
 
-        "decidim/blogs/post-highlight-default.jpg"
+        asset_pack_tag("blogs-post-highlight-default.jpg")
       end
 
       def dates_for(event)

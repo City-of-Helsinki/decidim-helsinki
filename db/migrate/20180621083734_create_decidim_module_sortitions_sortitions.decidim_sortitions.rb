@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_sortitions (originally 20171215161358)
 
 class CreateDecidimModuleSortitionsSortitions < ActiveRecord::Migration[5.1]

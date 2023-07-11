@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_budgeting_pipeline (originally 20210422153205)
 
 class AddGeolocationToProjects < ActiveRecord::Migration[5.2]

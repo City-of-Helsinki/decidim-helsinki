@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim_feedback (originally 20201006073556)
 class CreateDecidimFeedbackRecipientGroups < ActiveRecord::Migration[5.2]
   def change

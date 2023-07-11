@@ -4,7 +4,9 @@ module Decidim
   module Admin
     # A command with all the business logic when updating a category in the
     # system.
-    class UpdateCategory < Rectify::Command
+    class UpdateCategory < Decidim::Command
+      include ::Decidim::AttachmentAttributesMethods
+
       attr_reader :category
 
       # Public: Initializes the command.
@@ -44,20 +46,13 @@ module Decidim
           parent_id: form.parent_id,
           color: category_color,
           description: form.description
-        }.merge(uploader_attributes)
+        }.merge(attachment_attributes(:category_image, :category_icon))
       end
 
       def category_color
         return nil unless form.has_color
 
         form.color
-      end
-
-      def uploader_attributes
-        {
-          category_image: form.category_image,
-          category_icon: form.category_icon
-        }.delete_if { |_k, val| val.is_a?(Decidim::ApplicationUploader) }
       end
     end
   end

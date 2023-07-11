@@ -1,0 +1,19 @@
+// Basics
+@import "stylesheets/decidim/variables";
+@import "stylesheets/decidim/properties";
+@import "foundation-sites/scss/foundation";
+@import "stylesheets/decidim/utils/settings";
+
+// Import foundation
+@import "stylesheets/decidim/foundation_and_overrides";
+
+// Rest of Decidim stuff
+@import "stylesheets/decidim/utils/fontface";
+@import "stylesheets/decidim/utils/helpers";
+@import "stylesheets/decidim/utils/keyframes";
+@import "stylesheets/decidim/utils/mixins";
+@import "stylesheets/decidim/utils/toggle-expand";
+@import "stylesheets/decidim/modules/modules";
+@import "stylesheets/decidim/layouts/layouts";
+@import "stylesheets/decidim/extras/extras";
+@import "stylesheets/decidim/vizzs/vizzs";

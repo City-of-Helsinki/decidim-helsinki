@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_plans (originally 20190202123044)
 
 # This migration and AddTransactionIdColumnToVersions provide the necessary

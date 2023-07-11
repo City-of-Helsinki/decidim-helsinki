@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_debates (originally 20181016132850)
 
 class AddOrganizationAsAuthorToDebates < ActiveRecord::Migration[5.2]
@@ -6,9 +7,11 @@ class AddOrganizationAsAuthorToDebates < ActiveRecord::Migration[5.2]
     self.table_name = :decidim_debates_debates
     include Decidim::HasComponent
   end
+
   class User < ApplicationRecord
     self.table_name = :decidim_users
   end
+
   def change
     add_column :decidim_debates_debates, :decidim_author_type, :string
 

@@ -1,5 +1,5 @@
 <% add_decidim_meta_tags({
-  #image_url: current_participatory_space.hero_image.url,
+  #image_url: current_participatory_space.attached_uploader(:hero_image).path,
   image_url: image_url(meta_image_default),
   description: translated_attribute(current_participatory_space.short_description),
   url: participatory_process_url(current_participatory_space),
@@ -19,10 +19,6 @@ edit_link(
 
 <% if current_participatory_space.private_space? %>
   <%= render partial: "decidim/shared/private_participatory_space", locals: { text: t("participatory_processes.show.private_space", scope: "decidim") } %>
-<% end %>
-
-<% if translated_attribute(current_participatory_space.announcement).present? %>
-  <%= render partial: "decidim/shared/announcement", locals: { announcement: current_participatory_space.announcement } %>
 <% end %>
 
 <div class="row column">
@@ -105,6 +101,6 @@ edit_link(
     </div>
   </div>
   <% if current_participatory_space.show_statistics? %>
-    <%= cell "decidim/participatory_processes/statistics", stats.collection %>
+    <%= cell("decidim/statistics", stats.collection) %>
   <% end %>
 </div>

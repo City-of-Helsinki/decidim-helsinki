@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_proposals (originally 20200212120110)
 
 class SyncProposalsStateWithAmendmentsState < ActiveRecord::Migration[5.2]

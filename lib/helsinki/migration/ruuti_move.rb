@@ -7,6 +7,7 @@ module Helsinki
     # co-exist on the same database and ends up with a state where the Ruuti
     # process is the only one in the system.
     class RuutiMove
+      # rubocop:disable Metrics/CyclomaticComplexity
       def migrate_ruuti_instance
         # Clean up the OmaStadi process
         omastadi = Decidim::ParticipatoryProcess.find_by(slug: "osbu-2019")
@@ -72,6 +73,7 @@ module Helsinki
         # Update the organization name
         Decidim::Organization.first.update!(name: "RuutiBudjetti")
       end
+      # rubocop:enable Metrics/CyclomaticComplexity
 
       def migrate_omastadi_instance
         # Clean up the Ruuti process

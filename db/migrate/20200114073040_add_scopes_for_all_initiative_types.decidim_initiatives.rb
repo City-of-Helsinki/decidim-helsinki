@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_initiatives (originally 20171017091734)
 
 class AddScopesForAllInitiativeTypes < ActiveRecord::Migration[5.1]

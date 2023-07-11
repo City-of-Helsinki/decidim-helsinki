@@ -9,13 +9,14 @@ module Helsinki
           @component = component
         end
 
+        # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def seed!(amount = 2000)
           amount.times do
             user = random_user(component.organization)
             authorize_user(user)
 
             # Random vote time between now and a month ago
-            today = Time.now
+            today = Time.current
             vote_time = random_time_between(today - 1.month, today)
 
             min_projects =
@@ -72,18 +73,19 @@ module Helsinki
             vote.save(validate: false)
           end
         end
+        # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
         private
 
         attr_reader :component
 
         def random_date_of_birth
-          to = Time.now - 13.years
+          to = 13.years.ago
           random_time_between(to - rand(0..90).years, to)
         end
 
         def random_time_between(from, to)
-          Time.at(from + rand * (to.to_f - from.to_f))
+          Time.zone.at(from + (rand * (to.to_f - from.to_f)))
         end
 
         def random_postal_code

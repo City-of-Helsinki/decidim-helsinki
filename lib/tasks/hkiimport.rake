@@ -73,10 +73,10 @@ namespace :hkiimport do
         next
       end
 
-      answer_text = organization.available_locales.map do |locale|
+      answer_text = organization.available_locales.to_h do |locale|
         prefix = answer_prefixes[row["state"]][locale]
         [locale, "#{prefix}#{row["answer"]}"]
-      end.to_h
+      end
 
       puts "Answering plan ##{pl.id} -- #{row["state"]}"
       pl.update!(

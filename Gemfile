@@ -5,58 +5,51 @@ source "https://rubygems.org"
 ruby RUBY_VERSION
 
 # Run updates by following the Decidim upgrade instructions:
-# https://github.com/decidim/decidim/blob/master/docs/getting_started.md#keeping-your-app-up-to-date
-DECIDIM_VERSION = { github: "mainio/decidim", branch: "feature/multibudget-maximum-votes" }.freeze
-# DECIDIM_VERSION = "0.23.0"
-DECIDIM_MODULE_VERSION = "~> 0.23.0"
+# https://docs.decidim.org/en/develop/install/update.html
+DECIDIM_VERSION = "~> 0.27.0"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-initiatives", DECIDIM_VERSION
 
 # External Decidim modules
-gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "release/0.23-stable"
-gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "release/0.23-stable"
-gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "release/0.23-stable"
-gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "release/0.23-stable"
-gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "release/0.23-stable"
-gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.23-stable"
-gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.23-stable"
-gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "release/0.23-stable"
-gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "release/0.23-stable"
-gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "release/0.23-stable"
-gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "release/0.23-stable"
-gem "decidim-process_groups_content_block", github: "mainio/decidim-module-process_groups_content_block", branch: "release/0.23-stable"
-gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "release/0.23-stable"
-gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "release/0.23-stable"
-gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "release/0.23-stable"
-gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.23-stable"
-gem "decidim-term_customizer", DECIDIM_MODULE_VERSION
+gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "main"
+gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "main"
+gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "main"
+gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "main"
+gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "main"
+gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "main"
+gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "main"
+gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "main"
+gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "main"
+gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "main"
+gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "main"
+gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "main"
+gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "main"
+gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "main"
+gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "main"
+gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "master"
+
+gem "bootsnap", "~> 1.4"
+gem "puma", ">= 5.6.2"
+
+gem "faker", "~> 2.14"
 
 # For static maps, hasn't released an official release with the updated
 # dependencies. GitHub version works fine.
 gem "mapstatic", github: "crofty/mapstatic", branch: "master"
 
-# Before we upgrade to Ruby 2.7.x+, newer versions of ExecJS won't apparently
-# work properly. This can be removed after Decidim upgrade to 0.24.
-gem "execjs", "~> 2.7.0"
-
 # For the documents authorization handler
 gem "henkilotunnus"
-gem "ruby-cldr", "~> 0.3.0"
-
-gem "font-awesome-rails", "~> 4.7.0"
-
-gem "puma", "~> 4.3.3"
-gem "uglifier", "~> 4.1"
+gem "ruby-cldr", "~> 0.5.0"
 
 # HKI authentication
-gem "omniauth_openid_connect", "~> 0.3"
+gem "omniauth_openid_connect", "~> 0.7.1"
 
 # HKI import
-gem "roo", "~> 2.8"
+gem "roo", "~> 2.10"
 
 # HKI export
-gem "rubyXL", "~> 3.4", ">= 3.4.6"
+gem "rubyXL", "~> 3.4", ">= 3.4.25"
 
 # Language detection for spammers
 gem "cld"
@@ -68,26 +61,19 @@ group :development, :test do
 end
 
 group :development do
-  gem "letter_opener_web", "~> 1.3"
+  gem "letter_opener_web", "~> 2.0"
   gem "listen", "~> 3.1"
+  gem "rubocop-faker"
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
-  gem "web-console", "~> 3.5"
+  gem "web-console", "~> 4.2"
 end
 
-# Faker is also needed in staging env in order to generate dummy data.
-group :development, :test, :staging do
-  gem "faker", "~> 1.9"
-end
+group :production, :production_ruuti, :staging do
+  gem "dotenv-rails", "~> 2.8"
 
-group :production, :production_kuva, :production_ruuti, :production_discussion, :staging do
-  gem "dotenv-rails", "~> 2.1", ">= 2.1.1"
-
-  # resque-scheduler still depends on resque ~> 1.25
-  # Keep an eye on:
-  # https://github.com/resque/resque-scheduler/pull/661
-  gem "resque", "~> 1.26"
-  gem "resque-scheduler", "~> 4.0"
+  gem "resque", "~> 2.2.0"
+  gem "resque-scheduler", "~> 4.5"
 
   # Cronjobs
   gem "whenever", require: false

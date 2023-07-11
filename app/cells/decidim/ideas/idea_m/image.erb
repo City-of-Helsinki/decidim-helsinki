@@ -2,6 +2,6 @@
   <% if resource_image_path.present? %>
     <%= image_tag resource_image_path, class: "card__image", alt: title %>
   <% else %>
-    <%= image_tag "helsinki/osbu-2020/omastadi-card-default.jpg", class: "card__image", alt: title %>
+    <%= image_pack_tag "media/images/osbu-2020-omastadi-card-default.jpg", class: "card__image", alt: title %>
   <% end %>
 <% end %>

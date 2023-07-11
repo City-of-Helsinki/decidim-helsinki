@@ -154,7 +154,7 @@ namespace :moderation do
         about_language = ""
         about_language = CLD.detect_language(user.about)[:code] if user.about.present?
 
-        csv << [
+        csv << ([
           user.nickname,
           user.created_at.strftime("%Y-%m-%dT%H:%M"),
           user.last_sign_in_at.strftime("%Y-%m-%dT%H:%M"),
@@ -173,7 +173,7 @@ namespace :moderation do
           counts[3],
           comments_with_links,
           languages.uniq.join(",")
-        ] + comments.first(5).map { |c| c.body.values.first }
+        ] + comments.first(5).map { |c| c.body.values.first })
       end
     end
   end

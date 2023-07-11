@@ -4,7 +4,9 @@ module Decidim
   module Admin
     # A command with all the business logic to create a new category in the
     # system.
-    class CreateCategory < Rectify::Command
+    class CreateCategory < Decidim::Command
+      include ::Decidim::AttachmentAttributesMethods
+
       # Public: Initializes the command.
       #
       # form - A form object with the params.
@@ -50,14 +52,7 @@ module Decidim
           parent_id: form.parent_id,
           color: category_color,
           participatory_space: @participatory_space
-        }.merge(uploader_attributes)
-      end
-
-      def uploader_attributes
-        {
-          category_image: form.category_image,
-          category_icon: form.category_icon
-        }.delete_if { |_k, val| val.is_a?(Decidim::ApplicationUploader) }
+        }.merge(attachment_attributes(:category_image, :category_icon))
       end
     end
   end

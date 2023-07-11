@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20181119140636)
 
 class AddColumnsToStaticPageTopic < ActiveRecord::Migration[5.2]

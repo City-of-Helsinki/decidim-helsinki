@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20181214101250)
 
 class AddNotificationTypesToUsers < ActiveRecord::Migration[5.2]

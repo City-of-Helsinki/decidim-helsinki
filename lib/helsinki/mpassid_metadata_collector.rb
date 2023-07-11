@@ -6,7 +6,7 @@ module Helsinki
       super.tap do |data|
         school_codes = saml_attributes[:school_code]
 
-        unless school_codes.blank?
+        if school_codes.present?
           postal_codes = school_codes.map do |school_code|
             Helsinki::SchoolMetadata.postal_code_for_school(school_code)
           end

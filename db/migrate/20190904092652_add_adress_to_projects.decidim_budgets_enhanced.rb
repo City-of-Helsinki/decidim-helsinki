@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_budgets_enhanced (originally 20190827204624)
 
 class AddAdressToProjects < ActiveRecord::Migration[5.2]

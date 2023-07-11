@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_favorites (originally 20200928083849)
 
 class CreateDecidimFavorites < ActiveRecord::Migration[5.2]

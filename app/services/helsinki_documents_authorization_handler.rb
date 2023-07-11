@@ -30,7 +30,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   # when the form is submitted with the obfuscated context.
   def setup(controller)
     self.handler_context_verification = begin
-      if controller.class == Decidim::Admin::ImpersonationsController
+      if controller.instance_of?(Decidim::Admin::ImpersonationsController)
         generate_context_verification(:impersonation)
       else
         generate_context_verification(:user)
@@ -123,7 +123,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
 
     voted = Decidim::Authorization.exists?(
       [
-        "name =? AND metadata->>'pin_digest' =?",
+        "name =? AND pseudonymized_pin =?",
         "suomifi_eid",
         pin_digest
       ]
@@ -132,18 +132,17 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def sanitized_document_type
-    case document_type&.to_sym
-    when :none
-      "00"
-    when :passport
-      "01"
-    when :idcard
-      "02"
-    when :drivers_license
-      "03"
-    when :kela_card
-      "04"
-    end
+    document_type_mapping[document_type&.to_sym]
+  end
+
+  def document_type_mapping
+    {
+      none: "00",
+      passport: "01",
+      idcard: "02",
+      drivers_license: "03",
+      kela_card: "04"
+    }
   end
 
   def age

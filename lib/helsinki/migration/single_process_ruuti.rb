@@ -132,10 +132,10 @@ module Helsinki
         combined_process = Decidim::ParticipatoryProcess.find_by(slug: "ruuti-2019")
         return combined_process if combined_process
 
-        base_path = File.expand_path(File.join(Rails.root, "app", "assets", "images", "helsinki", "ruuti-2019"))
+        base_path = File.expand_path(Rails.root.join("app/packs/images/helsinki/ruuti-2019"))
 
-        hero_image = Pathname.new("#{base_path}/hero.jpg").open
-        banner_image = Pathname.new("#{base_path}/banner.png").open
+        hero_image = Pathname.new("#{base_path}/ruuti-2019-hero.jpg").open
+        banner_image = Pathname.new("#{base_path}/ruuti-2019-banner.png").open
         main_scope = Decidim::Scope.find_by(code: "RUUTIALUE")
 
         combined_process = Decidim::ParticipatoryProcess.create!(
@@ -625,7 +625,7 @@ module Helsinki
               {}
             )
           },
-          published_at: Time.now
+          published_at: Time.current
         )
       end
 
@@ -721,7 +721,7 @@ module Helsinki
               "comments_blocked" => false
             )
           },
-          published_at: Time.now
+          published_at: Time.current
         )
 
         # Add the default details

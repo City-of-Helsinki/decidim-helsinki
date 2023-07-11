@@ -1,4 +1,6 @@
-$:.unshift(File.dirname(__FILE__) + '/lib')
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib")
 
 # This is a copy of the "cldr" gem's cldr.thor file in order to run it locally
 # in this project.

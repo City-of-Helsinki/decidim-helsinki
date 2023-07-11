@@ -6,9 +6,9 @@
         <% highlighted_groups.each do |group| %>
           <div class="column">
             <article class="card card--process card--stack card--mini">
-              <% if group.hero_image.url.present? %>
+              <% if group.hero_image && group.hero_image.attached? %>
                 <%= link_to decidim_participatory_processes.participatory_process_group_path(group), class: "card__link" do %>
-                  <%= image_tag group.hero_image.url, alt: title_for(group), class: "card__image" %>
+                  <%= image_tag group.attached_uploader(:hero_image).path, alt: title_for(group), class: "card__image" %>
                 <% end %>
               <% end %>
 

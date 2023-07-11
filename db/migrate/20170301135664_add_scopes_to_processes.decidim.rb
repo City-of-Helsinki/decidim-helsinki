@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim (originally 20170221094835)
 class AddScopesToProcesses < ActiveRecord::Migration[5.0]
   def change

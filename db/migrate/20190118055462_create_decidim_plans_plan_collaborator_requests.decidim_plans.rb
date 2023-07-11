@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_plans (originally 20181230122035)
 
 class CreateDecidimPlansPlanCollaboratorRequests < ActiveRecord::Migration[5.2]
