@@ -28,7 +28,7 @@ module Helsinki
           false
         end
 
-        def vote_allowed?(_resource, _consider_progress: true)
+        def vote_allowed?(_resource, consider_progress: true) # rubocop:disable Lint/UnusedMethodArgument
           return false if authorization.blank?
 
           voted.none?
