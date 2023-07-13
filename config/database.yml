@@ -98,7 +98,3 @@ production_ruuti:
 staging:
   <<: *default
   database: <%= ENV.fetch("DATABASE_NAME") { "dummy" } %>
-
-staging_kuva:
-  <<: *default
-  database: <%= ENV.fetch("DATABASE_NAME") { "dummy" } %>

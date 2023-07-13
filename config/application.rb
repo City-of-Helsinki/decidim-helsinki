@@ -44,7 +44,8 @@ module DecidimHelsinki
     ]
 
     # Wrapper class can be used to customize the coloring of the platform per
-    # environment. This is used mainly for the Ideapaahtimo/KuVa instance.
+    # environment. This is used mainly to separate the color schemes of
+    # different environments (e.g. default/ruuti).
     config.wrapper_class = "wrapper-default"
 
     # Color profile that changes the logo color for header and footer
