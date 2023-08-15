@@ -29,7 +29,7 @@
         <%= image_tag post.attached_uploader(:main_image).path, alt: translated_attribute(post.title), class: "hero-heading" %>
       <% end %>
       <h1 class="heading1"><%= translated_attribute post.title %></h1>
-      <%= decidim_sanitize translated_attribute post.body %>
+      <%= decidim_sanitize_editor_admin translated_attribute post.body %>
     <% end %>
   </div>
 </div>
