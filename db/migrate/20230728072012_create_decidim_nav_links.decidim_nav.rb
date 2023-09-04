@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_nav (originally 20230727174248)
 
 class CreateDecidimNavLinks < ActiveRecord::Migration[5.2]
