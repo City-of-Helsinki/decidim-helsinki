@@ -38,10 +38,13 @@ module Helsinki
 
       def category_image_path(cat)
         return unless has_category?
-        return unless cat.respond_to?(:category_image)
-        return unless cat.category_image
 
-        cat.attached_uploader(:category_image).path
+        path = nil
+        path = cat.attached_uploader(:category_image).path if cat.respond_to?(:category_image) || !cat.category_image
+        return path if path
+        return unless cat.parent_id
+
+        category_image_path(cat.parent)
       end
 
       def description
