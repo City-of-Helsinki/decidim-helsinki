@@ -124,7 +124,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: e82eca23c262f91fa6a5e5606c77564e80067045
+  revision: de91de2e53972b6714f4cdaac4e8ba585be31f41
   branch: develop
   specs:
     decidim-plans (0.27.0)
@@ -134,6 +134,14 @@ GIT
       decidim-proposals (~> 0.27.0)
       decidim-tags (~> 0.27.0)
       paper_trail-association_tracking (~> 2.0)
+
+GIT
+  remote: https://github.com/mainio/decidim-module-privacy.git
+  revision: f0a2140c903f842a1e703f2e7e28cf65027ba882
+  branch: main
+  specs:
+    decidim-privacy (0.27.0)
+      decidim-core (~> 0.27.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-redirects.git
@@ -1147,6 +1155,7 @@ DEPENDENCIES
   decidim-mpassid!
   decidim-nav!
   decidim-plans!
+  decidim-privacy!
   decidim-redirects!
   decidim-stats!
   decidim-suomifi!

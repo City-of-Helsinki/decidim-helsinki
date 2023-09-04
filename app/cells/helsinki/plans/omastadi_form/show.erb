@@ -23,8 +23,17 @@ js_options = {
 }
 %>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  DecidimPlansCharacters.configure(<%== js_options.to_json %>);
-});
-</script>
+<% if user_public? %>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    DecidimPlansCharacters.configure(<%== js_options.to_json %>);
+    $(".field.with-character-counter").each(function(_i, el) {
+      var $wrapper = $(el);
+      var $input = $("input, textarea", $wrapper);
+      var $info = $(".field-character-counter-info", $wrapper);
+      console.log($info);
+      DecidimPlansCharacters.bindCharacterCounter($input, $info);
+    });
+  })
+  </script>
+<% end %>

@@ -1,4 +1,4 @@
-<% if user_signed_in? %>
+<% if user_signed_in? && user_public? %>
   <div class="actions">
     <div class="form-submit-message text-center hide">
       <div class="loading-spinner"></div>
@@ -19,6 +19,8 @@
       <% end %>
     </div>
   </div>
+<% elsif user_signed_in? %>
+  <%= render :profile_publicity_box %>
 <% else %>
   <%= render :sign_in_box %>
 <% end %>
