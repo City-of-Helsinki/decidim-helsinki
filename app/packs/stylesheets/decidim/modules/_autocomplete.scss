@@ -1,6 +1,15 @@
 @import "@tarekraafat/autocomplete.js/dist/css/autoComplete.02.css";
 
-$autocomplete-item-color: $primary !default;
+// Needed because the admin panel does not have the `$primary` variable defined.
+@function autocomplete-default-color(){
+  @if meta.variable-exists(primary){
+    @return $primary;
+  }
+
+  @return $secondary;
+}
+
+$autocomplete-item-color: autocomplete-default-color !default;
 $autocomplete-item-hover-bg: #ededed !default;
 $autocomplete-multiselect-bg: $white !default;
 $autocomplete-multiselect-border-color: $medium-gray !default;
