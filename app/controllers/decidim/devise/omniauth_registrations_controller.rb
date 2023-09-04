@@ -6,6 +6,7 @@ module Decidim
     class OmniauthRegistrationsController < ::Devise::OmniauthCallbacksController
       include FormFactory
       include Decidim::DeviseControllers
+      include DisableFirstLoginAndNotAuthorized
 
       def new
         @form = form(OmniauthRegistrationForm).from_params(params[:user])
@@ -65,15 +66,6 @@ module Decidim
       # only way to do this without checking the session directly.
       def pending_redirect?(user)
         store_location_for(user, stored_location_for(user))
-      end
-
-      # Generally we don't want to force the user to the user account view
-      # at this point because they would rather continue browsing where they
-      # left. We are already handling authorization on the component level as
-      # well as on the budgeting workflow tool (combined budgeting).
-      def first_login_and_not_authorized?(_user)
-        # user.is_a?(User) && user.sign_in_count == 1 && Decidim.authorization_handlers.any?
-        false
       end
 
       def action_missing(action_name)

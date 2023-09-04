@@ -124,6 +124,14 @@ sv:
       omniauth_callbacks:
         failure:
           security_denial: Din identitet kan inte verifieras elektroniskt. Du kan rösta på röstningsplatserna som har meddelats separat genom att visa upp ett identitetsbevis.
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            cocreation: Samskapande
+            helsinki_documents_authorization_handler: Identifiering på fysisk plats
+            mpassid_nids: MPASSid
+            suomifi_eid: Suomi.fi
   errors:
     messages:
       extension_whitelist_error: Filtypen du försökte ladda upp är inte tillåten.

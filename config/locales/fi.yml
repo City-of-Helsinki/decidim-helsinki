@@ -124,6 +124,14 @@ fi:
       omniauth_callbacks:
         failure:
           security_denial: Henkilöllisyyttäsi ei pystytä varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            cocreation: Yhteiskehittäminen
+            helsinki_documents_authorization_handler: Toimipistetunnistautuminen
+            mpassid_nids: MPASSid
+            suomifi_eid: Suomi.fi
   errors:
     messages:
       extension_whitelist_error: Lataamasi tiedostomuoto ei ole sallittu.

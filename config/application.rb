@@ -487,6 +487,7 @@ module DecidimHelsinki
         Decidim::ApplicationController.include(LongLocationUrlStoring)
         Decidim::Admin::HelpSectionsController.include(AdminHelpSectionsExtensions)
         Decidim::Admin::CategoriesController.include(AdminCategoriesControllerExtensions)
+        Decidim::Devise::SessionsController.include(DisableFirstLoginAndNotAuthorized)
         Decidim::Components::BaseController.include(ComponentsBaseExtensions)
         Decidim::UserActivitiesController.include(ActivityResourceTypes)
         Decidim::UserTimelineController.include(TimelineResourceTypes)

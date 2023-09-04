@@ -125,6 +125,14 @@ en:
       omniauth_callbacks:
         failure:
           security_denial: Your identity cannot be verified electronically. You can vote at the polling stations announced separately by showing an ID.
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            cocreation: Co-creation
+            helsinki_documents_authorization_handler: Identification at physical location
+            mpassid_nids: MPASSid
+            suomifi_eid: Suomi.fi
   errors:
     messages:
       extension_whitelist_error: The file type you tried to upload is not allowed.
