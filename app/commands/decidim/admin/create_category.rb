@@ -12,9 +12,10 @@ module Decidim
       # form - A form object with the params.
       # participatory_space - The participatory space that will hold the
       #   category
-      def initialize(form, participatory_space)
+      def initialize(form, participatory_space, user)
         @form = form
         @participatory_space = participatory_space
+        @user = user
       end
 
       # Executes the command. Broadcasts these events:
@@ -35,7 +36,11 @@ module Decidim
       attr_reader :form
 
       def create_category
-        Category.create!(attributes)
+        Decidim.traceability.create!(
+          Category,
+          @user,
+          **attributes
+        )
       end
 
       def category_color
@@ -48,7 +53,6 @@ module Decidim
         {
           name: form.name,
           weight: form.weight,
-          description: form.description,
           parent_id: form.parent_id,
           color: category_color,
           participatory_space: @participatory_space
