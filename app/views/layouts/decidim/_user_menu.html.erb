@@ -1,8 +1,8 @@
-<li class="user-nav__link"><%= link_to t(".profile"), decidim.account_path %></li>
+<li role="none" class="is-submenu-item is-dropdown-submenu-item"><%= link_to t(".profile"), decidim.account_path %></li>
 <% unless current_user.managed? %>
-  <li class="user-nav__link"><%= link_to t(".public_profile"), decidim.profile_activity_path(current_user.nickname) %></li>
+  <li role="none" class="is-submenu-item is-dropdown-submenu-item"><%= link_to t(".public_profile"), decidim.profile_activity_path(current_user.nickname) %></li>
 <% end %>
-<li class="user-nav__link">
+<li role="none" class="is-submenu-item is-dropdown-submenu-item">
   <%= link_to decidim.notifications_path do %>
     <%= t(".notifications") %>
     <% if current_user.notifications.any? %>
@@ -16,7 +16,7 @@
     <% end %>
   <% end %>
 </li>
-<li class="user-nav__link">
+<li role="none" class="is-submenu-item is-dropdown-submenu-item">
   <%= link_to decidim.conversations_path do %>
     <%= t(".conversations") %>
     <% if current_user.unread_messages_count > 0 %>
@@ -30,8 +30,8 @@
     <% end %>
   <% end %>
 </li>
-<li class="user-nav__link"><%= link_to t(".favorites"), decidim_favorites.favorites_path %></li>
+<li role="none" class="is-submenu-item is-dropdown-submenu-item"><%= link_to t(".favorites"), decidim_favorites.favorites_path %></li>
 <% if allowed_to? :read, :admin_dashboard %>
-  <li class="user-nav__link"><%= link_to t(".admin_dashboard"), decidim_admin.root_path %></li>
+  <li role="none" class="is-submenu-item is-dropdown-submenu-item"><%= link_to t(".admin_dashboard"), decidim_admin.root_path %></li>
 <% end %>
-<li class="user-nav__link"><%= link_to t(".sign_out"), decidim.destroy_user_session_path, method: :delete, class: "sign-out-link" %></li>
+<li role="none" class="is-submenu-item is-dropdown-submenu-item"><%= link_to t(".sign_out"), decidim.destroy_user_session_path, method: :delete, class: "sign-out-link" %></li>

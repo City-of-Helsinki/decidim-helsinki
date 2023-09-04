@@ -1,30 +1,24 @@
+<%
+mobile_back_button = %(<li class="js-drilldown-back" role="presentation"><a tabindex="0" href="#" role="menuitem">Back</a></li>)
+%>
+
 <div class="side-panel">
   <div class="sub-navigation">
-    <button class="sub-navigation-opener hide-for-mediumlarge" data-toggle="sub_navigation">
-      <%= t(".show_navigation") %>
-    </button>
-    <nav id="sub_navigation" class="sub-navigation-nav" data-toggler=".active">
-      <ul class="sub-navigation-content vertical menu">
-        <% Decidim::StaticPageTopic.where(organization: current_organization).each do |topic| %>
-          <% next unless topic.pages.any? %>
+    <nav class="sub-navigation-nav show-for-mediumlarge" role="navigation" aria-label="<%= t(".label") %>">
+      <ul class="sub-navigation-content vertical menu" role="menubar">
+        <%= render partial: "subnav", locals: { current: current } %>
+      </ul>
+    </nav>
 
-          <li>
-            <%= link_to translated_attribute(topic.title), page_path(topic.pages.first) %>
-
-            <ul class="nested vertical menu">
-              <% topic.pages.each do |page| %>
-                <li class="page-item <%= page == current ? "is-active" : nil %>">
-                  <%= link_to translated_attribute(page.title), page_path(page.slug) %>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-        <% end %>
-        <% Decidim::StaticPage.where(topic: nil, organization: current_organization).each do |page| %>
-          <li class="page-item <%= page == current ? "is-active" : nil %>">
-            <%= link_to translated_attribute(page.title), page_path(page.slug) %>
-          </li>
-        <% end %>
+    <nav class="sub-navigation-nav hide-for-mediumlarge" role="navigation">
+      <label for="subnav-select"><%= t(".choose") %></label>
+      <ul id="subnav-select" class="vertical menu accordion-menu select" role="menubar" data-accordion-menu>
+        <li role="presentation" class="is-accordion-submenu-parent">
+          <a href="#" id="subnav-control" role="menuitem" aria-controls="subnav"><%= t(".show_navigation") %></a>
+          <ul id="subnav" class="menu vertical nested" role="menu" aria-labelledby="subnav-control">
+            <%= render partial: "subnav", locals: { current: current } %>
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>

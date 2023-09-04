@@ -56,8 +56,7 @@ fi:
         title: Otsikko
       highlighted_blogs:
         name: Bloginostot
-        show_more: Näytä lisää
-        show_more_detailed: Näytä lisää ajankohtaisia asioita
+        show_more: Näytä lisää ajankohtaisia asioita
       highlighted_blogs_settings_form:
         title: Otsikko
       ideas_carousel:
@@ -72,19 +71,36 @@ fi:
         title: Otsikko
       intro:
         name: Intro
+        show_less: Näytä vähemmän
+        show_more: Näytä enemmän
       intro_settings_form:
         description: Kuvaus
-        link_text: Linkin teksti
-        link_url: Linkin URL
+        main_image: Kuva
+        main_image_alt: Kuvan vaihtoehtoisteksti
         title: Otsikko
       linked_events:
         name: Linked Events - Tulevat tapahtumat
       linked_events_settings_form:
         button_text: Napin teksti
         button_url: Napin URL
+        description: Kuvaus
         event_url: Tapahtumasivun URL
         keywords: Avainsanat (pilkulla erotettu ilman välilyöntiä)
         publisher: Julkaisija
+        title: Otsikko
+      map_section:
+        name: Karttaosio
+      map_section_settings_form:
+        description: Kuvaus
+        button_text: Napin teksti
+        button_url: Napin URL
+        title: Otsikko
+      notification:
+        name: Ilmoitus
+      notification_settings_form:
+        description: Kuvaus
+        button_text: Napin teksti
+        button_url: Napin URL
         title: Otsikko
       plans_carousel:
         name: Ehdotuskaruselli (yhteiskehittäminen)
@@ -126,6 +142,8 @@ fi:
         creator: Alkuperäisen kuvan tekijä
         license: Kuvan lisenssi
         note: Kuvaa muokattu alkuperäisestä
+    pb_map:
+      label: Helsingin suurpiirit budjetteineen
     plans:
       layouts:
         omastadi: OmaStadi
@@ -170,9 +188,10 @@ fi:
           close_modal: Sulje ikkuna
           filter: Suodata
           filter_by: Suodata
+          keyword: Hakusana
           related_to: Liittyy kohteeseen
-          reset: Tyhjennä rajaukset
-          search: Hae
+          reset: Tyhjennä valinnat
+          search: Suorita haku
           state:
             accepted: Etenee äänestykseen
             all: Kaikki
@@ -186,18 +205,26 @@ fi:
           unfold: Avaa
         leave_your_plan: Tee oma ehdotuksesi!
         new_plan: Uusi ehdotus
+        notification:
+          title: Tietoa alueista
+          description_html: <p>Tutustu oman alueesi tärkeisiin lukuihin ja kiinnostaviin teemoihin.</p>
+          button: Tietoa alueista
         see_all_withdrawn: Näytä kaikki peruutetut
-        subtitle: Etsi ja tutki ehdotuksia!
-        title: Tutustu ehdotuksiin
+        show_list: Näytä tulokset listana
+        show_map: Näytä tulokset kartalla
+        title: Etsi ja tutki ehdotuksia
         view_plan: Näytä ehdotus
+      omastadi_notification:
+        accepted:
+          title: Tämä ehdotus etenee jatkoon
+        estimate:
+          final: "Lopullinen budjettiarvio: %{amount}"
+          initial: "Alustava budjettiarvio: %{amount}"
+        evaluating:
+          title: Tämä ehdotus on arvioitavana
+        rejected:
+          title: Tämä ehdotus ei etene jatkoon
       omastadi_view:
-        answer:
-          final_estimate: 'Lopullinen budjettiarvio: %{amount}'
-          generic_title: Vastaus
-          initial_estimate: Alustava budjettiarvio
-          reasoning: Perustelu
-          show_final_estimate: Näytä lopullinen budjettiarvio
-          show_initial_estimate: Näytä alustava budjettiarvio
         authors: Ehdotuksen tekijät
         back: Palaa takaisin ehdotuslistaukseen
         back_to_list: Näytä muut ehdotukset
@@ -211,7 +238,6 @@ fi:
           withdraw_confirmation_html: Haluatko varmasti perua tämän ehdotuksen?
         feedback_title: Kiitos ehdotuksen jättämisestä!
         flag: Ilmoita
-        info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         linked_ideas: Ehdotukseen liitetyt ideat
         manage_plan: Hallitse ehdotusta
         pending_access_request_message_html: <p>Olet pyytänyt muokkausoikeuksia tähän ehdotukseen. Odota, että ehdotuksen tekijät vastaavat pyyntöösi.</p><p>Saat viestin sähköpostiisi, kun pyyntöösi vastataan.</p>
@@ -221,7 +247,8 @@ fi:
         show_comments: Näytä kommentit
         show_on_map: Näytä kartalla
         related_documents: Liittyvät asiakirjat
-      plan_m:
+      plan_l:
+        card_label: "Ehdotus: %{title}"
         view_plan: Näytä ehdotus
   mpassid_action_authorizer:
     restrictions:

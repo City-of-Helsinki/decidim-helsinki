@@ -1,18 +1,20 @@
-<div class="row columns">
-  <div class="breadcrumbs-section">
-    <ul class="breadcrumbs">
-      <% breadcrumbs.each_with_index do |item, index| %>
-        <% if breadcrumbs.length == index + 1 %>
-          <li>
-            <span class="show-for-sr"><%= t(".current") %>:</span>
-            <%= item[:title] %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to item[:title], item[:url] %>
-          </li>
+<div class="breadcrumbs-section">
+  <div class="row columns expanded">
+    <nav role="navigation" aria-label="<%= t(".label") %>">
+      <ul class="breadcrumbs">
+        <% breadcrumbs.each_with_index do |item, index| %>
+          <% if breadcrumbs.length == index + 1 %>
+            <li aria-current="page">
+              <%= item[:title] %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to item[:title], item[:url] %>
+              <span aria-hidden="true" class="breadcrumbs-separator"><%= icon("caret-right", role: "img", "aria-hidden": true) %></span>
+            </li>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
+      </ul>
+    </nav>
   </div>
 </div>

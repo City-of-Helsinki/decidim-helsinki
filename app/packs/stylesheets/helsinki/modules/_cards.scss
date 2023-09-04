@@ -1,409 +1,419 @@
+@use "sass:map";
+
+$card-side-padding: 1.3rem;
+$card-border-color: $hel-silver;
+$card-border: 1px solid $card-border-color;
+
 .card{
-  &.border-primary{
-    border: 3px solid $primary;
-  }
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  background-color: $white;
+  text-decoration: none;
 
-  // Fixes an issue in the notifications view that the notification items are
-  // layed out incorrectly.
-  &.card--widget{
-    .card-data{
-      .card-data__item{
-        .notification-details{
-          display: block;
-          width: 100%;
-        }
-      }
+  &.card--padded{
+    padding: 1.9rem $card-side-padding;
+
+    &.card--hasfooter{
+      padding-bottom: .5rem;
     }
-  }
 
-  &.secondary,
-  &.primary,
-  &.success,
-  &.warning,
-  &.alert,
-  &.muted{
-    border-top-width: 1px;
-  }
+    .card__header,
+    .card__content,
+    .card__footer,
+    .card__section,
+    .card__tags,
+    .card__info,
+    .card__details{
+      padding: 0;
+    }
 
-  &.card-simple{
-    border: 0;
+    .card__main{
+      display: flex;
+      flex-direction: column;
 
-    .card-section{
       @include breakpoint(medium){
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
+        flex: 1;
+        width: auto;
       }
     }
 
-    .card-section,
+    .card__footer{
+      margin: 0 -.5rem;
+      padding-top: .3rem;
+    }
+  }
+
+  &.card--lead{
+    font-size: $hel-text-size-l;
+
+    .card__main{
+      margin-bottom: .8rem;
+      padding: .8rem .2rem;
+    }
+
+    .card__content{
+      line-height: 1.3;
+    }
+  }
+
+  &.card--border{
+    border: $card-border;
+  }
+
+  &.card--full{
+    @include breakpoint(medium){
+      padding: 1.3rem 1.5rem;
+      font-size: $hel-text-size-l;
+    }
+
+    h2{
+      // font-size: 1.25rem;
+      font-size: 1.5rem;
+
+      @include breakpoint(medium){
+        font-size: 1.5rem;
+      }
+    }
+
+    .card__inner,
+    .card__footer{
+      display: flex;
+    }
+
+    .card__inner{
+      flex-direction: column-reverse;
+
+      @include breakpoint(medium){
+        flex-direction: row;
+      }
+    }
+
+    .card__main,
+    .card__aside{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .card__main{
+      @include breakpoint(medium){
+        flex: 1;
+        width: auto;
+      }
+    }
+
+    .card__aside{
+      @include breakpoint(medium){
+        width: 28.125%;
+        margin-left: map.get($grid-column-gutter, "medium");
+      }
+    }
+
+    .card__footer{
+      flex-direction: column;
+      align-items: flex-end;
+
+      @include breakpoint(medium){
+        flex-direction: row;
+      }
+    }
+
+    .card__section,
+    .card__info,
+    .card__details{
+      padding: 0;
+    }
+
+    .card__content{
+      padding: 1.3rem $card-side-padding;
+
+      @include breakpoint(medium){
+        padding: 0;
+      }
+    }
+
+    .card__footer{
+      padding: 0 $card-side-padding;
+
+      @include breakpoint(medium){
+        padding: 0;
+      }
+    }
+
+    .card__tags{
+      padding: 1.4rem 0 1rem;
+    }
+
+    .card__status{
+      padding: .55rem 0 0;
+
+      @include breakpoint(medium){
+        padding-top: 1.5rem;
+      }
+    }
+
     .card__info{
-      padding-left: 0;
-      padding-right: 0;
-    }
+      flex-wrap: wrap;
 
-    .card__header{
-      margin-bottom: 0;
-
-      h3{
-        color: $body-font-color;
-        margin-bottom: 0;
-      }
-    }
-
-    .card__text{
-      display: inline;
-      font-weight: normal;
-      line-height: 1.6;
-
-      @include breakpoint(medium){
-        display: block;
-        flex-grow: 1;
-      }
-    }
-
-    .card__text--paragraph{
-      display: inline;
-      margin-right: .5rem;
-
-      @include breakpoint(medium){
-        display: block;
-        margin-right: 0;
-      }
-    }
-
-    .card__arrow{
-      display: inline;
-
-      @include breakpoint(medium){
-        display: block;
-        justify-self: end;
-        margin-top: .8rem;
-      }
-
-      .icon{
-        color: $primary;
+      .card__info__item{
+        flex: 0 0 50%;
+        padding: .6rem 0;
 
         @include breakpoint(medium){
-          width: 1.3rem;
-          height: 1.3rem;
+          flex: 0 0 auto;
+          padding: 0;
+          margin-right: 2.5rem;
+        }
+
+        &:last-child{
+          margin-right: 0;
         }
       }
     }
   }
 
-  .card__header{
-    .card__link{
-      // Fix focus outline on the card link
-      display: inline-block;
-    }
-  }
+  // Used for notifications and conversations
+  &.card--widget{
+    border: $card-border;
+    padding-bottom: 0;
 
-  .card__category{
-    position: relative;
+    .card-data{
+      display: flex;
+      flex-wrap: inherit;
+      list-style-type: none;
+      margin: 0;
 
-    .card__category__icon{
-      position: absolute;
-      top: 6px;
-      display: block;
+      .card-data__item{
+        color: $body-font-color;
+        text-transform: none;
+        font-size: rem-calc(16);
+        text-align: left;
+        padding: $card-padding-small;
 
-      img{
-        width: 26px;
+        @include modifiers(color);
+
+        @include breakpoint(medium){
+          padding: $card-padding;
+        }
+
+        &:first-child{
+          flex-grow: 0;
+          flex-basis: 12%;
+          background-color: $card-secondary-bg;
+          position: relative;
+
+          > div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            @include absolute-center;
+          }
+        }
+
+        &--expand{
+          flex: 1;
+        }
+
+        .icon--large{
+          width: 2rem;
+          height: 2rem;
+        }
+
+        .mark-as-read-button{
+          .icon{
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+        }
       }
     }
-
-    .card__category__name{
-      display: block;
-      margin-left: 35px;
-    }
   }
-}
 
-a.card-simple{
-  &:hover,
-  &:focus{
-    color: $body-font-color;
+  &.bg-secondary{
+    @extend .bg-secondary;
   }
-}
 
-.card__content{
-  .card__content{
-    &:not(:only-child){
-      padding-top: $card-padding-small * .5;
-    }
+  &.bg-tertiary{
+    @extend .bg-tertiary;
+  }
+
+  .h4{
+    line-height: $hel-lineheight-m;
+  }
+
+  // Basic section that is not typed in any way. Wraps the content with the same
+  // side padding as other sections.
+  & &__section{
+    padding: 0 $card-side-padding;
+  }
+
+  // Main content section that should include the title and optional short
+  // summary.
+  & &__content{
+    padding: 1.2rem $card-side-padding .7rem;
 
     @include breakpoint(medium){
-      &:not(:only-child){
-        padding-top: $card-padding * .5;
+      flex: 1;
+    }
+  }
+
+  & &__fill{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include breakpoint(medium){
+      flex: 1;
+    }
+  }
+
+  // Tags section
+  & &__tags{
+    padding: .8rem $card-side-padding 2rem;
+  }
+
+  // Info items that are listed two per row, first one on the left and second
+  // one on the right.
+  & &__info{
+    display: flex;
+    flex-direction: row;
+    padding: .4rem $card-side-padding 1rem;
+    font-size: $hel-text-size-l;
+    font-weight: $global-weight-medium;
+
+    &__item{
+      flex: 1;
+
+      &:nth-child(2n){
+        text-align: right;
       }
     }
   }
-}
 
-.wrapper-ruuti{
-  .card{
-    &.border-primary{
-      border: 3px solid $ruuti-primary;
-    }
+  // Details that display an icon and text next to the icon.
+  & &__details{
+    padding: 0 $card-side-padding .3rem;
 
-    &.card-simple.card__arrow.icon{
-      color: $ruuti-primary;
-    }
-  }
-}
-
-.card__category,
-.card__info{
-  padding: .5rem;
-  font-weight: $global-weight-bold;
-}
-
-.card__category{
-  background: $hel-medium-grey;
-}
-
-.card__button{
-  font-size: .7rem;
-}
-
-.card__text{
-  margin-top: .75rem;
-}
-
-.card__footer,
-.card__top{
-  background: transparent;
-  border-top: 0;
-}
-
-.card__category,
-.card__info,
-.card__status{
-  padding-left: $card-padding-small;
-  padding-right: $card-padding-small;
-
-  @include breakpoint(medium){
-    padding-left: $card-padding;
-    padding-right: $card-padding;
-  }
-}
-
-.card__info{
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-
-.card__info__item{
-  flex: 1 1 0;
-}
-
-.card__state{
-  color: $white;
-
-  &.success{
-    background-color: var(--success);
-  }
-
-  &.warning{
-    background-color: var(--warning);
-    color: $black;
-  }
-
-  &.alert{
-    background-color: var(--alert);
-  }
-}
-
-// Keeps the data on one line but it can make it overflow
-// .card-data{
-//   flex-wrap: initial;
-// }
-
-.card-data__item{
-  border-top: 1px solid $hel-light-grey;
-  border-bottom: 1px solid $hel-light-grey;
-  border-right: 1px solid $hel-light-grey;
-
-  &:last-child{
-    border-right: 0;
-  }
-
-  .has-tip{
-    display: flex;
-    align-content: center;
-    align-items: center;
-
-    .icon-wrap{
+    &__item{
       display: flex;
-      align-items: center;
+
+      .icon{
+        position: relative;
+        top: -.1rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: .7rem;
+      }
+
+      &__text{
+        flex: 1;
+      }
+    }
+  }
+
+  // Footer that can contain any extra actions on non-link cards, e.g. during
+  // budgeting pipeline.
+  & &__footer{
+    padding: .3rem $card-side-padding;
+  }
+
+  // Status details that contain the card "statuses" (as they are named in
+  // Decidim). Typically this contains the amount of comments and favorites for
+  // the item represented by the card.
+  & &__status{
+    font-size: $hel-text-size-xl;
+    padding: .3rem $card-side-padding;
+
+    .card-data{
+      display: flex;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      &__item{
+        padding: 0;
+        flex: 1;
+        text-align: center;
+
+        &:first-child{
+          text-align: left;
+        }
+
+        &:last-child{
+          text-align: right;
+        }
+
+        .icon{
+          position: relative;
+          top: .3rem;
+          width: 1.5rem;
+          height: 1.5rem;
+          margin-right: .3rem;
+        }
+      }
+    }
+  }
+
+  // Bottom card indicator e.g. external link icon for events or arrow icon for
+  // news articles.
+  & &__indicator{
+    padding: .3rem $card-side-padding;
+    margin-top: 1.3rem;
+
+    .external-link-indicator{
+      width: auto;
+      height: auto;
+      margin: 0;
     }
 
     .icon{
-      margin-right: .3rem;
+      width: 1.9rem;
+      height: 1.9rem;
+    }
+  }
+
+  .card--list__author{
+    display: block;
+    padding: .5rem 0;
+
+    .author{
+      margin: 0;
     }
   }
 }
 
-.card.card--list{
-  border: 1px solid $hel-silver;
-}
+a.card{
+  &:hover,
+  &:focus{
+    text-decoration: none;
 
-.card--list{
-  a.card--list__item{
-    &,
-    .card--list__data{
-      background-color: $hel-silver-light;
-    }
-
-    &,
-    .author__name{
-      color: $body-font-color;
-    }
-
-    &:not(:last-child){
-      border-bottom: 1px solid $hel-silver;
-    }
-
-    &:hover,
-    &:focus{
-      color: $body-font-color;
-      text-decoration: none;
-
-      .card--list__heading{
-        text-decoration: underline;
-      }
-
-      .author__name{
-        text-decoration: none;
-      }
-    }
-
-    .card--list__data{
-      border-left: 1px solid $hel-silver;
+    h2,
+    h3,
+    h4,
+    h5,
+    h6{
+      text-decoration: underline;
     }
   }
 }
 
-.card--list.card--list--budgets{
-  display: flex;
-  flex-direction: column;
-  border: 0;
+.card-data__item__number{
+  display: block;
+}
 
-  .card--list__item{
-    flex-direction: column;
-    border: $border;
-    border-radius: $card-border-radius;
-    margin-top: 1rem;
-    padding-left: 0;
+.cards-grid{
+  margin-top: 1.7rem;
+  margin-bottom: 1rem;
 
-    @include breakpoint(medium){
-      flex-direction: row;
-    }
-
-    &:first-child{
-      margin-top: 0;
-    }
-
-    .card--list__data{
-      flex-basis: 30%;
-
-      @include breakpoint(large){
-        flex-basis: 20%;
-      }
-    }
-
-    .card__button{
-      font-size: 1rem;
-    }
-  }
-
-  .card--list__text{
-    flex-direction: column;
-    place-items: stretch;
-    padding-left: $card-padding-small;
-    width: 100%;
-
-    @include breakpoint(medium){
-      padding-left: $card-padding;
-      width: auto;
-    }
-
-    .card--list__heading{
-      .card--list__check{
-        display: inline-block;
-        top: -2px;
-      }
-    }
-
-    .card-list__description{
-      p{
-        &:last-child{
-          margin-bottom: 0;
-        }
-      }
-    }
+  .column{
+    // Stretches the cards to equal heights
+    display: flex;
   }
 }
 
-.card.budget-summary{
-  .budget-summary__progressbox{
-    .budget-progress__meter{
-      .progress-meter-text--right{
-        left: 0;
-
-        @include breakpoint(medium){
-          left: auto;
-        }
-      }
-    }
-  }
-}
-
-// This is the list of budgeting projects
-.budget-list{
-  .card-list__description{
-    margin-bottom: 0;
-  }
-
-  .budget-list__item{
-    border-bottom: $border;
-    flex-direction: column;
-    margin-bottom: 2rem;
-
-    @include breakpoint(medium){
-      flex-direction: row;
-    }
-  }
-
-  .budget-list__text{
-    // Without this, some of the items could be unclicable in mobile.
-    word-wrap: break-word;
-    overflow-wrap: anywhere;
-  }
-
-  .budget-list__data{
-    flex-direction: column;
-
-    @include breakpoint(medium){
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .budget-list__data__votes{
-      &.budget-list__data__votes--activevoting{
-        flex-grow: 0;
-        margin-bottom: 1rem;
-      }
-
-      > .project-votes,
-      > .text-success{
-        display: block;
-      }
-
-      > .text-success{
-        margin-top: 1rem;
-      }
-    }
-  }
+.cards-list{
+  margin-top: .6rem;
 }

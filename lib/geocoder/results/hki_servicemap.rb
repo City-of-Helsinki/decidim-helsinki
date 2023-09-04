@@ -56,6 +56,7 @@ module Geocoder
 
       def house_number
         return data["number"] unless data["number_end"]
+        return data["number"] if data["number_end"].blank?
 
         "#{data["number"]}-#{data["number_end"]}"
       end

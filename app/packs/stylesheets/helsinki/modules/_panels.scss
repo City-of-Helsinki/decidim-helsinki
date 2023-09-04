@@ -1,0 +1,45 @@
+.actions-panel{
+  margin-top: .9rem;
+  padding: .8rem 1.7rem 1.1rem;
+  font-size: $hel-text-size-l;
+
+  @include breakpoint(medium){
+    margin-top: 0;
+  }
+
+  &.actions-panel--dynamic{
+    padding: 0;
+
+    ul,
+    ol{
+      list-style-type: none;
+      margin-left: 0;
+
+      &:first-child{
+        li{
+          &:first-child{
+            margin-top: 0;
+          }
+        }
+      }
+    }
+
+    p{
+      &:first-child{
+        margin-top: 0;
+      }
+    }
+
+    ul li,
+    ol li,
+    p{
+      background-color: $secondary;
+      padding: .8rem 1.7rem 1.1rem;
+      margin: 1.35rem;
+    }
+  }
+
+  + .actions-panel{
+    margin-top: 1.35rem;
+  }
+}

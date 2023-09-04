@@ -56,14 +56,13 @@ sv:
         title: Titel
       highlighted_blogs:
         name: Markerade bloggar
-        show_more: Visa mer
-        show_more_detailed: Visa mer aktuella saker
+        show_more: Visa mer aktuella saker
       highlighted_blogs_settings_form:
         title: Titel
       ideas_carousel:
         name: Idéer karusell
       image_section:
-        name: Image section
+        name: Bildsektion
       image_section_settings_form:
         description: Beskrivning
         image: Bild
@@ -72,16 +71,33 @@ sv:
         title: Titel
       intro:
         name: Intro
+        show_less: Visa mindre
+        show_more: Visa mer
       intro_settings_form:
         description: Beskrivning
-        link_text: Länktext
-        link_url: Länk URL
+        main_image: Bild
+        main_image_alt: Alternativ text till bilden
+        title: Titel
+      map_section:
+        name: Kartsektion
+      map_section_settings_form:
+        description: Beskrivning
+        button_text: Knapp text
+        button_url: Knapp URL
+        title: Titel
+      notification:
+        name: Meddelande
+      notification_settings_form:
+        description: Beskrivning
+        button_text: Knapp text
+        button_url: Knapp URL
         title: Titel
       linked_events:
         name: Linked Events - Uppkommande händelser
       linked_events_settings_form:
         button_text: Knapp text
         button_url: Knapp URL
+        description: Beskrivning
         event_url: Händelsesidans URL
         keywords: Nyckelord (avgränsade med kommatecken utan mellanslag)
         publisher: Utgivare
@@ -126,6 +142,8 @@ sv:
         creator: Författare till originalbilden
         license: Bildlicens
         note: Bildredigerad från original
+    pb_map:
+      label: Helsingfors distrikt med sina budgetar
     plans:
       layouts:
         omastadi: OmaStadi
@@ -170,9 +188,10 @@ sv:
           close_modal: Stäng fönstret
           filter: Filtrera
           filter_by: Filtrera
+          keyword: Nyckelord
           related_to: Anknyter till
-          reset: Rensa filter
-          search: Sök
+          reset: Rensa valen
+          search: Utför sökning
           state:
             accepted: Fortsätter till omröstningen
             all: Alla
@@ -186,10 +205,22 @@ sv:
           unfold: Öppna
         leave_your_plan: Gör ditt eget förslag!!
         new_plan: Nytt förslag
+        notification:
+          title: Information om områden
+          description_html: <p>Bekanta dig med viktiga figurer och intressanta teman i ditt eget område.</p>
+          button: Information om områden
         see_all_withdrawn: Visa alla annullerade
-        subtitle: Hitta och utforska förslag!
-        title: Bläddra bland förslag
+        show_list: Visa resultat som lista
+        show_map: Visa resultat på kartan
+        title: Hitta och utforska förslag
         view_plan: Visa förslag
+      omastadi_notification:
+        accepted:
+          title: Detta förslag går vidare till nästa fas
+        evaluating:
+          title: Detta förslag utvärderas
+        rejected:
+          title: Detta förslag går inte vidare till nästa fas
       omastadi_view:
         answer:
           final_estimate: 'Slutlig budgetberäkning: %{amount}'
@@ -211,7 +242,6 @@ sv:
           withdraw_confirmation_html: Är du säker på att du vill annullera det här förslaget?
         feedback_title: Tack för att du skickade ett förslag!
         flag: Rapportera
-        info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         linked_ideas: Idéer bifogade detta förslag
         manage_plan: Hantera ditt förslag
         request_access: Begär redigeringsrättigheter
@@ -221,7 +251,8 @@ sv:
         show_comments: Visa kommentarer
         show_on_map: Visa på kartan
         related_documents: Relaterade dokument
-      plan_m:
+      plan_l:
+        card_label: "Förslag: %{title}"
         view_plan: Visa förslag
   mpassid_action_authorizer:
     restrictions:

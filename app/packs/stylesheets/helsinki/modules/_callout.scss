@@ -1,0 +1,51 @@
+.callout{
+  position: relative;
+  padding: 1rem;
+  background-color: $hel-info-light;
+  border-left: .5rem solid $hel-info;
+
+  p:last-child{
+    margin-bottom: 0;
+  }
+
+  &.tertiary{
+    background-color: $tertiary;
+  }
+
+  &.success{
+    background-color: $hel-success-light;
+    border-left-color: $hel-success;
+
+    .callout__icon{ color: $hel-success; }
+  }
+
+  &.warning{
+    background-color: $hel-alert-light;
+    border-left-color: $hel-alert;
+
+    .callout__icon{ color: $hel-alert; }
+  }
+
+  &.alert{
+    background-color: $hel-error-light;
+    border-left-color: $hel-error;
+
+    .callout__icon{ color: $hel-error; }
+  }
+
+  .callout__title{
+    @extend .clearfix;
+  }
+
+  .callout__icon{
+    display: block;
+    float: left;
+    margin-right: .6rem;
+    color: $hel-info;
+
+    .icon{
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}

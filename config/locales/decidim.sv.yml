@@ -42,6 +42,9 @@ sv:
           back_to_budgets: Visa alla budgeter
     components:
       add_comment_form:
+        account_message: <a href="%{sign_in_url}">Logga in med ditt konto</a> för att lägga till din kommentar.
+        form:
+          submit: Skicka kommentar
         opinion:
           label: Din åsikt om detta ämne
           positive: Positiv

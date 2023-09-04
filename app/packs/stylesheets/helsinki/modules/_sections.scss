@@ -1,52 +1,166 @@
-$card-grid-margin-bottom: map-get($grid-column-gutter, medium);
+.intro-section{
+  position: relative;
+
+  .intro-section-bg{
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    background-color: $hel-suomenlinna-light;
+  }
+
+  .koro{
+    z-index: 1;
+
+    svg{
+      fill: $hel-suomenlinna-light;
+    }
+  }
+
+  .intro-section-text{
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+    font-size: $hel-text-size-l;
+
+    @include breakpoint(large){
+      padding-top: 5.4rem;
+      padding-bottom: 4.9rem;
+    }
+  }
+
+  .intro-section-image{
+    .image-wrapper{
+      position: relative;
+      display: flex;
+      height: 100%;
+      align-items: flex-start;
+
+      @include breakpoint(medium){
+        padding-top: 5.5rem;
+      }
+
+      @include breakpoint(xlarge){
+        padding-top: 3.5rem;
+      }
+    }
+
+    img{
+      @include breakpoint(large){
+        border: 14px solid $hel-white;
+      }
+    }
+  }
+
+  .intro-section-image-mobile{
+    position: relative;
+    top: -30px;
+  }
+}
+
+.home-section{
+  padding: 3.5rem 0;
+
+  h2{
+    margin-bottom: 2.9rem;
+  }
+
+  .section-image{
+    margin-bottom: 2rem;
+  }
+
+  .more-link{
+    margin-top: 3.2rem;
+    font-size: $hel-text-size-l;
+  }
+}
+
+.map-section{
+  padding: 0;
+  font-size: $hel-text-size-l;
+  line-height: $hel-lineheight-l;
+
+  h2{
+    margin-bottom: 1.4rem;
+  }
+
+  .map-section-image{
+    @include breakpoint(large){
+      padding-right: 2.5rem;
+    }
+
+    svg{
+      max-width: 100%;
+    }
+  }
+
+  .map-section-text{
+    margin-bottom: 2.4rem;
+  }
+}
+
+.callout-section{
+  padding: .9rem 0 2.9rem;
+
+  @include breakpoint(large){
+    padding: 3.1rem 0 2.9rem;
+  }
+}
+
+.content-section,
+.listing-section,
+.comments-section{
+  padding-bottom: 7rem;
+
+  @include breakpoint(medium){
+    padding-bottom: 10rem;
+  }
+}
+
+.content-section{
+  padding-top: 2rem;
+}
+
+.cards-section{
+  padding: 3rem 0;
+}
+
+.cards-index-section{
+  margin-top: 1.6rem;
+  margin-bottom: 5rem;
+}
 
 .listing-section{
-  padding: 4rem 0;
+  padding-top: 2.3rem;
+  background-color: $hel-silver-light;
 
-  .card-grid{
-    .column{
-      margin-bottom: 0;
-
-      @include breakpoint(medium){
-        margin-bottom: $card-grid-margin-bottom;
-      }
-    }
+  @include breakpoint(medium){
+    padding-top: 2rem;
   }
 
-  .column{
-    &:first-child{
-      .card.card-simple{
-        .card__text{
-          display: block;
-        }
-
-        .card__text--paragraph{
-          display: block;
-          margin-right: 0;
-        }
-
-        .card__arrow{
-          display: block;
-          margin-top: .8rem;
-
-          .icon{
-            width: 1.3rem;
-            height: 1.3rem;
-          }
-        }
-      }
-    }
-
-    .card{
-      border-bottom: $border;
-
-      @include breakpoint(medium){
-        border-bottom: 0;
-      }
-    }
+  .banner{
+    margin-bottom: 1.9rem;
   }
+}
 
-  .listing-section-heading{
-    margin-bottom: 1rem;
+.details-section{
+  margin-top: 1.7rem;
+  margin-bottom: 1.7rem;
+}
+
+.divider-section{
+  margin-top: 3.8rem;
+  margin-bottom: 4.7rem;
+  padding: 3.6rem 0 2.65rem;
+
+  .divider-section__title{
+    margin-bottom: 2rem;
+  }
+}
+
+.subtitle-section{
+  margin-top: 3.5rem;
+  margin-bottom: 3rem;
+
+  h2{
+    margin-bottom: 2.7rem;
   }
 }

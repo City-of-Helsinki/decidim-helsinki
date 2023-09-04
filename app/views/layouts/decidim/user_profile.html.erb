@@ -1,0 +1,32 @@
+<% subtitle = content_for(:subtitle) %>
+
+<%= render "layouts/decidim/application" do %>
+  <div class="container content-section">
+    <div class="row column">
+      <div class="main-container tabbed-container">
+        <div class="page-title">
+          <h1>
+            <%= t("title", scope: "layouts.decidim.user_profile") %>
+            <%= " - #{subtitle}" unless subtitle.blank? %>
+          </h1>
+        </div>
+
+        <div class="row medium-unstack">
+          <div class="columns medium-4 large-3">
+            <div class="sub-navigation">
+              <nav role="navigation" aria-label="<%= t(".subnav.label") %>">
+                <ul class="vertical striped large menu" role="menubar">
+                  <%= user_menu.render %>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="columns medium-8 large-9">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

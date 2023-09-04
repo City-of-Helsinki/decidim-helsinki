@@ -1,5 +1,207 @@
-.wrapper-ruuti{
-  .pagination .current{
-    background: $hel-gold;
+$pagination-item-size: 2.6rem;
+
+.pagination{
+  margin-top: 4.5rem;
+  margin-bottom: 2rem;
+
+  @include breakpoint(medium){
+    margin-top: 4rem;
+  }
+
+  .pagination__pages,
+  .pagination__prevnext{
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+
+    .pagination-previous,
+    .pagination-next{
+      font-weight: $global-weight-medium;
+
+      > a,
+      > span{
+        position: relative;
+      }
+
+      a{
+        text-decoration: none;
+      }
+
+      .icon{
+        position: absolute;
+        top: -.1rem;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    .pagination-previous{
+      .icon{
+        left: -2rem;
+      }
+    }
+
+    .pagination-next{
+      .icon{
+        right: -2rem;
+      }
+    }
+  }
+
+  .pagination__pages{
+    text-align: center;
+
+    @include breakpoint(medium){
+      margin: 0;
+    }
+
+    .pagination-previous,
+    .pagination-next{
+      display: none;
+      line-height: $pagination-item-size;
+
+      @include breakpoint(medium){
+        display: block;
+      }
+    }
+
+    .pagination-previous{
+      margin-right: .6rem;
+    }
+
+    .pagination-next{
+      margin-left: .6rem;
+    }
+
+    .page{
+      display: none;
+      padding: 0;
+      margin: 0 .2rem;
+      font-weight: $global-weight-medium;
+
+      @media (min-width: 400px){
+        margin: 0 .75rem;
+      }
+
+      @include breakpoint(medium){
+        display: block;
+        margin: 0 .2rem;
+      }
+
+      a{
+        text-decoration: none;
+      }
+
+      > span,
+      > a{
+        display: block;
+        margin: 0 auto;
+        width: $pagination-item-size;
+        height: $pagination-item-size;
+        line-height: $pagination-item-size;
+      }
+
+      &.gap{
+        > span{
+          font-size: 1.1rem;
+        }
+      }
+
+      &.first,
+      &.current,
+      &.last,
+      &.gap,
+      &[data-distance-current="1"]{
+        display: block;
+      }
+
+      &.first{
+        &.current,
+        &[data-distance-current="1"],
+        &[data-distance-current="2"]{
+          + .gap{
+            display: none;
+          }
+        }
+
+        // For medium and up, the gaps are hidden by the backend logic
+        &[data-distance-current="0"],
+        &[data-distance-current="3"],
+        &[data-distance-current="4"],
+        &[data-distance-current="5"]{
+          + .gap{
+            @include breakpoint(medium){
+              display: none;
+            }
+          }
+        }
+
+        // If 5 pages or less, do not display the gaps
+        &[data-distance-last="3"],
+        &[data-distance-last="4"]{
+          ~ .gap{
+            display: none;
+          }
+        }
+      }
+
+      &.current{
+        &[data-distance-last="1"],
+        &[data-distance-last="2"]{
+          ~ .gap{
+            display: none;
+          }
+        }
+
+        > span{
+          border-radius: 50%;
+          background-color: $black;
+          color: $white;
+        }
+      }
+
+      // When current page is close to edge, hide the gap
+      &[data-distance-current="1"]{
+        + .gap{
+          display: none;
+        }
+      }
+
+      // Display first 4 pages when on the starting edge
+      &.current{
+        ~ [data-distance-current="2"][data-distance-first="2"],
+        ~ [data-distance-current="2"][data-distance-first="3"],
+        ~ [data-distance-current="3"][data-distance-first="3"]{
+          display: block;
+        }
+      }
+
+      // Display last 4 pages when on the ending edge
+      &[data-distance-current="2"][data-distance-last="2"],
+      &[data-distance-current="2"][data-distance-last="3"],
+      &[data-distance-current="3"][data-distance-last="3"]{
+        display: block;
+      }
+
+      // For medium and up, the gaps are hidden by the backend logic
+      &[data-distance-last="1"]{
+        + .gap{
+          @include breakpoint(medium){
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .pagination__prevnext{
+    justify-content: space-between;
+    margin-top: 2.2rem;
+    padding: 0 2rem;
+
+    @include breakpoint(medium){
+      display: none;
+    }
   }
 }

@@ -1,0 +1,13 @@
+[data-toggle]{
+  &.active{
+    .active-hide{ display: none; }
+    .active-show{ display: initial; }
+  }
+
+  .active-show{ display: none; }
+
+  .icon{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

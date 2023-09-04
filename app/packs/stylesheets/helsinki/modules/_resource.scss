@@ -1,0 +1,32 @@
+.resource__main{
+  @include breakpoint(large){
+    margin-right: 2rem;
+  }
+}
+
+.resource__aside{
+  @include breakpoint(large){
+    margin-left: 1.8rem;
+  }
+}
+
+.resource__info{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.7rem;
+  margin-bottom: 1.2rem;
+  font-weight: $global-weight-medium;
+}
+
+.resource__tags{
+  margin-bottom: 1rem;
+}
+
+.resource__actions{
+  margin-top: .5rem;
+  margin-bottom: 2rem;
+}
+
+.resource__content{
+  margin-bottom: 3rem;
+}

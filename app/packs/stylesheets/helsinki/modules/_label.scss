@@ -1,0 +1,8 @@
+.label{
+  margin-right: .4rem;
+  margin-bottom: .4rem;
+
+  &:last-child{
+    margin-right: 0;
+  }
+}

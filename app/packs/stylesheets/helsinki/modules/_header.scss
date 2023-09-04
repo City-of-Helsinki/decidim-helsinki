@@ -1,0 +1,427 @@
+@use "sass:map";
+@use "sass:math";
+
+$header-background: $hel-white;
+$header-background-top: $hel-grayscale-5;
+$header-background-mobile: $hel-silver-light;
+$header-border-color: $hel-silver;
+$header-border: 1px solid $header-border-color;
+
+@mixin navbar-toggle{
+  .active-show{
+    visibility: visible;
+    height: auto;
+  }
+
+  .active-hide{
+    visibility: hidden;
+    height: 0;
+  }
+}
+
+.header{
+  position: relative;
+  z-index: 10;
+
+  &[data-navbar-active]{
+    @include breakpoint(mediumlarge down){
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      overflow-y: auto;
+      background-color: $header-background-mobile;
+    }
+
+    #skip-to-content{
+      display: none;
+    }
+
+    .headerbar{
+      @include breakpoint(mediumlarge down){
+        width: 100%;
+        background-color: $header-background;
+      }
+    }
+
+    .top-bar{
+      @include breakpoint(mediumlarge down){
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+    }
+
+    .top-bar-navbars{
+      @include breakpoint(mediumlarge down){
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+    }
+  }
+
+  &[data-navbar-active="main"]{
+    [data-navbar="main"]{
+      display: block;
+    }
+
+    [data-navbar-toggle="main"]{
+      @include navbar-toggle;
+    }
+  }
+
+  &[data-navbar-active="user"]{
+    [data-navbar="user"]{
+      display: block;
+    }
+
+    [data-navbar-toggle="user"]{
+      @include navbar-toggle;
+    }
+  }
+
+  [data-navbar-toggle]{
+    .active-show{
+      visibility: hidden;
+      height: 0;
+    }
+  }
+
+  .skip{
+    z-index: 2;
+    position: absolute;
+    overflow: hidden;
+    max-height: 1px;
+    max-width: 1px;
+    opacity: 0;
+    background-color: $hel-black;
+    color: $hel-white;
+    font-weight: $hel-font-weight-medium;
+    left: 50%;
+    text-align: center;
+    text-decoration: none;
+    width: -moz-max-content;
+    width: max-content;
+    white-space: nowrap;
+    word-wrap: normal;
+    transform: translate(-50%, 0);
+    transition: transform ease-out .2s;
+
+    &:active,
+    &:focus{
+      max-width: 90%;
+      max-height: none;
+      outline: 3px solid $hel-black;
+      outline-offset: 0;
+      opacity: 1;
+      padding: 8px 24px;
+      transform: translate(-50%, 24px);
+    }
+  }
+
+  .navbar{
+    @include breakpoint(large){
+      padding-left: map.get($hel-layout-gutter, large);
+      padding-right: map.get($hel-layout-gutter, large);
+    }
+  }
+}
+
+.header-top{
+  background-color: $header-background-top;
+  padding: 13px 0;
+  font-size: $hel-text-size-s;
+}
+
+.headerbar{
+  padding: .45rem 0;
+
+  @include breakpoint(medium){
+    padding: $hel-spacing-s 0;
+  }
+}
+
+.top-bar-navbars{
+  display: none;
+
+  @include breakpoint(large){
+    display: block;
+  }
+
+  // Navbar logo is only displayed on mobile when the navbar is active
+  .navbar-logo{
+    display: flex;
+    flex: 1;
+    align-self: center;
+    align-items: end;
+    padding: $hel-spacing-m 0 $hel-spacing-2-xl;
+
+    img{
+      height: 48px;
+    }
+  }
+
+  [data-navbar]{
+    display: none;
+
+    @include breakpoint(large){
+      display: block;
+    }
+  }
+}
+
+.navbar{
+  border-top: $header-border;
+  font-size: $hel-text-size-xl;
+
+  @include breakpoint(large){
+    border-bottom: $header-border;
+    padding-top: $hel-spacing-3-xs;
+    padding-bottom: $hel-spacing-3-xs;
+    font-size: $hel-text-size-l;
+  }
+
+  .main-nav,
+  .user-nav{
+    .menu > li > a{
+      position: relative;
+      background-color: $header-background;
+      border-bottom: $header-border;
+
+      @include breakpoint(large){
+        background-color: transparent;
+        border-bottom: 0;
+        padding-left: $menu-items-padding;
+        padding-right: $menu-items-padding;
+      }
+
+      &::before{
+        content: "";
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 4px;
+        background-color: $header-background;
+
+        @include breakpoint(large){
+          display: none;
+        }
+      }
+
+      &[aria-current="page"]{
+        font-weight: $global-weight-medium;
+
+        @include breakpoint(large){
+          font-weight: $global-weight-normal;
+        }
+      }
+
+      &:focus,
+      &:active,
+      &[aria-current="page"]{
+        &::before{
+          background-color: $black;
+        }
+      }
+    }
+  }
+
+  // On mobile, the language chooser is displayed within the navbar
+  .language-choose,
+  .main-nav .menu > li > a{
+    padding-left: map.get($grid-column-gutter, small);
+    padding-right: map.get($grid-column-gutter, small);
+
+    @include breakpoint(medium){
+      padding-left: map.get($grid-column-gutter, medium);
+      padding-right: map.get($grid-column-gutter, medium);
+    }
+  }
+
+  .main-nav .menu > li{
+    @include breakpoint(large){
+      margin-left: 0;
+    }
+
+    > a{
+      @include breakpoint(large){
+        padding: .9rem $menu-items-padding;
+      }
+    }
+  }
+
+  .language-choose{
+    border-bottom: $header-border;
+    font-size: $hel-text-size-s;
+
+    .menu{
+      margin-left: math.div($menu-items-padding, 2) * -1;
+      margin-right: math.div($menu-items-padding, 2) * -1;
+
+      li{
+        margin-left: 0;
+
+        &[aria-current="true"] a{
+          font-weight: $global-weight-medium;
+          text-decoration: underline;
+          text-decoration-thickness: 3px;
+        }
+      }
+    }
+
+    a{
+      padding: .9rem math.div($menu-items-padding, 2) .8rem;
+
+      @include breakpoint(large){
+        padding: $menu-items-padding .55rem;
+      }
+    }
+  }
+}
+
+a.top-bar-logo{
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  font-size: $hel-text-size-s;
+  text-decoration: none;
+
+  @include breakpoint(smallmedium){
+    font-size: $hel-text-size-m;
+  }
+
+  @include breakpoint(medium){
+    font-size: $hel-text-size-xl;
+  }
+
+  &:hover,
+  &:focus{
+    .top-bar-logo-text{
+      text-decoration: underline;
+    }
+  }
+
+  .top-bar-logo-text{
+    display: none;
+
+    @media (min-width: 380px){
+      display: block;
+    }
+  }
+
+  .top-bar-logo-symbol img{
+    height: 42px;
+
+    @include breakpoint(medium){
+      height: 54px;
+    }
+  }
+
+  .top-bar-logo-text{
+    margin: 0 $hel-spacing-s;
+  }
+}
+
+.top-bar-panel{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 100%;
+  width: 100%;
+}
+
+.top-bar-languages{
+  .language-choose{
+    .menu{
+      a{
+        text-decoration: underline;
+      }
+
+      li{
+        margin-left: 0;
+      }
+
+      [aria-current="true"] a{
+        font-weight: $global-weight-medium;
+        text-decoration: none;
+
+        &:hover,
+        &:focus{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.top-bar-controls{
+  position: relative;
+  display: flex;
+  top: .3rem;
+  margin-left: $hel-spacing-xl;
+
+  @include breakpoint(medium){
+    top: 0;
+  }
+
+  @include breakpoint(large){
+    top: $hel-spacing-2-xs;
+  }
+
+  .button{
+    display: grid;
+    grid-template-areas: link; // Keeps the focus border constant
+    padding: 0;
+    margin: 0;
+    border: 0;
+
+    [data-navbar-active]{
+      grid-area: link;
+    }
+  }
+
+  a,
+  .button{
+    margin-left: $hel-spacing-s;
+
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+
+  .top-bar-control{
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+    line-height: $hel-lineheight-xl;
+    font-size: $hel-text-size-s;
+    font-weight: $global-weight-normal;
+    white-space: nowrap;
+
+    @include plain-text-link;
+
+    > span{
+      max-width: 100px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .icon{
+      width: 1.5rem;
+      height: 1.5rem;
+
+      @include breakpoint(medium){
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+    }
+  }
+}

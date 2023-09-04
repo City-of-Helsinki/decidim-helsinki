@@ -42,6 +42,9 @@ fi:
           back_to_budgets: Näytä kaikki budjetit
     components:
       add_comment_form:
+        account_message: <a href="%{sign_in_url}">Kirjaudu sisään</a> kommentoidaksesi.
+        form:
+          submit: Lähetä kommentti
         opinion:
           label: Mielipiteesi tästä aiheesta
           positive: Positiivinen

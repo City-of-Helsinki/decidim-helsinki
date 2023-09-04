@@ -1,0 +1,40 @@
+<%
+# The container tag
+# - available local variables
+# current_page:  a page object for the currently displayed page
+# total_pages:   total number of pages
+# per_page:      number of items to fetch per page
+# remote:        data-remote
+# paginator:     the paginator that renders the pagination tags inside
+
+first_visible = nil
+last_visible = nil
+paginator.each_page { |page|
+  first_visible = page.number if page.display_tag? && first_visible.nil?
+  last_visible = page.number if page.display_tag?
+}
+-%>
+
+<% if total_pages > 1 %>
+  <nav class="pagination" role="navigation" aria-label="<%= t("views.pagination.pagination") %>">
+    <ul class="pagination__pages">
+      <%= paginator.prev_page_tag %>
+      <% paginator.each_page do |page| -%>
+        <%= paginator.gap_tag if page.last? %>
+        <% if page.display_tag? || page.first? %>
+          <%= paginator.page_tag page %>
+        <% elsif page.last? && !current_page.out_of_range? %>
+          <%= paginator.page_tag page %>
+        <% end %>
+        <%= paginator.gap_tag if page.first? %>
+      <% end -%>
+      <%= paginator.next_page_tag %>
+    </ul>
+    <ul class="pagination__prevnext">
+      <%= paginator.prev_page_tag %>
+      <% unless current_page.out_of_range? %>
+        <%= paginator.next_page_tag %>
+      <% end %>
+    </ul>
+  </nav>
+<% end %>

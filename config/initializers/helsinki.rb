@@ -10,5 +10,7 @@ require "helsinki/stats"
 require "helsinki/html_converter"
 require "helsinki/serialization_cleaner"
 require "helsinki/accountability/result_serializer"
+require "helsinki/form_extensions"
+require "helsinki/form_builder"
 
 Decidim::Stats.register_aggregator(Helsinki::Stats::Voting::Aggregator)

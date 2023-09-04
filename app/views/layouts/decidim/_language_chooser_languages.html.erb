@@ -1,8 +1,9 @@
-<ul class="menu">
-  <% available_locales.each do |locale| %>
-    <li class="language-nav-link<%= " language-nav-link-current" if locale == I18n.locale.to_s %>" lang="<%= locale %>">
-      <span class="language-nav-separator" aria-hidden="true"></span>
-      <%= link_to locale_name(locale), decidim.locale_path(locale: locale), method: :post %>
-    </li>
-  <% end %>
-</ul>
+<nav role="navigation" aria-label="<%= t(".label") %>">
+  <ul class="horizontal menu">
+    <% available_locales.each do |locale| %>
+      <%= content_tag :li, class: "language-nav-link", lang: locale, "aria-current": (locale == I18n.locale.to_s ? "true" : nil) do %>
+        <%= link_to locale_name(locale), decidim.locale_path(locale: locale), method: :post %>
+      <% end %>
+    <% end %>
+  </ul>
+</nav>

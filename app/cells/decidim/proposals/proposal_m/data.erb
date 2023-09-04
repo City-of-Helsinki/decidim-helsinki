@@ -1,10 +1,10 @@
 <% if has_address? %>
-  <div class="card__detail">
-    <span class="card__detail--icon">
-      <%= icon "meetings" %>
-    </span>
-    <span class="card__detail--description">
-      <%= address %>
-    </span>
+  <div class="card__details">
+    <div class="card__details__item">
+      <%= icon("location", role: "img", "aria-hidden": true) %>
+      <span class="card__details__item__text">
+        <%= address %>
+      </span>
+    </div>
   </div>
 <% end %>

@@ -19,8 +19,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-accountability_simple.git
-  revision: 4b370b21551e1b66001bd169a3bad01f8ae8ec65
-  branch: main
+  revision: 04879b0830e1fa1dc6d690b6c648b107db851823
+  branch: develop
   specs:
     decidim-accountability_simple (0.27.0)
       decidim-accountability (~> 0.27.0)
@@ -53,8 +53,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: 90d5a0a6afe77d3207f79d235f50b2d9e1a40de3
-  branch: main
+  revision: 5f065cc1541a8b977df3f954385d16dccdc0e789
+  branch: develop
   specs:
     decidim-budgeting_pipeline (0.27.0)
       decidim-budgets (~> 0.27.0)
@@ -64,16 +64,16 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-favorites.git
-  revision: caaf9d9e81a730a63c8d1d3e6df78533beef1785
-  branch: main
+  revision: 7c8833aa96565598a6e39c8efaa33cc971091ba8
+  branch: develop
   specs:
     decidim-favorites (0.27.0)
       decidim-core (~> 0.27.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-feedback.git
-  revision: a39f1429a595acee6c55483f3b98c5bae25b0183
-  branch: main
+  revision: 340516a282b4c7f535324c003b2f98aa23ff7301
+  branch: develop
   specs:
     decidim-feedback (0.27.0)
       decidim-admin (~> 0.27.0)
@@ -81,13 +81,21 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: 8647f8129783018b022b0c5a1561a0ab033e65d2
-  branch: main
+  revision: 69969057158a3d653fa4002dc136b1884dddca0f
+  branch: develop
   specs:
     decidim-ideas (0.27.0)
       decidim-core (~> 0.27.0)
       decidim-favorites (~> 0.27.0)
       decidim-feedback (~> 0.27.0)
+
+GIT
+  remote: https://github.com/mainio/decidim-module-insights.git
+  revision: a8037ccb6ffbbf822bc05599aa0cc3256006840f
+  branch: main
+  specs:
+    decidim-insights (0.27.0)
+      decidim-core (~> 0.27.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-locations.git
@@ -107,9 +115,17 @@ GIT
       omniauth-mpassid (~> 0.5.1)
 
 GIT
-  remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 56d9580265911629d70fbea3cecdfd20a084f776
+  remote: https://github.com/mainio/decidim-module-nav.git
+  revision: 54138d1a2e4431965042d5163f94ddb2d8989b41
   branch: main
+  specs:
+    decidim-nav (0.27.0)
+      decidim-core (~> 0.27.0)
+
+GIT
+  remote: https://github.com/mainio/decidim-module-plans.git
+  revision: e82eca23c262f91fa6a5e5606c77564e80067045
+  branch: develop
   specs:
     decidim-plans (0.27.0)
       decidim-core (~> 0.27.0)
@@ -147,8 +163,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-tags.git
-  revision: 13526c6b0d2a66871bcb83257393c2d27b9ab413
-  branch: main
+  revision: 4e868c286edfe5f460c3ff26aa740cffd76bde50
+  branch: develop
   specs:
     decidim-tags (0.27.0)
       decidim-core (~> 0.27.0)
@@ -1126,8 +1142,10 @@ DEPENDENCIES
   decidim-feedback!
   decidim-ideas!
   decidim-initiatives (~> 0.27.0)
+  decidim-insights!
   decidim-locations!
   decidim-mpassid!
+  decidim-nav!
   decidim-plans!
   decidim-redirects!
   decidim-stats!

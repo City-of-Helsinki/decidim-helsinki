@@ -1,32 +1,38 @@
 <div class="extended home-section listing-section">
-  <div class="row columns listing-section-heading text-center">
-    <h2 class="heading2 hero-heading"><%== title %></h2>
-  </div>
-  <div class="row small-up-1 medium-up-2 mediumlarge-up-4 card-grid">
-    <% posts.each_with_index do |post, index| %>
-      <%= localized_content_tag_for(post, :div, class: "column") do %>
-        <%= link_to post_path(post), class: "card card-simple" do %>
-          <%= image_tag_for(post, index) %>
-          <div class="card-section">
-            <div class="card__header">
-              <h3 class="h5"><%= translated_attribute post.title %></h3>
-            </div>
-            <div class="card__text">
-              <div class="card__text--paragraph">
-                <%== strip_tags summary_for(post) %>
+  <div class="row columns">
+    <h2 id="<%= label_id %>" class="heading2"><%= title %></h2>
+
+    <%= content_tag :section, class: "cards-grid row", aria: { labelledby: label_id }, data: { slide: "", options: { large: { perPage: 4 } } } do %>
+      <% posts.each do |post| %>
+        <div class="column small-12 medium-6 large-3">
+          <%= link_to post_path(post), class: "card", lang: post_lang(post) do %>
+            <%= image_tag resource_image_path_for(post), class: "card__image", alt: translated_attribute(post.title) %>
+
+            <div class="card__content">
+              <h3 class="h4"><%= translated_attribute post.title %></h3>
+
+              <div class="card__text">
+                <div class="card__text--paragraph">
+                  <%== strip_tags summary_for(post) %>
+                </div>
               </div>
             </div>
-            <div class="card__arrow" aria-hidden="true">
+
+            <div class="card__indicator" aria-hidden="true">
               <%= icon "arrow-thin-right", role: "img" %>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       <% end %>
     <% end %>
-  </div>
-  <div class="row columns mt-m">
-    <div class="text-center">
-      <%= link_to t(".show_more"), button_url, class: "button large secondary", aria: { label: t(".show_more_detailed") } %>
+
+    <div class="text-center more-link">
+      <p>
+        <%= link_to button_url, class: "action-link" do %>
+          <span><%= t(".show_more") %></span>
+          <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+        <% end %>
+      </p>
     </div>
   </div>
 </div>

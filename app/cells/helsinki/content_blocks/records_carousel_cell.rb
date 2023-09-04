@@ -4,6 +4,7 @@ module Helsinki
   module ContentBlocks
     class RecordsCarouselCell < Decidim::ViewModel
       include Decidim::CardHelper
+      include Decidim::LayoutHelper
 
       def show
         return unless participatory_process
@@ -22,6 +23,14 @@ module Helsinki
 
       private
 
+      def unique_id
+        @unique_id ||= SecureRandom.hex(3).to_s
+      end
+
+      def label_id
+        "carousel-#{unique_id}-heading"
+      end
+
       def participatory_process
         return model if model.is_a?(Decidim::ParticipatoryProcess)
 
@@ -36,7 +45,7 @@ module Helsinki
             participatory_space: participatory_process,
             manifest_name: records_manifest_name
           )
-          records_for(components).order("RANDOM()").limit(6)
+          records_for(components).order("RANDOM()").limit(9)
         end
       end
 

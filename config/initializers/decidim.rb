@@ -8,7 +8,7 @@ Decidim.configure do |config|
 
   # Uncomment this lines to set your preferred locales
   config.default_locale = :fi
-  config.available_locales = [:fi, :en, :sv]
+  config.available_locales = [:fi, :sv, :en]
 
   # Maps configuration
   config.maps = {

@@ -1,0 +1,39 @@
+$bubble-side-padding: 1.5rem;
+
+.bubble{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: 0 $bubble-side-padding .35rem;
+  hyphens: auto;
+  hyphenate-limit-chars: 12 8 4;
+  overflow-wrap: break-word;
+
+  &.bubble--large{
+    font-size: 2.4rem;
+    line-height: 1.3;
+  }
+
+  &.bubble--comment{
+    padding-top: .35rem;
+    padding-bottom: .5rem;
+
+    .bubble__content{
+      position: relative;
+      padding-bottom: 4.3rem;
+
+      &::after{
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        right: -.45rem;
+        bottom: 0;
+        height: 43px;
+        background-color: $primary;
+        clip-path: polygon(0 0, calc(50% - 6px) 0, calc(50% + 25px) 37px, calc(50% + 17px) 0, 100% 0, 100% 2px, calc(50% + 19.5px) 2px, calc(50% + 28px) 43px, calc(50% - 7px) 2px, 0 2px);
+      }
+    }
+  }
+}

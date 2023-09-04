@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_06_192439) do
+ActiveRecord::Schema.define(version: 2023_07_28_072012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1220,6 +1220,19 @@ ActiveRecord::Schema.define(version: 2023_07_06_192439) do
     t.index ["decidim_reportable_type", "decidim_reportable_id"], name: "decidim_moderations_reportable", unique: true
     t.index ["hidden_at"], name: "decidim_moderations_hidden_at"
     t.index ["report_count"], name: "decidim_moderations_report_count"
+  end
+
+  create_table "decidim_nav_links", force: :cascade do |t|
+    t.bigint "decidim_organization_id"
+    t.integer "parent_id"
+    t.jsonb "title"
+    t.jsonb "href"
+    t.string "target"
+    t.integer "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_organization_id"], name: "decidim_nav_links_on_organization_id"
+    t.index ["parent_id"], name: "index_decidim_nav_links_on_parent_id"
   end
 
   create_table "decidim_newsletters", id: :serial, force: :cascade do |t|

@@ -1,0 +1,47 @@
+.tabs{
+  display: flex;
+  align-items: stretch;
+  margin: 0 0 1.8rem;
+  list-style-type: none;
+  border-bottom: 1px solid $hel-silver;
+  font-size: $hel-text-size-m;
+
+  @include breakpoint(medium){
+    font-size: $hel-text-size-l;
+  }
+
+  &.tabs--wrapped{
+    margin-bottom: 0;
+  }
+
+  .tabs-title{
+    flex: 1;
+    padding: 0;
+    text-align: center;
+    font-weight: $global-weight-medium;
+
+    &.is-active{
+      a{
+        border-bottom-color: $hel-coat;
+      }
+    }
+
+    a{
+      position: relative;
+      bottom: -1px;
+      height: 100%;
+      display: block;
+      text-decoration: none;
+      padding: .42rem;
+      border-bottom: 4px solid transparent;
+    }
+  }
+}
+
+.tabs-panel{
+  display: none;
+
+  &.is-active{
+    display: block;
+  }
+}

@@ -32,25 +32,28 @@ module Decidim
     def icon(name, options = {})
       html_properties = {}
 
+      label = options[:aria_label] || options[:"aria-label"] || options["aria-label"]
+
       html_properties["width"] = options[:width]
       html_properties["height"] = options[:height]
-      html_properties["aria-label"] = options[:aria_label] || options[:"aria-label"] || options["aria-label"]
       html_properties["role"] = options[:role] || "img"
+      html_properties["aria-label"] = label
       html_properties["aria-hidden"] = options[:aria_hidden] || options[:"aria-hidden"] || options["aria-hidden"]
 
       html_properties["class"] = (["icon--#{name}"] + _icon_classes(options)).join(" ")
 
       if name == "tunnistamo"
         content_tag :svg, html_properties do
-          inner = content_tag :title, options["title"] || html_properties["aria-label"]
-          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_pack_path("media/images/hkilogo-symbol.svg")}#icon-helsinki"
+          inner = content_tag :title, label
+          inner += content_tag :use, nil, "href" => "#{asset_pack_path("media/images/hkilogo-symbol.svg")}#icon-helsinki"
 
           inner
         end
       else
         content_tag :svg, html_properties do
-          inner = content_tag :title, options["title"] || html_properties["aria-label"]
-          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_pack_path("media/images/icons.svg")}#icon-#{name}"
+          inner = content_tag :title, label
+          # Note that we use a different path for the override to pickup correctly.
+          inner += content_tag :use, nil, "href" => "#{asset_pack_path("media/images/helsinki-icons.svg")}#icon-#{name}"
 
           inner
         end

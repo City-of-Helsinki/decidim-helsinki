@@ -1,49 +1,226 @@
-.wrapper-ruuti{
-  .menu .is-active > a,
-  .menu .active > a{
-    background: $ruuti-primary;
+@mixin menu-horizontal{
+  flex-direction: row;
+  margin-left: -$menu-items-padding;
+  margin-right: -$menu-items-padding;
+
+  li{
+    margin-bottom: 0;
+    margin-left: $hel-spacing-s;
+
+    &:first-child{
+      margin-left: 0;
+    }
+
+    &.is-dropdown-submenu-parent{
+      a{
+        padding: 0;
+      }
+    }
   }
 }
 
-.prevnext-nav{
+@mixin menu-vertical{
+  flex-direction: column;
+  margin-left: 0;
+  margin-right: 0;
+
+  li{
+    margin-left: 0;
+  }
+}
+
+.menu{
   display: flex;
-  max-width: 580px;
-  margin: 4rem 0;
-  font-size: 1.4rem;
+  list-style-type: none;
+  // line-height: $hel-lineheight-m;
+  line-height: $hel-lineheight-l;
+  margin: 0;
 
-  .prevnext-nav-item{
-    flex: 1 1 0;
+  @include plain-text-links;
 
-    &:last-child{
-      text-align: right;
+  li{
+    padding-left: 0;
+
+    a{
+      display: block;
+      padding: $menu-items-padding;
     }
   }
 
-  .prevnext-nav-link{
-    position: relative;
+  &.vertical{
+    @include menu-vertical;
 
-    &:hover,
-    &:focus{
-      text-decoration: none;
+    &.striped{
+      &.large{
+        font-size: $hel-text-size-xl;
+      }
 
-      .prevnext-nav-link-text{
-        text-decoration: underline;
+      li{
+        &.is-active{
+          font-weight: $global-weight-medium;
+
+          a{
+            border-left-color: $primary;
+          }
+        }
+
+        a{
+          padding: 1.1rem .8rem 1rem;
+          border-bottom: 1px solid $hel-grayscale-20;
+          border-left: 4px solid transparent;
+        }
+      }
+    }
+  }
+
+  &.horizontal{
+    @include menu-horizontal;
+  }
+
+  &.large-horizontal{
+    @include breakpoint(large){
+      @include menu-horizontal;
+    }
+  }
+
+  &.nested{
+    margin-left: $hel-spacing-s;
+
+    li:last-child{
+      margin-bottom: 0;
+    }
+  }
+
+  &.submenu{
+    li{
+      margin-bottom: 0;
+    }
+
+    &.vertical{
+      a{
+        display: block;
+      }
+    }
+  }
+
+  &.dropdown{
+    .is-dropdown-submenu-parent{
+      > button{
+        cursor: pointer;
+      }
+    }
+  }
+
+  &.accordion-menu{
+    &.select{
+      position: relative;
+
+      > .is-accordion-submenu-parent > .menu.nested{
+        position: absolute;
+        top: calc(100% - 2px); // Over the outline
+        width: 100%;
+        background-color: $input-background;
+        border: $input-border-focus;
+        border-top: 1px solid $hel-grayscale-20;
+      }
+
+      a,
+      button{
+        padding: .9rem;
       }
     }
 
-    &.disabled{
-      color: $muted;
-    }
+    .nested{
+      margin-left: 0;
 
-    .icon{
-      position: relative;
-      top: 7px;
-      width: 1.2em;
-      height: 1.2em;
+      .nested{
+        margin-left: $hel-spacing-s;
+      }
+
+      .is-accordion-submenu-parent{
+        > a,
+        > button{
+          @include select-arrow;
+
+          padding-right: 2.5rem;
+        }
+      }
     }
   }
 
-  .prevnext-nav-link-text{
-    margin: 0 .7rem;
+  // Dropdown menu that looks like a `<select>` element.
+  &.dropdown.select,
+  &.accordion-menu.select{
+    > .is-dropdown-submenu-parent,
+    > .is-accordion-submenu-parent{
+      width: 100%;
+
+      @include breakpoint(medium){
+        width: auto;
+      }
+
+      &.is-active{
+        > a,
+        > button{
+          border: $input-border-focus;
+          box-shadow: $input-shadow-focus;
+        }
+      }
+
+      > a,
+      > button{
+        @include select-arrow;
+
+        width: 100%;
+        border: $input-border;
+        transition: $input-transition;
+        padding: .8rem 4.8rem .8rem $dropdownmenu-padding;
+        background-position: right -3.9rem center;
+        background-color: $input-background;
+        font-size: $input-font-size;
+        line-height: $input-line-height;
+        text-decoration: none;
+        text-align: left;
+
+        @include breakpoint(medium){
+          width: auto;
+        }
+
+        &:hover{
+          border-color: $input-border-color-hover;
+        }
+
+        &:focus{
+          border: $input-border-focus;
+          box-shadow: $input-shadow-focus;
+        }
+      }
+    }
   }
 }
+
+.sub-navigation-nav{
+  position: relative;
+  font-size: $hel-text-size-xl;
+
+  .menu{
+    font-weight: $global-weight-medium;
+
+    a{
+      text-decoration: underline;
+      padding: .35rem 0;
+
+      @include breakpoint(mediumlarge){
+        padding: .6rem .85rem .6rem 0;
+      }
+    }
+
+    .nested{
+      @include breakpoint(mediumlarge){
+        margin: .5rem 0 .2rem 2.5rem;
+      }
+    }
+  }
+}
+
+@include foundation-dropdown-menu;

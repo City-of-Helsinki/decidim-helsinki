@@ -7,6 +7,12 @@ module Helsinki
 
       private
 
+      attr_reader :filters_prefix
+
+      def filter_id(prefix, field_name)
+        "#{prefix}_#{field_name}"
+      end
+
       def filters_main_row_column_class
         if display_answer_filter? && display_area_scopes_filter? && display_category_filter?
           "columns mediumlarge-6 large-3"
@@ -30,18 +36,6 @@ module Helsinki
 
       def display_category_filter?
         component.categories.any? && category_section
-      end
-
-      def ideas_contents
-        @ideas_contents ||= object.contents.select do |c|
-          c.section.handle == "ideas"
-        end
-      end
-
-      def form_contents
-        @form_contents ||= object.contents.reject do |c|
-          c.section.handle == "ideas"
-        end
       end
 
       def area_scope_section

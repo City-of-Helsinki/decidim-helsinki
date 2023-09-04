@@ -90,6 +90,13 @@ sv:
           explanation: 'Vägledning för bild:'
           message_1: Helst en landskapsbild som inte har någon text.
           message_2: Tjänsten beskär bilden.
+      upload_help:
+        explanation: 'Vägledning för filen som ska laddas upp:'
+      upload:
+        labels:
+          add_attachment: Välj bilaga
+          add_file: Välj fil
+          add_image: Välj bild
     help_sections:
       footer_text:
         name: Sidfotstext
@@ -102,7 +109,13 @@ sv:
       index:
         title: Hjälp
       side_panel:
-        show_navigation: Visa navigering
+        choose: Välj hjälpsektion
+        label: Undernavigering
+        show_navigation: Välj hjälpsektion
+    participatory_processes:
+      participatory_processes:
+        index:
+          title: Processer
     proposals:
       proposals:
         filters:
@@ -145,13 +158,14 @@ sv:
         unfold: Öppna
       breadcrumbs:
         current: Nuvarande sida
+        label: Länkstig
       header:
-        choose_language: Välj språk
         front_page_link: Gå till hemsidan
         help: Hjälp
-        navigation: Menu
-        sign_in: Logga in
+        navigation: Meny
         subtitle: 2020-2021
+      language_chooser_languages:
+        label: Välj språk
       participatory_processes:
         index:
           active_processes: Pågår nu
@@ -165,9 +179,29 @@ sv:
         profile: Kontoinformation
         profile_nav: Profil
         public_profile: Den egna verksamheten
-    footer:
-      about: Om tjänsten
-      contact: Kontaktuppgifter
+      user_profile:
+        my_data: Ladda ner din data
+      wrapper:
+        subnav:
+          choose: Välj sida
+          label: Undernavigering
+          show: Välj sida
+    header:
+      close: Stäng
       feedback: Ge feedback
-      processes_info: Du kan se alla processer i den här tjänsten från processidan
-      processes_show: Visa alla processer
+      sign_in: Logga in
+    flash:
+      close: Stäng avisering
+    footer:
+      back_to_top: Tillbaka till toppen
+      city_name: Helsingfors stad
+      contact: Ta kontakt
+      feedback: Ge respons
+      history: Historia
+  views:
+    pagination:
+      first: Första
+      last: Sista
+      next: Nästa
+      previous: Tidigare
+      truncate: "&hellip;"

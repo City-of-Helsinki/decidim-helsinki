@@ -1,23 +1,19 @@
-<div class="extended home-section bg-secondary">
-  <div class="hero__container">
-    <div class="row columns">
-      <h2 class="heading2 hero-heading"><%= title %></h2>
+<div class="extended home-section bg-silver-light">
+  <div class="row columns">
+    <h2 id="<%= label_id %>" class="heading2"><%= title %></h2>
 
-      <div class="card-slider center"
-        data-prev-label="<%= t("helsinki.content_blocks.records_carousel.previous") %>"
-        data-next-label="<%= t("helsinki.content_blocks.records_carousel.next") %>">
-        <% records.each do |record| %>
-          <div class="card-slide-content">
-            <%= card_for record, from: record, context: {
-              no_column: true,
-              disable_favorite: true,
-              utm_params: utm_params_for(record)
-            } %>
-          </div>
-        <% end %>
-      </div>
+    <section class="cards-grid row" aria-labelledby="<%= label_id %>" data-slide>
+      <% records.each do |record| %>
+        <div class="column small-12 medium-6 large-4">
+          <%= card_for record, from: record, context: {
+            no_column: true,
+            disable_favorite: true,
+            utm_params: utm_params_for(record)
+          } %>
+        </div>
+      <% end %>
+    </section>
 
-      <%= button %>
-    </div>
+    <%= button %>
   </div>
 </div>

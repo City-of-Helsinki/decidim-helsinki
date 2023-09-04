@@ -1,13 +1,14 @@
-<div class="row">
-  <div class="columns large-8 large-push-2">
-    <div class="text-center">
-    <p class="lead"><%= t("decidim.plans.plans.edit.sign_in_before_submitting") %></p>
-    <p><%= t(".you_can_invite_others") %></p>
-    <p>
-        <%= action_authorized_link_to :create, new_plan_path, class: "title-action__action button large primary", data: { "redirect_url" => new_plan_path } do %>
-        <%= t("decidim.plans.plans.edit.sign_in") %>
-        <% end %>
-    </p>
-    </div>
+<div class="banner bg-secondary">
+  <div class="banner__icon">
+    <%= icon("account-login", role: "img", "aria-hidden": true) %>
+  </div>
+  <div class="banner__content">
+    <h2 class="h3"><%= t("decidim.plans.plans.edit.sign_in") %></h2>
+    <p><%= t("decidim.plans.plans.edit.sign_in_before_submitting") %></p>
+
+    <%= link_to decidim.new_user_session_path, class: "button button--icon" do %>
+      <%= t("decidim.plans.plans.edit.sign_in") %>
+      <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+    <% end %>
   </div>
 </div>

@@ -1,12 +1,80 @@
-table.transparent{
+// $table-border: 1px solid $hel-grayscale-50;
+// $table-padding: rem-calc(8 10 10);
+// $table-striped-background: $hel-grayscale-10;
+// $table-head-background: $hel-bus;
+// $table-head-color: $white;
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+
+  &.striped{
+    tbody{
+      tr:nth-child(even){
+        background-color: $table-striped-background;
+      }
+    }
+  }
+
+  &.details-table{
+    font-size: $hel-text-size-l;
+  }
+
   thead,
   tbody,
   tfoot{
-    background-color: transparent;
-    border: 0;
+    th{
+      background-color: $table-head-background;
+      color: $table-head-color;
 
-    tr{
-      background-color: transparent;
+      &.td{
+        background-color: inherit;
+        color: inherit;
+        font-weight: $global-weight-normal;
+      }
     }
+
+    th,
+    td{
+      padding: $table-padding;
+
+      &:first-child{
+        padding-left: 0;
+      }
+
+      &:last-child{
+        padding-right: 0;
+      }
+    }
+  }
+
+  thead,
+  tfoot{
+    th,
+    td{
+      font-weight: $global-weight-bold;
+      text-align: #{$global-left};
+    }
+  }
+
+  tbody{
+    tr{
+      border-bottom: $table-border;
+      background-color: transparent;
+
+      &:last-child{
+        border-bottom: 0;
+      }
+    }
+
+    th{
+      text-align: left;
+    }
+  }
+}
+
+.card{
+  .details-table{
+    margin-bottom: 1.7rem;
   }
 }

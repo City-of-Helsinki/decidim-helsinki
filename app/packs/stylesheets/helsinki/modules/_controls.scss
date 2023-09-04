@@ -1,0 +1,65 @@
+.collection-controls{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.85rem;
+
+  @include breakpoint(medium){
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+.order-by__text{
+  @include breakpoint(medium){
+    font-size: $hel-text-size-l;
+  }
+}
+
+.order-by__dropdown{
+  position: relative;
+  top: -.2rem;
+  display: flex;
+  align-items: baseline;
+  gap: .7rem;
+
+  @include breakpoint(medium){
+    justify-content: end;
+  }
+
+  .dropdown.menu{
+    > li > a{
+      padding: 0;
+      font-weight: $global-weight-medium;
+
+      @include breakpoint(medium){
+        font-size: $hel-text-size-xl;
+      }
+
+      &:hover,
+      &:focus{
+        text-decoration: none;
+      }
+
+      .icon{
+        top: .5rem;
+        margin-left: -.3rem;
+        width: 1.3em;
+        height: 1.3em;
+      }
+    }
+  }
+}
+
+.controls-row{
+  .controls-row__description{
+    padding-bottom: 2.3rem;
+  }
+
+  .controls-row__control{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+}

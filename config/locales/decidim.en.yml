@@ -42,6 +42,9 @@ en:
           back_to_budgets: Show all budgets
     components:
       add_comment_form:
+        account_message: <a href="%{sign_in_url}">Sign in with your account</a> to add your comment.
+        form:
+          submit: Send comment
         opinion:
           label: Your opinion about this topic
           positive: Positive

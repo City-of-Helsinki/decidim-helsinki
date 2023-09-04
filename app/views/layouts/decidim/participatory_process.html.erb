@@ -23,11 +23,9 @@ meta_description ||= translated_attribute(current_participatory_space.short_desc
     <%= yield %>
   </div>
   <% if content_for? :expanded %>
-    <div class="expanded">
-      <div class="wrapper wrapper--inner">
-        <div class="row">
-          <%= yield :expanded %>
-        </div>
+    <div class="comments-section container">
+      <div class="row columns">
+        <%= yield :expanded %>
       </div>
     </div>
   <% end %>

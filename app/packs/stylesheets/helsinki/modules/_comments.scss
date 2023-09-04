@@ -1,35 +1,224 @@
-.comment__votes{
-  form{
-    display: inline-block;
+.comments-section{
+  padding-top: 2rem;
+  background-color: $hel-silver-light;
+
+  @include breakpoint(medium){
+    padding-top: 3.6rem;
   }
 
-  button,
-  .button{
-    &.focus,
-    &:focus{
-      background-color: transparent;
-      outline: $button-outline-focus;
-      outline-offset: $button-outline-offset;
-    }
+  .h4{
+    font-weight: $global-weight-normal;
+  }
 
-    &.comment__votes--up{
-      color: darken($comment-vote-up-color, 10%);
-    }
+  .callout{
+    margin-bottom: 2rem;
+  }
+}
 
-    &.comment__votes--down{
-      color: darken($comment-vote-down-color, 10%);
+.comments{
+  @include breakpoint(large){
+    margin-right: 2rem;
+  }
+}
+
+.comments__title{
+  margin-bottom: 1.4rem;
+}
+
+.comment{
+  margin-bottom: 1.4rem;
+
+  .replies,
+  .add-comment{
+    margin-left: 1.9rem;
+  }
+
+  .replies{
+    .comment{
+      margin-top: 1.4rem;
+      margin-bottom: 0;
     }
   }
 }
 
 .add-comment{
+  margin-top: 2.5rem;
+
+  textarea{
+    margin-bottom: 1.8rem;
+  }
+}
+
+.comment__header,
+.comment__footer{
+  display: flex;
+}
+
+.comment__header{
+  margin-bottom: .9rem;
+
+  .author-data__main > span{
+    white-space: nowrap;
+  }
+}
+
+.comment__footer{
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.comments__form__actions{
+  display: flex;
+  align-items: center;
+
+  .button{
+    margin-bottom: 0;
+    margin-right: 1.5rem;
+  }
+}
+
+.author-data{
+  font-size: $hel-text-size-l;
+}
+
+a.comment__author{
+  text-decoration: none;
+
+  > span{
+    text-decoration: underline;
+  }
+}
+
+.comment__author{
+  font-weight: $global-weight-medium;
+  margin-right: .4rem;
+
+  .icon{
+    position: relative;
+    top: .5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: .4rem;
+  }
+}
+
+.comment__utilities{
+  margin-top: .5rem;
+  margin-left: .6rem;
+  white-space: nowrap;
+
   a,
-  .link{
-    &.focus,
-    &:focus{
-      background-color: transparent;
-      color: $anchor-color;
-      outline: $anchor-outline-focus;
+  button{
+    display: inline-block;
+  }
+
+  a{
+    text-decoration: none;
+
+    .external-link-indicator{
+      display: none;
     }
+  }
+
+  button{
+    cursor: pointer;
+  }
+
+  .icon{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.comment__content{
+  p{
+    &:last-child{
+      margin-bottom: .65rem;
+    }
+  }
+}
+
+.comment__actions{
+  button{
+    font-weight: $global-weight-medium;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+.comment__votes{
+  position: relative;
+  top: .1rem;
+  display: flex;
+  font-size: $hel-text-size-xl;
+
+  button{
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    margin-left: .6rem;
+
+    &.comment__votes--up:not(.is-vote-notselected){
+      &:hover,
+      &:focus,
+      &.is-vote-selected{
+        color: $success;
+      }
+    }
+
+    &.comment__votes--down:not(.is-vote-notselected){
+      &:hover,
+      &:focus,
+      &.is-vote-selected{
+        color: $alert;
+      }
+    }
+  }
+
+  .icon{
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+    top: .3rem;
+  }
+}
+
+.opinion-toggle{
+  .button{
+    position: relative;
+    padding: 0;
+    margin: 0 .3rem 0 0;
+    text-decoration: none;
+
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+
+  .opinion-toggle--ok{
+    &.is-active{
+      color: $success;
+    }
+  }
+
+  .opinion-toggle--meh{
+    top: .15rem;
+
+    &.is-active{
+      text-decoration: underline;
+    }
+  }
+
+  .opinion-toggle--ko{
+    &.is-active{
+      color: $alert;
+    }
+  }
+
+  .icon{
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+    top: .3rem;
   }
 }

@@ -1,19 +1,21 @@
-// Basics
-@import "stylesheets/decidim/variables";
+@import "stylesheets/helsinki/tokens";
+@import "stylesheets/helsinki/variables";
 @import "stylesheets/decidim/properties";
-@import "foundation-sites/scss/foundation";
 @import "stylesheets/decidim/utils/settings";
+@import "foundation-sites/scss/foundation";
+@import "stylesheets/foundation-overrides/components/button-group";
 
-// Import foundation
-@import "stylesheets/decidim/foundation_and_overrides";
+// Use custom foundation to limit the imports
+@import "stylesheets/helsinki/foundation";
 
-// Rest of Decidim stuff
+// Decidim styles
 @import "stylesheets/decidim/utils/fontface";
 @import "stylesheets/decidim/utils/helpers";
 @import "stylesheets/decidim/utils/keyframes";
 @import "stylesheets/decidim/utils/mixins";
 @import "stylesheets/decidim/utils/toggle-expand";
 @import "stylesheets/decidim/modules/modules";
-@import "stylesheets/decidim/layouts/layouts";
+// @import "stylesheets/decidim/layouts/layouts";
+@import "stylesheets/decidim/layouts/user";
 @import "stylesheets/decidim/extras/extras";
-@import "stylesheets/decidim/vizzs/vizzs";
+// @import "stylesheets/decidim/vizzs/vizzs";

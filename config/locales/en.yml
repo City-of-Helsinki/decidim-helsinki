@@ -91,6 +91,13 @@ en:
           explanation: 'Guidance for image:'
           message_1: Preferrably a landscape image that does not have any text.
           message_2: The service crops the image.
+      upload_help:
+        explanation: 'Guidance for the file to be uploaded:'
+      upload:
+        labels:
+          add_attachment: Choose attachment
+          add_file: Choose file
+          add_image: Choose image
     help_sections:
       footer_text:
         name: Footer text
@@ -103,7 +110,13 @@ en:
       index:
         title: Help
       side_panel:
-        show_navigation: Show navigation
+        choose: Choose help section
+        label: Sub navigation
+        show_navigation: Select help section
+    participatory_processes:
+      participatory_processes:
+        index:
+          title: Processes
     proposals:
       proposals:
         filters:
@@ -146,13 +159,14 @@ en:
         unfold: Unfold
       breadcrumbs:
         current: Current page
+        label: Breadcrumbs
       header:
-        choose_language: Select language
         front_page_link: Go to front page
         help: Help
         navigation: Menu
-        sign_in: Sign in
         subtitle: 2020-2021
+      language_chooser_languages:
+        label: Select language
       participatory_processes:
         index:
           active_processes: Ongoing now
@@ -166,9 +180,29 @@ en:
         profile: Account information
         profile_nav: Profile
         public_profile: My activity
-    footer:
-      about: About the service
-      contact: Contact information
+      user_profile:
+        my_data: Download your data
+      wrapper:
+        subnav:
+          choose: Select page
+          label: Sub navigation
+          show: Select page
+    header:
+      close: Close
       feedback: Give feedback
-      processes_info: You can see all the processes in this service from the processes page
-      processes_show: Show all processes
+      sign_in: Sign in
+    flash:
+      close: Close notification
+    footer:
+      back_to_top: Back to top
+      city_name: City of Helsinki
+      contact: Connect
+      feedback: Give feedback
+      history: History
+  views:
+    pagination:
+      first: First
+      last: Last
+      next: Next
+      previous: Previous
+      truncate: "&hellip;"

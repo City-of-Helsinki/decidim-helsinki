@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="row columns">
+    <div class="page-title">
+      <h1><%= profile_holder.name %></h1>
+      <p class="lead">@<%= profile_holder.nickname %></p>
+    </div>
+  </div>
+
+  <div class="row medium-unstack">
+    <div class="columns medium-9 medium-offset-3">
+      <%= profile_tabs %>
+    </div>
+  </div>
+  <div class="row medium-unstack">
+    <div class="columns medium-3">
+      <%= cell "decidim/profile_custom_sidebar", profile_holder %>
+    </div>
+    <div class="columns medium-9">
+      <div class="tabs-content" data-tabs-content="profile-tabs">
+        <div class="tabs-panel is-active">
+          <%= cell content_cell, profile_holder, context %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

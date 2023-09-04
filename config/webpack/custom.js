@@ -79,6 +79,11 @@ module.exports = {
         generator: {
           filename: 'media/images/[name]-[hash][ext][query]'
         }
+      },
+      // Load WASM assets inline
+      {
+        test: /\.wasm$/,
+        type: "asset/inline"
       }
     ]
   },

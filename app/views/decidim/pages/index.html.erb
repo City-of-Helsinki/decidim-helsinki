@@ -9,37 +9,34 @@ edit_link(
 
 <%= render partial: "layouts/decidim/breadcrumbs" %>
 
-<div class="wrapper">
+<div class="container content-section">
   <div class="row column">
     <div class="main-container tabbed-container">
       <%= cell "decidim/tos_page", :announcement %>
 
-      <div class="row collapse main-container--side-panel">
-        <div class="columns medium-12 mediumlarge-4 large-3">
+      <div class="page-title">
+        <h1 class="heading1 page-title"><%= t "decidim.pages.index.title" %></h1>
+      </div>
+
+      <div class="row align-justify">
+        <div class="columns sidebar">
           <%= render "side_panel", current: nil %>
         </div>
 
-        <div class="columns medium-12 mediumlarge-8 large-9">
-          <div class="main-container__content">
-            <div class="tabs-content vertical">
-              <div class="static__content">
-                <h1 class="heading1 page-title">
-                  <%= t "decidim.pages.index.title" %>
-                </h1>
-                <%
-                section = Decidim::ContextualHelpSection.find_content(
-                  current_organization,
-                  "help_index"
-                )
-                content = translated_attribute(section)
-                %>
-                <% if content.blank? %>
-                  <p><%= t(".subheading", name: current_organization.name) %></p>
-                <% else %>
-                  <%== content %>
-                <% end %>
-              </div>
-            </div>
+        <div class="columns mainbar">
+          <div class="static__content">
+            <%
+            section = Decidim::ContextualHelpSection.find_content(
+              current_organization,
+              "help_index"
+            )
+            content = translated_attribute(section)
+            %>
+            <% if content.blank? %>
+              <p><%= t(".subheading", name: current_organization.name) %></p>
+            <% else %>
+              <%== content %>
+            <% end %>
           </div>
         </div>
       </div>

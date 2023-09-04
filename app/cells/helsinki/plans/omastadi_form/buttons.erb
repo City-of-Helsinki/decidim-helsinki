@@ -1,21 +1,23 @@
 <% if user_signed_in? %>
-  <div class="actions text-center">
+  <div class="actions">
     <div class="form-submit-message text-center hide">
       <div class="loading-spinner"></div>
       <p><%= t(".buttons.loading_message") %></p>
     </div>
 
-    <% if plan && plan.persisted? && plan.draft? %>
-      <%= link_to t(".buttons.discard"), plan_path(plan), method: :delete, class: "mr-2 discard-draft-link", data: { confirm: t(".buttons.discard_confirmation") } %>
-    <% end %>
-    <% if plan.blank? || plan.draft? %>
-      <%= form.submit t(".buttons.save_draft"), name: "save", class: "button hollow primary large mr-2", data: { disable: true } %>
-    <% end %>
-    <% if plan.blank? || plan.draft? %>
-      <%= form.submit t(".buttons.create"), class: "button large primary", data: { disable: true } %>
-    <% else %>
-      <%= form.submit t(".buttons.save"), class: "button large primary", data: { disable: true } %>
-    <% end %>
+    <div class="flex--sbc">
+      <% if plan && plan.persisted? && plan.draft? %>
+        <%= link_to t(".buttons.discard"), plan_path(plan), method: :delete, class: "discard-draft-link", data: { confirm: t(".buttons.discard_confirmation") } %>
+      <% end %>
+      <% if plan.blank? || plan.draft? %>
+        <%= form.submit t(".buttons.save_draft"), name: "save", class: "button hollow", data: { disable: true } %>
+      <% end %>
+      <% if plan.blank? || plan.draft? %>
+        <%= form.submit t(".buttons.create"), class: "button", data: { disable: true } %>
+      <% else %>
+        <%= form.submit t(".buttons.save"), class: "button", data: { disable: true } %>
+      <% end %>
+    </div>
   </div>
 <% else %>
   <%= render :sign_in_box %>

@@ -1,9 +1,371 @@
-// This is a file that can be overridden by the application in order to override
-// some of the Foundation/Decidim SCSS settings and variables after the default
-// settings have been loaded.
-//
-// To override styles use decidim_application.scss
-//
-// By default this is empty.
+@use "sass:meta";
+@use "sass:map";
 
-$line-height-computed: 1;
+@import "stylesheets/helsinki/tokens";
+
+// 1. Global
+// -----------
+// NOTE: Keep the $global-font-size at 16px because all other REM calculations
+// are based on this value. If the text area is supposed to have larger text, it
+// should be specific to that container.
+$global-font-size: $hel-text-size-m;
+$global-lineheight: $hel-lineheight-l;
+$foundation-palette: (
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  warning: $warning,
+  alert: $alert,
+);
+
+// These settings are loaded also for the admin panel and the editor CSS, so
+// the `$tertiary` variable is not available for them.
+@if meta.variable-exists(tertiary){
+  $foundation-palette: map.set($foundation-palette, "tertiary", $tertiary);
+}
+
+$body-background: $white;
+$global-width: rem-calc(1264);
+$global-radius: 0;
+$global-weight-normal: $hel-font-weight-regular;
+$global-weight-bold: $hel-font-weight-bold;
+$body-font-color: $hel-black;
+// In layout grayscale-40 but it does not pass WCAG requirements
+$muted: $hel-grayscale-60;
+$body-font-family: $hel-grotesk;
+$global-menu-padding: $hel-spacing-s;
+$global-menu-nested-margin: 1rem;
+
+// 1.1. Helsinki extras
+$global-weight-medium: $hel-font-weight-medium;
+
+// 2. Breakpoints
+// --------------
+// Helsinki breakpoints adjusted to the Decidim breakpoints in order to maximize
+// compatibility with the default styling.
+$breakpoints: (
+  small: 0, // Helsinki xs
+  smallmedium: 576px, // Helsinki s
+  medium: 768px, // Helsinki m
+  mediumlarge: 880px, // (mid-size between Helsinki m & l)
+  large: 992px, // Helsinki l
+  xlarge: 1248px, // Helsinki xl
+  xxlarge: 1536px, // Helsinki l + 288px (previous diff + 32px)
+);
+$print-breakpoint: medium;
+$breakpoint-classes: (small smallmedium medium mediumlarge large xlarge xxlarge);
+
+// 3. The Grid
+// -----------
+$grid-row-width: $global-width;
+$grid-column-gutter: (
+  small: $hel-spacing-s,
+  medium: $hel-spacing-m,
+);
+
+// 4. Base Typography
+// -----------
+$header-font-family: $body-font-family;
+$header-font-weight: $global-weight-normal;
+$header-lineheight: 1;
+$header-styles: (
+  small: (
+    // 40px
+    "h1": ("font-size": 2.5rem, margin-bottom: 1.7rem),
+    // 32px
+    "h2": ("font-size": 2.5rem, margin-top: 3rem, margin-bottom: 3rem),
+    // 24px
+    "h3": ("font-size": 1.5rem, "line-height": 1.33, "font-weight": $global-weight-medium),
+    // 20px
+    "h4": ("font-size": $hel-text-size-xl, "line-height": 1.4, "font-weight": $global-weight-medium),
+    // 18px
+    "h5": ("font-size": $hel-text-size-l, "line-height": 1.33, "font-weight": $global-weight-bold),
+    // 16px
+    "h6": ("font-size": $hel-text-size-m, "line-height": $hel-lineheight-l, "font-weight": $global-weight-bold),
+  ),
+  medium: (
+    // 64px
+    "h1": ("font-size": 4rem),
+    // 48px
+    "h2": ("font-size": 3rem),
+    // 32px
+    "h3": ("font-size": 2rem),
+    // 24px
+    "h4": ("font-size": 1.5rem, "line-height": 1.33, "font-weight": $global-weight-medium),
+    // 20px
+    "h5": ("font-size": $hel-text-size-xl, "line-height": 1.4, "font-weight": $global-weight-medium),
+    // 18px
+    "h6": ("font-size": $hel-text-size-l, "line-height": 1.33, "font-weight": $global-weight-bold),
+  ),
+);
+$paragraph-lineheight: $hel-lineheight-l;
+$code-font-weight: $global-weight-normal;
+$anchor-color: $hel-black;
+$anchor-color-hover: $hel-black;
+$anchor-outline-focus: 1px dotted rgba(black, .5);
+$anchor-outline-offset: 2px;
+$anchor-text-decoration: underline;
+$anchor-text-decoration-hover: underline;
+$anchor-font-weight: $global-weight-normal;
+$hr-width: $global-width;
+$hr-margin: 1.7rem auto; // Mobile
+$list-lineheight: $paragraph-lineheight;
+$list-side-margin: 1.85rem;
+$list-nested-side-margin: 1.85rem;
+$defnlist-term-weight: $global-weight-bold;
+$keystroke-radius: $global-radius;
+
+// 5. Typography Helpers
+// ---------------------
+$lead-font-size: 1.375rem;
+$lead-lineheight: 2;
+$subheader-lineheight: 1.4;
+$subheader-font-weight: $global-weight-normal;
+$stat-font-size: 2.5rem;
+
+// 6. Abide
+// --------
+$input-error-font-size: rem-calc(12);
+$input-error-font-weight: $global-weight-bold;
+
+// 7. Accordion
+// ------------
+$accordion-background: $primary-color;
+$accordion-title-font-size: rem-calc(12);
+
+// 8. Accordion Menu
+// -----------------
+$accordionmenu-arrow-color: $primary-color;
+
+// 9. Badge
+// --------
+$badge-background: $primary-color;
+$badge-font-size: .6rem;
+
+// 10. Breadcrumbs
+// ---------------
+$breadcrumbs-item-font-size: rem-calc(11);
+$breadcrumbs-item-color: $primary-color;
+$button-sizes: (
+  tiny: .9rem,
+  small: .9rem,
+  default: 1rem,
+  large: 1.25rem,
+);
+$button-background-hover-lightness: -20%;
+$button-hollow-hover-lightness: -50%;
+
+// 11. Button
+// ----------
+$button-font-family: inherit;
+$button-padding: 1.125rem 2.125rem;
+$button-background: $primary-color;
+$button-background-hover: scale-color($button-background, $lightness: -15%);
+$button-radius: $global-radius;
+$button-border: 2px solid transparent;
+$button-hollow-border-width: 2px;
+
+// 13. Callout
+// -----------
+$callout-radius: $global-radius;
+
+// 14. Card
+// --------
+$card-font-color: $black;
+$card-border: 0;
+$card-shadow: none;
+$card-border-radius: $global-radius;
+
+// 16. Drilldown
+// -------------
+// We don't want a visible transition but without the transition, the JS won't
+// work because it is waiting for the transition to end. This keeps the
+// transition but makes it invisible for the eye.
+$drilldown-transition: transform .001s linear;
+$drilldown-arrow-color: $primary-color;
+
+// 17. Dropdown
+// ------------
+$dropdown-padding: 1rem;
+$dropdown-background: $body-background;
+$dropdown-border: 1px solid $medium-gray;
+$dropdown-font-size: 1rem;
+$dropdown-width: 300px;
+$dropdown-radius: $global-radius;
+$dropdown-sizes: (
+  tiny: 100px,
+  small: 200px,
+  large: 400px,
+);
+
+// 18. Dropdown Menu
+// -----------------
+$dropdownmenu-arrows: false;
+$dropdownmenu-min-width: 200px;
+$dropdownmenu-background: null;
+$dropdownmenu-submenu-background: $white;
+$dropdownmenu-padding: $hel-spacing-s - rem-calc(1); // = $input-padding
+$dropdownmenu-nested-margin: 0;
+$dropdownmenu-submenu-padding: $dropdownmenu-padding;
+$dropdownmenu-border: 1px solid $medium-gray;
+$dropdown-menu-item-color-active: get-color(primary);
+$dropdown-menu-item-background-active: transparent;
+
+// 20. Forms
+// ---------
+$fieldset-border: transparent;
+$fieldset-padding: rem-calc(20);
+$fieldset-margin: rem-calc(18 0);
+$legend-padding: rem-calc(0 3);
+$form-spacing: rem-calc(16);
+$helptext-font-size: $global-font-size;
+$helptext-color: $hel-grayscale-60;
+$helptext-font-style: normal;
+$form-label-font-size: $hel-text-size-m;
+$form-label-font-weight: $global-weight-medium;
+$select-triangle-color: transparent; // This is just to disable the default triangle
+$select-radius: $global-radius;
+$input-placeholder-color: $hel-grayscale-60;
+$input-font-size: $hel-text-size-l;
+$input-font-weight: $global-weight-normal;
+$input-line-height: $global-lineheight;
+$input-border: 2px solid $hel-grayscale-60;
+$input-border-focus: 2px solid $hel-black;
+$input-outline: 0;
+$input-outline-focus: none;
+$input-outline-offset: 0;
+$input-padding: $hel-spacing-s - rem-calc(1);
+$input-shadow-focus: 0 0 0 3px $hel-coat;
+$input-transition: border-color 85ms ease-out;
+$input-radius: $global-radius;
+$form-button-radius: $global-radius;
+
+// Extra
+$input-border-color-hover: $hel-black;
+
+// 21. Label
+// ---------
+// Note that this is the foundation "labels", i.e. tags, nothing to do with forms.
+$label-background: $hel-grayscale-10;
+$label-color: $black;
+$label-color-alt: $white;
+$label-palette: $foundation-palette;
+$label-font-size: $hel-text-size-s;
+$label-padding: .5rem 1.05rem;
+$label-radius: 1.25rem;
+
+// 24. Meter
+// ---------
+$meter-radius: $global-radius;
+
+// 27. Pagination
+// --------------
+$pagination-font-size: rem-calc(16);
+$pagination-radius: $global-radius;
+
+// 28. Progress Bar
+// ----------------
+$progress-meter-background: $primary-color;
+$progress-radius: $global-radius;
+
+// 34. Prototype Font-Styling
+// --------------------------
+$prototype-font-normal: $global-weight-normal;
+$prototype-font-bold: $global-weight-bold;
+
+// 39. Prototype Separator
+// -----------------------
+$prototype-separator-background: $primary-color;
+
+// 47. Reveal
+// -----------
+$reveal-max-width: $global-width;
+$reveal-radius: $global-radius;
+
+// 48. Slider
+// ----------
+$slider-handle-background: $primary-color;
+$slider-radius: $global-radius;
+
+// 49. Switch
+// ----------
+$switch-radius: $global-radius;
+
+// 50. Table
+// ---------
+$table-border: 1px solid $hel-grayscale-50;
+$table-padding: .79rem .625rem;
+$table-striped-background: $hel-grayscale-10;
+$table-head-background: $hel-bus;
+$table-head-color: $white;
+
+// 51. Tabs
+// --------
+$tab-item-font-size: rem-calc(16);
+$tab-color: $primary-color;
+$tab-active-color: $primary-color;
+
+// 52. Thumbnail
+// -------------
+$thumbnail-shadow-hover: 0 0 0 1px $primary-color;
+$thumbnail-radius: $global-radius;
+$tooltip-radius: $global-radius;
+
+// 54. Tooltip
+// -----------
+$has-tip-font-weight: $global-weight-normal;
+$tooltip-font-size: $small-font-size;
+
+// 55. Top Bar
+// -----------
+$topbar-padding: .5rem 0;
+$topbar-background: transparent;
+$topbar-submenu-background: transparent;
+$topbar-title-spacing: 1rem;
+$topbar-input-width: 200px;
+$topbar-unstack-breakpoint: medium;
+
+// 56. Xy Grid
+// -----------
+$grid-container: $global-width;
+$grid-margin-gutters: (
+  small: 20px,
+  medium: 30px,
+);
+$grid-container-max: $global-width;
+
+// ==========
+// CUSTOM DECIDIM / FOUNDATION
+// ==========
+
+// Menu
+// -----------
+$menu-nested-margin: $global-menu-nested-margin;
+$menu-items-padding: $global-menu-padding;
+
+// Cards
+// -----------
+$card-bg: $white !default;
+$card-secondary-bg: $light-gray-dark;
+$card-id: $medium-gray;
+
+$card-padding-small: 1rem;
+$card-padding: 1.5rem;
+$card-margin-bottom: map-get($grid-column-gutter, medium);
+
+$card-footer-bg: $light-gray-dark;
+
+$card-proposal: var(--proposals);
+$card-action: var(--actions);
+$card-debate: var(--debates);
+$card-meeting: var(--meetings);
+$card-spaces: var(--meetings);
+
+$datetime-bg: var(--primary);
+
+// Icons
+// -----------
+$icon-size: .875em;
+$icon-size-sm: .625em;
+$icon-size-l: 1.5em;
+$icon-size-xl: 1.875em;

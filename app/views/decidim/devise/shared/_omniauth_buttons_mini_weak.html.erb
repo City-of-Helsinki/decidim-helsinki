@@ -6,7 +6,7 @@
     <p>
       <%= t("devise.shared.omniauth.weak.description") %>
     </p>
-    <%= link_to decidim.send("user_tunnistamo_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(:tunnistamo)}", method: :post do %>
+    <%= link_to decidim.send("user_tunnistamo_omniauth_authorize_path"), class: "button primary button--#{normalize_provider_name(:tunnistamo)}", method: :post do %>
       <%= t("devise.shared.omniauth.weak.sign_in_button") %>
     <% end %>
   </div>

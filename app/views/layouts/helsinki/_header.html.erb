@@ -1,0 +1,95 @@
+<header id="header" class="header" role="banner">
+  <%= link_to t("skip_button", scope: "decidim.accessibility"), "#content", class: "skip", id: "skip-to-content" %>
+
+  <div class="header-top show-for-large">
+    <div class="row expanded">
+      <div class="columns small-6"><a href="https://www.hel.fi/<%= current_locale %>" target="_blank">Hel.fi</a></div>
+      <div class="columns small-6 text-right"><a href="https://palautteet.hel.fi/" target="_blank"><%= t("layouts.header.feedback") %></a></div>
+    </div>
+  </div>
+  <div class="top-bar">
+    <div class="headerbar row expanded">
+      <div class="columns small-8 medium-6">
+        <%= link_to decidim.root_path, class: "top-bar-logo", aria: { label: t("layouts.decidim.header.front_page_link") } do %>
+          <div class="top-bar-logo-symbol">
+            <%= render partial: "layouts/decidim/logo", locals: { organization: current_organization } %>
+          </div>
+          <div class="top-bar-logo-text"><%= current_organization.name %></div>
+        <% end %>
+      </div>
+      <div class="columns small-4 medium-6">
+        <div class="top-bar-panel">
+          <div class="top-bar-languages show-for-large" data-set="language-nav">
+            <div class="js-append">
+              <%= render partial: "layouts/decidim/language_chooser" %>
+            </div>
+          </div>
+          <div class="top-bar-controls">
+            <% if user_signed_in? %>
+              <nav class="show-for-large" aria-label="<%= t("layouts.decidim.header.user_menu") %>">
+                <ul class="dropdown menu" data-dropdown-menu data-autoclose="false" data-disable-hover="true" data-click-open="true" date-close-on-click="true" role="menubar">
+                  <li class="is-dropdown-submenu-parent opens-right">
+                    <button id="user-menu-control" type="button" class="clear button top-bar-control" role="menuitem" aria-controls="user-menu">
+                      <%= icon("profile", role: "img", "aria-hidden": true) %>
+                      <span><%= current_user.name %></span>
+                    </button>
+                    <ul id="user-menu" class="menu is-dropdown-submenu submenu vertical" role="menu" aria-labelledby="user-menu-control" data-submenu></ul>
+                  </li>
+                </ul>
+              </nav>
+              <button type="button" class="clear button hide-for-large" data-navbar-toggle="user">
+                <span class="top-bar-control active-hide">
+                  <%= icon("profile", role: "img", "aria-hidden": true) %>
+                  <span><%= current_user.name %></span>
+                </span>
+                <span class="top-bar-control active-show">
+                  <%= icon "x", role: "img", aria_hidden: true %>
+                  <span><%= t("layouts.header.close") %></span>
+                </span>
+              </button>
+            <% elsif current_organization.sign_up_enabled? %>
+              <%= link_to new_session_path(:user), class: "top-bar-control" do %>
+                <%= icon("account-login", role: "img", "aria-hidden": true) %>
+                <span><%= t("layouts.header.sign_in") %></span>
+              <% end %>
+            <% end %>
+            <% if display_common_elements? %>
+              <button type="button" class="clear button hide-for-large" data-navbar-toggle="main">
+                <span class="top-bar-control active-hide">
+                  <%= icon "menu", role: "img", aria_hidden: true %>
+                  <span><%= t("layouts.decidim.header.navigation") %></span>
+                </span>
+                <span class="top-bar-control active-show">
+                  <%= icon "x", role: "img", aria_hidden: true %>
+                  <span><%= t("layouts.header.close") %></span>
+                </span>
+              </button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  </div>
+  <% if display_common_elements? %>
+    <div class="top-bar-navbars">
+      <div class="navbar navbar-main" data-navbar="main">
+        <div class="hide-for-large" data-set="language-nav"></div>
+        <%= main_menu.render %>
+      </div>
+      <% if user_signed_in? %>
+        <div class="navbar navbar-user hide-for-large" data-navbar="user">
+          <nav class="user-nav">
+            <ul id="user-menu-mobile" class="menu vertical">
+              <%= render partial: "layouts/decidim/user_menu" %>
+            </ul>
+          </nav>
+        </div>
+      <% end %>
+      <div class="navbar-logo hide-for-large" aria-hidden="true">
+        <%= render partial: "layouts/decidim/logo", locals: { organization: current_organization } %>
+      </div>
+    </div>
+  <% end %>
+  <% if display_omnipresent_banner? %>
+    <%= render partial: "layouts/decidim/omnipresent_banner" %>
+  <% end %>
+</header>

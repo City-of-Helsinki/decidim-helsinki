@@ -1,9 +1,165 @@
-$font-weights: (300, 400, 500, 600, 700, 800, 900);
+@use "sass:math";
+@use "sass:map";
 
-@each $weight in $font-weights{
-  .font-weight-#{$weight}{ font-weight: #{$weight}; }
+@mixin color-variants{
+  $colors-map: map-merge(
+    $foundation-palette,
+    (
+      muted: $muted,
+    )
+  );
+
+  @each $key, $value in $colors-map{
+    .text-#{$key}{
+      color: $value;
+    }
+
+    .bg-#{$key}{
+      background-color: $value;
+    }
+  }
 }
 
-.static__content{
-  font-size: $large-font-size;
+// The extra styles that are not automatically added by Foundation
+@mixin header-extra-styling{
+  @each $breakpoint, $header in $header-styles{
+    @include breakpoint($breakpoint){
+      @each $level, $styles in $header{
+        $applicable: ();
+        $defs: font-weight, margin-bottom, margin-top;
+
+        @each $style in $defs{
+          $val: map.get($styles, $style);
+
+          @if $val{
+            $applicable: map-merge($applicable, ($style: $val));
+          }
+        }
+
+        // $weight: map.get($header, "font-weight");
+        #{$level},
+        .#{$level}{
+          @each $def, $val in $applicable{
+            #{$def}: $val;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include color-variants;
+@include header-extra-styling;
+
+.text-xlarge,
+.text-xlg{
+  font-size: $hel-text-size-xl;
+}
+
+.text-large,
+.text-lg{
+  font-size: $hel-text-size-l;
+}
+
+.text-medium,
+.text-md{
+  font-size: $hel-text-size-m;
+}
+
+.text-small,
+.text-sm{
+  font-size: $hel-text-size-s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  &:first-child{
+    margin-top: 0;
+  }
+}
+
+// Decidim headings
+.heading1{ @extend h1; }
+.heading2{ @extend h2; }
+.heading3{ @extend h3; }
+.heading4{ @extend h4; }
+.heading5{ @extend h5; }
+.heading6{ @extend h6; }
+
+ul,
+ol{
+  li{
+    padding-left: .5rem;
+  }
+}
+
+hr{
+  @include breakpoint(large){
+    margin: $hel-spacing-l auto;
+  }
+}
+
+.weight-normal{ font-weight: $global-weight-normal; }
+.weight-medium{ font-weight: $global-weight-medium; }
+.weight-bold{ font-weight: $global-weight-bold; }
+
+a,
+.link{
+  cursor: pointer;
+  text-decoration: $anchor-text-decoration;
+  text-underline-offset: 4px;
+
+  &:hover,
+  &:focus{
+    text-decoration: $anchor-text-decoration-hover;
+  }
+
+  &.action-link{
+    text-decoration: none;
+  }
+
+  &.strong{
+    font-weight: $global-weight-medium;
+  }
+}
+
+.note{
+  font-style: italic;
+  color: $hel-grayscale-60;
+}
+
+.action-link{
+  > span{
+    text-decoration: underline;
+  }
+
+  .icon{
+    position: relative;
+    top: .4rem;
+    width: 1.4em;
+    height: 1.4em;
+    margin-left: .7rem;
+
+    &:first-child{
+      margin-left: 0;
+      margin-right: .7rem;
+    }
+  }
+
+  .external-link-indicator{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    top: 0;
+    right: 0;
+
+    .icon{
+      display: none;
+    }
+  }
 }

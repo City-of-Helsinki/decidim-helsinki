@@ -8,6 +8,21 @@ module Decidim
       module StaticMap
         # The static map utility class for the Helsinki map services
         class Helsinki < ::Decidim::Map::StaticMap
+          # @see Decidim::Map::StaticMap#link
+          def link(latitude:, longitude:, options: {})
+            zoom = options.fetch(:zoom, 17)
+            base_url = configuration.fetch(
+              :link,
+              "https://palvelukartta.hel.fi/"
+            )
+
+            params = { lat: latitude, lon: longitude, zoom: zoom }
+
+            URI.parse(base_url).tap do |uri|
+              uri.query = URI.encode_www_form(params)
+            end.to_s
+          end
+
           # @see Decidim::Map::StaticMap#image_data
           def image_data(latitude:, longitude:, options: {})
             width = options[:width]

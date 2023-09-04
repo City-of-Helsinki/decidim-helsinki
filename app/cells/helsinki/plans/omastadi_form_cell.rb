@@ -5,18 +5,14 @@ module Helsinki
     class OmastadiFormCell < Decidim::Plans::PlanFormCell
       include Decidim::LayoutHelper # For the icon helper
 
-      private
-
-      def ideas_contents
-        @ideas_contents ||= object.contents.select do |c|
-          c.section.handle == "ideas"
-        end
+      def sign_in_box
+        render :sign_in_box
       end
 
+      private
+
       def form_contents
-        @form_contents ||= object.contents.reject do |c|
-          c.section.handle == "ideas"
-        end
+        @form_contents ||= object.contents
       end
     end
   end

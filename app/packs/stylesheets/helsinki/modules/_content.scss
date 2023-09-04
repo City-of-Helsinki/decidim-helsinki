@@ -1,0 +1,41 @@
+.page-title{
+  margin-bottom: 1.6rem;
+
+  @include breakpoint(medium){
+    // margin-bottom: 2.55rem; // On content pages
+    margin-bottom: 2.2rem; // On area pages
+  }
+}
+
+.side-panel{
+  border-bottom: 1px solid $hel-silver;
+  padding-bottom: 1.9rem;
+  margin-bottom: 1.5rem;
+
+  @include breakpoint(mediumlarge){
+    height: 100%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
+    border-right: 1px solid $hel-silver;
+  }
+}
+
+.static__content{
+  padding: .5rem 0;
+  font-size: $hel-text-size-l;
+}
+
+.content-intro{
+  margin-top: 1.8rem;
+  margin-bottom: 1.8rem;
+
+  @include breakpoint(medium){
+    margin-top: 3rem;
+    margin-bottom: 3.7rem;
+  }
+}
+
+.back-link{
+  margin-bottom: 2rem;
+}

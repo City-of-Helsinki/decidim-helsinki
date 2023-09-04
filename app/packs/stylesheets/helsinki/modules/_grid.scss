@@ -1,0 +1,40 @@
+.row{
+  .column,
+  .columns{
+    &.sidebar{
+      max-width: 100%;
+      flex: 0 0 100%;
+
+      @include breakpoint(mediumlarge){
+        max-width: 30%;
+        flex: 0 0 30%;
+      }
+
+      @include breakpoint(large){
+        max-width: 35.4%;
+        flex: 0 0 35.4%;
+      }
+
+      + .mainbar{
+        @include breakpoint(large){
+          padding-left: 2.6rem;
+        }
+      }
+    }
+
+    &.mainbar{
+      max-width: 100%;
+      flex: 0 0 100%;
+
+      @include breakpoint(mediumlarge){
+        max-width: 70%;
+        flex: 0 0 70%;
+      }
+
+      @include breakpoint(large){
+        max-width: 64%;
+        flex: 0 0 64%;
+      }
+    }
+  }
+}

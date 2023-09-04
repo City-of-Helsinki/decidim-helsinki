@@ -1,0 +1,135 @@
+// Helsinki Brand Design Tokens
+//
+// See: https://hds.hel.fi/foundation
+// --------------------------------------------------
+
+// Brand colors
+$hel-white:                        #fff;
+$hel-white-rgb:                    255,255,255;
+$hel-black:                        #000;
+$hel-black-rgb:                    0,0,0;
+$hel-copper:                       #00d7a7;
+$hel-copper-rgb:                   0,215,167;
+$hel-bus:                          #0000bf;
+$hel-bus-rgb:                      0,0,191;
+$hel-coat:                         #0072c6;
+$hel-coat-rgb:                     0,114,198;
+$hel-fog:                          #9fc9eb;
+$hel-fog-rgb:                      159,201,235;
+$hel-fog-light:                    #e8f3fc;
+$hel-fog-light-rgb:                232,243,252;
+$hel-metro:                        #fd4f00;
+$hel-metro-rgb:                    253,79,0;
+$hel-brick:                        #bd2719;
+$hel-brick-rgb:                    189,39,25;
+$hel-suomenlinna:                  #f5a3c7;
+$hel-suomenlinna-rgb:              245,163,199;
+$hel-suomenlinna-medium-light:     #ffdbeb;
+$hel-suomenlinna-medium-light-rgb: 255,219,235;
+$hel-suomenlinna-light:            #fff0f7;
+$hel-suomenlinna-light-rgb:        255,240,247;
+$hel-engel:                        #ffe977;
+$hel-engel-rgb:                    255,233,119;
+$hel-tram:                         #009246;
+$hel-tram-rgb:                     0,146,70;
+$hel-tram-dark:                    #006631;
+$hel-tram-dark-rgb:                0,102,49;
+$hel-summer:                       #ffc61e;
+$hel-summer-rgb:                   255,198,30;
+$hel-silver:                       #dedfe1;
+$hel-silver-rgb:                   222,223,225;
+$hel-silver-light:                 #f7f7f8;
+$hel-silver-light-rgb:             247,247,248;
+$hel-gold:                         #c2a251;
+$hel-gold-rgb:                     194,162,81;
+$hel-dark-gray:                    #525a65;
+$hel-dark-gray-rgb:                82,90,101;
+$hel-medium-gray:                  #abb2bd;
+$hel-medium-gray-rgb:              171,178,189;
+$hel-light-gray:                   #ebedf1;
+$hel-light-gray-rgb:               235,237,241;
+$hel-error:                        #b01038;
+$hel-error-rgb:                    176,16,56;
+$hel-error-light:                  #f6e2e6;
+$hel-error-light-rgb:              246,226,230;
+$hel-success:                      #007a64;
+$hel-success-rgb:                  0,122,100;
+$hel-success-light:                #e2f5f3;
+$hel-success-light-rgb:            226,245,243;
+$hel-alert:                        #d18200;
+$hel-alert-rgb:                    255,218,7;
+$hel-alert-light:                  #fff4b4;
+$hel-alert-light-rgb:              255,244,180;
+$hel-info:                         #0062b9;
+$hel-info-rgb:                     0,98,185;
+$hel-info-light:                   #e5eff8;
+$hel-info-light-rgb:               229,239,248;
+
+// Grayscale
+$hel-grayscale-black: $hel-black;
+$hel-grayscale-white: $hel-white;
+$hel-grayscale-90: #1a1a1a;
+$hel-grayscale-80: #333;
+$hel-grayscale-70: #4d4d4d;
+$hel-grayscale-60: #666;
+$hel-grayscale-50: #808080;
+$hel-grayscale-40: #999;
+$hel-grayscale-30: #b3b3b3;
+$hel-grayscale-20: #ccc;
+$hel-grayscale-10: #e6e6e6;
+$hel-grayscale-5:  #f2f2f2;
+
+// Brand monochromes
+$hel-dark:          $hel-dark-gray;
+$hel-gray:          $hel-medium-gray;
+$hel-light:         $hel-light-gray;
+
+// Font
+$hel-grotesk: HelsinkiGrotesk, Arial, sans-serif;
+
+// Weight
+$hel-font-weight-regular: 400;
+$hel-font-weight-medium: 500;
+$hel-font-weight-bold: 700;
+
+// Text sizes
+$hel-text-size-s: .875rem;
+$hel-text-size-m: 1rem;
+$hel-text-size-l: 1.125rem;
+$hel-text-size-xl: 1.25rem;
+
+// Line height
+$hel-lineheight-s: 1;
+$hel-lineheight-m: 1.2;
+$hel-lineheight-l: 1.5;
+$hel-lineheight-xl: 1.75;
+
+// Spacing
+$hel-spacing-4-xs: .125rem; // 2px
+$hel-spacing-3-xs: .24rem; // 4px
+$hel-spacing-2-xs: .5rem; // 8px
+$hel-spacing-xs: .75rem; // 12px
+$hel-spacing-s: 1rem; // 16px
+$hel-spacing-m: 1.5rem; // 24px
+$hel-spacing-l: 2rem; // 32px
+$hel-spacing-xl: 2.5rem; // 40px
+$hel-spacing-2-xl: 3rem; // 48px
+$hel-spacing-3-xl: 3.5rem; // 56px
+$hel-spacing-4-xl: 4rem; // 64px
+$hel-spacing-5-xl: 4.5rem; // 72px
+
+// Layout spacing
+$hel-layout-2-xs: 1rem; // 16px
+$hel-layout-xs: 1.5rem; // 24px
+$hel-layout-s: 2rem; // 32px
+$hel-layout-m: 3rem; // 48px
+$hel-layout-l: 4rem; // 64px
+$hel-layout-xl: 6rem; // 96px
+$hel-layout-2-xl: 8rem; // 128px
+
+// Gutters
+// Left and right side margins for the layout
+$hel-layout-gutter: (
+  small: $hel-spacing-s,
+  large: $hel-spacing-l
+);

@@ -1,5 +1,6 @@
 <% form.fields_for :settings, form.object.settings do |settings_fields| %>
   <%= settings_fields.translated :text_field, :title, label: t(".title") %>
+  <%= settings_fields.translated :editor, :description, label: t(".description") %>
   <%= settings_fields.text_field :publisher, label: t(".publisher") %>
   <%= settings_fields.text_field :keywords, label: t(".keywords") %>
   <%= settings_fields.text_field :event_url, label: t(".event_url") %>

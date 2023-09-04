@@ -1,0 +1,85 @@
+@use "sass:map";
+@use "sass:math";
+
+// The maximum content width of hel.fi seems to be 1264px instead of 1248px,
+// i.e. the "maximum" content width as defined by HDS. Therefore, we add
+// $hel-layout-2-xs to the width to match the content width of hel.fi.
+// $content-max-width: map.get($breakpoints, "xlarge") + rem-to-pixels($hel-layout-2-xs);
+$content-max-width: 1200px - 6px; // To match the layout
+
+@mixin layout-gutter-padding($side){
+  @each $breakpoint, $spacing in $hel-layout-gutter{
+    @include breakpoint($breakpoint){
+      padding-#{$side}: $spacing;
+    }
+  }
+}
+
+body{
+  min-width: 320px;
+}
+
+a{
+  &:focus,
+  &:active{
+    outline: 0;
+    box-shadow: inset 0 0 0 2px Highlight;
+    box-shadow: inset 0 0 0 2px -webkit-focus-ring-color;
+  }
+}
+
+// Instead of modifying the views everywhere, we add the layout gutters to all
+// relevant containers which have the layout row as their first decendant.
+.header-top,
+.top-bar,
+.hero__container,
+.breadcrumbs-section,
+.home-section,
+.page-section,
+.wrapper-home,
+.wrapper,
+.container,
+.main-footer,
+.mini-footer,
+#content{
+  > .row{
+    // The gutters are added to leave the rest of the space for the actual content.
+    max-width: $content-max-width + 2 * rem-to-pixels(map.get($grid-column-gutter, "small"));
+    padding-left: math.div(map.get($grid-column-gutter, "small"), 2);
+    padding-right: math.div(map.get($grid-column-gutter, "small"), 2);
+
+    @each $breakpoint, $spacing in $hel-layout-gutter{
+      @include breakpoint($breakpoint){
+        max-width: $content-max-width + 2 * rem-to-pixels($spacing);
+      }
+    }
+
+    @include breakpoint(large){
+      padding-left: map.get($hel-layout-gutter, "large") - math.div(map.get($grid-column-gutter, "medium"), 2);
+      padding-right: map.get($hel-layout-gutter, "large") - math.div(map.get($grid-column-gutter, "medium"), 2);
+    }
+
+    &.column,
+    &.columns{
+      padding-left: map.get($grid-column-gutter, "small");
+      padding-right: map.get($grid-column-gutter, "small");
+
+      @include breakpoint(large){
+        padding-left: map.get($hel-layout-gutter, "large");
+        padding-right: map.get($hel-layout-gutter, "large");
+      }
+    }
+
+    &.expanded{
+      max-width: none;
+    }
+  }
+}
+
+.wrapper{
+  padding-top: .7rem;
+
+  @include breakpoint(medium){
+    padding-top: 2rem;
+  }
+}

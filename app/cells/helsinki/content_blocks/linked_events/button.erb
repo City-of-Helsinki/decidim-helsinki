@@ -1,3 +1,8 @@
-<div class="text-center">
-  <%= link_to button_text, button_url, target: "_blank", class: "button large secondary" %>
+<div class="text-center more-link">
+  <p>
+    <%= link_to button_url, class: "action-link" do %>
+      <span><%= button_text %></span>
+      <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+    <% end %>
+  </p>
 </div>

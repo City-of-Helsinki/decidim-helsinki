@@ -1,62 +1,68 @@
-<ul class="actionbox-links">
-  <% if show_actions? %>
-    <% if allowed_to?(:request_access, :plan, plan: plan) %>
-      <li>
-        <%= decidim_form_for(request_access_form, url: request_access_plan_path(plan)) do |form| %>
-          <%= form.hidden_field :id, value: plan.id %>
-          <%= form.hidden_field :state, value: plan.state %>
-          <button type="submit" class="link action-link">
-            <%= icon "pencil", role: "img", "aria-hidden": true %>
-            <span class="link-text"><%= t ".request_access" %></span>
-          </button>
-        <% end %>
-      </li>
+<% if show_actions? %>
+  <% if allowed_to?(:request_access, :plan, plan: plan) %>
+    <div class="actions-panel bg-secondary">
+      <%= decidim_form_for(request_access_form, url: request_access_plan_path(plan)) do |form| %>
+        <%= form.hidden_field :id, value: plan.id %>
+        <%= form.hidden_field :state, value: plan.state %>
+        <button type="submit" class="link action-link">
+          <span class="link-text"><%= t ".request_access" %></span>
+          <%= icon "pencil", role: "img", "aria-hidden": true %>
+        </button>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="actions-panel bg-secondary">
+    <%= cell("decidim/favorites/favorite_button", plan, button_class: "link action-link", disable_tooltip: true) %>
+  </div>
+<% end %>
+
+<% if has_map_position? %>
+  <div class="actions-panel bg-secondary">
+    <%= link_to plan_map_link, class: "action-link", target: "_blank", data: { external_link_spacer: "" } do %>
+      <span class="link-text"><%= t ".show_on_map" %></span>
+      <%= icon "map-marker", role: "img", "aria-hidden": true %>
     <% end %>
-
-
-    <li>
-      <%= cell("decidim/favorites/favorite_button", plan, button_class: "link action-link", disable_tooltip: true) %>
-    </li>
-    <li>
-      <button type="button" class="link action-link" data-open="socialShare" aria-controls="socialShare" aria-haspopup="dialog">
-        <%= icon "share", role: "img", "aria-hidden": true %>
-        <span class="link-text"><%= t ".share" %></span>
-      </button>
-    </li>
-    <li>
-      <%= link_to "#comments", class: "action-link" do %>
-        <%= icon "comment-square", role: "img", "aria-hidden": true %>
-        <span class="link-text"><%= t ".show_comments" %></span>
-      <% end %>
-    </li>
-  <% end %>
-  <% if has_map_position? %>
-    <li>
-      <%= link_to plan_map_link, class: "action-link", target: "_blank" do %>
-        <%= icon "map-marker", role: "img", "aria-hidden": true %>
-        <span class="link-text"><%= t ".show_on_map" %></span>
-      <% end %>
-    </li>
-  <% end %>
-  <% if false %>
-    <li>
-     <button type="button" class="link action-link">
-        <%= icon "print", role: "img", "aria-hidden": true %>
-        <span class="link-text"><%= t ".print" %></span>
-     </button>
-    </li>
-  <% end %>
-  <% if flaggable? %>
-    <li>
-    <button type="button" class="link action-link" data-open="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-controls="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-haspopup="dialog">
-      <%= icon "flag", role: "img", "aria-hidden": true %>
-      <span class="link-text"><%= t ".flag" %></span>
-    </button>
-    </li>
-  <% end %>
-</ul>
+  </div>
+<% end %>
 
 <% if show_actions? %>
-  <%= render :share_modal %>
+  <div class="actions-panel bg-secondary">
+    <%= link_to "#comments", class: "action-link" do %>
+      <span class="link-text"><%= t ".show_comments" %></span>
+      <%= icon "comment-square", role: "img", "aria-hidden": true %>
+    <% end %>
+  </div>
+<% end %>
+
+
+<% if flaggable? %>
+  <div class="actions-panel bg-secondary">
+    <button type="button" class="link action-link" data-open="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-controls="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-haspopup="dialog">
+      <span class="link-text"><%= t ".flag" %></span>
+      <%= icon "flag", role: "img", "aria-hidden": true %>
+    </button>
+  </div>
+
   <%= cell("decidim/plans/flag_modal", plan) %>
+<% end %>
+
+<% if show_actions? %>
+  <div class="actions-panel bg-secondary">
+    <button type="button" class="link action-link" data-open="socialShare" aria-controls="socialShare" aria-haspopup="dialog">
+      <span class="link-text"><%= t ".share" %></span>
+      <%= icon "share", role: "img", "aria-hidden": true %>
+    </button>
+  </div>
+
+  <%= render :share_modal %>
+<% end %>
+
+<% if false %>
+  <div class="actions-panel bg-secondary">
+    <button type="button" class="link action-link">
+      <%= icon "print", role: "img", "aria-hidden": true %>
+      <span class="link-text"><%= t ".print" %></span>
+    </button>
+  </div>
 <% end %>

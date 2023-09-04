@@ -71,26 +71,26 @@ module DecidimHelsinki
     end
 
     # Passes a block of code to do after initialization.
-    config.after_initialize do
-      # Override the main menu
-      Decidim::MenuRegistry.create(:menu)
-      Decidim.menu :menu do |menu|
-        menu.item I18n.t("menu.home", scope: "decidim"),
-                  decidim.root_path,
-                  position: 1,
-                  active: :exact
+    # config.after_initialize do
+    #   # Override the main menu
+    #   Decidim::MenuRegistry.create(:menu)
+    #   Decidim.menu :menu do |menu|
+    #     menu.item I18n.t("menu.home", scope: "decidim"),
+    #               decidim.root_path,
+    #               position: 1,
+    #               active: :exact
 
-        menu.item I18n.t("menu.processes", scope: "decidim"),
-                  decidim_participatory_processes.participatory_processes_path,
-                  position: 2,
-                  active: :inclusive
+    #     menu.item I18n.t("menu.processes", scope: "decidim"),
+    #               decidim_participatory_processes.participatory_processes_path,
+    #               position: 2,
+    #               active: :inclusive
 
-        menu.item I18n.t("menu.more_information", scope: "decidim"),
-                  decidim.pages_path,
-                  position: 3,
-                  active: :inclusive
-      end
-    end
+    #     menu.item I18n.t("menu.more_information", scope: "decidim"),
+    #               decidim.pages_path,
+    #               position: 3,
+    #               active: :inclusive
+    #   end
+    # end
 
     initializer "user_authentication" do |app|
       Decidim::User.include(UserAuthentication)
@@ -190,11 +190,32 @@ module DecidimHelsinki
         content_block.settings_form_cell = "helsinki/content_blocks/intro_settings_form"
         content_block.public_name_key = "helsinki.content_blocks.intro.name"
 
+        content_block.images = [
+          {
+            name: :main_image,
+            uploader: "Helsinki::IntroImageUploader"
+          }
+        ]
+
         content_block.settings do |settings|
           settings.attribute :title, type: :text, translated: true
           settings.attribute :description, type: :text, translated: true
-          settings.attribute :link_url, type: :text
-          settings.attribute :link_text, type: :text, translated: true
+          settings.attribute :main_image_alt, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :notification) do |content_block|
+        content_block.cell = "helsinki/content_blocks/notification"
+        content_block.settings_form_cell = "helsinki/content_blocks/notification_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.notification.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :button_url, type: :text
+          settings.attribute :button_text, type: :text, translated: true
         end
 
         content_block.default!
@@ -229,6 +250,21 @@ module DecidimHelsinki
           settings.attribute :button1_text, type: :text, translated: true
           settings.attribute :button2_url, type: :text
           settings.attribute :button2_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :map_section) do |content_block|
+        content_block.cell = "helsinki/content_blocks/map_section"
+        content_block.settings_form_cell = "helsinki/content_blocks/map_section_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.map_section.name"
+
+        content_block.settings do |settings|
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :button_url, type: :text
+          settings.attribute :button_text, type: :text, translated: true
         end
 
         content_block.default!
@@ -335,6 +371,7 @@ module DecidimHelsinki
 
         content_block.settings do |settings|
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
           settings.attribute :publisher, type: :text
           settings.attribute :keywords, type: :text
           settings.attribute :event_url, type: :text
@@ -346,6 +383,11 @@ module DecidimHelsinki
       end
     end
 
+    initializer "decidim_elections.add_cells_view_paths" do |app|
+      # for overridden partials
+      Cell::ViewModel.view_paths.prepend File.expand_path("#{app.root}/app/views")
+    end
+
     initializer "decidim_plans_layouts", after: "decidim_plans.register_layouts" do
       registry = Decidim::Plans.layouts
 
@@ -353,7 +395,8 @@ module DecidimHelsinki
         layout.form_layout = "helsinki/plans/omastadi_form"
         layout.view_layout = "helsinki/plans/omastadi_view"
         layout.index_layout = "helsinki/plans/omastadi_index"
-        layout.card_layout = "helsinki/plans/plan_m"
+        layout.card_layout = "helsinki/plans/plan_l"
+        layout.notification_layout = "helsinki/plans/omastadi_notification"
         layout.public_name_key = "helsinki.plans.layouts.omastadi"
       end
     end
@@ -395,6 +438,22 @@ module DecidimHelsinki
       end
     end
 
+    initializer "pagination", before: "decidim.action_controller" do
+      config.to_prepare do
+        # Redefine the pagination options
+        Decidim::Paginable.send(:remove_const, :OPTIONS)
+        Decidim::Paginable.const_set(:OPTIONS, [20].freeze)
+
+        # Redefine the maximum depth for comments
+        Decidim::Comments::Comment.send(:remove_const, :MAX_DEPTH)
+        Decidim::Comments::Comment.const_set(:MAX_DEPTH, 2)
+      end
+    end
+
+    initializer "default_form_builder", after: "decidim.default_form_builder" do
+      ActionView::Base.default_form_builder = Helsinki::FormBuilder
+    end
+
     # Add the to_prepare hook AFTER the decidim.action_controller initializer
     # because otherwise a necessary helper would be missing from some of the
     # controllers.
@@ -404,10 +463,18 @@ module DecidimHelsinki
       #
       # Run before every request in development.
       config.to_prepare do
+        # Form helpers
+        ActionView::Helpers::Tags::CollectionCheckBoxes.include(Helsinki::FormExtensions::CollectionCheckBoxes)
+        ActionView::Helpers::Tags::CollectionRadioButtons.include(Helsinki::FormExtensions::CollectionRadioButtons)
+
         # Helper extensions
-        Decidim::Comments::CommentsHelper.include(CommentsHelperExtensions)
         Decidim::ParticipatoryProcesses::ParticipatoryProcessHelper.include(ParticipatoryProcessHelperExtensions)
         Decidim::ScopesHelper.include(ScopesHelperExtensions)
+        FoundationRailsHelper::FlashHelper.include(FlashHelperExtensions)
+
+        # Presenter extensions
+        Decidim::MenuPresenter.include(MenuPresenterExtensions)
+        Decidim::MenuItemPresenter.include(MenuItemPresenterExtensions)
 
         # Command extensions
         Decidim::Accountability::Admin::CreateResult.include(ResultExtraAttributes)
@@ -435,11 +502,16 @@ module DecidimHelsinki
         Decidim::CardMCell.include(CardMCellExtensions)
         Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::ApplicationHelper)
         Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::SanitizeHelper)
+        Decidim::Comments::CommentsCell.include(CommentsCellExtensions)
         Decidim::ContentBlocks::HeroCell.include(KoroHelper)
         Decidim::Blogs::PostMCell.include(BlogPostMCellExtensions)
         Decidim::Budgets::BudgetListItemCell.include(BudgetListItemCellExtensions)
         Decidim::Budgets::BudgetInformationModalCell.include(BudgetInformationModalExtensions)
         Decidim::Meetings::MeetingMCell.include(MeetingMCellExtensions)
+        Decidim::UploadModalCell.include(UploadModalCellExtensions)
+        Decidim::UserActivityCell.include(UserActivityCellExtensions)
+        Decidim::FollowingCell.include(FollowingCellExtensions)
+        Decidim::NotificationsCell.include(NotificationsCellExtensions)
 
         # Form extensions
         Decidim::Admin::CategoryForm.include(AdminCategoryFormExtensions)

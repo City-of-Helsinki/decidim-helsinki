@@ -1,59 +1,47 @@
 <% extra_locals ||= {} %>
 
-<div class="wrapper<%= local_assigns[:wrapper_class] ? " #{wrapper_class}" : "" %>">
-  <div class="row collapse">
-    <div class="text-center">
-      <h3 class="h5 margin-bottom-1">
-        <%= t("decidim.devise.sessions.new.sign_in_service_account") %>
-      </h3>
-      <p>
-        <%= t("decidim.devise.sessions.new.sign_in_service_account_description") %>
-      </p>
-      <% if local_assigns[:hide_form] %>
-        <p>
-          <button class="h5" data-toggle="session session_closed session_open" id="session_toggle">
-            <%= t("decidim.devise.sessions.new.sign_in_service_account") %>
-            <span id="session_closed" data-toggler=".is-hidden" aria-expanded="true">
-              <%= icon "chevron-bottom" %>
-            </span>
-            <span id="session_open" class="is-hidden" data-toggler=".is-hidden" aria-expanded="false">
-              <%= icon "chevron-top" %>
-            </span>
-          </button>
-        </p>
-      <% end %>
-    </div>
+<h3 class="h5 margin-bottom-1">
+  <%= t("decidim.devise.sessions.new.sign_in_service_account") %>
+</h3>
+<p>
+  <%= t("decidim.devise.sessions.new.sign_in_service_account_description") %>
+</p>
+<% if local_assigns[:hide_form] %>
+  <p>
+    <button class="h5" data-toggle="session session_closed session_open" id="session_toggle">
+      <%= t("decidim.devise.sessions.new.sign_in_service_account") %>
+      <span id="session_closed" data-toggler=".is-hidden" aria-expanded="true">
+        <%= icon "chevron-bottom" %>
+      </span>
+      <span id="session_open" class="is-hidden" data-toggler=".is-hidden" aria-expanded="false">
+        <%= icon "chevron-top" %>
+      </span>
+    </button>
+  </p>
+<% end %>
 
-    <div class="register-form-wrapper<%= local_assigns[:hide_form] ? " is-hidden" : "" %>" id="session" data-toggler=".is-hidden">
-      <div class="columns large-6 medium-centered">
-        <div class="card">
-          <div class="card__content">
-            <%= decidim_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "register-form new_user" }) do |f| %>
-              <div>
-                <div class="field">
-                  <%= f.email_field :email, autofocus: autofocus  %>
-                </div>
-                <div class="field">
-                  <%= f.password_field :password, autocomplete: "off" %>
-                </div>
-              </div>
-              <fieldset>
-                <% if devise_mapping.rememberable? %>
-                  <div class="field">
-                    <%= f.check_box :remember_me %>
-                  </div>
-                <% end %>
-              </fieldset>
-              <div class="actions">
-                <%= f.submit t("devise.sessions.new.sign_in"), class: "button expanded" %>
-              </div>
-            <% end %>
-            <%= render "decidim/devise/shared/links", extra_locals %>
-          </div>
-        </div>
+<div class="register-form-wrapper<%= local_assigns[:hide_form] ? " is-hidden" : "" %>" id="session" data-toggler=".is-hidden">
+  <%= decidim_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "register-form new_user" }) do |f| %>
+    <div>
+      <div class="field">
+        <%= f.email_field :email, autofocus: autofocus  %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "off" %>
       </div>
     </div>
-  </div>
+    <fieldset>
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+        </div>
+      <% end %>
+    </fieldset>
+    <div class="actions">
+      <%= f.submit t("devise.sessions.new.sign_in"), class: "button" %>
+    </div>
+  <% end %>
+  <%= render "decidim/devise/shared/links", extra_locals %>
 </div>
 
 <% if local_assigns[:hide_form] && auto_open_login_form? %>

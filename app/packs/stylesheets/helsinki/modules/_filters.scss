@@ -1,23 +1,36 @@
-.record-filters{
-  .input-group-label{
-    background: transparent;
-    border: 0;
+.filters{
+  padding: 1.7rem 0 1rem;
+
+  @include breakpoint(medium){
+    padding: 2.1rem 0 1rem;
+  }
+}
+
+.filters__control{
+  padding: .1rem 0;
+
+  @include breakpoint(medium){
+    padding: .4rem 0;
+  }
+}
+
+.filters__actions{
+  padding: .6rem 0;
+
+  @include breakpoint(medium){
+    padding: .4rem 0;
   }
 
-  .filters__section{
-    padding: .7rem 1rem;
+  .button{
+    margin-right: 1.6rem;
 
-    &.filters__section--title{
-      p{
-        margin-bottom: 0;
-      }
+    &:last-child{
+      margin-right: 0;
     }
-  }
 
-  input,
-  select,
-  textarea,
-  .input-group{
-    margin-bottom: 0;
+    &.clear{
+      padding-left: .5rem;
+      padding-right: .5rem;
+    }
   }
 }

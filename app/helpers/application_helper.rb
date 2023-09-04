@@ -103,7 +103,9 @@ module ApplicationHelper
   # 'private' application mode these should be hidden in case the user is not
   # signed in.
   def display_common_elements?
-    true
+    return true unless current_organization.force_users_to_authenticate_before_access_organization
+
+    user_signed_in?
   end
 
   def display_header_koro?
@@ -114,6 +116,7 @@ module ApplicationHelper
   end
 
   def display_omnipresent_banner?
+    return false unless display_common_elements?
     return false unless current_organization.enable_omnipresent_banner
 
     controller.controller_name != "votes"

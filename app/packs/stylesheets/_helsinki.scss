@@ -1,61 +1,57 @@
 /*
  * This file contains some overrides for the Decidim styles as well as custom
  * functionality for the Helsinki instance that is not related directly to the
- * Decidim platform. These special styles are used e.g. for creating branding
- * banners, campaigns or other types of special elements for the site.
- *
- * The custom elements are mainly used on the front page of the service.
+ * Decidim platform. This customizes the platform look and feel to the Helsinki
+ * design system in addition to the customized Foundation default styling.
  */
 
+// Utils
+@import "stylesheets/helsinki/util/link";
+@import "stylesheets/helsinki/util/unit";
+@import "stylesheets/helsinki/util/color";
+@import "stylesheets/helsinki/util/icon";
+
 // Modules
-@import "stylesheets/helsinki/modules/accordion";
-@import "stylesheets/helsinki/modules/actionbox";
-@import "stylesheets/helsinki/modules/author-avatar";
-@import "stylesheets/helsinki/modules/banner";
-@import "stylesheets/helsinki/modules/breadcrumbs";
-@import "stylesheets/helsinki/modules/budget-card";
-@import "stylesheets/helsinki/modules/budgets";
-@import "stylesheets/helsinki/modules/card-slider";
-@import "stylesheets/helsinki/modules/cards";
-@import "stylesheets/helsinki/modules/colors";
-@import "stylesheets/helsinki/modules/comments";
-@import "stylesheets/helsinki/modules/dropdown-menu";
-@import "stylesheets/helsinki/modules/favorites";
-@import "stylesheets/helsinki/modules/featured-articles";
-@import "stylesheets/helsinki/modules/filters";
-@import "stylesheets/helsinki/modules/forms";
-@import "stylesheets/helsinki/modules/images";
-@import "stylesheets/helsinki/modules/koros";
-@import "stylesheets/helsinki/modules/lists";
-@import "stylesheets/helsinki/modules/main-container";
-@import "stylesheets/helsinki/modules/map";
-@import "stylesheets/helsinki/modules/menu";
-@import "stylesheets/helsinki/modules/pagination";
-@import "stylesheets/helsinki/modules/phases";
-@import "stylesheets/helsinki/modules/progress-bar";
-@import "stylesheets/helsinki/modules/record-details";
-@import "stylesheets/helsinki/modules/reveals";
-@import "stylesheets/helsinki/modules/sections";
-@import "stylesheets/helsinki/modules/stepper";
-@import "stylesheets/helsinki/modules/sub-navigation";
-@import "stylesheets/helsinki/modules/table";
 @import "stylesheets/helsinki/modules/typography";
-@import "stylesheets/helsinki/modules/utility";
+@import "stylesheets/helsinki/modules/table";
+@import "stylesheets/helsinki/modules/lists";
+@import "stylesheets/helsinki/modules/layout";
+@import "stylesheets/helsinki/modules/grid";
+@import "stylesheets/helsinki/modules/header";
+@import "stylesheets/helsinki/modules/footer";
+@import "stylesheets/helsinki/modules/menu";
+@import "stylesheets/helsinki/modules/tabs";
+@import "stylesheets/helsinki/modules/icons";
+@import "stylesheets/helsinki/modules/koros";
+@import "stylesheets/helsinki/modules/rich-text";
+@import "stylesheets/helsinki/modules/callout";
+@import "stylesheets/helsinki/modules/banner";
+@import "stylesheets/helsinki/modules/label";
+@import "stylesheets/helsinki/modules/buttons";
+@import "stylesheets/helsinki/modules/forms";
+@import "stylesheets/helsinki/modules/controls";
+@import "stylesheets/helsinki/modules/cards";
+@import "stylesheets/helsinki/modules/toggle";
+@import "stylesheets/helsinki/modules/bubble";
+@import "stylesheets/helsinki/modules/hero";
+@import "stylesheets/helsinki/modules/sections";
+@import "stylesheets/helsinki/modules/panels";
+@import "stylesheets/helsinki/modules/stepper";
+@import "stylesheets/helsinki/modules/breadcrumbs";
+@import "stylesheets/helsinki/modules/pagination";
+@import "stylesheets/helsinki/modules/filters";
+@import "stylesheets/helsinki/modules/slider";
+@import "stylesheets/helsinki/modules/statistics";
+@import "stylesheets/helsinki/modules/charts";
+@import "stylesheets/helsinki/modules/datalabel";
+@import "stylesheets/helsinki/modules/content";
+@import "stylesheets/helsinki/modules/resource";
+@import "stylesheets/helsinki/modules/comments";
+@import "stylesheets/helsinki/modules/account";
 
-// Extras
-@import "stylesheets/helsinki/extras/announcement";
-@import "stylesheets/helsinki/extras/budgets";
-@import "stylesheets/helsinki/extras/close-button";
-@import "stylesheets/helsinki/extras/forms";
-@import "stylesheets/helsinki/extras/grid";
-@import "stylesheets/helsinki/extras/ideas";
-@import "stylesheets/helsinki/extras/linked-resources";
-@import "stylesheets/helsinki/extras/plans";
-@import "stylesheets/helsinki/extras/process-phase";
-@import "stylesheets/helsinki/extras/reveal";
-@import "stylesheets/helsinki/extras/sign-in";
+//Additional elements
+@import "stylesheets/helsinki/modules/omnipresent-banner";
+@import "stylesheets/helsinki/modules/emoji-picker";
 
-// Fix the flickering navs on load
-html.js .hide-on-load{
-  display: none;
-}
+// Print
+@import "stylesheets/helsinki/print";

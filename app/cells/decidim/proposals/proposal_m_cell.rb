@@ -71,11 +71,8 @@ module Decidim
 
       def endorsements_count_status
         return unless current_settings.endorsements_enabled?
-        return endorsements_count unless has_link_to_resource?
 
-        link_to resource_path do
-          endorsements_count
-        end
+        endorsements_count
       end
 
       def endorsements_count
@@ -86,11 +83,8 @@ module Decidim
 
       def comments_count_status
         return unless component_settings.comments_enabled?
-        return render_comments_count unless has_link_to_resource?
 
-        link_to resource_path do
-          render_comments_count
-        end
+        render_comments_count
       end
 
       def progress_bar_progress

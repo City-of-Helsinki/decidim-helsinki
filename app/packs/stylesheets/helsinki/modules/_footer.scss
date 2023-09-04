@@ -1,0 +1,171 @@
+.footer{
+  // Pull the footer for the koro to be on top of the last element on the page.
+  // This helps to keep the background of the previous section not to leave a
+  // white border at the bottom of the page
+  position: relative;
+  top: -1rem;
+
+  // Cover the extra space at the bottom with the footer background
+  &::after{
+    content: "";
+    position: absolute;
+    bottom: -1rem;
+    width: 100%;
+    height: 1rem;
+    background-color: $hel-black;
+  }
+}
+
+.main-footer,
+.mini-footer{
+  background-color: $hel-black;
+  color: $hel-white;
+
+  a{
+    color: $hel-white;
+  }
+}
+
+.main-footer{
+  padding-top: 2rem;
+  font-size: $hel-text-size-l;
+
+  @include breakpoint(medium){
+    padding-top: 2.2rem;
+  }
+
+  h2{
+    margin-top: 1.1rem;
+    margin-bottom: $hel-spacing-s;
+    line-height: $hel-lineheight-l;
+
+    @include breakpoint(medium){
+      margin-top: 0;
+    }
+  }
+
+  .menu{
+    li{
+      margin-top: 1rem;
+    }
+
+    a{
+      text-decoration: underline;
+      padding: 0;
+    }
+  }
+
+  .credits{
+    display: flex;
+    justify-content: space-between;
+    font-size: $hel-text-size-m;
+    margin-top: 2.7rem;
+    line-height: 1.3;
+
+    @include breakpoint(smallmedium){
+      display: block;
+    }
+
+    @include breakpoint(large){
+      margin-top: $hel-spacing-s;
+    }
+
+    @include breakpoint(xlarge){
+      margin-top: 0;
+    }
+
+    .credits-content{
+      flex-basis: 70%;
+      margin-right: $hel-spacing-s;
+    }
+
+    .cc-badge{
+      position: relative;
+      top: 7px;
+      text-decoration: none;
+
+      @include breakpoint(smallmedium){
+        top: -3px;
+      }
+    }
+  }
+}
+
+.mini-footer{
+  margin-top: -1px; // Cover the line in-between the items when zooming
+  padding-top: $hel-spacing-3-xs;
+  padding-bottom: $hel-spacing-l;
+
+  @include breakpoint(medium){
+    padding-top: $hel-spacing-xs;
+  }
+
+  .site-info{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    font-size: $hel-text-size-s;
+
+    @include breakpoint(medium){
+      flex-direction: row;
+      font-size: $hel-text-size-m;
+    }
+
+    .site-info-logo{
+      margin-right: $hel-spacing-s;
+    }
+
+    .site-info-content{
+      margin-top: 1.2rem;
+
+      @include breakpoint(medium){
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+a.mini-footer-logo{
+  text-decoration: none;
+
+  img{
+    height: 40px;
+  }
+}
+
+.back-to-top{
+  display: flex;
+  height: 100%;
+  align-items: baseline;
+  justify-content: end;
+  padding-top: $hel-spacing-s;
+  font-size: $hel-text-size-xl;
+  font-weight: $global-weight-medium;
+
+  @include breakpoint(medium){
+    padding-top: 0;
+  }
+
+  @include breakpoint(large){
+    font-size: 1.5rem;
+  }
+
+  a{
+    @include plain-text-link;
+  }
+
+  .icon{
+    position: relative;
+    top: 4px;
+    width: 1.17em;
+    height: 1.17em;
+    transition: top .2s linear;
+  }
+
+  &:hover,
+  &:focus{
+    .icon{
+      top: 0;
+    }
+  }
+}

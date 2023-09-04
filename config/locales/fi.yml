@@ -90,6 +90,13 @@ fi:
           explanation: 'Kuvan ohjeistus:'
           message_1: Käytä mieluiten vaakasuuntaista kuvaa, jossa ei ole tekstiä.
           message_2: Palvelu rajaa kuvaa.
+      upload_help:
+        explanation: 'Ohjeita ladattavaa tiedostoa varten:'
+      upload:
+        labels:
+          add_attachment: Valitse liite
+          add_file: Valitse tiedosto
+          add_image: Valitse kuva
     help_sections:
       footer_text:
         name: Alaosion teksti
@@ -102,7 +109,13 @@ fi:
       index:
         title: Ohjeet
       side_panel:
-        show_navigation: Näytä navigaatio
+        choose: Valitse ohje
+        label: Alanavigaatio
+        show_navigation: Valitse tarkasteltava ohje
+    participatory_processes:
+      participatory_processes:
+        index:
+          title: Prosessit
     proposals:
       proposals:
         filters:
@@ -145,13 +158,14 @@ fi:
         unfold: Avaa
       breadcrumbs:
         current: Nykyinen sivu
+        label: Murupolku
       header:
-        choose_language: Valitse kieli
         front_page_link: Siirry etusivulle
         help: Ohjeet
-        navigation: Menu
-        sign_in: Kirjaudu
+        navigation: Valikko
         subtitle: 2020-2021
+      language_chooser_languages:
+        label: Valitse kieli
       participatory_processes:
         index:
           active_processes: Käynnissä nyt
@@ -165,9 +179,29 @@ fi:
         profile: Omat tiedot
         profile_nav: Profiili
         public_profile: Oma toiminta
-    footer:
-      about: Tietoa palvelusta
-      contact: Yhteystiedot
+      user_profile:
+        my_data: Lataa tiedot
+      wrapper:
+        subnav:
+          choose: Valitse sivu
+          label: Alanavigaatio
+          show: Valitse sivu
+    header:
+      close: Sulje
       feedback: Anna palautetta
-      processes_info: Prosessit-sivulta voit tutustua palvelun muihin prosesseihin
-      processes_show: Näytä kaikki prosessit
+      sign_in: Kirjaudu
+    flash:
+      close: Sulje ilmoitus
+    footer:
+      back_to_top: Takaisin ylös
+      city_name: Helsingin kaupunki
+      contact: Ota yhteyttä
+      feedback: Anna palautetta
+      history: Historia
+  views:
+    pagination:
+      first: Ensimmäinen
+      last: Viimeinen
+      next: Seuraava
+      previous: Edellinen
+      truncate: "&hellip;"

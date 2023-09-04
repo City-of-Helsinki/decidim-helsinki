@@ -1,0 +1,67 @@
+.datalabel{
+  display: flex;
+
+  .datalabel__indicator{
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: .375rem;
+    border: .625rem solid;
+  }
+
+  .datalabel__text{
+    flex: 1;
+    font-size: .9375rem;
+  }
+
+  .datalabel__value{
+    width: 3.75rem;
+    margin-left: .375rem;
+    text-align: right;
+  }
+}
+
+.datalabel-group{
+  display: flex;
+  flex-direction: column;
+  margin-top: .5rem;
+
+  .datalabel{
+    margin-bottom: .65rem;
+
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+}
+
+.numlabel{
+  text-align: center;
+
+  &.numlabel--large{
+    .numlabel__value{
+      font-size: 4.7rem;
+      line-height: 1;
+    }
+  }
+
+  .numlabel__text{
+    font-size: $hel-text-size-s;
+    line-height: 1;
+  }
+
+  .numlabel__value{
+    white-space: nowrap;
+    font-size: 1.5rem;
+    line-height: 1.7;
+  }
+}
+
+.card{
+  .datalabel-group{
+    padding: 0 1.3rem 0 .5rem;
+  }
+
+  .numlabel-group{
+    padding-top: .7rem;
+  }
+}

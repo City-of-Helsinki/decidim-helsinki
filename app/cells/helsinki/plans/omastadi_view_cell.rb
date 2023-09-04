@@ -3,14 +3,8 @@
 module Helsinki
   module Plans
     class OmastadiViewCell < Decidim::Plans::PlanViewCell
-      include ActionView::Helpers::NumberHelper
+      # include ActionView::Helpers::NumberHelper
       include Decidim::Plans::RichPresenter
-
-      def answer
-        return if !plan.answered? && budget_estimate.blank? && final_budget_estimate.blank?
-
-        render :answer
-      end
 
       def linked_ideas
         return unless ideas
@@ -31,61 +25,6 @@ module Helsinki
       end
 
       private
-
-      def answer_callout_class
-        return "success" if plan.accepted?
-        return "alert" if plan.rejected?
-        return "warning" if plan.answered?
-
-        "primary"
-      end
-
-      def final_answer_available?
-        plan.answered? || final_budget_estimate.present?
-      end
-
-      def budget_estimate
-        return unless budget_estimate_content
-
-        @budget_estimate ||= translated_attribute(budget_estimate_content.body).presence
-      end
-
-      def budget_estimate_section
-        @budget_estimate_section ||= section_with_handle("budget_estimate")
-      end
-
-      def budget_estimate_content
-        return @budget_estimate_content if @budget_estimate_content
-        return unless budget_estimate_section
-
-        @budget_estimate_content ||= content_for(budget_estimate_section)
-      end
-
-      def final_budget_estimate
-        return @final_budget_estimate if @final_budget_estimate
-        return unless final_budget_estimate_content
-        return if final_budget_estimate_content.body["value"].blank?
-
-        estimate = final_budget_estimate_content.body["value"].to_i
-        return unless estimate.positive?
-
-        @final_budget_estimate ||=
-          number_to_currency(
-            estimate,
-            precision: 0,
-            unit: Decidim.currency_unit
-          )
-      end
-
-      def final_budget_estimate_section
-        @final_budget_estimate_section ||= section_with_handle("final_budget_estimate")
-      end
-
-      def final_budget_estimate_content
-        return unless final_budget_estimate_section
-
-        @final_budget_estimate_content ||= content_for(final_budget_estimate_section)
-      end
 
       def main_image_path
         if plan_image && plan_image.photo? && plan_image.file && plan_image.file.attached?

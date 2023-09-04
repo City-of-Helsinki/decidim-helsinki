@@ -12,7 +12,7 @@
         <% if index > 0 %>
           <br>
         <% end %>
-        <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button hollow large primary button--#{normalize_provider_name(provider)}", method: :post do %>
+        <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button primary button--#{normalize_provider_name(provider)}", method: :post do %>
           <%= t("devise.shared.omniauth.#{provider}.sign_in_button") %>
         <% end %>
       <% end %>

@@ -7,7 +7,7 @@ module Decidim
       {
         # Can be used as a hero image
         default: { resize_to_limit: [2340, 880] },
-        thumbnail: { resize_to_fill: [865, 348] },
+        thumbnail: { resize_to_fill: [860, 570] },
         highlight: { resize_to_fill: [1120, 1120] },
         list: { resize_to_fill: [1520, 750] }
       }

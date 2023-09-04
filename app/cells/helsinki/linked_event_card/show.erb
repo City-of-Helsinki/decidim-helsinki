@@ -1,0 +1,21 @@
+<%= link_to event_url, target: "_blank", class: "card", aria: { label: "Test" }, data: {
+  external_link_spacer: "",
+  external_link_target: ".card__indicator"
+} do %>
+  <%= image_tag(image_url, class: "card__image", alt: translated_attribute(model["name"])) %>
+
+  <div class="card__content">
+    <h3 class="h4"><%= translated_attribute model["name"] %></h3>
+  </div>
+
+  <div class="card__details">
+    <div class="card__details__item">
+      <%= icon("calendar-clock", role: "img", "aria-hidden": true) %>
+      <span class="card__details__item__text">
+        <%= dates %>
+      </span>
+    </div>
+  </div>
+
+  <div class="card__indicator"></div>
+<% end %>

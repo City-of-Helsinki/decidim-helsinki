@@ -1,6 +1,9 @@
+<% form.fields_for :images, form.object.images do |images_fields| %>
+  <%= images_fields.upload :main_image, label: t(".main_image") %>
+<% end %>
+
 <% form.fields_for :settings, form.object.settings do |settings_fields| %>
   <%= settings_fields.translated :text_field, :title, label: t(".title") %>
+  <%= settings_fields.translated :text_field, :main_image_alt, label: t(".main_image_alt") %>
   <%= settings_fields.translated :editor, :description, label: t(".description") %>
-  <%= settings_fields.text_field :link_url, label: t(".link_url") %>
-  <%= settings_fields.translated :text_field, :link_text, label: t(".link_text") %>
 <% end %>
