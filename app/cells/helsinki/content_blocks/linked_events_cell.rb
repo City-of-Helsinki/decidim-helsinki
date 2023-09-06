@@ -26,15 +26,11 @@ module Helsinki
       end
 
       def events
-        Rails.cache.fetch(
-          "linked_events/upcoming/highlights/#{model.settings.publisher}/#{model.settings.keywords}",
-          expires_in: 1.hour
-        ) do
-          le = Helsinki::LinkedEvents::Fetcher.new
-          all = le.upcoming_events(publisher: model.settings.publisher, keywords: model.settings.keywords)
+        @events ||= ::LinkedEvents.upcoming(events_set, amount: 4).events
+      end
 
-          all[0..2]
-        end
+      def events_set
+        @events_set ||= Decidim::Connector::Set.get(current_organization, "events")
       end
 
       def title

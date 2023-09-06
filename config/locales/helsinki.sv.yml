@@ -98,9 +98,6 @@ sv:
         button_text: Knapp text
         button_url: Knapp URL
         description: Beskrivning
-        event_url: Händelsesidans URL
-        keywords: Nyckelord (avgränsade med kommatecken utan mellanslag)
-        publisher: Utgivare
         title: Titel
       plans_carousel:
         name: Förslagskarusell (samutveckling)

@@ -44,6 +44,11 @@ every :hour, at: 5, roles: [:background] do
   rake "decidim:stats:aggregate"
 end
 
+# bundle exec rails integration:sync_events
+every :hour, at: 30, roles: [:background] do
+  rake "integration:sync_events"
+end
+
 # # Send notification mail digest weekly on saturdays
 # every :saturday, at: "05:05", roles: [:app] do
 #   rake "decidim:mailers:notifications_digest_weekly"

@@ -84,9 +84,6 @@ fi:
         button_text: Napin teksti
         button_url: Napin URL
         description: Kuvaus
-        event_url: Tapahtumasivun URL
-        keywords: Avainsanat (pilkulla erotettu ilman välilyöntiä)
-        publisher: Julkaisija
         title: Otsikko
       map_section:
         name: Karttaosio

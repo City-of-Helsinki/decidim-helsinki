@@ -84,9 +84,6 @@ en:
         button_text: Button text
         button_url: Button URL
         description: Description
-        event_url: Event page URL
-        keywords: Keywords (separated with a comma without spaces)
-        publisher: Publisher
         title: Title
       map_section:
         name: Map section

@@ -550,6 +550,24 @@ ActiveRecord::Schema.define(version: 2023_09_04_112015) do
     t.index ["participatory_space_id", "participatory_space_type"], name: "index_decidim_components_on_decidim_participatory_space"
   end
 
+  create_table "decidim_connector_items", force: :cascade do |t|
+    t.bigint "decidim_connector_set_id"
+    t.string "remote_id"
+    t.jsonb "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["decidim_connector_set_id"], name: "index_decidim_connector_items_on_decidim_connector_set_id"
+  end
+
+  create_table "decidim_connector_sets", force: :cascade do |t|
+    t.bigint "decidim_organization_id"
+    t.string "key", null: false
+    t.jsonb "config"
+    t.index ["decidim_organization_id", "key"], name: "decidim_connector_sets_organization_key_unique", unique: true
+    t.index ["decidim_organization_id"], name: "index_decidim_connector_sets_on_decidim_organization_id"
+    t.index ["key"], name: "index_decidim_connector_sets_on_key"
+  end
+
   create_table "decidim_content_block_attachments", force: :cascade do |t|
     t.string "name"
     t.bigint "decidim_content_block_id", null: false
@@ -2163,6 +2181,8 @@ ActiveRecord::Schema.define(version: 2023_09_04_112015) do
   add_foreign_key "decidim_combined_budgeting_component_maps", "decidim_combined_budgeting_processes"
   add_foreign_key "decidim_combined_budgeting_component_maps", "decidim_components", on_delete: :cascade
   add_foreign_key "decidim_combined_budgeting_processes", "decidim_organizations"
+  add_foreign_key "decidim_connector_items", "decidim_connector_sets"
+  add_foreign_key "decidim_connector_sets", "decidim_organizations"
   add_foreign_key "decidim_debates_debates", "decidim_scopes"
   add_foreign_key "decidim_editor_images", "decidim_organizations"
   add_foreign_key "decidim_editor_images", "decidim_users", column: "decidim_author_id"
