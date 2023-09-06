@@ -82,9 +82,6 @@ en:
       linked_events_settings_form:
         button_text: Button text
         button_url: Button URL
-        event_url: Event page URL
-        keywords: Keywords (separated with a comma without spaces)
-        publisher: Publisher
         title: Title
       plans_carousel:
         name: Proposals carousel (cocreation)

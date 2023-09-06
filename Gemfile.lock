@@ -63,6 +63,14 @@ GIT
       decidim-stats (~> 0.27.0)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-connector.git
+  revision: e6c63683b567d4e44415daab7d78a3d2d72d268d
+  branch: main
+  specs:
+    decidim-connector (0.27.0)
+      decidim-core (~> 0.27.0)
+
+GIT
   remote: https://github.com/mainio/decidim-module-favorites.git
   revision: caaf9d9e81a730a63c8d1d3e6df78533beef1785
   branch: main
@@ -1121,6 +1129,7 @@ DEPENDENCIES
   decidim-antivirus!
   decidim-apiauth!
   decidim-budgeting_pipeline!
+  decidim-connector!
   decidim-dev (~> 0.27.0)
   decidim-favorites!
   decidim-feedback!

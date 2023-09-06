@@ -18,15 +18,11 @@ module Helsinki
       private
 
       def events
-        Rails.cache.fetch(
-          "linked_events/upcoming/highlights/#{model.settings.publisher}/#{model.settings.keywords}",
-          expires_in: 1.hour
-        ) do
-          le = Helsinki::LinkedEvents::Fetcher.new
-          all = le.upcoming_events(publisher: model.settings.publisher, keywords: model.settings.keywords)
+        @events ||= ::LinkedEvents.upcoming(events_set, amount: 4).events
+      end
 
-          all[0..3]
-        end
+      def events_set
+        @events_set ||= Decidim::Connector::Set.get(current_organization, "events")
       end
 
       def title
@@ -41,10 +37,6 @@ module Helsinki
         translated_attribute(model.settings.button_text)
       end
 
-      def event_url_for(event)
-        "#{model.settings.event_url}?event_id=#{event["id"]}"
-      end
-
       def imagebox_for(event, index)
         cls = ["imagebox"]
         cls << "show-for-medium" if index.positive?
@@ -55,15 +47,15 @@ module Helsinki
       end
 
       def image_for(event)
-        image = event["images"].first
+        image = event.images.first
         return image["url"] if image
 
         asset_pack_tag("blogs-post-highlight-default.jpg")
       end
 
       def dates_for(event)
-        start_date = Date.parse(event["start_time"])
-        end_date = Date.parse(event["end_time"])
+        start_date = Date.parse(event.start_time)
+        end_date = Date.parse(event.end_time)
         if start_date == end_date
           return content_tag :time, datetime: start_date.iso8601 do
             l(start_date, format: :decidim_short)
@@ -76,7 +68,7 @@ module Helsinki
       end
 
       def summary_for(event)
-        html_truncate(translated_attribute(event["short_description"]), length: 100, separator: "...")
+        html_truncate(translated_attribute(event.short_description), length: 100, separator: "...")
       end
     end
   end

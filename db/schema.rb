@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_06_192439) do
+ActiveRecord::Schema.define(version: 2023_09_04_112015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -548,6 +548,24 @@ ActiveRecord::Schema.define(version: 2023_07_06_192439) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["participatory_space_id", "participatory_space_type"], name: "index_decidim_components_on_decidim_participatory_space"
+  end
+
+  create_table "decidim_connector_items", force: :cascade do |t|
+    t.bigint "decidim_connector_set_id"
+    t.string "remote_id"
+    t.jsonb "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["decidim_connector_set_id"], name: "index_decidim_connector_items_on_decidim_connector_set_id"
+  end
+
+  create_table "decidim_connector_sets", force: :cascade do |t|
+    t.bigint "decidim_organization_id"
+    t.string "key", null: false
+    t.jsonb "config"
+    t.index ["decidim_organization_id", "key"], name: "decidim_connector_sets_organization_key_unique", unique: true
+    t.index ["decidim_organization_id"], name: "index_decidim_connector_sets_on_decidim_organization_id"
+    t.index ["key"], name: "index_decidim_connector_sets_on_key"
   end
 
   create_table "decidim_content_block_attachments", force: :cascade do |t|
@@ -1220,6 +1238,19 @@ ActiveRecord::Schema.define(version: 2023_07_06_192439) do
     t.index ["decidim_reportable_type", "decidim_reportable_id"], name: "decidim_moderations_reportable", unique: true
     t.index ["hidden_at"], name: "decidim_moderations_hidden_at"
     t.index ["report_count"], name: "decidim_moderations_report_count"
+  end
+
+  create_table "decidim_nav_links", force: :cascade do |t|
+    t.bigint "decidim_organization_id"
+    t.integer "parent_id"
+    t.jsonb "title"
+    t.jsonb "href"
+    t.string "target"
+    t.integer "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_organization_id"], name: "decidim_nav_links_on_organization_id"
+    t.index ["parent_id"], name: "index_decidim_nav_links_on_parent_id"
   end
 
   create_table "decidim_newsletters", id: :serial, force: :cascade do |t|
@@ -2021,6 +2052,8 @@ ActiveRecord::Schema.define(version: 2023_07_06_192439) do
     t.datetime "digest_sent_at"
     t.datetime "password_updated_at"
     t.string "previous_passwords", default: [], array: true
+    t.datetime "published_at"
+    t.boolean "allow_private_messaging", default: true
     t.index ["confirmation_token"], name: "index_decidim_users_on_confirmation_token", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_users_on_decidim_organization_id"
     t.index ["email", "decidim_organization_id"], name: "index_decidim_users_on_email_and_decidim_organization_id", unique: true, where: "((deleted_at IS NULL) AND (managed = false) AND ((type)::text = 'Decidim::User'::text))"
@@ -2148,6 +2181,8 @@ ActiveRecord::Schema.define(version: 2023_07_06_192439) do
   add_foreign_key "decidim_combined_budgeting_component_maps", "decidim_combined_budgeting_processes"
   add_foreign_key "decidim_combined_budgeting_component_maps", "decidim_components", on_delete: :cascade
   add_foreign_key "decidim_combined_budgeting_processes", "decidim_organizations"
+  add_foreign_key "decidim_connector_items", "decidim_connector_sets"
+  add_foreign_key "decidim_connector_sets", "decidim_organizations"
   add_foreign_key "decidim_debates_debates", "decidim_scopes"
   add_foreign_key "decidim_editor_images", "decidim_organizations"
   add_foreign_key "decidim_editor_images", "decidim_users", column: "decidim_author_id"

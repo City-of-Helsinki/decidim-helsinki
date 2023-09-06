@@ -5,7 +5,7 @@
   <div class="row small-up-1 medium-up-2 mediumlarge-up-4 card-grid">
     <% events.each_with_index do |event, index| %>
       <div class="column">
-        <%= link_to event_url_for(event), target: "_blank", class: "card card-simple", data: {
+        <%= link_to event.url, target: "_blank", class: "card card-simple", data: {
           external_link_spacer: "",
           external_link_target: ".card-section"
         } do %>
