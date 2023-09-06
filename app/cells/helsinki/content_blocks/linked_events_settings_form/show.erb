@@ -1,6 +1,5 @@
 <% form.fields_for :settings, form.object.settings do |settings_fields| %>
   <%= settings_fields.translated :text_field, :title, label: t(".title") %>
-  <%= settings_fields.text_field :event_url, label: t(".event_url") %>
   <%= settings_fields.translated :text_field, :button_url, label: t(".button_url") %>
   <%= settings_fields.translated :text_field, :button_text, label: t(".button_text") %>
 <% end %>
