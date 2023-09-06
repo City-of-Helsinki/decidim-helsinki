@@ -12,7 +12,7 @@ class SynchronizeLinkedEvents < ApplicationJob
     now = Time.zone.now
     sets.each do |set|
       Rails.logger.debug { "Cleaning old data for set: #{set.id}" }
-      LinkedEvents.past.query.delete_all
+      LinkedEvents.past(set).query.delete_all
 
       Rails.logger.debug { "Fetcing data for set: #{set.id}" }
 
