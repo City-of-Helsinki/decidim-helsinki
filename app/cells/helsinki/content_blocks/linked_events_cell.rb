@@ -9,6 +9,8 @@ module Helsinki
       include Decidim::IconHelper
 
       def button
+        return unless events_set
+        return unless events.any?
         return if button_url.blank?
         return if button_text.blank?
 
