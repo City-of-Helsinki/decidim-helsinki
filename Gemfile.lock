@@ -64,7 +64,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-connector.git
-  revision: e6c63683b567d4e44415daab7d78a3d2d72d268d
+  revision: d3d72586e662536110a1c05e3f99e5d1a2bcc832
   branch: main
   specs:
     decidim-connector (0.27.0)

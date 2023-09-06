@@ -69,6 +69,8 @@ module ApplicationHelper
           }
         end
       end
+    elsif controller.is_a?(Helsinki::LinkedEventsController)
+      links << { title: t("helsinki.linked_events.index.title"), url: main_app.events_path }
     elsif controller.is_a?(Decidim::Blogs::Directory::PostsController)
       links << { title: t("decidim.blogs.directory.posts.index.posts"), url: main_app.posts_path }
       if post

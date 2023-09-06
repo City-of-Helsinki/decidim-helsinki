@@ -2,10 +2,10 @@
   external_link_spacer: "",
   external_link_target: ".card__indicator"
 } do %>
-  <%= image_tag(image_url, class: "card__image", alt: translated_attribute(model["name"])) %>
+  <%= image_tag(image_url, class: "card__image", alt: translated_attribute(model.name)) %>
 
-  <div class="card__content">
-    <h3 class="h4"><%= translated_attribute model["name"] %></h3>
+  <div class="card__content card__content--nofill">
+    <h3 class="h4"><%= translated_attribute model.name %></h3>
   </div>
 
   <div class="card__details">
@@ -15,6 +15,22 @@
         <%= dates %>
       </span>
     </div>
+    <% if location_text.present? %>
+      <div class="card__details__item">
+        <%= icon("map-marker", role: "img", "aria-hidden": true) %>
+        <span class="card__details__item__text">
+          <%= location_text %>
+        </span>
+      </div>
+    <% end %>
+    <% if pricing_info.present? %>
+      <div class="card__details__item">
+        <%= icon("badge", role: "img", "aria-hidden": true) %>
+        <span class="card__details__item__text">
+          <%= pricing_info %>
+        </span>
+      </div>
+    <% end %>
   </div>
 
   <div class="card__indicator"></div>

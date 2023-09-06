@@ -258,6 +258,12 @@ $card-border: 1px solid $card-border-color;
     @include breakpoint(medium){
       flex: 1;
     }
+
+    &--nofill{
+      @include breakpoint(medium){
+        flex: 0;
+      }
+    }
   }
 
   & &__fill{
@@ -297,8 +303,17 @@ $card-border: 1px solid $card-border-color;
   & &__details{
     padding: 0 $card-side-padding .3rem;
 
+    @include breakpoint(medium){
+      flex: 1;
+    }
+
     &__item{
       display: flex;
+      margin-top: $hel-spacing-s;
+
+      &:first-child{
+        margin-top: 0;
+      }
 
       .icon{
         position: relative;

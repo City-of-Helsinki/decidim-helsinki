@@ -125,6 +125,16 @@ fi:
           tunnistamo_explanation: 'Facebook-, Google- tai YLE-kirjautuminen'
           tunnistamo_explanation_internal: 'Tunnistamo-kirjautuminen'
         tunnistamo_description: Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook-, YLE-palveluiden avulla.
+    linked_events:
+      index:
+        all_events: Kaikki tapahtumat
+        description_html: |
+          <p>Kaupungissa järjestetään 2-15.10.2023 välisenä aikana tapahtumia, joissa pääset ideoimaan OmaStadi -ehdotuksia yhdessä muiden kaupunkilaisten kanssa. Tapahtumissa saat tukea ehdotuksen jättämiseen. Lisäksi kaupungin työntekijät auttavat sinua toimipisteissä eri puolilla kaupunkia. </p>
+        subtitle: Tulevia tapahtumia
+        title: Tapahtumat ja tuki
+    linked_event_card:
+      pricing:
+        free: Maksuton
     map:
       districts:
         central: Keskinen

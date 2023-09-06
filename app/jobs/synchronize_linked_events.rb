@@ -21,8 +21,15 @@ class SynchronizeLinkedEvents < ApplicationJob
       Rails.logger.debug { "Found #{events.count} events" }
 
       events.each do |event|
-        if set.has_remote_item?(event["id"])
+        item = set.remote_item(event["id"])
+        if item
           Rails.logger.debug { "Remote item exists: #{event["id"]}" }
+          Rails.logger.debug("Updating remote item:")
+          Rails.logger.debug(event.to_s)
+          item.update!(
+            data: event,
+            updated_at: datetime(event["last_modified_time"])
+          )
           next
         end
         next if datetime(event["end_time"]) < now

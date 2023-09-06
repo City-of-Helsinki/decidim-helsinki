@@ -6,6 +6,7 @@ module Helsinki
       def initialize(mode: nil)
         @base_path = mode == :test ? "linkedevents-test" : "linkedevents"
         @version = "v1"
+        @place_cache = {}
       end
 
       def debug!
@@ -35,7 +36,18 @@ module Helsinki
         )
         return [] unless result
 
-        result["data"] || []
+        (result["data"] || []).map do |event|
+          if event["location"]
+            url = event["location"]["@id"]
+            match = url.match(%r{/#{version}/place/([^/]+)/})
+            if match
+              location_data = place(match[1])
+              event["location"] = location_data if location_data
+            end
+          end
+
+          event
+        end
       end
 
       def upcoming_events(publisher: nil, keywords: nil)
@@ -56,12 +68,20 @@ module Helsinki
         end
       end
 
+      def place(id)
+        @place_cache[id] ||= fetch("place/#{id}")
+      end
+
       private
 
-      attr_reader :base_path, :version
+      attr_reader :base_path, :version, :place_cache
 
       def debug?
         @debug
+      end
+
+      def cached_place(id)
+        place_cache[id]
       end
 
       def fetch(endpoint, params = {})
@@ -72,6 +92,7 @@ module Helsinki
           "/#{base_path}/#{version}/#{endpoint}/",
           { format: "json" }.merge(params.compact)
         )
+        return nil if response.status != 200
 
         JSON.parse(response.body.to_s)
       end

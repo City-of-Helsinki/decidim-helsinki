@@ -56,19 +56,50 @@ class LinkedEvents < Decidim::Query
   end
 
   class Event < OpenStruct
+    include Decidim::TranslatableAttributes
+
     def initialize(hash, config = nil)
       @config = { event_url: config&.event_url }
       super(hash)
     end
 
-    def url
-      return "#" if config[:event_url].blank?
+    def url(language: "fi")
+      base_url = config[:event_url] || "https://tapahtumat.hel.fi/events/%{event_id}"
 
-      if config[:event_url].include?("%{event_id}")
-        format(config[:event_url], event_id: id)
+      format_options = {}
+      format_options[:language] = language if base_url.include?("%{language}")
+      if base_url.include?("%{event_id}")
+        format_options[:event_id] = id
       else
-        "#{config[:event_url]}?event_id=#{id}"
+        base_url = "#{base_url}%{event_id}"
       end
+      return base_url if format_options.empty?
+
+      format(base_url, **format_options)
+    end
+
+    def price_free?
+      return true if offers.blank?
+
+      offers.first["is_free"]
+    end
+
+    def price
+      return nil if offers.blank?
+
+      offers.first["price"]
+    end
+
+    def pricing_details
+      return nil if offers.blank?
+
+      translated_attribute(offers.first["description"])
+    end
+
+    def pricing_url
+      return nil if offers.blank?
+
+      translated_attribute(offers.first["info_url"])
     end
 
     private

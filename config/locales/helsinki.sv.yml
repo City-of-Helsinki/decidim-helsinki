@@ -125,6 +125,16 @@ sv:
           tunnistamo_explanation: 'Facebook-, Google- eller YLE-inloggning'
           tunnistamo_explanation_internal: 'Tunnistamo-inloggning'
         tunnistamo_description: Tunnistamo låter dig logga in på tjänsten, t.ex. Google, Facebook eller YLE.
+    linked_events:
+      index:
+        all_events: Alla evenemang
+        description_html: |
+          <p>I staden ordnas det 2–15 oktober 2023 evenemang där du får skapa OmaStadi-förslag tillsammans med andra stadsbor. Vid evenemangen får du stöd för att lämna in ett förslag. Dessutom hjälper stadens anställda dig på olika verksamhetsställen runtom i staden.</p>
+        subtitle: Kommande evenemang
+        title: Evenemang och stöd
+    linked_event_card:
+      pricing:
+        free: Fri
     map:
       districts:
         central: Centrala

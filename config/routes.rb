@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts, only: [:index, :show], controller: "decidim/blogs/directory/posts", format: :html
+  resources :events, only: [:index], controller: "helsinki/linked_events", format: :html
 
   mount Decidim::Core::Engine => "/"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,0 +1,38 @@
+<% add_decidim_page_title(t(".title")) %>
+<% add_decidim_meta_description(strip_tags(t(".description_html"))) %>
+
+<%= render partial: "layouts/decidim/breadcrumbs" %>
+
+<div class="wrapper">
+  <div class="container">
+    <div class="row columns">
+      <div class="page-title">
+        <h1 class="heading1"><%= t(".title") %></h1>
+      </div>
+    </div>
+    <div class="row medium-unstack content-intro">
+      <div class="columns medium-6 mediumlarge-8">
+        <div class="text-large">
+          <%= t(".description_html") %>
+        </div>
+      </div>
+
+      <div class="columns medium-6 mediumlarge-4">
+        <div class="actions-panel bg-secondary">
+          <%= link_to "https://tapahtumat.hel.fi", target: "_blank", class: "action-link" do %>
+            <span><%= t(".all_events") %></span>
+            <%= icon("external-link", role: "img", "aria-hidden": true) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="show-for-sr"><%= t(".subtitle") %></h2>
+    <div class="cards-grid row">
+      <%= render partial: "event", collection: @events %>
+    </div>
+  </div>
+</div>
+

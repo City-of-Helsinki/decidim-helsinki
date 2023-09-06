@@ -125,6 +125,16 @@ en:
           tunnistamo_explanation: 'Facebook-, Google- or YLE authentication'
           tunnistamo_explanation_internal: 'Tunnistamo authentication'
         tunnistamo_description: Using Tunnistamo you can authenticate using Google, Facebook, or YLE among others.
+    linked_events:
+      index:
+        all_events: All events
+        description_html: |
+          <p>Between 2 and 15 October 2023, events will be held in the city where you can brainstorm OmaStadi suggestions with other city residents. You can also get help for submitting your suggestion. In addition, city employees will assist you at service locations around the city.</p>
+        subtitle: Upcoming events
+        title: Events and support
+    linked_event_card:
+      pricing:
+        free: Free of charge
     map:
       districts:
         central: Central

@@ -6,7 +6,7 @@
     <section class="cards-grid row" aria-labelledby="<%= label_id %>" data-slide>
       <% events.each do |event| %>
         <div class="column small-12 medium-6 large-4">
-          <%= cell("helsinki/linked_event_card", event, { event_url: model.settings.event_url }) %>
+          <%= cell("helsinki/linked_event_card", event) %>
         </div>
       <% end %>
     </section>

@@ -32,6 +32,25 @@ module Helsinki
       end
     end
 
+    def location_text
+      @location_text ||= %w(name street_address address_locality).map do |key|
+        translated_attribute(location[key])
+      end.compact.join(", ")
+    end
+
+    def location
+      @location ||= model.location
+    end
+
+    def pricing_info
+      @pricing_info ||=
+        if model.price_free?
+          t(".pricing.free")
+        else
+          translated_attribute(model.pricing_details)
+        end
+    end
+
     def summary
       html_truncate(translated_attribute(model.short_description), length: 100, separator: "...")
     end
