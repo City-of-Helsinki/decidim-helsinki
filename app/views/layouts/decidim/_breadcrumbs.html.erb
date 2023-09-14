@@ -2,14 +2,14 @@
   <div class="row columns expanded">
     <nav role="navigation" aria-label="<%= t(".label") %>">
       <ul class="breadcrumbs">
-        <% breadcrumbs.each_with_index do |item, index| %>
-          <% if breadcrumbs.length == index + 1 %>
+        <% crumbs.each_with_index do |item, index| %>
+          <% if crumbs.length == index + 1 %>
             <li aria-current="page">
-              <%= item[:title] %>
+              <%= item[0] %>
             </li>
           <% else %>
             <li>
-              <%= link_to item[:title], item[:url] %>
+              <%= link_to item[0], item[1] %>
               <span aria-hidden="true" class="breadcrumbs-separator"><%= icon("caret-right", role: "img", "aria-hidden": true) %></span>
             </li>
           <% end %>

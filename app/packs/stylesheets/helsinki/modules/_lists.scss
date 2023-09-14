@@ -5,6 +5,7 @@
 
   li{
     display: flex;
+    align-items: center;
     padding: 0;
     margin-top: 1.55rem;
 
@@ -13,13 +14,13 @@
     }
 
     span{
+      flex: 1;
       text-decoration: underline;
       text-underline-offset: 4px;
     }
 
     .icon{
       position: relative;
-      top: -.3rem;
       color: $hel-coat;
       width: 2.2rem;
       height: 2.2rem;
@@ -30,7 +31,7 @@
 
 .highlights-list{
   list-style-type: none;
-  margin: 2.7rem 4rem 2.7rem 4.3rem;
+  margin: 2.7rem 2.4rem 2.7rem .7rem;
   font-size: $hel-text-size-l;
 
   li{
@@ -47,17 +48,23 @@ ol.highlights-list{
 
   li{
     counter-increment: li;
+    display: flex;
+    align-items: center;
 
     &::before{
       content: counter(li) ".";
       display: block;
-      float: left;
+      align-self: flex-start;
       width: 1em;
-      margin-left: -3.6rem;
+      margin-right: .625rem;
       color: $hel-coat;
       text-align: center;
       font-size: 3rem;
       line-height: 1.1;
+    }
+
+    span{
+      flex: 1;
     }
   }
 }

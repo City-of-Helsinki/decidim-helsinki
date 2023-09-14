@@ -126,6 +126,16 @@
 .cards-index-section{
   margin-top: 1.6rem;
   margin-bottom: 5rem;
+
+  .column,
+  .columns{
+    display: flex;
+    flex-direction: column;
+
+    .card{
+      flex: 1;
+    }
+  }
 }
 
 .listing-section{

@@ -51,6 +51,7 @@ wrapper_class = Rails.application.config.wrapper_class
           <%= display_flash_messages %>
           <%= yield :notification if content_for? :notification %>
 
+          <%= render_breadcrumbs %>
           <%= yield %>
         </main>
 

@@ -10,15 +10,14 @@ import "src/helsinki/youtube_modal";
 // Load images
 require.context("../../images", true);
 
-$(() => {
-  initHeader();
-  initSlider();
+const initialize = (container) => {
+  initSlider(container);
 
-  $("[data-toggle-checkbox]").toggleCheckbox();
-  $("[data-open-youtube]").youtubeModal();
+  $("[data-toggle-checkbox]", container).toggleCheckbox();
+  $("[data-open-youtube]", container).youtubeModal();
 
   // Fix the hidden maps that are shown on toggles
-  $(".tabs").on("change.zf.tabs", (el) => {
+  $(".tabs", container).on("change.zf.tabs", (el) => {
     const tabsId = $(el.target).attr("id");
     const $content = $(`[data-tabs-content="${tabsId}"`);
     if (!$content || $content.length < 1) {
@@ -31,13 +30,13 @@ $(() => {
     }
   });
 
-  $("#proposals-map-container").on("on.zf.toggler off.zf.toggler", (ev) => {
+  $("#proposals-map-container", container).on("on.zf.toggler off.zf.toggler", (ev) => {
     fixMap(ev.target);
   });
 
   // Adds the class to the drilldown element parents indicating whether the
   // element is open or not. This helps to style the menu while it is open.
-  $("[data-drilldown]").each((_i, el) => {
+  $("[data-drilldown]", container).each((_i, el) => {
     const $parent = $(el).parents(".is-drilldown");
     if ($parent.length < 1) {
       return;
@@ -55,7 +54,7 @@ $(() => {
 
   // Move the scroll position at the top of the accordion when it is opened if
   // it is outside of the current view.
-  $(".accordion").each((_i, element) => {
+  $(".accordion", container).each((_i, element) => {
     const $accordion = $(element);
     const accordionPlugin = $accordion.data("zfPlugin");
     let accordionTo = null;
@@ -77,8 +76,18 @@ $(() => {
       }, accordionPlugin.options.slideSpeed + 50);
     })
   });
+};
+
+$(() => {
+  initHeader();
+
+  initialize(document);
 
   $(".hide-on-load").removeClass("hide-on-load");
+
+  document.addEventListener("section:update", (ev) => {
+    initialize(ev.target);
+  });
 
   // Event to determine when the application scripts have finished their setup
   $(document).trigger("app-ready");

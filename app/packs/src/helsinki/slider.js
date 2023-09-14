@@ -298,7 +298,7 @@ class Slider {
   }
 }
 
-const createSliders = () => {
+const createSliders = (container) => {
   const lang = document.querySelector("html").getAttribute("lang") || "en";
 
   const defaultOptions = {
@@ -326,7 +326,7 @@ const createSliders = () => {
     large: 992
   };
 
-  document.querySelectorAll("[data-slide]").forEach((sliderEl) => {
+  container.querySelectorAll("[data-slide]").forEach((sliderEl) => {
     // Determine the enabled / disabled state from the amount of slides compared
     // to the slides per page option.
     const sliderOptions = JSON.parse(sliderEl.getAttribute("data-slide") || "{}");
@@ -344,6 +344,6 @@ const createSliders = () => {
   });
 };
 
-export default () => {
-  createSliders();
+export default (container) => {
+  createSliders(container);
 };

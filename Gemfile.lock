@@ -72,7 +72,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-favorites.git
-  revision: 7c8833aa96565598a6e39c8efaa33cc971091ba8
+  revision: 0aef1d8cb0565018b3df403c6d556bb0f0a580a3
   branch: develop
   specs:
     decidim-favorites (0.27.0)
@@ -99,11 +99,14 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-insights.git
-  revision: a8037ccb6ffbbf822bc05599aa0cc3256006840f
+  revision: 8522e9992f729b52103a3172324294663935511d
   branch: main
   specs:
     decidim-insights (0.27.0)
       decidim-core (~> 0.27.0)
+      decidim-favorites (~> 0.27.0)
+      decidim-locations (~> 0.27.0)
+      decidim-tags (~> 0.27.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-locations.git

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_04_112015) do
+ActiveRecord::Schema.define(version: 2023_09_08_085821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -989,6 +989,69 @@ ActiveRecord::Schema.define(version: 2023_09_04_112015) do
     t.index ["decidim_author_id"], name: "index_decidim_initiatives_votes_on_decidim_author_id"
     t.index ["decidim_initiative_id"], name: "index_decidim_initiatives_votes_on_decidim_initiative_id"
     t.index ["hash_id"], name: "index_decidim_initiatives_votes_on_hash_id"
+  end
+
+  create_table "decidim_insights_area_details", force: :cascade do |t|
+    t.bigint "decidim_insights_area_id"
+    t.integer "position", default: 0, null: false
+    t.string "detail_type"
+    t.boolean "sticky", default: false
+    t.jsonb "title"
+    t.jsonb "source"
+    t.jsonb "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["decidim_insights_area_id"], name: "index_decidim_insights_area_details_on_decidim_insights_area_id"
+    t.index ["position"], name: "index_decidim_insights_area_details_on_position"
+  end
+
+  create_table "decidim_insights_area_plans", force: :cascade do |t|
+    t.bigint "decidim_insights_area_id"
+    t.bigint "decidim_scope_id"
+    t.jsonb "title"
+    t.jsonb "summary"
+    t.jsonb "description"
+    t.string "image"
+    t.integer "comments_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comments_count"], name: "index_decidim_insights_area_plans_on_comments_count"
+    t.index ["decidim_insights_area_id"], name: "index_decidim_insights_area_plans_on_decidim_insights_area_id"
+    t.index ["decidim_scope_id"], name: "index_decidim_insights_area_plans_on_decidim_scope_id"
+  end
+
+  create_table "decidim_insights_areas", force: :cascade do |t|
+    t.bigint "decidim_insights_section_id"
+    t.string "slug", null: false
+    t.integer "position", default: 0, null: false
+    t.jsonb "name"
+    t.jsonb "title"
+    t.jsonb "summary"
+    t.jsonb "description"
+    t.string "image"
+    t.boolean "show_banner", default: false
+    t.jsonb "banner_text"
+    t.jsonb "banner_cta_text"
+    t.jsonb "banner_cta_link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["decidim_insights_section_id", "slug"], name: "index_decidim_insights_areas_on_section_id_and_slug", unique: true
+    t.index ["decidim_insights_section_id"], name: "index_decidim_insights_areas_on_decidim_insights_section_id"
+    t.index ["position"], name: "index_decidim_insights_areas_on_position"
+    t.index ["slug"], name: "index_decidim_insights_areas_on_slug"
+  end
+
+  create_table "decidim_insights_sections", force: :cascade do |t|
+    t.bigint "decidim_organization_id"
+    t.string "slug", null: false
+    t.jsonb "name"
+    t.jsonb "title"
+    t.jsonb "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["decidim_organization_id", "slug"], name: "index_decidim_insights_sections_on_organization_id_and_slug", unique: true
+    t.index ["decidim_organization_id"], name: "index_decidim_insights_sections_on_decidim_organization_id"
+    t.index ["slug"], name: "index_decidim_insights_sections_on_slug"
   end
 
   create_table "decidim_locations_locations", force: :cascade do |t|
@@ -2189,6 +2252,10 @@ ActiveRecord::Schema.define(version: 2023_09_04_112015) do
   add_foreign_key "decidim_ideas_ideas", "decidim_scopes", column: "area_scope_id"
   add_foreign_key "decidim_identities", "decidim_organizations"
   add_foreign_key "decidim_initiatives_settings", "decidim_organizations"
+  add_foreign_key "decidim_insights_area_details", "decidim_insights_areas"
+  add_foreign_key "decidim_insights_area_plans", "decidim_insights_areas"
+  add_foreign_key "decidim_insights_areas", "decidim_insights_sections"
+  add_foreign_key "decidim_insights_sections", "decidim_organizations"
   add_foreign_key "decidim_newsletters", "decidim_users", column: "author_id"
   add_foreign_key "decidim_participatory_process_steps", "decidim_participatory_processes"
   add_foreign_key "decidim_participatory_process_types", "decidim_organizations"

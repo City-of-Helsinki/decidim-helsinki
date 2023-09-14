@@ -23,10 +23,18 @@ module ApplicationHelper
     end
   end
 
+  def render_breadcrumbs
+    crumbs = breadcrumbs.presence || auto_breadcrumbs
+    return if crumbs.blank?
+
+    crumbs = [[t("decidim.menu.home"), decidim.root_path]] + crumbs
+    render partial: "layouts/decidim/breadcrumbs", locals: { crumbs: crumbs }
+  end
+
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting, Rails/HelperInstanceVariable
-  def breadcrumbs
+  def auto_breadcrumbs
     links = []
-    links << { title: t("decidim.menu.home"), url: decidim.root_path }
+
     if respond_to?(:current_participatory_space)
       # Do not display the current process in the menu because that's
       # apparently logic (?).
@@ -36,64 +44,54 @@ module ApplicationHelper
       #   # url: decidim_participatory_processes.participatory_process_path(current_participatory_space)
       # }
       if respond_to?(:current_component)
-        links << {
-          title: translated_attribute(current_component.name),
-          url: main_component_path(current_component)
-        }
+        links << [
+          translated_attribute(current_component.name),
+          main_component_path(current_component)
+        ]
 
         if controller.is_a?(Decidim::Budgets::ProjectsController) && action_name == "show"
-          links << {
-            title: translated_attribute(project.title),
-            url: project_path(project)
-          }
+          links << [
+            translated_attribute(project.title),
+            project_path(project)
+          ]
         elsif controller.is_a?(Decidim::Budgets::ResultsController)
-          links << {
-            title: t("decidim.budgets.results.show.title", organization_name: current_organization.name),
-            url: results_path
-          }
+          links << [
+            t("decidim.budgets.results.show.title", organization_name: current_organization.name),
+            results_path
+          ]
         elsif controller.is_a?(Decidim::Accountability::ResultsController) && action_name == "show"
           ancestors = []
           target = result
           (ancestors << target) && target = target.parent while target
 
           ancestors.reverse_each do |current|
-            links << {
-              title: translated_attribute(current.title),
-              url: result_path(current)
-            }
+            links << [
+              translated_attribute(current.title),
+              result_path(current)
+            ]
           end
         elsif controller.is_a?(Decidim::Blogs::PostsController) && action_name == "show"
-          links << {
-            title: translated_attribute(post.title),
-            url: post_path(post)
-          }
+          links << [
+            translated_attribute(post.title),
+            post_path(post)
+          ]
         end
       end
     elsif controller.is_a?(Helsinki::LinkedEventsController)
-      links << { title: t("helsinki.linked_events.index.title"), url: main_app.events_path }
+      links << [t("helsinki.linked_events.index.title"), main_app.events_path]
     elsif controller.is_a?(Decidim::Blogs::Directory::PostsController)
-      links << { title: t("decidim.blogs.directory.posts.index.posts"), url: main_app.posts_path }
-      if post
-        links << {
-          title: translated_attribute(post.title),
-          url: main_app.post_path(post)
-        }
-      end
+      links << [t("decidim.blogs.directory.posts.index.posts"), main_app.posts_path]
+      links << [translated_attribute(post.title), main_app.post_path(post)] if post
     elsif controller.is_a?(Decidim::PagesController) || controller.is_a?(Decidim::Pages::ApplicationController)
-      links << { title: t("layouts.decidim.header.help"), url: decidim.pages_path }
-      if @page
-        links << {
-          title: translated_attribute(@page.title),
-          url: decidim.page_path(@page)
-        }
-      end
+      links << [t("layouts.decidim.header.help"), decidim.pages_path]
+      links << [translated_attribute(@page.title), decidim.page_path(@page)] if @page
     elsif controller.is_a?(Decidim::Favorites::FavoritesController)
-      links << { title: t("decidim.favorites.favorites.show.title"), url: decidim_favorites.favorites_path }
+      links << [t("decidim.favorites.favorites.show.title"), decidim_favorites.favorites_path]
       if @type
-        links << {
-          title: @type[:name],
-          url: decidim_favorites.favorite_path(@selected_type)
-        }
+        links << [
+          @type[:name],
+          decidim_favorites.favorite_path(@selected_type)
+        ]
       end
     end
 
