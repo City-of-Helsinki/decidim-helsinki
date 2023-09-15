@@ -24,7 +24,12 @@ module ApplicationHelper
   end
 
   def render_breadcrumbs
-    crumbs = breadcrumbs.presence || auto_breadcrumbs
+    crumbs =
+      if respond_to?(:breadcrumbs)
+        breadcrumbs.presence || auto_breadcrumbs
+      else
+        auto_breadcrumbs
+      end
     return if crumbs.blank?
 
     crumbs = [[t("decidim.menu.home"), decidim.root_path]] + crumbs
