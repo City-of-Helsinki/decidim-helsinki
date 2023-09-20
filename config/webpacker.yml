@@ -18,7 +18,7 @@ default: &default
   # Reload manifest.json on all requests so we reload latest compiled packs
   cache_manifest: false
 
-development:
+default_development: &default_development
   <<: *default
   compile: true
   # Compile test packs to decidim decidim-packs folder
@@ -50,6 +50,12 @@ development:
     static:
       watch:
         ignored: '**/node_modules/**'
+
+development:
+  <<: *default_development
+
+development_ruuti:
+  <<: *default_development
 
 test:
   <<: *default
