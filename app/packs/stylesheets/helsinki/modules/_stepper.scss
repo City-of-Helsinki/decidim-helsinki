@@ -27,11 +27,21 @@
       }
 
       .tabs-stepper-step{
+        display: none;
         float: none;
         flex: 1 1 0;
 
+        @include breakpoint(mediumlarge){
+          display: block;
+        }
+
+        &.is-active{
+          display: block;
+        }
+
         .step-selector{
           width: auto;
+          display: flex;
         }
       }
     }
@@ -143,6 +153,12 @@
 
     &.is-active{
       display: block;
+
+      > a,
+      > .link{
+        background: none !important;
+        color: $body-font-color;
+      }
 
       .step-selector{
         .step-selector-number{
