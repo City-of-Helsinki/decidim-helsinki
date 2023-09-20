@@ -70,7 +70,7 @@ group :development do
   gem "web-console", "~> 4.2"
 end
 
-group :production, :production_ruuti, :staging do
+group :production, :production_ruuti, :staging, :staging_ruuti do
   gem "dotenv-rails", "~> 2.8"
 
   gem "resque", "~> 2.2.0"
