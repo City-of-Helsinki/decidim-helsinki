@@ -65,6 +65,15 @@ staging:
   # Cache manifest.json for performance
   cache_manifest: true
 
+staging_ruuti:
+  <<: *default
+
+  # Production depends on precompilation of packs prior to booting for performance.
+  compile: false
+
+  # Cache manifest.json for performance
+  cache_manifest: true
+
 production:
   <<: *default
 
