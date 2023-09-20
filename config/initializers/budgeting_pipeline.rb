@@ -6,6 +6,7 @@ Decidim::BudgetingPipeline.configure do |config|
     possible = []
     possible << :suomifi if Rails.application.config.suomifi_enabled
     possible << :mpassid if Rails.application.config.mpassid_enabled
+    possible << :sms if Rails.application.config.smsauth_enabled
     providers = organization.enabled_omniauth_providers.keys & possible
 
     # Just to make sure the providers are in correct order
@@ -18,6 +19,7 @@ Decidim::BudgetingPipeline.configure do |config|
     possible = []
     possible << "suomifi_eid" if Rails.application.config.suomifi_enabled
     possible << "mpassid_nids" if Rails.application.config.mpassid_enabled
+    possible << "helsinki_smsauth_id" if Rails.application.config.smsauth_enabled
     providers = organization.available_authorizations & possible
 
     # Just to make sure the providers are in correct order

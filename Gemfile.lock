@@ -88,6 +88,14 @@ GIT
       decidim-core (~> 0.27.0)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-helsinki_smsauth.git
+  revision: 6bf76bb50cbaa68200db33eb8f71a226a7ce9bca
+  branch: main
+  specs:
+    decidim-helsinki_smsauth (0.27.0)
+      decidim-core (~> 0.27.0)
+
+GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
   revision: 1f346a36dc86e5cb5fc8efb826e5a0484ea582a2
   branch: main
@@ -168,6 +176,14 @@ GIT
   specs:
     decidim-term_customizer (0.27.0)
       decidim-admin (~> 0.27.0)
+      decidim-core (~> 0.27.0)
+
+GIT
+  remote: https://github.com/mainio/decidim-sms-telia.git
+  revision: 6caffa358faac4e28f99437b35d659e9b0c1351f
+  branch: main
+  specs:
+    decidim-sms-telia (0.27.0)
       decidim-core (~> 0.27.0)
 
 GEM
@@ -1133,12 +1149,14 @@ DEPENDENCIES
   decidim-dev (~> 0.27.0)
   decidim-favorites!
   decidim-feedback!
+  decidim-helsinki_smsauth!
   decidim-ideas!
   decidim-initiatives (~> 0.27.0)
   decidim-locations!
   decidim-mpassid!
   decidim-plans!
   decidim-redirects!
+  decidim-sms-telia!
   decidim-stats!
   decidim-suomifi!
   decidim-tags!

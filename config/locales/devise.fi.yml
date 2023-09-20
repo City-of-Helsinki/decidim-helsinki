@@ -11,6 +11,10 @@ fi:
           description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa.'
           sign_in_with: 'Kirjaudu ilman tunnistautumista'
           sign_in_button: 'Kirjaudu sisään'
+        sms:
+          description: 'Koululaisena voit tunnistautua tekstiviestillä tai opettajan tai nuoriso-ohjaajan antamalla koodilla.'
+          sign_in_with: 'Tekstiviestikirjautuminen'
+          sign_in_button: 'Kirjaudu sisään tekstiviestillä'
         strong:
           description: 'Kirjautuminen omastadi.hel.fi -palveluun pankkitunnuksella tai mobiilivarmenteella. Peruskoulun oppilaat voivat kirjautua myös Wilma-tunnuksilla.'
           sign_in_with: 'Kirjaudu ja tunnistaudu sähköisellä tunnistautumisella'

@@ -3,7 +3,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.mpassid_enabled = true
+  config.mpassid_enabled = false
+  config.smsauth_enabled = true
 
   # Tracking
   config.matomo_site_id = 370

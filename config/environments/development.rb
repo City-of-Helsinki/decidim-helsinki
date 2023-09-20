@@ -5,6 +5,7 @@ Rails.application.configure do
 
   config.suomifi_enabled = true
   config.mpassid_enabled = true
+  config.smsauth_enabled = true
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

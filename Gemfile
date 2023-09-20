@@ -30,6 +30,10 @@ gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "main"
 gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "main"
 gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "master"
 
+# Modules for youth budget (nubu = nuorten budjetti / ruuti)
+gem "decidim-helsinki_smsauth", github: "mainio/decidim-module-helsinki_smsauth", branch: "main"
+gem "decidim-sms-telia", github: "mainio/decidim-sms-telia", branch: "main"
+
 gem "bootsnap", "~> 1.4"
 gem "puma", ">= 5.6.2"
 
