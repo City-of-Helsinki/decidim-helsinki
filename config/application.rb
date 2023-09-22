@@ -60,6 +60,7 @@ module DecidimHelsinki
 
     config.suomifi_enabled = false
     config.mpassid_enabled = false
+    config.smsauth_enabled = false
 
     # Re-configure some of the Decidim internals
     config.before_configuration do

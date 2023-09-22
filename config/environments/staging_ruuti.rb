@@ -2,22 +2,18 @@
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.search_indexing = false
 
   config.mpassid_enabled = false
   config.smsauth_enabled = true
-
-  # Tracking
-  config.matomo_site_id = 370
 
   # Wrapper class can be used to customize the coloring of the platform per
   # environment. This is for the Ruuti instance.
   config.wrapper_class = "wrapper-ruuti"
 
-  # The feedback email in the footer of the site
-  config.feedback_email = "ruutibudjetti@hel.fi"
-
-  # Color profile that changes the logo color for the footer
-  # config.color_profile = "white"
+  # This defines an email address for automatically generated user accounts,
+  # e.g. through the Suomi.fi or MPASSid authentications.
+  config.auto_email_domain = "nubu.hel.ninja"
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -40,7 +36,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "https://nuortenbudjetti.hel.fi"
+  config.action_controller.asset_host = "https://nubu.hel.ninja"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -69,7 +65,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   config.active_job.queue_adapter = :resque
-  config.active_job.queue_name_prefix = "decidim-helsinkiruuti_#{Rails.env}"
+  config.active_job.queue_name_prefix = "decidim-hkinubustag_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -110,19 +106,19 @@ Rails.application.configure do
   end
 
   # Sending address for mails
-  config.mailer_sender = "no-reply@omastadi.hel.fi"
+  config.mailer_sender = "no-reply@nubu.hel.ninja"
 
   # Default URL for application (Devise)
   config.action_controller.default_url_options = {
     # protocol: "https", # Breaks login redirection
-    host: "nuortenbudjetti.hel.fi",
+    host: "nubu.hel.ninja",
     port: 443
   }
 
   # Default URL for mailer (Devise)
   config.action_mailer.default_url_options = {
     protocol: "https",
-    host: "nuortenbudjetti.hel.fi"
+    host: "nubu.hel.ninja"
     # from: "no-reply@hel.fi" # Causes forms to break e.g. when publishing proposal
   }
 

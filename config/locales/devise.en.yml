@@ -11,6 +11,10 @@ en:
           description: 'You can sign in also using services such as Google, Facebook or YLE through Tunnistamo.'
           sign_in_with: 'Sign in without verifying your identity'
           sign_in_button: 'Sign in'
+        sms:
+          description: 'As a pupil, you can log in with SMS or a code given by your teacher or youth worker.'
+          sign_in_with: 'SMS sign in'
+          sign_in_button: 'Sign in via SMS'
         strong:
           description: 'Sign in to omastadi.hel.fi with your online banking ID or mobile ID. Students at comprehensive school can sign in with their Wilma ID.'
           sign_in_with: 'Sign in and verify your identity electronically'

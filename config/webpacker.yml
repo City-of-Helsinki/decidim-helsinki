@@ -18,7 +18,7 @@ default: &default
   # Reload manifest.json on all requests so we reload latest compiled packs
   cache_manifest: false
 
-development:
+default_development: &default_development
   <<: *default
   compile: true
   # Compile test packs to decidim decidim-packs folder
@@ -51,12 +51,27 @@ development:
       watch:
         ignored: '**/node_modules/**'
 
+development:
+  <<: *default_development
+
+development_ruuti:
+  <<: *default_development
+
 test:
   <<: *default
   compile: true
   public_output_path: packs-test
 
 staging:
+  <<: *default
+
+  # Production depends on precompilation of packs prior to booting for performance.
+  compile: false
+
+  # Cache manifest.json for performance
+  cache_manifest: true
+
+staging_ruuti:
   <<: *default
 
   # Production depends on precompilation of packs prior to booting for performance.

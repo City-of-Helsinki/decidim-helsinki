@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_08_085821) do
+ActiveRecord::Schema.define(version: 2023_09_20_093002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -801,6 +801,30 @@ ActiveRecord::Schema.define(version: 2023_09_08_085821) do
     t.datetime "updated_at", null: false
     t.index ["decidim_organization_id"], name: "index_decidim_hashtags_on_decidim_organization_id"
     t.index ["name"], name: "index_decidim_hashtags_on_name"
+  end
+
+  create_table "decidim_helsinki_smsauth_signin_code_sessions", force: :cascade do |t|
+    t.bigint "decidim_signin_code_set_id", null: false
+    t.bigint "decidim_user_id", null: false
+    t.datetime "created_at"
+    t.index ["decidim_signin_code_set_id"], name: "index_signin_sessioins_on_decidim_signin_code_set"
+    t.index ["decidim_user_id"], name: "index_signin_code_sessions_on_decidim_user"
+  end
+
+  create_table "decidim_helsinki_smsauth_signin_code_sets", force: :cascade do |t|
+    t.jsonb "metadata", default: {}
+    t.integer "generated_code_amount"
+    t.integer "used_code_amount", default: 0
+    t.bigint "decidim_user_id", null: false
+    t.datetime "created_at"
+    t.index ["decidim_user_id"], name: "index_signin_code_sets_on_decidim_user"
+  end
+
+  create_table "decidim_helsinki_smsauth_signin_codes", force: :cascade do |t|
+    t.string "code_hash"
+    t.bigint "decidim_signin_code_set_id", null: false
+    t.datetime "created_at"
+    t.index ["decidim_signin_code_set_id"], name: "index_signin_codes_on_decidim_signin_code_set_id"
   end
 
   create_table "decidim_ideas_idea_versions", force: :cascade do |t|
@@ -1866,6 +1890,16 @@ ActiveRecord::Schema.define(version: 2023_09_08_085821) do
     t.index ["target_type", "target_id"], name: "index_decidim_short_links_on_target"
   end
 
+  create_table "decidim_sms_telia_deliveries", force: :cascade do |t|
+    t.string "from"
+    t.string "to"
+    t.string "status"
+    t.string "resource_url"
+    t.string "callback_data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "decidim_sortitions_sortitions", force: :cascade do |t|
     t.bigint "decidim_component_id"
     t.integer "decidim_proposals_component_id"
@@ -2117,6 +2151,7 @@ ActiveRecord::Schema.define(version: 2023_09_08_085821) do
     t.string "previous_passwords", default: [], array: true
     t.datetime "published_at"
     t.boolean "allow_private_messaging", default: true
+    t.string "phone_number"
     t.index ["confirmation_token"], name: "index_decidim_users_on_confirmation_token", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_users_on_decidim_organization_id"
     t.index ["email", "decidim_organization_id"], name: "index_decidim_users_on_email_and_decidim_organization_id", unique: true, where: "((deleted_at IS NULL) AND (managed = false) AND ((type)::text = 'Decidim::User'::text))"

@@ -11,6 +11,10 @@ sv:
           description: 'Du kan logga in också i tjänsten bl.a. genom Google, Facebook eller YLE med hjälp av Tunnistamo.'
           sign_in_with: 'Logga in utan att verifiera din identitet'
           sign_in_button: 'Logga in'
+        sms:
+          description: 'Som elev kan du logga in med SMS eller en kod som din lärare eller ungdomshandledare får.'
+          sign_in_with: 'SMS-inloggning'
+          sign_in_button: 'Logga in via SMS'
         strong:
           description: 'Logga in på omastadi.hel.fi-tjänsten med dina bankkoder eller ett mobilcertifikat. Studenter i grundskolan kan logga in med Wilma ID.'
           sign_in_with: 'Logga in och identifiera dig elektroniskt'
