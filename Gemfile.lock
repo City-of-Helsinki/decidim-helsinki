@@ -180,7 +180,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-sms-telia.git
-  revision: 112f686c436f939b7f3c7851298e26842b0deb44
+  revision: 3b7e6cffba6ecbd290b1b2977270140eae808521
   branch: main
   specs:
     decidim-sms-telia (0.27.0)
