@@ -89,7 +89,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-helsinki_smsauth.git
-  revision: 83526ebff08c0a45c07a448d63235c9afa5ace45
+  revision: eb32ad88376c18ce4574def3f84f643ca9d460bc
   branch: main
   specs:
     decidim-helsinki_smsauth (0.27.0)
@@ -137,7 +137,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-privacy.git
-  revision: 5bc9e370b397ca801b85365f9fb256a1f4797bef
+  revision: 27fde39117ea64c300a8461f9ac3af2f4a9c499e
   branch: main
   specs:
     decidim-privacy (0.27.0)
