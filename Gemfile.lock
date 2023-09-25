@@ -89,7 +89,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-helsinki_smsauth.git
-  revision: 2cdbd0a1dd45e06449f5282820c783443724cc96
+  revision: 50127bb35e9d2bc2ac971a44885e49413598e944
   branch: main
   specs:
     decidim-helsinki_smsauth (0.27.0)
@@ -180,7 +180,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-sms-telia.git
-  revision: 3b7e6cffba6ecbd290b1b2977270140eae808521
+  revision: a08c08aadb1c0974634de8bf3f5742f09453b247
   branch: main
   specs:
     decidim-sms-telia (0.27.0)
