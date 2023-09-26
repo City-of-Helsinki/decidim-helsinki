@@ -89,7 +89,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-helsinki_smsauth.git
-  revision: 8aa55a38f4264be250b36e56f30db12382202ff0
+  revision: eb32ad88376c18ce4574def3f84f643ca9d460bc
   branch: main
   specs:
     decidim-helsinki_smsauth (0.27.0)
@@ -97,7 +97,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: 1f346a36dc86e5cb5fc8efb826e5a0484ea582a2
+  revision: f4ab32ba2197a15c192b2ff2af107abb2b2321fc
   branch: develop
   specs:
     decidim-ideas (0.27.0)
@@ -143,7 +143,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 56d68082dd1ae51297cfc6543ae88beb10f61d8d
+  revision: 269b4138815c87e0b1a8d6acbc13184aa7cc2f6e
   branch: develop
   specs:
     decidim-plans (0.27.0)
@@ -156,7 +156,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-privacy.git
-  revision: f0a2140c903f842a1e703f2e7e28cf65027ba882
+  revision: ad11d78ed8784f2b821d0a895687b9160cfb34f6
   branch: main
   specs:
     decidim-privacy (0.27.0)
@@ -207,7 +207,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-sms-telia.git
-  revision: a6a55a67fdd7079e2db65b5dd1231cf36d29a422
+  revision: 1f9415d8c04bb9c044c4374d0d360ef5369d3b26
   branch: main
   specs:
     decidim-sms-telia (0.27.0)

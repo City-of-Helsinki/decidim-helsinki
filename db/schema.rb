@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_20_093002) do
+ActiveRecord::Schema.define(version: 2023_09_25_093226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1896,6 +1896,14 @@ ActiveRecord::Schema.define(version: 2023_09_20_093002) do
     t.string "status"
     t.string "resource_url"
     t.string "callback_data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "decidim_sms_telia_tokens", force: :cascade do |t|
+    t.string "access_token"
+    t.datetime "issued_at"
+    t.datetime "expires_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
