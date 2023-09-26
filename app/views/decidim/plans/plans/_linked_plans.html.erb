@@ -4,13 +4,15 @@
       <div class="card--list__text">
         <div>
           <div class="card--list__heading h4"><%== decidim_html_escape(present(plan).title) %></div>
-          <% present(plan) do |plan| %>
-            <div class="author">
-              <span class="author__name">
-                <strong><%= plan.author.name %></strong>
-                <%= plan.author.nickname %>
-              </span>
-            </div>
+          <% present(plan) do |presenter| %>
+            <% if presenter.author.present? %>
+              <div class="author">
+                <span class="author__name">
+                  <strong><%= presenter.author.name %></strong>
+                  <%= presenter.author.nickname %>
+                </span>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
