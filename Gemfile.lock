@@ -97,7 +97,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: 1f346a36dc86e5cb5fc8efb826e5a0484ea582a2
+  revision: f4ab32ba2197a15c192b2ff2af107abb2b2321fc
   branch: main
   specs:
     decidim-ideas (0.27.0)
@@ -124,7 +124,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 56d517103e49b5c6aca5fd1dade2dd623300e6d4
+  revision: be5854c56042ad6b408c3f2b2540e7f4eb712710
   branch: release/0.27-stable/omastadi-legacy
   specs:
     decidim-plans (0.27.0)
