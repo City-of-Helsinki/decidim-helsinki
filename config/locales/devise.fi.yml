@@ -11,12 +11,16 @@ fi:
           description: 'Voit kirjautua sisään Helsinki-profiilin avulla.'
           sign_in_with: 'Helsinki-profiili'
           sign_in_button: 'Kirjaudu Helsinki-profiililla'
+        tunnistamo:
+          description: 'Voit kirjautua sisään Tunnistamo-palvelun avulla.'
+          sign_in_with: 'Tunnistamo'
+          sign_in_button: 'Kirjaudu Tunnistamo-palvelulla'
         sms:
           description: 'Koululaisena voit tunnistautua tekstiviestillä tai opettajan tai nuoriso-ohjaajan antamalla koodilla.'
           sign_in_with: 'Tekstiviestikirjautuminen'
           sign_in_button: 'Kirjaudu sisään tekstiviestillä'
         strong:
-          description: 'Kirjautuminen %{domain} -palveluun Helsinki-profiililla. Peruskoulun oppilaat voivat kirjautua myös edu.hel.fi-tunnuksilla.'
+          description: 'Kirjautuminen %{domain} -palveluun Tunnistamolla. Peruskoulun oppilaat voivat kirjautua myös edu.hel.fi-tunnuksilla.'
           sign_in_with: 'Kirjaudu ja tunnistaudu sähköisellä tunnistautumisella'
         mpassid:
           description: 'Koululaisena voit kirjautua MPASSid-palvelun avulla koulusi tunnuksella.'

@@ -3,15 +3,12 @@
     <div class="columns medium-8 medium-centered">
       <div class="social-register text-center">
         <h2 class="h5 margin-bottom-1">
-          <%= t("devise.shared.omniauth.tunnistamo.sign_in_with") %>
+          <%= t("devise.shared.omniauth.weak.sign_in_with") %>
         </h2>
         <div class="login-icons">
           <%= image_pack_tag "media/images/helsinki-logo-black.svg" %>
         </div>
         <p></p>
-        <%= link_to decidim.send("user_tunnistamo_omniauth_authorize_path"), class: "button primary button--#{normalize_provider_name(:tunnistamo)}", method: :post do %>
-          <%= t("devise.shared.omniauth.tunnistamo.sign_in_button") %>
-        <% end %>
       </div>
     </div>
   </div>

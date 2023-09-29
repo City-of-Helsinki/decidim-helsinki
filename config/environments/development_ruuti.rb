@@ -76,8 +76,4 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
-  # The location of the Tunnistamo authentication server
-  # config.tunnistamo_auth_server = "http://127.0.0.1:8000"
-  config.tunnistamo_auth_server = "https://api.hel.fi/sso"
 end

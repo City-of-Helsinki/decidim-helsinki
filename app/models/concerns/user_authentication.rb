@@ -10,7 +10,7 @@ module UserAuthentication
   class_methods do
     def available_omniauth_providers
       providers = []
-      providers << :helsinki if Decidim::HelsinkiProfile.configured? && Rails.application.config.helsinki_profile_enabled
+      providers << Decidim::HelsinkiProfile.auth_service_name.to_sym if Decidim::HelsinkiProfile.configured? && Rails.application.config.helsinki_profile_enabled
       providers << :mpassid if Decidim::Mpassid.configured? && Rails.application.config.mpassid_enabled
       providers << :sms if Rails.application.config.smsauth_enabled
 

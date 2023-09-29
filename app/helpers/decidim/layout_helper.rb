@@ -42,21 +42,12 @@ module Decidim
 
       html_properties["class"] = (["icon--#{name}"] + _icon_classes(options)).join(" ")
 
-      if name == "tunnistamo"
-        content_tag :svg, html_properties do
-          inner = content_tag :title, label
-          inner += content_tag :use, nil, "href" => "#{asset_pack_path("media/images/hkilogo-symbol.svg")}#icon-helsinki"
+      content_tag :svg, html_properties do
+        inner = content_tag :title, label
+        # Note that we use a different path for the override to pickup correctly.
+        inner += content_tag :use, nil, "href" => "#{asset_pack_path("media/images/helsinki-icons.svg")}#icon-#{name}"
 
-          inner
-        end
-      else
-        content_tag :svg, html_properties do
-          inner = content_tag :title, label
-          # Note that we use a different path for the override to pickup correctly.
-          inner += content_tag :use, nil, "href" => "#{asset_pack_path("media/images/helsinki-icons.svg")}#icon-#{name}"
-
-          inner
-        end
+        inner
       end
     end
 

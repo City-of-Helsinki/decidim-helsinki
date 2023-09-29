@@ -130,7 +130,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # The location of the Tunnistamo authentication server
-  config.tunnistamo_auth_server = "https://api.hel.fi/sso"
 end

@@ -72,7 +72,7 @@ application e.g. using [rbenv](https://github.com/rbenv/rbenv).
 
 #### Helsinki profile
 
-Tunnistamo requires the following environment variables to be available:
+Helsinki profile requires the following environment variables to be available:
 
 - `HELSINKIPROFILE_SERVER_URI` - The server URI for the OICD authentication endpoint
 - `HELSINKIPROFILE_CLIENT_ID` - The OIDC app ID assigned for the environment

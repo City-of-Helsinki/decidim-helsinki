@@ -12,20 +12,6 @@ Rails.application.routes.draw do
   mount Decidim::Comments::Engine, at: "/", as: "decidim_comments"
 
   scope module: "helsinki" do
-    devise_scope :user do
-      # Manually map the Tunnistamo omniauth callback route for Devise because
-      # the default routes are mounted by core Decidim. This is because we want
-      # to map this route to the local callbacks controller instead of the
-      # Decidim core to add extra functionality.
-      # See: https://git.io/fjDz1
-      match(
-        "/users/auth/tunnistamo/callback",
-        to: "omniauth_callbacks#tunnistamo",
-        as: "user_tunnistamo_omniauth_callback",
-        via: [:get, :post]
-      )
-    end
-
     namespace :geocoding do
       get :autocomplete
     end

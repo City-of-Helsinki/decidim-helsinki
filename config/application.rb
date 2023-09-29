@@ -69,6 +69,13 @@ module DecidimHelsinki
       Decidim::Core::Engine.instance.initializers.reject! do |initializer|
         initializer.name == "Expire sessions"
       end
+
+      # Note: drop this once the migration to the Helsinki profile is completed.
+      # When using Tunnistamo auth, the redirect URLs need to match with
+      # "tunnistamo".
+      Decidim::HelsinkiProfile.configure do |config|
+        config.auth_service_name = "tunnistamo"
+      end
     end
 
     # Passes a block of code to do after initialization.
@@ -116,10 +123,10 @@ module DecidimHelsinki
       #
       # In case you are planning to change this, make sure that the following
       # works:
-      # - Start the application with Tunnistamo omniauth method configured
-      # - Load the login page and see that Tunnistamo is configured
+      # - Start the application with Helsinki profile omniauth method configured
+      # - Load the login page and see that Helsinki profile is configured
       # - Make a change to any file under the `app` folder
-      # - Reload the login page and see that Tunnistamo is configured
+      # - Reload the login page and see that Helsinki profile is configured
       #
       # This could be also fixed in the Decidim core by making the omniauth
       # providers configurable through the application configs. See:
