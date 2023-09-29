@@ -1,0 +1,11 @@
+<div class="resource-control-panel margin-top-3">
+  <div class="title h3"><%= t ".manage_proposal" %></div>
+
+  <div class="resource-controls">
+    <% if @proposal.amendable? && allowed_to?(:edit, :proposal, proposal: @proposal) %>
+      <div class="resource-control">
+        <%= link_to t("decidim.proposals.proposals.show.edit_proposal"), edit_proposal_path(@proposal) %>
+      </div>
+    <% end %>
+  </div>
+</div>

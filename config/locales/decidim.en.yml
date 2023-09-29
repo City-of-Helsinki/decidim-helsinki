@@ -57,6 +57,30 @@ en:
         settings:
           global:
             vote_success_mpassid_content: Content displayed after successful voting for MPASSid users
+    participatory_processes:
+      participatory_processes:
+        process_actions:
+          share: Share process
+        show:
+          show_step: Show phase
+          steps: Phases
+    proposals:
+      proposal_l:
+        card_label: Proposal %{title}
+      proposals:
+        filters:
+          keyword: Keyword
+          reset: Clear filters
+        index:
+          show_list: Show results on map
+          show_map: Show results as list
+        proposal_actions:
+          share: Share proposal
+          show_comments: Show proposal comments
+          show_on_map: Show proposal on map
+          flag: Report proposal
+        proposal_controls:
+          manage_proposal: Manage proposal
     resource_links:
       included_plans:
         project_plan: Related co-creation proposals

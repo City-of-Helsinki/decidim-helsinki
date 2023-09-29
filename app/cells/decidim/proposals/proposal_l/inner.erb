@@ -1,0 +1,27 @@
+<%= card_wrapper do %>
+  <div class="card__inner">
+    <div class="card__main">
+      <div class="card__content">
+        <h2 class="h4"><%= title %></h2>
+
+        <div class="card__text">
+          <div class="card__text--paragraph">
+            <%= description %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card__aside">
+      <%= render :image %>
+    </div>
+  </div>
+
+  <div class="card__footer">
+    <div class="card__main">
+      <%= render :data %>
+    </div>
+    <div class="card__aside">
+      <%= render :status %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<div class="card__info">
+  <div class="card__info__item">
+    #<%= model.id %>
+  </div>
+
+  <div class="card__info__item">
+    <%= creation_date_status %>
+  </div>
+
+  <% if model.category %>
+    <div class="card__info__item">
+      <%= translated_attribute(model.category.name) %>
+    </div>
+  <% end %>
+</div>

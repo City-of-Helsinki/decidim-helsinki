@@ -4,107 +4,91 @@
   url: proposal_url(@proposal.id)
 }) %>
 
-<div class="row">
-  <div class="columns">
-    <p class="h5">
-      <%= link_to_or_back proposals_path do %>
-        <%= icon "chevron-left", role: "img", "aria-hidden": true %>
-        <%= t '.back_to_proposals' %>
-      <% end %>
-    </p>
-  </div>
+<div class="row column back-link">
+  <%= link_to proposals_path, class: "action-link" do %>
+    <%= icon "arrow-left", role: "img", "aria-hidden": true %>
+    <span><%= t(".back_to_proposals") %></span>
+  <% end %>
 </div>
 
-<%= render partial: "voting_rules" %>
-<div class="row view-header">
-  <div class="columns mediumlarge-8">
-    <h2 class="heading2"><%= present(@proposal).title(links: true, html_escape: true) %></h2>
+<div class="row column resource">
+  <div class="row">
+    <div class="columns small-12 medium-8">
+      <div class="resource__main static__content">
+        <h1><%= present(@proposal).title(links: true, html_escape: true) %></h1>
 
-    <%= cell("decidim/coauthorships", @proposal, has_actions: true, size: 3) %>
-
-    <div class="section">
-      <%== cell("decidim/proposals/proposal_m", @proposal, full_badge: true).badge %>
-      <%= simple_format present(@proposal).body(links: true, strip_tags: true) %>
-      <% if component_settings.geocoding_enabled? %>
-        <%= render partial: "decidim/shared/static_map", locals: { icon_name: "proposals", geolocalizable: @proposal } %>
-      <% end %>
-      <%= cell "decidim/proposals/proposal_tags", @proposal %>
-    </div>
-    <% if @proposal.answered? && translated_attribute(@proposal.answer).present? %>
-      <% if @proposal.accepted? %>
-        <div class="section">
-          <div class="callout success">
-            <h5><%= t(".proposal_accepted_reason") %></h5>
-            <p><%= decidim_sanitize translated_attribute @proposal.answer %></p>
-          </div>
-        </div>
-      <% elsif @proposal.rejected? %>
-        <div class="section">
-          <div class="callout warning">
-            <h5><%= t(".proposal_rejected_reason") %></h5>
-            <p><%= decidim_sanitize translated_attribute @proposal.answer %></p>
-          </div>
-        </div>
-      <% else %>
-        <div class="section">
-          <div class="callout secondary">
-            <h5><%= t(".proposal_in_evaluation_reason") %></h5>
-            <p><%= decidim_sanitize translated_attribute @proposal.answer %></p>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="columns mediumlarge-4 large-3">
-    <div class="card">
-      <div class="card__content">
-        <% if allowed_to?(:edit, :proposal, proposal: @proposal) %>
-          <%= link_to t(".edit_proposal"), edit_proposal_path(@proposal), class: "button secondary hollow expanded button-sc button--icon follow-button" %>
-        <% end %>
-        <%= follow_button_for(@proposal) %>
-        <%= render partial: "decidim/shared/share_modal" %>
-        <%= embed_modal_for proposal_widget_url(@proposal, format: :js) %>
-
-        <div class="text-center">
-          <button type="button" class="share-link link" data-open="<%= current_user.present? ? "flagModal" : "loginModal" %>" title="<%= t("report", scope: "decidim.proposals.proposals.show") %>" aria-controls="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-haspopup="dialog" tabindex="0">
-            <%= t(".report") %>
-            <%= icon "flag", aria_label: t("report", scope: "decidim.proposals.proposals.show"), class: "icon--after" %>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <% if current_settings.votes_enabled? || show_endorsements_card? || current_user %>
-      <div class="card">
-        <div class="card__content">
-          <% if current_settings.votes_enabled? %>
-            <%= render partial: "votes_count", locals: { proposal: @proposal, from_proposals_list: false } %>
-            <%= render partial: "vote_button", locals: { proposal: @proposal, from_proposals_list: false } %>
+        <div class="resource__info">
+          <div class="resource__info__item">#<%= @proposal.id %></div>
+          <% if @proposal.published? %>
+            <div class="resource__info__item"><%= l(@proposal.published_at.to_date, format: :decidim_short) %></div>
           <% end %>
-          <%= render partial: "endorsements_card_row", locals: { proposal: @proposal } %>
+          <% if @proposal.category.present? %>
+            <div class="resource__info__item">
+              <% if @proposal.category.parent %>
+                <%= translated_attribute(@proposal.category.parent.name) %> -
+              <% end %>
+              <%= translated_attribute(@proposal.category.name) %>
+            </div>
+          <% end %>
+
+          <% if component_settings.geocoding_enabled? && @proposal.address.present? %>
+            <div class="resource__info__item"><%= @proposal.address %></div>
+          <% end %>
         </div>
       </div>
-    <% end %>
-  </div>
-</div>
-<div class="row">
-  <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
-    <%= resource_reference(@proposal) %>
-    <%= cell("decidim/fingerprint", @proposal) %>
-    <%= cell "decidim/proposals/proposal_link_to_collaborative_draft", @proposal %>
-  </div>
-  <div class="columns mediumlarge-8 mediumlarge-pull-4">
-    <%= linked_resources_for @proposal, :results, "included_proposals" %>
-    <%= linked_resources_for @proposal, :projects, "included_proposals" %>
-    <%= linked_resources_for @proposal, :plans, "included_proposals" %>
-    <%= linked_resources_for @proposal, :meetings, "proposals_from_meeting" %>
-    <%= linked_resources_for @proposal, :proposals, "copied_from_component" %>
+    </div>
 
-    <%= cell "decidim/endorsers_list", @proposal %>
+    <div class="columns small-12 medium-4">
+      <div class="resource__aside resource__actions">
+        <%= render partial: "proposal_actions", locals: { proposal: @proposal } %>
+
+        <% if current_user && @proposal.authored_by?(current_user) %>
+          <div class="row">
+            <div class="columns">
+              <%= render partial: "proposal_controls", locals: { proposal: @proposal } %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="columns small-12 medium-8">
+      <div class="resource__main resource__content static__content">
+        <%= simple_format present(@proposal).body(links: true, strip_tags: true) %>
+
+        <% if @proposal.answered? && translated_attribute(@proposal.answer).present? %>
+          <div class="row columns">
+            <div class="banner bg-secondary">
+              <div class="banner__content">
+                <% if @proposal.accepted? %>
+                  <p class="h2"><%= t(".proposal_accepted_reason") %></p>
+                <% elsif @proposal.rejected? %>
+                  <p class="h2"><%= t(".proposal_rejected_reason") %></p>
+                <% else %>
+                  <p class="h2"><%= t(".proposal_in_evaluation_reason") %></p>
+                <% end %>
+
+                <p><%= decidim_sanitize translated_attribute @proposal.answer %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="resource__details">
+        <%= attachments_for @proposal %>
+
+        <%= linked_resources_for @proposal, :results, "included_proposals" %>
+        <%= linked_resources_for @proposal, :projects, "included_proposals" %>
+        <%= linked_resources_for @proposal, :plans, "included_proposals" %>
+        <%= linked_resources_for @proposal, :meetings, "proposals_from_meeting" %>
+        <%= linked_resources_for @proposal, :proposals, "copied_from_component" %>
+      </div>
+    </div>
   </div>
 </div>
-<%= attachments_for @proposal %>
 
 <%= comments_for @proposal %>
-
-<%= cell("decidim/flag_modal", @proposal) %>

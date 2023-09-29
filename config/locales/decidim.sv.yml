@@ -57,6 +57,30 @@ sv:
         settings:
           global:
             vote_success_mpassid_content: Innehåll som visas efter framgångsrik omröstning för MPASSid-användare
+    participatory_processes:
+      participatory_processes:
+        process_actions:
+          share: Dela processen
+        show:
+          show_step: Visa fas
+          steps: Faser
+    proposals:
+      proposal_l:
+        card_label: Förslag %{title}
+      proposals:
+        filters:
+          keyword: Nyckelord
+          reset: Rensa filter
+        index:
+          show_list: Visa resultat på kartan
+          show_map: Visa resultat som lista
+        proposal_actions:
+          share: Dela förslaget
+          show_comments: Visa förslagets kommentarer
+          show_on_map: Visa förslaget på kartan
+          flag: Uttryck förslaget
+        proposal_controls:
+          manage_proposal: Hantera förslag
     resource_links:
       included_plans:
         project_plan: Relaterade förslag om samutveckling

@@ -57,6 +57,10 @@
 .comment__header{
   margin-bottom: .9rem;
 
+  .author-data{
+    padding-left: 0;
+  }
+
   .author-data__main > span{
     white-space: nowrap;
   }

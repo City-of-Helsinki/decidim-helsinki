@@ -1,36 +1,47 @@
-<%= filter_form_for filter do |form| %>
-  <div class="filters__section">
-    <div class="filters__search">
-      <div class="input-group">
-        <%= form.search_field :search_text_cont, label: false, class: "input-group-field", placeholder: t(".search"), title: t(".search"), "aria-controls": "proposals" %>
-        <div class="input-group-button">
-          <button type="submit" class="button button--muted">
-            <%= icon "magnifying-glass", aria_label: t(".search") %>
-          </button>
+<% filters_prefix = "filters_#{SecureRandom.hex(3)}" %>
+
+<%= filter_form_for filter, url_for do |form| %>
+  <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>
+
+  <div class="row medium-unstack">
+    <% if current_component.categories.any? %>
+      <div class="columns">
+        <div class="filters__control category_id_filter">
+          <%= form.select(:with_any_category, current_component.categories, { label: t(".category"), include_blank: t("decidim.filters.linked_classes.all") }, id: "category", data: { disable_dynamic_change: true }) %>
         </div>
+      </div>
+    <% end %>
+
+    <% if component_settings.proposal_answering_enabled && current_settings.proposal_answering_enabled %>
+      <div class="columns">
+        <div class="filters__control state_filter">
+          <%
+          filter_states_values = [
+            [t("decidim.proposals.application_helper.filter_state_values.accepted"), "accepted"],
+            [t("decidim.proposals.application_helper.filter_state_values.evaluating"), "evaluating"],
+            [t("decidim.proposals.application_helper.filter_state_values.not_answered"), "state_not_published"],
+            [t("decidim.proposals.application_helper.filter_state_values.rejected"), "rejected"]
+          ]
+          %>
+          <%= form.select(:with_any_state, filter_states_values, { label: t(".state"), include_blank: t("decidim.filters.linked_classes.all") }, data: { disable_dynamic_change: true }) %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="columns">
+      <div class="filters__control text_filter">
+        <%= form.search_field :search_text_cont, label: t(".keyword"), placeholder: t(".keyword"), data: { disable_dynamic_change: true } %>
       </div>
     </div>
   </div>
 
-  <% if component_settings.proposal_answering_enabled && current_settings.proposal_answering_enabled %>
-    <%= form.check_boxes_tree :with_any_state, filter_proposals_state_values, legend_title: t(".state"), "aria-controls": "proposals" %>
-  <% end %>
-
-  <% if linked_classes_for(Decidim::Proposals::Proposal).any? %>
-    <%= form.collection_radio_buttons :related_to, linked_classes_filter_values_for(Decidim::Proposals::Proposal), :first, :last, { legend_title: t(".related_to") }, "aria-controls": "proposals" %>
-  <% end %>
-
-  <% if current_user && current_settings.votes_enabled? %>
-    <%= form.collection_check_boxes :activity, [["voted", t(".voted")]], :first, :last, { legend_title: t(".activity") }, "aria-controls": "proposals" %>
-  <% end %>
-
-  <% if current_participatory_space.has_subscopes? %>
-    <%= scopes_picker_filter form, :with_any_scope %>
-  <% end %>
-
-  <% if current_component.categories.any? %>
-    <%= form.categories_select :with_any_category, current_component.categories, { legend_title: t(".category"), disable_parents: false, label: false, prompt: t(".category_prompt") }, "aria-controls": "proposals" %>
-  <% end %>
-
-  <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>
+  <div class="row columns">
+    <div class="filters__actions">
+      <button type="submit" class="button button--icon" aria-label="<%= t(".search") %>" aria-controls="proposals" data-close>
+        <%= t(".search") %>
+        <%= icon("magnifying-glass", role: "img", "aria-hidden": true) %>
+      </button>
+      <button type="reset" class="button clear text-lg"><%= t ".reset" %></button>
+    </div>
+  </div>
 <% end %>

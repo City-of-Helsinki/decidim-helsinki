@@ -1,0 +1,22 @@
+<div class="actions-panel bg-secondary">
+  <%= render partial: "decidim/shared/follow_button", locals: { followable: current_participatory_space, large: false } %>
+</div>
+
+<div class="actions-panel bg-secondary">
+  <button type="button" class="link action-link" data-open="socialShare" aria-controls="socialShare" aria-haspopup="dialog">
+    <span class="link-text"><%= t ".share" %></span>
+    <%= icon "share", role: "img", "aria-hidden": true %>
+  </button>
+</div>
+
+<%= render partial: "decidim/shared/share_modal" %>
+
+<div class="margin-top-3">
+  <% current_participatory_space.components.published.each do |component| %>
+    <div>
+      <%= link_to main_component_path(component) do %>
+        <span><%= translated_attribute(component.name) %></span>
+      <% end %>
+    </div>
+  <% end %>
+</div>

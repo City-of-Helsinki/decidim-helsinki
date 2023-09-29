@@ -57,6 +57,30 @@ fi:
         settings:
           global:
             vote_success_mpassid_content: Onnistuneen äänestyksen jälkeen näytettävä sisältö MPASSid-käyttäjille
+    participatory_processes:
+      participatory_processes:
+        process_actions:
+          share: Jaa prosessi
+        show:
+          show_step: Tutustu vaiheeseen
+          steps: Vaiheet
+    proposals:
+      proposal_l:
+        card_label: Ehdotus %{title}
+      proposals:
+        filters:
+          keyword: Hakusana
+          reset: Tyhjennä rajaukset
+        index:
+          show_list: Näytä tulokset listana
+          show_map: Näytä tulokset kartalla
+        proposal_actions:
+          share: Jaa ehdotus
+          show_comments: Katso ehdotuksen kommentit
+          show_on_map: Katso ehdotus kartalla
+          flag: Ilmianna ehdotus
+        proposal_controls:
+          manage_proposal: Hallinnoi ehdotusta
     resource_links:
       included_plans:
         project_plan: Liitetyt yhteiskehittämisen ehdotukset

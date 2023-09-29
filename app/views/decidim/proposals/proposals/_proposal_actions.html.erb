@@ -1,0 +1,46 @@
+<% if component_settings.geocoding_enabled? && @proposal.latitude.present? && @proposal.longitude.present? %>
+  <div class="actions-panel bg-secondary">
+    <%
+      map_utility_static ||= Decidim::Map.static(
+        organization: current_organization
+      )
+      proposal_map_link = "#"
+      if map_utility_static
+        proposal_map_link = map_utility_static.link(
+          latitude: @proposal.latitude,
+          longitude: @proposal.longitude
+        )
+      end
+    %>
+
+    <%= link_to proposal_map_link, class: "action-link", target: "_blank", data: { external_link_spacer: "" } do %>
+      <span class="link-text"><%= t ".show_on_map" %></span>
+      <%= icon "map-marker", role: "img", "aria-hidden": true %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="actions-panel bg-secondary">
+  <%= link_to "#comments", class: "action-link" do %>
+    <span class="link-text"><%= t ".show_comments" %></span>
+    <%= icon "comment-square", role: "img", "aria-hidden": true %>
+  <% end %>
+</div>
+
+<div class="actions-panel bg-secondary">
+  <button type="button" class="link action-link" data-open="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-controls="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-haspopup="dialog">
+    <span class="link-text"><%= t ".flag" %></span>
+    <%= icon "flag", role: "img", "aria-hidden": true %>
+  </button>
+</div>
+
+<%= cell("decidim/flag_modal", @proposal) %>
+
+<div class="actions-panel bg-secondary">
+  <button type="button" class="link action-link" data-open="socialShare" aria-controls="socialShare" aria-haspopup="dialog">
+    <span class="link-text"><%= t ".share" %></span>
+    <%= icon "share", role: "img", "aria-hidden": true %>
+  </button>
+</div>
+
+<%= render partial: "decidim/shared/share_modal", locals: { resource: @proposal } %>
