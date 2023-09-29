@@ -34,7 +34,7 @@ module Helsinki
 
     def location_text
       @location_text ||= %w(name street_address address_locality).map do |key|
-        translated_attribute(location[key])
+        translated_attribute(location[key]).presence&.strip
       end.compact.join(", ")
     end
 
