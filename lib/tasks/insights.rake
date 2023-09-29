@@ -574,7 +574,7 @@ namespace :insights do
       },
       "Itsensä kokeminen tärkeäksi osaksi kouluyhteisöä" => {
         sv: "Känner sig som en viktig del av skolgemenskapen",
-        en: "Feeling as an important part of the school community"
+        en: "Feeling an important part of the school community"
       },
       "Koulu-uupumuksen kokemus" => {
         sv: "Upplevelse av skoltrötthet",
@@ -594,14 +594,14 @@ namespace :insights do
       },
       "Koulunkäynnin mielekkyys ja haasteet lukiolaisilla" => {
         sv: "Utmaningar med skolgången och skolgångens meningsfullhet bland gymnasieelever",
-        en: "School challenges/meaningfulness among general upper secondary school students"
+        en: "School challenges/meaningfulness among upper secondary school students"
       },
       "Koulunkäynnin mielekkyys ja haasteet ammatillisissa oppilaitoksissa" => {
         sv: "Utmaningar med skolgången och skolgångens meningsfullhet i yrkesläroanstalter",
         en: "School challenges/meaningfulness in vocational institutions"
       },
       "Lasten liikkumissuositusten täyttyminen" => {
-        sv: "Uppfyllande av barns rekommendationerna om motion",
+        sv: "Uppfyllande motionsrekommendationerna för barn",
         en: "Accomplishment of children’s physical activity recommendations"
       },
       "Nuorten liikunnan harrastaminen ohjatusti" => {
@@ -630,7 +630,7 @@ namespace :insights do
       },
       "Tärkeimmät syyt, jotka estävät nuorten harrastamisen" => {
         sv: "De viktigaste orsakerna som förhindrar ungdomarnas deltagande i hobbyer",
-        en: "Three main reasons preventing young people from engaging in recreational activities"
+        en: "Three main factors preventing young people from engaging in recreational activities"
       },
       "Lasten ja nuorten harrastaminen" => {
         sv: "Barns och ungas utövande av hobbyer",
@@ -664,11 +664,11 @@ namespace :insights do
       },
       "20–74 v" => {
         sv: "20–74 år",
-        en: "20–74 yr"
+        en: "20–74 yrs"
       },
       "Yli 75 v" => {
         sv: "Över 75 år",
-        en: "> 75 yr"
+        en: "> 75 yrs"
       },
       "Ei tiedä alueensa harrastusmahdollisuuksista" => {
         sv: "Känner inte till hobbymöjligheterna i det egna området",
@@ -676,7 +676,7 @@ namespace :insights do
       },
       "Kokee harrastuspaikkojen olevan liian kaukana" => {
         sv: "Upplever att hobbyplatserna är för långt borta",
-        en: "Think that recreational facilities are located too far"
+        en: "Think that recreational facilities are located too far away"
       },
       "Kokee kiinnostavan harrastuksen liian kalliiksi" => {
         sv: "Upplever att en intressant hobby är för dyr",
@@ -704,7 +704,7 @@ namespace :insights do
       },
       "Vapaa-ajalla vähintään viikoittain liikkuvat nuoret" => {
         sv: "Ungdomar som rör på sig på fritiden minst varje vecka",
-        en: "Young people engaging in an organized physical activity at least once a week"
+        en: "Young people engaging in an organised physical activity at least once a week"
       },
       "Vähintään tunnin päivässä liikkuvat lapset" => {
         sv: "Barn som rör på sig minst en timme per dag",
@@ -715,7 +715,7 @@ namespace :insights do
         en: "Young people with at least an hour of daily physical activity"
       },
       "Vähintään viikoittain kulttuuria tai taidetta harrastavat nuoret" => {
-        sv: "Ungdomar som håller på med en kultur- eller konsthobby i varje fall en gång i veckan",
+        sv: "Ungdomar har en kultur- eller konsthobby åtminstone en gång i veckan",
         en: "Young people who engage in culture or art at least weekly"
       },
       "Vähintään yhtenä päivänä viikossa harrastavat lapset" => {
