@@ -1,15 +1,24 @@
 <% extra_locals ||= {} %>
 
-<h3 class="h5 margin-bottom-1">
-  <%= t("decidim.devise.sessions.new.sign_in_service_account") %>
-</h3>
-<p>
-  <%= t("decidim.devise.sessions.new.sign_in_service_account_description") %>
-</p>
+<div class="static__content">
+  <h3 class="h5 margin-bottom-1">
+    <%= t("decidim.devise.sessions.new.sign_in_service_account", service_name: current_organization.name) %>
+  </h3>
+  <p>
+    <%= t("decidim.devise.sessions.new.sign_in_service_account_description") %>
+  </p>
+  <% if current_organization.sign_up_enabled? %>
+    <p>
+      <%= t("decidim.devise.sessions.new.are_you_new?") %>
+      <%= link_to t("decidim.devise.sessions.new.register"), new_user_registration_path %>
+    </p>
+  <% end %>
+</div>
+
 <% if local_assigns[:hide_form] %>
   <p>
     <button class="h5" data-toggle="session session_closed session_open" id="session_toggle">
-      <%= t("decidim.devise.sessions.new.sign_in_service_account") %>
+      <%= t("decidim.devise.sessions.new.sign_in_service_account", service_name: current_organization.name) %>
       <span id="session_closed" data-toggler=".is-hidden" aria-expanded="true">
         <%= icon "chevron-bottom" %>
       </span>
@@ -21,7 +30,7 @@
 <% end %>
 
 <div class="register-form-wrapper<%= local_assigns[:hide_form] ? " is-hidden" : "" %>" id="session" data-toggler=".is-hidden">
-  <%= decidim_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "register-form new_user" }) do |f| %>
+  <%= decidim_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "register-form new_user margin-bottom-1" }) do |f| %>
     <div>
       <div class="field">
         <%= f.email_field :email, autofocus: autofocus  %>
@@ -43,12 +52,3 @@
   <% end %>
   <%= render "decidim/devise/shared/links", extra_locals %>
 </div>
-
-<% if local_assigns[:hide_form] && auto_open_login_form? %>
-  <%= javascript_tag defer: 'defer' do -%>
-  setTimeout(function() {
-    var $button = $('#session_toggle');
-    $button.trigger('click.zf.trigger').scrollTo();
-  }, 500);
-  <% end -%>
-<% end %>

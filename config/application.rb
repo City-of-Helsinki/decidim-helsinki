@@ -55,10 +55,10 @@ module DecidimHelsinki
     config.feedback_email = "omastadi@hel.fi"
 
     # This defines an email address for automatically generated user accounts,
-    # e.g. through the Suomi.fi or MPASSid authentications.
+    # e.g. through the Helsinki profile or MPASSid authentications.
     config.auto_email_domain = "omastadi.hel.fi"
 
-    config.suomifi_enabled = false
+    config.helsinki_profile_enabled = false
     config.mpassid_enabled = false
     config.smsauth_enabled = false
 
@@ -491,8 +491,6 @@ module DecidimHelsinki
         Decidim::UserTimelineController.include(TimelineResourceTypes)
         Decidim::Meetings::RegistrationsController.include(MeetingsRegistrationsControllerExtensions)
         # For ensuring that the disabled omniauth strategies cannot be used
-        Decidim::Suomifi::OmniauthCallbacksController.include(OmniauthExtensions)
-        Decidim::Suomifi::OmniauthCallbacksController.ensure_strategy_enabled_for(:suomifi)
         Decidim::Mpassid::OmniauthCallbacksController.include(OmniauthExtensions)
         Decidim::Mpassid::OmniauthCallbacksController.ensure_strategy_enabled_for(:mpassid)
 

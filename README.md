@@ -63,44 +63,24 @@ may not always be up to date.
 
 ## Development
 
-### Testing OmniAuth bindings (Tunnistamo, Suomi.fi, MPASSid, etc.)
+### Testing OmniAuth bindings (Helsinki profile, MPASSid, etc.)
 
 The used OmniAuth bindings are enabled by default for all environments. However,
 they may not automatically work in case you do not provide their configuration
 values in your local environment variables. You can define them for the
 application e.g. using [rbenv](https://github.com/rbenv/rbenv).
 
-#### Tunnistamo
+#### Helsinki profile
 
 Tunnistamo requires the following environment variables to be available:
 
-- `OMNIAUTH_OPENIDCONNECT_APP_ID` - The OIDC app ID assigned for the environment
-- `OMNIAUTH_OPENIDCONNECT_APP_SECRET` - The OIDC app secret for the environment
+- `HELSINKIPROFILE_SERVER_URI` - The server URI for the OICD authentication endpoint
+- `HELSINKIPROFILE_CLIENT_ID` - The OIDC app ID assigned for the environment
+- `HELSINKIPROFILE_CLIENT_SECRET` - The OIDC app secret for the environment
 
-In order to learn more about Tunnistamo or install it locally to test the
-connectivity, please refer to the Tunnistamo documentation:
+In order to learn more about Helsinki profile, please refer to:
 
-https://github.com/City-of-Helsinki/tunnistamo
-
-#### Suomi.fi
-
-Suomi.fi requires the following environment variables to be available:
-
-- `SUOMIFI_MODE` - Defines the Suomi.fi environment to connect to. Either
-  `"test"` or `"production"`.
-  * For the development environment, use `"test"`
-- `SUOMIFI_ENTITY_ID` - The entity ID for Suomi.fi
-  * For the development environment, you can define this as:
-    `http://localhost:3000/users/auth/suomifi/metadata`
-- `SUOMIFI_CERT_FILE` - A certificate file that contains the certificate sent
-  to Suomi.fi as part of the metadata. This is used to encrypt messages at
-  Suomi.fi before they are sent to the service.
-  * For the development environment, you can use the development certificate
-    from the `decidim-suomifi` repository: https://git.io/fjdaM
-- `SUOMIFI_PKEY_FILE` - The private key corresponding to the certificate. This
-  is used to decrypt messages coming from Suomi.fi.
-  * For the development environment, you can use the development private key
-    from the `decidim-suomifi` repository: https://git.io/fjda1
+https://digi.hel.fi/english/helsinki-city-data-strategy/helsinki-datastrategy-chapter-3/35-chapter/
 
 #### MPASSid
 
@@ -109,7 +89,7 @@ MPASSid requires the following environment variables to be available:
 - `MPASSID_MODE` - Defines the MPASSid environment to connect to. Either
   `"test"` or `"production"`.
   * For the development environment, use `"test"`
-- `MPASSID_ENTITY_ID` - The entity ID for Suomi.fi
+- `MPASSID_ENTITY_ID` - The entity ID for MPASSid
 * For the development environment, you can define this as:
   `http://localhost:3000/users/auth/mpassid/metadata`
 

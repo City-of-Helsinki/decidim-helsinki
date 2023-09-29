@@ -7,25 +7,21 @@ en:
         sign_in: 'Sign in'
     shared:
       omniauth:
-        tunnistamo:
-          description: 'You can sign in also using services such as Google, Facebook or YLE through Tunnistamo.'
-          sign_in_with: 'Sign in without verifying your identity'
-          sign_in_button: 'Sign in'
+        helsinki:
+          description: 'You can sign in using Helsinki profile.'
+          sign_in_with: 'Helsinki profile'
+          sign_in_button: 'Sign in via Helsinki profile'
         sms:
           description: 'As a pupil, you can log in with SMS or a code given by your teacher or youth worker.'
           sign_in_with: 'SMS sign in'
           sign_in_button: 'Sign in via SMS'
         strong:
-          description: 'Sign in to omastadi.hel.fi with your online banking ID or mobile ID. Students at comprehensive school can sign in with their Wilma ID.'
+          description: 'Sign in to %{domain} with Helsinki profile. Students at comprehensive school can sign in with their edu.hel.fi account.'
           sign_in_with: 'Sign in and verify your identity electronically'
-        suomifi:
-          description: 'Suomi.fi allows users to verify their identity using Finnish online banking IDs and mobile IDs, among others.'
-          sign_in_with: 'Suomi.fi e-Identification'
-          sign_in_button: 'Bank ID or mobile ID'
         mpassid:
           description: 'If you are a student in comprehensive school, you can verify your identity through the MPASSid service using your school account.'
           sign_in_with: 'MPASSid-identification'
-          sign_in_button: 'Wilma ID for school students'
+          sign_in_button: 'Sign in with edu.hel.fi for school students'
         weak:
           description: 'You can also sign in with social media accounts (Facebook, Yle, Google, among others) or with an Omastadi account you have created earlier.'
           sign_in_with: 'Sign in without identity verification'
@@ -38,5 +34,6 @@ en:
           sign_up_service_account_description: 'Create your account and sign in with your personal email and a password of your choice in the future.'
       sessions:
         new:
-          sign_in_service_account: 'Sign in with service account'
+          are_you_new?: Are you new to the platform?
+          sign_in_service_account: 'Sign in with %{service_name} account'
           sign_in_service_account_description: 'Sign in using your email address and a password of your choice.'

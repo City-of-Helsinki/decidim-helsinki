@@ -7,25 +7,21 @@ sv:
         sign_in: 'Logga in'
     shared:
       omniauth:
-        tunnistamo:
-          description: 'Du kan logga in också i tjänsten bl.a. genom Google, Facebook eller YLE med hjälp av Tunnistamo.'
-          sign_in_with: 'Logga in utan att verifiera din identitet'
-          sign_in_button: 'Logga in'
+        helsinki:
+          description: 'Du kan logga med Helsingforsprofilen.'
+          sign_in_with: 'Helsingforsprofilen'
+          sign_in_button: 'Logga in med Helsingforsprofilen'
         sms:
           description: 'Som elev kan du logga in med SMS eller en kod som din lärare eller ungdomshandledare får.'
           sign_in_with: 'SMS-inloggning'
           sign_in_button: 'Logga in via SMS'
         strong:
-          description: 'Logga in på omastadi.hel.fi-tjänsten med dina bankkoder eller ett mobilcertifikat. Studenter i grundskolan kan logga in med Wilma ID.'
+          description: 'Logga in på %{domain}-tjänsten Helsingforsprofilen. Studenter i grundskolan kan logga in med edu.hel.fi.'
           sign_in_with: 'Logga in och identifiera dig elektroniskt'
-        suomifi:
-          description: 'Suomi.fi bjuder på möjligheten att identifiera sig bl.a. genom finska bankkoder och mobilcertifikat.'
-          sign_in_with: 'Suomi.fi-identifiering'
-          sign_in_button: 'Bankkoder eller mobilcertifikat'
         mpassid:
           description: 'Som grundskolestudent kan du identifiera dig själv genom MPASSid-tjänsten med ditt skolkonto.'
           sign_in_with: 'MPASSid-identifikation'
-          sign_in_button: 'Wilma ID för skoleelever'
+          sign_in_button: 'Logga in med edu.hel.fi för skoleelever'
         weak:
           description: 'Du kan också logga in på Tunnistamo-tjänsten med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med Omastadi-kontot du skapade tidigare.'
           sign_in_with: 'Logga in utan identifikation'
@@ -38,5 +34,6 @@ sv:
           sign_up_service_account_description: 'Skapa ett eget användarkonto och logga i fortsättningen in med din e-postadress och ditt eget lösenord.'
       sessions:
         new:
-          sign_in_service_account: 'Logga in med eget konto'
+          are_you_new?: Är du ny på plattformen?
+          sign_in_service_account: 'Logga in med %{service_name} konto'
           sign_in_service_account_description: 'Logga in med e-postadress och ett lösenord som du själv väljer.'

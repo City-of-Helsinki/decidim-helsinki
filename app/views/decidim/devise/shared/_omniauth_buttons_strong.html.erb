@@ -1,10 +1,10 @@
 <% if strong_providers_enabled? %>
-  <div class="social-register">
+  <div class="social-register static__content">
     <h2 class="h5 margin-bottom-1">
       <%= t("devise.shared.omniauth.strong.sign_in_with") %>
     </h2>
     <p>
-      <%= t("devise.shared.omniauth.strong.description") %>
+      <%= t("devise.shared.omniauth.strong.description", domain: current_organization.host) %>
     </p>
 
     <% enabled_strong_providers.each_with_index do |provider, index| %>

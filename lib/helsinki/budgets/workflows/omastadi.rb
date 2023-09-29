@@ -71,7 +71,7 @@ module Helsinki
         private
 
         def authorization
-          @authorization ||= suomifi_authorization || documents_authorization || mpassid_authorization
+          @authorization ||= helsinki_authorization || documents_authorization || mpassid_authorization
         end
 
         def district_scope_map
@@ -87,12 +87,12 @@ module Helsinki
           }
         end
 
-        def suomifi_authorization
+        def helsinki_authorization
           Decidim::Authorization.where.not(
             granted_at: nil
           ).find_by(
             user: user,
-            name: :suomifi_eid
+            name: :helsinki_idp
           )
         end
 

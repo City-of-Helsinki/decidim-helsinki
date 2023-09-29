@@ -70,7 +70,7 @@ namespace :hkiresult do
       authors = plan.authors.any? ? plan.authors : [nil]
       authors.each do |author|
         email = author&.email # Organization cannot have email if author
-        email = nil if email.match?(/^(suomifi|mpassid)-[a-z0-9]{32}@omastadi.hel.fi/)
+        email = nil if email.match?(/^(helsinki|mpassid)-[a-z0-9]{32}@omastadi.hel.fi/)
 
         contacts << {
           "plan/id" => plan.id,
@@ -241,7 +241,7 @@ namespace :hkiresult do
 
   def user_metadata(user, at_date = Time.zone.now)
     auth_names = %w(
-      suomifi_eid
+      helsinki_idp
       mpassid_nids
       helsinki_documents_authorization_handler
     )
@@ -284,9 +284,9 @@ namespace :hkiresult do
     rawdata = authorization.metadata
 
     case authorization.name
-    when "suomifi_eid"
+    when "helsinki_idp"
       {
-        identity: "suomifi",
+        identity: "helsinki",
         date_of_birth: rawdata["date_of_birth"],
         age: calculate_age(rawdata["date_of_birth"], at_date),
         gender: rawdata["gender"],

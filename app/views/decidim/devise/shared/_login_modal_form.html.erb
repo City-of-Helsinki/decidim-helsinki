@@ -7,7 +7,7 @@
       <% if local_assigns[:hide_form] %>
         <p>
           <button class="h5" data-toggle="session_modal session_modal_closed session_modal_open" id="session_modal_toggle">
-            <%= t("decidim.devise.sessions.new.sign_in_service_account") %>
+            <%= t("decidim.devise.sessions.new.sign_in_service_account", service_name: current_organization.name) %>
             <span id="session_modal_closed" data-toggler=".is-hidden" aria-expanded="true">
               <%= icon "chevron-bottom" %>
             </span>

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
+class HelsinkiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
   # Overrides the parent class method, but it still uses it to keep the base
   # behavior
   def authorize
@@ -15,7 +15,7 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
       data[:extra_explanation] = {
         key: "physically_identified",
         params: {
-          scope: "suomifi_action_authorizer.restrictions"
+          scope: "helsinki_action_authorizer.restrictions"
         }
       }
     elsif !authorized_municipality_allowed?
@@ -23,7 +23,7 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
       data[:extra_explanation] = {
         key: "disallowed_municipality",
         params: {
-          scope: "suomifi_action_authorizer.restrictions"
+          scope: "helsinki_action_authorizer.restrictions"
         }
       }
     elsif !authorized_district_allowed?
@@ -31,7 +31,7 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
       data[:extra_explanation] = {
         key: "disallowed_district",
         params: {
-          scope: "suomifi_action_authorizer.restrictions"
+          scope: "helsinki_action_authorizer.restrictions"
         }
       }
     elsif !authorized_age_allowed?
@@ -39,7 +39,7 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
       data[:extra_explanation] = {
         key: "too_young",
         params: {
-          scope: "suomifi_action_authorizer.restrictions",
+          scope: "helsinki_action_authorizer.restrictions",
           minimum_age: minimum_age
         }
       }
@@ -125,7 +125,7 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
     # passed to Date.strptime(). Really rare edge case but apparently it is
     # possible. Add the log message for further debugging.
     Rails.logger.error(
-      "[ERROR] Could not parse date of birth for Suomi.fi authorization #{authorization.id} (value: #{authorization.metadata["date_of_birth"]})"
+      "[ERROR] Could not parse date of birth for Helsinki profile authorization #{authorization.id} (value: #{authorization.metadata["date_of_birth"]})"
     )
     nil
   end

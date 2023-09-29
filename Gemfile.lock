@@ -88,6 +88,17 @@ GIT
       decidim-core (~> 0.27.0)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-helsinki_profile.git
+  revision: 85a4e853fa2aa9ad3492abf48a231b6849679229
+  branch: main
+  specs:
+    decidim-helsinki_profile (0.27.0)
+      decidim-core (~> 0.27.0)
+      henkilotunnus (~> 1.2.0)
+      jwt (~> 2.7)
+      omniauth_openid_connect (~> 0.7)
+
+GIT
   remote: https://github.com/mainio/decidim-module-helsinki_smsauth.git
   revision: eb32ad88376c18ce4574def3f84f643ca9d460bc
   branch: main
@@ -177,16 +188,6 @@ GIT
   specs:
     decidim-stats (0.27.0)
       decidim-core (~> 0.27.0)
-
-GIT
-  remote: https://github.com/mainio/decidim-module-suomifi.git
-  revision: 3789f9768817b83d6cab68589b1ec95b59fc31fd
-  branch: main
-  specs:
-    decidim-suomifi (0.27.0)
-      decidim-core (~> 0.27.0)
-      henkilotunnus (~> 1.1.0)
-      omniauth-suomifi (~> 0.6.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-tags.git
@@ -666,7 +667,7 @@ GEM
       sass (~> 3.4)
     hashdiff (1.0.1)
     hashie (5.0.0)
-    henkilotunnus (1.1.0)
+    henkilotunnus (1.2.0)
       activemodel (>= 4.2)
     highline (2.1.0)
     hkdf (0.3.0)
@@ -819,9 +820,6 @@ GEM
     omniauth-saml (2.1.0)
       omniauth (~> 2.0)
       ruby-saml (~> 1.12)
-    omniauth-suomifi (0.6.2)
-      omniauth-saml (~> 2.0)
-      ruby-saml (~> 1.13.0)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -1176,6 +1174,7 @@ DEPENDENCIES
   decidim-dev (~> 0.27.0)
   decidim-favorites!
   decidim-feedback!
+  decidim-helsinki_profile!
   decidim-helsinki_smsauth!
   decidim-ideas!
   decidim-initiatives (~> 0.27.0)
@@ -1188,7 +1187,6 @@ DEPENDENCIES
   decidim-redirects!
   decidim-sms-telia!
   decidim-stats!
-  decidim-suomifi!
   decidim-tags!
   decidim-term_customizer!
   dotenv-rails (~> 2.8)

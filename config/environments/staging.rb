@@ -4,11 +4,11 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.search_indexing = false
 
-  config.suomifi_enabled = true
+  config.helsinki_profile_enabled = true
   config.mpassid_enabled = true
 
   # This defines an email address for automatically generated user accounts,
-  # e.g. through the Suomi.fi or MPASSid authentications.
+  # e.g. through the Helsinki profile or MPASSid authentications.
   config.auto_email_domain = "osallistu.hel.ninja"
 
   # Code is not reloaded between requests.

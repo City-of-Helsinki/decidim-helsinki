@@ -25,14 +25,14 @@ en:
             class_level_not_defined: Your grade level cannot be verified electronically. You can vote at the polling stations announced separately by showing an ID.
             not_in_area: Helsinki is not your home municipality. Only residents of Helsinki can participate in this voting.
             not_permanent_resident: You are not a permanent resident of Helsinki. Only residents of Helsinki can participate in this voting.
-            not_student: According to our information, you are not a pupil. Parents and teaches cannot identify themselves to vote through Wilma. Choose another identification method.
-            too_young: You may be too young to vote. You have to be at least on the 6th grade of comprehensive school to be able to identify yourself to vote through Wilma. If you have turned 12 or will turn 12 this year, then you can vote at the polling stations announced separately by showing an ID.
+            not_student: According to our information, you are not a pupil. Parents and teaches cannot identify themselves to vote through edu.hel.fi. Choose another identification method.
+            too_young: You may be too young to vote. You have to be at least on the 6th grade of comprehensive school to be able to identify yourself to vote through edu.hel.fi. If you have turned 12 or will turn 12 this year, then you can vote at the polling stations announced separately by showing an ID.
             unknown_school: We did not manage to verify electronically in which school you study. Unfortunately, you may not vote on the Ruuti budget.
-            invalid_school_type: Your school type does not allow you to identify yourself to vote through Wilma. Choose another identification method.
+            invalid_school_type: Your school type does not allow you to identify yourself to vote through edu.hel.fi. Choose another identification method.
         identify:
           title: Identify yourself
         new:
-          help: You can vote both on the plans for entire Helsinki and plans for the district you select below. The service automatically suggests a major district based on your postal code (or postal code of your school if you identify with Wilma), but you can change it using the drop-down menu. If you want to vote for a particular plan, please check beforehand what districts it belongs to. If you want to change the district later, please see Instructions.
+          help: You can vote both on the plans for entire Helsinki and plans for the district you select below. The service automatically suggests a major district based on your postal code (or postal code of your school if you identify with edu.hel.fi), but you can change it using the drop-down menu. If you want to vote for a particular plan, please check beforehand what districts it belongs to. If you want to change the district later, please see Instructions.
           title: Accept the major district
           submit: Accept
     content_blocks:
@@ -269,11 +269,11 @@ en:
       class_level_not_allowed_one: Your grade level should be %{level}.
       class_level_not_defined: Your grade level is not defined.
       disallowed_municipality: The voting is limited only to Helsinki residents.
-      disallowed_role: The Wilma identification is limited only to pupils.
+      disallowed_role: The edu.hel.fi identification is limited only to pupils.
       disallowed_school: Voting is not allowed in this school.
       disallowed_voting_unit: You cannot vote on this area from your school.
       voting_unit_required: Information about your Ruuti area is not defined.
-  suomifi_action_authorizer:
+  helsinki_action_authorizer:
     restrictions:
       disallowed_district: This voting is not allowed from your major district.
       disallowed_municipality: Voting is limited only to Helsinki residents.

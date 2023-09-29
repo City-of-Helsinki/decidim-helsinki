@@ -25,7 +25,7 @@ module Helsinki
             meta = identity_provider.for(vote.user, vote_time_for(vote))
             if meta
               case meta[:identity]
-              when "suomifi_eid", "helsinki_documents_authorization_handler"
+              when "helsinki_idp", "helsinki_documents_authorization_handler"
                 accumulate_citizen(meta)
               when "mpassid_nids"
                 accumilate_pupil(meta)

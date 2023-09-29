@@ -12,7 +12,7 @@ Rails.application.configure do
   config.wrapper_class = "wrapper-ruuti"
 
   # This defines an email address for automatically generated user accounts,
-  # e.g. through the Suomi.fi or MPASSid authentications.
+  # e.g. through the Helsinki profile or MPASSid authentications.
   config.auto_email_domain = "nubu.hel.ninja"
 
   # Code is not reloaded between requests.

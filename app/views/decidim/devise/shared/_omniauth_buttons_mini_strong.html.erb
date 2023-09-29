@@ -5,7 +5,7 @@
         <%= t("devise.shared.omniauth.strong.sign_in_with") %>
       </h3>
       <p>
-        <%= t("devise.shared.omniauth.strong.description") %>
+        <%= t("devise.shared.omniauth.strong.description", domain: current_organization.host) %>
       </p>
 
       <% enabled_strong_providers.each_with_index do |provider, index| %>

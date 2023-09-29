@@ -14,12 +14,12 @@ module Helsinki
           rawdata = authorization.metadata
 
           case authorization.name
-          when "suomifi_eid"
+          when "helsinki_idp"
             age = calculate_age(rawdata["date_of_birth"], at_date)
 
             {
-              identity: "suomifi_eid",
-              identity_name: "Suomi.fi",
+              identity: "helsinki_idp",
+              identity_name: "Helsinki profile",
               municipality: rawdata["municipality"],
               postal_code: rawdata["postal_code"],
               gender: rawdata["gender"],
@@ -59,7 +59,7 @@ module Helsinki
         end
 
         def possible_authorizations
-          @possible_authorizations ||= %w(suomifi_eid mpassid_nids helsinki_documents_authorization_handler)
+          @possible_authorizations ||= %w(helsinki_idp mpassid_nids helsinki_documents_authorization_handler)
         end
 
         def parse_class_level(rawdata)

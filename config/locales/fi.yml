@@ -10,7 +10,7 @@ fi:
       mpassid_nids:
         student_class_level: Luokka-aste
         voting_unit: Ruuti-alue
-      suomifi_eid:
+      helsinki_idp:
         district: Suurpiiri
       result:
         budget_amount: Hankkeen kokonaisbudjetti
@@ -64,8 +64,8 @@ fi:
           minimum_class_level: Pienin luokka-aste
           student_class_level: Luokka-aste
           voting_unit: Ruuti-alue
-        name: Oppilaiden Wilma-tunnukset
-      suomifi_eid:
+        name: Oppilaiden edu.hel.fi-tunnukset
+      helsinki_idp:
         fields:
           allowed_districts: Sallitut suurpiirit
           district: Suurpiiri
@@ -120,7 +120,7 @@ fi:
       proposals:
         filters:
           category_prompt: Valitse aihepiiri
-    suomifi:
+    helsinki:
       omniauth_callbacks:
         failure:
           security_denial: Henkilöllisyyttäsi ei pystytä varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
@@ -131,7 +131,7 @@ fi:
             cocreation: Yhteiskehittäminen
             helsinki_documents_authorization_handler: Toimipistetunnistautuminen
             mpassid_nids: MPASSid
-            suomifi_eid: Suomi.fi
+            helsinki_idp: Helsinki-profiili
   errors:
     messages:
       extension_whitelist_error: Lataamasi tiedostomuoto ei ole sallittu.

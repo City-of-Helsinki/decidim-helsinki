@@ -7,36 +7,33 @@ fi:
         sign_in: 'Kirjaudu sisään'
     shared:
       omniauth:
-        tunnistamo:
-          description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa.'
-          sign_in_with: 'Kirjaudu ilman tunnistautumista'
-          sign_in_button: 'Kirjaudu sisään'
+        helsinki:
+          description: 'Voit kirjautua sisään Helsinki-profiilin avulla.'
+          sign_in_with: 'Helsinki-profiili'
+          sign_in_button: 'Kirjaudu Helsinki-profiililla'
         sms:
           description: 'Koululaisena voit tunnistautua tekstiviestillä tai opettajan tai nuoriso-ohjaajan antamalla koodilla.'
           sign_in_with: 'Tekstiviestikirjautuminen'
           sign_in_button: 'Kirjaudu sisään tekstiviestillä'
         strong:
-          description: 'Kirjautuminen omastadi.hel.fi -palveluun pankkitunnuksella tai mobiilivarmenteella. Peruskoulun oppilaat voivat kirjautua myös Wilma-tunnuksilla.'
+          description: 'Kirjautuminen %{domain} -palveluun Helsinki-profiililla. Peruskoulun oppilaat voivat kirjautua myös edu.hel.fi-tunnuksilla.'
           sign_in_with: 'Kirjaudu ja tunnistaudu sähköisellä tunnistautumisella'
-        suomifi:
-          description: 'Suomi.fi tarjoaa tunnistautumismahdollisuuden mm. suomalaisilla pankkitunnuksilla ja mobiilivarmenteella.'
-          sign_in_with: 'Suomi.fi-tunnistautuminen'
-          sign_in_button: 'Pankkitunnukset tai mobiilivarmenne'
         mpassid:
           description: 'Koululaisena voit kirjautua MPASSid-palvelun avulla koulusi tunnuksella.'
           sign_in_with: 'MPASSid-tunnistautuminen'
-          sign_in_button: 'Oppilaiden Wilma-tunnukset'
+          sign_in_button: 'Kirjaudu oppilaiden edu.hel.fi-tunnuksilla'
         weak:
           description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa tai aiemmin luomillasi Omastadi –tunnuksilla.'
-          sign_in_with: 'Kirjaudu  ilman tunnistautumista'
+          sign_in_with: 'Kirjaudu ilman tunnistautumista'
           sign_in_button: 'Kirjaudu Tunnistamo-palvelun avulla'
   decidim:
     devise:
       registrations:
         new:
           sign_up_service_account: 'Luo omat tunnukset'
-          sign_up_service_account_description: 'Luo oma käyttäjätili ja kirjaudu jatkossa sisään sähköpostisoittella ja itse valitsemallasi salasanalla.'
+          sign_up_service_account_description: 'Luo oma käyttäjätili ja kirjaudu jatkossa sisään sähköpostiosoitteella ja itse valitsemallasi salasanalla.'
       sessions:
         new:
-          sign_in_service_account: 'Kirjaudu omalla tunnuksella'
-          sign_in_service_account_description: 'Kirjaudu sisään sähköpostisoittella ja itse valitsemallasi salasanalla.'
+          are_you_new?: Oletko uusi käyttäjä?
+          sign_in_service_account: 'Kirjaudu %{service_name}-tunnuksella'
+          sign_in_service_account_description: 'Kirjaudu sisään sähköpostiosoitteella ja itse valitsemallasi salasanalla.'

@@ -23,13 +23,13 @@ describe Helsinki::Stats::Voting::Aggregator do
       }
     )
   end
-  let!(:suomifi_user) { create(:user, :confirmed, locale: "fi", name: "Aaroni Barbecuetes", organization: organization) }
-  let!(:suomifi_authorization) do
+  let!(:helsinki_user) { create(:user, :confirmed, locale: "fi", name: "Aaroni Barbecuetes", organization: organization) }
+  let!(:helsinki_authorization) do
     create(
       :authorization,
-      user: suomifi_user,
-      name: "suomifi_eid",
-      unique_id: "suomifi_1",
+      user: helsinki_user,
+      name: "helsinki_idp",
+      unique_id: "helsinki_1",
       metadata: {
         date_of_birth: "1955-04-26",
         municipality: "091",
@@ -55,7 +55,7 @@ describe Helsinki::Stats::Voting::Aggregator do
     )
   end
   let(:demographic_data) do
-    [managed_authorization, suomifi_authorization].to_h do |auth|
+    [managed_authorization, helsinki_authorization].to_h do |auth|
       dob = Date.strptime(auth.metadata["date_of_birth"], "%Y-%m-%d")
       now = Time.parse(creation_dates[auth.user.id][0]).utc.to_date
       diff_year = now.month > dob.month || (now.month == dob.month && now.day >= dob.day) ? 0 : 1
@@ -88,14 +88,14 @@ describe Helsinki::Stats::Voting::Aggregator do
   let(:creation_dates) do
     {
       managed_user.id => ["2021-10-02T10:12:14Z", "2021-10-02T10:00:00Z"],
-      suomifi_user.id => ["2021-10-04T19:18:17Z", "2021-10-04T19:00:00Z"],
+      helsinki_user.id => ["2021-10-04T19:18:17Z", "2021-10-04T19:00:00Z"],
       mpassid_user.id => ["2021-10-08T22:22:22Z", "2021-10-08T22:00:00Z"]
     }
   end
 
   before do
     # Create actual votes
-    [managed_user, suomifi_user, mpassid_user].each do |user|
+    [managed_user, helsinki_user, mpassid_user].each do |user|
       vote = Decidim::Budgets::Vote.new(
         component: component,
         user: user,
@@ -116,7 +116,7 @@ describe Helsinki::Stats::Voting::Aggregator do
       organization: organization
     )
     other_budget = create(:budget, component: other_component, total_budget: total_budget)
-    [managed_user, suomifi_user, mpassid_user].each do |user|
+    [managed_user, helsinki_user, mpassid_user].each do |user|
       vote = Decidim::Budgets::Vote.new(
         component: other_component,
         user: user
@@ -169,7 +169,7 @@ describe Helsinki::Stats::Voting::Aggregator do
 
   shared_examples "correct postal code stats for component" do
     it "creates the stats for each postal code separately" do
-      [managed_authorization, suomifi_authorization].each do |auth|
+      [managed_authorization, helsinki_authorization].each do |auth|
         collection = measurable.stats.find_by(key: "votes_postal_#{auth.metadata["postal_code"]}")
 
         total = collection.sets.find_by(key: "total")
@@ -278,7 +278,7 @@ describe Helsinki::Stats::Voting::Aggregator do
     end
 
     it "does not create separate postal code stats collections" do
-      [managed_authorization, suomifi_authorization].each do |auth|
+      [managed_authorization, helsinki_authorization].each do |auth|
         collection = measurable.stats.find_by(key: "votes_postal_#{auth.metadata["postal_code"]}")
         expect(collection).to be_nil
       end
@@ -304,8 +304,8 @@ describe Helsinki::Stats::Voting::Aggregator do
       end
     end
 
-    context "with Suomi.fi user" do
-      let(:voter) { suomifi_user }
+    context "with Helsinki user" do
+      let(:voter) { helsinki_user }
 
       it_behaves_like "correct project stats for citizen"
 

@@ -51,7 +51,12 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
     gender = nil
     date_of_birth = nil
     if hetu
-      gender = hetu.male? ? "m" : "f"
+      gender =
+        if hetu.gender_neutral?
+          "neutral"
+        else
+          hetu.male? ? "m" : "f"
+        end
       date_of_birth = hetu.date_of_birth.to_s
     end
 
@@ -79,7 +84,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
     )
   end
 
-  # Use the same format for the digest as with Suomi.fi
+  # Use the same format for the digest as with Helsinki profile
   def pin_digest
     Digest::MD5.hexdigest(
       "FI:#{pin}:#{Rails.application.secrets.secret_key_base}"
@@ -124,7 +129,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
     voted = Decidim::Authorization.exists?(
       [
         "name =? AND pseudonymized_pin =?",
-        "suomifi_eid",
+        "helsinki_idp",
         pin_digest
       ]
     )

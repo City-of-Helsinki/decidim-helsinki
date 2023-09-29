@@ -115,7 +115,7 @@ module Helsinki
         end
 
         def authorize_user(user)
-          auth_types = %w(suomifi_eid helsinki_documents_authorization_handler mpassid_nids)
+          auth_types = %w(helsinki_idp helsinki_documents_authorization_handler mpassid_nids)
           auth = Decidim::Authorization.find_by(user: user, name: auth_types)
           return auth if auth
 
@@ -148,7 +148,7 @@ module Helsinki
                 postal_code: random_postal_code,
                 municipality: "091"
               }
-            else # "suomifi_eid"
+            else # "helsinki_idp"
               postal_code = random_postal_code
 
               {

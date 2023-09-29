@@ -16,13 +16,6 @@ module OmniauthExtensions
   def check_strategy_enabled
     return if current_organization.enabled_omniauth_providers.has_key?(action_name.to_sym)
 
-    flash[:alert] = t("devise.omniauth_callbacks.disabled")
-    redirect_path = stored_location_for(resource || :user) || decidim.root_path
-    if action_name == "suomifi"
-      params = "?RelayState=#{CGI.escape(redirect_path)}"
-      return redirect_to decidim_suomifi.user_suomifi_omniauth_spslo_path + params
-    end
-
     redirect_to redirect_path
   end
 end
