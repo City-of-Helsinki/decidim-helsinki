@@ -50,7 +50,7 @@
             </p>
           <% end %>
           <div class="field">
-            <%= f.check_box :tos_agreement, label: t(".tos_agreement", link: link_to(t(".terms"), page_path("terms-and-conditions"))) %>
+            <%= f.check_box :tos_agreement, label: t(".tos_agreement", link: link_to(t(".terms"), page_path("terms-and-conditions"), target: "_blank")) %>
           </div>
         </div>
 
@@ -74,21 +74,3 @@
 </div>
 
 <%= render "decidim/devise/shared/newsletter_modal" %>
-
-<% if params[:user] %>
-  <%= javascript_tag defer: 'defer' do -%>
-  setTimeout(function() {
-    var $button = $('#register_toggle');
-    $button.trigger('click.zf.trigger').scrollTo();
-  }, 500);
-  <% end -%>
-<% else %>
-  <%= javascript_tag defer: 'defer' do -%>
-  if (window.location.hash == '#register_section') {
-    setTimeout(function() {
-      $('#register_toggle').trigger('click.zf.trigger');
-      $('input#user_name').focus();
-    }, 500);
-  }
-  <% end %>
-<% end %>
