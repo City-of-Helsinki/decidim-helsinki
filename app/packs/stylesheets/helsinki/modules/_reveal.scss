@@ -1,0 +1,10 @@
+.reveal{
+  border-top: 10px solid $primary;
+}
+
+.reveal__title{
+  font-size: $hel-text-size-l;
+  font-weight: $global-weight-bold;
+  margin-bottom: 2rem;
+  padding-right: 3rem; // leave space for the close button
+}

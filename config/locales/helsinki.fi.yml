@@ -211,7 +211,7 @@ fi:
           title: Etsi ehdotuksia
           unfold: Avaa
         leave_your_plan: Tee oma ehdotuksesi!
-        new_plan: Uusi ehdotus
+        new_plan: Tee ehdotus
         notification:
           title: Tietoa alueista
           description_html: <p>Tutustu oman alueesi tärkeisiin lukuihin ja kiinnostaviin teemoihin.</p>
@@ -219,7 +219,7 @@ fi:
         see_all_withdrawn: Näytä kaikki peruutetut
         show_list: Näytä tulokset listana
         show_map: Näytä tulokset kartalla
-        title: Etsi ja tutki ehdotuksia
+        title: Tutustu ehdotuksiin
         view_plan: Näytä ehdotus
       omastadi_notification:
         accepted:

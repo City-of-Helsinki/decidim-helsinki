@@ -12,7 +12,7 @@ const STATUS = {
 // version 0.27.5 (upcoming at the time of writing). Once this version is
 // released, this override can be removed.
 //
-// Once updating, also remove
+// Once updating, also review
 // `app/cells/concerns/upload_modal_cell_extensions.rb`.
 //
 // This class handles logic inside upload modal, but since modal is not inside the form

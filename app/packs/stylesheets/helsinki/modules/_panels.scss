@@ -35,7 +35,11 @@
     p{
       background-color: $secondary;
       padding: .8rem 1.7rem 1.1rem;
-      margin: 1.35rem;
+      margin: 1.35rem 0;
+
+      @include breakpoint(medium){
+        margin: 1.35rem;
+      }
     }
   }
 

@@ -1,4 +1,6 @@
 .resource__main{
+  margin-bottom: 4rem;
+
   @include breakpoint(large){
     margin-right: 2rem;
   }

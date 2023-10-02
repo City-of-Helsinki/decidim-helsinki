@@ -1,5 +1,8 @@
 en:
   decidim:
+    account:
+      delete:
+        explanation: Reason why you want to delete your account (optional)
     accountability:
       results:
         show:
@@ -57,6 +60,13 @@ en:
         settings:
           global:
             vote_success_mpassid_content: Content displayed after successful voting for MPASSid users
+    forms:
+      upload:
+        choose_file: Choose file
+    pages:
+      terms_and_conditions:
+        refuse:
+          modal_title: Are you sure you want to refuse the updated terms of use?
     participatory_processes:
       participatory_processes:
         process_actions:
@@ -64,6 +74,49 @@ en:
         show:
           show_step: Show phase
           steps: Phases
+    privacy:
+      partials:
+        privacy_consent:
+          agree: Save
+          agree_to_public_profile: I agree to have my profile made public
+          make_profile_public: Making your profile public
+          do_not_agree: Cancel
+          content_html: |
+            <p>If you want to submit a proposal or comment on a proposal in the service, you must create a public
+            profile. This means that other service users will see your user name attached to proposals or comments and
+            can click on it to view your profile. Your public profile shows the following information:</p>
+            <ul>
+              <li>your name</li>
+              <li>your user name</li>
+              <li>proposals and comments you have submitted</li>
+              <li>who you follow and who follows you on OmaStadi</li>
+            </ul>
+            <p>In addition, you can choose to add:</p>
+            <ul>
+              <li>a profile photo</li>
+              <li>a profile description</li>
+            </ul>
+            <p>You can always change your profile back to non-public, so that none of your profile information is
+            visible to other users. In this case, your user name will also be deleted from the proposals or comments
+            you have submitted. You can change your profile to non-public on the site in your account privacy
+            settings.</p>
+      privacy_settings:
+        show:
+          profile_publicity_html: |
+            <p>These privacy settings allow you to control how you appear on this platform publicly. You can decide to
+            remain completely anonymous but it will limit what you can do on this platform.</p>
+            <h2 class="h5">Profile publicity</h2>
+            <p>Making your profile public allows you to perform public activities on this platform, such as sending
+            comments, participating in discussions, creating proposals, etc.</p><p>When you make your profile public,
+            other participants can see your name publicly on this platform and also see other public information about
+            you, such as your nickname and avatar image, your public activity on this platform, your followers and who
+            you follow.</p>
+          private_messaging_html: |
+            <h2 class="h5">Private messaging</h2>
+            <p>These settings allow you to communicate with other participants on this platform. Other participants can
+            send you private messages and you can send them to others as well. Your profile needs to be public in order
+            to enable this feature because other people need to find you from this platform in order to have a
+            conversation with you.</p>
     proposals:
       proposal_l:
         card_label: Proposal %{title}
@@ -84,3 +137,5 @@ en:
     resource_links:
       included_plans:
         project_plan: Related co-creation proposals
+    shared:
+      skip_subnavigation: Skip subnavigation

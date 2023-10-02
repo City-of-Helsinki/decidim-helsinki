@@ -1,20 +1,22 @@
 <% add_decidim_page_title(t(".posts")) %>
 
-<div class="row columns mt-m">
-  <div class="text-center">
-    <h2 class="heading1 page-title"><%= t(".posts") %></h2>
+<div class="row columns">
+  <div class="page-title">
+    <h1 class="heading1"><%= t(".posts") %></h1>
   </div>
 </div>
 
-<div class="row columns">
-  <%= render partial: "filters_small_view" %>
-  <div class="card card--secondary show-for-mediumlarge">
-    <div class="record-filters">
+
+<div class="container bg-secondary filters-section">
+  <div class="row columns">
+    <div class="post-filters record-filters">
       <%= render partial: "filters" %>
     </div>
   </div>
 </div>
 
-<div class="row columns mb-m">
-  <%= render partial: "decidim/blogs/posts/listing", locals: { posts: posts } %>
+<div class="container listing-section">
+  <div class="row columns">
+    <%= render partial: "decidim/blogs/posts/listing", locals: { posts: posts } %>
+  </div>
 </div>

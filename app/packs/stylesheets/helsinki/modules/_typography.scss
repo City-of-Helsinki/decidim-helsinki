@@ -132,6 +132,10 @@ a,
   color: $hel-grayscale-60;
 }
 
+.word-break{
+  word-break: break-word;
+}
+
 .action-link{
   > span{
     text-decoration: underline;

@@ -12,10 +12,11 @@
 
     .icon{
       position: absolute;
-      top: 1rem;
+      top: 50%;
       right: 1.4rem;
       width: 1.4rem;
       height: 1.4rem;
+      transform: translateY(-50%);
     }
   }
 }
@@ -26,4 +27,9 @@ a.button{
 
 .button--nomargin{
   margin: 0;
+}
+
+.buttons-row{
+  display: flex;
+  gap: 1rem;
 }

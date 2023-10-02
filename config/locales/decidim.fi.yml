@@ -1,5 +1,8 @@
 fi:
   decidim:
+    account:
+      delete:
+        explanation: Syy tilisi poistoon (valinnainen)
     accountability:
       results:
         show:
@@ -57,6 +60,13 @@ fi:
         settings:
           global:
             vote_success_mpassid_content: Onnistuneen äänestyksen jälkeen näytettävä sisältö MPASSid-käyttäjille
+    forms:
+      upload:
+        choose_file: Valitse tiedosto
+    pages:
+      terms_and_conditions:
+        refuse:
+          modal_title: Haluatko varmasti kieltäytyä hyväksymästä päivitettyjä käyttöehtoja?
     participatory_processes:
       participatory_processes:
         process_actions:
@@ -64,6 +74,49 @@ fi:
         show:
           show_step: Tutustu vaiheeseen
           steps: Vaiheet
+    privacy:
+      partials:
+        privacy_consent:
+          agree: Tallenna
+          agree_to_public_profile: Hyväksyn, että profiilini muutetaan julkiseksi
+          do_not_agree: Peruuta
+          make_profile_public: Profiilin muuttaminen julkiseksi
+          content_html: |
+            <p>Mikäli haluat jättää ehdotuksen tai kommentoida ehdotusta palvelussa, tulee sinun luoda palveluun
+            julkinen profiili. Tämä tarkoittaa, että muut palvelun käyttäjät näkevät nimimerkkisi ehdotuksen tai
+            kommentin kohdalla ja pääsevät sitä klikkaamalla katsomaan profiiliasi. Julkisessa profiilissa näkyy
+            seuraavat tiedot:</p>
+            <ul>
+              <li>nimesi</li>
+              <li>nimimerkkisi</li>
+              <li>jättämäsi ehdotukset ja kommentit</li>
+              <li>ketä sinä seuraat ja ketkä seuraavat sinua OmaStadi-palvelussa</li>
+            </ul>
+            <p>Lisäksi voit halutessasi lisätä profiiliin:</p>
+            <ul>
+              <li>profiilikuvan</li>
+              <li>profiilin kuvauksen</li>
+            </ul>
+            <p>Voit halutessasi muuttaa profiilin takaisin ei-julkiseksi, jolloin mitkään profiilisi tiedot eivät näy
+            muille käyttäjille. Tällöin myös nimimerkkisi poistuu jättämäsi ehdotuksen tai kommentin kohdalta. Voit
+            muuttaa profiilin ei-julkiseksi sivustolla käyttäjätilisi yksityisyysasetuksista.</p>
+      privacy_settings:
+        show:
+          profile_publicity_html: |
+            <p>Näiden yksityisyysasetusten avulla voit hallita, kuinka esiinnyt tällä alustalla. Voit pysyä täysin
+            anonyymina, mutta se rajoittaa, mitä voit tehdä tällä alustalla.</p>
+            <h2 class="h5">Profiilin julkisuus</h2>
+            <p>Profiilin julkaiseminen mahdollistaa tiettyjen julkisten toimintojen suorittamisen tällä alustalla,
+            kuten kommentoinnin, keskusteluihin osallistumisen, ehdotusten tekemisen, jne.</p><p>Tekemällä profiilistasi
+            julkisen, muut osallistujat voivat nähdä nimesi julkisesti tällä alustalla ja myös muuta julkista tietoa
+            sinusta, kuten nimimerkkisi, profiilikuvasi, julkisen toimintasi tällä alustalla, seuraajasi ja keitä sinä
+            seuraat.</p>
+          private_messaging_html: |
+            <h2 class="h5">Yksityisviestit</h2>
+            <p>Näiden asetusten avulla voit keskustella muiden osallistujien kanssa tällä alustalla. Muut osallistujat
+            voivat lähettää sinulle yksityisviestejä ja myös sinä voit lähettää niitä muille osallistujille. Profiilisi
+            on oltava julkinen tämän asetuksen käyttöönottoa varten, koska muiden osallistujien on löydettävä sinut
+            tältä alustalta keskustellakseen kanssasi.</p>
     proposals:
       proposal_l:
         card_label: Ehdotus %{title}
@@ -84,3 +137,5 @@ fi:
     resource_links:
       included_plans:
         project_plan: Liitetyt yhteiskehittämisen ehdotukset
+    shared:
+      skip_subnavigation: Ohita alanavigaatio

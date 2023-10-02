@@ -34,8 +34,35 @@ fi:
     devise:
       registrations:
         new:
+          privacy_link: https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Keha/Osallisuuden%20ja%20palautteiden%20rekisteri.pdf
           sign_up_service_account: 'Luo omat tunnukset'
           sign_up_service_account_description: 'Luo oma käyttäjätili ja kirjaudu jatkossa sisään sähköpostiosoitteella ja itse valitsemallasi salasanalla.'
+          terms: käyttöehdot
+          tos_title: Suostumus henkilötietojen käsittelylle ja käyttöehdot
+          tos_agreement: Annan suostumukseni edellä lueteltujen henkilötietojeni käsittelyyn OmaStadi-palvelun tuottamiseksi ja hyväksyn %{link}.
+          tos_summary_html: |
+            <p>
+              Kun rekisteröidyt OmaStadi-palveluun, on sinun annettava suostumuksesi henkilötietojen käsittelylle.
+              Suostumuksen antamisen jälkeen voit tehdä ehdotuksen, kommentoida ehdotuksia ja äänestää ehdotuksia.
+            </p>
+            <p>
+              Kun rekisteröidyt palveluun käsittelemme seuraavia henkilötietojasi: nimi, nimimerkki ja sähköpostiosoite.
+            </p>
+            <p>
+              Kun tunnistaudut OmaStadi-palveluun vahvan tunnistautumisen kautta, käsittelemme seuraavia
+              henkilötietojasi: nimi, sähköpostisosoite, kotikunta, postinumero ja henkilötunnus.
+            </p>
+            <p>
+              Koululaiset tunnistautuvat äänestäessään koulujen käyttämän mPassID:n avulla, jolloin käsitellemme
+              seuraavia henkilötietoja: etunimi, sukunimi, kutsumanimi, kuntakoodi, kunnan nimi, koulukoodi, koulun
+              nimi, luokkatunnus ja luokka-aste.
+            </p>
+            <p>Voit peruuttaa antamasi suostumuksen milloin tahansa ja poistaa tietosi käyttäjätilisi asetuksista.</p>
+            <p>
+              Lisätietoa henkilötietojesi käsittelystä OmaStadi palvelussa löytyy
+              <a href="%{privacy_link}" target="_blank">tietosuojaselosteesta</a>, jossa kerrotaan muun muassa tarkemmin
+              henkilötietojesi käsittelyn oikeusperusteista ja tietojesi säilytysajoista.
+            </p>
       sessions:
         new:
           are_you_new?: Oletko uusi käyttäjä?

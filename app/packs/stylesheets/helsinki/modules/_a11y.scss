@@ -1,0 +1,39 @@
+.skip-wrapper{
+  position: relative;
+}
+
+.skip{
+  z-index: 2;
+  position: absolute;
+  overflow: hidden;
+  max-height: 1px;
+  max-width: 1px;
+  opacity: 0;
+  background-color: $hel-black;
+  color: $hel-white;
+  font-weight: $hel-font-weight-medium;
+  left: 0;
+  text-align: center;
+  text-decoration: none;
+  width: -moz-max-content;
+  width: max-content;
+  white-space: nowrap;
+  word-wrap: normal;
+  transform: translate(0, -50%);
+  transition: transform ease-out .2s;
+
+  &:active,
+  &:focus{
+    max-width: 90%;
+    max-height: none;
+    outline: 3px solid $hel-black;
+    outline-offset: 0;
+    opacity: 1;
+    padding: 8px 24px;
+    transform: translate(0, 0);
+  }
+}
+
+a.skip{
+  color: $hel-white;
+}

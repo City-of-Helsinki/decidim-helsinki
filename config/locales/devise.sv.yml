@@ -34,8 +34,36 @@ sv:
     devise:
       registrations:
         new:
+          privacy_link: https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Keha/Osallisuuden%20ja%20palautteiden%20rekisteri.pdf
           sign_up_service_account: 'Skapa eget konto'
           sign_up_service_account_description: 'Skapa ett eget användarkonto och logga i fortsättningen in med din e-postadress och ditt eget lösenord.'
+          terms: användarvillkoren
+          tos_title: Samtycke till behandling av personuppgifter och användarvillkor
+          tos_agreement: Jag ger mitt samtycke till behandlingen av mina ovan nämnda personuppgifter för att producera tjänsten OmaStadi och jag godkänner %{link}.
+          tos_summary_html: |
+            <p>
+              När du registrerar dig i tjänsten OmaStadi ska du ge ditt samtycke till behandlingen av personuppgifter.
+              Efter att ha gett ditt samtycke kan du lämna in förslag, kommentera förslag och rösta på förslag.
+            </p>
+            <p>
+              När du registrerar dig i tjänsten behandlar vi följande personuppgifter: namn, signatur och e-postadress.
+            </p>
+            <p>
+              När du identifierar dig i OmaStadi genom stark autentisering behandlar vi följande personuppgifter: namn,
+              e-postadress, hemkommun, postnummer och personbeteckning.
+            </p>
+            <p>
+              Skolelever identifierar sig vid rösning med hjälp av mPassID som skolorna använder, varvid vi behandlar
+              följande personuppgifter: förnamn, efternamn, tilltalsnamn, kommunkod, kommunnamn, skolkod, skolans namn,
+              klassbeteckning och årskurs.
+            </p>
+            <p>Du kan när som helst återkalla ditt samtycke och radera dina uppgifter från användarkontots inställningar.</p>
+            <p>
+              Mer information om behandlingen av dina personuppgifter i OmaStadi finns i
+              <a href="%{privacy_link}" target="_blank">dataskyddsbeskrivningen</a> som bland annat innehåller mer
+              information om de rättsliga grunderna för behandlingen av dina personuppgifter och om
+              förvaringstiderna för dina uppgifter.
+            </p>
       sessions:
         new:
           are_you_new?: Är du ny på plattformen?

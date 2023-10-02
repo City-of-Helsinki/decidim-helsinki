@@ -14,6 +14,9 @@
         <div class="row medium-unstack">
           <div class="columns medium-4 large-3">
             <div class="sub-navigation">
+              <div class="skip-wrapper">
+                <%= link_to t("decidim.shared.skip_subnavigation"), "#inner_content", class: "skip" %>
+              </div>
               <nav role="navigation" aria-label="<%= t(".subnav.label") %>">
                 <ul class="vertical striped large menu" role="menubar">
                   <%= user_menu.render %>
@@ -22,7 +25,7 @@
             </div>
           </div>
 
-          <div class="columns medium-8 large-9">
+          <div id="inner_content" class="columns medium-8 large-9">
             <%= yield %>
           </div>
         </div>

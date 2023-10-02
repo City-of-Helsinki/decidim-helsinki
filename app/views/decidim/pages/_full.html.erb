@@ -1,18 +1,21 @@
 <div class="container content-section">
   <div class="row column">
     <div class="main-container tabbed-container">
-      <%= cell "decidim/tos_page", :announcement %>
+
+      <div class="page-title">
+        <h1><%= translated_attribute page.title %></h1>
+      </div>
 
       <div class="row columns">
         <div class="static__content">
-          <h1>
-            <%= translated_attribute page.title %>
-          </h1>
           <%= decidim_sanitize_editor_admin translated_attribute page.content %>
         </div>
       </div>
 
-      <%= cell "decidim/tos_page", :form %>
+      <div class="margin-top-2">
+        <%= cell "decidim/tos_page", :announcement %>
+        <%= cell "decidim/tos_page", :form %>
+      </div>
     </div>
   </div>
 </div>

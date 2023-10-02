@@ -235,7 +235,8 @@ $input-outline: 0;
 $input-outline-focus: none;
 $input-outline-offset: 0;
 $input-padding: $hel-spacing-s - rem-calc(1);
-$input-shadow-focus: 0 0 0 3px $hel-coat;
+$input-focus-color: $hel-coat;
+$input-shadow-focus: 0 0 0 3px $input-focus-color;
 $input-transition: border-color 85ms ease-out;
 $input-radius: $global-radius;
 $form-button-radius: $global-radius;
@@ -280,6 +281,7 @@ $prototype-separator-background: $primary-color;
 // 47. Reveal
 // -----------
 $reveal-max-width: $global-width;
+$reveal-border: 0;
 $reveal-radius: $global-radius;
 
 // 48. Slider

@@ -1,13 +1,7 @@
-<div class="row columns">
-  <div class="title-action">
-    <h2 id="blogs-count" class="title-action__title section-heading" aria-live="polite" aria-atomic="true">
-      <%= render partial: "decidim/blogs/posts/count", locals: { posts: posts } %>
-    </h2>
-  </div>
+<div id="blogs-count" aria-live="polite" aria-atomic="true">
+  <p class="show-for-sr"><%= render partial: "decidim/blogs/posts/count", locals: { posts: posts } %></p>
 </div>
 
-<div class="row">
-  <div id="blogs" class="columns" aria-live="polite">
-    <%= render partial: "decidim/blogs/posts/posts", locals: { posts: posts } %>
-  </div>
+<div id="blogs" class="cards-grid row" aria-live="polite">
+  <%= render partial: "decidim/blogs/posts/posts", locals: { posts: posts } %>
 </div>

@@ -1,0 +1,33 @@
+<% add_decidim_page_title(t("privacy_settings", scope: "layouts.decidim.user_profile")) %>
+<% content_for(:subtitle) { t("privacy_settings", scope: "layouts.decidim.user_profile") } %>
+
+<%= form_for(@privacy_settings, url: privacy_settings_path, method: :put, class: "user-form") do |f| %>
+  <%= t(".profile_publicity_html") %>
+  <div class="switch tiny switch-with-label notifications_from_followed">
+    <%= f.label :published_at do %>
+      <%= f.check_box :published_at, data:{ publicity: @privacy_settings.published_at }, label: false, class: "switch-input" %>
+      <span class="switch-paddle"></span>
+      <span class="switch-label"><%= t(".enable_public_profile") %></span>
+    <% end %>
+  </div>
+  <div id="toggle-privacy-messaging" class="hide">
+    <%= t(".private_messaging_html") %>
+    <div class="switch tiny switch-with-label notifications_from_followed">
+      <%= f.label :allow_private_messaging do %>
+        <%= f.check_box :allow_private_messaging, label: false, class: "switch-input" %>
+        <span class="switch-paddle"></span>
+        <span class="switch-label"><%= t(".enable_private_messaging") %></span>
+      <% end %>
+    </div>
+
+    <div class="switch tiny switch-with-label allow_public_contact">
+      <label>
+        <%= f.check_box :allow_public_contact, label: false, class: "switch-input" %>
+        <span class="switch-paddle"></span>
+        <span class="switch-label"><%= t(".allow_public_contact") %></span>
+      </label>
+    </div>
+  </div>
+  <%= f.submit t(".save_privacy_settings") %>
+<% end %>
+<%= javascript_pack_tag "decidim_privacy_settings" %>

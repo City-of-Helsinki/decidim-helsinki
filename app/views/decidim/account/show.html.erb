@@ -4,8 +4,8 @@
 
 
 <%= decidim_form_for(@account, url: account_path, method: :put, html: { autocomplete: "on" }) do |f| %>
-  <div class="row medium-unstack">
-    <div class="column medium-6 large-8">
+  <div class="row large-unstack">
+    <div class="column large-8">
       <div class="account-wrapper">
         <% if current_user.unconfirmed_email.present? %>
           <div id="email-change-pending" class="callout secondary">
@@ -50,10 +50,14 @@
         <% end %>
       </div>
     </div>
-    <div class="column medium-6 large-4">
-      <%= f.upload :avatar %>
+    <div class="column large-4">
+      <div class="account-wrapper margin-bottom-3">
+        <%= f.upload :avatar %>
+      </div>
     </div>
   </div>
 
-  <%= f.submit t(".update_account") %>
+  <div class="account-wrapper">
+    <%= f.submit t(".update_account") %>
+  </div>
 <% end %>

@@ -15,32 +15,41 @@
   )
 %>
 
-<div class="row column view-header mt-m">
-  <%= link_to main_app.posts_path, class: "small hollow" do %>
-    <%= icon "chevron-left", class: "icon--small" %>
-    <%= t("decidim.blogs.posts.show.view_all_articles") %>
-  <% end %>
-</div>
-
-<div class="row">
-  <div class="columns mediumlarge-8">
-    <%= localized_content_tag_for(post, :div, class: "section") do %>
-      <% if post.main_image && post.main_image.attached? %>
-        <%= image_tag post.attached_uploader(:main_image).path, alt: translated_attribute(post.title), class: "hero-heading" %>
-      <% end %>
-      <h1 class="heading1"><%= translated_attribute post.title %></h1>
-      <%= decidim_sanitize_editor_admin translated_attribute post.body %>
+<div class="wrapper">
+  <div class="row column back-link">
+    <%= link_to main_app.posts_path, class: "action-link" do %>
+      <%= icon "arrow-left", role: "img", "aria-hidden": true %>
+      <span><%= t("decidim.blogs.posts.show.view_all_articles") %></span>
     <% end %>
   </div>
-</div>
 
-<%= attachments_for post %>
-<%= comments_for post %>
+  <div class="row column resource">
+    <div class="row">
+      <div class="columns small-12 medium-8">
+        <div class="resource__main static__content">
+          <%= localized_content_tag_for(post, :div, class: "section") do %>
+            <h1><%= translated_attribute post.title %></h1>
+          <% end %>
 
-<% if content_for? :expanded %>
-  <div class="comments-section container">
-    <div class="row columns">
-      <%= yield :expanded %>
+          <% if post.main_image && post.main_image.attached? %>
+            <%= image_tag post.attached_uploader(:main_image).path, alt: translated_attribute(post.title), class: "resource-image" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-12 medium-8">
+        <div class="resource__main resource__content static__content">
+          <%= localized_content_tag_for(post, :div, class: "section") do %>
+            <%= decidim_sanitize_editor_admin translated_attribute post.body %>
+          <% end %>
+
+          <%= attachments_for post %>
+        </div>
+      </div>
     </div>
   </div>
-<% end %>
+</div>
+
+<%= comments_for post %>

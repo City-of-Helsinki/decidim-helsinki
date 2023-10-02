@@ -65,6 +65,65 @@ select{
   padding-right: ($form-spacing * 2.5);
 }
 
+.field{
+  margin: 0 0 $form-spacing;
+
+  input,
+  select,
+  textarea{
+    margin-bottom: 0;
+  }
+
+  .help-text,
+  .form-error{
+    margin-top: .2rem;
+  }
+
+  .form-error.is-visible + .help-text{
+    margin-top: $form-spacing * -.5;
+  }
+
+  .field-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
+    font-size: $hel-text-size-l;
+    line-height: $hel-lineheight-l;
+    margin-right: $hel-spacing-s;
+
+    &.field-info-with-icon .info-modal-link{
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+
+      span{
+        flex: 1;
+        line-height: $hel-lineheight-l;
+      }
+
+      .icon{
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: .1rem;
+      }
+    }
+  }
+
+  .reset-input{
+    display: inline-block;
+    margin-top: 1.4rem;
+    font-size: $hel-text-size-l;
+    line-height: $hel-lineheight-l;
+  }
+}
+
+.address-input{
+  [data-decidim-map]{
+    margin-top: 1.5rem;
+  }
+}
+
 .input-checkbox{
   @include custom-input("checkbox");
 
@@ -173,6 +232,14 @@ select{
 .help-text{
   display: block;
   margin-bottom: $form-spacing;
+
+  &[class~="flex--sbc"]{
+    display: flex;
+  }
+}
+
+.help-text-form-required-fields{
+  margin-top: 0;
 }
 
 .actions{

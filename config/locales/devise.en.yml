@@ -34,8 +34,36 @@ en:
     devise:
       registrations:
         new:
+          privacy_link: https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Keha/Osallisuuden%20ja%20palautteiden%20rekisteri.pdf
           sign_up_service_account: 'Create an account'
           sign_up_service_account_description: 'Create your account and sign in with your personal email and a password of your choice in the future.'
+          terms: terms of use
+          tos_title: Consent to the processing of personal data and terms of use
+          tos_agreement: I consent to the processing of my personal data listed above for the purposes of providing the OmaStadi service and I agree to the %{link}.
+          tos_summary_html: |
+            <p>
+              When you register with the OmaStadi service, you must consent to the processing of your personal data.
+              After consenting, you can create, comment and vote on the proposals.
+            </p>
+            <p>
+              When you register for the service, we process the following personal data about you: your name, user name
+              and email address.
+            </p>
+            <p>
+              When you log in to the OmaStadi service using strong authentication, we process the following personal
+              data about you: your name, email address, place of residence, postal code and personal identity code.
+            </p>
+            <p>
+              Students are authenticated when they vote using the mPassID used by schools, in which case we process the
+              following personal data: their first name, last name, nickname, municipality code, municipality name,
+              school code, school name, class ID and grade level.
+            </p>
+            <p>You can revoke your consent at any time and delete your data from your user account settings.</p>
+            <p>
+              You can find more information on the processing of your personal data in the OmaStadi service in the
+              <a href="%{privacy_link}" target="_blank">Privacy Policy</a>, which explains in more detail the legal
+              bases for the processing of your personal data and their retention periods.
+            </p>
       sessions:
         new:
           are_you_new?: Are you new to the platform?

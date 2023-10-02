@@ -47,12 +47,15 @@ wrapper_class = Rails.application.config.wrapper_class
       <div class="footer-separator">
         <%= render partial: "layouts/helsinki/header" %>
 
-        <main id="content">
+        <main>
           <%= display_flash_messages %>
           <%= yield :notification if content_for? :notification %>
 
           <%= render_breadcrumbs %>
-          <%= yield %>
+
+          <div id="content">
+            <%= yield %>
+          </div>
         </main>
 
       </div><!-- /.footer-separator -->

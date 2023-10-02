@@ -1,0 +1,50 @@
+<div class="reveal upload-modal" id="<%= modal_id %>" data-reveal>
+  <div class="reveal__header">
+    <div class="reveal__title" data-addlabel="<%= button_label %>" data-editlabel="<%= button_edit_label %>"><%= label %></div>
+    <button class="close-button" data-close aria-label="<%= t("layouts.decidim.upload_modal.close_modal") %>"
+      type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div id="<%= modal_id %>_file_input_description" class="help">
+    <span><%= explanation %></span>
+    <ul>
+      <% help_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="row dropzone-container" data-name="<%= attribute %>">
+    <%= tag.div class: "upload-items", data: {
+        locales: {
+          error: t("decidim.forms.upload.labels.error"),
+          title_required: t("decidim.forms.upload.labels.title_required"),
+          file_size_too_large: t("decidim.forms.upload.labels.file_size_too_large", megabytes: (max_file_size_mb)),
+          remove: t("decidim.forms.upload.labels.remove"),
+          title: t("decidim.forms.upload.labels.title"),
+          uploaded: t("decidim.forms.upload.labels.uploaded"),
+          validating: t("decidim.forms.upload.labels.validating"),
+          validation_error: t("decidim.forms.upload.labels.validation_error")
+        }
+      } %>
+    <label class="dropzone">
+      <%= form.file_field add_attribute,
+        id: nil,
+        label: false,
+        class: "show-for-sr",
+        multiple: true,
+        direct_upload: true,
+        data: { direct_upload_url: direct_upload_url },
+        aria: { labelledby: "#{modal_id}_file_input_label", describedby: "#{modal_id}_file_input_description" },
+        accept: allower_extensions&.map { |ext| ".#{ext}" }&.join(",") %>
+      <span id="<%= modal_id %>_file_input_label" class="show-for-sr"><%= t("decidim.forms.upload.choose_file") %></span>
+      <span aria-hidden="true"><%= t("decidim.forms.upload_help.dropzone") %></span>
+    </label>
+  </div>
+
+  <div class="buttons buttons-row">
+    <button class="button add-file-<%= attribute %>" data-close><%= t("decidim.forms.upload.labels.save") %></button>
+    <button class="button hollow cancel-attachment" data-close><%= t("decidim.forms.upload.labels.cancel") %></button>
+  </div>
+</div>

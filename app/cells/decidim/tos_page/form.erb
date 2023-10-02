@@ -1,19 +1,17 @@
-<div class="columns small-12">
-  <div class="card">
-    <div class="card__content">
-      <div class="card__header">
-        <h5 class="card__title text-center">
-          <%= t("form.legend", scope: "decidim.pages.terms_and_conditions") %>
-        </h5>
-      </div>
+<div class="text-center margin-top-1">
+  <h2 class="reveal__title"><%= t("form.legend", scope: "decidim.pages.terms_and_conditions") %></h2>
 
-      <div class="row column flex-center">
-        <%= cell "decidim/tos_page", :refuse_btn_modal %>
+  <div class="row column flex-center">
+    <%= cell "decidim/tos_page", :refuse_btn_modal %>
 
-        <%= button_to decidim.accept_tos_path, method: :put, class: "button button--nomargin large" do %>
-          <%= t("form.agreement", scope: "decidim.pages.terms_and_conditions") %>
-        <% end %>
-      </div>
+    <div class="row align-center">
+      <%= button_to decidim.accept_tos_path, method: :put, class: "button" do %>
+        <%= t("form.agreement", scope: "decidim.pages.terms_and_conditions") %>
+      <% end %>
+
+      <button class="clear button" type="button" data-open="tos-refuse-modal">
+        <%= t("refuse.modal_button", scope: "decidim.pages.terms_and_conditions") %>
+      </button>
     </div>
   </div>
 </div>

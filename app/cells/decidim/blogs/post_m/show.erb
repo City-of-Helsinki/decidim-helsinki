@@ -1,12 +1,13 @@
 <%= column_wrapper do %>
-  <div class="card <%= card_classes.join(" ") %>" role="region" aria-label="<%= t(".card_label", title: title) %>">
+  <%= card_wrapper do %>
     <%= render :image %>
+
     <div class="card__content">
-      <%= render :header %>
+      <h2 class="h4"><%= title %></h2>
 
       <div class="card__text">
         <div class="card__text--paragraph">
-          <%= description %>
+          <%== strip_tags summary %>
         </div>
       </div>
     </div>
@@ -14,5 +15,5 @@
     <%= render :data %>
     <%= render :status %>
     <%= render :footer %>
-  </div>
+  <% end %>
 <% end %>

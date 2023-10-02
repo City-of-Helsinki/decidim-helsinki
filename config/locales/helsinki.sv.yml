@@ -211,7 +211,7 @@ sv:
           title: Sök förslag
           unfold: Öppna
         leave_your_plan: Gör ditt eget förslag!!
-        new_plan: Nytt förslag
+        new_plan: Lämna in förslag
         notification:
           title: Information om områden
           description_html: <p>Bekanta dig med viktiga figurer och intressanta teman i ditt eget område.</p>
@@ -219,7 +219,7 @@ sv:
         see_all_withdrawn: Visa alla annullerade
         show_list: Visa resultat som lista
         show_map: Visa resultat på kartan
-        title: Hitta och utforska förslag
+        title: Bekanta dig med förslag
         view_plan: Visa förslag
       omastadi_notification:
         accepted:

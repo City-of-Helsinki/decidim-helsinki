@@ -19,7 +19,7 @@
         <% end %>
       </div>
     <% end %>
-    <% if allowed_to?(:edit, :plan, plan: plan) %>
+    <% if false && allowed_to?(:edit, :plan, plan: plan) %>
       <div class="resource-control">
         <button class="link" data-open="plan-author-add-modal-for-<%= plan.id %>">
           <%= t(".controls.add_author") %>

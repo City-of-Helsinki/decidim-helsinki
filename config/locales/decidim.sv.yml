@@ -1,5 +1,8 @@
 sv:
   decidim:
+    account:
+      delete:
+        explanation: Anledning till varför du vill ta bort ditt konto (valfritt)
     accountability:
       results:
         show:
@@ -57,6 +60,13 @@ sv:
         settings:
           global:
             vote_success_mpassid_content: Innehåll som visas efter framgångsrik omröstning för MPASSid-användare
+    forms:
+      upload:
+        choose_file: Välj fil
+    pages:
+      terms_and_conditions:
+        refuse:
+          modal_title: Är du säker på att du vill vägra de uppdaterade användarvillkoren?
     participatory_processes:
       participatory_processes:
         process_actions:
@@ -64,6 +74,50 @@ sv:
         show:
           show_step: Visa fas
           steps: Faser
+    privacy:
+      partials:
+        privacy_consent:
+          agree: Spara
+          agree_to_public_profile: Jag accepterar att min profil görs offentlig
+          make_profile_public: Ändring av profil till offentlig profil
+          do_not_agree: Avbryt
+          content_html: |
+            <p>Om du vill lämna ett förslag eller kommentera ett förslag i tjänsten, måste du skapa en offentlig profil
+            i tjänsten. Detta innebär att andra användare av tjänsten kommer att se din signatur vid ett förslag eller
+            en kommentar och få tillgång till din profil genom att klicka på den. I den offentliga profilen syns
+            följande uppgifter:</p>
+            <ul>
+              <li>ditt namn</li>
+              <li>din signatur</li>
+              <li>dina förslag och kommentarer</li>
+              <li>vem du följer och vilka som följer dig i tjänsten OmaStadi</li>
+            </ul>
+            <p>Om du vill kan du dessutom i profilen lägga till:</p>
+            <ul>
+              <li>en profilbild</li>
+              <li>en beskrivning av profilen</li>
+            </ul>
+            <p>Om du vill kan du ändra profilen så att den blir privat igen, vilket gör att inga uppgifter i din profil
+            visas för andra användare. I så fall försvinner även din signatur från de förslag eller kommentarer du har
+            lämnat. Du kan göra din profil privat på webbplatsen via inställningarna för sekretess för ditt
+            användarkonto.</p>
+      privacy_settings:
+        show:
+          profile_publicity_html: |
+            <p>Dessa integritetsinställningar låter dig kontrollera hur du visas på denna plattform offentligt. Du kan
+            välja att förbli helt anonym men det kommer att begränsa vad du kan göra på denna plattform.</p>
+            <h2 class="h5">Profilpublicitet</h2>
+            <p>Att göra din profil offentlig låter dig utföra offentliga aktiviteter på denna plattform, såsom att
+            skicka kommentarer, delta i diskussioner, skapa förslag etc.</p><p>När du offentliggör din profil andra
+            deltagare kan se ditt namn offentligt på denna plattform och även se offentlig information om dig, såsom
+            ditt smeknamn och avatar bild, din offentliga verksamhet på denna plattform, dina följare och vem du
+            följer.</p>
+          private_messaging_html: |
+            <h2 class="h5">Direktmeddelanden</h2>
+            <p>Dessa inställningar låter dig kommunicera med andra deltagare på denna plattform. Andra deltagare kan
+            skicka direktmeddelanden och du kan även skicka dem till andra. Din profil måste vara offentlig för att
+            aktivera den här funktionen eftersom andra människor behöver hitta dig från denna plattform för att kunna
+            ha en konversation med dig.</p>
     proposals:
       proposal_l:
         card_label: Förslag %{title}
@@ -84,3 +138,5 @@ sv:
     resource_links:
       included_plans:
         project_plan: Relaterade förslag om samutveckling
+    shared:
+      skip_subnavigation: Hoppa över undernavigering
