@@ -27,7 +27,7 @@ js_options = {
 }
 %>
 
-<% if user_public? %>
+<% if user_signed_in? && user_public? %>
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     DecidimPlansCharacters.configure(<%== js_options.to_json %>);
@@ -35,7 +35,6 @@ js_options = {
       var $wrapper = $(el);
       var $input = $("input, textarea", $wrapper);
       var $info = $(".field-character-counter-info", $wrapper);
-      console.log($info);
       DecidimPlansCharacters.bindCharacterCounter($input, $info);
     });
   })
