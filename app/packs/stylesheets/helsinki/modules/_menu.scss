@@ -205,10 +205,18 @@
 
 .sub-navigation-nav{
   position: relative;
+  z-index: 1;
   font-size: $hel-text-size-xl;
 
   .menu{
     font-weight: $global-weight-medium;
+
+    &.accordion-menu{
+      > .is-accordion-submenu-parent > .menu{
+        overflow-y: auto;
+        max-height: 100vh;
+      }
+    }
 
     a{
       text-decoration: underline;
