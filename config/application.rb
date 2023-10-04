@@ -521,6 +521,7 @@ module DecidimHelsinki
         Decidim::Admin::CategoryForm.include(AdminCategoryFormExtensions)
         Decidim::Accountability::Admin::ResultForm.include(AdminResultFormExtensions)
         Decidim::Blogs::Admin::PostForm.include(AdminBlogPostFormExtensions)
+        Decidim::RegistrationForm.include(RegistrationFormExtensions)
 
         # Model extensions
         Decidim::ActionLog.include(ActionLogExtensions)

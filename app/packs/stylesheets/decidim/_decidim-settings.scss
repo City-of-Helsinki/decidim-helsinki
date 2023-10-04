@@ -316,7 +316,13 @@ $tooltip-radius: $global-radius;
 // 54. Tooltip
 // -----------
 $has-tip-font-weight: $global-weight-normal;
-$tooltip-font-size: $small-font-size;
+$tooltip-background-color: $hel-coat-light;
+$tooltip-color: $body-font-color;
+$tooltip-padding: 1rem;
+$tooltip-font-size: $hel-text-size-s;
+$tooltip-max-width: 15rem;
+$tooltip-pip-width: 1rem;
+$tooltip-pip-height: $tooltip-pip-width;
 
 // 55. Top Bar
 // -----------

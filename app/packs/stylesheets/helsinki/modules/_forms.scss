@@ -24,7 +24,7 @@
       }
     }
 
-    &:hover{
+    &:not(:disabled):hover{
       + label::before{
         border-color: $hel-grayscale-90;
       }
@@ -53,7 +53,11 @@
 input,
 select,
 textarea{
-  &:hover{
+  &:disabled{
+    opacity: 1;
+  }
+
+  &:not(:disabled):hover{
     border-color: $input-border-color-hover;
   }
 }
@@ -63,6 +67,10 @@ select{
 
   cursor: pointer;
   padding-right: ($form-spacing * 2.5);
+
+  &:disabled{
+    color: lighten($input-color, 30%);
+  }
 }
 
 .field{
@@ -229,9 +237,30 @@ select{
   }
 }
 
+.label__wrapper{
+  display: flex;
+
+  .label__text{
+    flex: 1;
+  }
+}
+
+.label-required{
+  cursor: help;
+  text-decoration: none;
+  padding-right: 0;
+  margin-left: 5px;
+
+  > span{
+    padding-right: 0;
+    margin-right: 0;
+  }
+}
+
 .help-text{
   display: block;
   margin-bottom: $form-spacing;
+  font-weight: $global-weight-normal;
 
   &[class~="flex--sbc"]{
     display: flex;
