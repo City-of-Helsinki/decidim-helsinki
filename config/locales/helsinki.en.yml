@@ -125,6 +125,8 @@ en:
           tunnistamo_explanation: 'Facebook-, Google- or YLE authentication'
           tunnistamo_explanation_internal: 'Tunnistamo authentication'
         tunnistamo_description: Using Tunnistamo you can authenticate using Google, Facebook, or YLE among others.
+    forms:
+      label_tooltip: Guidance
     linked_events:
       index:
         all_events: All events
@@ -157,8 +159,8 @@ en:
       omastadi_form:
         buttons:
           create: Create and preview
-          discard: Discard this draft
-          discard_confirmation: Are you sure you want to discard this draft?
+          discard: Delete draft
+          discard_confirmation: Are you sure you want to delete this draft?
           loading_message: Saving... Processing of images and attachments takes a while, please wait.
           save: Save
           save_draft: Save draft

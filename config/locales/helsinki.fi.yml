@@ -125,6 +125,8 @@ fi:
           tunnistamo_explanation: 'Facebook-, Google- tai YLE-kirjautuminen'
           tunnistamo_explanation_internal: 'Tunnistamo-kirjautuminen'
         tunnistamo_description: Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook-, YLE-palveluiden avulla.
+    forms:
+      label_tooltip: Ohjeistus
     linked_events:
       index:
         all_events: Kaikki tapahtumat
@@ -157,8 +159,8 @@ fi:
       omastadi_form:
         buttons:
           create: Luo ja esikatsele
-          discard: Tuhoa tämä luonnos
-          discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
+          discard: Poista luonnos
+          discard_confirmation: Haluatko varmasti poistaa tämän luonnoksen?
           loading_message: Tallennetaan... Kuvien ja liitetiedostojen käsittelyssä kestää hetki, odota rauhassa.
           save: Tallenna
           save_draft: Tallenna luonnos

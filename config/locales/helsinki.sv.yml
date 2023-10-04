@@ -125,6 +125,8 @@ sv:
           tunnistamo_explanation: 'Facebook-, Google- eller YLE-inloggning'
           tunnistamo_explanation_internal: 'Tunnistamo-inloggning'
         tunnistamo_description: Tunnistamo låter dig logga in på tjänsten, t.ex. Google, Facebook eller YLE.
+    forms:
+      label_tooltip: Vägledning
     linked_events:
       index:
         all_events: Alla evenemang

@@ -1,4 +1,17 @@
 en:
+  activemodel:
+    attributes:
+      user:
+        about: Profile description
+        email: Email
+        locale: Language
+        name: Name
+        nickname: Nickname
+        password: Password
+        password_confirmation: Confirm password
+        personal_url: Personal URL
+        remove_avatar: Remove avatar
+        tos_agreement: Terms of use
   decidim:
     account:
       delete:

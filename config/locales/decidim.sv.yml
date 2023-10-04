@@ -1,4 +1,17 @@
 sv:
+  activemodel:
+    attributes:
+      user:
+        about: Profilbeskrivning
+        email: E-postadress
+        locale: Språk
+        name: Namn
+        nickname: Användarnamn
+        password: Lösenord
+        password_confirmation: Bekräfta lösenord
+        personal_url: Personlig URL
+        remove_avatar: Ta bort avatar
+        tos_agreement: Användarvillkor
   decidim:
     account:
       delete:

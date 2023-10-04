@@ -32,8 +32,25 @@ fi:
           sign_in_button: 'Kirjaudu Tunnistamo-palvelun avulla'
   decidim:
     devise:
+      omniauth_registrations:
+        new:
+          nickname_help: |
+            Nimimerkkisi %{organization} -palvelussa. Voi sisältää ainoastaan kirjaimia, numeroita sekä yhdysmerkkejä "-" ja alaviivoja "_".
+            Esimerkiksi "henna_helsinki", "HeikkiHelsinki" tai "iida-ideanikkari". Nimimerkin on oltava yksilöity, eli kahdella käyttäjällä
+            ei voi olla samaa nimimerkkiä.
       registrations:
         new:
+          newsletter: Haluan vastaanottaa silloin tällöin ajankohtaista tietoa sisältäviä uutiskirjeitä.
+          nickname_help: |
+            Nimimerkkisi %{organization} -palvelussa. Voi sisältää ainoastaan kirjaimia, numeroita sekä yhdysmerkkejä "-" ja alaviivoja "_".
+            Esimerkiksi "henna_helsinki", "HeikkiHelsinki" tai "iida-ideanikkari". Nimimerkin on oltava yksilöity, eli kahdella käyttäjällä
+            ei voi olla samaa nimimerkkiä.
+          password_tooltip_html: |
+            <ul>
+              <li>Vähintään %{min_length} merkkiä</li>
+              <li>Ei yleisesti käytetty salasana (esim. 123456)</li>
+              <li>Ei voi vastata nimimerkkiäsi tai sähköpostiosoitettasi</li>
+            </ul>
           privacy_link: https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Keha/Osallisuuden%20ja%20palautteiden%20rekisteri.pdf
           sign_up_service_account: 'Luo omat tunnukset'
           sign_up_service_account_description: 'Luo oma käyttäjätili ja kirjaudu jatkossa sisään sähköpostiosoitteella ja itse valitsemallasi salasanalla.'

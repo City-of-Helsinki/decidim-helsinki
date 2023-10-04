@@ -1,4 +1,17 @@
 fi:
+  activemodel:
+    attributes:
+      user:
+        about: Profiilikuvaus
+        email: Sähköpostiosoite
+        locale: Kieli
+        name: Nimi
+        nickname: Nimimerkki
+        password: Salasana
+        password_confirmation: Vahvista salasana
+        personal_url: Henkilökohtainen URL-osoite
+        remove_avatar: Poista profiilikuva
+        tos_agreement: Käyttöehdot
   decidim:
     account:
       delete:

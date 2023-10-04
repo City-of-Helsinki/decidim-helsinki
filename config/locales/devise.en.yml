@@ -32,8 +32,25 @@ en:
           sign_in_button: 'Sign in with Tunnistamo'
   decidim:
     devise:
+      omniauth_registrations:
+        new:
+          nickname_help: |
+            Your nickname in the %{organization} service. Can only contain letters, numbers, dashes "-" and underscores "_".
+            For example, "helen_helsinki", "HenryHelsinki" or "isabelle-inventive". The nickname has to be unique, i.e. two
+            users cannot have the same nickname.
       registrations:
         new:
+          newsletter: I would like to receive occasional newsletters with relevant information.
+          nickname_help: |
+            Your nickname in the %{organization} service. Can only contain letters, numbers, dashes "-" and underscores "_".
+            For example, "helen_helsinki", "HenryHelsinki" or "isabelle-inventive". The nickname has to be unique, i.e. two
+            users cannot have the same nickname.
+          password_tooltip_html: |
+            <ul>
+              <li>At least %{min_length} characters</li>
+              <li>Must not be too common (e.g. 123456)</li>
+              <li>Must be different from your nickname and email</li>
+            </ul>
           privacy_link: https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Keha/Osallisuuden%20ja%20palautteiden%20rekisteri.pdf
           sign_up_service_account: 'Create an account'
           sign_up_service_account_description: 'Create your account and sign in with your personal email and a password of your choice in the future.'

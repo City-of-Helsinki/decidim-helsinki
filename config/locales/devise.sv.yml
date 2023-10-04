@@ -32,8 +32,25 @@ sv:
           sign_in_button: 'Logga in med Tunnistamo-tjänsten'
   decidim:
     devise:
+      omniauth_registrations:
+        new:
+          nickname_help: |
+            Ditt användarnamn i %{organization} -tjänsten. Kan bara innehålla bokstäver, siffror, bindestreck "-" och understreck "_".
+            Till exempel "heidi_helsingfors", "HenrikHelsinfors" eller "ulla-uppfinningsrik". Användarnamnet måste vara
+            unikt, dvs. två användare kan inte ha samma användarnamn.
       registrations:
         new:
+          newsletter: Jag skulle vilja få enstaka nyhetsbrev med relevant information.
+          nickname_help: |
+            Ditt användarnamn i %{organization} -tjänsten. Kan bara innehålla bokstäver, siffror, bindestreck "-" och understreck "_".
+            Till exempel "heidi_helsingfors", "HenrikHelsinfors" eller "ulla-uppfinningsrik". Användarnamnet måste vara
+            unikt, dvs. två användare kan inte ha samma användarnamn.
+          password_tooltip_html: |
+            <ul>
+              <li>Minst %{min_length} tecken</li>
+              <li>Får inte vara för vanligt (som 123456)</li>
+              <li>Måste vara skilt från ditt användarnamn och din e-postadress</li>
+            </ul>
           privacy_link: https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Keha/Osallisuuden%20ja%20palautteiden%20rekisteri.pdf
           sign_up_service_account: 'Skapa eget konto'
           sign_up_service_account_description: 'Skapa ett eget användarkonto och logga i fortsättningen in med din e-postadress och ditt eget lösenord.'
