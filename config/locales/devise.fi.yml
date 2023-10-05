@@ -35,14 +35,14 @@ fi:
       omniauth_registrations:
         new:
           nickname_help: |
-            Nimimerkkisi %{organization} -palvelussa. Voi sisältää ainoastaan kirjaimia, numeroita sekä yhdysmerkkejä "-" ja alaviivoja "_".
+            Nimimerkkisi %{organization} -palvelussa. Voi sisältää ainoastaan kirjaimia (a-z), numeroita sekä yhdysmerkkejä "-" ja alaviivoja "_".
             Esimerkiksi "henna_helsinki", "HeikkiHelsinki" tai "iida-ideanikkari". Nimimerkin on oltava yksilöity, eli kahdella käyttäjällä
             ei voi olla samaa nimimerkkiä.
       registrations:
         new:
           newsletter: Haluan vastaanottaa silloin tällöin ajankohtaista tietoa sisältäviä uutiskirjeitä.
           nickname_help: |
-            Nimimerkkisi %{organization} -palvelussa. Voi sisältää ainoastaan kirjaimia, numeroita sekä yhdysmerkkejä "-" ja alaviivoja "_".
+            Nimimerkkisi %{organization} -palvelussa. Voi sisältää ainoastaan kirjaimia (a-z), numeroita sekä yhdysmerkkejä "-" ja alaviivoja "_".
             Esimerkiksi "henna_helsinki", "HeikkiHelsinki" tai "iida-ideanikkari". Nimimerkin on oltava yksilöity, eli kahdella käyttäjällä
             ei voi olla samaa nimimerkkiä.
           password_tooltip_html: |

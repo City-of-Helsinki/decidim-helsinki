@@ -35,14 +35,14 @@ sv:
       omniauth_registrations:
         new:
           nickname_help: |
-            Ditt användarnamn i %{organization} -tjänsten. Kan bara innehålla bokstäver, siffror, bindestreck "-" och understreck "_".
+            Ditt användarnamn i %{organization} -tjänsten. Kan bara innehålla bokstäver (a-z), siffror, bindestreck "-" och understreck "_".
             Till exempel "heidi_helsingfors", "HenrikHelsinfors" eller "ulla-uppfinningsrik". Användarnamnet måste vara
             unikt, dvs. två användare kan inte ha samma användarnamn.
       registrations:
         new:
           newsletter: Jag skulle vilja få enstaka nyhetsbrev med relevant information.
           nickname_help: |
-            Ditt användarnamn i %{organization} -tjänsten. Kan bara innehålla bokstäver, siffror, bindestreck "-" och understreck "_".
+            Ditt användarnamn i %{organization} -tjänsten. Kan bara innehålla bokstäver (a-z), siffror, bindestreck "-" och understreck "_".
             Till exempel "heidi_helsingfors", "HenrikHelsinfors" eller "ulla-uppfinningsrik". Användarnamnet måste vara
             unikt, dvs. två användare kan inte ha samma användarnamn.
           password_tooltip_html: |

@@ -35,14 +35,14 @@ en:
       omniauth_registrations:
         new:
           nickname_help: |
-            Your nickname in the %{organization} service. Can only contain letters, numbers, dashes "-" and underscores "_".
+            Your nickname in the %{organization} service. Can only contain letters (a-z), numbers, dashes "-" and underscores "_".
             For example, "helen_helsinki", "HenryHelsinki" or "isabelle-inventive". The nickname has to be unique, i.e. two
             users cannot have the same nickname.
       registrations:
         new:
           newsletter: I would like to receive occasional newsletters with relevant information.
           nickname_help: |
-            Your nickname in the %{organization} service. Can only contain letters, numbers, dashes "-" and underscores "_".
+            Your nickname in the %{organization} service. Can only contain letters (a-z), numbers, dashes "-" and underscores "_".
             For example, "helen_helsinki", "HenryHelsinki" or "isabelle-inventive". The nickname has to be unique, i.e. two
             users cannot have the same nickname.
           password_tooltip_html: |
