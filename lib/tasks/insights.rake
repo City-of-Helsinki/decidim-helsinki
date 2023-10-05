@@ -251,9 +251,24 @@ namespace :insights do
       )
     end
 
+    culture_and_leisure_info.each do |area, info|
+      pos = 4
+      info.each do |detail|
+        pos += 1
+        Decidim::Insights::AreaDetail.create!(
+          area: data_mapping[:areas][area],
+          position: pos,
+          sticky: true,
+          detail_type: detail[:type],
+          title: detail[:title],
+          data: detail[:data]
+        )
+      end
+    end
+
     # The theme data, i.e. column graphs, bar graphs, info boxes, comment boxes
     # and numbered lists categorized for each theme and area
-    pos = 4
+    pos = 7
     # Track the categories to define the sticky items (2 per category)
     card_positions = {}
     starting_positions = {
@@ -550,6 +565,285 @@ namespace :insights do
   end
   # rubocop:enable Metrics/CyclomaticComplexity
 
+  def culture_and_leisure_info
+    # The common info is the same for all areas
+    common = [
+      {
+        type: "numbers",
+        title: {
+          fi: "Kulttuurin ja vapaa-ajan palvelut koko Helsingin alueella",
+          sv: "Kultur- och fritidstjänster i hela Helsingforsområdet",
+          en: "Culture and leisure services in the entire Helsinki area"
+        },
+        data: [
+          {
+            value: 800,
+            label: {
+              fi: "Liikuntapaikkaa",
+              sv: "Idrottsanläggningar",
+              en: "Sports facilities"
+            }
+          },
+          {
+            value: 150,
+            label: {
+              fi: "Ulkoliikuntapaikkaa",
+              sv: "Utegym",
+              en: "Outdoor exercise areas"
+            }
+          },
+          {
+            value: 70,
+            label: {
+              fi: "Erilaista tilaa nuorille",
+              sv: "Annorlunda utrymmen för ungdomar",
+              en: "Different spaces for young people"
+            }
+          },
+          {
+            value: 37,
+            label: {
+              fi: "Kirjastoa",
+              sv: "Biblioteket",
+              en: "Libraries"
+            }
+          },
+          {
+            value: 5,
+            label: {
+              fi: "Kulttuurikeskusta",
+              sv: "Kulturhus",
+              en: "Cultural centres"
+            }
+          },
+          {
+            value: 1,
+            label: {
+              fi: "Kaupunginorkesteri",
+              sv: "Stadsorkestern",
+              en: "Helsinki Philharmonic Orchestra"
+            }
+          }
+        ]
+      },
+      {
+        type: "number",
+        title: {
+          fi: "Kulttuurin ja vapaa-ajan käynnit koko Helsingin alueella",
+          sv: "Kultur- och fritidsbesök i hela Helsingforsområdet",
+          en: "Culture and leisure visits in the entire Helsinki area"
+        },
+        data: {
+          value: 23_000_000,
+          label: {
+            fi: "asiakaskäyntiä vuodessa",
+            sv: "kundbesök per år",
+            en: "visits per year"
+          }
+        }
+      }
+    ]
+
+    {
+      "southeastern" => [
+        {
+          type: "comments",
+          title: {
+            fi: "Kulttuurin ja vapaa-ajan vinkit",
+            sv: "Tips för kultur och fritid",
+            en: "Culture and leisure tips"
+          },
+          data: [
+            {
+              fi: "Hertsin nuorisotila auki joka päivä",
+              sv: "Hertsi ungdomsgård öppen varje dag",
+              en: "Hertsi Youth Centre open every day"
+            },
+            {
+              fi: "Kruununvuorenrannan liikuntapuisto avattu 2023",
+              sv: "Kronbergsstrandens idrottspark öppnad 2023",
+              en: "Kruunuvuorenranta sports park opened in 2023"
+            },
+            {
+              fi: "Herttoniemen kirjasto 195&nbsp;000 käyntiä vuodessa",
+              sv: "Hertonäs bibliotek, 195&nbsp;000 besök per år",
+              en: "Herttoniemi Library, 195,000 visits per year"
+            }
+          ]
+        },
+        *common
+      ],
+      "northern" => [
+        {
+          type: "comments",
+          title: {
+            fi: "Kulttuurin ja vapaa-ajan vinkit",
+            sv: "Tips för kultur och fritid",
+            en: "Culture and leisure tips"
+          },
+          data: [
+            {
+              fi: "Fallkullan kotieläintila",
+              sv: "Fallkulla husdjursgård",
+              en: "Fallkulla Domestic Animal Farm"
+            },
+            {
+              fi: "Pirkkolan liikuntapuiston ja Paloheinän ulkoilualueet",
+              sv: "Friluftsområdena vid Britas idrottspark och i Svedängen",
+              en: "Pirkkola sports park and Paloheinä outdoor recreation areas"
+            },
+            {
+              fi: "Oulunkylän kirjasto, 135&nbsp;000 käyntiä vuodessa",
+              sv: "Åggelby bibliotek, 135&nbsp;000 besök per år",
+              en: "Oulunkylä Library, 135,000 visits per year"
+            }
+          ]
+        },
+        *common
+      ],
+      "northeastern" => [
+        {
+          type: "comments",
+          title: {
+            fi: "Kulttuurin ja vapaa-ajan vinkit",
+            sv: "Tips för kultur och fritid",
+            en: "Culture and leisure tips"
+          },
+          data: [
+            {
+              fi: "Tattarisuon moottorihalli",
+              sv: "Tattarmossens motorhall",
+              en: "Tattarisuo Motors Hall"
+            },
+            {
+              fi: "Ala-Malmin liikuntapuisto",
+              sv: "Nedre Malms idrottspark",
+              en: "Ala-Malmi sports park"
+            },
+            {
+              fi: "Malmin kirjasto, 200&nbsp;000 käyntiä vuodessa",
+              sv: "Malms bibliotek, 200&nbsp;000 besök per år",
+              en: "Malmi Library, 200,000 visits per year"
+            }
+          ]
+        },
+        *common
+      ],
+      "easternosternsundom" => [
+        {
+          type: "comments",
+          title: {
+            fi: "Kulttuurin ja vapaa-ajan vinkit",
+            sv: "Tips för kultur och fritid",
+            en: "Culture and leisure tips"
+          },
+          data: [
+            {
+              fi: "Suomen suurin sisäskeittihalli Kontulassa",
+              sv: "Finlands största inomhusskejthall i Gårdsbacka",
+              en: "Finland's largest indoor skatepark in Kontula"
+            },
+            {
+              fi: "Alueliikunta Mellunkylässä ja Vuosaaressa",
+              sv: "Områdesmotion i Mellungsby och Nordsjö",
+              en: "Regional exercise services in Mellunkylä and Vuosaari"
+            },
+            {
+              fi: "Kontulan kirjasto, 135&nbsp;000 käyntiä vuodessa",
+              sv: "Gårdsbacka bibliotek, 135&nbsp;000 besök per år",
+              en: "Kontula Library, 135,000 visits per year"
+            }
+          ]
+        },
+        *common
+      ],
+      "western" => [
+        {
+          type: "comments",
+          title: {
+            fi: "Kulttuurin ja vapaa-ajan vinkit",
+            sv: "Tips för kultur och fritid",
+            en: "Culture and leisure tips"
+          },
+          data: [
+            {
+              fi: "Talin liikuntapuisto yksi suosituimmista liikuntapuistoista",
+              sv: "Tali idrottspark en av de mest populära idrottsparkerna",
+              en: "Tali sports park, one of the most popular sports parks"
+            },
+            {
+              fi: "Malminkartanon harrastushalli",
+              sv: "Malmgårds fritidshall",
+              en: "Malminkartano Recreation Hall"
+            },
+            {
+              fi: "Etelä-Haagan kirjasto, 130&nbsp;000 käyntiä vuodessa",
+              sv: "Södra Haga bibliotek, 130&nbsp;000 besök per år",
+              en: "Etelä-Haaga Library, 130,000 visits per year"
+            }
+          ]
+        },
+        *common
+      ],
+      "central" => [
+        {
+          type: "comments",
+          title: {
+            fi: "Kulttuurin ja vapaa-ajan vinkit",
+            sv: "Tips för kultur och fritid",
+            en: "Culture and leisure tips"
+          },
+          data: [
+            {
+              fi: "Käpylän liikuntapuisto",
+              sv: "Kottby idrottspark",
+              en: "Käpylä sports park"
+            },
+            {
+              fi: "Kumpulan koulukasvitarha",
+              sv: "Gumtäkt skolköksträdgård",
+              en: "Kumpula School Garden"
+            },
+            {
+              fi: "Pasilan kirjasto, 166&nbsp;000 käyntiä vuodessa",
+              sv: "Böle bibliotek, 166&nbsp;000 besök per år",
+              en: "Pasila Library, 166,000 visits per year"
+            }
+          ]
+        },
+        *common
+      ],
+      "southern" => [
+        {
+          type: "comments",
+          title: {
+            fi: "Kulttuurin ja vapaa-ajan vinkit",
+            sv: "Tips för kultur och fritid",
+            en: "Culture and leisure tips"
+          },
+          data: [
+            {
+              fi: "Nuorten oma tila Oodissa",
+              sv: "Ungdomarnas eget utrymme i Ode",
+              en: "Young people's own space at Oodi"
+            },
+            {
+              fi: "Hietsun ulkokuntosali, Jätkäsaaren liikuntapuisto",
+              sv: "Utegymmet vid Sandstrands badstrand, Busholmens idrottspark",
+              en: "Hietsu outdoor gym, Jätkäsaari sports park"
+            },
+            {
+              fi: "Oodi, 1,8 miljoonaa käyntiä vuodessa",
+              sv: "Ode, 1,8 miljoner besök per år",
+              en: "Oodi, 1.8 million visits per year"
+            }
+          ]
+        },
+        *common
+      ]
+    }
+  end
+
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def parse_theme_info(file)
     workbook = RubyXL::Parser.parse(file)
@@ -820,6 +1114,7 @@ namespace :insights do
     end
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def parse_plans(file)
     workbook = RubyXL::Parser.parse(file)
 
@@ -881,6 +1176,7 @@ namespace :insights do
       }
     end.compact
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def text_formatter
     @text_formatter ||= Class.new do
