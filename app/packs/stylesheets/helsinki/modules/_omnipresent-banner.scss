@@ -5,26 +5,27 @@
   padding: 1rem;
   font-size: $hel-text-size-xl;
 
-  .omnipresent-banner-title{
-    font-weight: bold;
-    margin-right: 1em;
-  }
-
-  .omnipresent-banner-short-description{
-    margin-right: .5em;
-    margin-left: 1em;
-  }
-
   a{
+    position: relative;
     color: $white;
+    padding: .4rem;
     text-decoration: none;
-  }
 
-  a:hover,
-  a:focus{
-    .omnipresent-banner-title,
-    .omnipresent-banner-short-description{
+    &:hover,
+    &:focus{
       text-decoration: underline;
     }
+
+    &:focus,
+    &:active{
+      box-shadow: inset 0 0 0 2px $hel-white;
+    }
+  }
+
+  .icon{
+    position: relative;
+    top: .3rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
