@@ -30,7 +30,7 @@ export default class UploadModal {
       // - formObjectClass - Class of the current form object (e.g. Decidim::AccountForm)
       providedOptions = JSON.parse(button.dataset.upload);
     } catch (_e) {
-      // Do not care about the parse errors, just skip the provided options.
+      // Don't care about the parse errors, just skip the provided options.
     }
 
     this.options = Object.assign(providedOptions, options)
@@ -46,7 +46,7 @@ export default class UploadModal {
     this.dropZone = this.modal.querySelector(".dropzone");
     this.input = this.dropZone.querySelector("input");
     this.uploadContainer = document.querySelector(`.upload-container-for-${this.name}`);
-    this.activeAttachments = this.uploadContainer.querySelector("[data-active-uploads]");
+    this.activeAttachments = this.uploadContainer.querySelector(".active-uploads");
     this.trashCan = this.createTrashCan();
   }
 
