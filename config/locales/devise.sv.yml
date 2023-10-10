@@ -51,7 +51,7 @@ sv:
               <li>Får inte vara för vanligt (som 123456)</li>
               <li>Måste vara skilt från ditt användarnamn och din e-postadress</li>
             </ul>
-          privacy_link: https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Keha/Osallisuuden%20ja%20palautteiden%20rekisteri.pdf
+          privacy_link: /pages/tietosuoja?locale=en
           sign_up_service_account: 'Skapa eget konto'
           sign_up_service_account_description: 'Skapa ett eget användarkonto och logga i fortsättningen in med din e-postadress och ditt eget lösenord.'
           terms: användarvillkoren

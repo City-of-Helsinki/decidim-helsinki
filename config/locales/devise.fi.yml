@@ -51,7 +51,7 @@ fi:
               <li>Ei yleisesti käytetty salasana (esim. 123456)</li>
               <li>Ei voi vastata nimimerkkiäsi tai sähköpostiosoitettasi</li>
             </ul>
-          privacy_link: https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Keha/Osallisuuden%20ja%20palautteiden%20rekisteri.pdf
+          privacy_link: /pages/tietosuoja
           sign_up_service_account: 'Luo omat tunnukset'
           sign_up_service_account_description: 'Luo oma käyttäjätili ja kirjaudu jatkossa sisään sähköpostiosoitteella ja itse valitsemallasi salasanalla.'
           terms: käyttöehdot

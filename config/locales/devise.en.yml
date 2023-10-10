@@ -51,7 +51,7 @@ en:
               <li>Must not be too common (e.g. 123456)</li>
               <li>Must be different from your nickname and email</li>
             </ul>
-          privacy_link: https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Keha/Osallisuuden%20ja%20palautteiden%20rekisteri.pdf
+          privacy_link: /pages/tietosuoja?locale=en
           sign_up_service_account: 'Create an account'
           sign_up_service_account_description: 'Create your account and sign in with your personal email and a password of your choice in the future.'
           terms: terms of use
