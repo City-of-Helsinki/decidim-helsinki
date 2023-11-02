@@ -4,7 +4,6 @@ news = translated_attribute(result.news_description)
 %>
 
 <div class="record-details">
-  <%= cell "decidim/tags", result, context: { extra_classes: ["tags--result"] } %>
   <%== cell("decidim/tags/tags", result) %>
 </div>
 
@@ -13,7 +12,7 @@ news = translated_attribute(result.news_description)
 <% end %>
 
 <% if news.present? %>
-<div class="banner bg-secondary">
+<div class="banner bg-secondary margin-top-1 margin-bottom-1">
   <div class="banner__content">
     <h2><%= t(".news") %></h2>
     <%== news %>
@@ -32,17 +31,12 @@ news = translated_attribute(result.news_description)
 <div class="description mb-5">
   <h2><%= t(".details") %></h2>
 
-  <h3><%= t(".section.description.name") %></h3>
-  <%== translated_attribute result.description %>
-
   <% [:plans_description, :budget_breakdown, :interaction_description].each do |section_key| %>
     <% text = translated_attribute(result.public_send(section_key)) %>
     <% next if text.blank? %>
 
     <h3><%= t(".section.#{section_key}.name") %></h3>
 
-    <div class="accordion-content" data-tab-content>
-      <%== translated_attribute text %>
-    </div>
+    <%== text %>
   <% end %>
 </div>
