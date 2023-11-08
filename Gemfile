@@ -83,6 +83,13 @@ group :production, :production_ruuti, :staging, :staging_ruuti do
   gem "resque", "~> 2.2.0"
   gem "resque-scheduler", "~> 4.5"
 
+  # Storage
+  #
+  # Using a fork because of the following issue making the gem incompatible with
+  # the other gems:
+  # https://github.com/Azure/azure-storage-ruby/issues/227
+  gem "azure-storage-blob", "~> 2.0", github: "mainio/azure-storage-ruby", branch: "fix/faraday-2", require: false
+
   # Cronjobs
   gem "whenever", require: false
 end
