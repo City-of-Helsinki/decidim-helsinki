@@ -152,7 +152,7 @@ fi:
         license: Kuvan lisenssi
         note: Kuvaa muokattu alkuperäisestä
     pb_map:
-      label: Helsingin suurpiirit budjetteineen
+      label: "Helsingin suurpiirit budjetteineen: Läntinen 1534011€, Pohjoinen 593272€, Keskinen 1323211€, Eteläinen 1662361€, Koillinen 1374703€, Kaakkoinen 765547€, Itäinen ja Östersundom 1546895€"
     plans:
       layouts:
         omastadi: OmaStadi

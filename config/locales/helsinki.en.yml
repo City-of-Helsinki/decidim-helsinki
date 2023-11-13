@@ -152,7 +152,7 @@ en:
         license: Image license
         note: The image has been edited from the original
     pb_map:
-      label: Helsinki districts with their budgets
+      label: "Helsinki districts with their budgets: Western 1534011€, Northern 593272€, Central 1323211€, Southern 1662361€, Northeastern 1374703€, Southeastern 765547€, Eastern and Östersundom 1546895€"
     plans:
       layouts:
         omastadi: OmaStadi

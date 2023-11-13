@@ -152,7 +152,7 @@ sv:
         license: Bildlicens
         note: Bildredigerad från original
     pb_map:
-      label: Helsingfors distrikt med sina budgetar
+      label: "Helsingfors distrikt med sina budgetar: Västra 1534011€, Norra 593272€, Mellersta 1323211€, Södra 1662361€, Nordöstra 1374703€, Sydöstra 765547€, Östra och Östersundom 1546895€"
     plans:
       layouts:
         omastadi: OmaStadi
