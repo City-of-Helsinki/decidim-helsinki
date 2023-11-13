@@ -1,5 +1,6 @@
 .tabs{
   display: flex;
+  flex-direction: column;
   align-items: stretch;
   margin: 0 0 1.8rem;
   list-style-type: none;
@@ -8,6 +9,7 @@
 
   @include breakpoint(medium){
     font-size: $hel-text-size-l;
+    flex-direction: row;
   }
 
   &.tabs--wrapped{
