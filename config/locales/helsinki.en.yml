@@ -55,6 +55,7 @@ en:
         button2_url: Button 2 URL
         title: Title
       highlighted_blogs:
+        article: "Article: %{title}"
         name: Highlighted blogs
         show_more: Show more news
       highlighted_blogs_settings_form:

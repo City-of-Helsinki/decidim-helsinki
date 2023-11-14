@@ -55,6 +55,7 @@ sv:
         button2_url: Knapp 2 URL
         title: Titel
       highlighted_blogs:
+        article: "Artikel: %{title}"
         name: Markerade bloggar
         show_more: Visa mer aktuella saker
       highlighted_blogs_settings_form:

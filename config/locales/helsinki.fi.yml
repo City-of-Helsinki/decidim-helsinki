@@ -55,6 +55,7 @@ fi:
         button2_url: Napin 2 URL
         title: Otsikko
       highlighted_blogs:
+        article: "Artikkeli: %{title}"
         name: Bloginostot
         show_more: Näytä lisää ajankohtaisia asioita
       highlighted_blogs_settings_form:

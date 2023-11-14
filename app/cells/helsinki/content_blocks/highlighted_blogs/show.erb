@@ -5,8 +5,8 @@
     <%= content_tag :section, class: "cards-grid row", aria: { labelledby: label_id }, data: { slide: "", options: { large: { perPage: 4 } } } do %>
       <% posts.each do |post| %>
         <div class="column small-12 medium-6 large-3">
-          <%= link_to post_path(post), class: "card", lang: post_lang(post) do %>
-            <%= image_tag resource_image_path_for(post), class: "card__image", alt: translated_attribute(post.title) %>
+          <%= link_to post_path(post), class: "card", lang: post_lang(post), aria: { label: t(".article", title: translated_attribute(post.title)) } do %>
+            <%= image_tag resource_image_path_for(post), class: "card__image", alt: translated_attribute(post.title), aria: { hidden: true } %>
 
             <div class="card__content">
               <h3 class="h4"><%= translated_attribute post.title %></h3>
