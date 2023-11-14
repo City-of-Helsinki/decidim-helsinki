@@ -3,8 +3,14 @@
 }
 
 .reveal__title{
+  display: block;
   font-size: $hel-text-size-l;
   font-weight: $global-weight-bold;
   margin-bottom: 2rem;
   padding-right: 3rem; // leave space for the close button
+
+  &:focus{
+    outline: $anchor-outline-focus;
+    outline-offset: $anchor-outline-offset;
+  }
 }
