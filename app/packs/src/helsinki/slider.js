@@ -2,6 +2,7 @@ import Splide from "@splidejs/splide";
 
 const sliderI18n = {
   fi: {
+    carousel: "karuselli",
     prev: "Edellinen sivu",
     next: "Seuraava sivu",
     first: "Siirry ensimmäiselle sivulle",
@@ -10,8 +11,12 @@ const sliderI18n = {
     pageX: "Siirry sivulle %s",
     play: "Vieritä automaattisesti",
     pause: "Pysäytä automaattinen vieritys",
+    select: "Valitse näytettävä sivu",
+    slide: "sivu",
+    slideLabel: "%s / %s"
   },
   sv: {
+    carousel: "carousel",
     prev: "Föregående sida",
     next: "Nästa sida",
     first: "Gå till första sidan",
@@ -20,8 +25,12 @@ const sliderI18n = {
     pageX: "Gå till sidan %s",
     play: "Starta automatisk uppspelning",
     pause: "Pausa automatisk uppspelning",
+    select: "Välj sidan som ska visas",
+    slide: "sida",
+    slideLabel: "%s / %s"
   },
   en: {
+    carousel: "karusell",
     prev: "Previous page",
     next: "Next page",
     first: "Go to first page",
@@ -30,6 +39,9 @@ const sliderI18n = {
     pageX: "Go to page %s",
     play: "Start autoplay",
     pause: "Pause autoplay",
+    select: "Select a slide to show",
+    slide: "slide",
+    slideLabel: "%s of %s"
   }
 };
 
