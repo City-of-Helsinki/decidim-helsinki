@@ -15,7 +15,7 @@
     "@decidim/core": "^0.27.3",
     "@decidim/elections": "^0.27.3",
     "@decidim/webpacker": "^0.27.3",
-    "sass-embedded": "~1.62.0"
+    "sass-embedded": "~1.69.5"
   },
   "devDependencies": {
     "@decidim/dev": "^0.27.3",
