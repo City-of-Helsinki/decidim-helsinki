@@ -34,7 +34,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-accountability_simple.git
-  revision: 1eb9308e8f2b23a976e2ba7c5ddca588fbd8d053
+  revision: 2fab7e43d33bb422f21555de887ef26c42fbd1c8
   branch: develop
   specs:
     decidim-accountability_simple (0.27.0)
@@ -67,11 +67,20 @@ GIT
       devise-jwt (~> 0.11.0)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-apifiles.git
+  revision: 4a8844a1903fe1c613dd62764afb3c7d71e44235
+  branch: main
+  specs:
+    decidim-apifiles (0.27.0)
+      decidim-core (~> 0.27.0)
+
+GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: e02b86c4e9509b41e470fd83a0e27f4fc1cfc239
+  revision: cbd6dbd0230d4f6cf3bbcc7fdeabc476ff09b99a
   branch: develop
   specs:
     decidim-budgeting_pipeline (0.27.0)
+      decidim-apifiles (~> 0.27.0)
       decidim-budgets (~> 0.27.0)
       decidim-core (~> 0.27.0)
       decidim-favorites (~> 0.27.0)
@@ -1193,6 +1202,7 @@ DEPENDENCIES
   decidim-accountability_simple!
   decidim-antivirus!
   decidim-apiauth!
+  decidim-apifiles!
   decidim-budgeting_pipeline!
   decidim-connector!
   decidim-dev (~> 0.27.0)
