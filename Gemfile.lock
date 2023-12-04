@@ -68,7 +68,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-apifiles.git
-  revision: 4a8844a1903fe1c613dd62764afb3c7d71e44235
+  revision: 57efc84dcc93420e35f6c43eecd0c48b4c38e20c
   branch: main
   specs:
     decidim-apifiles (0.27.0)
@@ -76,7 +76,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: 3f35cd1af4aaf0c566c82266801879d9e8fd776e
+  revision: c9e78aa926cecd27ccdf3ee2b0f0a65d8ab3f3f0
   branch: develop
   specs:
     decidim-budgeting_pipeline (0.27.0)
