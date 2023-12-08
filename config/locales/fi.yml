@@ -30,8 +30,6 @@ fi:
       decidim/plans/plan:
         one: Ehdotus
         other: Ehdotukset
-  auth:
-    sign_in_with_tunnistamo: 'Käytä Tunnistamoa kirjautuaksesi sisään'
   date:
     formats:
       decidim_short: "%d.%m.%Y"
@@ -70,7 +68,7 @@ fi:
           allowed_districts: Sallitut suurpiirit
           district: Suurpiiri
           minimum_age: Ikä vähintään
-        name: Pankkitunnukset tai mobiilivarmenne
+        name: Helsinki-profiili
     budgets:
       projects:
         filters:

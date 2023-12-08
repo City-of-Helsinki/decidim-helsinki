@@ -120,12 +120,6 @@ sv:
       results_carousel:
         name: Projektkarusell (genomförande)
     copyright: '%{year} Helsingfors stad'
-    devise:
-      shared:
-        omniauth_buttons:
-          tunnistamo_explanation: 'Facebook-, Google- eller YLE-inloggning'
-          tunnistamo_explanation_internal: 'Tunnistamo-inloggning'
-        tunnistamo_description: Tunnistamo låter dig logga in på tjänsten, t.ex. Google, Facebook eller YLE.
     forms:
       label_tooltip: Vägledning
     linked_events:

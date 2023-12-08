@@ -30,8 +30,6 @@ en:
       decidim/plans/plan:
         one: Proposal
         other: Proposals
-  auth:
-    sign_in_with_tunnistamo: 'Use Tunnistamo to sign in'
   date:
     formats:
       decidim_short: "%d.%m.%Y"
@@ -71,7 +69,7 @@ en:
           allowed_districts: Allowed districts
           district: District
           minimum_age: Minimum age
-        name: Bank ID or mobile ID
+        name: Helsinki profile
     budgets:
       projects:
         filters:

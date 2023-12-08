@@ -30,8 +30,6 @@ sv:
       decidim/plans/plan:
         one: Förslag
         other: Förslag
-  auth:
-    sign_in_with_tunnistamo: 'Logga in med Tunnistamo'
   date:
     formats:
       decidim_short: "%d.%m.%Y"
@@ -64,13 +62,13 @@ sv:
           minimum_class_level: Minst årskurs
           student_class_level: Årskurs
           voting_unit: Ruuti område
-        name: Bankkoder eller mobilcertifikat
+        name: Edu.hel.fi ID för skoleelever
       helsinki_idp:
         fields:
           allowed_districts: Tillåtna distrikt
           district: Distrikt
           minimum_age: Lägsta ålder
-        name: Edu.hel.fi ID för skoleelever
+        name: Helsingforsprofilen
     budgets:
       projects:
         filters:

@@ -11,16 +11,12 @@ en:
           description: 'You can sign in using Helsinki profile.'
           sign_in_with: 'Helsinki profile'
           sign_in_button: 'Sign in via Helsinki profile'
-        tunnistamo:
-          description: 'You can sign in using Tunnistamo.'
-          sign_in_with: 'Tunnistamo'
-          sign_in_button: 'Sign in via Tunnistamo'
         sms:
           description: 'As a pupil, you can log in with SMS or a code given by your teacher or youth worker.'
           sign_in_with: 'SMS sign in'
           sign_in_button: 'Sign in via SMS'
         strong:
-          description: 'Sign in to %{domain} with Tunnistamo. Students at comprehensive school can sign in with their edu.hel.fi account.'
+          description: 'Sign in to %{domain} with Helsinki profile. Students at comprehensive school can sign in with their edu.hel.fi account.'
           sign_in_with: 'Sign in and verify your identity electronically'
         mpassid:
           description: 'If you are a student in comprehensive school, you can verify your identity through the MPASSid service using your school account.'
@@ -29,7 +25,7 @@ en:
         weak:
           description: 'You can also sign in with social media accounts (Facebook, Yle, Google, among others) or with an Omastadi account you have created earlier.'
           sign_in_with: 'Sign in without identity verification'
-          sign_in_button: 'Sign in with Tunnistamo'
+          sign_in_button: 'Sign in with Helsinki profile'
   decidim:
     devise:
       omniauth_registrations:

@@ -69,13 +69,6 @@ module DecidimHelsinki
       Decidim::Core::Engine.instance.initializers.reject! do |initializer|
         initializer.name == "Expire sessions"
       end
-
-      # Note: drop this once the migration to the Helsinki profile is completed.
-      # When using Tunnistamo auth, the redirect URLs need to match with
-      # "tunnistamo".
-      Decidim::HelsinkiProfile.configure do |config|
-        config.auth_service_name = "tunnistamo"
-      end
     end
 
     # Passes a block of code to do after initialization.
