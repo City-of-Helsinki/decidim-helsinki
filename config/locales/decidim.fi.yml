@@ -130,6 +130,9 @@ fi:
             voivat lähettää sinulle yksityisviestejä ja myös sinä voit lähettää niitä muille osallistujille. Profiilisi
             on oltava julkinen tämän asetuksen käyttöönottoa varten, koska muiden osallistujien on löydettävä sinut
             tältä alustalta keskustellakseen kanssasi.</p>
+    profiles:
+      show:
+        activity: Toiminta sivustolla
     proposals:
       proposal_l:
         card_label: Ehdotus %{title}
