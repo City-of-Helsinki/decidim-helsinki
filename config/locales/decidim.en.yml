@@ -130,6 +130,9 @@ en:
             send you private messages and you can send them to others as well. Your profile needs to be public in order
             to enable this feature because other people need to find you from this platform in order to have a
             conversation with you.</p>
+    profiles:
+      show:
+        activity: Activity on website
     proposals:
       proposal_l:
         card_label: Proposal %{title}

@@ -131,6 +131,9 @@ sv:
             skicka direktmeddelanden och du kan även skicka dem till andra. Din profil måste vara offentlig för att
             aktivera den här funktionen eftersom andra människor behöver hitta dig från denna plattform för att kunna
             ha en konversation med dig.</p>
+    profiles:
+      show:
+        activity: Aktivitet på sidan
     proposals:
       proposal_l:
         card_label: Förslag %{title}
