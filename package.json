@@ -20,7 +20,7 @@
   "devDependencies": {
     "@decidim/dev": "^0.27.3",
     "@decidim/eslint-config": "^0.27.3",
-    "@decidim/stylelint-config": "^0.27.3",
+    "@decidim/stylelint-config": "^0.28.0-rc4",
     "webpack-dev-server": "^4.15.1"
   }
 }
