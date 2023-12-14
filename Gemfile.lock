@@ -152,7 +152,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-privacy.git
-  revision: 9ee746beef0b126300d4905939c89c72efb3e0fb
+  revision: dcaa83ddea51cbaff996b50fad87050532722712
   branch: main
   specs:
     decidim-privacy (0.27.0)
