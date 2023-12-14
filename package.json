@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "@decidim/browserslist-config": "^0.27.3",
-    "@decidim/core": "^0.27.3",
+    "@decidim/core": "^0.28.0-rc4",
     "@decidim/elections": "^0.27.3",
     "@decidim/webpacker": "^0.27.3",
     "sass-embedded": "~1.62.0"
