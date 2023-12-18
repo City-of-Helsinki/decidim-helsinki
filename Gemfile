@@ -79,7 +79,7 @@ group :production, :production_ruuti, :staging, :staging_ruuti do
   gem "dotenv-rails", "~> 2.8"
 
   gem "resque", "~> 2.2.0"
-  gem "resque-scheduler", "~> 4.5"
+  gem "resque-scheduler", "~> 4.10"
 
   # Storage
   #
