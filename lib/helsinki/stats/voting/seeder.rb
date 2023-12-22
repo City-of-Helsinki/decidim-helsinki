@@ -36,7 +36,8 @@ module Helsinki
               end
 
             orders = []
-            Decidim::Budgets::Budget.where(component: component).order(Arel.sql("RANDOM()")).limit(3).each do |budget|
+            budgets_limit = 1
+            Decidim::Budgets::Budget.where(component: component).order(Arel.sql("RANDOM()")).limit(budgets_limit).each do |budget|
               order = Decidim::Budgets::Order.create!(user: user, budget: budget)
 
               amount_left = budget.total_budget
