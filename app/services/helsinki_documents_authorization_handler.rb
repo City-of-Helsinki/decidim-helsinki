@@ -128,8 +128,9 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
 
     voted = Decidim::Authorization.exists?(
       [
-        "name =? AND pseudonymized_pin =?",
+        "(name =? OR name =?) AND pseudonymized_pin =?",
         "helsinki_idp",
+        "suomifi_eid",
         pin_digest
       ]
     )
