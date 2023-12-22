@@ -26,6 +26,18 @@ module Helsinki
               age: age,
               age_group: age_group(age)
             }
+          when "suomifi_eid"
+            age = calculate_age(rawdata["date_of_birth"], at_date)
+
+            {
+              identity: "suomifi_eid",
+              identity_name: "Suomi.fi",
+              municipality: rawdata["municipality"],
+              postal_code: rawdata["postal_code"],
+              gender: rawdata["gender"],
+              age: age,
+              age_group: age_group(age)
+            }
           when "mpassid_nids"
             postal_code = Helsinki::SchoolMetadata.postal_code_for_school(rawdata["school_code"])
             # Note: high school students can have class level 1-4 in some
@@ -59,7 +71,7 @@ module Helsinki
         end
 
         def possible_authorizations
-          @possible_authorizations ||= %w(helsinki_idp mpassid_nids helsinki_documents_authorization_handler)
+          @possible_authorizations ||= %w(helsinki_idp suomifi_eid mpassid_nids helsinki_documents_authorization_handler)
         end
 
         def parse_class_level(rawdata)

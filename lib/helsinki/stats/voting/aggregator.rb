@@ -60,7 +60,7 @@ module Helsinki
           )
           return if collection.finalized?
 
-          auth_types = %w(helsinki_idp helsinki_documents_authorization_handler)
+          auth_types = %w(helsinki_idp suomifi_eid helsinki_documents_authorization_handler)
           votes = Decidim::Budgets::Vote.joins(:user).where(component: component).order(
             "decidim_budgets_votes.created_at"
           ).select do |vote|

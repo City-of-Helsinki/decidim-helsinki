@@ -27,6 +27,7 @@ module Helsinki
               else
                 0
               end
+            min_projects = 1 if min_projects < 1
             max_projects =
               if component.settings.vote_rule_selected_projects_enabled
                 component.settings.vote_selected_projects_maximum
@@ -35,7 +36,8 @@ module Helsinki
               end
 
             orders = []
-            Decidim::Budgets::Budget.where(component: component).order(Arel.sql("RANDOM()")).limit(2).each do |budget|
+            budgets_limit = 1
+            Decidim::Budgets::Budget.where(component: component).order(Arel.sql("RANDOM()")).limit(budgets_limit).each do |budget|
               order = Decidim::Budgets::Order.create!(user: user, budget: budget)
 
               amount_left = budget.total_budget
@@ -52,10 +54,11 @@ module Helsinki
 
                 break if order.line_items.count == max_projects || projects_left.zero?
               end
+              order.checked_out_at = vote_time
               next if order.invalid?
 
-              order.checked_out_at = Time.current
               order.created_at = vote_time
+              order.updated_at = vote_time
               order.save(validate: false)
 
               orders << order
@@ -95,13 +98,15 @@ module Helsinki
         end
 
         def random_user(organization)
-          email = Faker::Internet.email
-          user = Decidim::User.find_by(email: email)
+          email = "sample-voter-#{SecureRandom.hex[0..5]}@#{organization.host}"
+          user = Decidim::User.entire_collection.find_by(email: email)
           return user if user
 
+          generated_password = SecureRandom.hex
           name = Faker::Name.name
-          Decidim::User.create!(
+          user = Decidim::User.new(
             organization: organization,
+            email: email,
             managed: true,
             name: name,
             nickname: Decidim::UserBaseEntity.nicknamize(
@@ -110,12 +115,17 @@ module Helsinki
             ),
             admin: false,
             tos_agreement: true,
-            locale: %w(fi en sv).sample
+            locale: %w(fi en sv).sample,
+            password: generated_password,
+            password_confirmation: generated_password
           )
+          user.skip_confirmation!
+          user.save!
+          user
         end
 
         def authorize_user(user)
-          auth_types = %w(helsinki_idp helsinki_documents_authorization_handler mpassid_nids)
+          auth_types = %w(helsinki_idp suomifi_eid helsinki_documents_authorization_handler mpassid_nids)
           auth = Decidim::Authorization.find_by(user: user, name: auth_types)
           return auth if auth
 
@@ -148,7 +158,7 @@ module Helsinki
                 postal_code: random_postal_code,
                 municipality: "091"
               }
-            else # "helsinki_idp"
+            else # "helsinki_idp" or "suomifi_eid"
               postal_code = random_postal_code
 
               {
