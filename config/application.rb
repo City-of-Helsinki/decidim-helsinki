@@ -452,6 +452,16 @@ module DecidimHelsinki
       ActionView::Base.default_form_builder = Helsinki::FormBuilder
     end
 
+    initializer "mail_interceptors" do
+      ActionMailer::Base.register_interceptor(
+        Helsinki::MailInterceptors::GeneratedRecipientsInterceptor
+      )
+
+      Helsinki::MailInterceptors::GeneratedRecipientsInterceptor.configure_domains(
+        *Decidim::Organization.pluck(:host)
+      )
+    end
+
     # Add the to_prepare hook AFTER the decidim.action_controller initializer
     # because otherwise a necessary helper would be missing from some of the
     # controllers.
