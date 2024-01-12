@@ -38,6 +38,10 @@ Decidim.configure do |config|
   config.expire_session_after = Rails.application.config.session_validity_period
 
   config.maximum_attachment_size = 15.megabytes
+
+  # Throttling settings that may be temporarily raised for API requests
+  config.throttling_max_requests = ENV.fetch("DECIDIM_THROTTLING_MAX_REQUESTS", "100").to_i
+  config.throttling_period = ENV.fetch("DECIDIM_THROTTLING_PERIOD", "1").to_i
 end
 
 # Define the I18n locales.
