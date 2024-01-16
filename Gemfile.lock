@@ -76,7 +76,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: eb147c568e5ff28175a2332eb39f9248faeec7d0
+  revision: 4b2ef07d4ea450281f3b14345269f3beefa5a9be
   branch: develop
   specs:
     decidim-budgeting_pipeline (0.27.0)
@@ -178,7 +178,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 2dbe0e2e0230d35d5d5e68c10c37d770f71549c6
+  revision: d88b08762ffbd29dec7655269a9af90592f8e8ff
   branch: develop
   specs:
     decidim-plans (0.27.0)
@@ -1048,8 +1048,8 @@ GEM
       nokogiri
       thor
     ruby-progressbar (1.13.0)
-    ruby-saml (1.15.0)
-      nokogiri (>= 1.13.10)
+    ruby-saml (1.13.0)
+      nokogiri (>= 1.10.5)
       rexml
     ruby-vips (2.1.4)
       ffi (~> 1.12)
