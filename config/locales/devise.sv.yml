@@ -16,7 +16,7 @@ sv:
           sign_in_with: 'SMS-inloggning'
           sign_in_button: 'Logga in via SMS'
         strong:
-          description: 'Logga in på %{domain}-tjänsten med bank-ID eller mobil-ID. Studenter i grundskolan kan logga in med edu.hel.fi.'
+          description: 'Logga in på %{domain}-tjänsten med bank-ID eller mobil-ID. Studenter i grundskolan kan logga in med elevens konto.'
           sign_in_with: 'Logga in och identifiera dig elektroniskt'
         suomifi:
           description: 'Suomi.fi bjuder på möjligheten att identifiera sig bl.a. genom finska bankkoder och mobilcertifikat.'

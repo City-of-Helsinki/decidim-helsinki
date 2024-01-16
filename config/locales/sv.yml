@@ -64,7 +64,7 @@ sv:
           minimum_class_level: Minst årskurs
           student_class_level: Årskurs
           voting_unit: Ruuti område
-        name: Edu.hel.fi ID för skoleelever
+        name: Elevens konto
       suomifi_eid:
         fields:
           allowed_districts: Tillåtna distrikt

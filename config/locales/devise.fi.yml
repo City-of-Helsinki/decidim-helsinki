@@ -16,7 +16,7 @@ fi:
           sign_in_with: 'Tekstiviestikirjautuminen'
           sign_in_button: 'Kirjaudu tekstiviestillä'
         strong:
-          description: 'Kirjautuminen %{domain} -palveluun pankkitunnuksilla tai mobiilivarmenteella. Peruskoulun oppilaat voivat kirjautua myös edu.hel.fi-tunnuksilla.'
+          description: 'Kirjautuminen %{domain} -palveluun pankkitunnuksilla tai mobiilivarmenteella. Peruskoulun oppilaat voivat kirjautua myös koululaisen tunnuksilla.'
           sign_in_with: 'Kirjaudu ja tunnistaudu sähköisellä tunnistautumisella'
         suomifi:
           description: 'Suomi.fi tarjoaa tunnistautumismahdollisuuden mm. suomalaisilla pankkitunnuksilla ja mobiilivarmenteella.'

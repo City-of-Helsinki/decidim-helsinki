@@ -25,10 +25,10 @@ sv:
             class_level_not_defined: Din årskurs kan inte verifieras elektroniskt. Du kan rösta på röstningsplatserna som har meddelats separat genom att visa upp ett identitetsbevis.
             not_in_area: Helsingfors är inte din hemkommun. Endast helsingforsare kan delta i den här omröstningen.
             not_permanent_resident: Du är inte stadigvarande bosatt i Helsingfors. Endast helsingforsare kan delta i den här omröstningen.
-            not_student: Enligt våra uppgifter är du inte en elev. Föräldrar och lärare kan inte identifiera sig för att rösta via edu.hel.fi. Välj ett annat identifieringssätt.
-            too_young: Du kan vara för ung för att rösta. Du måste vara minst på årskurs 6 i grundskolan för att kunna identifiera dig för att rösta via edu.hel.fi. Om du har fyllt eller i år fyller 12 år, kan du rösta på röstningsplatserna som har meddelats separat genom att visa upp ett identitetsbevis.
+            not_student: Enligt våra uppgifter är du inte en elev. Föräldrar och lärare kan inte identifiera sig för att rösta via elevens konto. Välj ett annat identifieringssätt.
+            too_young: Du kan vara för ung för att rösta. Du måste vara minst på årskurs 6 i grundskolan för att kunna identifiera dig för att rösta via elevens konto. Om du har fyllt eller i år fyller 12 år, kan du rösta på röstningsplatserna som har meddelats separat genom att visa upp ett identitetsbevis.
             unknown_school: Vi lyckades inte elektroniskt fastställa i vilken skola du studerar. Du kan tyvärr inte rösta om Krut-budgeteringen.
-            invalid_school_type: Din skoltyp tillåter dig inte att identifiera dig för att rösta via edu.hel.fi. Välj ett annat identifikationssätt.
+            invalid_school_type: Din skoltyp tillåter dig inte att identifiera dig för att rösta via elevens konto. Välj ett annat identifikationssätt.
         identify:
           title: Identifiera dig
         new:
@@ -266,7 +266,7 @@ sv:
       class_level_not_allowed_one: Din årskurs ska vara %{level}.
       class_level_not_defined: Din årskurs är inte definierad.
       disallowed_municipality: Omröstningen är endast begränsad till Helsingforsbor.
-      disallowed_role: Edu.hel.fi-identifieringen är endast begränsad till elever.
+      disallowed_role: Elevens konto identifieringen är endast begränsad till elever.
       disallowed_school: Omröstning är inte tillåten i denna skola.
       disallowed_voting_unit: Du kan inte rösta på detta område från din skola.
       voting_unit_required: Information som behövs om ditt Ruuti-område.

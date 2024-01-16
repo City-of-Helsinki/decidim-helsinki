@@ -64,7 +64,7 @@ fi:
           minimum_class_level: Pienin luokka-aste
           student_class_level: Luokka-aste
           voting_unit: Ruuti-alue
-        name: Oppilaiden edu.hel.fi-tunnukset
+        name: Koululaisen tunnukset
       suomifi_eid:
         fields:
           allowed_districts: Sallitut suurpiirit

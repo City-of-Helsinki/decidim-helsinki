@@ -16,7 +16,7 @@ en:
           sign_in_with: 'SMS sign in'
           sign_in_button: 'Sign in via SMS'
         strong:
-          description: 'Sign in to %{domain} with bank ID or mobile ID. Students at comprehensive school can sign in with their edu.hel.fi account.'
+          description: "Sign in to %{domain} with bank ID or mobile ID. Students at comprehensive school can sign in with their pupil's account."
           sign_in_with: 'Sign in and verify your identity electronically'
         suomifi:
           description: 'Suomi.fi allows users to verify their identity using Finnish online banking IDs and mobile IDs, among others.'

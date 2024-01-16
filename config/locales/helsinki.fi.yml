@@ -25,14 +25,14 @@ fi:
             class_level_not_defined: Luokka-astettasi ei pystytty varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
             not_in_area: Kotikuntasi ei ole Helsinki. Tähän äänestykseen voivat osallistua vain helsinkiläiset.
             not_permanent_resident: Pysyvä asuinpaikkasi ei ole Helsinki. Tähän äänestykseen voivat osallistua vain helsinkiläiset.
-            not_student: Saamamme tiedon mukaan et ole oppilas. Vanhemmat ja opettajat eivät voi tunnistautua äänestämään edu.hel.fi-tunnuksilla. Valitse toinen tunnistautumistapa.
-            too_young: Olet ehkä liian nuori äänestämään. Sinun tulee olla vähintään peruskoulun 6-luokalla, jotta voit tunnistautua äänestäjäksi edu.hel.fi-tunnuksilla. Jos olet täyttänyt tai täytät tänä vuonna 12 vuotta, voit äänestää erikseen ilmoitetuissa äänestyspaikoissa luokkatasostasi riippumatta.
+            not_student: Saamamme tiedon mukaan et ole oppilas. Vanhemmat ja opettajat eivät voi tunnistautua äänestämään koululaisen tunnuksilla. Valitse toinen tunnistautumistapa.
+            too_young: Olet ehkä liian nuori äänestämään. Sinun tulee olla vähintään peruskoulun 6-luokalla, jotta voit tunnistautua äänestäjäksi koululaisen tunnuksilla. Jos olet täyttänyt tai täytät tänä vuonna 12 vuotta, voit äänestää erikseen ilmoitetuissa äänestyspaikoissa luokkatasostasi riippumatta.
             unknown_school: Emme onnistuneet varmistamaan sähköisesti missä koulussa opiskelet. Et valitettavasti voi äänestää Ruuti-budjetoinnissa.
-            invalid_school_type: Koulutyyppisi ei salli sinun tunnistautua äänestäjäksi edu.hel.fi-tunnuksilla. Valitse toinen tunnistautumistapa.
+            invalid_school_type: Koulutyyppisi ei salli sinun tunnistautua äänestäjäksi koululaisen  tunnuksilla. Valitse toinen tunnistautumistapa.
         identify:
           title: Tunnistaudu
         new:
-          help: Voit äänestää koko Helsingin suunnitelmista ja valitsemasi suurpiirin suunnitelmista. Sinulle ehdotetaan kotiosoitteeesi postinumeron (tai edu.hel.fi-tunnistautuvilla koulun postinumeron) mukaista suurpiiriä, mutta voit vaihtaa sen alla olevasta putodusvalikosta. Jos haluat äänestää tiettyä suunnitelmaa, tarkista etukäteen minkä suurpiirin alueella se sijaitsee. Jos haluat vaihtaa tässä tekemäsi valinnan jälkikäteen, katso ylävalikosta Ohjeet.
+          help: Voit äänestää koko Helsingin suunnitelmista ja valitsemasi suurpiirin suunnitelmista. Sinulle ehdotetaan kotiosoitteeesi postinumeron (tai koululaisen tunnuksilla koulun postinumeron) mukaista suurpiiriä, mutta voit vaihtaa sen alla olevasta putodusvalikosta. Jos haluat äänestää tiettyä suunnitelmaa, tarkista etukäteen minkä suurpiirin alueella se sijaitsee. Jos haluat vaihtaa tässä tekemäsi valinnan jälkikäteen, katso ylävalikosta Ohjeet.
           title: Hyväksy suurpiiri
           submit: Hyväksy
     content_blocks:
@@ -262,7 +262,7 @@ fi:
       class_level_not_allowed_one: Luokka-asteesi tulisi olla %{level}.
       class_level_not_defined: Luokka-astettasi ei ole määritetty.
       disallowed_municipality: Äänestys on rajattu vain helsinkiläisille.
-      disallowed_role: Edu.hel.fi-tunnistautumisella äänestäminen on rajattu vain oppilaille.
+      disallowed_role: Koululaisen tunnistautumisella äänestäminen on rajattu vain oppilaille.
       disallowed_school: Äänestys ei ole sallittu tässä koulussa.
       disallowed_voting_unit: Koulustasi ei voi äänestää tällä alueella.
       voting_unit_required: Tietoa Ruuti-alueestasi ei tiedetä.

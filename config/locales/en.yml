@@ -65,7 +65,7 @@ en:
           minimum_class_level: Minimum grade level
           student_class_level: Grade level
           voting_unit: Ruuti area
-        name: Edu.hel.fi for school students
+        name: Pupil's account
       suomifi_eid:
         fields:
           allowed_districts: Allowed districts
