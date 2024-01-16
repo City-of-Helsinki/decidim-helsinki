@@ -71,6 +71,18 @@ module DecidimHelsinki
       end
     end
 
+    # Fixes issue with some of the Omniauth providers not being available
+    # depending on the load order.
+    config.after_initialize do
+      possible = []
+      possible << Decidim::HelsinkiProfile.auth_service_name.to_sym if Rails.application.config.helsinki_profile_enabled
+      possible << :suomifi if Rails.application.config.suomifi_enabled
+      possible << :mpassid if Rails.application.config.mpassid_enabled
+      possible << :sms if Rails.application.config.smsauth_enabled
+
+      Decidim::User.omniauth_providers = possible
+    end
+
     # Passes a block of code to do after initialization.
     # config.after_initialize do
     #   # Override the main menu
