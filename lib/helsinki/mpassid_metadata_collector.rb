@@ -16,6 +16,7 @@ module Helsinki
 
           data[:postal_code] = postal_codes.join(",")
           data[:voting_unit] = voting_units.join(",")
+          data[:municipality] = "091" if postal_codes.any?
         end
       end
     end
