@@ -12,6 +12,8 @@ sv:
         voting_unit: Ruuti område
       helsinki_idp:
         district: Distrikt
+      suomifi_eid:
+        district: Distrikt
       result:
         budget_amount: Total budget för projektet
         budget_breakdown: Budgetfördelning
@@ -65,6 +67,12 @@ sv:
           student_class_level: Årskurs
           voting_unit: Ruuti område
         name: Bankkoder eller mobilcertifikat
+      suomifi_eid:
+        fields:
+          allowed_districts: Tillåtna distrikt
+          district: Distrikt
+          minimum_age: Lägsta ålder
+        name: Wilma ID för skoleelever
       helsinki_idp:
         fields:
           allowed_districts: Tillåtna distrikt

@@ -18,14 +18,18 @@ fi:
         sms:
           description: 'Koululaisena voit tunnistautua tekstiviestillä tai opettajan tai nuoriso-ohjaajan antamalla koodilla.'
           sign_in_with: 'Tekstiviestikirjautuminen'
-          sign_in_button: 'Kirjaudu sisään tekstiviestillä'
+          sign_in_button: 'Kirjaudu tekstiviestillä'
         strong:
-          description: 'Kirjautuminen %{domain} -palveluun Tunnistamolla. Peruskoulun oppilaat voivat kirjautua myös edu.hel.fi-tunnuksilla.'
+          description: 'Kirjautuminen %{domain} -palveluun pankkitunnuksilla tai mobiilivarmenteella. Peruskoulun oppilaat voivat kirjautua myös edu.hel.fi-tunnuksilla.'
           sign_in_with: 'Kirjaudu ja tunnistaudu sähköisellä tunnistautumisella'
+        suomifi:
+          description: 'Suomi.fi tarjoaa tunnistautumismahdollisuuden mm. suomalaisilla pankkitunnuksilla ja mobiilivarmenteella.'
+          sign_in_with: 'Suomi.fi-tunnistautuminen'
+          sign_in_button: 'Kirjaudu pankkitunnuksilla tai mobiilivarmenteella'
         mpassid:
           description: 'Koululaisena voit kirjautua MPASSid-palvelun avulla koulusi tunnuksella.'
           sign_in_with: 'MPASSid-tunnistautuminen'
-          sign_in_button: 'Kirjaudu oppilaiden edu.hel.fi-tunnuksilla'
+          sign_in_button: 'Kirjaudu koululaisen tunnuksella'
         weak:
           description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa tai aiemmin luomillasi Omastadi –tunnuksilla.'
           sign_in_with: 'Kirjaudu ilman tunnistautumista'

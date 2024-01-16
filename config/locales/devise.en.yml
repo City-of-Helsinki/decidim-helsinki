@@ -20,12 +20,16 @@ en:
           sign_in_with: 'SMS sign in'
           sign_in_button: 'Sign in via SMS'
         strong:
-          description: 'Sign in to %{domain} with Tunnistamo. Students at comprehensive school can sign in with their edu.hel.fi account.'
+          description: 'Sign in to %{domain} with bank ID or mobile ID. Students at comprehensive school can sign in with their edu.hel.fi account.'
           sign_in_with: 'Sign in and verify your identity electronically'
+        suomifi:
+          description: 'Suomi.fi allows users to verify their identity using Finnish online banking IDs and mobile IDs, among others.'
+          sign_in_with: 'Suomi.fi e-Identification'
+          sign_in_button: 'Sign in with bank ID or mobile ID'
         mpassid:
           description: 'If you are a student in comprehensive school, you can verify your identity through the MPASSid service using your school account.'
           sign_in_with: 'MPASSid-identification'
-          sign_in_button: 'Sign in with edu.hel.fi for school students'
+          sign_in_button: "Sign in with pupil's account"
         weak:
           description: 'You can also sign in with social media accounts (Facebook, Yle, Google, among others) or with an Omastadi account you have created earlier.'
           sign_in_with: 'Sign in without identity verification'

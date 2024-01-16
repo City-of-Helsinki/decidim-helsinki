@@ -5,7 +5,7 @@ fi:
         settings:
           global:
             workflow_choices:
-              omastadi: 'OmaStadi: sallii osallistujan äänestyksen Koko Helsinki -alueella ja yhdellä valitsemallaan suurpiirillä.'
+              omastadi: 'OmaStadi: sallii osallistujan äänestyksen yhdellä valitsemallaan suurpiirillä.'
               ruuti_one: 'Ruuti äänestä yhdessä: sallii osallistujan äänestyksen omalla Ruuti-alueellaan.'
   helsinki:
     areas:

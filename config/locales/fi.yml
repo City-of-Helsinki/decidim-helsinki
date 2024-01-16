@@ -12,6 +12,8 @@ fi:
         voting_unit: Ruuti-alue
       helsinki_idp:
         district: Suurpiiri
+      suomifi_eid:
+        district: Suurpiiri
       result:
         budget_amount: Hankkeen kokonaisbudjetti
         budget_breakdown: Budjetin perustelut
@@ -65,6 +67,12 @@ fi:
           student_class_level: Luokka-aste
           voting_unit: Ruuti-alue
         name: Oppilaiden edu.hel.fi-tunnukset
+      suomifi_eid:
+        fields:
+          allowed_districts: Sallitut suurpiirit
+          district: Suurpiiri
+          minimum_age: Ikä vähintään
+        name: Pankkitunnukset tai mobiilivarmenne
       helsinki_idp:
         fields:
           allowed_districts: Sallitut suurpiirit

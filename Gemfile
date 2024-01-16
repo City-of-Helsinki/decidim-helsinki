@@ -31,6 +31,7 @@ gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "develop"
 gem "decidim-privacy", github: "mainio/decidim-module-privacy", branch: "main"
 gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "main"
 gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "main"
+gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "main"
 gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "develop"
 gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "master"
 

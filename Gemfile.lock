@@ -214,6 +214,16 @@ GIT
       decidim-core (~> 0.27.0)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-suomifi.git
+  revision: 18a15ee291edc8412ee1dfe4fab5383590ae1e76
+  branch: main
+  specs:
+    decidim-suomifi (0.27.0)
+      decidim-core (~> 0.27.0)
+      henkilotunnus (~> 1.2.0)
+      omniauth-suomifi (~> 0.6.0)
+
+GIT
   remote: https://github.com/mainio/decidim-module-tags.git
   revision: 4e868c286edfe5f460c3ff26aa740cffd76bde50
   branch: develop
@@ -852,6 +862,9 @@ GEM
     omniauth-saml (2.1.0)
       omniauth (~> 2.0)
       ruby-saml (~> 1.12)
+    omniauth-suomifi (0.6.2)
+      omniauth-saml (~> 2.0)
+      ruby-saml (~> 1.13.0)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -1221,6 +1234,7 @@ DEPENDENCIES
   decidim-redirects!
   decidim-sms-telia!
   decidim-stats!
+  decidim-suomifi!
   decidim-tags!
   decidim-term_customizer!
   dotenv-rails (~> 2.8)

@@ -4,11 +4,13 @@ module Decidim
   module Devise
     module SessionsHelper
       def enabled_strong_providers
-        possible = [Decidim::HelsinkiProfile.auth_service_name.to_sym, :mpassid].select do |key|
-          decidim.respond_to?("user_#{key}_omniauth_authorize_path")
-        end
+        @enabled_strong_providers ||= begin
+          possible = [Decidim::HelsinkiProfile.auth_service_name.to_sym, :suomifi, :mpassid].select do |key|
+            decidim.respond_to?("user_#{key}_omniauth_authorize_path")
+          end
 
-        @enabled_strong_providers ||= current_organization.enabled_omniauth_providers.keys & possible
+          current_organization.enabled_omniauth_providers.keys & possible
+        end
       end
 
       def strong_providers_enabled?
@@ -16,9 +18,11 @@ module Decidim
       end
 
       def enabled_weak_providers
-        possible = [].select { |key| decidim.respond_to?("user_#{key}_omniauth_authorize_path") }
+        @enabled_weak_providers ||= begin
+          possible = [].select { |key| decidim.respond_to?("user_#{key}_omniauth_authorize_path") }
 
-        @enabled_weak_providers ||= current_organization.enabled_omniauth_providers.keys & possible
+          current_organization.enabled_omniauth_providers.keys & possible
+        end
       end
 
       def weak_providers_enabled?

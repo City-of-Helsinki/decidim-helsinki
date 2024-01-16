@@ -3,7 +3,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.helsinki_profile_enabled = true
+  config.helsinki_profile_enabled = false
+  config.suomifi_enabled = true
   config.mpassid_enabled = true
 
   # Tracking
