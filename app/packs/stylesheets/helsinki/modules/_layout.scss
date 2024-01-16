@@ -17,6 +17,10 @@ $content-max-width: 1200px - 6px; // To match the layout
 
 body{
   min-width: 320px;
+
+  &.loading{
+    cursor: wait;
+  }
 }
 
 a,

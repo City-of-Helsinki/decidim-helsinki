@@ -34,7 +34,7 @@ fi:
       budget_information_modal:
         back_to: Takaisin %{component_name}
         close_modal: Sulje ikkuna
-        continue: Jatka
+        continue: Sulje
         more_information: Lisätietoja
       budgets_list:
         cancel_order:

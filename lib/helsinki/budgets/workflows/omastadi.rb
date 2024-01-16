@@ -28,17 +28,20 @@ module Helsinki
           false
         end
 
-        def vote_allowed?(_resource, consider_progress: true) # rubocop:disable Lint/UnusedMethodArgument
+        def vote_allowed?(resource, consider_progress: true)
           return false if authorization.blank?
+          return false if voted.any?
 
-          voted.none?
+          if consider_progress
+            progress?(resource) || progress.none?
+          else
+            true
+          end
         end
 
         # Defines whether a budget should be marked as "sticky" or not.
-        def sticky?(resource)
-          return false unless resource.scope
-
-          resource.scope.code == "SUURPIIRI-01-KOKOHELSINKI"
+        def sticky?(_resource)
+          false
         end
 
         # Returns all the sticky budgets.
@@ -71,7 +74,7 @@ module Helsinki
         private
 
         def authorization
-          @authorization ||= helsinki_authorization || documents_authorization || mpassid_authorization
+          @authorization ||= suomifi_authorization || documents_authorization || mpassid_authorization || helsinki_authorization
         end
 
         def district_scope_map
@@ -93,6 +96,15 @@ module Helsinki
           ).find_by(
             user: user,
             name: :helsinki_idp
+          )
+        end
+
+        def suomifi_authorization
+          Decidim::Authorization.where.not(
+            granted_at: nil
+          ).find_by(
+            user: user,
+            name: :suomifi_eid
           )
         end
 

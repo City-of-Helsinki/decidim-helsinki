@@ -34,7 +34,7 @@ en:
       budget_information_modal:
         back_to: Back to %{component_name}
         close_modal: Close modal
-        continue: Continue
+        continue: Close
         more_information: More information
       budgets_list:
         cancel_order:

@@ -34,7 +34,7 @@ sv:
       budget_information_modal:
         back_to: Tillbaka till %{component_name}
         close_modal: Stäng modal
-        continue: Fortsätta
+        continue: Stäng
         more_information: Mer information
       budgets_list:
         cancel_order:

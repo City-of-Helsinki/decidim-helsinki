@@ -33,6 +33,10 @@
     .callout__icon{ color: $hel-error; }
   }
 
+  &.callout--plain{
+    border-left: 0;
+  }
+
   .callout__title{
     @extend .clearfix;
   }

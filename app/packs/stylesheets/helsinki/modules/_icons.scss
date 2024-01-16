@@ -6,6 +6,11 @@
   @include modifiers(color, (muted: $muted));
 }
 
+.icon--notify{
+  width: 5rem;
+  height: 5rem;
+}
+
 // .icon--small{
 //   width: $icon-size-sm;
 //   height: $icon-size-sm;

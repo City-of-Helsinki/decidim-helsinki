@@ -482,6 +482,9 @@ module DecidimHelsinki
         ActionView::Helpers::Tags::CollectionCheckBoxes.include(Helsinki::FormExtensions::CollectionCheckBoxes)
         ActionView::Helpers::Tags::CollectionRadioButtons.include(Helsinki::FormExtensions::CollectionRadioButtons)
 
+        # Form builders
+        Decidim::FilterFormBuilder.include(Helsinki::FormBuilderExtensions)
+
         # Helper extensions
         Decidim::ParticipatoryProcesses::ParticipatoryProcessHelper.include(ParticipatoryProcessHelperExtensions)
         Decidim::ScopesHelper.include(ScopesHelperExtensions)

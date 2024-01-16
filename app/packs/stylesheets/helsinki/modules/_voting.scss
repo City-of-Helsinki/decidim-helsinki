@@ -1,0 +1,230 @@
+#orders-summary{
+  background-color: $hel-engel-medium-light;
+  padding: 2rem;
+
+  &::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  &.sticky.is-stuck{
+    left: 0;
+    width: 100%;
+    max-width: none !important;
+
+    .orders-summary-info,
+    .orders-summary-cart{
+      display: none;
+    }
+
+    .voting-progress{
+      float: left;
+      margin-top: .4rem;
+      margin-bottom: 0;
+    }
+  }
+
+  #projects_continue_button{
+    float: right;
+  }
+
+  .voting-progress{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    @include breakpoint(mediumlarge){
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .voting-progress__indicator{
+      .icon{
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    .voting-progress__explanation{
+      margin-left: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  .order-items__item{
+    &::after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+
+  .project-cart-button{
+    float: left;
+    margin: 0 1rem 0 .2rem;
+
+    .icon{
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}
+
+body.loading{
+  .projects-table{
+    input[type=checkbox] + label[for]{
+      cursor: wait;
+    }
+  }
+}
+
+.projects-table{
+  .projects-table__header,
+  .projects-table__row__header{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 100px;
+  }
+
+  .projects-table__header__data,
+  .projects-table__row__data{
+    position: relative;
+
+    @include breakpoint(mediumlarge){
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: 100px 1fr 210px;
+    }
+  }
+
+  .projects-table__header{
+    display: none;
+    border-bottom: 1px solid $hel-black;
+    margin-bottom: 10px;
+
+    @include breakpoint(mediumlarge){
+      display: grid;
+    }
+
+    .projects-table__header__data{
+      padding-left: 10px;
+    }
+
+    .projects-table__header__vote{
+      text-align: center;
+      background-color: $hel-black;
+      color: $hel-white;
+    }
+  }
+
+  .projects-table__header,
+  .projects-table__row{
+    .projects-table__cell{
+      @include breakpoint(mediumlarge){
+        margin-left: 10px;
+      }
+
+      &:first-child{
+        margin-left: 0;
+      }
+    }
+  }
+
+  .projects-table__row{
+    background-color: $hel-white;
+    padding: 10px 0;
+    margin-bottom: 10px;
+
+    &[data-open]{
+      .projects-table__row__details{
+        display: flex;
+        flex-direction: column;
+
+        @include breakpoint(mediumlarge){
+          flex-direction: row;
+        }
+      }
+
+      .projects-table__row__icon{
+        top: -2px;
+        transform: rotate(180deg);
+      }
+    }
+
+    .projects-table__row__data{
+      padding-left: 10px;
+    }
+
+    .projects-table__row__icon{
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      @include breakpoint(mediumlarge){
+        position: relative;
+      }
+
+      .icon{
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    .projects-table__row__vote{
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+
+      .input-checkbox{
+        label{
+          margin-right: 0;
+        }
+      }
+    }
+
+    .input-checkbox{
+      display: flex;
+    }
+
+    .projects-table__row__data{
+      cursor: pointer;
+    }
+
+    .projects-table__row__details{
+      display: none;
+      padding: 10px;
+
+      @include breakpoint(mediumlarge){
+        padding: 10px 40px 10px 120px;
+      }
+
+      .projects-table__row__main{
+        @include breakpoint(mediumlarge){
+          width: 80%;
+          margin-right: 40px;
+        }
+      }
+
+      .projects-table__row__side{
+        margin-top: 2rem;
+
+        @include breakpoint(mediumlarge){
+          margin-top: 0;
+          width: 20%;
+        }
+      }
+    }
+
+    .projects-table__cell{
+      &.projects-table__cell--budget{
+        display: flex;
+
+        span{
+          flex: 1;
+        }
+      }
+    }
+  }
+}

@@ -101,6 +101,10 @@ hr{
   @include breakpoint(large){
     margin: $hel-spacing-l auto;
   }
+
+  &.strong{
+    border-bottom-color: $hel-black;
+  }
 }
 
 .weight-normal{ font-weight: $global-weight-normal; }
