@@ -120,12 +120,6 @@ en:
       results_carousel:
         name: Project carousel (implementation)
     copyright: '%{year} City of Helsinki'
-    devise:
-      shared:
-        omniauth_buttons:
-          tunnistamo_explanation: 'Facebook-, Google- or YLE authentication'
-          tunnistamo_explanation_internal: 'Tunnistamo authentication'
-        tunnistamo_description: Using Tunnistamo you can authenticate using Google, Facebook, or YLE among others.
     forms:
       label_tooltip: Guidance
     linked_events:

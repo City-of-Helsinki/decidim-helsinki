@@ -11,10 +11,6 @@ sv:
           description: 'Du kan logga med Helsingforsprofilen.'
           sign_in_with: 'Helsingforsprofilen'
           sign_in_button: 'Logga in med Helsingforsprofilen'
-        tunnistamo:
-          description: 'Du kan logga med Tunnistamo.'
-          sign_in_with: 'Tunnistamo'
-          sign_in_button: 'Logga in med Tunnistamo'
         sms:
           description: 'Som elev kan du logga in med SMS eller en kod som din lärare eller ungdomshandledare får.'
           sign_in_with: 'SMS-inloggning'
@@ -31,9 +27,9 @@ sv:
           sign_in_with: 'MPASSid-identifikation'
           sign_in_button: 'Logga in med elevens konto'
         weak:
-          description: 'Du kan också logga in på Tunnistamo-tjänsten med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med Omastadi-kontot du skapade tidigare.'
+          description: 'Du kan också logga in med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med Omastadi-kontot du skapade tidigare.'
           sign_in_with: 'Logga in utan identifikation'
-          sign_in_button: 'Logga in med Tunnistamo-tjänsten'
+          sign_in_button: 'Logga in med Helsingforsprofilen'
   decidim:
     devise:
       omniauth_registrations:

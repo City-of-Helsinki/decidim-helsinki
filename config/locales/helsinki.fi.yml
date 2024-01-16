@@ -120,12 +120,6 @@ fi:
       results_carousel:
         name: Hankekaruselli (seuranta)
     copyright: '%{year} Helsingin kaupunki'
-    devise:
-      shared:
-        omniauth_buttons:
-          tunnistamo_explanation: 'Facebook-, Google- tai YLE-kirjautuminen'
-          tunnistamo_explanation_internal: 'Tunnistamo-kirjautuminen'
-        tunnistamo_description: Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook-, YLE-palveluiden avulla.
     forms:
       label_tooltip: Ohjeistus
     linked_events:

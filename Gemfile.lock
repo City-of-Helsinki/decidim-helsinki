@@ -113,7 +113,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-helsinki_profile.git
-  revision: fdd725fd809f7b675b61ca28c863f0d2ceb7bcb3
+  revision: e22912caded8af74109f27888bb77d5a673b0ca2
   branch: main
   specs:
     decidim-helsinki_profile (0.27.0)

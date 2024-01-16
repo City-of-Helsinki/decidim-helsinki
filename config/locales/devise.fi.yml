@@ -11,10 +11,6 @@ fi:
           description: 'Voit kirjautua sisään Helsinki-profiilin avulla.'
           sign_in_with: 'Helsinki-profiili'
           sign_in_button: 'Kirjaudu Helsinki-profiililla'
-        tunnistamo:
-          description: 'Voit kirjautua sisään Tunnistamo-palvelun avulla.'
-          sign_in_with: 'Tunnistamo'
-          sign_in_button: 'Kirjaudu Tunnistamo-palvelulla'
         sms:
           description: 'Koululaisena voit tunnistautua tekstiviestillä tai opettajan tai nuoriso-ohjaajan antamalla koodilla.'
           sign_in_with: 'Tekstiviestikirjautuminen'
@@ -31,9 +27,9 @@ fi:
           sign_in_with: 'MPASSid-tunnistautuminen'
           sign_in_button: 'Kirjaudu koululaisen tunnuksella'
         weak:
-          description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa tai aiemmin luomillasi Omastadi –tunnuksilla.'
+          description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) tai aiemmin luomillasi Omastadi –tunnuksilla.'
           sign_in_with: 'Kirjaudu ilman tunnistautumista'
-          sign_in_button: 'Kirjaudu Tunnistamo-palvelun avulla'
+          sign_in_button: 'Kirjaudu Helsinki-profiililla'
   decidim:
     devise:
       omniauth_registrations:
