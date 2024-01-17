@@ -1,6 +1,10 @@
 #orders-summary{
   background-color: $hel-engel-medium-light;
-  padding: 2rem;
+  padding: 1rem;
+
+  @include breakpoint(mediumlarge){
+    padding: 2rem;
+  }
 
   &::after{
     content: "";
@@ -8,7 +12,11 @@
     clear: both;
   }
 
-  &.sticky.is-stuck{
+  &.is-stuck{
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
     left: 0;
     width: 100%;
     max-width: none !important;
@@ -19,9 +27,13 @@
     }
 
     .voting-progress{
-      float: left;
-      margin-top: .4rem;
-      margin-bottom: 0;
+      margin-bottom: .5rem;
+
+      @include breakpoint(mediumlarge){
+        float: left;
+        margin-top: .4rem;
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -29,15 +41,20 @@
     float: right;
   }
 
+  #projects_continue_button_mobile{
+    margin-top: 1rem;
+  }
+
   .voting-progress{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     @include breakpoint(mediumlarge){
       flex-direction: row;
       align-items: flex-start;
+      margin-bottom: 2rem;
     }
 
     .voting-progress__indicator{
@@ -48,8 +65,10 @@
     }
 
     .voting-progress__explanation{
-      margin-left: 1rem;
-      font-size: 1.5rem;
+      @include breakpoint(mediumlarge){
+        margin-left: 1rem;
+        font-size: 1.5rem;
+      }
     }
   }
 

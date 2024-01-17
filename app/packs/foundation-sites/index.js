@@ -29,8 +29,8 @@ export { ResponsiveMenu }           from "foundation-sites/js/foundation.respons
 export { ResponsiveToggle }         from "foundation-sites/js/foundation.responsiveToggle";
 export { Reveal }                   from "foundation-sites/js/foundation.reveal";
 // export { Slider }                   from "foundation-sites/js/foundation.slider";
-export { SmoothScroll }             from "foundation-sites/js/foundation.smoothScroll";
-export { Sticky }                   from "foundation-sites/js/foundation.sticky";
+// export { SmoothScroll }             from "foundation-sites/js/foundation.smoothScroll";
+// export { Sticky }                   from "foundation-sites/js/foundation.sticky";
 export { Tabs }                     from "foundation-sites/js/foundation.tabs";
 export { Toggler }                  from "foundation-sites/js/foundation.toggler";
 export { Tooltip }                  from "foundation-sites/js/foundation.tooltip";
