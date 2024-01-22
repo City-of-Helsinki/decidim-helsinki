@@ -34,8 +34,10 @@ module Helsinki
     # NOTE:
     # This list only contains the Helsinki schools that take part in the voting.
     MAPPING = {
-      # Test school code passed for the test authorizer by MPASSid
+      # Test school codes passed for the test authorizer by MPASSid
       # "00000" => { name: "Testikoulu", type: 11, postal_code: "00210", voting_unit: 6 },
+      "30076" => { name: "Mansikkalan testi peruskoulu", type: 11, postal_code: "00210", voting_unit: 6 },
+      "30079" => { name: "Testi Ammattiopisto Puolukka", type: 21, postal_code: "00210", voting_unit: 6 },
 
       # Actual schools
       "00004" => { name: "Alppilan lukio", type: 15, postal_code: "00510", voting_unit: nil },
