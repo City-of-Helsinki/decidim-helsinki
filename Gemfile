@@ -21,7 +21,8 @@ gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipel
 gem "decidim-connector", github: "mainio/decidim-module-connector", branch: "main"
 gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "develop"
 gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "develop"
-gem "decidim-helsinki_profile", github: "mainio/decidim-module-helsinki_profile", branch: "main"
+# Helsinki profile disabled because it interrupts the SLO request from Suomi.fi
+# gem "decidim-helsinki_profile", github: "mainio/decidim-module-helsinki_profile", branch: "main"
 gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "develop"
 gem "decidim-insights", github: "mainio/decidim-module-insights", branch: "main"
 gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "main"
