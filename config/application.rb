@@ -512,6 +512,7 @@ module DecidimHelsinki
         # Controller extensions
         # Keep after helpers because these can load in helpers!
         Decidim::ApplicationController.include(LongLocationUrlStoring)
+        Decidim::ApplicationController.include(CustomTosRedirect)
         Decidim::Admin::HelpSectionsController.include(AdminHelpSectionsExtensions)
         Decidim::Admin::CategoriesController.include(AdminCategoriesControllerExtensions)
         Decidim::Devise::SessionsController.include(DisableFirstLoginAndNotAuthorized)
