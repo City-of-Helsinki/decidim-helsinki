@@ -8,6 +8,9 @@ Rails.application.configure do
   config.suomifi_enabled = true
   config.mpassid_enabled = true
 
+  # Is the CookieHub consent enabled or not
+  config.enable_cookiehub = false
+
   # This defines an email address for automatically generated user accounts,
   # e.g. through the Helsinki profile or MPASSid authentications.
   config.auto_email_domain = "osallistu.hel.ninja"

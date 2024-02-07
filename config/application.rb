@@ -33,6 +33,9 @@ module DecidimHelsinki
     # How long the sessions are valid
     config.session_validity_period = 1.hour
 
+    # Is the CookieHub consent enabled or not
+    config.enable_cookiehub = true
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

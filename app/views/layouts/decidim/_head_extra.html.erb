@@ -2,7 +2,7 @@
   <meta name="robots" content="noindex,nofollow">
 <% end %>
 
-<% unless Rails.env.development? %>
+<% if Rails.application.config.enable_cookiehub %>
 <!-- Cookiehub / Cookie consent -->
 <script type="text/javascript">
 var cpm = {};

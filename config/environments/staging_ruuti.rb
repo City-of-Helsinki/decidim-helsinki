@@ -7,6 +7,9 @@ Rails.application.configure do
   config.mpassid_enabled = false
   config.smsauth_enabled = true
 
+  # Is the CookieHub consent enabled or not
+  config.enable_cookiehub = false
+
   # Wrapper class can be used to customize the coloring of the platform per
   # environment. This is for the Ruuti instance.
   config.wrapper_class = "wrapper-ruuti"
