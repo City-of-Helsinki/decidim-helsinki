@@ -247,6 +247,7 @@ sv:
         feedback_title: Tack för att du skickade ett förslag!
         flag: Rapportera
         linked_ideas: Idéer bifogade detta förslag
+        linked_projects: Förslagets att slåtts ihop med andra förslag inför röstningen
         manage_plan: Hantera ditt förslag
         request_access: Begär redigeringsrättigheter
         pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
@@ -258,6 +259,33 @@ sv:
       plan_l:
         card_label: "Förslag: %{title}"
         view_plan: Visa förslag
+    shared:
+      account_privacy_summary:
+        privacy_link: /pages/tietosuoja?locale=sv
+        tos_summary_html: |
+          <p>
+            När du registrerar dig i tjänsten OmaStadi ska du ge ditt samtycke till behandlingen av personuppgifter.
+            Efter att ha gett ditt samtycke kan du lämna in förslag, kommentera förslag och rösta på förslag.
+          </p>
+          <p>
+            När du registrerar dig i tjänsten behandlar vi följande personuppgifter: namn, signatur och e-postadress.
+          </p>
+          <p>
+            När du identifierar dig i OmaStadi genom stark autentisering behandlar vi följande personuppgifter: namn,
+            e-postadress, hemkommun, postnummer och personbeteckning.
+          </p>
+          <p>
+            Skolelever identifierar sig vid rösning med hjälp av mPassID som skolorna använder, varvid vi behandlar
+            följande personuppgifter: förnamn, efternamn, tilltalsnamn, kommunkod, kommunnamn, skolkod, skolans namn,
+            klassbeteckning och årskurs.
+          </p>
+          <p>Du kan när som helst återkalla ditt samtycke och radera dina uppgifter från användarkontots inställningar.</p>
+          <p>
+            Mer information om behandlingen av dina personuppgifter i OmaStadi finns i
+            <a href="%{privacy_link}" target="_blank">dataskyddsbeskrivningen</a> som bland annat innehåller mer
+            information om de rättsliga grunderna för behandlingen av dina personuppgifter och om
+            förvaringstiderna för dina uppgifter.
+          </p>
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Din årskurs kan inte verifieras elektroniskt.

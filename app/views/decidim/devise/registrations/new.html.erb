@@ -44,7 +44,7 @@
         <div class="field-section margin-top-2">
           <h2 class="h3"><%= t(".tos_title") %></h2>
 
-          <%= t(".tos_summary_html", privacy_link: t(".privacy_link")) %>
+          <%= render partial: "helsinki/shared/account_privacy_summary" %>
 
           <% if false %>
             <p class="tos-text">

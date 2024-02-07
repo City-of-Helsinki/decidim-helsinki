@@ -32,6 +32,10 @@ en:
               name: Budget breakdown
             description:
               name: Project description
+            cocreation_description:
+              name: Co-creation
+            implementation_description:
+              name: Implementation
             interaction_description:
               name: Interaction
             plans_description:
@@ -78,8 +82,21 @@ en:
         choose_file: Choose file
     pages:
       terms_and_conditions:
+        accept:
+          error: There was a problem accepting the terms and conditions.
+          success: Great! You have accepted the terms and conditions.
+        form:
+          agreement: I consent to the processing of my personal data listed above and I agree to the terms of use
+          continue: Continue
+          legend: Agreement to the terms of use and consent to the processing of personal data
         refuse:
+          modal_btn_continue: Close
+          modal_btn_exit: Refuse and sign out
+          modal_button: Refuse the terms
           modal_title: Are you sure you want to refuse the updated terms of use?
+        required_review:
+          alert: We have updated the terms of use, please review them.
+          alert_new: Please review the terms of use.
     participatory_processes:
       participatory_processes:
         process_actions:
@@ -155,3 +172,5 @@ en:
         project_plan: Related co-creation proposals
     shared:
       skip_subnavigation: Skip subnavigation
+    tos_page:
+      privacy_title: Consent to the processing of personal data

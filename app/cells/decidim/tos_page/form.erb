@@ -1,18 +1,25 @@
-<div class="margin-top-1">
-  <h2 class="h4 margin-bottom-3"><%= t("form.legend", scope: "decidim.pages.terms_and_conditions") %></h2>
+<h2><%= t(".privacy_title") %></h2>
+<%= render partial: "helsinki/shared/account_privacy_summary" %>
+
+<div class="margin-top-3">
+  <h2 class="h4"><%= t("form.legend", scope: "decidim.pages.terms_and_conditions") %></h2>
 
   <%= cell "decidim/tos_page", :refuse_btn_modal %>
 
-  <div class="row">
-    <div class="columns shrink">
-      <%= button_to decidim.accept_tos_path, method: :put, class: "button" do %>
-        <%= t("form.agreement", scope: "decidim.pages.terms_and_conditions") %>
-      <% end %>
+  <%= decidim_form_for(current_user, url: decidim.accept_tos_path, method: :put) do |f| %>
+    <div class="margin-bottom-2">
+      <%= f.check_box :tos_agreement, required: true, label: t("form.agreement", scope: "decidim.pages.terms_and_conditions") %>
     </div>
-    <div class="columns shrink">
-      <button class="clear button" type="button" data-open="tos-refuse-modal">
-        <%= t("refuse.modal_button", scope: "decidim.pages.terms_and_conditions") %>
-      </button>
+
+    <div class="row">
+      <div class="columns shrink">
+        <%= f.submit t("form.continue", scope: "decidim.pages.terms_and_conditions"), class: "button " %>
+      </div>
+      <div class="columns shrink">
+        <button class="clear button" type="button" data-open="tos-refuse-modal">
+          <%= t("refuse.modal_button", scope: "decidim.pages.terms_and_conditions") %>
+        </button>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

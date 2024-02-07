@@ -32,6 +32,10 @@ sv:
               name: Budgetfördelning
             description:
               name: Projekt beskrivning
+            cocreation_description:
+              name: Samskapande
+            implementation_description:
+              name: Genomförande
             interaction_description:
               name: Interaktion
             plans_description:
@@ -78,8 +82,21 @@ sv:
         choose_file: Välj fil
     pages:
       terms_and_conditions:
+        accept:
+          error: Det uppstod ett problem med att godkänna villkoren.
+          success: Tack! Du har godkänt användarvillkoren.
+        form:
+          agreement: Jag ger mitt samtycke till behandlingen av mina ovan nämnda personuppgifter och jag godkänner användarvillkoren
+          continue: Fortsätta
+          legend: Samtycke till användarvillkor och behandling av personuppgifter
         refuse:
+          modal_btn_continue: Stäng
+          modal_btn_exit: Avböja och logga ut
+          modal_button: Vägra villkoren
           modal_title: Är du säker på att du vill vägra de uppdaterade användarvillkoren?
+        required_review:
+          alert: Vi har uppdaterat användarvillkoren, var god och granska dem.
+          alert_new: Var god och granska användarvillkoren.
     participatory_processes:
       participatory_processes:
         process_actions:
@@ -156,3 +173,5 @@ sv:
         project_plan: Relaterade förslag om samutveckling
     shared:
       skip_subnavigation: Hoppa över undernavigering
+    tos_page:
+      privacy_title: Samtycke till behandling av personuppgifter

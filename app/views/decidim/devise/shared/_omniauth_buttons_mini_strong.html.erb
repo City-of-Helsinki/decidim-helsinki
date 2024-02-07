@@ -1,4 +1,5 @@
 <% if strong_providers_enabled? %>
+  <% button_params ||= {} %>
   <div class="social-register text-center">
     <% if enabled_strong_providers.any? %>
       <h3 class="h5 margin-bottom-1">
@@ -12,6 +13,7 @@
         <% if index > 0 %>
           <br>
         <% end %>
+        <% path = decidim.send("user_#{provider}_omniauth_authorize_path", button_params) %>
         <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button primary button--#{normalize_provider_name(provider)}", method: :post do %>
           <%= t("devise.shared.omniauth.#{provider}.sign_in_button") %>
         <% end %>

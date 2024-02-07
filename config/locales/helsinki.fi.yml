@@ -243,6 +243,7 @@ fi:
         feedback_title: Kiitos ehdotuksen jättämisestä!
         flag: Ilmoita
         linked_ideas: Ehdotukseen liitetyt ideat
+        linked_projects: Liitetty äänestettävään ehdotukseen
         manage_plan: Hallitse ehdotusta
         pending_access_request_message_html: <p>Olet pyytänyt muokkausoikeuksia tähän ehdotukseen. Odota, että ehdotuksen tekijät vastaavat pyyntöösi.</p><p>Saat viestin sähköpostiisi, kun pyyntöösi vastataan.</p>
         request_access: Pyydä muokkausoikeuksia
@@ -254,6 +255,32 @@ fi:
       plan_l:
         card_label: "Ehdotus: %{title}"
         view_plan: Näytä ehdotus
+    shared:
+      account_privacy_summary:
+        privacy_link: /pages/tietosuoja
+        tos_summary_html: |
+          <p>
+            Kun rekisteröidyt OmaStadi-palveluun, on sinun annettava suostumuksesi henkilötietojen käsittelylle.
+            Suostumuksen antamisen jälkeen voit tehdä ehdotuksen, kommentoida ehdotuksia ja äänestää ehdotuksia.
+          </p>
+          <p>
+            Kun rekisteröidyt palveluun käsittelemme seuraavia henkilötietojasi: nimi, nimimerkki ja sähköpostiosoite.
+          </p>
+          <p>
+            Kun tunnistaudut OmaStadi-palveluun vahvan tunnistautumisen kautta, käsittelemme seuraavia
+            henkilötietojasi: nimi, sähköpostisosoite, kotikunta, postinumero ja henkilötunnus.
+          </p>
+          <p>
+            Koululaiset tunnistautuvat äänestäessään koulujen käyttämän mPassID:n avulla, jolloin käsitellemme
+            seuraavia henkilötietoja: etunimi, sukunimi, kutsumanimi, kuntakoodi, kunnan nimi, koulukoodi, koulun
+            nimi, luokkatunnus ja luokka-aste.
+          </p>
+          <p>Voit peruuttaa antamasi suostumuksen milloin tahansa ja poistaa tietosi käyttäjätilisi asetuksista.</p>
+          <p>
+            Lisätietoa henkilötietojesi käsittelystä OmaStadi palvelussa löytyy
+            <a href="%{privacy_link}" target="_blank">tietosuojaselosteesta</a>, jossa kerrotaan muun muassa tarkemmin
+            henkilötietojesi käsittelyn oikeusperusteista ja tietojesi säilytysajoista.
+          </p>
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Luokka-astettasi ei pystytty varmentamaan sähköisesti.

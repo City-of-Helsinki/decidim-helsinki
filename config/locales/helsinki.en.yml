@@ -247,6 +247,7 @@ en:
         feedback_title: Thank you for submitting a proposal!
         flag: Flag
         linked_ideas: Ideas attached to this proposal
+        linked_projects: Merged with other proposals for the vote
         manage_plan: Manage proposal
         pending_access_request_message_html: <p>You have requested editing access to this proposal. Please wait for the collaborators to respond to your request.</p><p>You will receive an email notification once your request is answered.</p>
         request_access: Request access to edit
@@ -258,6 +259,33 @@ en:
       plan_l:
         card_label: "Proposal: %{title}"
         view_plan: View proposal
+    shared:
+      account_privacy_summary:
+        privacy_link: /pages/tietosuoja?locale=en
+        tos_summary_html: |
+          <p>
+            When you register with the OmaStadi service, you must consent to the processing of your personal data.
+            After consenting, you can create, comment and vote on the proposals.
+          </p>
+          <p>
+            When you register for the service, we process the following personal data about you: your name, user name
+            and email address.
+          </p>
+          <p>
+            When you log in to the OmaStadi service using strong authentication, we process the following personal
+            data about you: your name, email address, place of residence, postal code and personal identity code.
+          </p>
+          <p>
+            Students are authenticated when they vote using the mPassID used by schools, in which case we process the
+            following personal data: their first name, last name, nickname, municipality code, municipality name,
+            school code, school name, class ID and grade level.
+          </p>
+          <p>You can revoke your consent at any time and delete your data from your user account settings.</p>
+          <p>
+            You can find more information on the processing of your personal data in the OmaStadi service in the
+            <a href="%{privacy_link}" target="_blank">Privacy Policy</a>, which explains in more detail the legal
+            bases for the processing of your personal data and their retention periods.
+          </p>
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Your grade level cannot be verified electronically.
