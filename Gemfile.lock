@@ -76,7 +76,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: d5c407edaa6352a047438351ce0184284c0b1671
+  revision: c30c4347389cfcb36ac992e637b6f10bb61975b3
   branch: develop
   specs:
     decidim-budgeting_pipeline (0.27.0)
@@ -84,6 +84,7 @@ GIT
       decidim-budgets (~> 0.27.0)
       decidim-core (~> 0.27.0)
       decidim-favorites (~> 0.27.0)
+      decidim-feedback (~> 0.27.0)
       decidim-stats (~> 0.27.0)
 
 GIT
@@ -104,7 +105,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-feedback.git
-  revision: 2860c85c115d92a22bcbd9488f743d0277c4fb25
+  revision: 16f1d9ff8150ff42c8acfa135186de5b8404956f
   branch: develop
   specs:
     decidim-feedback (0.27.0)
@@ -215,13 +216,13 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-suomifi.git
-  revision: 18a15ee291edc8412ee1dfe4fab5383590ae1e76
+  revision: d601e2ef8089a162f500dbf7cd02b34bc57c662f
   branch: main
   specs:
     decidim-suomifi (0.27.0)
       decidim-core (~> 0.27.0)
       henkilotunnus (~> 1.2.0)
-      omniauth-suomifi (~> 0.6.0)
+      omniauth-suomifi (~> 0.6.3)
 
 GIT
   remote: https://github.com/mainio/decidim-module-tags.git
@@ -848,7 +849,7 @@ GEM
       oauth2 (~> 2.0.6)
       omniauth (~> 2.0)
       omniauth-oauth2 (~> 1.8.0)
-    omniauth-mpassid (0.6.0)
+    omniauth-mpassid (0.6.1)
       omniauth-saml (~> 2.0)
     omniauth-oauth (1.2.0)
       oauth
@@ -862,7 +863,7 @@ GEM
     omniauth-saml (2.1.0)
       omniauth (~> 2.0)
       ruby-saml (~> 1.12)
-    omniauth-suomifi (0.6.2)
+    omniauth-suomifi (0.6.3)
       omniauth-saml (~> 2.0)
       ruby-saml (~> 1.13.0)
     omniauth-twitter (1.4.0)
