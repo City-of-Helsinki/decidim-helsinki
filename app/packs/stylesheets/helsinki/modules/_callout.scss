@@ -41,6 +41,12 @@
     @extend .clearfix;
   }
 
+  .callout__content{
+    // Leave space for the close icon so that it will not appear on top of the
+    // text on narrow mobile screens.
+    margin-right: 2rem;
+  }
+
   .callout__icon{
     display: block;
     float: left;
