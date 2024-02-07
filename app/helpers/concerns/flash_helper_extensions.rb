@@ -37,7 +37,7 @@ module FlashHelperExtensions
         when :success
           "circle-check"
         when :warning
-          "flag"
+          "alert-circle"
         when :alert
           "warning"
         else

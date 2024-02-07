@@ -52,6 +52,7 @@ namespace :hkidesign do
       "action-redo": "arrow-redo",
       "action-undo": "arrow-undo",
       actions: "check-circle",
+      "alert-circle-outline": "alert-circle",
       "align-center": nil,
       "align-left": nil,
       "align-right": nil,
@@ -378,6 +379,7 @@ namespace :hkidesign do
     # rubocop:enable Layout/LineLength
     # Extra icons not available in the original set
     extra_icons = {
+      "alert-circle": "alert-circle-fill",
       bicycle: nil,
       binoculars: "binoculars",
       boat: nil,
