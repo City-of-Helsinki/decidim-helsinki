@@ -113,17 +113,6 @@ GIT
       decidim-core (~> 0.27.0)
 
 GIT
-  remote: https://github.com/mainio/decidim-module-helsinki_profile.git
-  revision: e22912caded8af74109f27888bb77d5a673b0ca2
-  branch: main
-  specs:
-    decidim-helsinki_profile (0.27.0)
-      decidim-core (~> 0.27.0)
-      henkilotunnus (~> 1.2.0)
-      jwt (~> 2.7)
-      omniauth_openid_connect (~> 0.7)
-
-GIT
   remote: https://github.com/mainio/decidim-module-helsinki_smsauth.git
   revision: eb32ad88376c18ce4574def3f84f643ca9d460bc
   branch: main
@@ -1223,7 +1212,6 @@ DEPENDENCIES
   decidim-dev (~> 0.27.0)
   decidim-favorites!
   decidim-feedback!
-  decidim-helsinki_profile!
   decidim-helsinki_smsauth!
   decidim-ideas!
   decidim-initiatives (~> 0.27.0)
