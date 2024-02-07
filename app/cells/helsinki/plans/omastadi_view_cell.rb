@@ -18,6 +18,18 @@ module Helsinki
         )
       end
 
+      def linked_projects
+        return unless projects
+        return unless projects.any?
+
+        cell(
+          "helsinki/linked_resources",
+          projects,
+          title: t(".linked_projects"),
+          resource_cell: "helsinki/budgets/linked_project"
+        )
+      end
+
       def attachments
         return unless attachments_content
 
@@ -83,6 +95,10 @@ module Helsinki
         return if ideas_content.body["idea_ids"].blank?
 
         @ideas ||= Decidim::Ideas::Idea.where(id: ideas_content.body["idea_ids"])
+      end
+
+      def projects
+        plan.resource_links_to.map(&:from)
       end
 
       def attachments_section
