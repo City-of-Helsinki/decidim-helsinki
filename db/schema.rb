@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_24_125627) do
+ActiveRecord::Schema.define(version: 2024_02_08_151641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1992,6 +1992,15 @@ ActiveRecord::Schema.define(version: 2023_11_24_125627) do
     t.datetime "updated_at", null: false
     t.index ["decidim_stats_collection_id", "key"], name: "index_on_decidim_stats_sets_collection_key", unique: true
     t.index ["decidim_stats_collection_id"], name: "index_decidim_stats_sets_on_decidim_stats_collection_id"
+  end
+
+  create_table "decidim_suomifi_sessions", force: :cascade do |t|
+    t.bigint "decidim_user_id", null: false
+    t.string "saml_uid", limit: 1024, null: false
+    t.string "saml_session_index", limit: 128, null: false
+    t.datetime "ended_at"
+    t.index ["decidim_user_id"], name: "index_decidim_suomifi_sessions_on_decidim_user_id"
+    t.index ["saml_uid"], name: "index_decidim_suomifi_sessions_on_saml_uid"
   end
 
   create_table "decidim_surveys_surveys", id: :serial, force: :cascade do |t|
