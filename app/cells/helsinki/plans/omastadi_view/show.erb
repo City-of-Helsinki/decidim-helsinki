@@ -43,6 +43,8 @@
           <% end %>
         </div>
 
+        <%== plan_notification %>
+
         <% if plan.tags.any? %>
           <div class="resource__tags">
             <%= cell("decidim/tags/tags", plan) %>
