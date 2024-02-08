@@ -76,7 +76,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: 73c469193278160be6f4427f04d6bc034bfc7411
+  revision: 69be09f5399fb5fe5837dd3f373c0b10dfe56eae
   branch: develop
   specs:
     decidim-budgeting_pipeline (0.27.0)
@@ -168,7 +168,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: d88b08762ffbd29dec7655269a9af90592f8e8ff
+  revision: 1e41ec34e73d07dbc60905b83910ec71d3271a4a
   branch: develop
   specs:
     decidim-plans (0.27.0)
@@ -205,13 +205,13 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-suomifi.git
-  revision: b3b20d2a4f6cba27bc016ca5b2c3010c0a7821a8
+  revision: 64ff8c737d508d5ac052db99f140ec2552581e30
   branch: main
   specs:
     decidim-suomifi (0.27.0)
       decidim-core (~> 0.27.0)
       henkilotunnus (~> 1.2.0)
-      omniauth-suomifi (~> 0.6.3)
+      omniauth-suomifi (~> 0.7.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-tags.git
@@ -852,7 +852,7 @@ GEM
     omniauth-saml (2.1.0)
       omniauth (~> 2.0)
       ruby-saml (~> 1.12)
-    omniauth-suomifi (0.6.3)
+    omniauth-suomifi (0.7.0)
       omniauth-saml (~> 2.0)
       ruby-saml (~> 1.13.0)
     omniauth-twitter (1.4.0)
