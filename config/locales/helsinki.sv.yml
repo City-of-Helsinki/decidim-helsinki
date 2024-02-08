@@ -220,11 +220,11 @@ sv:
         view_plan: Visa förslag
       omastadi_notification:
         accepted:
-          title: Detta förslag går vidare till nästa fas
+          title: Detta förslag accepterats
         evaluating:
           title: Detta förslag utvärderas
         rejected:
-          title: Detta förslag går inte vidare till nästa fas
+          title: Tyvärr har det här förslaget avvisades
       omastadi_view:
         answer:
           final_estimate: 'Slutlig budgetberäkning: %{amount}'
@@ -235,7 +235,7 @@ sv:
           show_initial_estimate: Visa preliminär budgetberäkning
         authors: Förslagets författare
         back: Tillbaka till listan av förslag
-        back_to_list: Visa andra förslag
+        back_to_list: Visa alla förslag
         collaborator_requests: Begär att redigera
         controls:
           add_author: Lägg till författare för förslag

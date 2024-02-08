@@ -169,7 +169,7 @@ en:
           manage_proposal: Manage proposal
     resource_links:
       included_plans:
-        project_plan: Related co-creation proposals
+        project_plan: Attached proposals
     shared:
       skip_subnavigation: Skip subnavigation
     tos_page:

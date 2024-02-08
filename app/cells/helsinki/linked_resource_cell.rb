@@ -11,7 +11,13 @@ module Helsinki
     end
 
     def resource_path
-      Decidim::ResourceLocatorPresenter.new(model).path
+      return "#" unless model
+
+      if model.is_a?(Decidim::Budgets::Project)
+        Decidim::ResourceLocatorPresenter.new([model.budget, model]).path
+      else
+        Decidim::ResourceLocatorPresenter.new(model).path
+      end
     end
   end
 end

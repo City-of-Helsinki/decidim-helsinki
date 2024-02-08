@@ -170,7 +170,7 @@ sv:
           manage_proposal: Hantera förslag
     resource_links:
       included_plans:
-        project_plan: Relaterade förslag om samutveckling
+        project_plan: Bifogade förslag
     shared:
       skip_subnavigation: Hoppa över undernavigering
     tos_page:

@@ -220,11 +220,11 @@ en:
         view_plan: View proposal
       omastadi_notification:
         accepted:
-          title: This proposal proceeds to the next phase
+          title: This proposal has been accepted
         evaluating:
           title: This proposal is being evaluated
         rejected:
-          title: This proposal does not proceed to the next phase
+          title: Unfortunately, this proposal has been rejected
       omastadi_view:
         answer:
           final_estimate: 'Final budget estimate: %{amount}'
@@ -235,7 +235,7 @@ en:
           show_initial_estimate: Show initial budget estimate
         authors: Proposal authors
         back: Back to proposals list
-        back_to_list: Show other proposals
+        back_to_list: Show all proposals
         collaborator_requests: Requests to edit
         controls:
           add_author: Add authors for proposal

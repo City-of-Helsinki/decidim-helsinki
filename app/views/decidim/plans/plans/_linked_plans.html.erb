@@ -1,26 +1,9 @@
-<div class="card card--action card--list">
-  <% resources.each do |plan| %>
-    <%= link_to resource_locator(plan).path, class: "card--list__item" do %>
-      <div class="card--list__text">
-        <div>
-          <div class="card--list__heading h4"><%== decidim_html_escape(present(plan).title) %></div>
-          <% present(plan) do |presenter| %>
-            <% if presenter.author.present? %>
-              <div class="author">
-                <span class="author__name">
-                  <strong><%= presenter.author.name %></strong>
-                  <%= presenter.author.nickname %>
-                </span>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-      <div class="card--list__data">
-        <span class="card--list__data__number">
-          <%= plan.authors.count %>
-        </span> <%= t(".plan_authors", count: plan.authors.count) %>
-      </div>
+<% links ||= true %>
+
+<% resources.each do |plan| %>
+  <p>
+    <%= link_to resource_locator(plan).path do %>
+      #<%= plan.id %> <%== decidim_html_escape(present(plan).title) %>
     <% end %>
-  <% end %>
-</div>
+  </p>
+<% end %>

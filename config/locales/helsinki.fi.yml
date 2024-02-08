@@ -220,18 +220,18 @@ fi:
         view_plan: Näytä ehdotus
       omastadi_notification:
         accepted:
-          title: Tämä ehdotus etenee jatkoon
+          title: Ehdotus on hyväksytty
         estimate:
           final: "Lopullinen budjettiarvio: %{amount}"
           initial: "Alustava budjettiarvio: %{amount}"
         evaluating:
-          title: Tämä ehdotus on arvioitavana
+          title: Ehdotus on arvioitavana
         rejected:
-          title: Tämä ehdotus ei etene jatkoon
+          title: Ehdotus on valitettavasti hylätty
       omastadi_view:
         authors: Ehdotuksen tekijät
         back: Palaa takaisin ehdotuslistaukseen
-        back_to_list: Näytä muut ehdotukset
+        back_to_list: Näytä kaikki ehdotukset
         collaborator_requests: Muokkauspyynnöt
         controls:
           add_author: Lisää ehdotukselle tekijöitä

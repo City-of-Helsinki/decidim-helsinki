@@ -169,7 +169,7 @@ fi:
           manage_proposal: Hallinnoi ehdotusta
     resource_links:
       included_plans:
-        project_plan: Liitetyt yhteiskehittämisen ehdotukset
+        project_plan: Liitetyt ehdotukset
     shared:
       skip_subnavigation: Ohita alanavigaatio
     tos_page:
