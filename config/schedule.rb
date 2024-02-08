@@ -40,12 +40,12 @@ every :day, at: "04:05", roles: [:app] do
 end
 
 # Send notification mail digest weekly on saturdays
-every :saturday, at: "05:05", roles: [:app] do
+every :saturday, at: "05:05", roles: [:background] do
   rake "decidim:mailers:notifications_digest_weekly"
 end
 
 # Send notification mail digest daily
-every :day, at: "06:05", roles: [:app] do
+every :day, at: "06:05", roles: [:background] do
   rake "decidim:mailers:notifications_digest_daily"
 end
 
