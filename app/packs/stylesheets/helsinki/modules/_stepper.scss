@@ -78,10 +78,17 @@
     }
   }
 
-  &.phases-list-item-current,
-  &.phases-list-item-past{
+  &.phases-list-item-current{
     .phases-list-item-phase{
       background-color: $hel-black;
+      color: $white;
+    }
+  }
+
+  &.phases-list-item-past{
+    .phases-list-item-phase{
+      background-color: $hel-grayscale-60;
+      border-color: $hel-grayscale-60;
       color: $white;
     }
   }
