@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_08_151641) do
+ActiveRecord::Schema.define(version: 2024_02_09_164653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -2041,6 +2041,18 @@ ActiveRecord::Schema.define(version: 2024_02_08_151641) do
     t.datetime "updated_at", null: false
     t.bigint "decidim_organization_id", null: false
     t.index ["decidim_organization_id"], name: "index_decidim_tags_tags_on_decidim_organization_id"
+  end
+
+  create_table "decidim_templates_templates", force: :cascade do |t|
+    t.integer "decidim_organization_id", null: false
+    t.string "templatable_type"
+    t.bigint "templatable_id"
+    t.jsonb "name", null: false
+    t.jsonb "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_organization_id"], name: "index_decidim_templates_organization"
+    t.index ["templatable_type", "templatable_id"], name: "index_decidim_templates_templatable"
   end
 
   create_table "decidim_term_customizer_constraints", force: :cascade do |t|
