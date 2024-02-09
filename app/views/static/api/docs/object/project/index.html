@@ -125,12 +125,6 @@
   </div>
 </div>
 <div class="field-entry ">
-  <span id="budget_amount" class="field-name anchored">budget_amount (<code><a href="/api/docs/scalar/int">Int</a></code>)</span>
-  <div class="description-wrapper">
-   <p>The budget amount for this project</p>
-  </div>
-</div>
-<div class="field-entry ">
   <span id="selected" class="field-name anchored">selected (<code><a href="/api/docs/scalar/boolean">Boolean</a></code>)</span>
   <div class="description-wrapper">
    <p>Whether this proposal is selected or not</p>
@@ -178,6 +172,42 @@
   </tr>
   </tbody>
 </table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="mainimage" class="field-name anchored">mainImage (<code><a href="/api/docs/scalar/string">String</a></code>)</span>
+  <div class="description-wrapper">
+   <p>The main image URL for this project</p>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="mainimageblob" class="field-name anchored">mainImageBlob (<code><a href="/api/docs/object/blob">Blob</a></code>)</span>
+  <div class="description-wrapper">
+   <p>The main image file blob for the project</p>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="summary" class="field-name anchored">summary (<code><a href="/api/docs/object/translatedfield">TranslatedField</a></code>)</span>
+  <div class="description-wrapper">
+   <p>The summary for this project</p>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="budgetamount" class="field-name anchored">budgetAmount (<code><a href="/api/docs/scalar/int">Int</a></code>)</span>
+  <div class="description-wrapper">
+   <p>The budget amount (maximum) for this project</p>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="budget_amount" class="field-name anchored">budget_amount (<code><a href="/api/docs/scalar/int">Int</a></code>)</span>
+  <div class="description-wrapper">
+   <p>DEPRECATED: (same as <code>budgetAmount</code>), use <code>budgetAmount</code> instead</p>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="budgetamountmin" class="field-name anchored">budgetAmountMin (<code><a href="/api/docs/scalar/int">Int</a></code>)</span>
+  <div class="description-wrapper">
+   <p>The minimum budget amount for this project</p>
   </div>
 </div>
 <div class="field-entry ">
@@ -285,6 +315,20 @@
       
         
       <li>
+        <a href="/api/docs/object/blob/" class="sidebar-link">
+          Blob
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/api/docs/object/blobmutation/" class="sidebar-link">
+          BlobMutation
+        </a>
+      </li>
+      
+        
+      <li>
         <a href="/api/docs/object/blogs/" class="sidebar-link">
           Blogs
         </a>
@@ -308,6 +352,13 @@
       <li>
         <a href="/api/docs/object/budgetedge/" class="sidebar-link">
           BudgetEdge
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/api/docs/object/budgetmutation/" class="sidebar-link">
+          BudgetMutation
         </a>
       </li>
       
@@ -1132,6 +1183,20 @@
       
       
       <li>
+        <a href="/api/docs/mutation/blob/" class="sidebar-link">
+          blob
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/api/docs/mutation/budget/" class="sidebar-link">
+          budget
+        </a>
+      </li>
+      
+      
+      <li>
         <a href="/api/docs/mutation/comment/" class="sidebar-link">
           comment
         </a>
@@ -1454,6 +1519,13 @@
       
       
       <li>
+        <a href="/api/docs/input_object/fileattributes/" class="sidebar-link">
+          FileAttributes
+        </a>
+      </li>
+      
+      
+      <li>
         <a href="/api/docs/input_object/ideafilter/" class="sidebar-link">
           IdeaFilter
         </a>
@@ -1610,6 +1682,20 @@
       <li>
         <a href="/api/docs/input_object/postsort/" class="sidebar-link">
           PostSort
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/api/docs/input_object/projectattributes/" class="sidebar-link">
+          ProjectAttributes
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/api/docs/input_object/projectlocationattributes/" class="sidebar-link">
+          ProjectLocationAttributes
         </a>
       </li>
       
