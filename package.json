@@ -11,18 +11,18 @@
     "extends @decidim/browserslist-config"
   ],
   "dependencies": {
-    "@decidim/browserslist-config": "^0.27.3",
-    "@decidim/core": "^0.27.3",
-    "@decidim/elections": "^0.27.3",
-    "@decidim/webpacker": "^0.27.3",
+    "@decidim/browserslist-config": "^0.27.5",
+    "@decidim/core": "^0.27.5",
+    "@decidim/elections": "^0.27.5",
+    "@decidim/webpacker": "^0.27.5",
     "@splidejs/splide": "^4.1.4",
     "hyphenopoly": "^5.1.0",
     "sass-embedded": "~1.62.0"
   },
   "devDependencies": {
-    "@decidim/dev": "^0.27.3",
-    "@decidim/eslint-config": "^0.27.3",
-    "@decidim/stylelint-config": "^0.27.3",
+    "@decidim/dev": "^0.27.5",
+    "@decidim/eslint-config": "^0.27.5",
+    "@decidim/stylelint-config": "^0.27.5",
     "webpack-dev-server": "^4.15.1"
   }
 }
