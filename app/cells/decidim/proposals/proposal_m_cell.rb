@@ -77,7 +77,7 @@ module Decidim
 
       def endorsements_count
         with_tooltip t("decidim.endorsable.endorsements") do
-          "#{icon("thumb-up", class: "icon--small")} #{model.endorsements_count}"
+          "#{icon("thumb-up", class: "icon--small", "aria-hidden": true)} #{model.endorsements_count}"
         end
       end
 
