@@ -1,10 +1,15 @@
 var $proposals = $('#proposals');
 var $proposalsCount = $('#proposals-count');
 var $orderFilterInput = $('.order_filter');
+var $order = $('.order-by__dropdown a[data-order="<%= order %>"]');
 
 $proposals.html('<%= j(render partial: "proposals").strip.html_safe %>');
 $proposalsCount.html('<%= j(render partial: "count").strip.html_safe %>');
 $orderFilterInput.val('<%= order %>');
+
+if ($order) {
+  $(".order-by__dropdown .is-dropdown-submenu-parent > button").text($order.text());
+}
 
 var $dropdownMenu = $('.dropdown.menu', $proposals);
 $dropdownMenu.foundation();
