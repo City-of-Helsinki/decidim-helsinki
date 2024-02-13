@@ -43,11 +43,9 @@ const initialize = (container) => {
     }
 
     $(el).on("open.zf.drilldown", () => {
-      console.log("OPEN DRILLDOWN");
       $parent.addClass("is-open");
     });
     $(el).on("close.zf.drilldown", () => {
-      console.log("CLOSE DRILLDOWN");
       $parent.removeClass("is-open");
     });
   });
