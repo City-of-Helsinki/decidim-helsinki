@@ -98,7 +98,7 @@ module Helsinki
       end
 
       def projects
-        plan.resource_links_to.map(&:from)
+        plan.resource_links_to.map(&:from).compact
       end
 
       def attachments_section
