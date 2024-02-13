@@ -50,7 +50,25 @@ export default (container) => {
           [60.214377, 25.147842]
         ]);
       }
-      map.fitBounds(bounds, { padding: [100, 100] });
+
+      // Make sure there is enough space in the map for the padding to be
+      // applied. Otherwise the map will automatically zoom out (test it on
+      // mobile). Make sure there is at least the same amount of width and
+      // height available on both sides + the padding (i.e. 4x padding in
+      // total).
+      const size = map.getSize();
+      let padding = null;
+      if (size.y >= 400 && size.x >= 400) {
+        padding = 100;
+      } else if (size.y >= 120 && size.x >= 120) {
+        padding = 30;
+      }
+
+      if (padding) {
+        map.fitBounds(bounds, { padding: [padding, padding] });
+      } else {
+        map.fitBounds(bounds);
+      }
     }
   }, 100);
 };
