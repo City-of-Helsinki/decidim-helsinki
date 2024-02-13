@@ -1,6 +1,6 @@
 <div class="row columns">
   <div class="page-title">
-    <h2 class="heading1"><%= translated_attribute(current_component.name) %></h2>
+    <h1 class="heading1"><%= translated_attribute(current_component.name) %></h1>
   </div>
 </div>
 
@@ -73,8 +73,8 @@
       </div>
 
       <% if component_settings.geocoding_enabled? %>
-        <div class="tabs-panel" id="ideas-map">
-          <%= dynamic_map_for proposals_data_for_map(@proposals.select(&:geocoded?)) do %>
+        <div class="tabs-panel" id="proposals-map">
+          <%= dynamic_map_for proposals_data_for_map(@all_geocoded_proposals) do %>
             <template id="marker-popup">
               <div class="map-info__content">
                 <h3>${title}</h3>
