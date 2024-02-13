@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .button{
   font-weight: $hel-font-weight-medium;
 
@@ -6,9 +8,20 @@
     text-underline-offset: 4px;
   }
 
+  @each $key, $value in $button-padding-sizes{
+    &.#{$key}{
+      padding: $value;
+    }
+  }
+
   &.button--icon{
     position: relative;
-    padding: 1.125rem 3.9rem 1.125rem 1.425rem;
+    padding-right: 3.9rem;
+    padding-left: 1.425rem;
+
+    &.small{
+      padding-right: 3.2rem;
+    }
 
     .icon{
       position: absolute;

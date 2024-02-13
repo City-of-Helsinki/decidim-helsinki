@@ -1,8 +1,8 @@
 <% if documents.any? %>
-  <div class="section documents">
+  <div class="section">
     <h2 class="section-heading h5"><%= t("decidim.application.documents.related_documents") %></h2>
     <% if (documents_without_collection = documents.reject(&:attachment_collection_id?)).any? %>
-      <div class="card card--list">
+      <div class="attachments">
         <% documents_without_collection.each do |document| %>
           <%= render partial: "decidim/application/document", locals: { document: document } %>
         <% end %>

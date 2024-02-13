@@ -98,6 +98,7 @@ $header-styles: (
     "h6": ("font-size": $hel-text-size-l, "line-height": 1.33, "font-weight": $global-weight-bold),
   ),
 );
+$header-small-font-color: $hel-grayscale-60;
 $paragraph-lineheight: $hel-lineheight-l;
 $code-font-weight: $global-weight-normal;
 $anchor-color: $hel-black;
@@ -146,12 +147,6 @@ $badge-font-size: .6rem;
 // ---------------
 $breadcrumbs-item-font-size: rem-calc(11);
 $breadcrumbs-item-color: $primary-color;
-$button-sizes: (
-  tiny: .9rem,
-  small: .9rem,
-  default: 1rem,
-  large: 1.25rem,
-);
 $button-background-hover-lightness: -20%;
 $button-hollow-hover-lightness: -50%;
 
@@ -159,6 +154,15 @@ $button-hollow-hover-lightness: -50%;
 // ----------
 $button-font-family: inherit;
 $button-padding: 1.125rem 2.125rem;
+$button-padding-sizes: (
+  small: .8rem 1.4rem,
+);
+$button-sizes: (
+  tiny: .9rem,
+  small: .9rem,
+  default: 1rem,
+  large: 1.25rem,
+);
 $button-background: $primary-color;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
 $button-radius: $global-radius;
