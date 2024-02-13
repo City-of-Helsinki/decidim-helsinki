@@ -8,7 +8,7 @@
 # )
 # footer_text = translated_attribute(footer_text_section)
 
-previous_processes = Decidim::ParticipatoryProcess.published.where("end_date < ?", Time.zone.now).order(:start_date, :end_date)
+visible_processes = Decidim::ParticipatoryProcess.published.where("start_date <= ?", Time.zone.now).order(start_date: :desc, end_date: :desc)
 %>
 
 <footer class="footer">
@@ -66,11 +66,11 @@ previous_processes = Decidim::ParticipatoryProcess.published.where("end_date < ?
             <li><a href="https://palautteet.hel.fi/" target="_blank"><%= t("layouts.footer.feedback") %></a></li>
           </ul>
         </div>
-        <% if previous_processes.any? %>
+        <% if visible_processes.any? %>
           <div class="column small-12 medium-4 large-3 xlarge-2">
             <h2 class="h4"><%= t("layouts.footer.history") %></h2>
             <ul class="vertical menu">
-              <% previous_processes.each do |process| %>
+              <% visible_processes.each do |process| %>
                 <li><%= link_to translated_attribute(process.title), decidim_participatory_processes.participatory_process_path(process) %></li>
               <% end %>
             </ul>
