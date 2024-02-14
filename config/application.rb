@@ -31,7 +31,7 @@ module DecidimHelsinki
     config.search_indexing = true
 
     # How long the sessions are valid
-    config.session_validity_period = 1.hour
+    config.session_validity_period = 30.minutes
 
     # Is the CookieHub consent enabled or not
     config.enable_cookiehub = true
