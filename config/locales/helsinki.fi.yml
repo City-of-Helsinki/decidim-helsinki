@@ -240,6 +240,13 @@ fi:
           edit_plan: Muokkaa ehdotusta
           withdraw_plan: Peru ehdotus
           withdraw_confirmation_html: Haluatko varmasti perua tämän ehdotuksen?
+        details:
+          attributes:
+            area_scope: Alue
+            category: Teema
+            id: Numero (ID)
+            published_at: Julkaisuaika
+          title: Tiedot
         feedback_title: Kiitos ehdotuksen jättämisestä!
         flag: Ilmoita
         linked_ideas: Ehdotukseen liitetyt ideat
@@ -251,6 +258,7 @@ fi:
         share_link: Jaettava linkki
         show_comments: Näytä kommentit
         show_on_map: Näytä kartalla
+        subtitle: Ehdotus
         related_documents: Liittyvät asiakirjat
       plan_l:
         card_label: "Ehdotus: %{title}"

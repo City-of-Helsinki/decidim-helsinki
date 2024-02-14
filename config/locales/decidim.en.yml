@@ -18,6 +18,9 @@ en:
         explanation: Reason why you want to delete your account (optional)
     accountability:
       results:
+        result_attributes_extra:
+          attributes:
+            budget: Budget
         show:
           stats:
             category: Theme
@@ -40,8 +43,6 @@ en:
               name: Interaction
             plans_description:
               name: Plans
-        stats_box:
-          budget: Budget
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar for multiple users
@@ -174,3 +175,7 @@ en:
       skip_subnavigation: Skip subnavigation
     tos_page:
       privacy_title: Consent to the processing of personal data
+  layouts:
+    decidim:
+      impersonation_warning:
+        label: Impersonation of another user

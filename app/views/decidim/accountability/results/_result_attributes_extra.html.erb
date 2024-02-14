@@ -1,0 +1,6 @@
+<% if result.budget_amount && result.budget_amount > 0 %>
+  <div class="attributes__item">
+    <h3 class="attributes__item__name"><%= t(".attributes.budget") %></h3>
+    <div class="attributes__item__value"><%= number_to_currency(result.budget_amount, unit: Decidim.currency_unit, precision: 0) %></div>
+  </div>
+<% end %>

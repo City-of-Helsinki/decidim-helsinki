@@ -14,41 +14,24 @@
 <div class="row column resource">
   <div class="row">
     <div class="columns small-12 medium-8">
-      <div class="resource__main static__content">
+      <div class="resource__main static__content margin-bottom-0">
         <h1><%= present(@proposal).title(links: true, html_escape: true) %></h1>
-
-        <div class="resource__info">
-          <div class="resource__info__item">#<%= @proposal.id %></div>
-          <% if @proposal.published? %>
-            <div class="resource__info__item"><%= l(@proposal.published_at.to_date, format: :decidim_short) %></div>
-          <% end %>
-          <% if @proposal.category.present? %>
-            <div class="resource__info__item">
-              <% if @proposal.category.parent %>
-                <%= translated_attribute(@proposal.category.parent.name) %> -
-              <% end %>
-              <%= translated_attribute(@proposal.category.name) %>
-            </div>
-          <% end %>
-
-          <% if component_settings.geocoding_enabled? && @proposal.address.present? %>
-            <div class="resource__info__item"><%= @proposal.address %></div>
-          <% end %>
-        </div>
       </div>
     </div>
 
     <div class="columns small-12 medium-4">
-      <div class="resource__aside resource__actions">
-        <%= render partial: "proposal_actions", locals: { proposal: @proposal } %>
+      <div class="resource__aside">
+        <div class="resource__actions">
+          <%= render partial: "proposal_actions", locals: { proposal: @proposal } %>
+        </div>
 
         <% if current_user && @proposal.authored_by?(current_user) %>
-          <div class="row">
-            <div class="columns">
-              <%= render partial: "proposal_controls", locals: { proposal: @proposal } %>
-            </div>
+          <div class="margin-bottom-3">
+            <%= render partial: "proposal_controls", locals: { proposal: @proposal } %>
           </div>
         <% end %>
+
+        <%= render partial: "proposal_attributes", locals: { proposal: @proposal } %>
       </div>
     </div>
   </div>
@@ -56,7 +39,8 @@
 
   <div class="row">
     <div class="columns small-12 medium-8">
-      <div class="resource__main resource__content static__content">
+      <div class="resource__main resource__content resource__content--standalone static__content">
+        <h2><%= t(".subtitle") %></h2>
         <%= simple_format present(@proposal).body(links: true, strip_tags: true) %>
 
         <% if @proposal.answered? && translated_attribute(@proposal.answer).present? %>
@@ -76,16 +60,16 @@
             </div>
           </div>
         <% end %>
-      </div>
 
-      <div class="resource__details">
-        <%= attachments_for @proposal %>
+        <div class="resource__details margin-top-3">
+          <%= linked_resources_for @proposal, :results, "included_proposals" %>
+          <%= linked_resources_for @proposal, :projects, "included_proposals" %>
+          <%= linked_resources_for @proposal, :plans, "included_proposals" %>
+          <%= linked_resources_for @proposal, :meetings, "proposals_from_meeting" %>
+          <%= linked_resources_for @proposal, :proposals, "copied_from_component" %>
 
-        <%= linked_resources_for @proposal, :results, "included_proposals" %>
-        <%= linked_resources_for @proposal, :projects, "included_proposals" %>
-        <%= linked_resources_for @proposal, :plans, "included_proposals" %>
-        <%= linked_resources_for @proposal, :meetings, "proposals_from_meeting" %>
-        <%= linked_resources_for @proposal, :proposals, "copied_from_component" %>
+          <%= attachments_for @proposal %>
+        </div>
       </div>
     </div>
   </div>

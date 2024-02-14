@@ -18,6 +18,9 @@ fi:
         explanation: Syy tilisi poistoon (valinnainen)
     accountability:
       results:
+        result_attributes_extra:
+          attributes:
+            budget: Budjetti
         show:
           stats:
             category: Teema
@@ -40,8 +43,6 @@ fi:
               name: Vuorovaikutus
             plans_description:
               name: Suunnitelmat
-        stats_box:
-          budget: Budjetti
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar useammalle käyttäjälle
@@ -174,3 +175,7 @@ fi:
       skip_subnavigation: Ohita alanavigaatio
     tos_page:
       privacy_title: Suostumus henkilötietojen käsittelylle
+  layouts:
+    decidim:
+      impersonation_warning:
+        label: Esiintyminen toisena käyttäjänä

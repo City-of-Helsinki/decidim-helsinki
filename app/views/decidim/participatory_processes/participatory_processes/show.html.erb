@@ -22,27 +22,24 @@ edit_link(
 <div class="row column resource">
   <div class="row">
     <div class="columns small-12 medium-8">
-      <div class="resource__main static__content">
+      <div class="resource__main static__content margin-bottom-0">
         <h1><%= translated_attribute current_participatory_space.title %></h1>
 
-        <div class="resource__info">
-          <div class="resource__info__item">
-            <%== l(current_participatory_space.start_date, format: :decidim_short) %>
-            <% if current_participatory_space.end_date.present? %>
-              - <%== l(current_participatory_space.end_date, format: :decidim_short) %>
-            <% end %>
-          </div>
-        </div>
-
         <% if (image_path = current_participatory_space.attached_uploader(:hero_image).path).present?%>
-          <%= image_tag image_path, class:"resource-image", alt: strip_tags(translated_attribute(current_participatory_space.title)) %>
+          <%= image_tag image_path, class:"resource__image", alt: strip_tags(translated_attribute(current_participatory_space.title)) %>
         <% end %>
       </div>
     </div>
 
     <div class="columns small-12 medium-4">
-      <div class="resource__aside resource__actions">
-        <%= render partial: "process_actions" %>
+      <div class="resource__aside">
+        <div class="resource__actions">
+          <%= render partial: "process_actions" %>
+        </div>
+
+        <%= render partial: "process_attributes", locals: { process: current_participatory_space } %>
+
+        <%= render partial: "components_list", locals: { process: current_participatory_space } %>
       </div>
     </div>
   </div>
@@ -51,6 +48,7 @@ edit_link(
   <div class="row">
     <div class="columns small-12 medium-8">
       <div class="resource__main resource__content static__content">
+        <h2><%= t(".subtitle") %></h2>
         <div class="lead">
           <%= decidim_sanitize translated_attribute(current_participatory_space.short_description) %>
         </div>

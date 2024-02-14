@@ -7,21 +7,28 @@
 }
 
 .resource__aside{
+  @include breakpoint(medium){
+    // This keeps the actual content at the correct position by not pushing it
+    // down due to the sidebar height. The sidebar DOM position is important
+    // which is why the content cannot be moved to the same element as the
+    // image.
+    height: 0;
+  }
+
   @include breakpoint(large){
     margin-left: 1.8rem;
+  }
+
+  &__title{
+    @extend .h4;
+
+    padding-bottom: .8rem;
+    border-bottom: 1px solid $hel-silver;
   }
 }
 
 .resource__image{
   margin-bottom: 1rem;
-}
-
-.resource__info{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 2.7rem;
-  margin-bottom: 1.2rem;
-  font-weight: $global-weight-medium;
 }
 
 .resource__tags{
@@ -35,4 +42,15 @@
 
 .resource__content{
   margin-bottom: 3rem;
+
+  @include breakpoint(medium){
+    min-height: 20rem; // Ensure the sidebar has enough space as it has 0-height
+  }
+
+  // Standalone is without the image (i.e. legacy proposals)
+  &--standalone{
+    @include breakpoint(medium){
+      min-height: 40rem; // Ensure the sidebar has enough space as it has 0-height
+    }
+  }
 }

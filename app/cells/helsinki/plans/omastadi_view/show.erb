@@ -22,26 +22,8 @@
 <div class="row column resource">
   <div class="row">
     <div class="columns small-12 medium-8">
-      <div class="resource__main static__content">
+      <div class="resource__main static__content margin-bottom-0">
         <h1><%= present(plan).title %></h1>
-
-        <div class="resource__info">
-          <% if area_scope.present? %>
-            <div class="resource__info__item"><%= translated_attribute(area_scope.name) %></div>
-          <% end %>
-          <div class="resource__info__item">#<%= plan.id %></div>
-          <% if plan.published? %>
-            <div class="resource__info__item"><%= l(plan.published_at.to_date, format: :decidim_short) %></div>
-          <% end %>
-          <% if category.present? %>
-            <div class="resource__info__item">
-              <% if category.parent %>
-                <%= translated_attribute(category.parent.name) %> -
-              <% end %>
-              <%= translated_attribute(category.name) %>
-            </div>
-          <% end %>
-        </div>
 
         <%== plan_notification %>
 
@@ -51,22 +33,24 @@
           </div>
         <% end %>
 
-        <%= image_tag main_image_path, class: "resource-image", alt: strip_tags(present(plan).title) %>
+        <%= image_tag main_image_path, class: "resource__image", alt: strip_tags(present(plan).title) %>
       </div>
     </div>
 
     <div class="columns small-12 medium-4">
-      <div class="resource__aside resource__actions">
-        <%= render :actions %>
+      <div class="resource__aside">
+        <div class="resource__actions">
+          <%= render :actions %>
+        </div>
 
         <% if show_controls? %>
-          <div class="row">
-            <div class="columns">
-              <%= render :controls %>
-              <%= collaborator_requests %>
-            </div>
+          <div class="margin-bottom-3">
+            <%= render :controls %>
+            <%= collaborator_requests %>
           </div>
         <% end %>
+
+        <%= render :details %>
       </div>
     </div>
   </div>
@@ -75,6 +59,7 @@
   <div class="row">
     <div class="columns small-12 medium-8">
       <div class="resource__main resource__content static__content">
+        <h2><%= t(".subtitle") %></h2>
         <%== description %>
 
         <%== linked_projects %>

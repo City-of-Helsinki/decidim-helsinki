@@ -17,6 +17,8 @@ fi:
       result:
         budget_amount: Hankkeen kokonaisbudjetti
         budget_breakdown: Budjetin perustelut
+        cocreation_description: Yhteiskehittämisen kuvaus
+        implementation_description: Toteutuksen kuvaus
         interaction_description: Vuorovaikutuksen kuvaus
         news_description: Ajankohtaisia asioita
         plans_description: Suunnitelmien kuvaus
@@ -120,12 +122,30 @@ fi:
         show_navigation: Valitse tarkasteltava ohje
     participatory_processes:
       participatory_processes:
+        components_list:
+          title: Sivut
         index:
           title: Prosessit
+        process_attributes:
+          attributes:
+            end_date: Päättymispäivä
+            start_date: Alkamispäivä
+          title: Tiedot
+        show:
+          subtitle: Prosessi
     proposals:
       proposals:
         filters:
           category_prompt: Valitse aihepiiri
+        proposal_attributes:
+          attributes:
+            address: Sijainti
+            category: Teema
+            id: Numero (ID)
+            published_at: Julkaisuaika
+          title: Tiedot
+        show:
+          subtitle: Ehdotus
     helsinki:
       omniauth_callbacks:
         failure:

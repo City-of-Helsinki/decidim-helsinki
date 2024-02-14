@@ -244,6 +244,13 @@ en:
           edit_plan: Edit proposal
           withdraw_plan: Withdraw proposal
           withdraw_confirmation_html: Are you sure you want to withdraw this proposal?
+        details:
+          attributes:
+            area_scope: Area
+            category: Theme
+            id: Number (ID)
+            published_at: Publish time
+          title: Information
         feedback_title: Thank you for submitting a proposal!
         flag: Flag
         linked_ideas: Ideas attached to this proposal
@@ -255,6 +262,7 @@ en:
         share_link: Share link
         show_comments: Show comments
         show_on_map: Show on map
+        subtitle: Proposal
         related_documents: Related documents
       plan_l:
         card_label: "Proposal: %{title}"

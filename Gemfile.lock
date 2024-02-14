@@ -34,7 +34,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-accountability_simple.git
-  revision: 0ad3cddd53d9e5466b75d3208322ccf8942f6db0
+  revision: 9ed5ab340085eb5d03372b07f457345b4f7c3477
   branch: develop
   specs:
     decidim-accountability_simple (0.27.0)
@@ -76,7 +76,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: f59b6a0ca1637f5a22e1d94a6dc865f02fe9c779
+  revision: 8153bd5af4f62011fa37c2c9fc01f8234e7ddca3
   branch: develop
   specs:
     decidim-budgeting_pipeline (0.27.0)
@@ -122,7 +122,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: d273264afb9ae1a5854a79fe563489de4d432bff
+  revision: 2d38a98b5653bf07d0e67efcde8e1a7eb189b588
   branch: develop
   specs:
     decidim-ideas (0.27.0)
@@ -132,7 +132,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-insights.git
-  revision: cc008a512509e2ca52d906312c3e26bc6751ee7d
+  revision: c9b2f77de117f69474331ca457c6f92e6862cb40
   branch: main
   specs:
     decidim-insights (0.27.0)
@@ -181,7 +181,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-privacy.git
-  revision: dcaa83ddea51cbaff996b50fad87050532722712
+  revision: c1dcfbb3b4a4a103ebef26336f3ce242c233c097
   branch: main
   specs:
     decidim-privacy (0.27.0)
@@ -205,7 +205,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-suomifi.git
-  revision: 64ff8c737d508d5ac052db99f140ec2552581e30
+  revision: 6f1c50884e4953f28c87bd4a77283f8acdc21197
   branch: main
   specs:
     decidim-suomifi (0.27.0)

@@ -18,6 +18,9 @@ sv:
         explanation: Anledning till varför du vill ta bort ditt konto (valfritt)
     accountability:
       results:
+        result_attributes_extra:
+          attributes:
+            budget: Budget
         show:
           stats:
             category: Tema
@@ -40,8 +43,6 @@ sv:
               name: Interaktion
             plans_description:
               name: Planer
-        stats_box:
-          budget: Budget
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar för flera användare
@@ -175,3 +176,7 @@ sv:
       skip_subnavigation: Hoppa över undernavigering
     tos_page:
       privacy_title: Samtycke till behandling av personuppgifter
+  layouts:
+    decidim:
+      impersonation_warning:
+        label: Imitation av en annan användare

@@ -1,0 +1,31 @@
+<div class="attributes">
+  <h2 class="resource__aside__title"><%= t(".title") %></h2>
+
+  <div class="attributes__item">
+    <h3 class="attributes__item__name"><%= t(".attributes.id") %></h3>
+    <div class="attributes__item__value"><%= proposal.id %></div>
+  </div>
+  <% if proposal.category.present? %>
+    <div class="attributes__item">
+      <h3 class="attributes__item__name"><%= t(".attributes.category") %></h3>
+      <div class="attributes__item__value">
+        <% if proposal.category.parent %>
+          <%= translated_attribute(proposal.category.parent.name) %> -
+        <% end %>
+        <%= translated_attribute(proposal.category.name) %>
+      </div>
+    </div>
+  <% end %>
+  <% if proposal.published? %>
+    <div class="attributes__item">
+      <h3 class="attributes__item__name"><%= t(".attributes.published_at") %></h3>
+      <div class="attributes__item__value"><%= l(proposal.published_at.to_date, format: :decidim_short) %></div>
+    </div>
+  <% end %>
+  <% if component_settings.geocoding_enabled? && proposal.address.present? %>
+    <div class="attributes__item">
+      <h3 class="attributes__item__name"><%= t(".attributes.address") %></h3>
+      <div class="attributes__item__value"><%= proposal.address %></div>
+    </div>
+  <% end %>
+</div>

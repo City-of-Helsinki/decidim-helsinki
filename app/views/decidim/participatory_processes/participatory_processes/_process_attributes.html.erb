@@ -1,0 +1,19 @@
+<% if process.start_date.present? || process.end_date.present? %>
+  <div class="attributes">
+    <h2 class="resource__aside__title"><%= t(".title") %></h2>
+
+    <% if process.start_date.present? %>
+      <div class="attributes__item">
+        <h3 class="attributes__item__name"><%= t(".attributes.start_date") %></h3>
+        <div class="attributes__item__value"><%= l(process.start_date, format: :decidim_short) %></div>
+      </div>
+    <% end %>
+
+    <% if process.end_date.present? %>
+      <div class="attributes__item">
+        <h3 class="attributes__item__name"><%= t(".attributes.end_date") %></h3>
+        <div class="attributes__item__value"><%= l(process.end_date, format: :decidim_short) %></div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

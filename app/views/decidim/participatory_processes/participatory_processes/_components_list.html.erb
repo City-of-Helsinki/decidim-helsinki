@@ -1,0 +1,13 @@
+<% if process.components.published.any? %>
+  <div class="margin-top-3">
+    <h2 class="resource__aside__title"><%= t(".title") %></h2>
+
+    <% process.components.published.each do |component| %>
+      <div>
+        <%= link_to main_component_path(component) do %>
+          <span><%= translated_attribute(component.name) %></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

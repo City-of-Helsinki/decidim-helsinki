@@ -1,0 +1,14 @@
+.attributes{
+  margin-bottom: 2.5rem;
+
+  &__item{
+    margin: .9rem 0;
+
+    &__name{
+      margin-bottom: .2rem;
+      color: $hel-grayscale-60;
+      font-weight: $global-weight-normal;
+      font-size: $global-font-size;
+    }
+  }
+}

@@ -17,6 +17,8 @@ en:
       result:
         budget_amount: Total budget for the project
         budget_breakdown: Budget breakdown
+        cocreation_description: Co-creation description
+        implementation_description: Implementation description
         interaction_description: Interaction description
         news_description: News
         plans_description: Plans description
@@ -121,12 +123,30 @@ en:
         show_navigation: Select help section
     participatory_processes:
       participatory_processes:
+        components_list:
+          title: Pages
         index:
           title: Processes
+        process_attributes:
+          attributes:
+            end_date: Ending date
+            start_date: Starting date
+          title: Information
+        show:
+          subtitle: Process
     proposals:
       proposals:
         filters:
           category_prompt: Choose category
+        proposal_attributes:
+          attributes:
+            address: Location
+            category: Theme
+            id: Number (ID)
+            published_at: Publish time
+          title: Information
+        show:
+          subtitle: Proposal
     helsinki_idp:
       omniauth_callbacks:
         failure:

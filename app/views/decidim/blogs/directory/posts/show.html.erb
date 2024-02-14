@@ -32,7 +32,7 @@
           <% end %>
 
           <% if post.main_image && post.main_image.attached? %>
-            <%= image_tag post.attached_uploader(:main_image).path, alt: translated_attribute(post.title), class: "resource-image" %>
+            <%= image_tag post.attached_uploader(:main_image).path, alt: translated_attribute(post.title), class: "resource__image" %>
           <% end %>
         </div>
       </div>

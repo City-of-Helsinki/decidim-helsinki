@@ -7,6 +7,8 @@ news = translated_attribute(result.news_description)
   <%== cell("decidim/tags/tags", result) %>
 </div>
 
+<h2><%= t(".subtitle") %></h2>
+
 <% if summary.present? %>
   <p><%== summary %></p>
 <% end %>
@@ -20,9 +22,9 @@ news = translated_attribute(result.news_description)
 </div>
 <% end %>
 
-<div class="description">
-  <%== translated_attribute result.description %>
-</div>
+<h2 class="show-for-sr"><%= t(".description") %></h2>
+
+<%== translated_attribute result.description %>
 
 <div class="row">
   <%= render partial: "timeline", locals: { result: result } if result.timeline_entries.any? %>

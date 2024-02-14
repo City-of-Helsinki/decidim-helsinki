@@ -244,6 +244,13 @@ sv:
           edit_plan: Redigera förslaget
           withdraw_plan: Annullera förslaget
           withdraw_confirmation_html: Är du säker på att du vill annullera det här förslaget?
+        details:
+          attributes:
+            area_scope: Område
+            category: Tema
+            id: Nummer (ID)
+            published_at: Publiceringstiden
+          title: Information
         feedback_title: Tack för att du skickade ett förslag!
         flag: Rapportera
         linked_ideas: Idéer bifogade detta förslag
@@ -255,6 +262,7 @@ sv:
         share_link: Länk som ska delas
         show_comments: Visa kommentarer
         show_on_map: Visa på kartan
+        subtitle: Förslag
         related_documents: Relaterade dokument
       plan_l:
         card_label: "Förslag: %{title}"

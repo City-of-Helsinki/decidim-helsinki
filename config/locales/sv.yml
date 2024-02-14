@@ -17,6 +17,8 @@ sv:
       result:
         budget_amount: Total budget för projektet
         budget_breakdown: Budgetfördelning
+        cocreation_description: Samskapande beskrivning
+        implementation_description: Genomförande beskrivning
         interaction_description: Interaktionsbeskrivning
         news_description: Nyheter
         plans_description: Planbeskrivning
@@ -120,12 +122,30 @@ sv:
         show_navigation: Välj hjälpsektion
     participatory_processes:
       participatory_processes:
+        components_list:
+          title: Sidor
         index:
           title: Processer
+        process_attributes:
+          attributes:
+            end_date: Slutdatum
+            start_date: Startdatum
+          title: Information
+        show:
+          subtitle: Process
     proposals:
       proposals:
         filters:
           category_prompt: Välj ett ämne
+        proposal_attributes:
+          attributes:
+            address: Plats
+            category: Tema
+            id: Nummer (ID)
+            published_at: Publiceringstiden
+          title: Information
+        show:
+          subtitle: Förslag
     helsinki:
       omniauth_callbacks:
         failure:
