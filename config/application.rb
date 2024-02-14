@@ -549,6 +549,7 @@ module DecidimHelsinki
         # Model extensions
         Decidim::ActionLog.include(ActionLogExtensions)
         Decidim::Category.include(CategoryExtensions)
+        Decidim::User.include(UserExtensions)
         Decidim::Blogs::Post.include(BlogPostExtensions)
 
         # View extensions
