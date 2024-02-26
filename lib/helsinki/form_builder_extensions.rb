@@ -75,12 +75,12 @@ module Helsinki
         HTML
 
         text = if field_before_label && block_given?
-                safe_join([yield, text.html_safe])
-              elsif block_given?
-                safe_join([text.html_safe, yield])
-              else
-                text
-              end
+                 safe_join([yield, text.html_safe])
+               elsif block_given?
+                 safe_join([text.html_safe, yield])
+               else
+                 text
+               end
 
         label(attribute, text, options || {})
       end
