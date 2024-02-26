@@ -1,9 +1,1 @@
-<%
-tos_page = page.slug == "terms-and-conditions" && user_signed_in? &&
-  (current_user.accepted_tos_version.nil? || current_user.accepted_tos_version < current_organization.tos_version)
-%>
-<% if tos_page %>
-  <%= render "full", page: page %>
-<% else %>
-  <%= render "tabbed", page: page %>
-<% end %>
+<%= render standalone_page_layout_for(page), page: page %>

@@ -1,0 +1,8 @@
+<h2><%= t(".title") %></h2>
+<%= t(".description_html") %>
+<p>
+  <%= link_to page_path("terms-and-conditions"), class: "button button--icon" do %>
+    <%= t(".see_terms_of_service") %>
+    <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+  <% end %>
+</p>

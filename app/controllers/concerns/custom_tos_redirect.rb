@@ -9,6 +9,24 @@ module CustomTosRedirect
   included do
     private
 
+    def permitted_paths?
+      # ensure that path with or without query string pass
+      permitted_paths.find { |el| el.split("?").first == request.path }
+    end
+
+    def permitted_paths
+      @permitted_paths ||= [
+        tos_path,
+        "/pages/tietosuoja",
+        "/locale",
+        decidim.delete_account_path,
+        decidim.accept_tos_path,
+        decidim.download_your_data_path,
+        decidim.export_download_your_data_path,
+        decidim.download_file_download_your_data_path
+      ]
+    end
+
     def redirect_to_tos
       # Store the location where the user needs to be redirected to after the
       # TOS is agreed.
