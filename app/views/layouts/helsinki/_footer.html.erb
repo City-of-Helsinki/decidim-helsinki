@@ -104,6 +104,8 @@ visible_processes = Decidim::ParticipatoryProcess.published.where("start_date <=
           </div>
           <div class="site-info-content">
             &copy; <%= t("layouts.footer.city_name") %> <%= Time.zone.now.year %>
+            |
+            <button type="button" class="link" data-cookie-settings><%= t("layouts.decidim.footer.data_consent_settings") %></button>
           </div>
         </div>
       </div>
