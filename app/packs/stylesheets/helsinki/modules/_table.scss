@@ -23,6 +23,12 @@ table{
   thead,
   tbody,
   tfoot{
+    tr{
+      &.row--highlight{
+        background-color: $hel-engel-medium-light;
+      }
+    }
+
     th{
       // background-color: $table-head-background;
       // color: $table-head-color;

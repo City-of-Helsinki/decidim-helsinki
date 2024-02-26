@@ -1,0 +1,52 @@
+.accordion{
+  &.accordion--large{
+    .accordion-title{
+      font-size: 1.5rem;
+
+      @include breakpoint(medium){
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .accordion-title{
+    position: relative;
+    display: block;
+    padding: 1.25rem 2rem 1.25rem 0;
+    border-bottom: 1px solid $hel-dark-gray;
+    text-decoration: none;
+
+    .accordion-title__icon{
+      position: absolute;
+      display: block;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      line-height: 1;
+
+      .accordion--active{ display: none; }
+
+      .icon{
+        width: 1.5em;
+        height: 1.5em;
+      }
+    }
+  }
+
+  .accordion-item{
+    &.is-active{
+      .accordion-title{
+        .accordion-title__icon{
+          .accordion--active{ display: inline; }
+          .accordion--inactive{ display: none; }
+        }
+      }
+    }
+  }
+
+  .accordion-content{
+    display: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid $hel-dark-gray;
+  }
+}

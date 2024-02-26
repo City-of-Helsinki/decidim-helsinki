@@ -99,6 +99,10 @@ body.loading{
   }
 }
 
+.projects-description{
+  margin-bottom: 1rem;
+}
+
 .projects-table{
   .projects-table__header,
   .projects-table__row__header{
@@ -114,28 +118,61 @@ body.loading{
     @include breakpoint(mediumlarge){
       display: grid;
       grid-auto-flow: column;
-      grid-template-columns: 100px 1fr 210px;
+      grid-template-columns: 70px 1fr 210px;
     }
   }
 
   .projects-table__header{
-    display: none;
     border-bottom: 1px solid $hel-black;
     margin-bottom: 10px;
+    font-size: $hel-text-size-l;
+
+    // Keep the header visible for screen readers
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
 
     @include breakpoint(mediumlarge){
       display: grid;
+
+      // Reset the screen reader visibility to normal visibility
+      position: static;
+      left: auto;
+      width: auto;
+      height: auto;
+      overflow: initial;
+      clip: auto;
+    }
+
+    .projects-table__header__data,
+    .projects-table__header__vote{
+      padding-bottom: 3px;
     }
 
     .projects-table__header__data{
-      padding-left: 10px;
+      padding-left: 17px;
     }
 
     .projects-table__header__vote{
       text-align: center;
-      background-color: $hel-black;
-      color: $hel-white;
     }
+  }
+
+  .projects-table__body{
+    // In case there are multipe "groups" of items in the table, i.e. when
+    // they are sorted based on the category.
+    + .projects-table__body{
+      margin-top: 2rem;
+    }
+  }
+
+  .projects-table__body__subheader{
+    margin-bottom: .5rem;
+    font-weight: $global-weight-medium;
   }
 
   .projects-table__header,
@@ -153,10 +190,9 @@ body.loading{
 
   .projects-table__row{
     background-color: $hel-white;
-    padding: 10px 0;
     margin-bottom: 10px;
 
-    &[data-open]{
+    &[data-show-details]{
       .projects-table__row__details{
         display: flex;
         flex-direction: column;
@@ -172,8 +208,22 @@ body.loading{
       }
     }
 
+    &[data-selected]{
+      .projects-table__row__header{
+        background-color: $hel-engel-medium-light;
+      }
+    }
+
+    .projects-table__row__header{
+      padding: 17px 0;
+
+      @include breakpoint(mediumlarge){
+        font-size: $hel-text-size-l;
+      }
+    }
+
     .projects-table__row__data{
-      padding-left: 10px;
+      padding-left: 17px;
     }
 
     .projects-table__row__icon{
@@ -189,12 +239,30 @@ body.loading{
         width: 1.5rem;
         height: 1.5rem;
       }
+
+      button{
+        cursor: pointer;
+      }
     }
 
     .projects-table__row__vote{
+      position: relative;
       display: flex;
       align-items: flex-start;
       justify-content: center;
+      padding-left: 14px;
+
+      &::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 10px;
+        height: 100%;
+        width: 1px;
+        background-color: $hel-silver;
+
+        // @include breakpoint(mediumlarge){}
+      }
 
       .input-checkbox{
         label{
@@ -213,16 +281,18 @@ body.loading{
 
     .projects-table__row__details{
       display: none;
-      padding: 10px;
+      padding: 20px 17px;
+      border-top: 1px solid $hel-silver;
 
       @include breakpoint(mediumlarge){
-        padding: 10px 40px 10px 120px;
+        padding: 24px 40px 24px 100px;
       }
 
       .projects-table__row__main{
         @include breakpoint(mediumlarge){
-          width: 80%;
-          margin-right: 40px;
+          width: 70%;
+          margin-right: 30px;
+          font-size: $hel-text-size-l;
         }
       }
 
@@ -232,6 +302,14 @@ body.loading{
         @include breakpoint(mediumlarge){
           margin-top: 0;
           width: 20%;
+        }
+
+        .attributes{
+          font-size: $hel-text-size-l;
+
+          .attributes__item:first-child{
+            margin-top: 0;
+          }
         }
       }
     }

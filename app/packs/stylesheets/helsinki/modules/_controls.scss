@@ -1,8 +1,11 @@
+.collection-info{
+  margin-bottom: 1.85rem;
+}
+
 .collection-controls{
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 1.85rem;
 
   @include breakpoint(medium){
     flex-direction: row;

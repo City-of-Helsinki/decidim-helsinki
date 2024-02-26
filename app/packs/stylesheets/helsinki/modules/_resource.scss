@@ -7,6 +7,8 @@
 }
 
 .resource__aside{
+  margin-bottom: 3rem;
+
   @include breakpoint(medium){
     // This keeps the actual content at the correct position by not pushing it
     // down due to the sidebar height. The sidebar DOM position is important

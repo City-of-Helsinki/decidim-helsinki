@@ -97,6 +97,23 @@ ol{
   }
 }
 
+ul.with-icons{
+  li{
+    position: relative;
+    padding-left: 0;
+    padding-left: 2rem;
+    margin-bottom: .4rem;
+
+    .icon{
+      position: absolute;
+      top: 1px;
+      left: 0;
+      width: 1.3em;
+      height: 1.3em;
+    }
+  }
+}
+
 hr{
   @include breakpoint(large){
     margin: $hel-spacing-l auto;
