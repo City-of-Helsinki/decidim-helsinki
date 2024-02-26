@@ -70,6 +70,8 @@
 
           <%= attachments_for @proposal %>
         </div>
+
+        <%= render partial: "proposal_map", locals: { proposal: @proposal } %>
       </div>
     </div>
   </div>

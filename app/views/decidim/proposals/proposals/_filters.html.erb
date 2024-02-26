@@ -4,10 +4,16 @@
   <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>
 
   <div class="row medium-unstack">
+    <div class="columns">
+      <div class="filters__control text_filter">
+        <%= form.search_field :search_text_cont, label: t(".keyword"), placeholder: t(".keyword"), data: { disable_dynamic_change: true } %>
+      </div>
+    </div>
+
     <% if current_component.categories.any? %>
       <div class="columns">
         <div class="filters__control category_id_filter">
-          <%= form.select(:with_any_category, current_component.categories, { label: t(".category"), include_blank: t("decidim.filters.linked_classes.all") }, id: "category", data: { disable_dynamic_change: true }) %>
+          <%= form.select(:with_any_category, options_for_select(current_component.categories.map { |c| [translated_attribute(c.name), c.id] }), { label: t(".category"), include_blank: t("decidim.filters.linked_classes.all") }, id: "category", data: { disable_dynamic_change: true }) %>
         </div>
       </div>
     <% end %>
@@ -27,12 +33,6 @@
         </div>
       </div>
     <% end %>
-
-    <div class="columns">
-      <div class="filters__control text_filter">
-        <%= form.search_field :search_text_cont, label: t(".keyword"), placeholder: t(".keyword"), data: { disable_dynamic_change: true } %>
-      </div>
-    </div>
   </div>
 
   <div class="row columns">

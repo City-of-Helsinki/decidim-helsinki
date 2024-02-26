@@ -1,22 +1,9 @@
-<% if component_settings.geocoding_enabled? && @proposal.latitude.present? && @proposal.longitude.present? %>
+<% if component_settings.geocoding_enabled? && @proposal.address.present? && @proposal.latitude.present? && @proposal.longitude.present? %>
   <div class="actions-panel bg-secondary">
-    <%
-      map_utility_static ||= Decidim::Map.static(
-        organization: current_organization
-      )
-      proposal_map_link = "#"
-      if map_utility_static
-        proposal_map_link = map_utility_static.link(
-          latitude: @proposal.latitude,
-          longitude: @proposal.longitude
-        )
-      end
-    %>
-
-    <%= link_to proposal_map_link, class: "action-link", target: "_blank", data: { external_link_spacer: "" } do %>
+    <a href="#proposal_map" class="action-link">
       <span class="link-text"><%= t ".show_on_map" %></span>
       <%= icon "map-marker", role: "img", "aria-hidden": true %>
-    <% end %>
+    </a>
   </div>
 <% end %>
 
