@@ -4,6 +4,12 @@
   <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>
 
   <div class="row medium-unstack">
+    <div class="columns">
+      <div class="filters__control text_filter">
+        <%= form.search_field :search_text, label: t(".filters.keyword"), placeholder: t(".filters.keyword"), data: { disable_dynamic_change: true } %>
+      </div>
+    </div>
+
     <% if display_area_scopes_filter? %>
       <div class="columns">
         <div class="filters__control area_scope_id_filter">
@@ -30,12 +36,6 @@
         </div>
       </div>
     <% end %>
-
-    <div class="columns">
-      <div class="filters__control text_filter">
-        <%= form.search_field :search_text, label: t(".filters.keyword"), placeholder: t(".filters.keyword"), data: { disable_dynamic_change: true } %>
-      </div>
-    </div>
   </div>
 
   <% if current_user %>

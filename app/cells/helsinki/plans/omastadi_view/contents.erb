@@ -1,12 +1,5 @@
-<div class="plan-contents">
-  <% plan.sections.visible_in_view.each do |section| %>
-    <% content = plan.contents.find_by(section: section) %>
-    <% next unless content %>
-
-    <%= cell(
-      content.section_type_manifest.display_cell,
-      content,
-      context: { current_component: current_component }
-    ) %>
-  <% end %>
-</div>
+<%
+# This template is also used to display the linked contents within the modals
+# that open when the plan is viewed within the budgets component voting.
+%>
+<%== description %>

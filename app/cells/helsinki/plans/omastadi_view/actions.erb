@@ -19,10 +19,10 @@
 
 <% if has_map_position? %>
   <div class="actions-panel bg-secondary">
-    <%= link_to plan_map_link, class: "action-link", target: "_blank", data: { external_link_spacer: "" } do %>
+    <a href="#plan_map" class="action-link">
       <span class="link-text"><%= t ".show_on_map" %></span>
       <%= icon "map-marker", role: "img", "aria-hidden": true %>
-    <% end %>
+    </a>
   </div>
 <% end %>
 
