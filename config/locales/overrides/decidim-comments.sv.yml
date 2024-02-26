@@ -1,11 +1,13 @@
 sv:
   decidim:
     comments:
+      comment:
+        comment_label: Kommentar %{comment_id}
+        comment_label_reply: Kommentar %{comment_id} (svar på kommentar %{parent_comment_id})
       comments:
         create:
           error: Ett fel uppstod när kommentaren sparades.
-      view: Visa
-      comments:
         title:
           one: "%{count} kommentar"
           other: "%{count} kommentarer"
+      view: Visa

@@ -59,6 +59,7 @@ sv:
         name: Markerade bloggar
         show_more: Visa mer aktuella saker
       highlighted_blogs_settings_form:
+        description: Beskrivning
         title: Titel
       ideas_carousel:
         name: Idéer karusell
@@ -115,6 +116,7 @@ sv:
       records_carousel_settings_form:
         button_text: Knapptext
         button_url: Knapp URL
+        description: Beskrivning
         process: Process
         title: Titel
       results_carousel:
@@ -124,7 +126,7 @@ sv:
       label_tooltip: Vägledning
     linked_events:
       index:
-        all_events: Alla evenemang
+        all_events: Evenemang
         description_html: |
           <p>På olika ställen i staden ordnas det 28.2.-17.3.2024 evenemang där stadens anställda hjälper dig att rösta. Ta med dig nätbankkoder eller ett giltigt ID-kort för identifiering.</p>
         subtitle: Kommande evenemang
@@ -256,6 +258,7 @@ sv:
         linked_ideas: Idéer bifogade detta förslag
         linked_projects: Förslagets att slåtts ihop med andra förslag inför röstningen
         manage_plan: Hantera ditt förslag
+        map_title: Förslag på karta
         request_access: Begär redigeringsrättigheter
         pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
         share: Dela

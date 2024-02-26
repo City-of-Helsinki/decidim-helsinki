@@ -59,6 +59,7 @@ en:
         name: Highlighted blogs
         show_more: Show more news
       highlighted_blogs_settings_form:
+        description: Description
         title: Title
       ideas_carousel:
         name: Ideas carousel
@@ -115,6 +116,7 @@ en:
       records_carousel_settings_form:
         button_text: Button text
         button_url: Button URL
+        description: Description
         process: Process
         title: Title
       results_carousel:
@@ -124,7 +126,7 @@ en:
       label_tooltip: Guidance
     linked_events:
       index:
-        all_events: All events
+        all_events: Events
         description_html: |
           <p>There will be a number of events in various parts of the city from 28 February until 17 March 2024 where the city’s employees help residents vote. Please bring with you banking credentials or a valid Id for verification.</p>
         subtitle: Upcoming events
@@ -256,6 +258,7 @@ en:
         linked_ideas: Ideas attached to this proposal
         linked_projects: Merged with other proposals for the vote
         manage_plan: Manage proposal
+        map_title: Proposal on map
         pending_access_request_message_html: <p>You have requested editing access to this proposal. Please wait for the collaborators to respond to your request.</p><p>You will receive an email notification once your request is answered.</p>
         request_access: Request access to edit
         share: Share

@@ -3,3 +3,6 @@ fi:
     menu:
       processes: 'Osallistu'
       more_information: 'Lisätietoja'
+    shared:
+      share_modal:
+        copy_share_link: Kopioi

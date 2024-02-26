@@ -98,6 +98,11 @@ fi:
         required_review:
           alert: Olemme päivittäneet palvelun ehtoja. Ole hyvä ja tutustu päivitettyihin ehtoihin.
           alert_new: Ole hyvä ja tutustu palvelun ehtoihin.
+      tos_not_accepted:
+        description_html: |
+          <p>Et ole vielä hyväksynyt palvelun käyttöehtoja. Sinun on hyväksyttävä käyttöehdot, jotta voit käyttää palvelua.</p>
+        see_terms_of_service: Tutustu käyttöehtoihin
+        title: Käyttöehtojen hyväksyntä
     participatory_processes:
       participatory_processes:
         process_actions:
@@ -161,6 +166,8 @@ fi:
         index:
           show_list: Näytä tulokset listana
           show_map: Näytä tulokset kartalla
+        map_template:
+          view_proposal: Näytä ehdotus
         proposal_actions:
           share: Jaa ehdotus
           show_comments: Katso ehdotuksen kommentit
@@ -168,10 +175,16 @@ fi:
           flag: Ilmianna ehdotus
         proposal_controls:
           manage_proposal: Hallinnoi ehdotusta
+        proposal_map:
+          title: Ehdotus kartalla
     resource_links:
       included_plans:
         project_plan: Liitetyt ehdotukset
     shared:
+      dynamic_form:
+        reset_message: Rajaukset on tyhjennetty. Päivitetyt hakutulokset näkyvät alla.
+      embed:
+        title: Upotettu videosisältö
       skip_subnavigation: Ohita alanavigaatio
     tos_page:
       privacy_title: Suostumus henkilötietojen käsittelylle

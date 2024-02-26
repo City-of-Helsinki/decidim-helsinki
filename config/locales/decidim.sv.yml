@@ -98,6 +98,11 @@ sv:
         required_review:
           alert: Vi har uppdaterat användarvillkoren, var god och granska dem.
           alert_new: Var god och granska användarvillkoren.
+      tos_not_accepted:
+        description_html: |
+          <p>Du har ännu inte gett ditt samtycke till användarvillkoren. Du måste ge ditt samtycke till användarvillkoren för att kunna använda tjänsten.</p>
+        see_terms_of_service: Läs användarvillkoren
+        title: Samtycke till användarvillkor
     participatory_processes:
       participatory_processes:
         process_actions:
@@ -162,6 +167,8 @@ sv:
         index:
           show_list: Visa resultat på kartan
           show_map: Visa resultat som lista
+        map_template:
+          view_proposal: Visa förslag
         proposal_actions:
           share: Dela förslaget
           show_comments: Visa förslagets kommentarer
@@ -169,10 +176,16 @@ sv:
           flag: Uttryck förslaget
         proposal_controls:
           manage_proposal: Hantera förslag
+        proposal_map:
+          title: Förslag på karta
     resource_links:
       included_plans:
         project_plan: Bifogade förslag
     shared:
+      dynamic_form:
+        reset_message: Filtren har rensats. Uppdaterade sökresultat visas nedan.
+      embed:
+        title: Inbäddat videoinnehåll
       skip_subnavigation: Hoppa över undernavigering
     tos_page:
       privacy_title: Samtycke till behandling av personuppgifter

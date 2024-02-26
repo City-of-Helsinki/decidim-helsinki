@@ -44,6 +44,10 @@ fi:
           accepted: Mahdollinen
           rejected: Ei mahdollinen
       proposals:
+        count:
+          proposals_count:
+            one: "Löytyi %{count} ehdotus"
+            other: "Löytyi %{count} ehdotusta"
         index:
           show_map: Ehdotukset kartalla
           hide_map: Piilota kartta

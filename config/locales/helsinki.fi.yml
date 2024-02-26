@@ -59,6 +59,7 @@ fi:
         name: Bloginostot
         show_more: Näytä lisää ajankohtaisia asioita
       highlighted_blogs_settings_form:
+        description: Kuvaus
         title: Otsikko
       ideas_carousel:
         name: Ideakaruselli
@@ -115,6 +116,7 @@ fi:
       records_carousel_settings_form:
         button_text: Napin teksti
         button_url: Napin URL
+        description: Kuvaus
         process: Prosessi
         title: Otsikko
       results_carousel:
@@ -124,7 +126,7 @@ fi:
       label_tooltip: Ohjeistus
     linked_events:
       index:
-        all_events: Kaikki tapahtumat
+        all_events: Tapahtumia
         description_html: |
           <p>Eri puolilla kaupunkia järjestetään 28.2.-17.3.2024 välisenä aikana tapahtumia, joissa kaupungin työntekijät antavat digitukea äänestämiseen. Ota mukaasi verkkopankkitunnukset tai voimassa oleva henkilöllisyystodistus tunnistamista varten.</p>
         subtitle: Tulevia tapahtumia
@@ -252,6 +254,7 @@ fi:
         linked_ideas: Ehdotukseen liitetyt ideat
         linked_projects: Liitetty äänestettävään ehdotukseen
         manage_plan: Hallitse ehdotusta
+        map_title: Ehdotus kartalla
         pending_access_request_message_html: <p>Olet pyytänyt muokkausoikeuksia tähän ehdotukseen. Odota, että ehdotuksen tekijät vastaavat pyyntöösi.</p><p>Saat viestin sähköpostiisi, kun pyyntöösi vastataan.</p>
         request_access: Pyydä muokkausoikeuksia
         share: Jaa

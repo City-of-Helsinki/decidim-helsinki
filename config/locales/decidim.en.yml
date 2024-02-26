@@ -98,6 +98,11 @@ en:
         required_review:
           alert: We have updated the terms of use, please review them.
           alert_new: Please review the terms of use.
+      tos_not_accepted:
+        description_html: |
+          <p>You have not yet agreed to the terms of use. You need to agree to the terms of use in order to use the service.</p>
+        see_terms_of_service: Read the terms of use
+        title: Agreement to the terms of use
     participatory_processes:
       participatory_processes:
         process_actions:
@@ -161,6 +166,8 @@ en:
         index:
           show_list: Show results on map
           show_map: Show results as list
+        map_template:
+          view_proposal: View proposal
         proposal_actions:
           share: Share proposal
           show_comments: Show proposal comments
@@ -168,10 +175,16 @@ en:
           flag: Report proposal
         proposal_controls:
           manage_proposal: Manage proposal
+        proposal_map:
+          title: Proposal on map
     resource_links:
       included_plans:
         project_plan: Attached proposals
     shared:
+      dynamic_form:
+        reset_message: Filters have been cleared. Updated search results are shown below.
+      embed:
+        title: Embedded video content
       skip_subnavigation: Skip subnavigation
     tos_page:
       privacy_title: Consent to the processing of personal data

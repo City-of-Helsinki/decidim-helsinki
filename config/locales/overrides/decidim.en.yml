@@ -3,3 +3,6 @@ en:
     menu:
       processes: 'Participate'
       more_information: 'Information'
+    shared:
+      share_modal:
+        copy_share_link: Copy

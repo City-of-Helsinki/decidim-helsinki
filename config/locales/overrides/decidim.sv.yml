@@ -10,6 +10,9 @@ sv:
     menu:
       processes: 'Delta'
       more_information: 'Information'
+    shared:
+      share_modal:
+        copy_share_link: Kopiera
   layouts:
     decidim:
       user_menu:

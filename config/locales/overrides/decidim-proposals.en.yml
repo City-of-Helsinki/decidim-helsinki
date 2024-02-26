@@ -44,6 +44,10 @@ en:
           accepted: Possible
           rejected: Not possible
       proposals:
+        count:
+          proposals_count:
+            one: "Found %{count} proposal"
+            other: "Found %{count} proposals"
         index:
           show_map: Proposals on map
           hide_map: Hide map
