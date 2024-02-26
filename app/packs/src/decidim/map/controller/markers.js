@@ -4,8 +4,12 @@ import markerPopupTemplate from "src/decidim/map/popup";
 import "leaflet.markercluster";
 
 /**
- * Overridden to separate the map popups to an element outside of the map itself
- * to make them work better on mobile.
+ * Overridden because of the following reasons:
+ *
+ * 1. To separate the map popups to an element outside of the map itself to make
+ *    them work better on mobile.
+ * 2. To disable the map popups for views that do not define the template, i.e.
+ *    the single resource view.
  */
 export default class MapMarkersController extends MapController {
   start() {
@@ -24,6 +28,8 @@ export default class MapMarkersController extends MapController {
       this.map.addLayer(this.markerClusters);
     }
 
+    const hasPopupTemplate = !!document.getElementById(this.config.popupTemplateId);
+
     // Pre-compiles the popup element
     $("body").append(markerPopupTemplate());
     const $markerPopup = $(mapMarkerPopup);
@@ -32,11 +38,13 @@ export default class MapMarkersController extends MapController {
     const $markerActionButton = $(".button[data-action]", $markerPopup);
     $markerActionButton.addClass("hide");
 
-    // Pre-compiles the template
-    $.template(
-      this.config.popupTemplateId,
-      $(`#${this.config.popupTemplateId}`).html()
-    );
+    if (hasPopupTemplate) {
+      // Pre-compiles the template
+      $.template(
+        this.config.popupTemplateId,
+        $(`#${this.config.popupTemplateId}`).html()
+      );
+    }
 
     const bounds = new L.LatLngBounds(
       markersData.map(
@@ -51,29 +59,31 @@ export default class MapMarkersController extends MapController {
         title: markerData.title
       });
 
-      let node = document.createElement("div");
-      $.tmpl(this.config.popupTemplateId, markerData).appendTo(node);
-      $("h2, h3, h4, h5, h6", node).remove();
+      if (hasPopupTemplate) {
+        let node = document.createElement("div");
+        $.tmpl(this.config.popupTemplateId, markerData).appendTo(node);
+        $("h2, h3, h4, h5, h6", node).remove();
 
-      const $markerButton = $(".map-info__button .button", node);
-      const buttonLabel = $markerButton.text()?.trim();
-      $markerButton.remove();
+        const $markerButton = $(".map-info__button .button", node);
+        const buttonLabel = $markerButton.text()?.trim();
+        $markerButton.remove();
 
-      marker.on("click", () => {
-        $(".reveal__title", $markerPopup).text(markerData.title);
-        $(".reveal__content", $markerPopup).empty();
-        $(".reveal__content", $markerPopup).append(node);
+        marker.on("click", () => {
+          $(".reveal__title", $markerPopup).text(markerData.title);
+          $(".reveal__content", $markerPopup).empty();
+          $(".reveal__content", $markerPopup).append(node);
 
-        if (markerData.link && buttonLabel && buttonLabel.length > 0) {
-          $markerActionButton.text(buttonLabel);
-          $markerActionButton.attr("href", markerData.link);
-          $markerActionButton.removeClass("hide");
-        } else {
-          $markerActionButton.addClass("hide");
-        }
+          if (markerData.link && buttonLabel && buttonLabel.length > 0) {
+            $markerActionButton.text(buttonLabel);
+            $markerActionButton.attr("href", markerData.link);
+            $markerActionButton.removeClass("hide");
+          } else {
+            $markerActionButton.addClass("hide");
+          }
 
-        $markerPopup.foundation("open");
-      });
+          $markerPopup.foundation("open");
+        });
+      }
 
       this.markerClusters.addLayer(marker);
     });
