@@ -2,6 +2,7 @@
 // as part of that pack
 
 import initHeader from "src/helsinki/header";
+import initForms from "src/helsinki/form";
 import fixMap from "src/helsinki/fix_map";
 import "src/helsinki/toggle_checkbox";
 import initSlider from "src/helsinki/slider";
@@ -12,6 +13,7 @@ require.context("../../images", true);
 
 const initialize = (container) => {
   initSlider(container);
+  initForms(container);
 
   $("[data-toggle-checkbox]", container).toggleCheckbox();
   $("[data-open-youtube]", container).youtubeModal();
