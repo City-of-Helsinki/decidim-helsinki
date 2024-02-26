@@ -54,17 +54,7 @@ module ApplicationHelper
           main_component_path(current_component)
         ]
 
-        if controller.is_a?(Decidim::Budgets::ProjectsController) && action_name == "show"
-          links << [
-            translated_attribute(project.title),
-            project_path(project)
-          ]
-        elsif controller.is_a?(Decidim::Budgets::ResultsController)
-          links << [
-            t("decidim.budgets.results.show.title", organization_name: current_organization.name),
-            results_path
-          ]
-        elsif controller.is_a?(Decidim::Accountability::ResultsController) && action_name == "show"
+        if controller.is_a?(Decidim::Accountability::ResultsController) && action_name == "show"
           ancestors = []
           target = result
           (ancestors << target) && target = target.parent while target
