@@ -44,7 +44,6 @@ namespace :project_updates do
 
       project.update!(
         title: title,
-        description: description,
         summary: summary
       )
 
