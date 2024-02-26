@@ -2,6 +2,12 @@
   <div class="row columns">
     <h2 id="<%= label_id %>" class="heading2"><%= title %></h2>
 
+    <% if description.present? %>
+      <div class="lead">
+        <%= description %>
+      </div>
+    <% end %>
+
     <%= content_tag :section, class: "cards-grid row", aria: { labelledby: label_id }, data: { slide: "", options: { large: { perPage: 4 } } } do %>
       <% posts.each do |post| %>
         <div class="column small-12 medium-6 large-3">

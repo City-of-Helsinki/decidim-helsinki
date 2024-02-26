@@ -317,6 +317,7 @@ module DecidimHelsinki
         content_block.settings do |settings|
           settings.attribute :process_id, type: :integer
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
           settings.attribute :button_url, type: :text
           settings.attribute :button_text, type: :text, translated: true
         end
@@ -332,6 +333,7 @@ module DecidimHelsinki
         content_block.settings do |settings|
           settings.attribute :process_id, type: :integer
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
           settings.attribute :button_url, type: :text
           settings.attribute :button_text, type: :text, translated: true
         end
@@ -347,6 +349,7 @@ module DecidimHelsinki
         content_block.settings do |settings|
           settings.attribute :process_id, type: :integer
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
           settings.attribute :button_url, type: :text
           settings.attribute :button_text, type: :text, translated: true
         end
@@ -362,6 +365,7 @@ module DecidimHelsinki
         content_block.settings do |settings|
           settings.attribute :process_id, type: :integer
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
           settings.attribute :button_url, type: :text
           settings.attribute :button_text, type: :text, translated: true
         end
@@ -376,6 +380,7 @@ module DecidimHelsinki
 
         content_block.settings do |settings|
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
         end
 
         content_block.default!

@@ -58,7 +58,18 @@ module Helsinki
       end
 
       def title
-        translated_attribute(model.settings.title)
+        @title ||= translated_attribute(model.settings.title)
+      end
+
+      def description
+        @description ||= begin
+          text = translated_attribute(model.settings.description)
+          if strip_tags(text).strip.empty?
+            nil
+          else
+            text
+          end
+        end
       end
 
       def utm_content_name

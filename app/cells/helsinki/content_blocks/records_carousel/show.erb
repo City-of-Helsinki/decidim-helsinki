@@ -2,6 +2,12 @@
   <div class="row columns">
     <h2 id="<%= label_id %>" class="heading2"><%= title %></h2>
 
+    <% if description.present? %>
+      <div class="lead">
+        <%= description %>
+      </div>
+    <% end %>
+
     <section class="cards-grid row" aria-labelledby="<%= label_id %>" data-slide>
       <% records.each do |record| %>
         <div class="column small-12 medium-6 large-4">
