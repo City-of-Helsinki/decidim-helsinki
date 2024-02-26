@@ -1,10 +1,11 @@
-<%= content_tag :div, id: "comment_#{model.id}", class: comment_classes, data: { depth: model.depth, comment_id: model.id, toggler: ".no-comments" } do %>
+<%= content_tag :div, id: "comment_#{model.id}", role: "comment", class: comment_classes, data: { depth: model.depth, comment_id: model.id, toggler: ".no-comments", parent: parent_element_id } do %>
   <% if model.hidden? %>
     <%= render :moderation_data %>
   <% elsif model.deleted? %>
     <%= render :deletion_data %>
   <% else %>
     <div class="comment__header">
+      <div class="show-for-sr"><%= comment_label %></div>
       <div class="author-data">
         <div class="author-data__main">
           <%= render :author %>

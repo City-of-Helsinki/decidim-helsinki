@@ -530,6 +530,7 @@ module DecidimHelsinki
         Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::ApplicationHelper)
         Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::SanitizeHelper)
         Decidim::Comments::CommentsCell.include(CommentsCellExtensions)
+        Decidim::Comments::CommentCell.include(CommentCellExtensions)
         Decidim::ContentBlocks::HeroCell.include(KoroHelper)
         Decidim::Blogs::PostMCell.include(BlogPostMCellExtensions)
         Decidim::Budgets::BudgetListItemCell.include(BudgetListItemCellExtensions)
