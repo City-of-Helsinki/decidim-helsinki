@@ -4,9 +4,10 @@ module Helsinki
   class MpassidMetadataCollector < Decidim::Mpassid::Verification::MetadataCollector
     def metadata
       super.tap do |data|
-        school_codes = saml_attributes[:school_code]
+        school_codes = data[:school_code]
 
         if school_codes.present?
+          school_codes = school_codes.split(",")
           postal_codes = school_codes.map do |school_code|
             Helsinki::SchoolMetadata.postal_code_for_school(school_code)
           end
