@@ -32,6 +32,19 @@ module Helsinki
           end
         end
 
+        # Allows resetting the stats for a specific component.
+        def reset_for(component)
+          component.stats.each(&:destroy!)
+
+          Decidim::Budgets::Budget.where(component: component).each do |budget|
+            budget.stats.each(&:destroy!)
+
+            Decidim::Budgets::Project.where(budget: budget).each do |project|
+              project.stats.each(&:destroy!)
+            end
+          end
+        end
+
         private
 
         attr_reader :postal_codes
