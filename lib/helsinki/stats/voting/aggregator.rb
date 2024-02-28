@@ -11,18 +11,23 @@ module Helsinki
 
             @postal_codes = []
 
-            aggregate_component(component)
+            # Process the all stats in one locking block (the component stats
+            # locking) to ensure only one process at a time processes one
+            # component. Otherwise duplicate entries could be created if the
+            # first process does not have enough time to complete before the
+            # next run starts.
+            aggregate_component(component) do
+              Decidim::Budgets::Budget.where(component: component).each do |budget|
+                aggregate_budget(budget)
 
-            Decidim::Budgets::Budget.where(component: component).each do |budget|
-              aggregate_budget(budget)
-
-              Decidim::Budgets::Project.where(budget: budget).each do |project|
-                aggregate_project(project)
+                Decidim::Budgets::Project.where(budget: budget).each do |project|
+                  aggregate_project(project)
+                end
               end
-            end
 
-            postal_codes.each do |code|
-              aggregate_postal_code(component, code)
+              postal_codes.each do |code|
+                aggregate_postal_code(component, code)
+              end
             end
           end
         end
@@ -48,6 +53,8 @@ module Helsinki
             accumulator = Accumulator.new(component, votes, identity_provider)
 
             update_collection(component, collection, accumulator) if votes.any?
+
+            yield
           end
         end
 
