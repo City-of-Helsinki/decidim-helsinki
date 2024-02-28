@@ -386,6 +386,89 @@ describe Helsinki::Stats::Voting::Aggregator do
     end
   end
 
+  describe "integrity" do
+    # Disable transactional tests to ensure consistent results. With
+    # transactional queries, the data might get out of sync.
+    self.use_transactional_tests = false
+
+    let(:component) { create(:budgets_component, :with_budget_projects_range, vote_minimum_budget_projects_number: 1, vote_maximum_budget_projects_number: 5, organization: organization) }
+    let!(:budgets) { create_list(:budget, 3, component: component, total_budget: 100_000) }
+    let!(:budget_projects) { budgets.to_h { |budget| [budget.id, create_list(:project, 10, budget: budget)] } }
+
+    let(:other_aggregator) { described_class.new }
+
+    before do
+      budgets.each do |budget|
+        projects = budget_projects[budget.id]
+        10.times do
+          # For these specs the authorization data does not really matter, so it
+          # can be the same for all users. We only want to test that the
+          # aggregation works in a performant way.
+          user = create(:user, :confirmed, organization: organization)
+          create(
+            :authorization,
+            user: user,
+            name: "suomifi_eid",
+            unique_id: "suomifi_#{user.id}",
+            metadata: {
+              date_of_birth: "1990-06-02",
+              municipality: "091",
+              postal_code: "00220",
+              gender: "neutral"
+            }
+          )
+
+          vote = Decidim::Budgets::Vote.new(component: component, user: user)
+          order = create(:order, budget: budget, user: user, vote: vote)
+          projects.sample(rand(1..5)).each do |project|
+            order.projects << project
+          end
+          order.update!(checked_out_at: Time.current)
+        end
+      end
+    end
+
+    after do
+      # Because the transactional tests are disabled, we need to manually clear
+      # the tables after the test.
+      connection = ActiveRecord::Base.connection
+      connection.disable_referential_integrity do
+        connection.tables.each do |table_name|
+          next if connection.select_value("SELECT COUNT(*) FROM #{table_name}").zero?
+
+          connection.execute("TRUNCATE #{table_name} CASCADE")
+        end
+      end
+    end
+
+    it "only processes one component at a time" do
+      # Ensure that the component is correctly locked and does not allow two
+      # simultaneous processes to process stats on it at the same time.
+
+      # Perform the calculations in advance so that they will not cause any
+      # delays when setting the expectations below.
+      budgets_count = budgets.count
+      projects_count = budget_projects.values.sum(&:count)
+
+      # The thread runs after the main thread continues because it takes a short
+      # moment to start the thread.
+      thread = Thread.new do
+        expect(aggregator).not_to receive(:aggregate_budget)
+        expect(aggregator).not_to receive(:aggregate_project)
+        expect(aggregator).not_to receive(:aggregate_postal_code)
+
+        aggregator.run
+      end
+
+      expect(other_aggregator).to receive(:aggregate_budget).exactly(budgets_count).times.and_call_original
+      expect(other_aggregator).to receive(:aggregate_project).exactly(projects_count).times.and_call_original
+      expect(other_aggregator).to receive(:aggregate_postal_code).once.and_call_original
+      other_aggregator.run
+
+      thread.join
+    end
+  end
+
   # These specs can be used to measure the performance of this script under
   # different amounts of budgets, projects and votes. The spec itself does not
   # make much sense, since its whole idea is just to get some measurements on

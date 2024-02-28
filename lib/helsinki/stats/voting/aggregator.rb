@@ -54,13 +54,11 @@ module Helsinki
         end
 
         def aggregate_component(component)
-          collection = component.stats.find_or_create_by!(
+          component.stats.process!(
             organization: component.organization,
             metadata: {},
             key: "votes"
-          )
-
-          collection.process! do
+          ) do |collection|
             votes = Decidim::Budgets::Vote.where(component: component).order(:created_at)
             votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
             accumulator = Accumulator.new(component, votes, identity_provider)
@@ -72,15 +70,13 @@ module Helsinki
         end
 
         def aggregate_postal_code(component, code)
-          collection = component.stats.find_or_create_by!(
+          component.stats.process!(
             organization: component.organization,
             metadata: {
               postal_code: code
             },
             key: "votes_postal_#{code || "00000"}"
-          )
-
-          collection.process! do
+          ) do |collection|
             auth_types = %w(helsinki_idp suomifi_eid helsinki_documents_authorization_handler)
             query = Decidim::Budgets::Vote.includes(:user).where(component: component).order(
               "decidim_budgets_votes.created_at"
@@ -100,13 +96,11 @@ module Helsinki
         end
 
         def aggregate_budget(budget)
-          collection = budget.stats.find_or_create_by!(
+          budget.stats.process!(
             organization: budget.component.organization,
             metadata: {},
             key: "votes"
-          )
-
-          collection.process! do
+          ) do |collection|
             votes = Decidim::Budgets::Order.finished.where(budget: budget).order(:checked_out_at)
             votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
             accumulator = Accumulator.new(budget.component, votes, identity_provider)
@@ -116,13 +110,11 @@ module Helsinki
         end
 
         def aggregate_project(project)
-          collection = project.stats.find_or_create_by!(
+          project.stats.process!(
             organization: project.component.organization,
             metadata: {},
             key: "votes"
-          )
-
-          collection.process! do
+          ) do |collection|
             votes = Decidim::Budgets::Order.joins(
               "LEFT JOIN decidim_budgets_line_items li ON li.decidim_order_id = decidim_budgets_orders.id"
             ).finished.where(li: { decidim_project_id: project }).group(:id).order(:checked_out_at)
