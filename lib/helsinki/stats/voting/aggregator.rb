@@ -61,13 +61,14 @@ module Helsinki
           return if collection.finalized?
 
           auth_types = %w(helsinki_idp suomifi_eid helsinki_documents_authorization_handler)
-          votes = Decidim::Budgets::Vote.joins(:user).where(component: component).order(
+          query = Decidim::Budgets::Vote.joins(:user).where(component: component).order(
             "decidim_budgets_votes.created_at"
-          ).select do |vote|
+          )
+          query = query.where("decidim_budgets_votes.created_at > ?", collection.last_value_at) if collection.last_value_at
+          votes = query.select do |vote|
             metadata = Decidim::Authorization.where(user: vote.user, name: auth_types).order(updated_at: :desc).first&.metadata
             metadata.try(:[], "postal_code") == code
           end
-          votes = votes.where("decidim_budgets_votes.created_at > ?", collection.last_value_at) if collection.last_value_at
           accumulator = Accumulator.new(component, votes, identity_provider)
 
           update_collection(component, collection, accumulator) if votes.any?
