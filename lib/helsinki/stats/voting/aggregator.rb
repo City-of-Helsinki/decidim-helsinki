@@ -41,13 +41,14 @@ module Helsinki
             metadata: {},
             key: "votes"
           )
-          return if collection.finalized?
 
-          votes = Decidim::Budgets::Vote.where(component: component).order(:created_at)
-          votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
-          accumulator = Accumulator.new(component, votes, identity_provider)
+          collection.process! do
+            votes = Decidim::Budgets::Vote.where(component: component).order(:created_at)
+            votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
+            accumulator = Accumulator.new(component, votes, identity_provider)
 
-          update_collection(component, collection, accumulator) if votes.any?
+            update_collection(component, collection, accumulator) if votes.any?
+          end
         end
 
         def aggregate_postal_code(component, code)
@@ -58,20 +59,24 @@ module Helsinki
             },
             key: "votes_postal_#{code || "00000"}"
           )
-          return if collection.finalized?
 
-          auth_types = %w(helsinki_idp suomifi_eid helsinki_documents_authorization_handler)
-          query = Decidim::Budgets::Vote.joins(:user).where(component: component).order(
-            "decidim_budgets_votes.created_at"
-          )
-          query = query.where("decidim_budgets_votes.created_at > ?", collection.last_value_at) if collection.last_value_at
-          votes = query.select do |vote|
-            metadata = Decidim::Authorization.where(user: vote.user, name: auth_types).order(updated_at: :desc).first&.metadata
-            metadata.try(:[], "postal_code") == code
+          collection.process! do
+            auth_types = %w(helsinki_idp suomifi_eid helsinki_documents_authorization_handler)
+            query = Decidim::Budgets::Vote.includes(:user).where(component: component).order(
+              "decidim_budgets_votes.created_at"
+            )
+            query = query.where("decidim_budgets_votes.created_at > ?", collection.last_value_at) if collection.last_value_at
+            votes = query.select do |vote|
+              # Even we do not use the age here, provide to vote's created at
+              # date in case this call would cause the caching (e.g. due to
+              # refactoring). This ensures the age is calculated correctly.
+              profile = identity_provider.for(vote.user, vote.created_at)
+              auth_types.include?(profile[:identity]) && profile[:postal_code] == code
+            end
+            accumulator = Accumulator.new(component, votes, identity_provider)
+
+            update_collection(component, collection, accumulator) if votes.any?
           end
-          accumulator = Accumulator.new(component, votes, identity_provider)
-
-          update_collection(component, collection, accumulator) if votes.any?
         end
 
         def aggregate_budget(budget)
@@ -80,13 +85,14 @@ module Helsinki
             metadata: {},
             key: "votes"
           )
-          return if collection.finalized?
 
-          votes = Decidim::Budgets::Order.finished.where(budget: budget).order(:checked_out_at)
-          votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
-          accumulator = Accumulator.new(budget.component, votes, identity_provider)
+          collection.process! do
+            votes = Decidim::Budgets::Order.finished.where(budget: budget).order(:checked_out_at)
+            votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
+            accumulator = Accumulator.new(budget.component, votes, identity_provider)
 
-          update_collection(budget.component, collection, accumulator) if votes.any?
+            update_collection(budget.component, collection, accumulator) if votes.any?
+          end
         end
 
         def aggregate_project(project)
@@ -95,15 +101,16 @@ module Helsinki
             metadata: {},
             key: "votes"
           )
-          return if collection.finalized?
 
-          votes = Decidim::Budgets::Order.joins(
-            "LEFT JOIN decidim_budgets_line_items li ON li.decidim_order_id = decidim_budgets_orders.id"
-          ).finished.where(li: { decidim_project_id: project }).group(:id).order(:checked_out_at)
-          votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
-          accumulator = Accumulator.new(project.component, votes, identity_provider)
+          collection.process! do
+            votes = Decidim::Budgets::Order.joins(
+              "LEFT JOIN decidim_budgets_line_items li ON li.decidim_order_id = decidim_budgets_orders.id"
+            ).finished.where(li: { decidim_project_id: project }).group(:id).order(:checked_out_at)
+            votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
+            accumulator = Accumulator.new(project.component, votes, identity_provider)
 
-          update_collection(project.component, collection, accumulator) if votes.any?
+            update_collection(project.component, collection, accumulator) if votes.any?
+          end
         end
 
         # rubocop:disable Metrics/CyclomaticComplexity
@@ -163,7 +170,7 @@ module Helsinki
           collection.update!(last_value_at: accumulator.last_value_at)
 
           # Mark finalized when the voting has ended
-          collection.update!(finalized: true) if component.current_settings.votes == "finished"
+          collection.finalize! if component.current_settings.votes == "finished"
         end
         # rubocop:enable Metrics/CyclomaticComplexity
       end

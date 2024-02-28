@@ -3,70 +3,84 @@
 module Helsinki
   module Stats
     module Voting
+      # Calculates the data needed for the stats based on the user identity
+      # information.
       class IdentityProvider
+        def initialize(use_cache: true)
+          @use_cache = use_cache
+        end
+
         def for(user, at_date = Time.zone.now)
-          authorization = Decidim::Authorization.where(
-            name: possible_authorizations,
-            user: user
-          ).order(updated_at: :desc).first
-          return unless authorization
+          cached_data(user) do
+            authorization = Decidim::Authorization.where(
+              name: possible_authorizations,
+              user: user
+            ).order(updated_at: :desc).first
+            return unless authorization
 
-          rawdata = authorization.metadata
+            # Note that decrypting the metadata is extremely slow, so this data
+            # needs to be cached. We cache the calculated identity data because
+            # that is what we use for generating the stats.
+            #
+            # It is important that this is called only once per user, otherwise
+            # the stats generation will be extremely slow.
+            rawdata = authorization.metadata
 
-          case authorization.name
-          when "helsinki_idp"
-            age = calculate_age(rawdata["date_of_birth"], at_date)
+            case authorization.name
+            when "helsinki_idp"
+              age = calculate_age(rawdata["date_of_birth"], at_date)
 
-            {
-              identity: "helsinki_idp",
-              identity_name: "Helsinki profile",
-              municipality: rawdata["municipality"],
-              postal_code: rawdata["postal_code"],
-              gender: rawdata["gender"],
-              age: age,
-              age_group: age_group(age)
-            }
-          when "suomifi_eid"
-            age = calculate_age(rawdata["date_of_birth"], at_date)
+              {
+                identity: "helsinki_idp",
+                identity_name: "Helsinki profile",
+                municipality: rawdata["municipality"],
+                postal_code: rawdata["postal_code"],
+                gender: rawdata["gender"],
+                age: age,
+                age_group: age_group(age)
+              }
+            when "suomifi_eid"
+              age = calculate_age(rawdata["date_of_birth"], at_date)
 
-            {
-              identity: "suomifi_eid",
-              identity_name: "Suomi.fi",
-              municipality: rawdata["municipality"],
-              postal_code: rawdata["postal_code"],
-              gender: rawdata["gender"],
-              age: age,
-              age_group: age_group(age)
-            }
-          when "mpassid_nids"
-            postal_code = Helsinki::SchoolMetadata.postal_code_for_school(rawdata["school_code"])
-            # Note: high school students can have class level 1-4 in some
-            # occasions.
-            class_level = parse_class_level(rawdata)
+              {
+                identity: "suomifi_eid",
+                identity_name: "Suomi.fi",
+                municipality: rawdata["municipality"],
+                postal_code: rawdata["postal_code"],
+                gender: rawdata["gender"],
+                age: age,
+                age_group: age_group(age)
+              }
+            when "mpassid_nids"
+              postal_code = Helsinki::SchoolMetadata.postal_code_for_school(rawdata["school_code"])
+              # Note: high school students can have class level 1-4 in some
+              # occasions.
+              class_level = parse_class_level(rawdata)
 
-            {
-              identity: "mpassid_nids",
-              identity_name: "MPASSid",
-              municipality: rawdata["municipality"],
-              postal_code: postal_code,
-              school_code: rawdata["school_code"],
-              school_name: rawdata["school_name"],
-              school_class: rawdata["student_class"],
-              school_class_level: class_level&.zero? ? nil : class_level
-            }
-          when "helsinki_documents_authorization_handler"
-            age = calculate_age(rawdata["date_of_birth"], at_date)
+              {
+                identity: "mpassid_nids",
+                identity_name: "MPASSid",
+                municipality: rawdata["municipality"],
+                postal_code: postal_code,
+                school_code: rawdata["school_code"],
+                school_name: rawdata["school_name"],
+                school_class: rawdata["student_class"],
+                school_class_level: class_level&.zero? ? nil : class_level
+              }
+            when "helsinki_documents_authorization_handler"
+              age = calculate_age(rawdata["date_of_birth"], at_date)
 
-            {
-              identity: "helsinki_documents_authorization_handler",
-              identity_name: "Document - #{rawdata["document_type"]}",
-              document_type: rawdata["document_type"],
-              municipality: rawdata["municipality"],
-              gender: rawdata["gender"],
-              age: age,
-              age_group: age_group(age),
-              postal_code: rawdata["postal_code"]
-            }
+              {
+                identity: "helsinki_documents_authorization_handler",
+                identity_name: "Document - #{rawdata["document_type"]}",
+                document_type: rawdata["document_type"],
+                municipality: rawdata["municipality"],
+                gender: rawdata["gender"],
+                age: age,
+                age_group: age_group(age),
+                postal_code: rawdata["postal_code"]
+              }
+            end
           end
         end
 
@@ -112,6 +126,28 @@ module Helsinki
           else
             "75+"
           end
+        end
+
+        private
+
+        attr_reader :use_cache
+
+        # The user details are accessed several times during the aggregation
+        # process and caching the details improves the performance as we do not
+        # need to decrypt the details multiple times during the aggregation
+        # process.
+        def local_cache
+          @local_cache ||= {}
+        end
+
+        def cached_data(user)
+          return yield unless use_cache
+
+          cache_key = user.id
+          cache_hit = local_cache[cache_key]
+          return cache_hit if cache_hit.present?
+
+          local_cache[cache_key] = yield
         end
       end
     end

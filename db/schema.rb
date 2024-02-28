@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_09_164653) do
+ActiveRecord::Schema.define(version: 2024_02_28_133722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1970,6 +1970,7 @@ ActiveRecord::Schema.define(version: 2024_02_09_164653) do
     t.datetime "last_value_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "locked_at"
     t.index ["decidim_measurable_type", "decidim_measurable_id"], name: "index_on_decidim_stats_collection_measurable"
     t.index ["decidim_organization_id", "decidim_measurable_type", "decidim_measurable_id", "key"], name: "index_on_decidim_stats_collections_org_measurable_key", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_stats_collections_on_decidim_organization_id"

@@ -22,7 +22,8 @@ module Helsinki
 
         def accumulate
           votes.each do |vote|
-            meta = identity_provider.for(vote.user, vote_time_for(vote))
+            vote_time = vote_time_for(vote)
+            meta = identity_provider.for(vote.user, vote_time)
             if meta
               case meta[:identity]
               when "helsinki_idp", "suomifi_eid", "helsinki_documents_authorization_handler"
@@ -36,7 +37,6 @@ module Helsinki
             accumulate_locale(vote)
             accumulate_total
 
-            vote_time = vote_time_for(vote)
             self.last_value_at = vote_time if last_value_at.blank? || last_value_at < vote_time
           end
 
