@@ -397,10 +397,111 @@ describe Helsinki::Stats::Voting::Aggregator do
 
     let(:other_aggregator) { described_class.new }
 
-    before do
+    before { create_votes(10) }
+
+    after do
+      # Because the transactional tests are disabled, we need to manually clear
+      # the tables after the test.
+      connection = ActiveRecord::Base.connection
+      connection.disable_referential_integrity do
+        connection.tables.each do |table_name|
+          next if connection.select_value("SELECT COUNT(*) FROM #{table_name}").zero?
+
+          connection.execute("TRUNCATE #{table_name} CASCADE")
+        end
+      end
+    end
+
+    it "uses one process (and one process only) to process one component" do
+      # Ensure that the component is correctly locked and does not allow two
+      # simultaneous processes to process stats on it at the same time.
+
+      # Perform the calculations in advance so that they will not cause any
+      # delays when setting the expectations below.
+      budgets_count = budgets.count
+      projects_count = budget_projects.values.sum(&:count)
+
+      # The thread runs after the main thread continues because it takes a short
+      # moment to start the thread.
+      thread = Thread.new do
+        expect(aggregator).not_to receive(:aggregate_budget)
+        expect(aggregator).not_to receive(:aggregate_project)
+        expect(aggregator).not_to receive(:aggregate_postal_code)
+
+        aggregator.run
+      end
+
+      expect(other_aggregator).to receive(:aggregate_budget).exactly(budgets_count).times.and_call_original
+      expect(other_aggregator).to receive(:aggregate_project).exactly(projects_count).times.and_call_original
+      expect(other_aggregator).to receive(:aggregate_postal_code).once.and_call_original
+      other_aggregator.run
+
+      thread.join
+    end
+
+    it "does not add data from new votes added during the process to any set" do
+      # Store the project votes before the aggregation
+      project_votes = {}
+      budgets.each do |budget|
+        Decidim::Budgets::Order.finished.where(budget: budget).each do |order|
+          order.projects.pluck(:id).each do |prid|
+            project_votes[prid] ||= 0
+            project_votes[prid] += 1
+          end
+        end
+      end
+
+      # Start thread for the aggregation
+      thread = Thread.new { aggregator.run }
+
+      # Give a short moment for the aggregator to start
+      sleep 1
+
+      # Add new data after the processing has started
+      create_votes(8)
+
+      # Wait for the aggregator thread to finish
+      thread.join
+
+      default_constraints = { organization: organization, metadata: {}, key: "votes" }
+
+      # After the aggregator finishes, the situation should match the moment
+      # at the beginning of the aggregation.
+
+      # component -> votes
+      col = component.stats.find_by(**default_constraints)
+      set = col.sets.find_by(key: "total")
+      mea = set.measurements.find_by(label: "all")
+      expect(mea.value).to eq(10 * budgets.count)
+
+      # component -> votes for postal 00220
+      col = component.stats.find_by(organization: organization, metadata: { postal_code: "00220" }, key: "votes_postal_00220")
+      set = col.sets.find_by(key: "total")
+      mea = set.measurements.find_by(label: "all")
+      expect(mea.value).to eq(10 * budgets.count)
+
+      # budgets -> votes
+      budgets.each do |budget|
+        col = budget.stats.find_by(**default_constraints)
+        set = col.sets.find_by(key: "total")
+        mea = set.measurements.find_by(label: "all")
+        expect(mea.value).to eq(10)
+      end
+
+      # projects -> votes
+      project_votes.each do |prid, amt_votes|
+        project = Decidim::Budgets::Project.find(prid)
+        col = project.stats.find_by(**default_constraints)
+        set = col.sets.find_by(key: "total")
+        mea = set.measurements.find_by(label: "all")
+        expect(mea.value).to eq(amt_votes)
+      end
+    end
+
+    def create_votes(amount_per_budget)
       budgets.each do |budget|
         projects = budget_projects[budget.id]
-        10.times do
+        amount_per_budget.times do
           # For these specs the authorization data does not really matter, so it
           # can be the same for all users. We only want to test that the
           # aggregation works in a performant way.
@@ -426,46 +527,6 @@ describe Helsinki::Stats::Voting::Aggregator do
           order.update!(checked_out_at: Time.current)
         end
       end
-    end
-
-    after do
-      # Because the transactional tests are disabled, we need to manually clear
-      # the tables after the test.
-      connection = ActiveRecord::Base.connection
-      connection.disable_referential_integrity do
-        connection.tables.each do |table_name|
-          next if connection.select_value("SELECT COUNT(*) FROM #{table_name}").zero?
-
-          connection.execute("TRUNCATE #{table_name} CASCADE")
-        end
-      end
-    end
-
-    it "only processes one component at a time" do
-      # Ensure that the component is correctly locked and does not allow two
-      # simultaneous processes to process stats on it at the same time.
-
-      # Perform the calculations in advance so that they will not cause any
-      # delays when setting the expectations below.
-      budgets_count = budgets.count
-      projects_count = budget_projects.values.sum(&:count)
-
-      # The thread runs after the main thread continues because it takes a short
-      # moment to start the thread.
-      thread = Thread.new do
-        expect(aggregator).not_to receive(:aggregate_budget)
-        expect(aggregator).not_to receive(:aggregate_project)
-        expect(aggregator).not_to receive(:aggregate_postal_code)
-
-        aggregator.run
-      end
-
-      expect(other_aggregator).to receive(:aggregate_budget).exactly(budgets_count).times.and_call_original
-      expect(other_aggregator).to receive(:aggregate_project).exactly(projects_count).times.and_call_original
-      expect(other_aggregator).to receive(:aggregate_postal_code).once.and_call_original
-      other_aggregator.run
-
-      thread.join
     end
   end
 

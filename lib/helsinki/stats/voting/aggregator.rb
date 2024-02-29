@@ -9,6 +9,38 @@ module Helsinki
             # There can be components which have removed participatory spaces
             next unless component.participatory_space
 
+            # We check if the voting was finished already at the beginning of
+            # the statistics calculations so that we won't leave any votes
+            # unprocessed in case voting was closed AFTER this run was started.
+            # If that would happen, the last votes would not be included in the
+            # statistics.
+            @last_run = component.current_settings.votes == "finished"
+
+            # We store the processing time which is the upper limit until which
+            # we will process new votes. This is in order to ensure that the
+            # statistics for different entities are reported consistently.
+            # Otherwise, it would be possible that e.g. during the processing of
+            # component votes, new votes have been added to the system which
+            # would cause more votes to show up in the further statistics. E.g.
+            # when summing up the "total" votes for each budget, that number
+            # would be higher than the "total" votes of the component because
+            # there were more votes calculated for the budget totals than the
+            # component total due to this inconsistency.
+            #
+            # Take this example situation:
+            # - 100 votes for component to process (should take few minutes)
+            # - Start processing the component votes
+            # - (20 new votes are registered during processing)
+            # - End processing the component votes
+            # - Start processing votes for each budget
+            # => There are now 120 votes to process vs the 100 votes that were
+            #    processed for the component itself causing inconsistency in the
+            #    resulting datasets if they are compared against each other.
+            #
+            # Therefore, we want to report each entity (component, budget,
+            # project) based on the exact same voting situation at the exactly
+            # same time for each entity.
+            @process_until = Time.current unless last_run?
             @postal_codes = []
 
             # Process the all stats in one locking block (the component stats
@@ -47,7 +79,11 @@ module Helsinki
 
         private
 
-        attr_reader :postal_codes
+        attr_reader :process_until, :postal_codes
+
+        def last_run?
+          @last_run == true
+        end
 
         def identity_provider
           @identity_provider ||= IdentityProvider.new
@@ -61,9 +97,11 @@ module Helsinki
           ) do |collection|
             votes = Decidim::Budgets::Vote.where(component: component).order(:created_at)
             votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
-            accumulator = Accumulator.new(component, votes, identity_provider)
-
-            update_collection(component, collection, accumulator) if votes.any?
+            votes = votes.where("created_at <= ?", process_until) if process_until
+            if votes.any?
+              accumulator = Accumulator.new(component, votes, identity_provider)
+              update_collection(collection, accumulator)
+            end
 
             yield
           end
@@ -82,6 +120,7 @@ module Helsinki
               "decidim_budgets_votes.created_at"
             )
             query = query.where("decidim_budgets_votes.created_at > ?", collection.last_value_at) if collection.last_value_at
+            query = query.where("decidim_budgets_votes.created_at <= ?", process_until) if process_until
             votes = query.select do |vote|
               # Even we do not use the age here, provide to vote's created at
               # date in case this call would cause the caching (e.g. due to
@@ -89,9 +128,10 @@ module Helsinki
               profile = identity_provider.for(vote.user, vote.created_at)
               auth_types.include?(profile[:identity]) && profile[:postal_code] == code
             end
-            accumulator = Accumulator.new(component, votes, identity_provider)
-
-            update_collection(component, collection, accumulator) if votes.any?
+            if votes.any?
+              accumulator = Accumulator.new(component, votes, identity_provider)
+              update_collection(collection, accumulator)
+            end
           end
         end
 
@@ -103,9 +143,11 @@ module Helsinki
           ) do |collection|
             votes = Decidim::Budgets::Order.finished.where(budget: budget).order(:checked_out_at)
             votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
-            accumulator = Accumulator.new(budget.component, votes, identity_provider)
-
-            update_collection(budget.component, collection, accumulator) if votes.any?
+            votes = votes.where("checked_out_at <= ?", process_until) if process_until
+            if votes.any?
+              accumulator = Accumulator.new(budget.component, votes, identity_provider)
+              update_collection(collection, accumulator)
+            end
           end
         end
 
@@ -119,14 +161,16 @@ module Helsinki
               "LEFT JOIN decidim_budgets_line_items li ON li.decidim_order_id = decidim_budgets_orders.id"
             ).finished.where(li: { decidim_project_id: project }).group(:id).order(:checked_out_at)
             votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
-            accumulator = Accumulator.new(project.component, votes, identity_provider)
-
-            update_collection(project.component, collection, accumulator) if votes.any?
+            votes = votes.where("checked_out_at <= ?", process_until) if process_until
+            if votes.any?
+              accumulator = Accumulator.new(project.component, votes, identity_provider)
+              update_collection(collection, accumulator)
+            end
           end
         end
 
         # rubocop:disable Metrics/CyclomaticComplexity
-        def update_collection(component, collection, accumulator)
+        def update_collection(collection, accumulator)
           accumulation = accumulator.accumulate
 
           set_total = collection.sets.find_or_create_by!(key: "total")
@@ -182,7 +226,7 @@ module Helsinki
           collection.update!(last_value_at: accumulator.last_value_at)
 
           # Mark finalized when the voting has ended
-          collection.finalize! if component.current_settings.votes == "finished"
+          collection.finalize! if last_run?
         end
         # rubocop:enable Metrics/CyclomaticComplexity
       end
