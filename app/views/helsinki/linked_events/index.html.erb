@@ -1,6 +1,14 @@
 <% add_decidim_page_title(t(".title")) %>
 <% add_decidim_meta_description(strip_tags(t(".description_html"))) %>
 
+<%
+links = {
+  "fi" => "https://tapahtumat.hel.fi/fi/haku?text=omastadi",
+  "sv" => "https://tapahtumat.hel.fi/sv/sok?text=omastadi",
+  "en" => "https://tapahtumat.hel.fi/en/search?text=omastadi",
+}
+%>
+
 <div class="wrapper">
   <div class="container">
     <div class="row columns">
@@ -17,7 +25,7 @@
 
       <div class="columns medium-6 mediumlarge-4">
         <div class="actions-panel bg-secondary">
-          <%= link_to "https://tapahtumat.hel.fi", target: "_blank", class: "action-link" do %>
+          <%= link_to links[current_locale] || links.values.first, target: "_blank", class: "action-link" do %>
             <span><%= t(".all_events") %></span>
             <%= icon("external-link", role: "img", "aria-hidden": true) %>
           <% end %>
