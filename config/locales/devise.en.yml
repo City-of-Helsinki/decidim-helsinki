@@ -55,7 +55,7 @@ en:
           sign_up_service_account_description: 'Create your account and sign in with your personal email and a password of your choice in the future.'
           terms: terms of use
           tos_title: Consent to the processing of personal data and terms of use
-          tos_agreement: I consent to the processing of my personal data listed above for the purposes of providing the OmaStadi service and I agree to the %{link}.
+          tos_agreement: I consent to the processing of my personal data listed above for the purposes of providing the OmaStadi service and I agree to the %{link}. I hereby confirm that I am 13-years old or older.
       sessions:
         new:
           are_you_new?: Are you new to the platform?

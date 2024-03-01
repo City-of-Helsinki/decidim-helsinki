@@ -87,7 +87,7 @@ fi:
           error: Ehtojen hyväksyminen epäonnistui.
           success: Hienoa! Olet hyväksynyt käyttöehdot.
         form:
-          agreement: Annan suostumukseni edellä lueteltujen henkilötietojeni käsittelyyn ja hyväksyn käyttöehdot
+          agreement: Annan suostumukseni edellä lueteltujen henkilötietojeni käsittelyyn ja hyväksyn käyttöehdot. Vakuutan, että olen 13-vuotta täyttänyt.
           continue: Jatka
           legend: Hyväksy käyttöehdot ja henkilötietojen käsittely
         refuse:

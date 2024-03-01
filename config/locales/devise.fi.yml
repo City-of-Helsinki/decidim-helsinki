@@ -55,7 +55,7 @@ fi:
           sign_up_service_account_description: 'Luo oma käyttäjätili ja kirjaudu jatkossa sisään sähköpostiosoitteella ja itse valitsemallasi salasanalla.'
           terms: käyttöehdot
           tos_title: Suostumus henkilötietojen käsittelylle ja käyttöehdot
-          tos_agreement: Annan suostumukseni edellä lueteltujen henkilötietojeni käsittelyyn OmaStadi-palvelun tuottamiseksi ja hyväksyn %{link}.
+          tos_agreement: Annan suostumukseni edellä lueteltujen henkilötietojeni käsittelyyn OmaStadi-palvelun tuottamiseksi ja hyväksyn %{link}. Vakuutan, että olen 13-vuotta täyttänyt.
       sessions:
         new:
           are_you_new?: Oletko uusi käyttäjä?

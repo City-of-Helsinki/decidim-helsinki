@@ -55,7 +55,7 @@ sv:
           sign_up_service_account_description: 'Skapa ett eget användarkonto och logga i fortsättningen in med din e-postadress och ditt eget lösenord.'
           terms: användarvillkoren
           tos_title: Samtycke till behandling av personuppgifter och användarvillkor
-          tos_agreement: Jag ger mitt samtycke till behandlingen av mina ovan nämnda personuppgifter för att producera tjänsten OmaStadi och jag godkänner %{link}.
+          tos_agreement: Jag ger mitt samtycke till behandlingen av mina ovan nämnda personuppgifter för att producera tjänsten OmaStadi och jag godkänner %{link}. Jag intygar härmed att jag är 13-år eller äldre.
       sessions:
         new:
           are_you_new?: Är du ny på plattformen?

@@ -87,7 +87,7 @@ sv:
           error: Det uppstod ett problem med att godkänna villkoren.
           success: Tack! Du har godkänt användarvillkoren.
         form:
-          agreement: Jag ger mitt samtycke till behandlingen av mina ovan nämnda personuppgifter och jag godkänner användarvillkoren
+          agreement: Jag ger mitt samtycke till behandlingen av mina ovan nämnda personuppgifter och jag godkänner användarvillkoren. Jag intygar härmed att jag är 13-år eller äldre.
           continue: Fortsätta
           legend: Samtycke till användarvillkor och behandling av personuppgifter
         refuse:

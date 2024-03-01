@@ -87,7 +87,7 @@ en:
           error: There was a problem accepting the terms and conditions.
           success: Great! You have accepted the terms and conditions.
         form:
-          agreement: I consent to the processing of my personal data listed above and I agree to the terms of use
+          agreement: I consent to the processing of my personal data listed above and I agree to the terms of use. I hereby confirm that I am 13-years old or older.
           continue: Continue
           legend: Agreement to the terms of use and consent to the processing of personal data
         refuse:
