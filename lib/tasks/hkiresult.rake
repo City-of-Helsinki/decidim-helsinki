@@ -189,7 +189,7 @@ namespace :hkiresult do
           school_code: metadata[:school_code],
           school_name: metadata[:school_name],
           school_ruuti_unit: metadata[:school_ruuti_unit],
-          school_class: metadata[:school_class],
+          school_class: metadata[:group],
           school_class_level: metadata[:school_class_level],
           created_at: order.created_at,
           checked_out_at: order.checked_out_at
@@ -311,7 +311,7 @@ namespace :hkiresult do
         school_name: rawdata["school_name"],
         school_ruuti_unit: rawdata["voting_unit"],
         school_role: rawdata["school_role"],
-        school_class: rawdata["student_class"],
+        school_class: rawdata["group"],
         school_class_level: levels.join(",")
       }
     when "helsinki_documents_authorization_handler"
@@ -342,7 +342,7 @@ namespace :hkiresult do
     class_level = rawdata["student_class_level"]
     return class_level.split(",").map(&:to_i) if class_level.present?
 
-    cls = rawdata["student_class"]
+    cls = rawdata["group"]
     return [] if cls.blank?
 
     cls.split(",").map { |cl| cl.gsub(/^[^0-9]*/, "").to_i }

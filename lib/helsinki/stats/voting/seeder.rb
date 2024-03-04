@@ -145,7 +145,7 @@ module Helsinki
                 municipality_name: "Helsinki",
                 school_code: school_code,
                 school_name: school[:name],
-                student_class: "#{class_level}#{%w(A B C D E F G H I J).sample}",
+                group: "#{class_level}#{%w(A B C D E F G H I J).sample}",
                 student_class_level: class_level.to_s
               }
             when "helsinki_documents_authorization_handler"
