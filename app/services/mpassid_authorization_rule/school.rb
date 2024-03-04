@@ -67,10 +67,10 @@ module MpassidAuthorizationRule
 
     def authorized_class_levels
       return authorization.metadata["student_class_level"].split(",").map(&:to_i) if authorization.metadata["student_class_level"].present?
-      return [] if authorization.metadata["student_class"].blank?
+      return [] if authorization.metadata["group"].blank?
 
       @authorized_class_levels ||= begin
-        student_classes = authorization.metadata["student_class"].split(",")
+        student_classes = authorization.metadata["group"].split(",")
         student_classes.map do |group|
           group.gsub(/^[^0-9]*/, "").to_i
         end
