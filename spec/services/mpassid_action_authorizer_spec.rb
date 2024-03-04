@@ -108,7 +108,7 @@ describe MpassidActionAuthorizer do
             municipality: "091",
             role: "oppilas",
             school_code: "03085",
-            student_class_level: "8 y"
+            group: "8 y"
           }
         end
 
@@ -152,7 +152,7 @@ describe MpassidActionAuthorizer do
             municipality: "091",
             role: "oppilas",
             school_code: "03085",
-            student_class: "5B"
+            group: "5B"
           }
         end
 
@@ -210,7 +210,7 @@ describe MpassidActionAuthorizer do
             municipality: "091",
             role: "oppilas",
             school_code: "03085",
-            student_class: "11C"
+            group: "11C"
           }
         end
 
@@ -247,6 +247,62 @@ describe MpassidActionAuthorizer do
 
       it "passes the authorization" do
         expect(subject.authorize).to eq([:ok, {}])
+      end
+    end
+  end
+
+  context "when the user is in combined elementary and high school" do
+    # Note that for many high schools pupils, the class level is undefined but
+    # their group information is specified e.g. as "23A", "24D", etc. where the
+    # number refers to the year they started to study in this school.
+    let(:options) do
+      {
+        "minimum_class_level" => 6,
+        "maximum_class_level" => 24
+      }
+    end
+
+    context "when the all rules are valid" do
+      let(:metadata) do
+        {
+          municipality: "091",
+          role: "Oppilas",
+          school_code: "03395",
+          group: "23A"
+        }
+      end
+
+      it "passes the authorization" do
+        expect(subject.authorize).to eq([:ok, {}])
+      end
+    end
+
+    context "when the user is too young" do
+      let(:metadata) do
+        {
+          municipality: "091",
+          role: "oppilas",
+          school_code: "03395",
+          group: "5D"
+        }
+      end
+
+      it "is unauthorized" do
+        expect(subject.authorize).to eq(
+          [
+            :unauthorized,
+            {
+              extra_explanation: {
+                key: "class_level_not_allowed",
+                params: {
+                  max: 24,
+                  min: 6,
+                  scope: "mpassid_action_authorizer.restrictions"
+                }
+              }
+            }
+          ]
+        )
       end
     end
   end
