@@ -129,7 +129,7 @@ describe Helsinki::Stats::Voting::IdentityProvider do
           municipality: "091",
           school_code: "03085", # 00170
           school_name: "Kruununhaan yläasteen koulu",
-          student_class: "7B",
+          group: "7B",
           student_class_level: "7"
         }
       end

@@ -64,7 +64,7 @@ module Helsinki
                 postal_code: postal_code,
                 school_code: rawdata["school_code"],
                 school_name: rawdata["school_name"],
-                school_class: rawdata["student_class"],
+                school_class: rawdata["group"],
                 school_class_level: class_level&.zero? ? nil : class_level
               }
             when "helsinki_documents_authorization_handler"
@@ -92,7 +92,7 @@ module Helsinki
           class_level = rawdata["student_class_level"]
           return class_level.split(",").first.to_i if class_level.present?
 
-          cls = rawdata["student_class"]
+          cls = rawdata["group"]
           return if cls.blank?
 
           cls = cls.split(",").first
