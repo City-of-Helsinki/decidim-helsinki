@@ -46,7 +46,7 @@ module MpassidAuthorizationRule
     private
 
     def school_code_in_the_list?
-      authorization.metadata["school_code"].split(",").map do |school_code|
+      authorization_metadata["school_code"].split(",").map do |school_code|
         return true if Helsinki::SchoolMetadata.exists?(school_code)
       end
       false
@@ -60,17 +60,17 @@ module MpassidAuthorizationRule
     end
 
     def authorized_school_types
-      @authorized_school_types ||= authorization.metadata["school_code"].split(",").map do |school_code|
+      @authorized_school_types ||= authorization_metadata["school_code"].split(",").map do |school_code|
         Helsinki::SchoolMetadata.type_for_school(school_code)
       end.compact
     end
 
     def authorized_class_levels
-      return authorization.metadata["student_class_level"].split(",").map(&:to_i) if authorization.metadata["student_class_level"].present?
-      return [] if authorization.metadata["group"].blank?
+      return authorization_metadata["student_class_level"].split(",").map(&:to_i) if authorization_metadata["student_class_level"].present?
+      return [] if authorization_metadata["group"].blank?
 
       @authorized_class_levels ||= begin
-        student_classes = authorization.metadata["group"].split(",")
+        student_classes = authorization_metadata["group"].split(",")
         student_classes.map do |group|
           group.gsub(/^[^0-9]*/, "").to_i
         end

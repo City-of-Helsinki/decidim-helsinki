@@ -4,9 +4,9 @@ module MpassidAuthorizationRule
   class Role < Base
     def valid?
       return true if allowed_roles.blank?
-      return false if authorization.metadata["role"].blank?
+      return false if authorization_metadata["role"].blank?
 
-      authorized_roles = authorization.metadata["role"].to_s.split(",").compact.collect(&:to_s).map(&:downcase)
+      authorized_roles = authorization_metadata["role"].to_s.split(",").compact.collect(&:to_s).map(&:downcase)
       authorized_roles.any? { |role| allowed_roles.include?(role) }
     end
 

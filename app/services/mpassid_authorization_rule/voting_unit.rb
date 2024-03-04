@@ -22,9 +22,9 @@ module MpassidAuthorizationRule
     end
 
     def authorized_units
-      return [] if authorization.metadata["voting_unit"].blank?
+      return [] if authorization_metadata["voting_unit"].blank?
 
-      @authorized_units ||= authorization.metadata["voting_unit"].to_s.split(",").compact.collect(&:to_s)
+      @authorized_units ||= authorization_metadata["voting_unit"].to_s.split(",").compact.collect(&:to_s)
     end
   end
 end
