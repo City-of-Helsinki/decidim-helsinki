@@ -41,7 +41,7 @@ module Helsinki
             # project) based on the exact same voting situation at the exactly
             # same time for each entity.
             @process_until = Time.current unless last_run?
-            @postal_codes = []
+            @postal_code_votes = {}
 
             # Process the all stats in one locking block (the component stats
             # locking) to ensure only one process at a time processes one
@@ -57,8 +57,8 @@ module Helsinki
                 end
               end
 
-              postal_codes.each do |code|
-                aggregate_postal_code(component, code)
+              postal_code_votes.each do |code, ids|
+                aggregate_postal_code(component, code, ids)
               end
             end
           end
@@ -79,7 +79,7 @@ module Helsinki
 
         private
 
-        attr_reader :process_until, :postal_codes
+        attr_reader :process_until, :postal_code_votes
 
         def last_run?
           @last_run == true
@@ -99,15 +99,25 @@ module Helsinki
             votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
             votes = votes.where("created_at <= ?", process_until) if process_until
             if votes.any?
-              accumulator = Accumulator.new(component, votes, identity_provider)
+              accumulator = Accumulator.new(component, votes, identity_provider, cache_postal_votes: true)
               update_collection(collection, accumulator)
+
+              # Cache the vote IDs for each postal code to improve the
+              # processing performance. Otherwise every time a new postal code
+              # is introduced, the aggregation would take a long time because
+              # all votes would be processed from the beginning to find the
+              # votes for a particular postal code.
+              accumulator.postal_code_votes.each do |code, ids|
+                postal_code_votes[code] ||= []
+                postal_code_votes[code] += ids
+              end
             end
 
             yield
           end
         end
 
-        def aggregate_postal_code(component, code)
+        def aggregate_postal_code(component, code, ids)
           component.stats.process!(
             organization: component.organization,
             metadata: {
@@ -115,19 +125,9 @@ module Helsinki
             },
             key: "votes_postal_#{code || "00000"}"
           ) do |collection|
-            auth_types = %w(helsinki_idp suomifi_eid helsinki_documents_authorization_handler)
-            query = Decidim::Budgets::Vote.includes(:user).where(component: component).order(
-              "decidim_budgets_votes.created_at"
-            )
-            query = query.where("decidim_budgets_votes.created_at > ?", collection.last_value_at) if collection.last_value_at
-            query = query.where("decidim_budgets_votes.created_at <= ?", process_until) if process_until
-            votes = query.select do |vote|
-              # Even we do not use the age here, provide to vote's created at
-              # date in case this call would cause the caching (e.g. due to
-              # refactoring). This ensures the age is calculated correctly.
-              profile = identity_provider.for(vote.user, vote.created_at)
-              auth_types.include?(profile[:identity]) && profile[:postal_code] == code
-            end
+            votes = Decidim::Budgets::Vote.where(component: component, id: ids).order(:created_at)
+            votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
+            votes = votes.where("created_at <= ?", process_until) if process_until
             if votes.any?
               accumulator = Accumulator.new(component, votes, identity_provider)
               update_collection(collection, accumulator)
@@ -182,7 +182,6 @@ module Helsinki
           accumulation[:postal].each do |code, amount|
             m_postal = set_postal.measurements.find_or_create_by!(label: code)
             m_postal.update!(value: m_postal.value + amount)
-            postal_codes << code unless postal_codes.include?(code)
           end
 
           set_schools = collection.sets.find_or_create_by!(key: "school")

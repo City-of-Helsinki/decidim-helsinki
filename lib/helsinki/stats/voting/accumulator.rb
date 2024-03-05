@@ -4,9 +4,9 @@ module Helsinki
   module Stats
     module Voting
       class Accumulator
-        attr_reader :last_value_at
+        attr_reader :last_value_at, :postal_code_votes
 
-        def initialize(component, votes, identity_provider)
+        def initialize(component, votes, identity_provider, cache_postal_votes: false)
           @component = component
           @votes = votes
           @identity_provider = identity_provider
@@ -18,6 +18,8 @@ module Helsinki
             locale: {},
             datetime: {}
           }
+          @postal_code_votes = {}
+          @cache_postal_votes = cache_postal_votes
         end
 
         def accumulate
@@ -27,7 +29,9 @@ module Helsinki
             if meta
               case meta[:identity]
               when "helsinki_idp", "suomifi_eid", "helsinki_documents_authorization_handler"
-                accumulate_citizen(meta)
+                postal_code = meta[:postal_code].presence || "00000"
+                accumulate_citizen(meta, postal_code)
+                cache_vote(vote, postal_code)
               when "mpassid_nids"
                 accumilate_pupil(meta)
               end
@@ -45,7 +49,7 @@ module Helsinki
 
         private
 
-        attr_reader :component, :votes, :accumulation, :identity_provider
+        attr_reader :component, :votes, :accumulation, :identity_provider, :cache_postal_votes
         attr_writer :last_value_at
 
         def vote_time_for(vote)
@@ -54,6 +58,13 @@ module Helsinki
             vote.checked_out_at
           else # Decidim::Budgets::Vote
             vote.created_at
+          end
+        end
+
+        def cache_vote(vote, postal_code)
+          if cache_postal_votes
+            postal_code_votes[postal_code] ||= []
+            postal_code_votes[postal_code] << vote.id
           end
         end
 
@@ -74,9 +85,7 @@ module Helsinki
           accumulation[:total] += 1
         end
 
-        def accumulate_citizen(meta)
-          postal_code = meta[:postal_code].presence || "00000"
-
+        def accumulate_citizen(meta, postal_code)
           accumulation[:postal][postal_code] ||= 0
           accumulation[:postal][postal_code] += 1
 
