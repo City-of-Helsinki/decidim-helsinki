@@ -251,24 +251,49 @@ describe MpassidActionAuthorizer do
     end
   end
 
+  # Note that for most high schools pupils in the combined schools, the class
+  # level is defined in a rather random manner, as described in the
+  # authorization rule class. Some examples include "23A", "24D", "L23a",
+  # "L22Tahk", "1B", "2C", "IA", "IIB", "1m", "2b", "HS21b", "HS22a", "11 A",
+  # "12 B", "11A", "12B", etc.
+  #
+  # Some high school pupils have the class level defined as e.g. "1", "2", "3",
+  # etc. and some have it as "11", "12", "13", etc. Some schools do not define
+  # the class level for high school pupils but it is rather random how this
+  # works.
+  #
+  # Voting should be possible for all combined school type's pupils due to this
+  # randomness and the inability to change the marking standards in these
+  # schools.
   context "when the user is in combined elementary and high school" do
-    # Note that for many high schools pupils, the class level is undefined but
-    # their group information is specified e.g. as "23A", "24D", etc. where the
-    # number refers to the year they started to study in this school.
-    let(:options) do
-      {
-        "minimum_class_level" => 6,
-        "maximum_class_level" => 24
-      }
+    [
+      "23A", "24D", "L23a", "L22Tahk", "1B", "2C", "IA", "IIB", "1m", "2b",
+      "HS21b", "HS22a", "11 A", "12 B", "11A", "12B"
+    ].each do |group|
+      context "when the group is '#{group}'" do
+        let(:metadata) do
+          {
+            municipality: "091",
+            role: "Oppilas",
+            school_code: "03395",
+            group: group
+          }
+        end
+
+        it "passes the authorization" do
+          expect(subject.authorize).to eq([:ok, {}])
+        end
+      end
     end
 
-    context "when the all rules are valid" do
+    context "when the user's class level is nil" do
       let(:metadata) do
         {
           municipality: "091",
-          role: "Oppilas",
+          role: "oppilas",
           school_code: "03395",
-          group: "23A"
+          group: "IIIB",
+          student_class_level: nil
         }
       end
 
@@ -277,32 +302,31 @@ describe MpassidActionAuthorizer do
       end
     end
 
-    context "when the user is too young" do
+    context "when the user's class level is defined" do
       let(:metadata) do
         {
           municipality: "091",
           role: "oppilas",
           school_code: "03395",
-          group: "5D"
+          group: "HS22a",
+          student_class_level: level
         }
       end
 
-      it "is unauthorized" do
-        expect(subject.authorize).to eq(
-          [
-            :unauthorized,
-            {
-              extra_explanation: {
-                key: "class_level_not_allowed",
-                params: {
-                  max: 24,
-                  min: 6,
-                  scope: "mpassid_action_authorizer.restrictions"
-                }
-              }
-            }
-          ]
-        )
+      context "with value '1'" do
+        let(:level) { "1" }
+
+        it "passes the authorization" do
+          expect(subject.authorize).to eq([:ok, {}])
+        end
+      end
+
+      context "with value '12'" do
+        let(:level) { "12" }
+
+        it "passes the authorization" do
+          expect(subject.authorize).to eq([:ok, {}])
+        end
       end
     end
   end
