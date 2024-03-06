@@ -44,14 +44,19 @@ module Helsinki
       "00026" => { name: "Brändö gymnasium", type: 15, postal_code: "00570", voting_unit: nil },
       "00081" => { name: "Helsingin luonnontiedelukio", type: 15, postal_code: "00610", voting_unit: nil },
       "00082" => { name: "Ressun lukio", type: 15, postal_code: "00270", voting_unit: nil },
+      # 00083: primary school (classes 1-6), middle school (classes 7-9), high school
       "00083" => { name: "Helsingin normaalilyseo", type: 19, postal_code: "00120", voting_unit: 6 },
+      # 00084: preschool, primary school (classes 1-6), middle school (classes 7-9), high school
       "00084" => { name: "Helsingin ranskalais-suomalainen koulu", type: 19, postal_code: "00350", voting_unit: 9 },
+      # 00085: preschool, primary school (classes 1-6), middle school (classes 7-9), high school
       "00085" => { name: "Helsingin saksalainen koulu", type: 19, postal_code: "00100", voting_unit: 6 },
+      # 00087: preschool, primary school (classes 1-6), middle school (classes 7-9), high school
       "00087" => { name: "Suomalais-venäläinen koulu", type: 19, postal_code: "00420", voting_unit: 8 },
       "00088" => { name: "Helsingin kuvataidelukio", type: 15, postal_code: "00500", voting_unit: nil },
       "00089" => { name: "Sibelius-lukio", type: 15, postal_code: "00170", voting_unit: nil },
       "00255" => { name: "Kallion lukio", type: 15, postal_code: "00530", voting_unit: nil },
       "00316" => { name: "Eiran aikuislukio", type: 15, postal_code: "00150", voting_unit: nil },
+      # 00394: preschool, primary school (classes 1-6), middle school (classes 7-9), high school
       "00394" => { name: "Englantilainen koulu", type: 19, postal_code: "00270", voting_unit: 7 },
       "00518" => { name: "Mäkelänrinteen lukio", type: 15, postal_code: "00550", voting_unit: nil },
       "00539" => { name: "Töölön yhteiskoulun aikuislukio", type: 15, postal_code: "00250", voting_unit: nil },
@@ -60,7 +65,9 @@ module Helsinki
       "00607" => { name: "Tölö gymnasium", type: 15, postal_code: "00260", voting_unit: nil },
       "00648" => { name: "Helsingin medialukio", type: 15, postal_code: "00730", voting_unit: nil },
       "00670" => { name: "Helsingin kielilukio", type: 15, postal_code: "00900", voting_unit: nil },
+      # 00729: preschool, primary school (classes 1-6), middle school (classes 7-9), high school
       "00729" => { name: "Helsingin Rudolf Steiner -koulu", type: 19, postal_code: "00280", voting_unit: 9 },
+      # 00842: primary school (classes 1-6), middle school (classes 7-9), high school
       "00842" => { name: "HY Viikin normaalikoulu", type: 19, postal_code: "00790", voting_unit: 15 },
       "00845" => { name: "Etu-Töölön lukio", type: 15, postal_code: "00100", voting_unit: nil },
       "00915" => { name: "Vuosaaren lukio", type: 15, postal_code: "00980", voting_unit: nil },
@@ -145,23 +152,36 @@ module Helsinki
       "03295" => { name: "Maatullin ala-asteen koulu", type: 11, postal_code: "00750", voting_unit: 14 },
       "03311" => { name: "Suutarilan ala-asteen koulu", type: 11, postal_code: "00740", voting_unit: 14 },
       "03340" => { name: "Zacharias Topeliusskolan", type: 11, postal_code: "00250", voting_unit: 10 },
+      # 03391: middle school (classes 7-9), high school
       "03391" => { name: "Apollon yhteiskoulu", type: 19, postal_code: "00410", voting_unit: 8 },
+      # 03393: primary school (classes 1-6), middle school (classes 7-9), high school
       "03393" => { name: "Helsingin Suomalainen Yhteiskoulu", type: 19, postal_code: "00320", voting_unit: 7 },
+      # 03394: middle school (classes 7-9), high school
       "03394" => { name: "Helsingin Uusi yhteiskoulu", type: 19, postal_code: "00710", voting_unit: 15 },
+      # 03395: middle school (classes 7-9), high school
       "03395" => { name: "Helsingin yhteislyseo", type: 19, postal_code: "00940", voting_unit: 3 },
+      # 03396: middle school (classes 7-9), high school
       "03396" => { name: "Herttoniemen yhteiskoulu", type: 19, postal_code: "00800", voting_unit: 1 },
+      # 03398: middle school (classes 7-9), high school
       "03398" => { name: "Kulosaaren yhteiskoulu", type: 19, postal_code: "00570", voting_unit: 1 },
+      # 03400: middle school (classes 7-9), high school
       "03400" => { name: "Lauttasaaren yhteiskoulu", type: 19, postal_code: "00200", voting_unit: 6 },
+      # 03401: middle school (classes 7-9), high school
       "03401" => { name: "Maunulan yhteiskoulu - Helsingin matematiikkalukio", type: 19, postal_code: "00630", voting_unit: 13 },
+      # 03402: middle school (classes 7-9), high school
       "03402" => { name: "Munkkiniemen yhteiskoulu", type: 19, postal_code: "00330", voting_unit: 9 },
+      # 03404: middle school (classes 7-9), high school
       "03404" => { name: "Oulunkylän yhteiskoulu", type: 19, postal_code: "00640", voting_unit: 13 },
+      # 03405: middle school (classes 7-9), high school
       "03405" => { name: "Pohjois-Haagan yhteiskoulu", type: 19, postal_code: "00400", voting_unit: 7 },
+      # 03408: middle school (classes 7-9), high school
       "03408" => { name: "Töölön yhteiskoulu", type: 19, postal_code: "00250", voting_unit: 9 },
       "03410" => { name: "Marjatta-koulu", type: 12, postal_code: "00400", voting_unit: 7 },
       "03417" => { name: "Solakallion koulu", type: 12, postal_code: "00680", voting_unit: 13 },
       "03419" => { name: "Paloheinän ala-asteen koulu", type: 11, postal_code: "00670", voting_unit: 13 },
       "03479" => { name: "Siltamäen ala-asteen koulu", type: 11, postal_code: "00740", voting_unit: 14 },
       "03480" => { name: "Koskelan ala-asteen koulu", type: 11, postal_code: "00600", voting_unit: 11 },
+      # 03510: preschool, primary school (classes 1-6), middle school (classes 7-9), high school
       "03510" => { name: "International School of Helsinki", type: 19, postal_code: "00180", voting_unit: 6 },
       "03533" => { name: "Pihkapuiston ala-asteen koulu", type: 11, postal_code: "00410", voting_unit: 8 },
       "03540" => { name: "Elias-koulu", type: 11, postal_code: "00150", voting_unit: 6 },
@@ -182,6 +202,7 @@ module Helsinki
       "03743" => { name: "Arabian peruskoulu", type: 11, postal_code: "00560", voting_unit: 11 },
       "03763" => { name: "Sakarinmäen peruskoulu", type: 11, postal_code: "00890", voting_unit: 3 },
       "03769" => { name: "Latokartanon peruskoulu", type: 11, postal_code: "00790", voting_unit: 15 },
+      # 03782: preschool, primary school (classes 1-6), middle school (classes 7-9), high school
       "03782" => { name: "Helsingin eurooppalainen koulu", type: 19, postal_code: "00120", voting_unit: 6 },
       "03845" => { name: "Kalasataman peruskolu", type: 11, postal_code: "00540", voting_unit: 6 },
       "03852" => { name: "Jätkäsaaren peruskoulu", type: 11, postal_code: "00220", voting_unit: 6 },
