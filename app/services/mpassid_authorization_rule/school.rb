@@ -2,7 +2,7 @@
 
 module MpassidAuthorizationRule
   class School < Base
-    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     def valid?
       return false unless school_code_in_the_list?
       return true if authorized_user_in_combined_school?
@@ -15,7 +15,7 @@ module MpassidAuthorizationRule
           (max_class_level.blank? || level <= max_class_level)
       end
     end
-    # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
     def error_key
       return "disallowed_school" unless school_code_in_the_list?
