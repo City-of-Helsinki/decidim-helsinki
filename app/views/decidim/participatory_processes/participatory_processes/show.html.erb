@@ -1,5 +1,5 @@
 <% add_decidim_meta_tags({
-  #image_url: current_participatory_space.attached_uploader(:hero_image).path,
+  #image_url: current_participatory_space.attached_uploader(:hero_image).url,
   image_url: image_url(meta_image_default),
   description: translated_attribute(current_participatory_space.short_description),
   url: participatory_process_url(current_participatory_space),
@@ -25,7 +25,7 @@ edit_link(
       <div class="resource__main static__content margin-bottom-0">
         <h1><%= translated_attribute current_participatory_space.title %></h1>
 
-        <% if (image_path = current_participatory_space.attached_uploader(:hero_image).path).present?%>
+        <% if (image_path = current_participatory_space.attached_uploader(:hero_image).url).present?%>
           <%= image_tag image_path, class:"resource__image", alt: strip_tags(translated_attribute(current_participatory_space.title)) %>
         <% end %>
       </div>

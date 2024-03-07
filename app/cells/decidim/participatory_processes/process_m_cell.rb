@@ -40,7 +40,7 @@ module Decidim
       def resource_image_path
         return unless has_image?
 
-        model.attached_uploader(:hero_image).path
+        model.attached_uploader(:hero_image).url
       end
 
       def step_title

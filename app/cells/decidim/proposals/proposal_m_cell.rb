@@ -123,7 +123,7 @@ module Decidim
       end
 
       def resource_image_path
-        resource_image_attachment.attached_uploader(:file).path(variant: :big) if has_image?
+        resource_image_attachment.attached_uploader(:file).variant_url(:big) if has_image?
       end
 
       def resource_image_attachment

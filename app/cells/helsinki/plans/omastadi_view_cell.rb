@@ -40,7 +40,7 @@ module Helsinki
 
       def main_image_path
         if plan_image && plan_image.photo? && plan_image.file && plan_image.file.attached?
-          plan_image.attached_uploader(:file).path
+          plan_image.attached_uploader(:file).url
         elsif category && (cat_img = category_image_path(category))
           cat_img
         else
@@ -52,7 +52,7 @@ module Helsinki
         return unless has_category?
 
         path = nil
-        path = cat.attached_uploader(:category_image).path if cat.respond_to?(:category_image) || !cat.category_image
+        path = cat.attached_uploader(:category_image).url if cat.respond_to?(:category_image) || !cat.category_image
         return path if path
         return unless cat.parent_id
 

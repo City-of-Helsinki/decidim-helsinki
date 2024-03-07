@@ -13,7 +13,7 @@ module Decidim
 
       uploader = current_organization.attached_uploader(:favicon)
       safe_join(Decidim::OrganizationFaviconUploader::SIZES.map do |version, size|
-        favicon_link_tag(uploader.path(variant: version), sizes: "#{size}x#{size}")
+        favicon_link_tag(uploader.variant_url(version), sizes: "#{size}x#{size}")
       end)
     end
 

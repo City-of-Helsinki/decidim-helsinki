@@ -51,8 +51,8 @@ module Helsinki
       end
 
       def resource_image_path_for(post)
-        return post.attached_uploader(:card_image).path(variant: :highlight) if post.card_image && post.card_image.attached?
-        return post.attached_uploader(:main_image).path(variant: :highlight) if post.main_image && post.main_image.attached?
+        return post.attached_uploader(:card_image).variant_url(:highlight) if post.card_image && post.card_image.attached?
+        return post.attached_uploader(:main_image).variant_url(:highlight) if post.main_image && post.main_image.attached?
 
         asset_pack_path("media/images/blogs-post-highlight-default.jpg")
       end

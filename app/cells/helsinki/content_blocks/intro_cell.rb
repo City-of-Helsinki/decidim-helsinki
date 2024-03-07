@@ -52,7 +52,7 @@ module Helsinki
       end
 
       def main_image
-        model.images_container.attached_uploader(:main_image).path(variant: :default)
+        model.images_container.attached_uploader(:main_image).variant_url(:default)
       end
 
       def main_image_alt

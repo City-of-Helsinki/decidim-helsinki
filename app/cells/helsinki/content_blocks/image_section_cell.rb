@@ -28,7 +28,7 @@ module Helsinki
       def image
         return unless has_image?
 
-        model.images_container.attached_uploader(:image).path(variant: :big)
+        model.images_container.attached_uploader(:image).variant_url(:big)
       end
 
       def link_url

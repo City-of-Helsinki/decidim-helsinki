@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="card__aside">
-      <% if (image_src = promoted_process.attached_uploader(:hero_image).path).present? %>
+      <% if (image_src = promoted_process.attached_uploader(:hero_image).url).present? %>
         <img class="card__image" src="<%= image_src %>" alt="<%= strip_tags(translated_attribute(promoted_process.title)) %>">
       <% end %>
     </div>
