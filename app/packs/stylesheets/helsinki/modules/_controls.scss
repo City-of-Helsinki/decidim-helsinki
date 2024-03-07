@@ -7,7 +7,7 @@
   flex-direction: column;
   gap: 1rem;
 
-  @include breakpoint(medium){
+  @include breakpoint(smallmedium){
     flex-direction: row;
     justify-content: flex-end;
   }

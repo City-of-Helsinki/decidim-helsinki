@@ -34,7 +34,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-accountability_simple.git
-  revision: 31ab405253ff4df563480c8a0ff20540fcf14772
+  revision: 2ce11c2a0bb5d474ac7a251ebcdd4fe17f85f255
   branch: develop
   specs:
     decidim-accountability_simple (0.27.0)
@@ -76,7 +76,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: 8859a639760133fe4d90923352d95afb3bdb340a
+  revision: e097d7a4cc4a15dfc0b9907ac53afcb77eb4f671
   branch: develop
   specs:
     decidim-budgeting_pipeline (0.27.0)
@@ -122,7 +122,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: 67151611a072aff32adb3a98f13600ab2930f4b0
+  revision: fc389693f04695ca1e2e2de4f566bdc41320443a
   branch: develop
   specs:
     decidim-ideas (0.27.0)
@@ -168,7 +168,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 5cfe0e363bd1c217f5bcadaea84fa916c3983f37
+  revision: 73cdde115b76a1447b7f159e76e31264ce2727b6
   branch: develop
   specs:
     decidim-plans (0.27.0)
