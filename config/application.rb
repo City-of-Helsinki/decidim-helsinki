@@ -563,6 +563,9 @@ module DecidimHelsinki
 
         # Authorizer extensions
         ::Decidim::ActionAuthorizer::AuthorizationStatusCollection.include(AuthorizationStatusCollectionExtensions)
+
+        # Lib extensions
+        Decidim::AssetRouter::Storage.include(AssetForceStorageUrl)
       end
     end
   end
