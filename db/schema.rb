@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_28_133722) do
+ActiveRecord::Schema.define(version: 2024_03_11_192732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2024_02_28_133722) do
     t.jsonb "interaction_description"
     t.jsonb "news_description"
     t.datetime "published_at"
+    t.integer "favorites_count", default: 0, null: false
     t.index ["coauthorships_count"], name: "idx_decidim_accountability_results_on_result_coauth_count"
     t.index ["decidim_accountability_status_id"], name: "decidim_accountability_results_on_status_id"
     t.index ["decidim_component_id"], name: "index_decidim_accountability_results_on_decidim_component_id"
@@ -427,6 +428,7 @@ ActiveRecord::Schema.define(version: 2024_02_28_133722) do
     t.integer "paper_orders_count", default: 0, null: false
     t.integer "follows_count", default: 0, null: false
     t.integer "budget_amount_min"
+    t.integer "favorites_count", default: 0, null: false
     t.index ["decidim_budgets_budget_id"], name: "index_decidim_budgets_projects_on_decidim_budgets_budget_id"
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_projects_on_decidim_scope_id"
   end
@@ -875,6 +877,7 @@ ActiveRecord::Schema.define(version: 2024_02_28_133722) do
     t.datetime "updated_at", null: false
     t.integer "comments_count", default: 0, null: false
     t.integer "follows_count", default: 0, null: false
+    t.integer "favorites_count", default: 0, null: false
     t.index ["answered_at"], name: "index_decidim_ideas_ideas_on_answered_at"
     t.index ["area_scope_id"], name: "index_decidim_ideas_ideas_on_area_scope_id"
     t.index ["coauthorships_count"], name: "index_decidim_ideas_ideas_on_coauthorships_count"
@@ -1040,6 +1043,7 @@ ActiveRecord::Schema.define(version: 2024_02_28_133722) do
     t.integer "comments_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "favorites_count", default: 0, null: false
     t.index ["comments_count"], name: "index_decidim_insights_area_plans_on_comments_count"
     t.index ["decidim_insights_area_id"], name: "index_decidim_insights_area_plans_on_decidim_insights_area_id"
     t.index ["decidim_scope_id"], name: "index_decidim_insights_area_plans_on_decidim_scope_id"
@@ -1597,6 +1601,7 @@ ActiveRecord::Schema.define(version: 2024_02_28_133722) do
     t.datetime "closed_at"
     t.integer "comments_count", default: 0, null: false
     t.integer "follows_count", default: 0, null: false
+    t.integer "favorites_count", default: 0, null: false
     t.index ["answered_at"], name: "index_decidim_plans_plans_on_answered_at"
     t.index ["closed_at"], name: "index_decidim_plans_plans_on_closed_at"
     t.index ["decidim_category_id"], name: "index_decidim_plans_plans_on_decidim_category_id"

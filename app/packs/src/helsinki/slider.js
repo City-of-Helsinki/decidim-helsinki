@@ -153,7 +153,7 @@ class Slider {
 
     // Fix some markup
     this.splide.root.querySelectorAll(".splide__slide--clone").forEach((clone) => {
-      const fc = clone.querySelector("[id^='favoriting_count_']");
+      const fc = clone.querySelector("[id^='favorites_count_']");
       if (fc) {
         fc.removeAttribute("id");
       }
