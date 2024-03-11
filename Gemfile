@@ -13,7 +13,7 @@ gem "decidim-initiatives", DECIDIM_VERSION
 
 # External Decidim modules
 gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "main"
-gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "main"
+gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "release/0.27-nubu"
 gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "main"
 gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "main"
 gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "main"
