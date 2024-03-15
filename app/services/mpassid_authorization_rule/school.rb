@@ -72,7 +72,8 @@ module MpassidAuthorizationRule
     # information.
     #
     # Examples from some of the schools for high school pupils
-    # (non-deterministic, can change):
+    # (non-deterministic, can change, missing information for schools 00085,
+    # 03510 and 03782):
     #
     # 00084, 00840:
     #   group:
@@ -80,6 +81,15 @@ module MpassidAuthorizationRule
     #     followed by a letter in upper case, e.g.
     #     11A = high school 1st year at group "A"
     #     13B = high school 3rd year at group "B"
+    #   student_class_level:
+    #     Set for high school students ("1", "2", "3", etc.)
+    #
+    # 00087:
+    #   group:
+    #     Continues group marking for high school with numbers succeeding
+    #     starting from 10 (= high scool 1st year), no group marking, e.g.
+    #     10 = high school 1st year
+    #     12 = high school 2nd year
     #   student_class_level:
     #     Set for high school students ("1", "2", "3", etc.)
     #
@@ -132,7 +142,7 @@ module MpassidAuthorizationRule
     #   student_class_level:
     #     Set for high school students ("1", "2", "3", etc.)
     #
-    # 03401:
+    # 03400, 03401:
     #   group:
     #     High school class level + letter in lower case, e.g.
     #     1m = high school 1st year at group "m"
