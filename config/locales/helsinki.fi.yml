@@ -101,6 +101,10 @@ fi:
         button_text: Napin teksti
         button_url: Napin URL
         title: Otsikko
+        type: Tyyppi
+        type_choices:
+          info: Tiedotusasia
+          success: Onnistuminen
       plans_carousel:
         name: Ehdotuskaruselli (yhteiskehittäminen)
       process_steps:

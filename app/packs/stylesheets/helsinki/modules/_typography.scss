@@ -20,6 +20,10 @@
   }
 }
 
+.bg-highlight{
+  background-color: $hel-engel-medium-light;
+}
+
 // The extra styles that are not automatically added by Foundation
 @mixin header-extra-styling{
   @each $breakpoint, $header in $header-styles{

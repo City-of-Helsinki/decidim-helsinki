@@ -101,6 +101,10 @@ en:
         button_text: Button text
         button_url: Button URL
         title: Title
+        type: Type
+        type_choices:
+          info: Informational
+          success: Success
       plans_carousel:
         name: Proposals carousel (cocreation)
       process_steps:

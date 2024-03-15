@@ -94,6 +94,10 @@ sv:
         button_text: Knapp text
         button_url: Knapp URL
         title: Titel
+        type: Typ
+        type_choices:
+          info: Informativ
+          success: Framgång
       linked_events:
         name: Linked Events - Uppkommande händelser
       linked_events_settings_form:

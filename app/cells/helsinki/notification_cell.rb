@@ -13,6 +13,18 @@ module Helsinki
 
     private
 
+    def background_class
+      current_type[:background_class]
+    end
+
+    def icon_type
+      current_type[:icon]
+    end
+
+    def type
+      model[:type]&.to_sym || :info
+    end
+
     def title
       model[:title]
     end
@@ -31,6 +43,17 @@ module Helsinki
 
     def button_text
       button_data[:text]
+    end
+
+    def current_type
+      possible_types[type] || possible_types[:info]
+    end
+
+    def possible_types
+      @possible_types ||= {
+        info: { background_class: "bg-secondary", icon: "info-line" },
+        success: { background_class: "bg-highlight", icon: "circle-check" }
+      }
     end
   end
 end

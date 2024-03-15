@@ -229,6 +229,7 @@ module DecidimHelsinki
         content_block.public_name_key = "helsinki.content_blocks.notification.name"
 
         content_block.settings do |settings|
+          settings.attribute :type, type: :enum, default: "info", choices: %w(info success)
           settings.attribute :title, type: :text, translated: true
           settings.attribute :description, type: :text, translated: true
           settings.attribute :button_url, type: :text

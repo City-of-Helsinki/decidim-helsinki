@@ -3,9 +3,11 @@
 module Helsinki
   module ContentBlocks
     class NotificationCell < Decidim::ViewModel
-      # include Decidim::LayoutHelper
-
       private
+
+      def type
+        model.settings.type
+      end
 
       def title
         translated_attribute(model.settings.title)
