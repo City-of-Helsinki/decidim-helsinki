@@ -73,6 +73,8 @@ fi:
             one: ääni
             other: ääntä
           you_voted: Äänestit tätä
+        project_status:
+          selected: Ehdotus etenee toteutukseen, eli siitä tulee OmaStadi-hanke!
     components:
       budgets:
         settings:

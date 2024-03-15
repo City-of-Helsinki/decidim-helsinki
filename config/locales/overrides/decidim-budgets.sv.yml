@@ -73,6 +73,8 @@ sv:
             one: röst
             other: röster
           you_voted: Du röstade detta
+        project_status:
+          selected: Detta förslag fortsätter till implementering och det kommer att bli ett VårStad-projekt!
     components:
       budgets:
         settings:

@@ -73,6 +73,8 @@ en:
             one: vote
             other: votes
           you_voted: You voted this
+        project_status:
+          selected: This proposal proceeds to implementation and it will become an OmaStadi project!
     components:
       budgets:
         settings:
