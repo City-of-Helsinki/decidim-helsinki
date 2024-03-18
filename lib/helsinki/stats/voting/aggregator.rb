@@ -118,12 +118,13 @@ module Helsinki
         end
 
         def aggregate_postal_code(component, code, ids)
+          postal_code = code.presence || "00000"
           component.stats.process!(
             organization: component.organization,
             metadata: {
-              postal_code: code
+              postal_code: postal_code
             },
-            key: "votes_postal_#{code || "00000"}"
+            key: "votes_postal_#{postal_code}"
           ) do |collection|
             votes = Decidim::Budgets::Vote.where(component: component, id: ids).order(:created_at)
             votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
@@ -169,7 +170,6 @@ module Helsinki
           end
         end
 
-        # rubocop:disable Metrics/CyclomaticComplexity
         def update_collection(collection, accumulator)
           accumulation = accumulator.accumulate
 
@@ -227,7 +227,6 @@ module Helsinki
           # Mark finalized when the voting has ended
           collection.finalize! if last_run?
         end
-        # rubocop:enable Metrics/CyclomaticComplexity
       end
     end
   end
