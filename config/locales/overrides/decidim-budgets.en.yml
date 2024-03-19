@@ -74,7 +74,7 @@ en:
             other: votes
           you_voted: You voted this
         project_status:
-          selected: This proposal proceeds to implementation and it will become an OmaStadi project!
+          selected: This proposal will be implemented, i.e., it will be an OmaStadi project!
     components:
       budgets:
         settings:

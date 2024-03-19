@@ -74,7 +74,7 @@ sv:
             other: röster
           you_voted: Du röstade detta
         project_status:
-          selected: Detta förslag fortsätter till implementering och det kommer att bli ett VårStad-projekt!
+          selected: Förslaget kommer att genomföras, det vill säga det blir ett VårStad-projekt!
     components:
       budgets:
         settings:
