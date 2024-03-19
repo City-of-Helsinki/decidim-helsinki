@@ -189,7 +189,7 @@ namespace :hkiresult do
           school_code: metadata[:school_code],
           school_name: metadata[:school_name],
           school_ruuti_unit: metadata[:school_ruuti_unit],
-          school_class: metadata[:group],
+          school_class: metadata[:school_class],
           school_class_level: metadata[:school_class_level],
           created_at: order.created_at,
           checked_out_at: order.checked_out_at
@@ -242,6 +242,7 @@ namespace :hkiresult do
   def user_metadata(user, at_date = Time.zone.now)
     auth_names = %w(
       helsinki_idp
+      suomifi_eid
       mpassid_nids
       helsinki_documents_authorization_handler
     )
@@ -298,6 +299,20 @@ namespace :hkiresult do
         school_class: nil,
         school_class_level: nil
       }
+    when "suomifi_eid"
+      {
+        identity: "suomifi",
+        date_of_birth: rawdata["date_of_birth"],
+        age: calculate_age(rawdata["date_of_birth"], at_date),
+        gender: rawdata["gender"],
+        postal_code: rawdata["postal_code"],
+        school_code: nil,
+        school_name: nil,
+        school_ruuti_unit: nil,
+        school_role: nil,
+        school_class: nil,
+        school_class_level: nil
+      }
     when "mpassid_nids"
       levels = parse_class_levels(rawdata)
 
@@ -310,7 +325,7 @@ namespace :hkiresult do
         school_code: rawdata["school_code"],
         school_name: rawdata["school_name"],
         school_ruuti_unit: rawdata["voting_unit"],
-        school_role: rawdata["school_role"],
+        school_role: rawdata["role"],
         school_class: rawdata["group"],
         school_class_level: levels.join(",")
       }
