@@ -132,9 +132,9 @@ sv:
       index:
         all_events: Evenemang
         description_html: |
-          <p>På olika ställen i staden ordnas det 28.2.-17.3.2024 evenemang där stadens anställda hjälper dig att rösta. Ta med dig nätbankkoder eller ett giltigt ID-kort för identifiering.</p>
+          <p>Staden ordnar våren 2024 tre evenemang där stadsinvånare och stadens anställda planerar tillsammans de VårStad-projekt som staden genomför i olika områden.</p>
         subtitle: Kommande evenemang
-        title: Evenemang och stöd
+        title: Evenemang
     linked_event_card:
       pricing:
         free: Fri

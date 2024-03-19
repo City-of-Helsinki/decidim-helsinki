@@ -132,9 +132,9 @@ fi:
       index:
         all_events: Tapahtumia
         description_html: |
-          <p>Eri puolilla kaupunkia järjestetään 28.2.-17.3.2024 välisenä aikana tapahtumia, joissa kaupungin työntekijät antavat digitukea äänestämiseen. Ota mukaasi verkkopankkitunnukset tai voimassa oleva henkilöllisyystodistus tunnistamista varten.</p>
+          <p>Kaupungissa järjestetään keväällä 2024 kolme tapahtumaa, joissa kaupunkilaiset ja kaupungin työntekijät suunnittelevat eri alueilla toteutettavia OmaStadi-hankkeita yhdessä.</p>
         subtitle: Tulevia tapahtumia
-        title: Tapahtumat ja tuki
+        title: Tapahtumat
     linked_event_card:
       pricing:
         free: Maksuton

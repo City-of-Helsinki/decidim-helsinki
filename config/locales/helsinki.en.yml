@@ -132,9 +132,9 @@ en:
       index:
         all_events: Events
         description_html: |
-          <p>There will be a number of events in various parts of the city from 28 February until 17 March 2024 where the city’s employees help residents vote. Please bring with you banking credentials or a valid Id for verification.</p>
+          <p>In the spring 2024, the city will organise three events in which the city’s residents and employees can plan the various OmaStadi projects that will be implemented in different areas.</p>
         subtitle: Upcoming events
-        title: Events and support
+        title: Events
     linked_event_card:
       pricing:
         free: Free of charge
