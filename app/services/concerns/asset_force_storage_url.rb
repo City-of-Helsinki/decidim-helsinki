@@ -23,14 +23,24 @@ module AssetForceStorageUrl
       else
         case asset
         when ActiveStorage::Attached, ActiveStorage::Blob
-          asset.url(**options).presence || original_url(**options)
-        else # ActiveStorage::Variant, ActiveStorage::VariantWithRecord
+          return asset.url(**options).presence || original_url(**options)
+        when ActiveStorage::VariantWithRecord
+          # This is used when `ActiveStorage.track_variants` is enabled through
+          # `config.active_storage.track_variants`.
+          url = asset.url(**options) if asset.processed?
+          return url if url.present?
+        else # ActiveStorage::Variant
           # When the asset is a variant, the `#url` method can return nil in
           # case the variant has not yet been generated. Therefore, fall back
           # to the local representation URL which should generate the variant
           # that can be served next time directly through the `#url` method.
-          asset.url(**options).presence || routes.rails_representation_url(asset, **default_options.merge(options))
+          url = asset.url(**options) if asset.service.exist?(asset.key)
+          return url if url.present?
         end
+
+        # Fall back to the default functionality and pass the asset through the
+        # server's representation URL which processes it the first time.
+        routes.rails_representation_url(asset, **default_options.merge(options))
       end
     end
   end
