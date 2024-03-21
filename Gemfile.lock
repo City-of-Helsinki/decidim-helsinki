@@ -34,12 +34,13 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-accountability_simple.git
-  revision: 4dd00560296ce29ea7579a2e1f913707dad12820
+  revision: 05446530a5a0be235b6d9703eb51ffb357b9d177
   branch: develop
   specs:
     decidim-accountability_simple (0.27.0)
       decidim-accountability (~> 0.27.0)
       decidim-admin (~> 0.27.0)
+      decidim-apifiles (~> 0.27.0)
       decidim-core (~> 0.27.0)
       decidim-favorites (~> 0.27.0)
       decidim-locations (~> 0.27.0)
@@ -68,7 +69,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-apifiles.git
-  revision: 57efc84dcc93420e35f6c43eecd0c48b4c38e20c
+  revision: 832a1ad471910050ff9e4c4ebb6d06c55ace3bf8
   branch: main
   specs:
     decidim-apifiles (0.27.0)
