@@ -1,5 +1,6 @@
 <%
 summary = translated_attribute(result.summary)
+news_title = translated_attribute(result.news_title)
 news = translated_attribute(result.news_description)
 %>
 
@@ -13,25 +14,23 @@ news = translated_attribute(result.news_description)
   <p><%== summary %></p>
 <% end %>
 
+<%== translated_attribute result.description %>
+
 <% if news.present? %>
-<div class="banner bg-secondary margin-top-1 margin-bottom-1">
+<div class="banner bg-silver-medium-light margin-top-2 margin-bottom-2">
   <div class="banner__content">
-    <h2><%= t(".news") %></h2>
+    <h2><%= news_title.presence || t(".news") %></h2>
     <%== news %>
   </div>
 </div>
 <% end %>
-
-<h2 class="show-for-sr"><%= t(".description") %></h2>
-
-<%== translated_attribute result.description %>
 
 <div class="row">
   <%= render partial: "timeline", locals: { result: result } if result.timeline_entries.any? %>
 </div>
 
 <%
-details_sections = [:plans_description, :budget_breakdown, :interaction_description].map do |section_key|
+details_sections = [:implementation_description, :cocreation_description, :plans_description, :interaction_description].map do |section_key|
   {
     title: t(".section.#{section_key}.name"),
     body: translated_attribute(result.public_send(section_key))
@@ -40,13 +39,9 @@ end.delete_if { |section| section[:body].blank? }
 %>
 
 <% if details_sections.count > 0 %>
-  <div class="description margin-top-2">
-    <h2><%= t(".details") %></h2>
+  <% details_sections.each do |section| %>
+    <h2><%= section[:title] %></h2>
 
-    <% details_sections.each do |section| %>
-      <h3><%= section[:title] %></h3>
-
-      <%== section[:body] %>
-    <% end %>
-  </div>
+    <%== section[:body] %>
+  <% end %>
 <% end %>

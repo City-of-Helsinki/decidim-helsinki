@@ -74,6 +74,9 @@ ActiveRecord::Schema.define(version: 2024_03_11_192732) do
     t.jsonb "news_description"
     t.datetime "published_at"
     t.integer "favorites_count", default: 0, null: false
+    t.jsonb "news_title"
+    t.jsonb "cocreation_description"
+    t.jsonb "implementation_description"
     t.index ["coauthorships_count"], name: "idx_decidim_accountability_results_on_result_coauth_count"
     t.index ["decidim_accountability_status_id"], name: "decidim_accountability_results_on_status_id"
     t.index ["decidim_component_id"], name: "index_decidim_accountability_results_on_decidim_component_id"
@@ -305,7 +308,9 @@ ActiveRecord::Schema.define(version: 2024_03_11_192732) do
     t.integer "weight", default: 0, null: false
     t.string "collection_for_type", null: false
     t.bigint "collection_for_id", null: false
+    t.string "slug"
     t.index ["collection_for_type", "collection_for_id"], name: "decidim_attachment_collections_collection_for_id_and_type"
+    t.index ["slug"], name: "index_decidim_attachment_collections_on_slug"
   end
 
   create_table "decidim_attachments", id: :serial, force: :cascade do |t|

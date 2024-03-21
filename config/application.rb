@@ -558,6 +558,7 @@ module DecidimHelsinki
         Decidim::Category.include(CategoryExtensions)
         Decidim::User.include(UserExtensions)
         Decidim::Blogs::Post.include(BlogPostExtensions)
+        Decidim::Accountability::Result.include(ResultExtensions)
 
         # View extensions
         ActionView::Base.include(Decidim::WidgetUrlsHelper)

@@ -36,9 +36,9 @@ fi:
             description:
               name: Hankkeen kuvaus
             cocreation_description:
-              name: Yhteiskehittäminen
+              name: Ehdotuksen yhteiskehittäminen
             implementation_description:
-              name: Toteutus
+              name: Näin kaupunki toteuttaa ehdotuksen
             interaction_description:
               name: Vuorovaikutus
             plans_description:

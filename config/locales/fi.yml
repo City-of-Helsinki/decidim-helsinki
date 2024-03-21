@@ -21,6 +21,7 @@ fi:
         implementation_description: Toteutuksen kuvaus
         interaction_description: Vuorovaikutuksen kuvaus
         news_description: Ajankohtaisia asioita
+        news_title: Ajankohtaisten asioiden otsikko
         plans_description: Suunnitelmien kuvaus
     errors:
       models:
@@ -232,6 +233,10 @@ fi:
       contact: Ota yhteyttä
       feedback: Anna palautetta
       history: Historia
+  number:
+    percentage:
+      format:
+        format: "%n %"
   views:
     pagination:
       first: Ensimmäinen

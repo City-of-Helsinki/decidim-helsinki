@@ -21,6 +21,7 @@ sv:
         implementation_description: Genomförande beskrivning
         interaction_description: Interaktionsbeskrivning
         news_description: Nyheter
+        news_title: Nyheter titel
         plans_description: Planbeskrivning
     errors:
       models:
@@ -232,6 +233,10 @@ sv:
       contact: Ta kontakt
       feedback: Ge respons
       history: Historia
+  number:
+    percentage:
+      format:
+        format: "%n %"
   views:
     pagination:
       first: Första

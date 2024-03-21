@@ -21,6 +21,7 @@ en:
         implementation_description: Implementation description
         interaction_description: Interaction description
         news_description: News
+        news_title: News title
         plans_description: Plans description
     errors:
       models:
@@ -233,6 +234,10 @@ en:
       contact: Connect
       feedback: Give feedback
       history: History
+  number:
+    percentage:
+      format:
+        format: "%n %"
   views:
     pagination:
       first: First

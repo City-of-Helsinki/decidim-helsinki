@@ -11,13 +11,31 @@ module Helsinki
         f.argument(
           :interaction_description,
           GraphQL::Types::JSON,
-          description: "The result interaction description (HTML) localized hash, e.g. {\"en\": \"English title\"}",
+          description: "The result interaction description (HTML) localized hash, e.g. {\"en\": \"English description\"}",
+          required: false
+        )
+        f.argument(
+          :cocreation_description,
+          GraphQL::Types::JSON,
+          description: "The result co-creation description (HTML) localized hash, e.g. {\"en\": \"English description\"}",
+          required: false
+        )
+        f.argument(
+          :implementation_description,
+          GraphQL::Types::JSON,
+          description: "The result implementation description (HTML) localized hash, e.g. {\"en\": \"English description\"}",
+          required: false
+        )
+        f.argument(
+          :news_title,
+          GraphQL::Types::JSON,
+          description: "The result news title localized hash, e.g. {\"en\": \"English title\"}",
           required: false
         )
         f.argument(
           :news_description,
           GraphQL::Types::JSON,
-          description: "The result news description (HTML) localized hash, e.g. {\"en\": \"English title\"}",
+          description: "The result news description (HTML) localized hash, e.g. {\"en\": \"English description\"}",
           required: false
         )
       end
@@ -33,6 +51,7 @@ module Helsinki
             "budget_breakdown" => args[:budget_breakdown],
             "plans_description" => args[:plans_description],
             "interaction_description" => args[:interaction_description],
+            "news_title" => args[:news_title],
             "news_description" => args[:news_description]
           )
         end
