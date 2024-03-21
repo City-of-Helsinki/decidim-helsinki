@@ -49,6 +49,8 @@ module Helsinki
           result_params_base(**args).merge(
             "budget_amount" => args[:budget_amount],
             "budget_breakdown" => args[:budget_breakdown],
+            "cocreation_description" => args[:cocreation_description],
+            "implementation_description" => args[:implementation_description],
             "plans_description" => args[:plans_description],
             "interaction_description" => args[:interaction_description],
             "news_title" => args[:news_title],
