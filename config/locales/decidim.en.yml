@@ -36,9 +36,9 @@ en:
             description:
               name: Project description
             cocreation_description:
-              name: Co-creation
+              name: Co-creation of the proposal
             implementation_description:
-              name: Implementation
+              name: This is how the city implements the proposal
             interaction_description:
               name: Interaction
             plans_description:

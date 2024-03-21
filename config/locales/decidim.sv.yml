@@ -36,9 +36,9 @@ sv:
             description:
               name: Projekt beskrivning
             cocreation_description:
-              name: Samskapande
+              name: Utveckling av förslaget
             implementation_description:
-              name: Genomförande
+              name: Så genomför staden förslaget
             interaction_description:
               name: Interaktion
             plans_description:
