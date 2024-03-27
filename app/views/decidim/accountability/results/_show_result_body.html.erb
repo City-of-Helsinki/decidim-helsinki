@@ -37,7 +37,7 @@ details_sections = [:implementation_description, :cocreation_description, :plans
     title: t(".section.#{section_key}.name"),
     body: translated_attribute(result.public_send(section_key))
   }
-end.delete_if { |section| section[:body].blank? }
+end.delete_if { |section| section[:body].blank? || strip_tags(section[:body]).strip.blank? }
 %>
 
 <% if details_sections.count > 0 %>
