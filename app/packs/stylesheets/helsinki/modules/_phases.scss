@@ -1,0 +1,140 @@
+// Phases is the phase stepper on the front page. Its styling differs from the
+// default stepper element which is used e.g. for the timelines and process
+// steps page. Therefore, this element has custom styling.
+.phases-list{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  list-style-type: none;
+
+  @include breakpoint(large){
+    flex-direction: row;
+    padding: 2.35rem 0 1rem;
+  }
+}
+
+.phases-list-item{
+  position: relative;
+  display: flex;
+  padding-top: .85rem;
+
+  @include breakpoint(large){
+    flex-direction: column;
+    flex: 1 1 0;
+    align-items: center;
+    padding-top: 0;
+    padding-left: .85rem;
+  }
+
+  &::before,
+  &::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 2px;
+    height: 50%;
+    left: 1.9rem;
+    background-color: $hel-black;
+
+    @include breakpoint(large){
+      width: 50%;
+      height: 2px;
+      top: 1.9rem;
+      left: 0;
+    }
+  }
+
+  &::before{
+    top: 0;
+
+    @include breakpoint(large){
+      top: 1.9rem;
+      left: 0;
+    }
+  }
+
+  &::after{
+    bottom: 0;
+
+    @include breakpoint(large){
+      bottom: auto;
+      left: auto;
+      right: 0;
+    }
+  }
+
+  &:first-child{
+    padding-top: 0;
+
+    @include breakpoint(large){
+      padding-left: 0;
+    }
+
+    &::before{
+      display: none;
+    }
+  }
+
+  &:last-child{
+    &::after{
+      display: none;
+    }
+  }
+
+  &.phases-list-item-current{
+    .phases-list-item-phase{
+      background-color: $hel-black;
+      color: $white;
+    }
+  }
+
+  &.phases-list-item-past{
+    .phases-list-item-phase{
+      background-color: $hel-grayscale-60;
+      border-color: $hel-grayscale-60;
+      color: $white;
+    }
+  }
+
+  .phases-list-item-phase{
+    position: relative;
+    z-index: 1;
+    width: 3.8rem;
+    height: 3.8rem;
+    line-height: 3.8rem;
+    border: 2px solid $hel-black;
+    border-radius: 50%;
+    background-color: $white;
+    text-align: center;
+    font-size: 1.42rem;
+    font-weight: $global-weight-medium;
+  }
+
+  .phases-list-item-info{
+    padding-left: 2.4rem;
+
+    @include breakpoint(large){
+      padding-top: .6rem;
+      padding-left: 0;
+      text-align: center;
+    }
+
+    .phases-list-item-date{
+      font-size: $hel-text-size-xl;
+
+      @include breakpoint(large){
+        font-size: $hel-text-size-l;
+      }
+    }
+
+    .phases-list-item-title{
+      font-size: 1.5rem;
+      line-height: 1.33;
+      font-weight: $global-weight-medium;
+
+      @include breakpoint(large){
+        padding-top: $hel-spacing-3-xs;
+      }
+    }
+  }
+}

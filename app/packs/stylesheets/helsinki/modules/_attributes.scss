@@ -10,5 +10,18 @@
       font-weight: $global-weight-normal;
       font-size: $global-font-size;
     }
+
+    button[data-toggle]{
+      &[aria-expanded="true"]{
+        .icon{
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .icon{
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 }

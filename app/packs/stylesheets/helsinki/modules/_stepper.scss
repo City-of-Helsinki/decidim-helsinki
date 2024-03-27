@@ -1,136 +1,119 @@
-.phases-list{
+.stepper{
   display: flex;
-  flex-direction: column;
-  margin: 0;
-  list-style-type: none;
+  margin: 1.4rem 0;
 
-  @include breakpoint(large){
-    flex-direction: row;
-    padding: 2.35rem 0 1rem;
-  }
-}
-
-.phases-list-item{
-  position: relative;
-  display: flex;
-  padding-top: .85rem;
-
-  @include breakpoint(large){
+  &.stepper--vertical{
     flex-direction: column;
-    flex: 1 1 0;
-    align-items: center;
-    padding-top: 0;
-    padding-left: .85rem;
-  }
 
-  &::before,
-  &::after{
-    content: "";
-    display: block;
-    position: absolute;
-    width: 2px;
-    height: 50%;
-    left: 1.9rem;
-    background-color: $hel-black;
-
-    @include breakpoint(large){
-      width: 50%;
-      height: 2px;
-      top: 1.9rem;
-      left: 0;
-    }
-  }
-
-  &::before{
-    top: 0;
-
-    @include breakpoint(large){
-      top: 1.9rem;
-      left: 0;
-    }
-  }
-
-  &::after{
-    bottom: 0;
-
-    @include breakpoint(large){
-      bottom: auto;
-      left: auto;
-      right: 0;
-    }
-  }
-
-  &:first-child{
-    padding-top: 0;
-
-    @include breakpoint(large){
-      padding-left: 0;
-    }
-
-    &::before{
-      display: none;
-    }
-  }
-
-  &:last-child{
-    &::after{
-      display: none;
-    }
-  }
-
-  &.phases-list-item-current{
-    .phases-list-item-phase{
-      background-color: $hel-black;
-      color: $white;
-    }
-  }
-
-  &.phases-list-item-past{
-    .phases-list-item-phase{
-      background-color: $hel-grayscale-60;
-      border-color: $hel-grayscale-60;
-      color: $white;
-    }
-  }
-
-  .phases-list-item-phase{
-    position: relative;
-    z-index: 1;
-    width: 3.8rem;
-    height: 3.8rem;
-    line-height: 3.8rem;
-    border: 2px solid $hel-black;
-    border-radius: 50%;
-    background-color: $white;
-    text-align: center;
-    font-size: 1.42rem;
-    font-weight: $global-weight-medium;
-  }
-
-  .phases-list-item-info{
-    padding-left: 2.4rem;
-
-    @include breakpoint(large){
-      padding-top: .6rem;
-      padding-left: 0;
-      text-align: center;
-    }
-
-    .phases-list-item-date{
-      font-size: $hel-text-size-xl;
-
-      @include breakpoint(large){
-        font-size: $hel-text-size-l;
+    &.stepper--small{
+      .stepper__item{
+        &::before,
+        &::after{
+          left: 8px;
+        }
       }
     }
 
-    .phases-list-item-title{
-      font-size: 1.5rem;
-      line-height: 1.33;
-      font-weight: $global-weight-medium;
+    .stepper__item{
+      &::before,
+      &::after{
+        content: "";
+        position: absolute;
+        left: 15px;
+        background-color: $hel-black;
+        width: 2px;
+        height: 50%;
+      }
 
-      @include breakpoint(large){
-        padding-top: $hel-spacing-3-xs;
+      &::before{
+        top: 0;
+      }
+
+      &::after{
+        bottom: 0;
+      }
+
+      .stepper__item__label{
+        margin-left: 1.2rem;
+      }
+    }
+  }
+
+  &.stepper--small{
+    .stepper__item{
+      padding: .35rem 0;
+
+      &:first-child{
+        &::before{
+          display: none;
+        }
+      }
+
+      .stepper__item__indicator{
+        width: 18px;
+        height: 18px;
+      }
+
+      .stepper__item__label{
+        position: relative;
+        top: -4px;
+        margin-left: .9rem;
+        font-size: $hel-text-size-l;
+      }
+    }
+  }
+
+  &__item{
+    position: relative;
+    display: flex;
+    padding: .6rem 0;
+    list-style-type: none;
+
+    &:first-child{
+      padding-top: 0;
+    }
+
+    &:last-child{
+      padding-bottom: 0;
+
+      &::after{
+        display: none;
+      }
+    }
+
+    &.stepper__item--active{
+      .stepper__item__indicator{
+        background-color: $hel-black;
+        color: $hel-white;
+      }
+    }
+
+    &__indicator{
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      width: 32px;
+      height: 32px;
+      background-color: $hel-white;
+      color: $hel-black;
+      border: 2px solid $hel-black;
+      border-radius: 50%;
+      font-weight: $global-weight-bold;
+    }
+
+    &__label{
+      flex: 1;
+
+      &__date{
+        font-size: $hel-text-size-m;
+        color: $hel-grayscale-60;
+      }
+
+      &__title{
+        font-size: $hel-text-size-xl;
+        font-weight: $global-weight-normal;
       }
     }
   }

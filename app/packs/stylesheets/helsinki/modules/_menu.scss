@@ -39,11 +39,54 @@
   @include plain-text-links;
 
   li{
+    position: relative;
     padding-left: 0;
+
+    &[data-submenu]{
+      display: flex;
+      flex-wrap: wrap;
+
+      a{
+        flex: 1;
+      }
+
+      .submenu{
+        flex-basis: 100%;
+      }
+    }
 
     a{
       display: block;
       padding: $menu-items-padding;
+    }
+
+    .menu-link__toggle{
+      flex: 0 0 64px;
+      line-height: 0;
+      border-left: 1px solid $hel-silver;
+      border-bottom: 1px solid $hel-silver;
+
+      @include breakpoint(large){
+        position: absolute;
+        right: 8px;
+        flex: 0 0 0;
+        border: 0;
+        height: auto;
+        align-self: center;
+        margin-left: 4px;
+      }
+
+      &[aria-expanded="true"]{
+        .icon{
+          transform: rotate(180deg);
+        }
+      }
+
+      .icon{
+        width: 1.334em;
+        height: 1.334em;
+        transition: transform .2s ease-in;
+      }
     }
   }
 
@@ -92,14 +135,31 @@
   }
 
   &.submenu{
-    li{
-      margin-bottom: 0;
-    }
+    display: none;
+    background: $body-background;
 
     &.vertical{
       a{
         display: block;
       }
+    }
+
+    &.open{
+      display: block;
+
+      @include breakpoint(large){
+        position: absolute;
+        border: 1px solid $hel-grayscale-20;
+        z-index: 100;
+        top: 100%;
+        left: -20px;
+        min-width: 310px;
+        width: calc(100% + 64px);
+      }
+    }
+
+    li{
+      margin-bottom: 0;
     }
   }
 

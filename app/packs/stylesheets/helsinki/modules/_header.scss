@@ -159,53 +159,90 @@ $header-border: 1px solid $header-border-color;
 
   @include breakpoint(large){
     border-bottom: $header-border;
-    padding-top: $hel-spacing-3-xs;
-    padding-bottom: $hel-spacing-3-xs;
+    // padding-top: $hel-spacing-3-xs;
+    // padding-bottom: $hel-spacing-3-xs;
     font-size: $hel-text-size-l;
   }
 
   .main-nav,
   .user-nav{
-    .menu > li > a{
-      position: relative;
-      background-color: $header-background;
-      border-bottom: $header-border;
-
-      @include breakpoint(large){
-        background-color: transparent;
-        border-bottom: 0;
-        padding-left: $menu-items-padding;
-        padding-right: $menu-items-padding;
+    .menu > li{
+      &[data-submenu]{
+        > a{
+          @include breakpoint(large){
+            // Add spacing for the subnav toggle
+            padding-right: $menu-items-padding + 1.334rem;
+          }
+        }
       }
 
-      &::before{
-        content: "";
-        position: absolute;
-        display: block;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 4px;
+      > a{
+        position: relative;
+        background-color: $header-background;
+        border-bottom: $header-border;
+
+        @include breakpoint(large){
+          background-color: transparent;
+          border-bottom: 0;
+          padding-left: $menu-items-padding;
+          padding-right: $menu-items-padding;
+        }
+
+        &::before{
+          content: "";
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 4px;
+          background-color: $header-background;
+
+          @include breakpoint(large){
+            display: none;
+            top: auto;
+            bottom: 0;
+            left: $menu-items-padding;
+            right: $menu-items-padding;
+            height: 4px;
+            width: auto;
+          }
+        }
+
+        &[aria-current="page"]{
+          font-weight: $global-weight-medium;
+
+          @include breakpoint(large){
+            font-weight: $global-weight-normal;
+          }
+        }
+
+        &:focus,
+        &:active{
+          text-decoration: none;
+        }
+
+        &[aria-current="page"]{
+          &::before{
+            display: block;
+            background-color: $black;
+          }
+        }
+      }
+
+      .menu-link__toggle{
         background-color: $header-background;
 
         @include breakpoint(large){
-          display: none;
+          background-color: $hel-grayscale-5;
         }
-      }
 
-      &[aria-current="page"]{
-        font-weight: $global-weight-medium;
+        &:hover{
+          cursor: pointer;
 
-        @include breakpoint(large){
-          font-weight: $global-weight-normal;
-        }
-      }
-
-      &:focus,
-      &:active,
-      &[aria-current="page"]{
-        &::before{
-          background-color: $black;
+          @include breakpoint(large){
+            background-color: $hel-grayscale-20;
+          }
         }
       }
     }
@@ -230,7 +267,36 @@ $header-border: 1px solid $header-border-color;
 
     > a{
       @include breakpoint(large){
-        padding: .9rem $menu-items-padding;
+        // padding: .9rem $menu-items-padding;
+        // Add `$hel-spacing-3-xs` for the navbar
+        padding: (.9rem + $hel-spacing-3-xs) $menu-items-padding;
+      }
+    }
+
+    .submenu{
+      font-size: $hel-text-size-m;
+
+      @include breakpoint(large){
+        font-size: $hel-text-size-l;
+      }
+
+      > li > a{
+        padding: $hel-spacing-xs $hel-spacing-l;
+
+        @include breakpoint(large){
+          padding: $menu-items-padding;
+        }
+
+        &::before{
+          @include breakpoint(large){
+            top: 0;
+            left: 0;
+            right: auto;
+            bottom: 0;
+            height: auto;
+            width: 4px;
+          }
+        }
       }
     }
   }
