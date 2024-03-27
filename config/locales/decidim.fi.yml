@@ -21,6 +21,7 @@ fi:
         result_attributes_extra:
           attributes:
             budget: Budjetti
+          show_budget_breakdown: Näytä budjetin erittely
         show:
           stats:
             category: Teema
@@ -36,9 +37,9 @@ fi:
             description:
               name: Hankkeen kuvaus
             cocreation_description:
-              name: Ehdotuksen yhteiskehittäminen
+              name: Hankkeen yhteiskehittäminen
             implementation_description:
-              name: Näin kaupunki toteuttaa ehdotuksen
+              name: Näin kaupunki toteuttaa hankkeen
             interaction_description:
               name: Vuorovaikutus
             plans_description:

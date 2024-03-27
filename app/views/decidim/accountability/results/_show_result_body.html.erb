@@ -2,6 +2,9 @@
 summary = translated_attribute(result.summary)
 news_title = translated_attribute(result.news_title)
 news = translated_attribute(result.news_description)
+
+first_status = Decidim::Accountability::Status.where(component: current_component).order(:progress).first
+cocreation_phase_active = !result.status.present? || result.status == first_status
 %>
 
 <div class="record-details">
@@ -25,13 +28,12 @@ news = translated_attribute(result.news_description)
 </div>
 <% end %>
 
-<div class="row">
-  <%= render partial: "timeline", locals: { result: result } if result.timeline_entries.any? %>
-</div>
+<%= render partial: "timeline", locals: { result: result } if result.timeline_entries.any? %>
 
 <%
 details_sections = [:implementation_description, :cocreation_description, :plans_description, :interaction_description].map do |section_key|
   {
+    key: section_key.to_s.sub(/_description$/, "").to_sym,
     title: t(".section.#{section_key}.name"),
     body: translated_attribute(result.public_send(section_key))
   }
@@ -40,8 +42,12 @@ end.delete_if { |section| section[:body].blank? }
 
 <% if details_sections.count > 0 %>
   <% details_sections.each do |section| %>
+    <% next if section[:key] == :implementation && cocreation_phase_active %>
+
     <h2><%= section[:title] %></h2>
 
     <%== section[:body] %>
+
+    <%= render partial: "result_collection_assets", locals: { collection_key: section[:key] } %>
   <% end %>
 <% end %>

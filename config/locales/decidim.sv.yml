@@ -21,6 +21,7 @@ sv:
         result_attributes_extra:
           attributes:
             budget: Budget
+          show_budget_breakdown: Visa budgetfördelning
         show:
           stats:
             category: Tema
@@ -36,9 +37,9 @@ sv:
             description:
               name: Projekt beskrivning
             cocreation_description:
-              name: Utveckling av förslaget
+              name: Utveckling av projektet
             implementation_description:
-              name: Så genomför staden förslaget
+              name: Så genomför staden projektet
             interaction_description:
               name: Interaktion
             plans_description:

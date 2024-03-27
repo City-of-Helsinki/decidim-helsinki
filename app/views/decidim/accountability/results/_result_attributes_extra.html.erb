@@ -1,6 +1,25 @@
 <% if result.budget_amount && result.budget_amount > 0 %>
+  <% breakdown = translated_attribute(result.budget_breakdown) %>
+  <% budget_amount = number_to_currency(result.budget_amount, unit: Decidim.currency_unit, precision: 0) %>
+
   <div class="attributes__item">
     <h3 class="attributes__item__name"><%= t(".attributes.budget") %></h3>
-    <div class="attributes__item__value"><%= number_to_currency(result.budget_amount, unit: Decidim.currency_unit, precision: 0) %></div>
+
+    <% if strip_tags(breakdown).strip.present? %>
+      <div class="attributes__item__value">
+        <div class="row">
+          <div class="columns"><%= budget_amount %></div>
+          <div class="columns shrink text-right">
+            <button type="button" data-toggle="result_budget_breakdown" aria-expanded="false">
+              <%= icon("chevron-bottom", role: "img", "aria-hidden": true) %>
+              <span class="show-for-sr"><%= t(".show_budget_breakdown") %></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="result_budget_breakdown" class="attributes__item__extra hide" data-toggler=".hide"><%== breakdown %></div>
+    <% else %>
+      <div class="attributes__item__value"><%= budget_amount %></div>
+    <% end %>
   </div>
 <% end %>
