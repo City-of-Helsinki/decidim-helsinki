@@ -255,7 +255,18 @@ $input-border-color-hover: $hel-black;
 $label-background: $hel-grayscale-10;
 $label-color: $black;
 $label-color-alt: $white;
-$label-palette: $foundation-palette;
+// Custom colors only for labels because in some usability evaluation people
+// felt these were buttons with the brighter colors. We do not want to change
+// the success/error colors overall for all elements (e.g. callouts,
+// progress bars, etc.), which is why these styles are targeted only for the
+// label elements.
+$label-palette: map.merge(
+  $foundation-palette,
+  (
+    success: $hel-success-light,
+    alert: $hel-error-light,
+  )
+);
 $label-font-size: $hel-text-size-s;
 $label-padding: .5rem 1.05rem;
 $label-radius: 1.25rem;
