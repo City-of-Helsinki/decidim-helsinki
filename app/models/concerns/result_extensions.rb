@@ -11,13 +11,13 @@ module ResultExtensions
     [].tap do |defaults|
       defaults << attachment_collections.create(
         weight: 100,
-        slug: "cocreation",
+        key: "cocreation",
         name: { fi: "Yhteiskehittäminen", sv: "Utveckling", en: "Co-creation" },
         description: {}
       )
       defaults << attachment_collections.create(
         weight: 200,
-        slug: "implementation",
+        key: "implementation",
         name: { fi: "Toteutus", sv: "Genomförande", en: "Implementation" },
         description: {}
       )
