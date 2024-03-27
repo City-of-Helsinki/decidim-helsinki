@@ -34,7 +34,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-accountability_simple.git
-  revision: 05446530a5a0be235b6d9703eb51ffb357b9d177
+  revision: a0ac9cf8035c4a015522f13ec3445d4a6d2445c5
   branch: develop
   specs:
     decidim-accountability_simple (0.27.0)
@@ -69,7 +69,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-apifiles.git
-  revision: 832a1ad471910050ff9e4c4ebb6d06c55ace3bf8
+  revision: 00c578826fe3ccca7d411fca76683b4e85b22ebb
   branch: main
   specs:
     decidim-apifiles (0.27.0)
@@ -144,8 +144,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-locations.git
-  revision: 75cc5517b374a9eebee5d2ffd8ea947e40ee9d55
-  branch: main
+  revision: 3241951c84125040063a28452223c5fe66c85d72
+  branch: release/0.27-helsinki-stable
   specs:
     decidim-locations (0.27.0)
       decidim-core (~> 0.27.0)
@@ -161,7 +161,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-nav.git
-  revision: c4eda7b08652065b79292165af925a2f454d1817
+  revision: 715743b432a6cf6c1f42b44fb5f210474eed5135
   branch: main
   specs:
     decidim-nav (0.27.0)

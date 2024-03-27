@@ -25,7 +25,7 @@ gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "devel
 # gem "decidim-helsinki_profile", github: "mainio/decidim-module-helsinki_profile", branch: "main"
 gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "develop"
 gem "decidim-insights", github: "mainio/decidim-module-insights", branch: "main"
-gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "main"
+gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "release/0.27-helsinki-stable"
 gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "main"
 gem "decidim-nav", github: "mainio/decidim-module-nav", branch: "main"
 gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "develop"

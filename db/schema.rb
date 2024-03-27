@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_11_192732) do
+ActiveRecord::Schema.define(version: 2024_03_26_163027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -102,12 +102,23 @@ ActiveRecord::Schema.define(version: 2024_03_11_192732) do
     t.index ["accountability_result_detailable_id", "accountability_result_detailable_type"], name: "index_decidim_accountability_simple_result_dets_on_detailable"
   end
 
+  create_table "decidim_accountability_simple_result_link_collections", force: :cascade do |t|
+    t.string "key"
+    t.jsonb "name", null: false
+    t.integer "position", default: 0, null: false
+    t.bigint "decidim_accountability_result_id"
+    t.index ["decidim_accountability_result_id"], name: "index_result_link_collections_on_result_id"
+    t.index ["key"], name: "index_result_link_collections_on_key"
+  end
+
   create_table "decidim_accountability_simple_result_links", force: :cascade do |t|
     t.bigint "decidim_accountability_result_id"
     t.integer "position"
     t.jsonb "label"
     t.jsonb "url"
+    t.integer "decidim_accountability_simple_result_link_collection_id"
     t.index ["decidim_accountability_result_id"], name: "index_decidim_accountability_result_links_on_results_id"
+    t.index ["decidim_accountability_simple_result_link_collection_id"], name: "index_result_link_link_collection_id"
   end
 
   create_table "decidim_accountability_statuses", id: :serial, force: :cascade do |t|
@@ -308,9 +319,9 @@ ActiveRecord::Schema.define(version: 2024_03_11_192732) do
     t.integer "weight", default: 0, null: false
     t.string "collection_for_type", null: false
     t.bigint "collection_for_id", null: false
-    t.string "slug"
+    t.string "key"
     t.index ["collection_for_type", "collection_for_id"], name: "decidim_attachment_collections_collection_for_id_and_type"
-    t.index ["slug"], name: "index_decidim_attachment_collections_on_slug"
+    t.index ["key"], name: "index_decidim_attachment_collections_on_key"
   end
 
   create_table "decidim_attachments", id: :serial, force: :cascade do |t|
@@ -1337,6 +1348,18 @@ ActiveRecord::Schema.define(version: 2024_03_11_192732) do
     t.index ["report_count"], name: "decidim_moderations_report_count"
   end
 
+  create_table "decidim_nav_link_rules", force: :cascade do |t|
+    t.integer "position", default: 0, null: false
+    t.integer "rule_type", default: 0
+    t.integer "source", default: 0
+    t.integer "operator", default: 0
+    t.string "value"
+    t.bigint "decidim_nav_link_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["decidim_nav_link_id"], name: "index_decidim_nav_link_rules_on_decidim_nav_link_id"
+  end
+
   create_table "decidim_nav_links", force: :cascade do |t|
     t.bigint "decidim_organization_id"
     t.integer "parent_id"
@@ -2306,6 +2329,8 @@ ActiveRecord::Schema.define(version: 2024_03_11_192732) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "decidim_accountability_simple_result_link_collections", "decidim_accountability_results"
+  add_foreign_key "decidim_accountability_simple_result_links", "decidim_accountability_simple_result_link_collections", name: "fk_result_link_link_collection_id", on_delete: :nullify
   add_foreign_key "decidim_area_types", "decidim_organizations"
   add_foreign_key "decidim_areas", "decidim_area_types", column: "area_type_id"
   add_foreign_key "decidim_areas", "decidim_organizations"
