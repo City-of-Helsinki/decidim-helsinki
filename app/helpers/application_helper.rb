@@ -71,6 +71,19 @@ module ApplicationHelper
             post_path(post)
           ]
         end
+      else
+        # Process front page and other process pages
+        links << [
+          translated_attribute(current_participatory_space.title),
+          Decidim::ResourceLocatorPresenter.new(current_participatory_space).path
+        ]
+
+        if controller.is_a?(Decidim::ParticipatoryProcesses::ParticipatoryProcessStepsController)
+          links << [
+            t("decidim.participatory_process_steps.index.title"),
+            decidim_participatory_processes.participatory_process_participatory_process_steps_path(current_participatory_space)
+          ]
+        end
       end
     elsif controller.is_a?(Helsinki::LinkedEventsController)
       links << [t("helsinki.linked_events.index.title"), main_app.events_path]
