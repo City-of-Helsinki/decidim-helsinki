@@ -20,6 +20,67 @@ namespace :hkiresult do
     export_component(component_id, filename)
   end
 
+  # Export winning projects for each budget in a component.
+  #
+  # Usage:
+  #   bundle exec rake hkiresult:export_winning_projects[1,tmp/winning_projects.xlsx]
+  desc "Export winning projects to an Excel file from a component."
+  task :export_winning_projects, [:component_id, :filename] => [:environment] do |_t, args|
+    component_id = args[:component_id]
+    filename = args[:filename]
+
+    c = Decidim::Component.find_by(id: component_id)
+    if c.nil? || c.manifest_name != "budgets"
+      puts "Invalid component provided: #{component_id}."
+      return
+    end
+    unless filename
+      puts "Please provide an export file path."
+      return
+    end
+    if File.exist?(filename)
+      puts "File already exists at: #{filename}"
+      return
+    end
+
+    converter = Class.new { include HtmlToPlainText }.new
+    budgets = {}
+    Decidim::Budgets::Budget.where(component: c).order(:weight).each do |budget|
+      projects_data = []
+      available_budget = budget.total_budget
+      Decidim::Budgets::Project.where(budget: budget).order_by_most_voted.each do |project|
+        next if (available_budget - project.budget_amount).negative?
+
+        available_budget -= project.budget_amount
+
+        subcategory = project.category
+        category = subcategory&.parent
+        unless category
+          category = subcategory
+          subcategory = nil
+        end
+
+        projects_data << {
+          budget: (budget.title["fi"].presence || budget.title["en"]),
+          id: project.id,
+          title: (project.title["fi"].presence || project.title["en"]),
+          summary: (project.summary["fi"].presence || project.summary["en"]),
+          description: converter.convert_to_text(project.description["fi"].presence || project.description["en"]),
+          "category/id" => category.id,
+          "category/name" => (category.name["fi"].presence || category.name["en"]),
+          "subcategory/id" => subcategory&.id,
+          "subcategory/name" => (subcategory&.name.try(:[], "fi").presence || subcategory&.name.try(:[], "en")),
+          budget_amount: project.budget_amount,
+          votes_count: project.votes_count
+        }
+      end
+
+      budgets[budget.title["fi"]] = projects_data
+    end
+
+    write_excel(budgets, filename)
+  end
+
   # Exports the contact details (email) of the users who have authored plans
   # (proposals) in the given component. The export also contains some
   # information about the plans, such as their state and area. Those proposals
