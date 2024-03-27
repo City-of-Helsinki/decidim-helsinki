@@ -19,7 +19,7 @@ cocreation_phase_active = !result.status.present? || result.status == first_stat
 
 <%== translated_attribute result.description %>
 
-<% if news.present? %>
+<% if strip_tags(news).strip.present? %>
 <div class="banner bg-silver-medium-light margin-top-2 margin-bottom-2">
   <div class="banner__content">
     <h2><%= news_title.presence || t(".news") %></h2>
