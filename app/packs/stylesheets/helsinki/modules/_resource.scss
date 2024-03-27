@@ -55,4 +55,11 @@
       min-height: 40rem; // Ensure the sidebar has enough space as it has 0-height
     }
   }
+
+  // Results have longer sidebar which requires more space on them main section
+  &--result{
+    @include breakpoint(medium){
+      min-height: 90rem; // Ensure the sidebar has enough space as it has 0-height
+    }
+  }
 }
