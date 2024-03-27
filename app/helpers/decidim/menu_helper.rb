@@ -8,9 +8,9 @@ module Decidim
       @main_menu ||= ::Decidim::MenuPresenter.new(
         :menu,
         self,
-        container_options: { class: "menu vertical large-horizontal", role: "menubar" },
+        container_options: { class: "menu vertical large-horizontal" },
         element_class: "menu-link",
-        active_class: "menu-link-active",
+        active_class: "menu-link--active",
         label: t("layouts.decidim.header.main_menu")
       )
     end
@@ -20,7 +20,7 @@ module Decidim
       @user_menu ||= ::Decidim::InlineMenuPresenter.new(
         :user_menu,
         self,
-        container_options: { class: "horizontal menu", role: "menubar" },
+        container_options: { class: "horizontal menu" },
         element_class: "tabs-title",
         active_class: "is-active",
         label: t("layouts.decidim.user_menu.title")

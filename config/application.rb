@@ -506,7 +506,6 @@ module DecidimHelsinki
         FoundationRailsHelper::FlashHelper.include(FlashHelperExtensions)
 
         # Presenter extensions
-        Decidim::MenuPresenter.include(MenuPresenterExtensions)
         Decidim::MenuItemPresenter.include(MenuItemPresenterExtensions)
 
         # Command extensions

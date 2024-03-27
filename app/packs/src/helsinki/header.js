@@ -103,21 +103,108 @@ const navbarToggles = (header) => {
   header.querySelectorAll("[data-navbar-toggle]").forEach((toggle) => {
     const target = toggle.getAttribute("data-navbar-toggle");
 
+    toggle.setAttribute("aria-expanded", false);
     toggle.addEventListener("click", (ev) => {
       const current = header.getAttribute("data-navbar-active");
+
+      // Set other toggles as not expanded
+      header.querySelectorAll("[data-navbar-toggle]").forEach((otherToggle) => {
+        if (otherToggle === toggle) {
+          return;
+        }
+        otherToggle.setAttribute("aria-expanded", false);
+      });
 
       if (target === current) {
         toggleBodyScroll(true);
         header.removeAttribute("data-navbar-active");
+        toggle.setAttribute("aria-expanded", false);
         toggleFocusGuard(header);
       } else {
         toggleBodyScroll(false);
         header.setAttribute("data-navbar-active", target);
+        toggle.setAttribute("aria-expanded", true);
         toggleFocusGuard(header);
       }
     });
   });
 };
+
+const navbarSubmenus = (header) => {
+  const itemsWithSubmenu = header.querySelectorAll(".menu-link[data-submenu]");
+  const toggleSubmenu = (menuItem, state) => {
+    const toggle = menuItem.querySelector(":scope > button");
+    const submenu = menuItem.querySelector(":scope > .submenu");
+
+    if (state === "open") {
+      // Close all other items
+      itemsWithSubmenu.forEach((item) => {
+        if (item === menuItem) {
+          return;
+        }
+        toggleSubmenu(item, "closed");
+      });
+
+      submenu.classList.add("open");
+      toggle.setAttribute("aria-expanded", true);
+      toggle.setAttribute("aria-label", toggle.getAttribute("data-label-active"));
+    } else {
+      submenu.classList.remove("open");
+      toggle.setAttribute("aria-expanded", false);
+      toggle.setAttribute("aria-label", toggle.getAttribute("data-label-inactive"));
+    }
+  };
+
+  // When clicked outside of the submenu elements, close all open submenus
+  document.addEventListener("click", (ev) => {
+    if (ev.target.closest(".menu-link[data-submenu]")) {
+      return;
+    }
+
+    itemsWithSubmenu.forEach((item) => toggleSubmenu(item, "closed"));
+  });
+
+  itemsWithSubmenu.forEach((menuItem) => {
+    const toggle = menuItem.querySelector(":scope > button");
+    const submenu = menuItem.querySelector(":scope > .submenu");
+
+    toggle.setAttribute("data-label-inactive", toggle.getAttribute("aria-label"));
+
+    let mouseInside = false;
+    menuItem.addEventListener("mouseenter", () => {
+      mouseInside = true;
+      toggleSubmenu(menuItem, "open");
+    });
+    menuItem.addEventListener("mouseleave", () => {
+      mouseInside = false;
+      if (toggle.getAttribute("data-active") === "true") {
+        return;
+      }
+      toggleSubmenu(menuItem, "closed");
+    });
+    toggle.addEventListener("mouseenter", () => {
+      if (toggle.getAttribute("data-active") === "true") {
+        return;
+      }
+
+      toggleSubmenu(menuItem, "closed");
+    });
+    toggle.addEventListener("mouseleave", () => {
+      if (mouseInside) {
+        toggleSubmenu(menuItem, "open");
+      }
+    });
+    toggle.addEventListener("click", () => {
+      if (submenu.classList.contains("open")) {
+        toggleSubmenu(menuItem, "closed");
+        toggle.removeAttribute("data-active");
+      } else {
+        toggleSubmenu(menuItem, "open");
+        toggle.setAttribute("data-active", true);
+      }
+    });
+  });
+}
 
 /**
  * Initializes the header functionality.
@@ -129,6 +216,7 @@ export default () => {
   }
 
   navbarToggles(header);
+  navbarSubmenus(header);
 
   // Foundation requires jQuery
   $(header).on("on.zf.toggler", () => toggleHeaderMenu(header));
