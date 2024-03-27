@@ -540,6 +540,8 @@ module DecidimHelsinki
         Decidim::Blogs::PostMCell.include(BlogPostMCellExtensions)
         Decidim::Budgets::BudgetListItemCell.include(BudgetListItemCellExtensions)
         Decidim::Budgets::BudgetInformationModalCell.include(BudgetInformationModalExtensions)
+        Decidim::Accountability::ResultMCell.include(ResultCellExtensions)
+        Decidim::Accountability::ResultLCell.include(ResultCellExtensions)
         Decidim::Meetings::MeetingMCell.include(MeetingMCellExtensions)
         Decidim::UploadModalCell.include(UploadModalCellExtensions)
         Decidim::UserActivityCell.include(UserActivityCellExtensions)
