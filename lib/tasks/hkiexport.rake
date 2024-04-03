@@ -7,13 +7,13 @@ require "rubyXL/convenience_methods"
 # voters cannot be tracked. This is always different for each run.
 ANONYMIZER_SALT = SecureRandom.hex(64)
 
-namespace :hkiresult do
+namespace :hkiexport do
   # Export budgeting votes.
   #
   # Usage:
-  #   bundle exec rake hkiresult:export_budget_votes[1,tmp/budget_votes.xlsx]
+  #   bundle exec rake hkiexport:budget_votes[1,tmp/budget_votes.xlsx]
   desc "Export budgeting votes to an Excel file from a component."
-  task :export_budget_votes, [:component_id, :filename] => [:environment] do |_t, args|
+  task :budget_votes, [:component_id, :filename] => [:environment] do |_t, args|
     component_id = args[:component_id]
     filename = args[:filename]
 
@@ -23,9 +23,9 @@ namespace :hkiresult do
   # Export winning projects for each budget in a component.
   #
   # Usage:
-  #   bundle exec rake hkiresult:export_winning_projects[1,tmp/winning_projects.xlsx]
+  #   bundle exec rake hkiexport:winning_projects[1,tmp/winning_projects.xlsx]
   desc "Export winning projects to an Excel file from a component."
-  task :export_winning_projects, [:component_id, :filename] => [:environment] do |_t, args|
+  task :winning_projects, [:component_id, :filename] => [:environment] do |_t, args|
     component_id = args[:component_id]
     filename = args[:filename]
 
@@ -89,8 +89,8 @@ namespace :hkiresult do
   # details or to thank them for participating.
   #
   # Usage:
-  #   bundle exec rake hkiresult:export_selected_project_contacts[1,tmp/winning_project_contacts.xlsx]
-  task :export_selected_project_contacts, [:component_id, :filename] => [:environment] do |_t, args|
+  #   bundle exec rake hkiexport:selected_project_contacts[1,tmp/winning_project_contacts.xlsx]
+  task :selected_project_contacts, [:component_id, :filename] => [:environment] do |_t, args|
     component_id = args[:component_id]
     filename = args[:filename]
 
@@ -155,8 +155,8 @@ namespace :hkiresult do
   # participating.
   #
   # Usage:
-  #   bundle exec rake hkiresult:export_plan_author_contacts[1,tmp/plan_contacts.xlsx]
-  task :export_plan_author_contacts, [:component_id, :filename] => [:environment] do |_t, args|
+  #   bundle exec rake hkiexport:plan_author_contacts[1,tmp/plan_contacts.xlsx]
+  task :plan_author_contacts, [:component_id, :filename] => [:environment] do |_t, args|
     component_id = args[:component_id]
     filename = args[:filename]
 
@@ -219,9 +219,9 @@ namespace :hkiresult do
   # Export categories from a participatory space (process).
   #
   # Usage:
-  #   bundle exec rake hkiresult:export_budget_votes[process-slug,tmp/categories.xlsx]
+  #   bundle exec rake hkiexport:categories[process-slug,tmp/categories.xlsx]
   desc "Export the categories from a participatory space for researchers."
-  task :export_categories, [:participatory_space_slug, :filename] => [:environment] do |_t, args|
+  task :categories, [:participatory_space_slug, :filename] => [:environment] do |_t, args|
     slug = args[:participatory_space_slug]
     filename = args[:filename]
 
