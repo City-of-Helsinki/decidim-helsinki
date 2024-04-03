@@ -82,6 +82,70 @@ namespace :hkiresult do
   end
 
   # Exports the contact details (email) of the users who have authored plans
+  # (proposals) that are linked to the selected (i.e. "winning") projects. The
+  # export also contains some information about the plans and projects, such as
+  # their title and area (i.e. budget for projects). The terms of service allow
+  # the admins to be in contact with the users e.g. for the implementation
+  # details or to thank them for participating.
+  #
+  # Usage:
+  #   bundle exec rake hkiresult:export_selected_project_contacts[1,tmp/winning_project_contacts.xlsx]
+  task :export_selected_project_contacts, [:component_id, :filename] => [:environment] do |_t, args|
+    component_id = args[:component_id]
+    filename = args[:filename]
+
+    c = Decidim::Component.find_by(id: component_id, manifest_name: "budgets")
+    if c.nil?
+      puts "Invalid component provided: #{component_id}."
+      next
+    end
+    unless filename
+      puts "Please provide an export file path."
+      next
+    end
+    if File.exist?(filename)
+      puts "File already exists at: #{filename}"
+      next
+    end
+
+    contacts = []
+    area_section = nil
+    budgets = Decidim::Budgets::Budget.where(component: c)
+    Decidim::Budgets::Project.where(budget: budgets).selected.order(:decidim_budgets_budget_id, :id).each do |project|
+      plans = project.linked_resources(:plans, "included_plans")
+
+      plans.each do |plan|
+        area_section = plan.sections.find_by(handle: "area") if area_section.nil?
+        area_content = plan.contents.find_by(section: area_section) if area_section
+        area_scope = Decidim::Scope.find_by(id: area_content.body["scope_id"]) if area_content
+
+        ca = plan.coauthorships.first
+        author = ca.author
+        author ||= Decidim::User.entire_collection.find(ca.decidim_author_id) if ca.decidim_author_type == "Decidim::UserBaseEntity"
+
+        email = author&.email # Organization cannot have email if author
+        email = nil if email.match?(/^(helsinki|mpassid|suomifi)-[a-z0-9]{32}@omastadi.hel.fi/)
+
+        contacts << {
+          "plan/id" => plan.id,
+          "plan/title" => plan.title["fi"],
+          "plan/state" => plan.state,
+          "plan/area/id" => area_scope&.id,
+          "plan/area/name" => area_scope&.name.try(:[], "fi"),
+          "budget/id" => project.budget.id,
+          "budget/title" => project.budget.title["fi"],
+          "project/id" => project.id,
+          "project/title" => project.title["fi"],
+          "author/name" => author&.name,
+          "author/email" => email
+        }
+      end
+    end
+
+    write_excel({ "Contacts" => contacts }, filename)
+  end
+
+  # Exports the contact details (email) of the users who have authored plans
   # (proposals) in the given component. The export also contains some
   # information about the plans, such as their state and area. Those proposals
   # that have been linked to projects are also linked with the project details
