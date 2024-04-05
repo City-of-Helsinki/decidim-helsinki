@@ -163,6 +163,12 @@ sv:
     messages:
       extension_whitelist_error: Filtypen du försökte ladda upp är inte tillåten.
   forms:
+    errors:
+      email: E-postadress måste innehålla lokal del, @-tecken och domän.
+      name: Namnet måste innehålla minst ett tecken.
+      nickname: Användarnamn måste innehålla minst ett tecken och det måste följa kraven som visas nedan.
+      password: Lösenordet måste överensstämma med lösenordskraven. Kontrollera kraven i hjälptexten nedan.
+      password_confirmation: Lösenordsbekräftelsen måste matcha det angivna lösenordet.
     scopes_picker:
       others: Andra
       prompt: Välj %{item_name}

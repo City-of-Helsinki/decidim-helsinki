@@ -163,6 +163,12 @@ fi:
     messages:
       extension_whitelist_error: Lataamasi tiedostomuoto ei ole sallittu.
   forms:
+    errors:
+      email: Sähköpostiosoitteen tulee sisältää paikallinen nimi tai käyttäjänimi, @-merkki ja verkkotunnus.
+      name: Nimessä on oltava vähintään yksi kirjain.
+      nickname: Nimimerkissä on oltava vähintään yksi kirjain ja sen on noudatettava alla esitettyjä vaatimuksia.
+      password: Salasanan tulee noudattaa sille asetettuja vaatimuksia. Tarkasta vaatimukset alla esitetyn ohjetekstin avulla.
+      password_confirmation: Salasanan vahvistuksen tulee vastata antamaasi salasanaa.
     scopes_picker:
       others: Muut
       prompt: Valitse %{item_name}

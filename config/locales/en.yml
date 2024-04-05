@@ -164,6 +164,12 @@ en:
     messages:
       extension_whitelist_error: The file type you tried to upload is not allowed.
   forms:
+    errors:
+      email: Email must contain local part, @-character and domain.
+      name: Name must contain at least one character.
+      nickname: Nickname must contain at least one character and it must follow the requirements shown below.
+      password: Password must comply with the password requirements. Please check the requirements from the help text shown below.
+      password_confirmation: Password confirmation must match the given password.
     scopes_picker:
       others: Others
       prompt: Choose %{item_name}
