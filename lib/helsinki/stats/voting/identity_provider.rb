@@ -35,7 +35,7 @@ module Helsinki
                 identity_name: "Helsinki profile",
                 municipality: rawdata["municipality"],
                 postal_code: rawdata["postal_code"],
-                gender: rawdata["gender"],
+                gender: rawdata["gender"].presence || "neutral",
                 age: age,
                 age_group: age_group(age)
               }
@@ -47,7 +47,7 @@ module Helsinki
                 identity_name: "Suomi.fi",
                 municipality: rawdata["municipality"],
                 postal_code: rawdata["postal_code"],
-                gender: rawdata["gender"],
+                gender: rawdata["gender"].presence || "neutral",
                 age: age,
                 age_group: age_group(age)
               }
@@ -75,7 +75,7 @@ module Helsinki
                 identity_name: "Document - #{rawdata["document_type"]}",
                 document_type: rawdata["document_type"],
                 municipality: rawdata["municipality"],
-                gender: rawdata["gender"],
+                gender: rawdata["gender"].presence || "neutral",
                 age: age,
                 age_group: age_group(age),
                 postal_code: rawdata["postal_code"]

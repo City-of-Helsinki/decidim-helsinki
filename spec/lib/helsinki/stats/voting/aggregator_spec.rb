@@ -68,7 +68,7 @@ describe Helsinki::Stats::Voting::Aggregator do
           date_of_birth: "1990-06-02",
           municipality: "091",
           postal_code: "00220",
-          gender: "neutral"
+          gender: nil
         }
       )
     end
@@ -83,7 +83,7 @@ describe Helsinki::Stats::Voting::Aggregator do
           date_of_birth: "2000-02-08",
           municipality: "091",
           postal_code: nil,
-          gender: "neutral"
+          gender: nil
         }
       )
     end
@@ -130,7 +130,7 @@ describe Helsinki::Stats::Voting::Aggregator do
             "75+"
           end
 
-        [auth.id, { group: group, gender: auth.metadata["gender"] }]
+        [auth.id, { group: group, gender: auth.metadata["gender"].presence || "neutral" }]
       end
     end
 
@@ -205,7 +205,7 @@ describe Helsinki::Stats::Voting::Aggregator do
           group_data = demographic_data.select { |_aid, d| d[:group] == data[:group] }
 
           expect(group.value).to eq(group_data.count)
-          expect(group.children.find_by(label: auth.metadata["gender"]).value).to eq(1)
+          expect(group.children.find_by(label: auth.metadata["gender"].presence || "neutral").value).to eq(1)
         end
 
         locale = collection.sets.find_by(key: "locale")
@@ -243,7 +243,7 @@ describe Helsinki::Stats::Voting::Aggregator do
           data = demographic_data[auth.id]
           group = demographic.measurements.find_by(label: data[:group])
           expect(group.value).to eq(1)
-          expect(group.children.find_by(label: auth.metadata["gender"]).value).to eq(1)
+          expect(group.children.find_by(label: auth.metadata["gender"].presence || "neutral").value).to eq(1)
 
           locale = collection.sets.find_by(key: "locale")
           expect(locale.measurements.find_by(label: auth.user.locale.to_s).value).to eq(1)
@@ -304,7 +304,7 @@ describe Helsinki::Stats::Voting::Aggregator do
           data = demographic_data[authorization.id]
           group = demographic.measurements.find_by(label: data[:group])
           expect(group.value).to eq(1)
-          expect(group.children.find_by(label: authorization.metadata["gender"]).value).to eq(1)
+          expect(group.children.find_by(label: authorization.metadata["gender"].presence || "neutral").value).to eq(1)
 
           locale = collection.sets.find_by(key: "locale")
           expect(locale.measurements.find_by(label: voter.locale.to_s).value).to eq(1)
@@ -585,7 +585,7 @@ describe Helsinki::Stats::Voting::Aggregator do
               date_of_birth: "1990-06-02",
               municipality: "091",
               postal_code: "00220",
-              gender: "neutral"
+              gender: nil
             }
           )
 
@@ -630,7 +630,7 @@ describe Helsinki::Stats::Voting::Aggregator do
               date_of_birth: "1990-06-02",
               municipality: "091",
               postal_code: "00220",
-              gender: "neutral"
+              gender: nil
             }
           )
 

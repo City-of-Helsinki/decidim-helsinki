@@ -53,7 +53,7 @@ class HelsinkiDocumentsAuthorizationHandler < Decidim::AuthorizationHandler
     if hetu
       gender =
         if hetu.gender_neutral?
-          "neutral"
+          nil
         else
           hetu.male? ? "m" : "f"
         end

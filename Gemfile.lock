@@ -207,7 +207,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-suomifi.git
-  revision: 6f1c50884e4953f28c87bd4a77283f8acdc21197
+  revision: 63fce640991fa188dbc7c260f6ff8c3801e34940
   branch: main
   specs:
     decidim-suomifi (0.27.0)

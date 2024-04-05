@@ -91,7 +91,7 @@ describe Helsinki::Stats::Voting::Accumulator do
         date_of_birth: "1990-06-02",
         municipality: "091",
         postal_code: "00220",
-        gender: "neutral"
+        gender: nil
       }
     )
   end
@@ -106,7 +106,7 @@ describe Helsinki::Stats::Voting::Accumulator do
         date_of_birth: "2000-02-08",
         municipality: "091",
         postal_code: nil,
-        gender: "neutral"
+        gender: nil
       }
     )
   end

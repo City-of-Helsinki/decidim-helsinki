@@ -20,7 +20,7 @@ describe Helsinki::Stats::Voting::IdentityProvider do
           date_of_birth: "1990-06-02",
           municipality: "091",
           postal_code: "00220",
-          gender: "neutral"
+          gender: nil
         }
       end
 
@@ -104,7 +104,7 @@ describe Helsinki::Stats::Voting::IdentityProvider do
           date_of_birth: "1990-06-02",
           municipality: "091",
           postal_code: "00220",
-          gender: "neutral"
+          gender: nil
         }
       end
 
