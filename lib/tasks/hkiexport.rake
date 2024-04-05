@@ -17,7 +17,7 @@ namespace :hkiexport do
     component_id = args[:component_id]
     filename = args[:filename]
 
-    export_component(component_id, filename)
+    export_component_votes(component_id, filename)
   end
 
   # Export winning projects for each budget in a component.
@@ -261,8 +261,8 @@ namespace :hkiexport do
 
   private
 
-  # rubocop:disable Metrics/CyclomaticComplexity
-  def export_component(component_id, filename)
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def export_component_votes(component_id, filename)
     c = Decidim::Component.find_by(id: component_id)
     if c.nil? || c.manifest_name != "budgets"
       puts "Invalid component provided: #{component_id}."
@@ -276,6 +276,9 @@ namespace :hkiexport do
       puts "File already exists at: #{filename}"
       return
     end
+
+    # Component specific settings
+    available_votes_count = c.settings.vote_rule_selected_projects_enabled? ? c.settings.vote_selected_projects_maximum : nil
 
     # Go through all votes in the component
     budgets = {}
@@ -304,6 +307,10 @@ namespace :hkiexport do
           user_hash: user_hash,
           impersonated_user: impersonated ? 1 : 0,
           order_hash: order_hash,
+          budget_id: budget.id,
+          budget_name: budget.title["fi"],
+          budget_total_amount: budget.total_budget,
+          available_votes_count: available_votes_count,
           voted_project_ids: project_ids.join(","),
           voted_projects_count: order.projects.count,
           voted_amount: total,
@@ -322,15 +329,15 @@ namespace :hkiexport do
       end
 
       budgets["#{budget.title["fi"]} - Votes"] = votes.shuffle
-      budgets["#{budget.title["fi"]} - Projects"] = project_data(project_votes)
+      budgets["#{budget.title["fi"]} - Projects"] = project_data(project_votes, budget)
     end
 
     write_excel(budgets, filename)
   end
-  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-  def project_data(project_votes)
+  def project_data(project_votes, budget)
     data = project_votes.map do |project_id, pvotes|
       project = Decidim::Budgets::Project.find(project_id)
       title = project.title["fi"] || project.title["en"]
@@ -340,15 +347,27 @@ namespace :hkiexport do
         parent_category = sub_category
         sub_category = nil
       end
+      geolocated = project.latitude.present? && project.longitude.present?
+      latitude = project.latitude.presence || budget.center_latitude
+      longitude = project.latitude.presence || budget.center_longitude
 
       {
         id: project.id,
         title: title,
+        geolocated: geolocated ? 1 : 0,
+        latitude: latitude,
+        longitude: longitude,
+        budget_id: budget.id,
+        budget_name: budget.title["fi"],
         category_parent_id: parent_category&.id,
+        category_parent_name: parent_category&.name.try(:[], "fi"),
         category_sub_id: sub_category&.id,
+        category_sub_name: sub_category&.name.try(:[], "fi"),
         scope_id: project.scope&.id,
+        scope_name: project.scope&.name.try(:[], "fi"),
         budget: project.budget_amount,
-        votes: pvotes
+        votes: pvotes,
+        selected: project.selected? ? 1 : 0
       }
     end
 
@@ -512,10 +531,14 @@ namespace :hkiexport do
     book = RubyXL::Workbook.new
     book.worksheets.delete_at(0)
 
+    # Excel limits the sheet names to maximum of 31 characters which is why
+    # we need to ensure correct names for all sheets.
+    sheet_names = fix_sheet_names(sheets.keys)
+
     sheets.each do |sheetname, data|
       next if data.empty?
 
-      sheet = book.add_worksheet(sheetname.to_s)
+      sheet = book.add_worksheet(sheet_names[sheetname].to_s)
 
       headers = data.first.keys
       headers.each_with_index do |header, index|
@@ -543,5 +566,48 @@ namespace :hkiexport do
     end
 
     book.write filename
+  end
+
+  # Microsoft Excel limits the sheet names (i.e. the tab names) to a maximum
+  # of 31 characters. Otherwise the program will display an error when opening
+  # the file.
+  #
+  # This bypasses the limitation by converting the sheet names to a maximum of
+  # 31 characters and converting each name to a unique string in case the
+  # shortened versions have duplicates. For the duplicate names, an index number
+  # is added as a suffix to the name.
+  #
+  # Works up to 100 duplicates as sheet names.
+  def fix_sheet_names(names)
+    name_counts = {}
+    converted_names = names.index_with do |name|
+      converted =
+        if name.length < 32
+          name
+        else
+          name[0..30].strip
+        end
+
+      name_counts[converted] ||= 0
+      name_counts[converted] += 1
+      converted
+    end
+
+    name_index = {}
+    converted_names.each do |orig, name|
+      next if name_counts[name] < 2
+
+      name_index[name] ||= 0
+      name_index[name] += 1
+
+      converted_names[orig] =
+        if name_index[name] > 9
+          "#{name[0..28]}#{name_index[name]}"
+        else
+          "#{name[0..29]}#{name_index[name]}"
+        end
+    end
+
+    converted_names
   end
 end
