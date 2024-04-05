@@ -162,7 +162,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-nav.git
-  revision: f16cb0ef4d822477df4651d0ecc21d130253941e
+  revision: 8879c9434c84e740b7784d8795be6715a728df2c
   branch: main
   specs:
     decidim-nav (0.27.0)
