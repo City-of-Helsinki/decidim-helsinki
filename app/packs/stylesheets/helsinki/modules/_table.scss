@@ -16,6 +16,75 @@ table{
     }
   }
 
+  &.mobile-collapse{
+    thead{
+      // Keep the header visible for screen readers
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+
+      @include breakpoint(medium){
+        position: static;
+        left: auto;
+        top: auto;
+        width: auto;
+        height: auto;
+        overflow: initial;
+        clip: initial;
+      }
+    }
+
+    thead,
+    tbody,
+    tfoot{
+      display: block;
+
+      @include breakpoint(medium){
+        display: table-row-group;
+      }
+
+      tr{
+        display: block;
+
+        @include breakpoint(medium){
+          display: table-row;
+        }
+
+        th,
+        td{
+          padding: .1rem .625rem;
+
+          @include breakpoint(medium){
+            padding: $table-padding;
+            display: table-cell;
+          }
+
+          &:first-child{
+            padding-top: .79rem;
+
+            @include breakpoint(medium){
+              padding-left: 0;
+            }
+          }
+
+          &:last-child{
+            padding-bottom: .79rem;
+
+            @include breakpoint(medium){
+              padding-right: 0;
+            }
+          }
+
+          display: block;
+        }
+      }
+    }
+  }
+
   &.details-table{
     font-size: $hel-text-size-l;
   }
