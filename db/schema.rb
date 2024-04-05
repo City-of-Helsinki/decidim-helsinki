@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_26_163027) do
+ActiveRecord::Schema.define(version: 2024_04_03_192233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1361,7 +1361,7 @@ ActiveRecord::Schema.define(version: 2024_03_26_163027) do
   end
 
   create_table "decidim_nav_links", force: :cascade do |t|
-    t.bigint "decidim_organization_id"
+    t.bigint "navigable_id"
     t.integer "parent_id"
     t.jsonb "title"
     t.jsonb "href"
@@ -1369,7 +1369,8 @@ ActiveRecord::Schema.define(version: 2024_03_26_163027) do
     t.integer "weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["decidim_organization_id"], name: "decidim_nav_links_on_organization_id"
+    t.string "navigable_type", null: false
+    t.index ["navigable_id", "navigable_type"], name: "decidim_nav_links_navigable"
     t.index ["parent_id"], name: "index_decidim_nav_links_on_parent_id"
   end
 
