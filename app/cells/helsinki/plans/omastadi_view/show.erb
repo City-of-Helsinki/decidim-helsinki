@@ -62,10 +62,9 @@
         <h2><%= t(".subtitle") %></h2>
         <%= contents %>
 
-        <%== linked_ideas %>
-        <%== linked_projects %>
-
         <%= render :map if has_map_position? %>
+
+        <%= render :linked_resources %>
       </div>
 
       <div class="resource__details">

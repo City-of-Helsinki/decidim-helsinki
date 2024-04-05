@@ -1,0 +1,7 @@
+<% resources.each do |result| %>
+  <p>
+    <%= link_to resource_locator(result).path do %>
+      #<%= result.id %> <%== decidim_html_escape(translated_attribute(result.title)) %>
+    <% end %>
+  </p>
+<% end %>

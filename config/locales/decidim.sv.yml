@@ -181,7 +181,8 @@ sv:
           title: Förslag på karta
     resource_links:
       included_plans:
-        project_plan: Bifogade förslag
+        project_plan: Relaterade förslag
+      title: Relaterat till den här saken
     shared:
       dynamic_form:
         reset_message: Filtren har rensats. Uppdaterade sökresultat visas nedan.

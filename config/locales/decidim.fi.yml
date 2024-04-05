@@ -181,6 +181,7 @@ fi:
     resource_links:
       included_plans:
         project_plan: Liitetyt ehdotukset
+      title: Liitetyt asiat
     shared:
       dynamic_form:
         reset_message: Rajaukset on tyhjennetty. Päivitetyt hakutulokset näkyvät alla.

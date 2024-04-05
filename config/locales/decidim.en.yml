@@ -180,7 +180,8 @@ en:
           title: Proposal on map
     resource_links:
       included_plans:
-        project_plan: Attached proposals
+        project_plan: Related proposals
+      title: Related to this matter
     shared:
       dynamic_form:
         reset_message: Filters have been cleared. Updated search results are shown below.

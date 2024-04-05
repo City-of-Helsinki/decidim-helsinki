@@ -1,11 +1,7 @@
-<div class="card card--action card--list">
-  <% resources.each do |project| %>
-    <%= link_to resource_locator([project.budget, project]).path, class: "card--list__item" do %>
-      <div class="card--list__text">
-        <div>
-          <div class="card--list__heading h4"><%= translated_attribute(project.title) %></div>
-        </div>
-      </div>
+<% resources.each do |project| %>
+  <p>
+    <%= link_to resource_locator([project.budget, project]).path do %>
+      #<%= project.id %> <%= translated_attribute(project.title) %>
     <% end %>
-  <% end %>
-</div>
+  </p>
+<% end %>
