@@ -7,10 +7,6 @@ first_status = Decidim::Accountability::Status.where(component: current_componen
 cocreation_phase_active = !result.status.present? || result.status == first_status
 %>
 
-<div class="record-details">
-  <%== cell("decidim/tags/tags", result) %>
-</div>
-
 <h2><%= t(".subtitle") %></h2>
 
 <% if summary.present? %>
