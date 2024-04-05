@@ -101,6 +101,12 @@ export default class MapMarkersController extends MapController {
     } else {
       this.map.fitBounds(bounds);
     }
+
+    // Make sure that the map is not zoomed too close if it has only a single
+    // marker or few markers nearby each other.
+    if (this.map.getZoom() > 15) {
+      this.map.setZoom(15);
+    }
   }
 
   clearMarkers() {
