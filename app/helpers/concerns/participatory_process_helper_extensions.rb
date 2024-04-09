@@ -5,11 +5,13 @@ module ParticipatoryProcessHelperExtensions
   extend ActiveSupport::Concern
 
   def process_step_tag(step, past: false)
+    aria = {}
     cls = ["phases-list-item"]
     if past
       cls << "phases-list-item-past"
     elsif step.active?
       cls << "phases-list-item-current"
+      aria[:current] = "step"
     end
 
     if current_component && step.cta_path.present?
@@ -20,7 +22,7 @@ module ParticipatoryProcessHelperExtensions
       # cls << "phases-list-item-active" if step.active?
     end
 
-    content_tag :li, class: cls.join(" ") do
+    content_tag :li, class: cls.join(" "), aria: aria do
       yield
     end
   end
