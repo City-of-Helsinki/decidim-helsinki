@@ -1,6 +1,7 @@
 // This file is compiled inside Decidim core pack. Code can be added here and will be executed
 // as part of that pack
 
+import { announceForScreenReader } from "src/helsinki/a11y";
 import initHeader from "src/helsinki/header";
 import initForms from "src/helsinki/form";
 import fixMap from "src/helsinki/fix_map";
@@ -79,6 +80,8 @@ const initialize = (container) => {
 };
 
 $(() => {
+  window.Decidim.announceForScreenReader = announceForScreenReader;
+
   initHeader();
 
   initialize(document);

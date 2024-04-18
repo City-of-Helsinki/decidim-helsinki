@@ -26,38 +26,12 @@ export default (container) => {
       initialValues[pair[0]] = pair[1];
     }
 
-    let resetText = form.querySelector(".reset-info");
-    if (!resetText) {
-      resetText = document.createElement("div");
-      resetText.classList.add("show-for-sr");
-      resetText.setAttribute("aria-live", "assertive");
-      resetText.setAttribute("aria-atomic", true);
-      form.append(resetText);
-    }
-
     const message = MESSAGES.resetMessage;
-    const messageParts = message.split(" ");
 
     resetButtons.forEach((reset) => {
       reset.type = "submit";
       reset.addEventListener("click", () => {
-        // Force the announcement text to be read if it has been already set to
-        // the same value before. This uses two techniques in order to try to
-        // make the screen reader understand that this text should be read out
-        // loud:
-        //
-        // 1. Wrap the text in a span with a random attribute value that changes
-        //    every time
-        // 2. Add a random amount of spaces after the first word of the text
-        //    in order to make it seem different than before
-        resetText.innerHTML = "";
-
-        setTimeout(() => {
-          const announce = document.createElement("span")
-          announce.setAttribute("data-random", randomIdentifier("announcement"));
-          announce.textContent = [messageParts[0], randomSpaces(), ...messageParts.slice(1)].join(" ");
-          resetText.append(announce);
-        }, 100);
+        window.Decidim.announceForScreenReader(message);
 
         form.querySelectorAll("input:not([type='hidden']), textarea, select").forEach((input) => {
           if (input.nodeName === "INPUT") {
