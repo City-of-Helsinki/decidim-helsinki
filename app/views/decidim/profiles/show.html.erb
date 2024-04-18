@@ -1,0 +1,4 @@
+<% add_decidim_page_title(t(@title_key, scope: "decidim.profiles.show")) %>
+<% add_decidim_page_title(profile_holder.name) %>
+
+<%= cell "decidim/profile", profile_holder, context: { content_cell: @content_cell } %>
