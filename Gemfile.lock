@@ -124,7 +124,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: f71ff5bc9c28b0779e4567ee2ffadf2ef2e6513a
+  revision: 3c252c2f71286c335f6ab3da87d9ad383445e714
   branch: develop
   specs:
     decidim-ideas (0.27.0)
@@ -134,7 +134,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-insights.git
-  revision: 950c8633fee3717850ce9208d5823d9337c4dd9d
+  revision: c0d99940c3577f6f13b27de6615243e35618e73b
   branch: main
   specs:
     decidim-insights (0.27.0)
@@ -170,7 +170,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 837e2f9087195c03189fe7839f701ea59f42507f
+  revision: d40d60022b8255f660e67eeb73d5c3300f4250ce
   branch: develop
   specs:
     decidim-plans (0.27.0)
@@ -183,7 +183,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-privacy.git
-  revision: 4b70dcd3a728bf5a713ed7e98ec3021c39e9a0c8
+  revision: 77f25b41c1f24251f1d1659ef189a3299aa341e6
   branch: main
   specs:
     decidim-privacy (0.27.0)
