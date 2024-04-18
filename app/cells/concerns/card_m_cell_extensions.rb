@@ -10,5 +10,9 @@ module CardMCellExtensions
         render :comments_counter
       end
     end
+
+    def render_space?
+      false
+    end
   end
 end
