@@ -112,11 +112,13 @@ namespace :insights do
     end
 
     total_population = area_info[:population][:data]["total"]
+    whole_city_label = { fi: "Koko kaupunki", sv: "Hel stad", en: "Whole city" }
     area_info[:population][:data].each do |key, data|
       next if key == "total"
 
+      area = data_mapping[:areas][key]
       Decidim::Insights::AreaDetail.create!(
-        area: data_mapping[:areas][key],
+        area: area,
         position: 0,
         sticky: true,
         detail_type: "column_comparison",
@@ -127,7 +129,11 @@ namespace :insights do
         },
         source: area_info[:population][:source],
         data: {
-          labels: [nil, { fi: "Koko kaupunki", sv: "Hel stad", en: "Whole city" }],
+          # Visible labels in the views
+          labels: [nil, whole_city_label],
+          # Aria labels for screen readers
+          value_labels: [area.title, whole_city_label],
+          group_label: { fi: "Ikäluokka", sv: "Åldersgrupp", en: "Age group" },
           groups: data.keys.map do |grp|
             {
               group: grp,
