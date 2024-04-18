@@ -241,7 +241,7 @@ en:
           show_initial_estimate: Show initial budget estimate
         authors: Proposal authors
         back: Back to proposals list
-        back_to_list: Show all proposals
+        back_to_list: Show other proposals
         collaborator_requests: Requests to edit
         controls:
           add_author: Add authors for proposal

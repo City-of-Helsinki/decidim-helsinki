@@ -241,7 +241,7 @@ sv:
           show_initial_estimate: Visa preliminär budgetberäkning
         authors: Förslagets författare
         back: Tillbaka till listan av förslag
-        back_to_list: Visa alla förslag
+        back_to_list: Visa andra förslag
         collaborator_requests: Begär att redigera
         controls:
           add_author: Lägg till författare för förslag

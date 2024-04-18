@@ -237,7 +237,7 @@ fi:
       omastadi_view:
         authors: Ehdotuksen tekijät
         back: Palaa takaisin ehdotuslistaukseen
-        back_to_list: Näytä kaikki ehdotukset
+        back_to_list: Näytä muut ehdotukset
         collaborator_requests: Muokkauspyynnöt
         controls:
           add_author: Lisää ehdotukselle tekijöitä
