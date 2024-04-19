@@ -385,7 +385,13 @@ a.top-bar-logo{
   .language-choose{
     .menu{
       a{
-        text-decoration: underline;
+        padding: $menu-items-padding math.div($menu-items-padding, 2);
+        text-decoration: none;
+
+        &:hover,
+        &:focus{
+          text-decoration: underline;
+        }
       }
 
       li{
@@ -394,11 +400,13 @@ a.top-bar-logo{
 
       [aria-current="true"] a{
         font-weight: $global-weight-medium;
-        text-decoration: none;
+        text-decoration: underline;
+        text-decoration-thickness: 3px;
+        cursor: default;
 
         &:hover,
         &:focus{
-          text-decoration: underline;
+          text-decoration-thickness: 3px;
         }
       }
     }
