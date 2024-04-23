@@ -8,6 +8,12 @@ module Helsinki
       include Decidim::ApplicationHelper # needed for html_truncate
       include Decidim::IconHelper
 
+      def show
+        return if events.blank?
+
+        render
+      end
+
       def button
         return unless events_set
         return unless events.any?
