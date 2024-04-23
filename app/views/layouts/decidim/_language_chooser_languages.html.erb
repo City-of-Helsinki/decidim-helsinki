@@ -1,4 +1,4 @@
-<nav role="navigation" aria-label="<%= t(".label") %>">
+<nav aria-label="<%= t(".label") %>">
   <ul class="horizontal menu">
     <% available_locales.each do |locale| %>
       <%= content_tag :li, class: "language-nav-link", lang: locale, "aria-current": (locale == I18n.locale.to_s ? "true" : nil) do %>

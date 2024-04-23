@@ -30,13 +30,13 @@
 <% end %>
 
 <div class="register-form-wrapper<%= local_assigns[:hide_form] ? " is-hidden" : "" %>" id="session" data-toggler=".is-hidden">
-  <%= decidim_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "register-form new_user margin-bottom-1" }) do |f| %>
+  <%= decidim_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: "new_session", class: "register-form new_user margin-bottom-1" }) do |f| %>
     <div>
       <div class="field">
-        <%= f.email_field :email, autofocus: autofocus  %>
+        <%= f.email_field :email, autofocus: autofocus, id: "session_email", label_options: { for: "session_email" } %>
       </div>
       <div class="field">
-        <%= f.password_field :password, autocomplete: "off" %>
+        <%= f.password_field :password, autocomplete: "off", id: "session_password", label_options: { for: "session_password" } %>
       </div>
     </div>
     <fieldset>

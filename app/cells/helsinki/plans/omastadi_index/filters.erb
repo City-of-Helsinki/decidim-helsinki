@@ -14,7 +14,7 @@
       <div class="columns">
         <div class="filters__control area_scope_id_filter">
           <%= fields_for "filter[section][#{area_scope_section.id}]", nil do |section_form| %>
-            <%= area_scopes_picker_field(section_form, :scope_id, root: false, options: { label: t(".filters.area_scope"), include_blank: t(".filters.all_area_scopes") }, html_options: { id: "area_scope", data: { disable_dynamic_change: true } }) %>
+            <%= area_scopes_picker_field(section_form, :scope_id, root: false, options: { label: t(".filters.area_scope"), include_blank: t(".filters.all_area_scopes") }, html_options: { data: { disable_dynamic_change: true } }) %>
           <% end %>
         </div>
       </div>
@@ -23,7 +23,7 @@
       <div class="columns">
         <div class="filters__control category_id_filter">
           <%= fields_for "filter[section][#{category_section.id}]", nil do |section_form| %>
-            <%= section_form.select(:category_id, filter_categories_values, { label: t(".filters.category"), include_blank: t(".filters.all_categories") }, id: "category", data: { disable_dynamic_change: true }) %>
+            <%= section_form.select(:category_id, filter_categories_values, { label: t(".filters.category"), include_blank: t(".filters.all_categories") }, data: { disable_dynamic_change: true }) %>
           <% end %>
         </div>
       </div>

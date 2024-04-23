@@ -4,14 +4,14 @@ mobile_back_button = %(<li class="js-drilldown-back" role="presentation"><a tabi
 
 <div class="side-panel">
   <div class="sub-navigation">
-    <nav class="sub-navigation-nav show-for-mediumlarge" role="navigation" aria-label="<%= t(".label") %>">
+    <nav class="sub-navigation-nav show-for-mediumlarge" aria-label="<%= t(".label") %>">
       <ul class="sub-navigation-content vertical menu" role="menubar">
         <%= render partial: "subnav", locals: { current: current } %>
       </ul>
     </nav>
 
-    <nav class="sub-navigation-nav hide-for-mediumlarge" role="navigation">
-      <label for="subnav-select"><%= t(".choose") %></label>
+    <nav class="sub-navigation-nav hide-for-mediumlarge">
+      <label><%= t(".choose") %></label>
       <ul id="subnav-select" class="vertical menu accordion-menu select" role="menubar" data-accordion-menu>
         <li role="presentation" class="is-accordion-submenu-parent">
           <a href="#" id="subnav-control" role="menuitem" aria-controls="subnav"><%= t(".show_navigation") %></a>

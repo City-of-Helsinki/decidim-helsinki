@@ -1,4 +1,4 @@
-<header id="header" class="header" role="banner">
+<header id="header" class="header">
   <%= link_to t("skip_button", scope: "decidim.accessibility"), "#content", class: "skip", id: "skip-to-content" %>
 
   <div class="header-top show-for-large">
@@ -27,7 +27,7 @@
           <div class="top-bar-controls">
             <% if user_signed_in? %>
               <nav class="show-for-large" aria-label="<%= t("layouts.decidim.header.user_menu") %>">
-                <ul class="dropdown menu" data-dropdown-menu data-autoclose="false" data-disable-hover="true" data-click-open="true" date-close-on-click="true" role="menubar">
+                <ul class="dropdown menu" data-dropdown-menu data-autoclose="false" data-disable-hover="true" data-click-open="true" data-close-on-click="true" role="menubar">
                   <li class="is-dropdown-submenu-parent opens-right">
                     <button id="user-menu-control" type="button" class="clear button top-bar-control" role="menuitem" aria-controls="user-menu">
                       <%= icon("profile", role: "img", "aria-hidden": true) %>
@@ -68,6 +68,7 @@
           </div>
         </div>
       </div>
+    </div>
   </div>
   <% if display_common_elements? %>
     <div class="top-bar-navbars">
