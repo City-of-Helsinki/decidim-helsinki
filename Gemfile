@@ -78,6 +78,11 @@ group :development do
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 4.2"
+
+  # Use the devtools during development but disable it after the validation
+  # process is completed in order to keep the development environment faster and
+  # in order to prevent excess load for the external validation service.
+  # gem "decidim-devtools", github: "mainio/decidim-module-devtools", branch: "main"
 end
 
 group :production, :production_ruuti, :staging, :staging_ruuti do
