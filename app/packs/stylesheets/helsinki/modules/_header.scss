@@ -37,7 +37,8 @@ $header-border: 1px solid $header-border-color;
       background-color: $header-background-mobile;
     }
 
-    #skip-to-content{
+    #skip-to-content,
+    .omnipresent-banner{
       display: none;
     }
 
