@@ -53,7 +53,7 @@ $header-border: 1px solid $header-border-color;
       @include breakpoint(mediumlarge down){
         display: flex;
         flex-direction: column;
-        flex: 1;
+        flex: 0;
       }
     }
 
