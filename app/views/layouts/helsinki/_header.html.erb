@@ -29,7 +29,7 @@
               <nav class="show-for-large" aria-label="<%= t("layouts.decidim.header.user_menu") %>">
                 <ul class="dropdown menu" data-dropdown-menu data-autoclose="false" data-disable-hover="true" data-click-open="true" data-close-on-click="true" role="menubar">
                   <li class="is-dropdown-submenu-parent opens-right">
-                    <button id="user-menu-control" type="button" class="clear button top-bar-control" role="menuitem" aria-controls="user-menu">
+                    <button id="user-menu-control" type="button" class="clear button top-bar-control" role="menuitem" aria-controls="user-menu" aria-label="<%= t("layouts.decidim.header.user_menu") %>">
                       <%= icon("profile", role: "img", "aria-hidden": true) %>
                       <span><%= current_user.name %></span>
                     </button>
@@ -37,7 +37,7 @@
                   </li>
                 </ul>
               </nav>
-              <button type="button" class="clear button hide-for-large" data-navbar-toggle="user">
+              <button type="button" class="clear button hide-for-large" data-navbar-toggle="user" aria-label="<%= t("layouts.decidim.header.user_menu") %>">
                 <span class="top-bar-control active-hide">
                   <%= icon("profile", role: "img", "aria-hidden": true) %>
                   <span><%= current_user.name %></span>
