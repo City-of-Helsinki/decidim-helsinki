@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_03_192233) do
+ActiveRecord::Schema.define(version: 2024_05_03_063247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1657,6 +1657,7 @@ ActiveRecord::Schema.define(version: 2024_04_03_192233) do
     t.boolean "visible_api", default: true, null: false
     t.string "handle"
     t.boolean "searchable", default: false, null: false
+    t.jsonb "error_text"
     t.index ["decidim_component_id"], name: "index_decidim_plans_sections_on_decidim_component_id"
     t.index ["position"], name: "index_decidim_plans_sections_on_position"
   end
