@@ -12,6 +12,10 @@ module Decidim
         model
       end
 
+      def render_column?
+        !context[:no_column].presence
+      end
+
       private
 
       def has_image?

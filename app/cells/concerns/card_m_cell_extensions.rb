@@ -15,4 +15,21 @@ module CardMCellExtensions
       false
     end
   end
+
+  private
+
+  def card_wrapper
+    cls = card_classes.is_a?(Array) ? card_classes.join(" ") : card_classes
+    wrapper_options = { class: "card #{cls}", aria: { label: t(".card_label", title: title) } }
+    if has_link_to_resource?
+      link_to resource_path, **wrapper_options do
+        yield
+      end
+    else
+      aria_options = { role: "region" }
+      content_tag :div, **aria_options.merge(wrapper_options) do
+        yield
+      end
+    end
+  end
 end

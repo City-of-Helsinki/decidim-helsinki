@@ -33,10 +33,10 @@
   <%= decidim_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: "new_session", class: "register-form new_user margin-bottom-1" }) do |f| %>
     <div>
       <div class="field">
-        <%= f.email_field :email, autofocus: autofocus, id: "session_email", label_options: { for: "session_email" } %>
+        <%= f.email_field :email, required: true, autofocus: autofocus, id: "session_email", label_options: { for: "session_email" } %>
       </div>
       <div class="field">
-        <%= f.password_field :password, autocomplete: "off", id: "session_password", label_options: { for: "session_password" } %>
+        <%= f.password_field :password, autocomplete: "off", required: true, id: "session_password", label_options: { for: "session_password" } %>
       </div>
     </div>
     <fieldset>

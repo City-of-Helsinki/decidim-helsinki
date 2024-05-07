@@ -7,10 +7,11 @@
 
       <div class="row align-justify">
         <div class="columns sidebar">
+          <%= link_to(t("decidim.shared.skip_subnavigation"), "#main_content", class: "skip") %>
           <%= render "side_panel", current: page %>
         </div>
 
-        <div class="columns mainbar">
+        <div class="columns mainbar" id="main_content">
           <div class="static__content">
             <%= decidim_sanitize_editor_admin translated_attribute page.content %>
           </div>

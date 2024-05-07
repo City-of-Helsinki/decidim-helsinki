@@ -39,6 +39,9 @@ en:
     formats:
       decidim_short: "%d.%m.%Y"
   decidim:
+    assemblies:
+      assembly_m:
+        card_label: "Group: %{title}"
     authorization_handlers:
       admin:
         cocreation:
@@ -135,7 +138,13 @@ en:
           title: Information
         show:
           subtitle: Process
+      process_m:
+        card_label: "Process: %{title}"
     proposals:
+      collaborative_draft_m:
+        card_label: "Collaborative draft: %{title}"
+      proposal_m:
+        card_label: "Proposal: %{title}"
       proposals:
         filters:
           category_prompt: Choose category
@@ -215,7 +224,7 @@ en:
       process_header:
         unfold: Unfold
       user_menu:
-        conversations: Messages
+        conversations: Conversations
         favorites: Favourites
         notifications: Notifications
         profile: Account information

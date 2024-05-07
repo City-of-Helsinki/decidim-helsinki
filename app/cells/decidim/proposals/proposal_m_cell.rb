@@ -13,6 +13,10 @@ module Decidim
         render if has_badge?
       end
 
+      def render_column?
+        !context[:no_column].presence
+      end
+
       private
 
       def resource_path

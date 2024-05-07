@@ -18,10 +18,11 @@ edit_link(
 
       <div class="row align-justify">
         <div class="columns sidebar">
+          <%= link_to(t("decidim.shared.skip_subnavigation"), "#main_content", class: "skip") %>
           <%= render "side_panel", current: nil %>
         </div>
 
-        <div class="columns mainbar">
+        <div class="columns mainbar" id="main_content">
           <div class="static__content">
             <%
             section = Decidim::ContextualHelpSection.find_content(

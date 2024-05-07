@@ -39,6 +39,9 @@ fi:
     formats:
       decidim_short: "%d.%m.%Y"
   decidim:
+    assemblies:
+      assembly_m:
+        card_label: "Ryhmä: %{title}"
     authorization_handlers:
       admin:
         cocreation:
@@ -134,7 +137,13 @@ fi:
           title: Tiedot
         show:
           subtitle: Prosessi
+      process_m:
+        card_label: "Prosessi: %{title}"
     proposals:
+      collaborative_draft_m:
+        card_label: "Yhteistyölunnos: %{title}"
+      proposal_m:
+        card_label: "Ehdotus: %{title}"
       proposals:
         filters:
           category_prompt: Valitse aihepiiri
@@ -214,7 +223,7 @@ fi:
       process_header:
         unfold: Avaa
       user_menu:
-        conversations: Viestit
+        conversations: Keskustelut
         favorites: Suosikit
         notifications: Ilmoitukset
         profile: Omat tiedot

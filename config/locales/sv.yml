@@ -39,6 +39,9 @@ sv:
     formats:
       decidim_short: "%d.%m.%Y"
   decidim:
+    assemblies:
+      assembly_m:
+        card_label: "Grupp: %{title}"
     authorization_handlers:
       admin:
         cocreation:
@@ -134,7 +137,13 @@ sv:
           title: Information
         show:
           subtitle: Process
+      process_m:
+        card_label: "Process: %{title}"
     proposals:
+      collaborative_draft_m:
+        card_label: "Samarbetsförslag: %{title}"
+      proposal_m:
+        card_label: "Förslag: %{title}"
       proposals:
         filters:
           category_prompt: Välj ett ämne
@@ -214,7 +223,7 @@ sv:
       process_header:
         unfold: Öppna
       user_menu:
-        conversations: Meddelanden
+        conversations: Samtal
         favorites: Favoriter
         notifications: Notifikationer
         profile: Kontoinformation

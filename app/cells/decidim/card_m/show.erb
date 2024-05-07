@@ -1,0 +1,7 @@
+<% if respond_to?(:render_column?) && render_column? %>
+  <div class="column" id="<%= dom_id(model) %>">
+    <%= render :inner %>
+  </div>
+<% else %>
+  <%= render :inner %>
+<% end %>

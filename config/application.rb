@@ -85,6 +85,12 @@ module DecidimHelsinki
       possible << :sms if Rails.application.config.smsauth_enabled
 
       Decidim::User.omniauth_providers = possible
+
+      # Prevent the signed global IDs from expiring because they are cached and e.g.
+      # commenting might not work if the ID has expired.
+      #
+      # See: https://github.com/decidim/decidim/pull/12783
+      SignedGlobalID.expires_in = nil
     end
 
     # Passes a block of code to do after initialization.
