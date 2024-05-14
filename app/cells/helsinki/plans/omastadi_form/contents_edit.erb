@@ -1,5 +1,5 @@
 <% form_contents.each do |content| %>
-  <%= fields_for "contents[#{content.section.id}]", content, namespace: "plans_section_#{content.section.id}" do |content_form| %>
+  <%= fields_for "contents[#{content.section.id}]", content, namespace: "plans_section_#{content.section.id}", builder: Decidim::Plans::FormBuilder do |content_form| %>
     <% content = content_form.object %>
 
     <%= cell(
