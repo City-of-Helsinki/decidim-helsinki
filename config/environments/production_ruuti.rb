@@ -13,6 +13,12 @@ Rails.application.configure do
   # environment. This is for the Ruuti instance.
   config.wrapper_class = "wrapper-ruuti"
 
+  config.service_name = {
+    fi: "Nuorten budjetti",
+    sv: "Ungdomsbudgeten",
+    en: "Youth Budget"
+  }
+
   # The feedback email in the footer of the site
   config.feedback_email = "ruutibudjetti@hel.fi"
 

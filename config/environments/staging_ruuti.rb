@@ -14,6 +14,12 @@ Rails.application.configure do
   # environment. This is for the Ruuti instance.
   config.wrapper_class = "wrapper-ruuti"
 
+  config.service_name = {
+    fi: "Nuorten budjetti",
+    sv: "Ungdomsbudgeten",
+    en: "Youth Budget"
+  }
+
   # This defines an email address for automatically generated user accounts,
   # e.g. through the Helsinki profile or MPASSid authentications.
   config.auto_email_domain = "nubu.hel.ninja"

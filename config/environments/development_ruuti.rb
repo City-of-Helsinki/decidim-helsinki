@@ -10,6 +10,12 @@ Rails.application.configure do
   # environment. This is for the Ruuti instance.
   config.wrapper_class = "wrapper-ruuti"
 
+  config.service_name = {
+    fi: "Nuorten budjetti",
+    sv: "Ungdomsbudgeten",
+    en: "Youth Budget"
+  }
+
   # Color profile that changes the logo color for the footer
   # config.color_profile = "white"
 
