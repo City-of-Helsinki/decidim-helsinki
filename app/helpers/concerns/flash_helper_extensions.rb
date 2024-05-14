@@ -23,7 +23,7 @@ module FlashHelperExtensions
     def alert_box(value, alert_class, closable, display_icon: true)
       cls = %W(flash callout #{alert_class})
       cls << "callout--icon" if display_icon
-      options = { class: cls.join(" ") }
+      options = { class: cls.join(" "), aria: { live: "assertive" } }
       options[:data] = { closable: "" } if closable
       content_tag(:div, options) do
         concat alert_icon(alert_class) if display_icon
