@@ -71,6 +71,12 @@ module ApplicationHelper
             post_path(post)
           ]
         end
+      elsif current_participatory_space.blank?
+        # Processes listing page
+        links << [
+          t("decidim.participatory_processes.participatory_processes.index.title"),
+          decidim_participatory_processes.participatory_processes_path
+        ]
       else
         # Process front page and other process pages
         links << [
