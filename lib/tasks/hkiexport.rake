@@ -349,7 +349,7 @@ namespace :hkiexport do
       end
       geolocated = project.latitude.present? && project.longitude.present?
       latitude = project.latitude.presence || budget.center_latitude
-      longitude = project.latitude.presence || budget.center_longitude
+      longitude = project.longitude.presence || budget.center_longitude
 
       {
         id: project.id,
