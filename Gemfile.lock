@@ -34,8 +34,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-accountability_simple.git
-  revision: 5878278596e35353dc43a9b582f7b2fff0251259
-  branch: main
+  revision: 5184842a43c18dfce99a6eeecfaa8d4eaff814c6
+  branch: release/0.27-nubu
   specs:
     decidim-accountability_simple (0.27.0)
       decidim-accountability (~> 0.27.0)
