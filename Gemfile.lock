@@ -153,12 +153,12 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-mpassid.git
-  revision: a28896b136de727cc9b0e8daedba83b6995e23d8
-  branch: main
+  revision: 71a702472373ac660775c0ceff338c952ed4d4e8
+  branch: release/0.27-stable
   specs:
     decidim-mpassid (0.27.0)
       decidim-core (~> 0.27.0)
-      omniauth-mpassid (~> 0.6.0)
+      omniauth-mpassid (~> 0.6.1)
 
 GIT
   remote: https://github.com/mainio/decidim-module-nav.git
@@ -207,13 +207,13 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-suomifi.git
-  revision: 63fce640991fa188dbc7c260f6ff8c3801e34940
-  branch: main
+  revision: e0ed9b33cd9c5d75250c1a46b7aa9cab73257701
+  branch: release/0.27-stable
   specs:
     decidim-suomifi (0.27.0)
       decidim-core (~> 0.27.0)
       henkilotunnus (~> 1.2.0)
-      omniauth-suomifi (~> 0.7.0)
+      omniauth-suomifi (~> 0.8.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-tags.git
@@ -854,9 +854,9 @@ GEM
     omniauth-saml (2.1.0)
       omniauth (~> 2.0)
       ruby-saml (~> 1.12)
-    omniauth-suomifi (0.7.0)
-      omniauth-saml (~> 2.0)
-      ruby-saml (~> 1.13.0)
+    omniauth-suomifi (0.8.0)
+      omniauth-saml (~> 2.1)
+      ruby-saml (~> 1.17)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -1053,8 +1053,8 @@ GEM
       nokogiri
       thor
     ruby-progressbar (1.13.0)
-    ruby-saml (1.13.0)
-      nokogiri (>= 1.10.5)
+    ruby-saml (1.17.0)
+      nokogiri (>= 1.13.10)
       rexml
     ruby-vips (2.2.0)
       ffi (~> 1.12)
