@@ -36,7 +36,7 @@ gem "decidim-helsinki_smsauth", github: "mainio/decidim-module-helsinki_smsauth"
 gem "decidim-sms-telia", github: "mainio/decidim-sms-telia", branch: "main"
 
 gem "bootsnap", "~> 1.4"
-gem "puma", ">= 5.6.2"
+gem "puma", ">= 5.6.8"
 
 gem "faker", "~> 2.14"
 
@@ -78,8 +78,8 @@ end
 group :production, :production_ruuti, :staging, :staging_ruuti do
   gem "dotenv-rails", "~> 2.8"
 
-  gem "resque", "~> 2.2.0"
-  gem "resque-scheduler", "~> 4.5"
+  gem "resque", "~> 2.6.0"
+  gem "resque-scheduler", "~> 4.10"
 
   # Storage
   #
