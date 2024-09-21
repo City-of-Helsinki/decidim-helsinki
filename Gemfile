@@ -6,7 +6,7 @@ ruby RUBY_VERSION
 
 # Run updates by following the Decidim upgrade instructions:
 # https://docs.decidim.org/en/develop/install/update.html
-DECIDIM_VERSION = "~> 0.27.0"
+DECIDIM_VERSION = "~> 0.27.9"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-initiatives", DECIDIM_VERSION
