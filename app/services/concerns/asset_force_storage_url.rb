@@ -17,20 +17,27 @@ module AssetForceStorageUrl
 
     # Treats the `:only_path` URLs similarly as they used to be but routes
     # URLs directly to the storage service.
-    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     def url(**options)
       if options[:only_path]
         original_url(**options)
       else
         case asset
-        when ActiveStorage::Attached, ActiveStorage::Blob
+        when ActiveStorage::Attached
+          ensure_current_host(asset.record, **options)
+          return asset.url(**options).presence || original_url(**options)
+        when ActiveStorage::Blob
           return asset.url(**options).presence || original_url(**options)
         when ActiveStorage::VariantWithRecord
+          ensure_current_host(nil, **options)
+
           # This is used when `ActiveStorage.track_variants` is enabled through
           # `config.active_storage.track_variants`.
           url = asset.url(**options) if asset.processed? && asset.service.exist?(asset.key)
           return url if url.present?
         else # ActiveStorage::Variant
+          ensure_current_host(nil, **options)
+
           # When the asset is a variant, the `#url` method can return nil in
           # case the variant has not yet been generated. Therefore, fall back
           # to the local representation URL which should generate the variant
@@ -48,6 +55,56 @@ module AssetForceStorageUrl
         routes.rails_representation_url(asset, **default_options.merge(options))
       end
     end
-    # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  end
+
+  private
+
+  # Most of the times the current host should be set through the controller
+  # already when the logic below is unnecessary. This logic is needed e.g.
+  # for serializers where the request context is not available.
+  #
+  # @param record The record for which to check the organization
+  # @param opts Options for building the URL
+  # @return [void]
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def ensure_current_host(record, **opts)
+    blob =
+      case asset
+      when ActiveStorage::Blob
+        asset
+      else
+        asset&.blob
+      end
+    return unless blob
+    return unless defined?(ActiveStorage::Service::DiskService)
+    return unless blob.service.is_a?(ActiveStorage::Service::DiskService)
+    return if ActiveStorage::Current.host.present?
+
+    options = routes.default_url_options
+    options = options.merge(opts)
+
+    if opts[:host].blank? && record.present?
+      organization = organization_for(record)
+      options[:host] = organization.host if organization
+    end
+
+    uri =
+      if options[:protocol] == "https" || options[:scheme] == "https"
+        URI::HTTPS.build(options)
+      else
+        URI::HTTP.build(options)
+      end
+
+    ActiveStorage::Current.host = uri.to_s
+  end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+
+  def organization_for(record)
+    if record.is_a?(Decidim::Organization)
+      record
+    elsif record.respond_to?(:organization)
+      record.organization
+    end
   end
 end
