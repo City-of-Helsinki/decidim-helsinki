@@ -4,6 +4,7 @@
 
 <% if Rails.application.config.enable_cookiehub %>
 <!-- Cookiehub / Cookie consent -->
+<script src="https://cdn.cookiehub.eu/c2/7e1303bc.js"></script>
 <script type="text/javascript">
 var cpm = {
   onStatusChange: function(status, previousStatus) {
@@ -11,12 +12,9 @@ var cpm = {
     document.documentElement.dispatchEvent(event);
   }
 };
-(function(h,u,b){
-var d=h.getElementsByTagName("script")[0],e=h.createElement("script");
-e.async=true;e.src='https://cookiehub.net/c2/c7e96adf.js';
-e.onload=function(){u.cookiehub.load(b);}
-d.parentNode.insertBefore(e,d);
-})(document,window,cpm);
+document.addEventListener("DOMContentLoaded", function(event) {
+  window.cookiehub.load();
+});
 </script>
 <% end %>
 
