@@ -16,6 +16,7 @@
     "@decidim/elections": "^0.27.9",
     "@decidim/webpacker": "^0.27.9",
     "@splidejs/splide": "^4.1.4",
+    "hds-js": "^4.0.0",
     "hyphenopoly": "^5.1.0",
     "sass-embedded": "~1.62.0"
   },
