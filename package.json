@@ -14,7 +14,7 @@
     "@decidim/browserslist-config": "^0.27.9",
     "@decidim/core": "^0.27.9",
     "@decidim/elections": "^0.27.9",
-    "@decidim/webpacker": "^0.27.9",
+    "@decidim/webpacker": "^0.29.2",
     "sass-embedded": "~1.62.0"
   },
   "devDependencies": {
