@@ -537,6 +537,7 @@ module DecidimHelsinki
         Decidim::UserActivitiesController.include(ActivityResourceTypes)
         Decidim::UserTimelineController.include(TimelineResourceTypes)
         Decidim::Meetings::RegistrationsController.include(MeetingsRegistrationsControllerExtensions)
+        Decidim::LinksController.include(LinksControllerExtensions)
         # For ensuring that the disabled omniauth strategies cannot be used
         Decidim::Mpassid::OmniauthCallbacksController.include(OmniauthExtensions)
         Decidim::Mpassid::OmniauthCallbacksController.ensure_strategy_enabled_for(:mpassid)
