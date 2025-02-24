@@ -2,22 +2,6 @@
   <meta name="robots" content="noindex,nofollow">
 <% end %>
 
-<% if Rails.application.config.enable_cookiehub %>
-<!-- Cookiehub / Cookie consent -->
-<script src="https://cdn.cookiehub.eu/c2/7e1303bc.js"></script>
-<script type="text/javascript">
-var cpm = {
-  onStatusChange: function(status, previousStatus) {
-    var event = new CustomEvent("cookiehub:statusChange", { detail: { status: status, previousStatus: previousStatus } });
-    document.documentElement.dispatchEvent(event);
-  }
-};
-document.addEventListener("DOMContentLoaded", function(event) {
-  window.cookiehub.load();
-});
-</script>
-<% end %>
-
 <% if Rails.application.config.matomo_site_id %>
 <% domain = request.host %>
 <!-- Matomo -->

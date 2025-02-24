@@ -192,5 +192,14 @@ en:
       privacy_title: Consent to the processing of personal data
   layouts:
     decidim:
+      data_consent:
+        warning:
+          all_categories: preference, statistics and marketing cookies
+          change_settings: Change cookie settings
+          consent_required_html: |
+            This content is hosted by <span data-content-source-text></span>. To see the content, switch over to the
+            external site or modify your cookie settings to allow for %{categories}.
+          proceed_to_external_site: See content on external site
+          title: Content cannot be displayed
       impersonation_warning:
         label: Impersonation of another user

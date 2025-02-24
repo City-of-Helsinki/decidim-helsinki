@@ -1,35 +1,61 @@
 /**
- * Customized version of the data/cookie consent management as Helsinki uses
- * an external provider for this (CookieHub).
+ * Customized version of the data/cookie consent management as Helsinki uses its
+ * own cookie management solution.
  */
+import initDataConsent from "src/helsinki/data_consent";
 
 /**
  * Manages the consent
  */
 class ConsentManager {
-  allAccepted() {
-    if (!window.cookiehub) {
-      // When CookieHub is disabled (like in development), we consider all
-      // categories accepted.
-      return true;
-    }
-    if (!window.cookiehub.hasAnswered()) {
-      return false;
-    }
+  constructor(hds) {
+    this.hds = hds;
+  }
 
-    return ["preferences", "analytics", "marketing"].every((category) => {
-      const categoryResponse = window.cookiehub.hasConsented(category);
-      return categoryResponse === undefined || categoryResponse === true;
-    })
+  allAccepted() {
+    return this.hds.getConsentStatus(["preferences", "statistics", "marketing"]);
   }
 
   openSettings() {
-    if (!window.cookiehub) {
-      return;
-    }
-
-    window.cookiehub.openSettings();
+    this.hds.openBanner();
   }
+}
+
+/**
+ * Parses details about the iframe to display within the disabled iframe
+ * notification. The parsed details are the `src` of the iframe to allow linking
+ * directly to the content and `domain` to display from which domain the content
+ * is originating from.
+ *
+ * @param {Node} disabledNode The disabled iframe node containing the commented
+ *   iframe.
+ * @returns {Object} An object containing `src` and `domain` for the provided
+ *   iframe or an empty Object in case these details are not found.
+ */
+const getDisabledIframeDetails = (disabledNode) => {
+  const commentNode = disabledNode.childNodes.values().find((node) => node.nodeType === Node.COMMENT_NODE);
+  if (!commentNode) {
+    return {};
+  }
+
+  const parser = new DOMParser();
+  const dom = parser.parseFromString(commentNode.textContent, "text/html");
+  const iframe = dom.querySelector("iframe");
+  if (!iframe) {
+    return {};
+  }
+
+  const iframeSrc = iframe.getAttribute("src");
+  if (!iframeSrc) {
+    return {};
+  }
+
+  const match = iframeSrc.match(/^(https?:)?\/\/([^\/?]+)/);
+  if (!match) {
+    return { src: iframeSrc };
+  }
+
+  return { src: iframeSrc, domain: match[2] };
 }
 
 /**
@@ -77,9 +103,16 @@ const triggerWarnings = (manager) => {
       return;
     }
 
+    const details = getDisabledIframeDetails(original);
+
     let cloned = warningElement.cloneNode(true);
     cloned.classList.remove("hide");
     original.appendChild(cloned);
+
+    console.log(details);
+
+    cloned.querySelector("[data-content-source-text]").innerText = details.domain;
+    cloned.querySelector("[data-content-source-link]").setAttribute("href", details.src || "#");
 
     // Listen to the click on the settings button
     cloned.querySelectorAll("button").forEach((button) => {
@@ -91,13 +124,14 @@ const triggerWarnings = (manager) => {
   });
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const manager = new ConsentManager();
+document.addEventListener("DOMContentLoaded", async () => {
+  const hdsManager = await initDataConsent();
+  const manager = new ConsentManager(hdsManager);
 
   triggerIframes(manager);
   triggerWarnings(manager);
 
-  document.documentElement.addEventListener("cookiehub:statusChange", () => {
+  window.addEventListener("hds-cookie-consent-changed", () => {
     triggerIframes(manager);
     triggerWarnings(manager);
   });

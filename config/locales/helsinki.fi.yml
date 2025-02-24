@@ -125,6 +125,12 @@ fi:
         title: Otsikko
       results_carousel:
         name: Hankekaruselli (seuranta)
+    consent:
+      show:
+        title: Evästeasetukset
+        description_html: |
+          <p>Eväste (engl. cookie) on pienikokoinen tekstitiedosto, jonka verkkoselain tallentaa käyttäjän tietokoneelle tai mobiililaitteelle, kun vierailet verkkosivustolla. Se ei vahingoita käyttäjän laitetta tai tiedostoja. Evästeitä ei voi käyttää haittaohjelmien levittämiseen.</p>
+          <p>Evästeistä saatava käyttäjätieto auttaa meitä varmistamaan sivuston teknisen toimivuuden ja parantamaan digitaalisten palveluidemme laatua. Niiden avulla voimme kehittää sivuston käyttäjäystävällisyyttä ja helpottaa tiedon löytymistä.</p>
     copyright: '%{year} Helsingin kaupunki'
     forms:
       label_tooltip: Ohjeistus

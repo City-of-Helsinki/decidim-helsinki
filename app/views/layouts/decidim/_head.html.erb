@@ -26,7 +26,6 @@
 <%= favicon %>
 <%= stylesheet_pack_tag "decidim_core", media: "all" %>
 <%= invisible_captcha_styles %>
-<%= organization_colors %>
 
 <%= render partial: "layouts/decidim/head_extra" %>
 <%== current_organization.header_snippets if Decidim.enable_html_header_snippets %>

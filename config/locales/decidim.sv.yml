@@ -193,5 +193,15 @@ sv:
       privacy_title: Samtycke till behandling av personuppgifter
   layouts:
     decidim:
+      data_consent:
+        warning:
+          all_categories: cookies för preferens, statistik och marknadsföring
+          change_settings: Ändra inställningarna för cookies
+          consent_required_html: |
+            Det här innehållet hämtas från <span data-content-source-text></span>. För att visa innehållet krävs att du
+            godkänner webbplatsens cookies. Du kan se innehållet antingen genom att gå till en extern webbplats eller
+            genom att ge ditt samtycke till användningen av %{categories}.
+          proceed_to_external_site: Gå till extern webbplats
+          title: Innehållet kan inte visas
       impersonation_warning:
         label: Imitation av en annan användare

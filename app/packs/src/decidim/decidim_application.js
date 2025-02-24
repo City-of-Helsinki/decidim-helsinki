@@ -3,7 +3,6 @@
 
 import { announceForScreenReader } from "src/helsinki/a11y";
 import initHeader from "src/helsinki/header";
-import initCookieConsent from "src/helsinki/cookie_consent";
 import initForms from "src/helsinki/form";
 import fixMap from "src/helsinki/fix_map";
 import "src/helsinki/toggle_checkbox";
@@ -92,8 +91,6 @@ $(() => {
   document.addEventListener("section:update", (ev) => {
     initialize(ev.target);
   });
-
-  initCookieConsent();
 
   // Event to determine when the application scripts have finished their setup
   $(document).trigger("app-ready");

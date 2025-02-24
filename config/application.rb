@@ -33,9 +33,6 @@ module DecidimHelsinki
     # How long the sessions are valid
     config.session_validity_period = 30.minutes
 
-    # Is the CookieHub consent enabled or not
-    config.enable_cookiehub = true
-
     config.service_name = {
       fi: "OmaStadi",
       sv: "VårStad",

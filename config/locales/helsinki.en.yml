@@ -125,6 +125,12 @@ en:
         title: Title
       results_carousel:
         name: Project carousel (implementation)
+    consent:
+      show:
+        title: Cookie information
+        description_html: |
+          <p>A cookie is a small-scale data storage program that a computer browser installs on a user's computer hard drive. Whenever the user's browser retrieves the site from the City of Helsinki's servers, the message is sent back to the user's computer. Javascript and server logs are used to record, for example, the number of users, country of use, usage time and browser used, as well as the content that the visitor has visited. The cookie does not damage the drive.</p>
+          <p>Cookies are used to speed up, analyze and develop the website and to target content to each user.</p>
     copyright: '%{year} City of Helsinki'
     forms:
       label_tooltip: Guidance

@@ -125,6 +125,12 @@ sv:
         title: Titel
       results_carousel:
         name: Projektkarusell (genomförande)
+    consent:
+      show:
+        title: Cookie -inställningar
+        description_html: |
+          <p>En kaka (eng. cookie) är en liten textfil som webbläsaren sparar i användarens dator eller mobila enhet när hen besöker en webbplats. Den skadar inte användarens enhet eller filer. Kakor kan inte användas för att sprida skadeprogram.</p>
+          <p>Användarinformationen som fås från kakorna hjälper oss att säkerställa webbplatsens funktionalitet och förbättra kvaliteten på våra digitala tjänster. Med hjälp av dem kan vi utveckla webbplatsens användarvänlighet och göra det lättare att hitta information.</p>
     copyright: '%{year} Helsingfors stad'
     forms:
       label_tooltip: Vägledning

@@ -1,8 +1,18 @@
-<div class="dataconsent-warning flex-center padding-1 hide">
-  <p>
-  <%= t("layouts.decidim.data_consent.warning.consent_required", categories: t("layouts.decidim.data_consent.warning.all_categories")) %>
-  </p>
-  <button type="button" class="button margin-vertical-2">
-    <%= t("change_settings", scope: "layouts.decidim.data_consent.warning") %>
-  </button>
+<div class="dataconsent-warning flex-center hide">
+  <div class="dataconsent-message">
+    <%= icon "alert-circle", role: "img", "aria-hidden": true %>
+    <h2 class="h4"><%= t("layouts.decidim.data_consent.warning.title") %></h2>
+    <p>
+      <%= t("layouts.decidim.data_consent.warning.consent_required_html", categories: t("layouts.decidim.data_consent.warning.all_categories")) %>
+    </p>
+
+    <div class="buttons">
+      <a href="#" class="button" target="_blank" data-content-source-link>
+        <%= t("proceed_to_external_site", scope: "layouts.decidim.data_consent.warning") %>
+      </a>
+      <button type="button" class="button hollow">
+        <%= t("change_settings", scope: "layouts.decidim.data_consent.warning") %>
+      </button>
+    </div>
+  </div>
 </div>

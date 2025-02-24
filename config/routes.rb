@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     namespace :geocoding do
       get :autocomplete
     end
+
+    get :consent, to: "consent#show", format: :html
   end
 
   resources :posts, only: [:index, :show], controller: "decidim/blogs/directory/posts", format: :html

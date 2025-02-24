@@ -1,0 +1,39 @@
+// Customized for the HDS cookie consent script
+
+.disabled-iframe{
+  background-color: $hel-grayscale-5;
+  cursor: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.ql-video{
+    display: flex;
+  }
+}
+
+.dataconsent-warning{
+  flex-direction: column;
+
+  .dataconsent-message{
+    font-size: 1rem;
+    margin: 3rem;
+    padding: 2rem;
+    background-color: $white;
+
+    .icon{
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .buttons{
+      > *{
+        margin-right: 1rem;
+
+        &:last-child{
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
