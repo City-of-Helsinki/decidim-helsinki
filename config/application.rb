@@ -507,6 +507,7 @@ module DecidimHelsinki
         ActionView::Helpers::Tags::CollectionRadioButtons.include(Helsinki::FormExtensions::CollectionRadioButtons)
 
         # Form builders
+        Decidim::FormBuilder.include(DecidimFormBuilderExtensions)
         Decidim::FilterFormBuilder.include(Helsinki::FormBuilderExtensions)
 
         # Helper extensions
