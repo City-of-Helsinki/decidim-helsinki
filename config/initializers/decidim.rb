@@ -10,6 +10,9 @@ Decidim.configure do |config|
   config.default_locale = :fi
   config.available_locales = [:fi, :sv, :en]
 
+  # Disable service worker for all environments
+  config.service_worker_enabled = false
+
   # Maps configuration
   config.maps = {
     provider: :helsinki,
