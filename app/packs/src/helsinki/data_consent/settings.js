@@ -26,7 +26,7 @@ export default {
     }
   ],
   "siteName": "OmaStadi",
-  "cookieName": "omastadi-consents",
+  "cookieName": "decidim-consent",
   "monitorInterval": 500,
   "fallbackLanguage": "en",
   "requiredGroups": [
@@ -59,7 +59,7 @@ export default {
           }
         },
         {
-          "name": "omastadi-consents",
+          "name": "decidim-consent",
           "host": CURRENT_HOST,
           "storageType": 1,
           "description": {
@@ -698,9 +698,9 @@ export default {
       "en": "Cookie settings"
     },
     "heading": {
-      "fi": "{{siteName}} käyttää evästeitä",
-      "sv": "{{siteName}} använder kakor",
-      "en": "{{siteName}} uses cookies"
+      "fi": "Evästeet {{siteName}}-sivustolla",
+      "sv": "Kakor på webbplatsen {{siteName}}",
+      "en": "Cookies on {{siteName}}"
     },
     "description": {
       "fi": "Tämä sivusto käyttää välttämättömiä evästeitä sivun perustoimintojen ja suorituskyvyn varmistamiseksi. Lisäksi käytämme kohdennusevästeitä käyttäjäkokemuksen parantamiseksi, analytiikkaan ja yksilöidyn sisällön näyttämiseen.",
