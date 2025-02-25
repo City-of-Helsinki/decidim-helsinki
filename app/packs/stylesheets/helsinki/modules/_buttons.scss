@@ -32,6 +32,22 @@
       transform: translateY(-50%);
     }
   }
+
+  &.external-link-container{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    .external-link-indicator{
+      margin: 0 0 0 .7rem;
+
+      &,
+      .icon{
+        width: .9rem;
+        height: .9rem;
+      }
+    }
+  }
 }
 
 a.button{

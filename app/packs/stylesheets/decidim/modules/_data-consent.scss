@@ -17,9 +17,14 @@
 
   .dataconsent-message{
     font-size: 1rem;
-    margin: 3rem;
-    padding: 2rem;
+    margin: 1rem;
+    padding: 1rem;
     background-color: $white;
+
+    @include breakpoint(medium){
+      margin: 3rem;
+      padding: 2rem;
+    }
 
     .icon{
       width: 1.5rem;
@@ -27,8 +32,20 @@
     }
 
     .buttons{
-      > *{
+      display: flex;
+      flex-direction: column;
+
+      @include breakpoint(medium){
+        flex-direction: row;
+      }
+
+      .button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-right: 1rem;
+        max-width: 400px;
+        padding: 1.125rem 1.5rem;
 
         &:last-child{
           margin-left: 0;
