@@ -58,8 +58,8 @@ export default {
           },
           "expiration": {
             "fi": "Istunto tai 30 minuuttia inaktiivisena",
-            "sv": "30 minuter vid inaktiv",
-            "en": "Istunto or 30 minutes when inactive"
+            "sv": "Session eller 30 minuter vid inaktiv",
+            "en": "Session or 30 minutes when inactive"
           }
         },
         {
