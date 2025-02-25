@@ -25,7 +25,11 @@ export default {
       "direction": "ltr"
     }
   ],
-  "siteName": "OmaStadi",
+  "siteName": {
+    "fi": "OmaStadi",
+    "sv": "VårStad",
+    "en": "OmaStadi"
+  },
   "cookieName": "decidim-consent",
   "monitorInterval": 500,
   "fallbackLanguage": "en",
