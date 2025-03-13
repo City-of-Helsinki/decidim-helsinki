@@ -4,6 +4,8 @@
  */
 import initDataConsent from "src/helsinki/data_consent";
 
+const CATEGORIES = ["preferences", "statistics", "marketing"];
+
 /**
  * Manages the consent
  */
@@ -13,7 +15,15 @@ class ConsentManager {
   }
 
   allAccepted() {
-    return this.hds.getConsentStatus(["preferences", "statistics", "marketing"]);
+    return this.isAccepted(CATEGORIES);
+  }
+
+  isAccepted(categories) {
+    let cats = categories;
+    if (typeof categories === "string") {
+      cats = [categories];
+    }
+    return this.hds.getConsentStatus(cats);
   }
 
   openSettings() {
@@ -57,6 +67,26 @@ const getDisabledIframeDetails = (disabledNode) => {
 
   return { src: iframeSrc, domain: match[2] };
 }
+
+/**
+ * Triggers javascript visibility based on the user's cookie settings.
+ *
+ * @param {ConsentManager} manager
+ */
+const triggerJavascripts = (manager) => {
+  for (const category of CATEGORIES) {
+    const accepted = manager.isAccepted(category);
+
+    for (const el of document.querySelectorAll(`script[data-consent="${category}"]`)) {
+      const newEl = document.createElement("script");
+      newEl.innerHTML = el.innerHTML;
+      if (!accepted) {
+        newEl.setAttribute("type", "text/plain");
+      }
+      el.replaceWith(newEl);
+    }
+  }
+};
 
 /**
  * Triggers iframe visibility based on the user's cookie settings. If the user
@@ -128,10 +158,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   const hdsManager = await initDataConsent();
   const manager = new ConsentManager(hdsManager);
 
+  triggerJavascripts(manager);
   triggerIframes(manager);
   triggerWarnings(manager);
 
   window.addEventListener("hds-cookie-consent-changed", () => {
+    triggerJavascripts(manager);
     triggerIframes(manager);
     triggerWarnings(manager);
   });
