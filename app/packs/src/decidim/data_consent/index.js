@@ -139,8 +139,6 @@ const triggerWarnings = (manager) => {
     cloned.classList.remove("hide");
     original.appendChild(cloned);
 
-    console.log(details);
-
     cloned.querySelector("[data-content-source-text]").innerText = details.domain;
     cloned.querySelector("[data-content-source-link]").setAttribute("href", details.src || "#");
 
