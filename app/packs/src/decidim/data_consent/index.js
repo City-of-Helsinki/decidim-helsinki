@@ -78,6 +78,14 @@ const triggerJavascripts = (manager) => {
     const accepted = manager.isAccepted(category);
 
     for (const el of document.querySelectorAll(`script[data-consent="${category}"]`)) {
+      let expectedType = "text/plain";
+      if (accepted) {
+        expectedType = null;
+      }
+      if (el.getAttribute("type") === expectedType) {
+        continue;
+      }
+
       const newEl = document.createElement("script");
       newEl.setAttribute("data-consent", category);
       newEl.innerHTML = el.innerHTML;
