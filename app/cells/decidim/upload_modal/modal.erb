@@ -35,7 +35,10 @@
         class: "show-for-sr",
         multiple: true,
         direct_upload: true,
-        data: { direct_upload_url: direct_upload_url },
+        data: {
+          direct_upload_url: direct_upload_url,
+          upload_validations_url: upload_validations_url
+        },
         aria: { labelledby: "#{modal_id}_file_input_label", describedby: "#{modal_id}_file_input_description" },
         accept: allower_extensions&.map { |ext| ".#{ext}" }&.join(",") %>
       <span id="<%= modal_id %>_file_input_label" class="show-for-sr"><%= t("decidim.forms.upload.choose_file") %></span>
