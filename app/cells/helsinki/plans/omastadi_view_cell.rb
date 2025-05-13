@@ -79,6 +79,42 @@ module Helsinki
         @description_content ||= content_for(description_section)
       end
 
+      def audience_section
+        @audience_section ||= section_with_handle("audience")
+      end
+
+      def audience_content
+        return unless audience_section
+
+        @audience_content ||= content_for(audience_section)
+      end
+
+      def need_section
+        @need_section ||= section_with_handle("need")
+      end
+
+      def need_content
+        return unless need_section
+
+        @need_content ||= content_for(need_section)
+      end
+
+      def new_or_improvement_section
+        @new_or_improvement_section ||= section_with_handle("neworimprovement")
+      end
+
+      def new_or_improvement_scope
+        return unless new_or_improvement_section
+
+        @new_or_improvement_scope ||= begin
+          content = content_for(new_or_improvement_section)
+          if content
+            scope_id = content.body["scope_id"].to_i
+            Decidim::Scope.find_by(id: scope_id) if scope_id
+          end
+        end
+      end
+
       def ideas_section
         @ideas_section ||= section_with_handle("ideas")
       end
