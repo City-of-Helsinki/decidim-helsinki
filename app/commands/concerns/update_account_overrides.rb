@@ -2,7 +2,7 @@
 
 # Overrides the update account command to remove unnecessary extra infromation
 # from the user profile.
-module UpdateAccountPostOverrides
+module UpdateAccountOverrides
   extend ActiveSupport::Concern
 
   included do
