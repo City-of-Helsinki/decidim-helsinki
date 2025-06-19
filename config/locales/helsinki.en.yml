@@ -93,6 +93,11 @@ en:
         description: Description
         button_text: Button text
         button_url: Button URL
+        image: Map image (%{language})
+        image_alt: Map image alternative text
+        section:
+          content: Content next to the map
+          map: Map image
         title: Title
       notification:
         name: Notification
@@ -177,7 +182,7 @@ en:
         edit_step_info: Write a brief description of your proposal and select the area in which it will be located. A good description explains what should be done concretely and where the funding is needed. When creating a proposal, you can utilise information about the city's services and plans.
         ideas_step_info: Proposals are made on the basis of ideas submitted by citizens that meet the criteria. Begin developing your proposal by selecting one or more ideas as its foundation. Every proposal must be based on at least one of the ideas which is accepted and fulfills the Omastadi criteria. Before you start creating your proposal, learn about the other proposals made for your area.
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
-        required_fields_text: Required fields are marked with the *-character.
+        required_fields_text: Fields marked with an asterisk * must be filled.
         steps:
           next: Next
           previous: Previous

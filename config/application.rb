@@ -96,28 +96,6 @@ module DecidimHelsinki
       SignedGlobalID.expires_in = nil
     end
 
-    # Passes a block of code to do after initialization.
-    # config.after_initialize do
-    #   # Override the main menu
-    #   Decidim::MenuRegistry.create(:menu)
-    #   Decidim.menu :menu do |menu|
-    #     menu.item I18n.t("menu.home", scope: "decidim"),
-    #               decidim.root_path,
-    #               position: 1,
-    #               active: :exact
-
-    #     menu.item I18n.t("menu.processes", scope: "decidim"),
-    #               decidim_participatory_processes.participatory_processes_path,
-    #               position: 2,
-    #               active: :inclusive
-
-    #     menu.item I18n.t("menu.more_information", scope: "decidim"),
-    #               decidim.pages_path,
-    #               position: 3,
-    #               active: :inclusive
-    #   end
-    # end
-
     initializer "user_authentication" do |app|
       Decidim::User.include(UserAuthentication)
 
@@ -287,7 +265,15 @@ module DecidimHelsinki
         content_block.settings_form_cell = "helsinki/content_blocks/map_section_settings_form"
         content_block.public_name_key = "helsinki.content_blocks.map_section.name"
 
+        content_block.images = Decidim.available_locales.map do |locale|
+          {
+            name: :"map_image_#{locale}",
+            uploader: "Helsinki::SvgUploader"
+          }
+        end
+
         content_block.settings do |settings|
+          settings.attribute :image_alt, type: :text, translated: true
           settings.attribute :title, type: :text, translated: true
           settings.attribute :description, type: :text, translated: true
           settings.attribute :button_url, type: :text

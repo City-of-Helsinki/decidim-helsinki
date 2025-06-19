@@ -40,19 +40,19 @@ fi:
         name: Taustaosio
       background_section_settings_form:
         description: Kuvaus
-        button1_text: Napin 1 teksti
-        button1_url: Napin 1 URL
-        button2_text: Napin 2 teksti
-        button2_url: Napin 2 URL
+        button1_text: Painikkeen 1 teksti
+        button1_url: Painikkeen 1 URL
+        button2_text: Painikkeen 2 teksti
+        button2_url: Painikkeen 2 URL
         title: Otsikko
       help_section:
         name: Apuosio
       help_section_settings_form:
         description: Kuvaus
-        button1_text: Napin 1 teksti
-        button1_url: Napin 1 URL
-        button2_text: Napin 2 teksti
-        button2_url: Napin 2 URL
+        button1_text: Painikkeen 1 teksti
+        button1_url: Painikkeen 1 URL
+        button2_text: Painikkeen 2 teksti
+        button2_url: Painikkeen 2 URL
         title: Otsikko
       highlighted_blogs:
         article: "Artikkeli: %{title}"
@@ -83,23 +83,28 @@ fi:
       linked_events:
         name: Linked Events - Tulevat tapahtumat
       linked_events_settings_form:
-        button_text: Napin teksti
-        button_url: Napin URL
+        button_text: Painikkeen teksti
+        button_url: Painikkeen URL
         description: Kuvaus
         title: Otsikko
       map_section:
         name: Karttaosio
       map_section_settings_form:
         description: Kuvaus
-        button_text: Napin teksti
-        button_url: Napin URL
+        button_text: Painikkeen teksti
+        button_url: Painikkeen URL
+        image: Karttakuva (%{language})
+        image_alt: Karttakuvan vaihtoehtoisteksti
+        section:
+          content: Sisältö kartan vieressä
+          map: Karttakuva
         title: Otsikko
       notification:
         name: Ilmoitus
       notification_settings_form:
         description: Kuvaus
-        button_text: Napin teksti
-        button_url: Napin URL
+        button_text: Painikkeen teksti
+        button_url: Painikkeen URL
         title: Otsikko
         type: Tyyppi
         type_choices:
@@ -118,8 +123,8 @@ fi:
         next: Seuraava
         previous: Edellinen
       records_carousel_settings_form:
-        button_text: Napin teksti
-        button_url: Napin URL
+        button_text: Painikkeen teksti
+        button_url: Painikkeen URL
         description: Kuvaus
         process: Prosessi
         title: Otsikko
@@ -177,7 +182,7 @@ fi:
         edit_step_info: Kirjoita lyhyt kuvaus ehdotuksestasi ja valitse alue, johon se sijoittuu. Hyvässä kuvauksessa kerrotaan, mitä pitäisi konkreettisesti tehdä ja mihin rahoitusta tarvitaan. Hyödynnä ehdotuksen suunnittelussa tietoa kaupungin palveluista ja suunnitelmista.
         ideas_step_info: Ehdotuksia tehdään kaupunkilaisten jättämien, kriteerit täyttäneiden ideoiden pohjalta. Aloita ehdotuksen luominen valitsemalla yksi tai useampi idea, johon ehdotuksesi perustuu. Jokaiseen ehdotukseen tulee liittää vähintään yksi idea. Ennen kuin teet oman ehdotuksen, käy tutustumassa muiden tekemiin ehdotuksiin.
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
-        required_fields_text: Pakolliset kentät on merkitty *-merkillä.
+        required_fields_text: Tähdellä * merkityt kentät on pakko täyttää.
         steps:
           next: Seuraava
           previous: Edellinen
