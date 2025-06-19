@@ -96,6 +96,13 @@ module DecidimHelsinki
       SignedGlobalID.expires_in = nil
     end
 
+    # Customize the user menu
+    initializer "user_menu", after: "decidim.user_menu" do
+      Decidim.menu :user_menu do |menu|
+        menu.remove_item(:user_interests)
+      end
+    end
+
     initializer "user_authentication" do |app|
       Decidim::User.include(UserAuthentication)
 
