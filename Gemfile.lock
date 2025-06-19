@@ -99,8 +99,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-favorites.git
-  revision: 1afdfe44d643bc5cce7930d172f9d7762b474fe9
-  branch: develop
+  revision: b070db197589506a905c1847bdb8bf9bda0f583b
+  branch: release/0.27-stable
   specs:
     decidim-favorites (0.27.0)
       decidim-core (~> 0.27.0)
@@ -134,8 +134,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-insights.git
-  revision: c0d99940c3577f6f13b27de6615243e35618e73b
-  branch: main
+  revision: dcb69579428a71f741d239b49d45c4b5c494adb1
+  branch: release/0.27-stable
   specs:
     decidim-insights (0.27.0)
       decidim-core (~> 0.27.0)
@@ -170,14 +170,13 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 099521bd2de1ce7492df5caa5fb3456fbfa24d33
-  branch: develop
+  revision: 7fa09c953ca50a44aa6681ec8db5288201777cb9
+  branch: release/0.27-stable
   specs:
     decidim-plans (0.27.0)
       decidim-core (~> 0.27.0)
       decidim-favorites (~> 0.27.0)
       decidim-feedback (~> 0.27.0)
-      decidim-proposals (~> 0.27.0)
       decidim-tags (~> 0.27.0)
       paper_trail-association_tracking (~> 2.0)
 
@@ -891,7 +890,7 @@ GEM
     paper_trail (12.3.0)
       activerecord (>= 5.2)
       request_store (~> 1.1)
-    paper_trail-association_tracking (2.2.1)
+    paper_trail-association_tracking (2.3.0)
       paper_trail (>= 12.0)
     parallel (1.23.0)
     parallel_tests (3.13.0)
