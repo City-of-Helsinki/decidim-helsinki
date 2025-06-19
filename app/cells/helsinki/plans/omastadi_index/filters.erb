@@ -45,10 +45,7 @@
           <fieldset>
             <legend class="mini-title"><%= t(".filters.activity.title") %></legend>
             <% activity_filter_values.each do |value|%>
-              <label>
-                <%= form.radio_button :activity, value[0], label: false, checked: value[0] == "all" %>
-                <%= value[1] %>
-              </label>
+              <%= form.radio_button :activity, value[0], label: value[1], checked: value[0] == "all", data: { disable_dynamic_change: true } %>
             <% end %>
           </fieldset>
         </div>

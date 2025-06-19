@@ -7,6 +7,8 @@ require "helsinki/form_builder"
 module Decidim
   # This custom FormBuilder is used to create resource filter forms
   class FilterFormBuilder < Decidim::FormBuilder
+    include Helsinki::FormBuilderExtensions
+
     # Wrap the radio buttons collection in a custom fieldset.
     # It also renders the inputs inside its labels.
     # rubocop:disable Metrics/ParameterLists
