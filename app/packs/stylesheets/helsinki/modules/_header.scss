@@ -115,6 +115,13 @@ $header-border: 1px solid $header-border-color;
   background-color: $header-background-top;
   padding: 13px 0;
   font-size: $hel-text-size-s;
+
+  .header-top-links{
+    display: flex;
+    flex-direction: row;
+    justify-self: flex-end;
+    gap: 1rem;
+  }
 }
 
 .headerbar{

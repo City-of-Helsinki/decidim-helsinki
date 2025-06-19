@@ -4,7 +4,12 @@
   <div class="header-top show-for-large">
     <div class="row expanded">
       <div class="columns small-6"><a href="https://www.hel.fi/<%= current_locale %>" target="_blank">Hel.fi</a></div>
-      <div class="columns small-6 text-right"><a href="https://palautteet.hel.fi/" target="_blank"><%= t("layouts.header.feedback") %></a></div>
+      <div class="columns small-6 text-right">
+        <div class="header-top-links">
+          <a href="https://palautteet.hel.fi/" target="_blank"><%= t("layouts.header.feedback") %></a>
+          <%= render partial: "layouts/decidim/admin_links" %>
+        </div>
+      </div>
     </div>
   </div>
   <div class="top-bar">
