@@ -126,6 +126,13 @@ select{
   }
 }
 
+.field-category{
+  // The category fields get their margin from the top level field.
+  .help-text{
+    margin-bottom: 0;
+  }
+}
+
 .address-input{
   [data-decidim-map]{
     margin-top: 1.5rem;
