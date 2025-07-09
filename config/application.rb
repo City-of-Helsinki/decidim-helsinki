@@ -477,6 +477,9 @@ module DecidimHelsinki
     end
 
     initializer "mail_interceptors" do
+      # This would otherwise fail in case the migrations have not run yet.
+      next unless ActiveRecord::Base.connection.table_exists?(Decidim::Organization.table_name)
+
       ActionMailer::Base.register_interceptor(
         Helsinki::MailInterceptors::GeneratedRecipientsInterceptor
       )
