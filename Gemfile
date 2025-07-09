@@ -17,7 +17,7 @@ gem "decidim-accountability_simple", github: "mainio/decidim-module-accountabili
 gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "main"
 gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "main"
 gem "decidim-apifiles", github: "mainio/decidim-module-apifiles", branch: "release/0.27-stable"
-gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "develop"
+gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "release/0.27-stable"
 gem "decidim-connector", github: "mainio/decidim-module-connector", branch: "main"
 gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.27-stable"
 gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "develop"

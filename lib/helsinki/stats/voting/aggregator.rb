@@ -42,25 +42,9 @@ module Helsinki
             # same time for each entity.
             @process_until = Time.current unless last_run?
             @postal_code_votes = {}
+            @cancelled_postal_code_votes = {}
 
-            # Process the all stats in one locking block (the component stats
-            # locking) to ensure only one process at a time processes one
-            # component. Otherwise duplicate entries could be created if the
-            # first process does not have enough time to complete before the
-            # next run starts.
-            aggregate_component(component) do
-              Decidim::Budgets::Budget.where(component: component).each do |budget|
-                aggregate_budget(budget)
-
-                Decidim::Budgets::Project.where(budget: budget).each do |project|
-                  aggregate_project(project)
-                end
-              end
-
-              postal_code_votes.each do |code, ids|
-                aggregate_postal_code(component, code, ids)
-              end
-            end
+            process_component(component)
           end
         end
 
@@ -79,7 +63,38 @@ module Helsinki
 
         private
 
-        attr_reader :process_until, :postal_code_votes
+        attr_reader :process_until, :postal_code_votes, :cancelled_postal_code_votes
+
+        def process_component(component)
+          # Process the all stats in one locking block (the component stats
+          # locking) to ensure only one process at a time processes one
+          # component. Otherwise duplicate entries could be created if the
+          # first process does not have enough time to complete before the
+          # next run starts.
+          aggregate_component(component) do
+            Decidim::Budgets::Budget.where(component: component).each do |budget|
+              aggregate_budget(budget)
+
+              Decidim::Budgets::Project.where(budget: budget).each do |project|
+                aggregate_project(project)
+              end
+            end
+
+            postals = {}
+            postal_code_votes.each do |code, ids|
+              postals[code] ||= [[], []]
+              postals[code][0] += ids
+            end
+            cancelled_postal_code_votes.each do |code, ids|
+              postals[code] ||= [[], []]
+              postals[code][1] += ids
+            end
+
+            postals.each do |code, (ids, cancelled_ids)|
+              aggregate_postal_code(component, code, ids, cancelled_ids)
+            end
+          end
+        end
 
         def last_run?
           @last_run == true
@@ -96,10 +111,23 @@ module Helsinki
             key: "votes"
           ) do |collection|
             votes = Decidim::Budgets::Vote.where(component: component).order(:created_at)
-            votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
-            votes = votes.where("created_at <= ?", process_until) if process_until
-            if votes.any?
-              accumulator = Accumulator.new(component, votes, identity_provider, cache_postal_votes: true)
+            cancelled_votes = nil
+            if collection.last_value_at
+              votes = votes.where("created_at > ?", collection.last_value_at)
+              cancelled_votes = Decidim::Budgets::CancelledVote.where(
+                "created_at > ?",
+                collection.last_value_at
+              ).where(component: component).where(
+                "vote_cast_at <= ?",
+                collection.last_value_at
+              ).order(:created_at)
+            end
+            if process_until
+              votes = votes.where("created_at <= ?", process_until)
+              cancelled_votes = cancelled_votes.where("created_at <= ?", process_until) if cancelled_votes
+            end
+            if votes.any? || cancelled_votes&.any?
+              accumulator = Accumulator.new(component, votes, cancelled_votes || [], identity_provider, cache_postal_votes: true)
               update_collection(collection, accumulator)
 
               # Cache the vote IDs for each postal code to improve the
@@ -107,9 +135,16 @@ module Helsinki
               # is introduced, the aggregation would take a long time because
               # all votes would be processed from the beginning to find the
               # votes for a particular postal code.
+              #
+              # This might no longer be such a large problem after the
+              # performance fixes to the Decidim data decryption.
               accumulator.postal_code_votes.each do |code, ids|
                 postal_code_votes[code] ||= []
                 postal_code_votes[code] += ids
+              end
+              accumulator.cancelled_postal_code_votes do |code, ids|
+                cancelled_postal_code_votes[code] ||= []
+                cancelled_postal_code_votes[code] += ids
               end
             end
 
@@ -117,7 +152,7 @@ module Helsinki
           end
         end
 
-        def aggregate_postal_code(component, code, ids)
+        def aggregate_postal_code(component, code, ids, cancelled_ids)
           postal_code = code.presence || "00000"
           component.stats.process!(
             organization: component.organization,
@@ -127,10 +162,24 @@ module Helsinki
             key: "votes_postal_#{postal_code}"
           ) do |collection|
             votes = Decidim::Budgets::Vote.where(component: component, id: ids).order(:created_at)
-            votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
-            votes = votes.where("created_at <= ?", process_until) if process_until
-            if votes.any?
-              accumulator = Accumulator.new(component, votes, identity_provider)
+            cancelled_votes = nil
+            if collection.last_value_at
+              votes = votes.where("created_at > ?", collection.last_value_at)
+              cancelled_votes = Decidim::Budgets::CancelledVote.where(
+                component: component,
+                id: cancelled_ids
+              ).where(
+                "vote_cast_at <= ? AND created_at > ?",
+                collection.last_value_at,
+                collection.last_value_at
+              ).order(:created_at)
+            end
+            if process_until
+              votes = votes.where("created_at <= ?", process_until)
+              cancelled_votes = cancelled_votes.where("created_at <= ?", process_until) if cancelled_votes
+            end
+            if votes.any? || cancelled_votes&.any?
+              accumulator = Accumulator.new(component, votes, cancelled_votes || [], identity_provider)
               update_collection(collection, accumulator)
             end
           end
@@ -143,10 +192,23 @@ module Helsinki
             key: "votes"
           ) do |collection|
             votes = Decidim::Budgets::Order.finished.where(budget: budget).order(:checked_out_at)
-            votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
-            votes = votes.where("checked_out_at <= ?", process_until) if process_until
-            if votes.any?
-              accumulator = Accumulator.new(budget.component, votes, identity_provider)
+            cancelled_votes = nil
+            if collection.last_value_at
+              votes = votes.where("checked_out_at > ?", collection.last_value_at)
+              cancelled_votes = Decidim::Budgets::CancelledOrder.where(
+                budget: budget
+              ).where(
+                "checked_out_at <= ? AND created_at > ?",
+                collection.last_value_at,
+                collection.last_value_at
+              ).order(:created_at)
+            end
+            if process_until
+              votes = votes.where("checked_out_at <= ?", process_until)
+              cancelled_votes = cancelled_votes.where("created_at <= ?", process_until) if cancelled_votes
+            end
+            if votes.any? || cancelled_votes&.any?
+              accumulator = Accumulator.new(budget.component, votes, cancelled_votes || [], identity_provider)
               update_collection(collection, accumulator)
             end
           end
@@ -161,10 +223,24 @@ module Helsinki
             votes = Decidim::Budgets::Order.joins(
               "LEFT JOIN decidim_budgets_line_items li ON li.decidim_order_id = decidim_budgets_orders.id"
             ).finished.where(li: { decidim_project_id: project }).group(:id).order(:checked_out_at)
-            votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
-            votes = votes.where("checked_out_at <= ?", process_until) if process_until
-            if votes.any?
-              accumulator = Accumulator.new(project.component, votes, identity_provider)
+            cancelled_votes = nil
+
+            if collection.last_value_at
+              votes = votes.where("checked_out_at > ?", collection.last_value_at)
+              cancelled_votes = Decidim::Budgets::CancelledOrder.joins(
+                "CROSS JOIN LATERAL jsonb_array_elements(line_items_data) ids(elem)"
+              ).where("(elem->>'decidim_project_id')::jsonb @> ?", project.id.to_s).where(
+                "checked_out_at <= ? AND created_at > ?",
+                collection.last_value_at,
+                collection.last_value_at
+              )
+            end
+            if process_until
+              votes = votes.where("checked_out_at <= ?", process_until)
+              cancelled_votes = cancelled_votes.where("created_at <= ?", process_until) if cancelled_votes
+            end
+            if votes.any? || cancelled_votes&.any?
+              accumulator = Accumulator.new(project.component, votes, cancelled_votes || [], identity_provider)
               update_collection(collection, accumulator)
             end
           end

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe Helsinki::Stats::Voting::Accumulator do
-  let(:accumulator) { described_class.new(component, votes, identity_provider, **options) }
+  let(:accumulator) { described_class.new(component, votes, cancelled_votes, identity_provider, **options) }
 
   let(:organization) { create(:organization) }
   let(:component) { create(:budgets_component, :with_minimum_budget_projects, vote_minimum_budget_projects_number: 1, organization: organization) }
@@ -22,6 +22,7 @@ describe Helsinki::Stats::Voting::Accumulator do
       end
     end
   end
+  let(:cancelled_votes) { [] }
   let(:identity_provider) { Helsinki::Stats::Voting::IdentityProvider.new }
   let(:options) { {} }
 

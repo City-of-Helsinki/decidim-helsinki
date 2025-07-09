@@ -354,6 +354,54 @@ describe Helsinki::Stats::Voting::Aggregator do
         it_behaves_like "correct stats"
         it_behaves_like "correct postal code stats for component"
       end
+
+      # context "with cancelled votes" do
+      #   before do
+      #     # TODO: Create cancelled votes
+      #   end
+
+      #   it "decumulates the cancelled votes correctly" do
+      #     # TODO
+      #     collection = measurable.stats.find_by(key: "votes")
+
+      #     total = collection.sets.find_by(key: "total")
+      #     expect(total.measurements.find_by(label: "all").value).to eq(6)
+
+      #     postal = collection.sets.find_by(key: "postal")
+      #     expect(postal.measurements.find_by(label: "00000").value).to eq(2)
+      #     expect(postal.measurements.find_by(label: "00200").value).to eq(1)
+      #     expect(postal.measurements.find_by(label: "00210").value).to eq(1)
+      #     expect(postal.measurements.find_by(label: "00220").value).to eq(1)
+      #     expect(postal.measurements.find_by(label: "00170")).to be_nil # no postal accumulation for schools
+
+      #     school = collection.sets.find_by(key: "school")
+      #     expect(school.measurements.find_by(label: "03085").value).to eq(1)
+
+      #     demographic = collection.sets.find_by(key: "demographic")
+      #     demographic_data.each do |auth_id, data|
+      #       auth = Decidim::Authorization.find(auth_id)
+      #       group = demographic.measurements.find_by(label: data[:group])
+      #       group_data = demographic_data.select { |_aid, d| d[:group] == data[:group] }
+
+      #       expect(group.value).to eq(group_data.count)
+      #       expect(group.children.find_by(label: auth.metadata["gender"].presence || "neutral").value).to eq(1)
+      #     end
+
+      #     locale = collection.sets.find_by(key: "locale")
+      #     expect(locale.measurements.find_by(label: "fi").value).to eq(2)
+      #     expect(locale.measurements.find_by(label: "en").value).to eq(1)
+      #     expect(locale.measurements.find_by(label: "sv").value).to eq(1)
+      #     expect(locale.measurements.find_by(label: "").value).to eq(2)
+      #     expect(locale.measurements.find_by(label: "tlh")).to be_nil
+
+      #     datetime = collection.sets.find_by(key: "datetime")
+      #     creation_dates.each do |_user_id, dates|
+      #       expect(datetime.measurements.find_by(label: dates[1]).value).to eq(1)
+      #     end
+
+      #     expect(collection.finalized).to be(false)
+      #   end
+      # end
     end
 
     context "when budget" do
@@ -653,6 +701,9 @@ describe Helsinki::Stats::Voting::Aggregator do
 
       # This should take less than 8 seconds to complete. If the identity data
       # caching does not work, this would take > 35s (see stats below).
+      #
+      # Note that this may not be as relevant anymore after the performance
+      # issues related to attribute decryption were fixed.
       expect(elapsed).to be < 10
 
       # Stats (16GB RAM, Ryzen 7 PRO 4750U)
