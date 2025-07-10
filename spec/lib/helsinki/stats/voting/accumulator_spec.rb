@@ -131,6 +131,11 @@ describe Helsinki::Stats::Voting::Accumulator do
   describe "#accumulate" do
     subject { accumulator.accumulate }
 
+    it "calls decumulate during the accumulation" do
+      expect(accumulator).to receive(:decumulate)
+      subject
+    end
+
     it "accumulates the total votes" do
       expect(subject[:total]).to eq(6)
     end
@@ -189,6 +194,68 @@ describe Helsinki::Stats::Voting::Accumulator do
     context "with pupil" do
       it "accumulates the school and class information" do
         expect(subject[:school]["03085"]).to eq(total: 1, klass: { "7" => 1 })
+      end
+    end
+  end
+
+  describe "#decumulate" do
+    subject { accumulator.decumulate }
+
+    let(:cancelled_votes) do
+      [suomifi_user, mpassid_user].map do |user|
+        vote = Decidim::Budgets::Vote.find_by(component: component, user: user)
+        Decidim::Budgets::CancelledVote.cancel_vote!(vote)
+      end
+    end
+
+    it "does not call accumulate" do
+      expect(accumulator).not_to receive(:accumulate)
+      subject
+    end
+
+    it "decumulates the total votes" do
+      expect(subject[:total]).to eq(-2)
+    end
+
+    it "decumulates the vote time information" do
+      expect(subject[:datetime]["2021-10-03T15:00:00Z"]).to eq(-1) # Suomi.fi
+      expect(subject[:datetime]["2021-10-08T22:00:00Z"]).to eq(-1) # MPASSid
+    end
+
+    it "decumulates the locale information" do
+      expect(subject[:locale]["en"]).to eq(-1) # Suomi.fi
+      expect(subject[:locale]["sv"]).to eq(-1) # MPASSid
+    end
+
+    it "does not cache the postal code information by default" do
+      subject
+      expect(accumulator.cancelled_postal_code_votes).to eq({})
+    end
+
+    context "with postal code caching enabled" do
+      let(:options) { { cache_postal_votes: true } }
+
+      it "caches the postal code information" do
+        subject
+        expect(accumulator.cancelled_postal_code_votes).to eq(
+          "00220" => [cancelled_votes.find { |v| v.user == suomifi_user }.id]
+        )
+      end
+    end
+
+    context "with citizen" do
+      it "decumulates postal codes" do
+        expect(subject[:postal]["00220"]).to eq(-1) # Suomi.fi
+      end
+
+      it "decumulates the age groups and genders" do
+        expect(subject[:demographic]["30-39"]).to eq(total: -1, gender: { m: 0, f: 0, neutral: -1 }) # Suomi.fi
+      end
+    end
+
+    context "with pupil" do
+      it "decumulates the school and class information" do
+        expect(subject[:school]["03085"]).to eq(total: -1, klass: { "7" => -1 })
       end
     end
   end

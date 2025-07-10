@@ -355,53 +355,55 @@ describe Helsinki::Stats::Voting::Aggregator do
         it_behaves_like "correct postal code stats for component"
       end
 
-      # context "with cancelled votes" do
-      #   before do
-      #     # TODO: Create cancelled votes
-      #   end
+      context "with cancelled votes" do
+        before do
+          # Cancel the votes
+          [suomifi_user, mpassid_user].each do |user|
+            vote = Decidim::Budgets::Vote.find_by(component: component, user: user)
+            Decidim::Budgets::CancelledVote.cancel_vote!(vote)
+          end
 
-      #   it "decumulates the cancelled votes correctly" do
-      #     # TODO
-      #     collection = measurable.stats.find_by(key: "votes")
+          # Run the aggregator
+          aggregator.run
+        end
 
-      #     total = collection.sets.find_by(key: "total")
-      #     expect(total.measurements.find_by(label: "all").value).to eq(6)
+        it "decumulates the cancelled votes correctly" do
+          collection = measurable.stats.find_by(key: "votes")
 
-      #     postal = collection.sets.find_by(key: "postal")
-      #     expect(postal.measurements.find_by(label: "00000").value).to eq(2)
-      #     expect(postal.measurements.find_by(label: "00200").value).to eq(1)
-      #     expect(postal.measurements.find_by(label: "00210").value).to eq(1)
-      #     expect(postal.measurements.find_by(label: "00220").value).to eq(1)
-      #     expect(postal.measurements.find_by(label: "00170")).to be_nil # no postal accumulation for schools
+          total = collection.sets.find_by(key: "total")
+          expect(total.measurements.find_by(label: "all").value).to eq(4)
 
-      #     school = collection.sets.find_by(key: "school")
-      #     expect(school.measurements.find_by(label: "03085").value).to eq(1)
+          postal = collection.sets.find_by(key: "postal")
+          expect(postal.measurements.find_by(label: "00000").value).to eq(2)
+          expect(postal.measurements.find_by(label: "00200").value).to eq(1)
+          expect(postal.measurements.find_by(label: "00210").value).to eq(1)
+          expect(postal.measurements.find_by(label: "00220").value).to eq(0)
+          expect(postal.measurements.find_by(label: "00170")).to be_nil # no postal accumulation for schools
 
-      #     demographic = collection.sets.find_by(key: "demographic")
-      #     demographic_data.each do |auth_id, data|
-      #       auth = Decidim::Authorization.find(auth_id)
-      #       group = demographic.measurements.find_by(label: data[:group])
-      #       group_data = demographic_data.select { |_aid, d| d[:group] == data[:group] }
+          school = collection.sets.find_by(key: "school")
+          expect(school.measurements.find_by(label: "03085").value).to eq(0)
 
-      #       expect(group.value).to eq(group_data.count)
-      #       expect(group.children.find_by(label: auth.metadata["gender"].presence || "neutral").value).to eq(1)
-      #     end
+          # Suomi.fi authorized person is a neutral gender aged 31 at the time of voting
+          demographic = collection.sets.find_by(key: "demographic")
+          group = demographic.measurements.find_by(label: "30-39")
+          expect(group.children.find_by(label: "neutral").value).to eq(0)
 
-      #     locale = collection.sets.find_by(key: "locale")
-      #     expect(locale.measurements.find_by(label: "fi").value).to eq(2)
-      #     expect(locale.measurements.find_by(label: "en").value).to eq(1)
-      #     expect(locale.measurements.find_by(label: "sv").value).to eq(1)
-      #     expect(locale.measurements.find_by(label: "").value).to eq(2)
-      #     expect(locale.measurements.find_by(label: "tlh")).to be_nil
+          locale = collection.sets.find_by(key: "locale")
+          expect(locale.measurements.find_by(label: "fi").value).to eq(2)
+          expect(locale.measurements.find_by(label: "en").value).to eq(0)
+          expect(locale.measurements.find_by(label: "sv").value).to eq(0)
+          expect(locale.measurements.find_by(label: "").value).to eq(2)
+          expect(locale.measurements.find_by(label: "tlh")).to be_nil
 
-      #     datetime = collection.sets.find_by(key: "datetime")
-      #     creation_dates.each do |_user_id, dates|
-      #       expect(datetime.measurements.find_by(label: dates[1]).value).to eq(1)
-      #     end
+          datetime = collection.sets.find_by(key: "datetime")
+          [suomifi_user, mpassid_user].each do |user|
+            dates = creation_dates[user.id]
+            expect(datetime.measurements.find_by(label: dates[1]).value).to eq(0)
+          end
 
-      #     expect(collection.finalized).to be(false)
-      #   end
-      # end
+          expect(collection.finalized).to be(false)
+        end
+      end
     end
 
     context "when budget" do
