@@ -46,11 +46,13 @@ module Helsinki
             self.last_value_at = vote_time if last_value_at.blank? || last_value_at < vote_time
           end
 
+          decumulate
+
           accumulation
         end
 
         def decumulate
-          cancelled_votes do |vote|
+          cancelled_votes.each do |vote|
             vote_time = vote_time_for(vote)
             meta = identity_provider.for(vote.user, vote_time)
             if meta
@@ -66,8 +68,10 @@ module Helsinki
 
             accumulate_datetime(vote, amount: -1)
             accumulate_locale(vote, amount: -1)
-            accumulate_total
+            accumulate_total(amount: -1)
           end
+
+          accumulation
         end
 
         private
