@@ -130,25 +130,29 @@ module Helsinki
               accumulator = Accumulator.new(component, votes, cancelled_votes || [], identity_provider, cache_postal_votes: true)
               update_collection(collection, accumulator)
 
-              # Cache the vote IDs for each postal code to improve the
-              # processing performance. Otherwise every time a new postal code
-              # is introduced, the aggregation would take a long time because
-              # all votes would be processed from the beginning to find the
-              # votes for a particular postal code.
-              #
-              # This might no longer be such a large problem after the
-              # performance fixes to the Decidim data decryption.
-              accumulator.postal_code_votes.each do |code, ids|
-                postal_code_votes[code] ||= []
-                postal_code_votes[code] += ids
-              end
-              accumulator.cancelled_postal_code_votes do |code, ids|
-                cancelled_postal_code_votes[code] ||= []
-                cancelled_postal_code_votes[code] += ids
-              end
+              cache_postal_votes(accumulator)
             end
 
             yield
+          end
+        end
+
+        def cache_postal_votes(accumulator)
+          # Cache the vote IDs for each postal code to improve the processing
+          # performance. Otherwise every time a new postal code is introduced,
+          # the aggregation would take a long time because all votes would be
+          # processed from the beginning to find the votes for a particular
+          # postal code.
+          #
+          # This might no longer be such a large problem after the performance
+          # fixes to the Decidim data decryption.
+          accumulator.postal_code_votes.each do |code, ids|
+            postal_code_votes[code] ||= []
+            postal_code_votes[code] += ids
+          end
+          accumulator.cancelled_postal_code_votes do |code, ids|
+            cancelled_postal_code_votes[code] ||= []
+            cancelled_postal_code_votes[code] += ids
           end
         end
 
