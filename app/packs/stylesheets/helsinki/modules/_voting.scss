@@ -1,5 +1,5 @@
 #orders-summary{
-  background-color: $hel-engel-medium-light;
+  background-color: $hel-suomenlinna-medium-light;
   padding: 1rem;
 
   @include breakpoint(mediumlarge){
@@ -210,7 +210,7 @@ body.loading{
 
     &[data-selected]{
       .projects-table__row__header{
-        background-color: $hel-engel-medium-light;
+        background-color: $hel-suomenlinna-medium-light;
       }
     }
 

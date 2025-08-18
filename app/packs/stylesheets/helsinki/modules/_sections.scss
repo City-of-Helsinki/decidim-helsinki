@@ -5,14 +5,14 @@
     position: relative;
     z-index: 1;
     padding: 0;
-    background-color: $hel-engel-medium-light;
+    background-color: $hel-suomenlinna;
   }
 
   .koro{
     z-index: 1;
 
     svg{
-      fill: $hel-engel-medium-light;
+      fill: $hel-suomenlinna;
     }
   }
 
@@ -40,12 +40,6 @@
 
       @include breakpoint(xlarge){
         padding-top: 3.5rem;
-      }
-    }
-
-    img{
-      @include breakpoint(large){
-        border: 14px solid $hel-white;
       }
     }
   }
