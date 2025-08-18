@@ -99,22 +99,6 @@ module Helsinki
         @need_content ||= content_for(need_section)
       end
 
-      def new_or_improvement_section
-        @new_or_improvement_section ||= section_with_handle("neworimprovement")
-      end
-
-      def new_or_improvement_scope
-        return unless new_or_improvement_section
-
-        @new_or_improvement_scope ||= begin
-          content = content_for(new_or_improvement_section)
-          if content
-            scope_id = content.body["scope_id"].to_i
-            Decidim::Scope.find_by(id: scope_id) if scope_id
-          end
-        end
-      end
-
       def ideas_section
         @ideas_section ||= section_with_handle("ideas")
       end

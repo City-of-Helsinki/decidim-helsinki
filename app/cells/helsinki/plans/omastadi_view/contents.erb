@@ -5,16 +5,11 @@
 <%== description %>
 
 <% if audience_content %>
-  <h3><%= translated_attribute(audience_section.body) %></h3>
+  <h3 class="h4"><%= translated_attribute(audience_section.body) %></h3>
   <p><%= translated_attribute(audience_content.body) %></p>
 <% end %>
 
 <% if need_content %>
-  <h3><%= translated_attribute(need_section.body) %></h3>
+  <h3 class="h4"><%= translated_attribute(need_section.body) %></h3>
   <p><%= translated_attribute(need_content.body) %></p>
-<% end %>
-
-<% if new_or_improvement_scope %>
-  <h3><%= translated_attribute(new_or_improvement_section.body) %></h3>
-  <p><%= translated_attribute(new_or_improvement_scope.name) %></p>
 <% end %>
