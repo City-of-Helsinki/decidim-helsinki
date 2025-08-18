@@ -170,7 +170,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: e57d4b3a1dff65d0278d3f903dffaa77650d500a
+  revision: 8c3578bc314663ac65cd79356374cd0cd3e013eb
   branch: release/0.27-stable
   specs:
     decidim-plans (0.27.0)
@@ -182,8 +182,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-privacy.git
-  revision: 3e8b820aab0978bfc2cca36567dca693acde56fb
-  branch: main
+  revision: e6c4a517f17144cde295af9b846e4a68778e7791
+  branch: release/0.27-stable
   specs:
     decidim-privacy (0.27.0)
       decidim-core (~> 0.27.0)

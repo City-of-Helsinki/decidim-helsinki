@@ -29,7 +29,7 @@ gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "rel
 gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "release/0.27-stable"
 gem "decidim-nav", github: "mainio/decidim-module-nav", branch: "main"
 gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "release/0.27-stable"
-gem "decidim-privacy", github: "mainio/decidim-module-privacy", branch: "main"
+gem "decidim-privacy", github: "mainio/decidim-module-privacy", branch: "release/0.27-stable"
 gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "main"
 gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "main"
 gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "release/0.27-stable"
