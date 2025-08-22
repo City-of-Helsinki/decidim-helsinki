@@ -134,7 +134,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-insights.git
-  revision: dcb69579428a71f741d239b49d45c4b5c494adb1
+  revision: 3aecea632049e889dec06ed0bf65f13fe57be991
   branch: release/0.27-stable
   specs:
     decidim-insights (0.27.0)
