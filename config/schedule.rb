@@ -35,7 +35,7 @@ every :day, at: "03:05", roles: [:background] do
 end
 
 # Generate reminders
-every :day, at: "04:05", roles: [:app] do
+every :day, at: "04:05", roles: [:background] do
   rake "decidim:reminders:all"
 end
 
