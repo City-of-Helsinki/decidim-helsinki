@@ -188,7 +188,7 @@ en:
           previous: Previous
       omastadi_form_steps:
         attach_ideas: Attach ideas
-        browse_proposals: Browse proposals
+        browse_proposals: Peruse proposals
         edit: Proposal details
         preview: Preview and publish
       omastadi_index:
@@ -233,7 +233,7 @@ en:
         see_all_withdrawn: See all withdrawn
         show_list: Show results as list
         show_map: Show results on map
-        title: Browse proposals
+        title: Peruse proposals
         view_plan: View proposal
       omastadi_notification:
         accepted:
