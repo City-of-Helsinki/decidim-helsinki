@@ -20,7 +20,7 @@ paginator.each_page { |page|
     <ul class="pagination__pages">
       <%= paginator.prev_page_tag %>
       <% paginator.each_page do |page| -%>
-        <%= paginator.gap_tag if page.last? %>
+        <%= paginator.gap_tag if page.last? && total_pages > 5 %>
         <% if page.display_tag? || page.first? %>
           <%= paginator.page_tag page %>
         <% elsif page.last? && !current_page.out_of_range? %>

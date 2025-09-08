@@ -34,11 +34,13 @@ links = {
     </div>
   </div>
 
-  <div class="container">
+  <div class="container margin-bottom-3">
     <h2 class="show-for-sr"><%= t(".subtitle") %></h2>
     <div class="cards-grid row">
       <%= render partial: "event", collection: @events %>
     </div>
+
+    <%= decidim_paginate @query %>
   </div>
 </div>
 
