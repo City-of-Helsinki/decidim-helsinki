@@ -18,11 +18,7 @@ extra_locals = {
       </div>
     </div>
 
-    <% if Rails.application.config.wrapper_class == "wrapper-ruuti" %>
-      <%= render "decidim/devise/sessions/ruuti", extra_locals: extra_locals, button_params: { redirect_to: vote_path } %>
-    <% else %>
-      <%= render "decidim/devise/sessions/default", extra_locals: extra_locals, button_params: { redirect_to: vote_path } %>
-    <% end %>
+    <%= render "decidim/devise/sessions/default", extra_locals: extra_locals, button_params: { redirect_to: vote_path } %>
   </div>
 <% else %>
   <div class="margin-top-2">

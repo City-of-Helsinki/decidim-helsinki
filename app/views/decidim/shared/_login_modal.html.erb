@@ -7,29 +7,15 @@
     </button>
   </div>
 
-  <% if Rails.application.config.wrapper_class == "wrapper-ruuti" %>
-    <%= render "decidim/devise/shared/omniauth_buttons_mini", hide_form: true %>
-    <% if strong_providers_enabled? || weak_providers_enabled? %>
-      <div class="row">
-        <div class="columns">
-          <span class="register__separator">
-            <span class="register__separator__text"><%= t('or', scope: "decidim.devise.shared.omniauth_buttons") %></span>
-          </span>
-        </div>
+  <%= render "decidim/devise/shared/omniauth_buttons_mini", hide_form: true %>
+  <% if strong_providers_enabled? || weak_providers_enabled? %>
+    <div class="row">
+      <div class="columns">
+        <span class="register__separator">
+          <span class="register__separator__text"><%= t('or', scope: "decidim.devise.shared.omniauth_buttons") %></span>
+        </span>
       </div>
-    <% end %>
-    <%= render "decidim/devise/shared/login_modal_form" %>
-  <% else %>
-    <%= render "decidim/devise/shared/omniauth_buttons_mini", hide_form: true %>
-    <% if strong_providers_enabled? || weak_providers_enabled? %>
-      <div class="row">
-        <div class="columns">
-          <span class="register__separator">
-            <span class="register__separator__text"><%= t('or', scope: "decidim.devise.shared.omniauth_buttons") %></span>
-          </span>
-        </div>
-      </div>
-    <% end %>
-    <%= render "decidim/devise/shared/login_modal_form" %>
+    </div>
   <% end %>
+  <%= render "decidim/devise/shared/login_modal_form" %>
 </div>

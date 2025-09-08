@@ -169,8 +169,6 @@ module ApplicationHelper
   end
 
   def meta_image_default
-    return asset_pack_path("media/images/social-ruuti-wide.jpg") if Rails.application.config.wrapper_class == "wrapper-ruuti"
-
     asset_pack_path("media/images/social-omastadi-wide.jpg")
   end
 end
