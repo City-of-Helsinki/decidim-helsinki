@@ -189,6 +189,8 @@ en:
       skip_subnavigation: Skip subnavigation
     tos_page:
       privacy_title: Consent to the processing of personal data
+    user_activity:
+      resource_type_label: Activity type
   layouts:
     decidim:
       data_consent:

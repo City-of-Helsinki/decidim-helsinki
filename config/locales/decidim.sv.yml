@@ -190,6 +190,8 @@ sv:
       skip_subnavigation: Hoppa över undernavigering
     tos_page:
       privacy_title: Samtycke till behandling av personuppgifter
+    user_activity:
+      resource_type_label: Aktivitetstyp
   layouts:
     decidim:
       data_consent:
