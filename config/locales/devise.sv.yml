@@ -8,7 +8,7 @@ sv:
         password_help_admin: "Minst %{minimun_characters} tecken, får inte vara för vanligt (som 123456) och måste vara skilt från ditt namn och din e-postadress. Måste också vara annorlunda än dina gamla lösenord."
     sessions:
       new:
-        sign_in: 'Logga in på VårStad'
+        sign_in: 'Logga in med VårStad konto'
     shared:
       omniauth:
         helsinki:
