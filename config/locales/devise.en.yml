@@ -2,6 +2,10 @@ en:
   devise:
     omniauth_callbacks:
       disabled: Signing in is temporarily disabled.
+    passwords:
+      edit:
+        password_help: "%{minimun_characters} characters minimum, must not be too common (e.g. 123456) and must be different from your name and your email."
+        password_help_admin: "%{minimun_characters} characters minimum, must not be too common (e.g. 123456), must be different from your name and your email. Also, must be different from your old passwords."
     sessions:
       new:
         sign_in: 'Sign in'

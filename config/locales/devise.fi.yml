@@ -2,6 +2,10 @@ fi:
   devise:
     omniauth_callbacks:
       disabled: Sisäänkirjautuminen on tilapäisesti poissa käytöstä.
+    passwords:
+      edit:
+        password_help: "Tulee sisältää vähintään %{minimun_characters} merkkiä, ei voi olla yleisesti käytetty salasana (esim. 123456), eikä voi vastata nimeäsi tai sähköpostiosoitettasi."
+        password_help_admin: "Tulee sisältää vähintään %{minimun_characters} merkkiä, ei voi olla yleisesti käytetty salasana (esim. 123456), eikä voi vastata nimeäsi tai sähköpostiosoitettasi. On myös oltava eri salasana kuin edelliset salasanasi."
     sessions:
       new:
         sign_in: 'Kirjaudu sisään'

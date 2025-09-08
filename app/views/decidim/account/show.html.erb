@@ -22,7 +22,6 @@
         <%= form_required_explanation %>
 
         <%= f.text_field :name, autocomplete: "name" %>
-        <%= f.text_field :nickname, autocomplete: "nickname" %>
         <%= f.email_field :email, disabled: current_user.unconfirmed_email.present?, autocomplete: "email", data: { original: current_user.email } %>
 
         <%= f.collection_select(

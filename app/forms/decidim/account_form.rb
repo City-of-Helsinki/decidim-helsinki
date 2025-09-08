@@ -10,7 +10,6 @@ module Decidim
 
     attribute :locale
     attribute :name
-    attribute :nickname
     attribute :email
     attribute :password
     attribute :password_confirmation
@@ -19,18 +18,19 @@ module Decidim
 
     validates :name, presence: true, format: { with: Decidim::User::REGEXP_NAME }
     validates :email, presence: true, "valid_email_2/email": { disposable: true }
-    validates :nickname, presence: true, format: { with: Decidim::User::REGEXP_NICKNAME }
 
-    validates :nickname, length: { maximum: Decidim::User.nickname_max_length, allow_blank: true }
     validates :password, confirmation: { message: I18n.t("errors.messages.password_confirmation_message") }
-    validates :password, password: { name: :name, email: :email, username: :nickname }, if: -> { password.present? }
+    validates :password, password: { name: :name, email: :email }, if: -> { password.present? }
     validates :password_confirmation, presence: true, if: :password_present
     validates :avatar, passthru: { to: Decidim::User }
 
     validate :unique_email
-    validate :unique_nickname
 
     alias organization current_organization
+
+    def normalized_nickname
+      UserBaseEntity.nicknamize(name, organization: current_organization)
+    end
 
     private
 
@@ -45,17 +45,6 @@ module Decidim
       ).where.not(id: context.current_user.id).empty?
 
       errors.add :email, :taken
-      false
-    end
-
-    def unique_nickname
-      return true if Decidim::UserBaseEntity.where(
-        "decidim_organization_id = ? AND LOWER(nickname) = ? ",
-        context.current_organization.id,
-        nickname.downcase
-      ).where.not(id: context.current_user.id).empty?
-
-      errors.add :nickname, :taken
       false
     end
   end

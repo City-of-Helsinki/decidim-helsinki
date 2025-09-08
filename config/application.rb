@@ -519,6 +519,7 @@ module DecidimHelsinki
         Decidim::Accountability::Admin::UpdateResult.include(ResultExtraAttributes)
         Decidim::Blogs::Admin::CreatePost.include(CreateBlogPostOverrides)
         Decidim::Blogs::Admin::UpdatePost.include(UpdateBlogPostOverrides)
+        Decidim::CreateRegistration.include(CreateRegistrationOverrides)
         Decidim::UpdateAccount.include(UpdateAccountOverrides)
 
         # Controller extensions

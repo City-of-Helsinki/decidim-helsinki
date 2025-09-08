@@ -29,9 +29,6 @@
           <%= f.text_field :name, help_text: t(".username_help") %>
         </div>
         <div class="field">
-          <%= f.text_field :nickname, help_text: t(".nickname_help", organization: current_organization.name) %>
-        </div>
-        <div class="field">
           <%= f.email_field :email, id: "registration_email", label_options: { for: "registration_email" } %>
         </div>
         <div class="field">

@@ -2,6 +2,10 @@ sv:
   devise:
     omniauth_callbacks:
       disabled: Inloggning är tillfälligt inaktiverad.
+    passwords:
+      edit:
+        password_help: "Minst %{minimun_characters} tecken, får inte vara för vanligt (som 123456) och måste vara skilt från ditt namn och din e-postadress."
+        password_help_admin: "Minst %{minimun_characters} tecken, får inte vara för vanligt (som 123456) och måste vara skilt från ditt namn och din e-postadress. Måste också vara annorlunda än dina gamla lösenord."
     sessions:
       new:
         sign_in: 'Logga in'
