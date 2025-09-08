@@ -141,7 +141,7 @@ en:
       label_tooltip: Guidance
     linked_events:
       index:
-        all_events: Events
+        all_events: See events in your area
         description_html: |
           <p>In the spring 2024, the city will organise three events in which the city’s residents and employees can plan the various OmaStadi projects that will be implemented in different areas.</p>
         subtitle: Upcoming events

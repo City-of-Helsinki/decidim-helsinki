@@ -141,7 +141,7 @@ fi:
       label_tooltip: Ohjeistus
     linked_events:
       index:
-        all_events: Tapahtumia
+        all_events: Katso alueesi tapahtumat
         description_html: |
           <p>Kaupungissa järjestetään keväällä 2024 kolme tapahtumaa, joissa kaupunkilaiset ja kaupungin työntekijät suunnittelevat eri alueilla toteutettavia OmaStadi-hankkeita yhdessä.</p>
         subtitle: Tulevia tapahtumia

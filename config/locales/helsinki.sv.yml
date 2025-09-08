@@ -141,7 +141,7 @@ sv:
       label_tooltip: Vägledning
     linked_events:
       index:
-        all_events: Evenemang
+        all_events: Se evenemang i ditt område
         description_html: |
           <p>Staden ordnar våren 2024 tre evenemang där stadsinvånare och stadens anställda planerar tillsammans de VårStad-projekt som staden genomför i olika områden.</p>
         subtitle: Kommande evenemang
