@@ -8,7 +8,7 @@ en:
         password_help_admin: "%{minimun_characters} characters minimum, must not be too common (e.g. 123456), must be different from your name and your email. Also, must be different from your old passwords."
     sessions:
       new:
-        sign_in: 'Sign in'
+        sign_in: 'Sign in to OmaStadi'
     shared:
       omniauth:
         helsinki:
@@ -16,7 +16,7 @@ en:
           sign_in_with: 'Helsinki profile'
           sign_in_button: 'Sign in via Helsinki profile'
         sms:
-          description: 'As a pupil, you can log in with SMS or a code given by your teacher or youth worker.'
+          description: 'As a pupil, you can sign in with SMS or a code given by your teacher or youth worker.'
           sign_in_with: 'SMS sign in'
           sign_in_button: 'Sign in via SMS'
         strong:
@@ -61,7 +61,17 @@ en:
           tos_title: Consent to the processing of personal data and terms of use
           tos_agreement: I consent to the processing of my personal data listed above for the purposes of providing the OmaStadi service and I agree to the %{link}. I hereby confirm that I am 13-years old or older.
       sessions:
+        default:
+          omniauth:
+            mpassid:
+              title: Student's account
+              description: A student's account is a personal account of a student studying in Helsinki schools.
+            suomifi:
+              title: Bank ID or mobile certificate
+              description: A bank ID is a personal ID provided by your bank, and a mobile certificate is a personal ID issued by your mobile operator.
         new:
           are_you_new?: Are you new to the platform?
+          register: Create a new OmaStadi account
+          sign_in_intro_html: <p>You can sign in with your OmaStadi account, bank ID or mobile certificate. Comprehensive school students can also sign in with their school account.</p>
           sign_in_service_account: 'Sign in with %{service_name} account'
           sign_in_service_account_description: 'Sign in using your email address and a password of your choice.'

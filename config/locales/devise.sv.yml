@@ -8,7 +8,7 @@ sv:
         password_help_admin: "Minst %{minimun_characters} tecken, får inte vara för vanligt (som 123456) och måste vara skilt från ditt namn och din e-postadress. Måste också vara annorlunda än dina gamla lösenord."
     sessions:
       new:
-        sign_in: 'Logga in'
+        sign_in: 'Logga in på VårStad'
     shared:
       omniauth:
         helsinki:
@@ -61,7 +61,17 @@ sv:
           tos_title: Samtycke till behandling av personuppgifter och användarvillkor
           tos_agreement: Jag ger mitt samtycke till behandlingen av mina ovan nämnda personuppgifter för att producera tjänsten OmaStadi och jag godkänner %{link}. Jag intygar härmed att jag är 13-år eller äldre.
       sessions:
+        default:
+          omniauth:
+            mpassid:
+              title: Elevens konto
+              description: A student's account is a personal account of a student studying in Helsinki schools.
+            suomifi:
+              title: Bank-ID eller mobilcertifikat
+              description: Ett bank-ID är ett personligt ID som tillhandahålls av din bank, och ett mobilcertifikat är ett personligt ID som utfärdas av din mobiloperatör.
         new:
           are_you_new?: Är du ny på plattformen?
-          sign_in_service_account: 'Logga in med %{service_name} konto'
+          register: Skapa ett nytt VårStad konto
+          sign_in_intro_html: <p>Du kan logga in med ditt VårStad konto, bank-ID eller mobilcertifikat. Elever i grundskolan kan också logga in med skolkonto.</p>
+          sign_in_service_account: 'Logga in med VårStad konto'
           sign_in_service_account_description: 'Logga in med e-postadress och ett lösenord som du själv väljer.'
