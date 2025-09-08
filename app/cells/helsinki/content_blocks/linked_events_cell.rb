@@ -34,7 +34,7 @@ module Helsinki
       end
 
       def events
-        @events ||= ::LinkedEvents.upcoming(events_set, amount: 4).events
+        @events ||= ::LinkedEvents.random_upcoming(events_set, amount: 9).events
       end
 
       def events_set
