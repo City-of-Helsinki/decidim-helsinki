@@ -8,7 +8,7 @@ en:
         password_help_admin: "%{minimun_characters} characters minimum, must not be too common (e.g. 123456), must be different from your name and your email. Also, must be different from your old passwords."
     sessions:
       new:
-        sign_in: 'Sign in with OmaStadi account'
+        sign_in: 'Sign in to OmaStadi website'
     shared:
       omniauth:
         helsinki:
@@ -20,16 +20,16 @@ en:
           sign_in_with: 'SMS sign in'
           sign_in_button: 'Sign in via SMS'
         strong:
-          description: "Sign in to %{domain} with bank ID or mobile ID. Students at comprehensive school can sign in with their pupil's account."
+          description: "Sign in to %{domain} with bank ID or mobile certificate. Students at comprehensive school can sign in with their learner's account."
           sign_in_with: 'Sign in and verify your identity electronically'
         suomifi:
-          description: 'Suomi.fi allows users to verify their identity using Finnish online banking IDs and mobile IDs, among others.'
+          description: 'Suomi.fi allows users to verify their identity using Finnish online banking IDs and mobile certificates, among others.'
           sign_in_with: 'Suomi.fi e-Identification'
-          sign_in_button: 'Sign in with bank ID or mobile ID'
+          sign_in_button: 'Sign in with bank ID or mobile certificate'
         mpassid:
           description: 'If you are a student in comprehensive school, you can verify your identity through the MPASSid service using your school account.'
           sign_in_with: 'MPASSid-identification'
-          sign_in_button: "Sign in with pupil's account"
+          sign_in_button: "Sign in with learner's account"
         weak:
           description: 'You can also sign in with social media accounts (Facebook, Yle, Google, among others) or with an Omastadi account you have created earlier.'
           sign_in_with: 'Sign in without identity verification'
@@ -64,14 +64,16 @@ en:
         default:
           omniauth:
             mpassid:
-              title: Student's account
-              description: A student's account is a personal account of a student studying in Helsinki schools.
+              title: Learner's account
+              description: You can log in to the OmaStadi website with your email address if your school uses MPASSid authentication.
             suomifi:
-              title: Bank ID or mobile certificate
-              description: A bank ID is a personal ID provided by your bank, and a mobile certificate is a personal ID issued by your mobile operator.
+              title: Bank ID or Mobile Certificate
+              description: You can log in using your personal bank credentials issued by your bank or mobile certificate.
         new:
           are_you_new?: Are you new to the platform?
           register: Create a new OmaStadi account
-          sign_in_intro_html: <p>You can sign in with your OmaStadi account, bank ID or mobile certificate. Comprehensive school students can also sign in with their school account.</p>
-          sign_in_service_account: 'Sign in with %{service_name} account'
-          sign_in_service_account_description: 'Sign in using your email address and a password of your choice.'
+          sign_in_intro_html: |
+            <p>You can log in with your OmaStadi credentials, bank ID, or mobile certificate.</p>
+            <p>Students and pupils can log in with their learner-specific credentials.</p>
+          sign_in_service_account: OmaStadi account
+          sign_in_service_account_description: "You can submit a proposal without strong identification by logging in with your OmaStadi account. Create an OmaStadi account if you don't have one yet."

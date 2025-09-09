@@ -4,11 +4,11 @@
 
 <% if strong_providers_enabled? %>
   <% enabled_strong_providers.each_with_index do |provider, index| %>
-    <div class="margin-top-2">
-      <h2><%= t(".omniauth.#{provider}.title") %></h2>
+    <div class="static__content margin-top-2">
+      <h2 class="margin-bottom-1"><%= t(".omniauth.#{provider}.title") %></h2>
       <p class="text-large"><%= t(".omniauth.#{provider}.description") %></p>
 
-      <div>
+      <div class="margin-top-2">
         <% path = decidim.send("user_#{provider}_omniauth_authorize_path") %>
         <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button primary button--#{normalize_provider_name(provider)}", method: :post do %>
           <%= t("devise.shared.omniauth.#{provider}.sign_in_button") %>

@@ -8,7 +8,7 @@ fi:
         password_help_admin: "Tulee sisältää vähintään %{minimun_characters} merkkiä, ei voi olla yleisesti käytetty salasana (esim. 123456), eikä voi vastata nimeäsi tai sähköpostiosoitettasi. On myös oltava eri salasana kuin edelliset salasanasi."
     sessions:
       new:
-        sign_in: 'Kirjaudu sisään OmaStadi-tunnuksella'
+        sign_in: 'Kirjaudu OmaStadi-sivustolle'
     shared:
       omniauth:
         helsinki:
@@ -20,16 +20,16 @@ fi:
           sign_in_with: 'Tekstiviestikirjautuminen'
           sign_in_button: 'Kirjaudu tekstiviestillä'
         strong:
-          description: 'Kirjautuminen %{domain} -palveluun pankkitunnuksella tai mobiilivarmenteella. Peruskoulun oppilaat voivat kirjautua myös koululaisen tunnuksilla.'
+          description: 'Kirjautuminen %{domain} -palveluun pankkitunnuksella tai mobiilivarmenteella. Peruskoulun oppilaat voivat kirjautua myös oppijan tunnuksilla.'
           sign_in_with: 'Kirjaudu ja tunnistaudu sähköisellä tunnistautumisella'
         suomifi:
           description: 'Suomi.fi tarjoaa tunnistautumismahdollisuuden mm. suomalaisilla pankkitunnuksella ja mobiilivarmenteella.'
           sign_in_with: 'Suomi.fi-tunnistautuminen'
           sign_in_button: 'Kirjaudu sisään pankkitunnuksella tai mobiilivarmenteella'
         mpassid:
-          description: 'Koululaisena voit kirjautua MPASSid-palvelun avulla koulusi tunnuksella.'
+          description: 'Oppijana voit kirjautua MPASSid-palvelun avulla koulusi tunnuksella.'
           sign_in_with: 'MPASSid-tunnistautuminen'
-          sign_in_button: 'Kirjaudu sisään koululaisen tunnuksella'
+          sign_in_button: 'Kirjaudu sisään oppijan tunnuksella'
         weak:
           description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) tai aiemmin luomillasi Omastadi –tunnuksilla.'
           sign_in_with: 'Kirjaudu ilman tunnistautumista'
@@ -64,14 +64,16 @@ fi:
         default:
           omniauth:
             mpassid:
-              title: Koululaisen tunnus
-              description: Koululaisen tunnus on Helsingin kouluissa opiskelevan oppilaan henkilökohtainen tunnus.
+              title: Oppijan tunnus
+              description: Voit kirjautua OmaStadi-sivustolle opinnoissasi käyttämällä sähköpostiosoitteella, jos koululla on käytössä MPASSid-tunnistautuminen.
             suomifi:
               title: Pankkitunnus tai mobiilivarmenne
-              description: Pankkitunnus on henkilökohtainen pankkisi myötämä tunnus ja mobiilivarmenne on mobiilioperaattorisi myöntämä henkilökohtainen tunnus.
+              description: Voit kirjautua sivustolla pankkisi myöntämillä henkilökohtaisilla tunnuksilla tai mobiilivarmenteella.
         new:
           are_you_new?: Oletko uusi käyttäjä?
           register: Luo uusi OmaStadi-tunnus
-          sign_in_intro_html: <p>Voit kirjautua sisään OmaStadi-tunnuksella, pankkitunnuksella tai mobiilivarmenteella. Peruskoulun oppilaat voivat kirjautua sisään myös koululaisen tunnuksilla.</p>
-          sign_in_service_account: 'Kirjaudu %{service_name}-tunnuksella'
-          sign_in_service_account_description: 'Kirjaudu sisään sähköpostiosoitteella ja itse valitsemallasi salasanalla.'
+          sign_in_intro_html: |
+            <p>Voit kirjautua OmaStadi-tunnuksella, pankkitunnuksilla tai mobiilivarmenteella.</p>
+            <p>Koululaiset ja opiskelijat voivat kirjautua oppijoiden omilla tunnuksilla.</p>
+          sign_in_service_account: OmaStadi-tunnus
+          sign_in_service_account_description: Voit tehdä ehdotuksen ilman vahvaa tunnistautumista kirjautumalla sivustolle OmaStadi tunnuksella. Luo OmaStadi-tunnus, jos sinulla ei vielä ole sitä.

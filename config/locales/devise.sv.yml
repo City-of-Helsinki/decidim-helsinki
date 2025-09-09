@@ -8,7 +8,7 @@ sv:
         password_help_admin: "Minst %{minimun_characters} tecken, får inte vara för vanligt (som 123456) och måste vara skilt från ditt namn och din e-postadress. Måste också vara annorlunda än dina gamla lösenord."
     sessions:
       new:
-        sign_in: 'Logga in med VårStad konto'
+        sign_in: 'Logga in på VårStad-webbplatsen'
     shared:
       omniauth:
         helsinki:
@@ -20,7 +20,7 @@ sv:
           sign_in_with: 'SMS-inloggning'
           sign_in_button: 'Logga in via SMS'
         strong:
-          description: 'Logga in på %{domain}-tjänsten med bank-ID eller mobil-ID. Studenter i grundskolan kan logga in med elevens konto.'
+          description: 'Logga in på %{domain}-tjänsten med bank-ID eller mobil-ID. Studenter i grundskolan kan logga in med elevkonto.'
           sign_in_with: 'Logga in och identifiera dig elektroniskt'
         suomifi:
           description: 'Suomi.fi bjuder på möjligheten att identifiera sig bl.a. genom finska bankkoder och mobilcertifikat.'
@@ -29,7 +29,7 @@ sv:
         mpassid:
           description: 'Som grundskolestudent kan du identifiera dig själv genom MPASSid-tjänsten med ditt skolkonto.'
           sign_in_with: 'MPASSid-identifikation'
-          sign_in_button: 'Logga in med elevens konto'
+          sign_in_button: 'Logga in med elevkonto'
         weak:
           description: 'Du kan också logga in med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med Omastadi-kontot du skapade tidigare.'
           sign_in_with: 'Logga in utan identifikation'
@@ -64,14 +64,16 @@ sv:
         default:
           omniauth:
             mpassid:
-              title: Elevens konto
-              description: A student's account is a personal account of a student studying in Helsinki schools.
+              title: Elevkonto
+              description: Du kan logga in på VårStad-webbplatsen med din e-postadress om din skola använder MPASSid-autentisering.
             suomifi:
-              title: Bank-ID eller mobilcertifikat
-              description: Ett bank-ID är ett personligt ID som tillhandahålls av din bank, och ett mobilcertifikat är ett personligt ID som utfärdas av din mobiloperatör.
+              title: Bankkoder eller mobilcertifikat
+              description: Du kan logga in med ditt personliga bankkoder som utfärdats av din bank eller mobilcertifikat.
         new:
           are_you_new?: Är du ny på plattformen?
-          register: Skapa ett nytt VårStad konto
-          sign_in_intro_html: <p>Du kan logga in med ditt VårStad konto, bank-ID eller mobilcertifikat. Elever i grundskolan kan också logga in med skolkonto.</p>
-          sign_in_service_account: 'Logga in med VårStad konto'
-          sign_in_service_account_description: 'Logga in med e-postadress och ett lösenord som du själv väljer.'
+          register: Skapa ett nytt VårStad-konto
+          sign_in_intro_html: |
+            <p>Du kan logga in med ditt VårStad-konto, bankkoder eller mobilcertifikat.</p>
+            <p>Elever och studenter kan logga in med sina speciella inloggningar för elever.</p>
+          sign_in_service_account: VårStad-konto
+          sign_in_service_account_description: Du kan lämna in ett förslag utan stark inloggning genom att logga in med ditt VårStad-konto. Skapa ett VårStad-konto om du inte redan har ett.
