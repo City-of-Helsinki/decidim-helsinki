@@ -70,7 +70,8 @@ fi:
               title: Pankkitunnus tai mobiilivarmenne
               description: Voit kirjautua sivustolla pankkisi myöntämillä henkilökohtaisilla tunnuksilla tai mobiilivarmenteella.
         new:
-          are_you_new?: Oletko uusi käyttäjä?
+          already_have_account?: Minulla on käyttäjätili
+          are_you_new?: Uusi käyttäjä
           register: Luo uusi OmaStadi-tunnus
           sign_in_intro_html: |
             <p>Voit kirjautua OmaStadi-tunnuksella, pankkitunnuksilla tai mobiilivarmenteella.</p>

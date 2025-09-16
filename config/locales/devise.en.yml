@@ -70,7 +70,8 @@ en:
               title: Bank ID or Mobile Certificate
               description: You can log in using your personal bank credentials issued by your bank or mobile certificate.
         new:
-          are_you_new?: Are you new to the platform?
+          already_have_account?: I have a user account
+          are_you_new?: New user
           register: Create a new OmaStadi account
           sign_in_intro_html: |
             <p>You can log in with your OmaStadi credentials, bank ID, or mobile certificate.</p>

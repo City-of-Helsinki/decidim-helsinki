@@ -25,7 +25,16 @@
 
 <div class="row">
   <div class="columns large-8">
+    <% if current_organization.sign_up_enabled? %>
+      <div class="static__content margin-bottom-1">
+        <h3 class="h5"><%= t("decidim.devise.sessions.new.are_you_new?") %></h3>
+        <%= link_to t("decidim.devise.sessions.new.register"), new_user_registration_path, class: "button hollow primary expanded" %>
+      </div>
+    <% end %>
+
     <div class="register-form-wrapper<%= local_assigns[:hide_form] ? " is-hidden" : "" %>" id="session" data-toggler=".is-hidden">
+      <h3 class="h5 margin-bottom-1"><%= t("decidim.devise.sessions.new.already_have_account?") %></h3>
+
       <%= decidim_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: "new_session", class: "register-form new_user margin-bottom-1" }) do |f| %>
         <div>
           <div class="field">
@@ -48,12 +57,5 @@
       <% end %>
       <%= render "decidim/devise/shared/links", extra_locals %>
     </div>
-
-    <% if current_organization.sign_up_enabled? %>
-      <div class="static__content margin-top-2">
-        <h3 class="h5"><%= t("decidim.devise.sessions.new.are_you_new?") %></h3>
-        <%= link_to t("decidim.devise.sessions.new.register"), new_user_registration_path, class: "button hollow primary expanded" %>
-      </div>
-    <% end %>
   </div>
 </div>

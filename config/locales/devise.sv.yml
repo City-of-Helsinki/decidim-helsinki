@@ -70,7 +70,8 @@ sv:
               title: Bankkoder eller mobilcertifikat
               description: Du kan logga in med ditt personliga bankkoder som utfärdats av din bank eller mobilcertifikat.
         new:
-          are_you_new?: Är du ny på plattformen?
+          already_have_account?: Jag har ett användarkonto
+          are_you_new?: Ny användare
           register: Skapa ett nytt VårStad-konto
           sign_in_intro_html: |
             <p>Du kan logga in med ditt VårStad-konto, bankkoder eller mobilcertifikat.</p>
