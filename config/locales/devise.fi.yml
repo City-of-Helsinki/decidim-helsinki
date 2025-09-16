@@ -78,4 +78,4 @@ fi:
             <p>Koululaiset ja opiskelijat voivat kirjautua oppijoiden omilla tunnuksilla.</p>
             <p>Ensimmäisen kirjautumisen yhteydessä sinulle luodaan käyttäjätili.</p>
           sign_in_service_account: OmaStadi-tunnus
-          sign_in_service_account_description: Voit tehdä ehdotuksen ilman vahvaa tunnistautumista kirjautumalla sivustolle OmaStadi tunnuksella. Luo OmaStadi-tunnus, jos sinulla ei vielä ole sitä.
+          sign_in_service_account_description: Voit tehdä ehdotuksen ilman vahvaa tunnistautumista kirjautumalla sivustolle OmaStadi-tunnuksella. Luo OmaStadi-tunnus, jos sinulla ei vielä ole sitä.
