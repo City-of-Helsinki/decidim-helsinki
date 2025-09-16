@@ -76,5 +76,6 @@ sv:
           sign_in_intro_html: |
             <p>Du kan logga in med ditt VårStad-konto, bankkoder eller mobilcertifikat.</p>
             <p>Elever och studenter kan logga in med sina speciella inloggningar för elever.</p>
+            <p>Vid första inloggningen skapas ett användarkonto åt dig.</p>
           sign_in_service_account: VårStad-konto
           sign_in_service_account_description: Du kan lämna in ett förslag utan stark inloggning genom att logga in med ditt VårStad-konto. Skapa ett VårStad-konto om du inte redan har ett.

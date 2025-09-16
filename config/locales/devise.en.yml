@@ -76,5 +76,6 @@ en:
           sign_in_intro_html: |
             <p>You can log in with your OmaStadi credentials, bank ID, or mobile certificate.</p>
             <p>Students and pupils can log in with their learner-specific credentials.</p>
+            <p>The first time you login, a user account is created for you.</p>
           sign_in_service_account: OmaStadi account
           sign_in_service_account_description: "You can submit a proposal without strong identification by logging in with your OmaStadi account. Create an OmaStadi account if you don't have one yet."
