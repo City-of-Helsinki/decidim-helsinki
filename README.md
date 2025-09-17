@@ -98,6 +98,8 @@ MPASSid requires the following environment variables to be available:
 
 For deployment instructions, please refer to Decidim's own guide:
 
-https://docs.decidim.org/en/install/#_deploy
+https://docs.decidim.org/en/develop/develop/deploy.html
+
+https://docs.decidim.org/en/develop/install/index.html#_deploy
 
 For further instructions, consult the organization in charge of the maintenance.
