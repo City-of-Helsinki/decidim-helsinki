@@ -43,6 +43,8 @@ fi:
             Esimerkiksi "henna_helsinki", "HeikkiHelsinki" tai "iida-ideanikkari". Nimimerkin on oltava yksilöity, eli kahdella käyttäjällä
             ei voi olla samaa nimimerkkiä.
       registrations:
+        create:
+          error: Käyttäjätilin luonti epäonnistui.
         new:
           newsletter: Haluan vastaanottaa silloin tällöin ajankohtaista tietoa sisältäviä uutiskirjeitä.
           nickname_help: |
@@ -79,3 +81,6 @@ fi:
             <p>Ensimmäisen kirjautumisen yhteydessä sinulle luodaan käyttäjätili.</p>
           sign_in_service_account: OmaStadi-tunnus
           sign_in_service_account_description: Voit tehdä ehdotuksen ilman vahvaa tunnistautumista kirjautumalla sivustolle OmaStadi-tunnuksella. Luo OmaStadi-tunnus, jos sinulla ei vielä ole sitä.
+  errors:
+    messages:
+      password_confirmation_message: Salasanan vahvistuksen tulee vastata antamaasi salasanaa.

@@ -43,6 +43,8 @@ sv:
             Till exempel "heidi_helsingfors", "HenrikHelsinfors" eller "ulla-uppfinningsrik". Användarnamnet måste vara
             unikt, dvs. två användare kan inte ha samma användarnamn.
       registrations:
+        create:
+          error: Det gick inte att skapa ditt konto.
         new:
           newsletter: Jag skulle vilja få enstaka nyhetsbrev med relevant information.
           nickname_help: |
@@ -79,3 +81,6 @@ sv:
             <p>Vid första inloggningen skapas ett användarkonto åt dig.</p>
           sign_in_service_account: VårStad-konto
           sign_in_service_account_description: Du kan lämna in ett förslag utan stark inloggning genom att logga in med ditt VårStad-konto. Skapa ett VårStad-konto om du inte redan har ett.
+  errors:
+    messages:
+      password_confirmation_message: Lösenordsbekräftelsen måste matcha det angivna lösenordet.

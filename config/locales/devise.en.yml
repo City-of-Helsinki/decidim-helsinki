@@ -43,6 +43,8 @@ en:
             For example, "helen_helsinki", "HenryHelsinki" or "isabelle-inventive". The nickname has to be unique, i.e. two
             users cannot have the same nickname.
       registrations:
+        create:
+          error: There was a problem creating your account.
         new:
           newsletter: I would like to receive occasional newsletters with relevant information.
           nickname_help: |
@@ -79,3 +81,6 @@ en:
             <p>The first time you login, a user account is created for you.</p>
           sign_in_service_account: OmaStadi account
           sign_in_service_account_description: "You can submit a proposal without strong identification by logging in with your OmaStadi account. Create an OmaStadi account if you don't have one yet."
+  errors:
+    messages:
+      password_confirmation_message: Password confirmation must match the given password.
