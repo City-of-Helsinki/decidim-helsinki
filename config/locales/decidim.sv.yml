@@ -120,9 +120,9 @@ sv:
           do_not_agree: Avbryt
           content_html: |
             <p>Om du vill lämna ett förslag eller kommentera ett förslag i tjänsten, måste du skapa en offentlig profil
-            i tjänsten. Detta innebär att andra användare av tjänsten kommer att se din signatur vid ett förslag eller
-            en kommentar och få tillgång till din profil genom att klicka på den. I den offentliga profilen syns
-            följande uppgifter:</p>
+            i tjänsten. Detta innebär att andra användare av tjänsten kommer att se ditt namn vid ett förslag eller en
+            kommentar och få tillgång till din profil genom att klicka på den. I den offentliga profilen syns följande
+            uppgifter:</p>
             <ul>
               <li>ditt namn</li>
               <li>din signatur</li>
@@ -134,7 +134,7 @@ sv:
               <li>en profilbild</li>
             </ul>
             <p>Om du vill kan du ändra profilen så att den blir privat igen, vilket gör att inga uppgifter i din profil
-            visas för andra användare. I så fall försvinner även din signatur från de förslag eller kommentarer du har
+            visas för andra användare. I så fall försvinner även ditt namn från de förslag eller kommentarer du har
             lämnat. Du kan göra din profil privat på webbplatsen via inställningarna för sekretess för ditt
             användarkonto.</p>
       privacy_settings:
@@ -146,8 +146,7 @@ sv:
             <p>Att göra din profil offentlig låter dig utföra offentliga aktiviteter på denna plattform, såsom att
             skicka kommentarer, delta i diskussioner, skapa förslag etc.</p><p>När du offentliggör din profil andra
             deltagare kan se ditt namn offentligt på denna plattform och även se offentlig information om dig, såsom
-            ditt smeknamn och avatar bild, din offentliga verksamhet på denna plattform, dina följare och vem du
-            följer.</p>
+            ditt namn och avatar bild, din offentliga verksamhet på denna plattform, dina följare och vem du följer.</p>
           private_messaging_html: |
             <h2 class="h5">Direktmeddelanden</h2>
             <p>Dessa inställningar låter dig kommunicera med andra deltagare på denna plattform. Andra deltagare kan

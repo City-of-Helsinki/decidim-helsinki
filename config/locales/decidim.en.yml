@@ -120,8 +120,8 @@ en:
           do_not_agree: Cancel
           content_html: |
             <p>If you want to submit a proposal or comment on a proposal in the service, you must create a public
-            profile. This means that other service users will see your user name attached to proposals or comments and
-            can click on it to view your profile. Your public profile shows the following information:</p>
+            profile. This means that other service users will see your name attached to proposals or comments and can
+            click on it to view your profile. Your public profile shows the following information:</p>
             <ul>
               <li>your name</li>
               <li>your user name</li>
@@ -133,9 +133,8 @@ en:
               <li>a profile photo</li>
             </ul>
             <p>You can always change your profile back to non-public, so that none of your profile information is
-            visible to other users. In this case, your user name will also be deleted from the proposals or comments
-            you have submitted. You can change your profile to non-public on the site in your account privacy
-            settings.</p>
+            visible to other users. In this case, your name will also be deleted from the proposals or comments you have
+            submitted. You can change your profile to non-public on the site in your account privacy settings.</p>
       privacy_settings:
         show:
           profile_publicity_html: |
@@ -145,8 +144,8 @@ en:
             <p>Making your profile public allows you to perform public activities on this platform, such as sending
             comments, participating in discussions, creating proposals, etc.</p><p>When you make your profile public,
             other participants can see your name publicly on this platform and also see other public information about
-            you, such as your nickname and avatar image, your public activity on this platform, your followers and who
-            you follow.</p>
+            you, such as your name and avatar image, your public activity on this platform, your followers and who you
+            follow.</p>
           private_messaging_html: |
             <h2 class="h5">Private messaging</h2>
             <p>These settings allow you to communicate with other participants on this platform. Other participants can

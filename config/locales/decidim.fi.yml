@@ -120,9 +120,9 @@ fi:
           make_profile_public: Profiilin muuttaminen julkiseksi
           content_html: |
             <p>Mikäli haluat jättää ehdotuksen tai kommentoida ehdotusta palvelussa, tulee sinun luoda palveluun
-            julkinen profiili. Tämä tarkoittaa, että muut palvelun käyttäjät näkevät nimimerkkisi ehdotuksen tai
-            kommentin kohdalla ja pääsevät sitä klikkaamalla katsomaan profiiliasi. Julkisessa profiilissa näkyy
-            seuraavat tiedot:</p>
+            julkinen profiili. Tämä tarkoittaa, että muut palvelun käyttäjät näkevät nimesi ehdotuksen tai kommentin
+            kohdalla ja pääsevät sitä klikkaamalla katsomaan profiiliasi. Julkisessa profiilissa näkyy seuraavat
+            tiedot:</p>
             <ul>
               <li>nimesi</li>
               <li>nimimerkkisi</li>
@@ -134,7 +134,7 @@ fi:
               <li>profiilikuvan</li>
             </ul>
             <p>Voit halutessasi muuttaa profiilin takaisin ei-julkiseksi, jolloin mitkään profiilisi tiedot eivät näy
-            muille käyttäjille. Tällöin myös nimimerkkisi poistuu jättämäsi ehdotuksen tai kommentin kohdalta. Voit
+            muille käyttäjille. Tällöin myös nimesi poistuu jättämäsi ehdotuksen tai kommentin kohdalta. Voit
             muuttaa profiilin ei-julkiseksi sivustolla käyttäjätilisi yksityisyysasetuksista.</p>
       privacy_settings:
         show:
@@ -145,7 +145,7 @@ fi:
             <p>Profiilin julkaiseminen mahdollistaa tiettyjen julkisten toimintojen suorittamisen tällä alustalla,
             kuten kommentoinnin, keskusteluihin osallistumisen, ehdotusten tekemisen, jne.</p><p>Tekemällä profiilistasi
             julkisen, muut osallistujat voivat nähdä nimesi julkisesti tällä alustalla ja myös muuta julkista tietoa
-            sinusta, kuten nimimerkkisi, profiilikuvasi, julkisen toimintasi tällä alustalla, seuraajasi ja keitä sinä
+            sinusta, kuten nimesi, profiilikuvasi, julkisen toimintasi tällä alustalla, seuraajasi ja keitä sinä
             seuraat.</p>
           private_messaging_html: |
             <h2 class="h5">Yksityisviestit</h2>
