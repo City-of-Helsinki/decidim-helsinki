@@ -162,6 +162,8 @@ a,
 }
 
 .action-link{
+  color: $body-font-color;
+
   > span{
     text-decoration: underline;
   }
