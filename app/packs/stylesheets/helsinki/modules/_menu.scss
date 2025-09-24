@@ -167,6 +167,8 @@
     .is-dropdown-submenu-parent{
       > button{
         cursor: pointer;
+        color: $global-font-size;
+        font-weight: $global-weight-normal;
       }
     }
   }
