@@ -179,7 +179,9 @@ namespace :hkiimport do
           pl = Decidim::Plans::Plan.new(
             component: component,
             state: "open",
-            title: { rowdata[:locale] => rowdata[:title] }
+            title: { rowdata[:locale] => rowdata[:title] },
+            category: rowdata[:category],
+            scope: rowdata[:area]
           )
           pl.coauthorships.build(author: author, user_group: user_group)
           pl.save!
