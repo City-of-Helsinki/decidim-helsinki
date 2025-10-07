@@ -8,6 +8,43 @@ require "rubyXL/convenience_methods"
 ANONYMIZER_SALT = SecureRandom.hex(64)
 
 namespace :hkiexport do
+  # Export feedback after a certain date.
+  #
+  # Usage:
+  #   bundle exec rake hkiexport:feedback[1,"2025-09-01 00:00:00",tmp/feedback.xlsx]
+  task :feedback, [:organization_id, :after_time, :filename] => [:environment] do |_t, args|
+    organization = Decidim::Organization.find_by(id: args.organization_id)
+    unless organization
+      puts "Unknown organization ID: #{args.organization_id}"
+      next
+    end
+    unless args.after_time
+      puts "Please provide the time after which to export feedbacks."
+      next
+    end
+    unless args.filename
+      puts "Please provide an export file path."
+      next
+    end
+    if File.exist?(args.filename)
+      puts "Export file already exists: #{args.filename}"
+      next
+    end
+
+    collection = Decidim::Feedback::Feedback.where(organization: organization).where(
+      "created_at >= ?",
+      args.after_time
+    )
+    exporter = Decidim::Exporters::Excel.new(
+      collection,
+      Decidim::Feedback::FeedbackSerializer
+    )
+    data = exporter.export
+    File.binwrite(args.filename, data.read)
+
+    puts "Export file written to: #{args.filename}"
+  end
+
   # Export budgeting votes.
   #
   # Usage:
@@ -32,15 +69,15 @@ namespace :hkiexport do
     c = Decidim::Component.find_by(id: component_id)
     if c.nil? || c.manifest_name != "budgets"
       puts "Invalid component provided: #{component_id}."
-      return
+      next
     end
     unless filename
       puts "Please provide an export file path."
-      return
+      next
     end
     if File.exist?(filename)
       puts "File already exists at: #{filename}"
-      return
+      next
     end
 
     converter = Class.new { include HtmlToPlainText }.new
