@@ -5,6 +5,7 @@ module Decidim
     module Directory
       module ResultsHelper
         include Decidim::Comments::CommentsHelper
+        include Decidim::AccountabilitySimple::ApplicationHelperExtensions
 
         def display_percentage(number)
           return if number.blank?

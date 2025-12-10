@@ -23,6 +23,7 @@ module Decidim
           :results,
           :result,
           :result_url,
+          :result_path,
           :results_path,
           :geocoded_result,
           :show_map?,
@@ -64,11 +65,15 @@ module Decidim
         def can_show_result?
           return true if current_user&.admin?
 
-          result.published?
+          result.published? && result.component.published? && result.participatory_space.published?
         end
 
         def results_path
           main_app.results_path
+        end
+
+        def result_path(result)
+          main_app.result_path(result)
         end
 
         def result_url(model)
