@@ -38,7 +38,7 @@ module Decidim
                 results.order("vote_count DESC NULLS LAST")
               else
                 # alphabetical
-                results.order(Arel.sql("decidim_accountability_results.title->>'#{current_locale}'"))
+                results.order(Arel.sql("TRIM(decidim_accountability_results.title->>'#{current_locale}')"))
               end
 
             # Add default orders as the last ordering conditions.
