@@ -26,8 +26,17 @@ module Decidim
           end
 
           def reorder(results)
-            # Add base order by scopes since the results are split by scopes
-            results = results.order("decidim_scopes.code" => :asc)
+            # Add base order by scopes since the results are split by scopes.
+            # Force the deprecated area (all of Helsinki) as the last item.
+            order_condition = Arel.sql(
+              <<~SQL.squish
+                CASE
+                  WHEN decidim_scopes.code = 'SUURPIIRI-VANHA-01-KOKOHELSINKI' THEN 'Z'
+                  ELSE decidim_scopes.code
+                END
+              SQL
+            )
+            results = results.order(order_condition => :asc)
 
             # Add the variant order defined by the user
             results =
