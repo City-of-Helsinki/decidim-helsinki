@@ -115,6 +115,8 @@ en:
         name: Footer text
       help_index:
         name: Help section front page
+      linked_events_index:
+        name: Events front page
       results_directory_index:
         name: Results directory index
     pages:

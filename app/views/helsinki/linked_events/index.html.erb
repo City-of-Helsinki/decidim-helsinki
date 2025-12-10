@@ -1,7 +1,10 @@
-<% add_decidim_page_title(t(".title")) %>
-<% add_decidim_meta_description(strip_tags(t(".description_html"))) %>
-
 <%
+text_section = Decidim::ContextualHelpSection.find_content(current_organization, "linked_events_index")
+section_text = translated_attribute(text_section) || ""
+
+add_decidim_page_title(t(".title"))
+add_decidim_meta_description(strip_tags(section_text))
+
 links = {
   "fi" => "https://tapahtumat.hel.fi/fi/haku?xFullText=omastadi",
   "sv" => "https://tapahtumat.hel.fi/sv/sok?xFullText=omastadi",
@@ -19,7 +22,7 @@ links = {
     <div class="row medium-unstack content-intro">
       <div class="columns medium-6 mediumlarge-8">
         <div class="text-large">
-          <%= t(".description_html") %>
+          <%= decidim_sanitize_admin(section_text) if section_text.present? %>
         </div>
       </div>
 

@@ -28,6 +28,10 @@ module AdminHelpSectionsExtensions
         content: Decidim::ContextualHelpSection.find_content(current_organization, "footer_text")
       ),
       OpenStruct.new(
+        id: "linked_events_index",
+        content: Decidim::ContextualHelpSection.find_content(current_organization, "linked_events_index")
+      ),
+      OpenStruct.new(
         id: "results_directory_index",
         content: Decidim::ContextualHelpSection.find_content(current_organization, "results_directory_index")
       )

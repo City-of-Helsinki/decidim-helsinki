@@ -114,6 +114,8 @@ fi:
         name: Alaosion teksti
       help_index:
         name: Ohjeosion etusivu
+      linked_events_index:
+        name: Tapahtumat-sivu
       results_directory_index:
         name: Totetuskirjaston etusivun teksti
     pages:
