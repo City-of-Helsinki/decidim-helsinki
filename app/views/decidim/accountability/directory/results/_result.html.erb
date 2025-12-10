@@ -30,7 +30,7 @@
   <div id="results_table_row_<%= result.id %>_details" class="results-table__row__details">
     <div class="results-table__row__main">
       <p class="h5"><%= t(".description_title") %></p>
-      <p><%= translated_attribute(result.summary).presence || strip_tags(translated_attribute(result.description)).truncate_words(30) %></p>
+      <p><%= strip_tags(translated_attribute(result.summary)).presence || strip_tags(translated_attribute(result.description)).truncate_words(30) %></p>
       <p>
         <%= link_to main_app.result_path(result), aria: { label: t(".show_result_descriptive", title: translated_attribute(result.title)) } do %>
           <%= t(".show_result") %>
