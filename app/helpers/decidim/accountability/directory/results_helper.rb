@@ -84,20 +84,20 @@ module Decidim
           }
 
           categories = []
-          category_names_fi = {}
+          existing_categories = {}
           available_spaces.each do |space|
             space.categories.first_class.each do |category|
               name_fi = category.name["fi"]
               name_fi = synonyms[name_fi] if synonyms[name_fi]
 
-              existing_id = category_names_fi.key(name_fi)
+              existing_id, = existing_categories.find { |_k, (name, _)| name == name_fi }
               if existing_id
-                idx = categories.find_index { |(_, id)| id.split(",").include?(existing_id.to_s) }
+                idx = existing_categories[existing_id].last
                 option = categories[idx]
                 categories[idx] = [option[0], "#{option[1]},#{category.id}"]
               else
                 categories << [translated_attribute(category.name), category.id]
-                category_names_fi[category.id] = name_fi
+                existing_categories[category.id] = [name_fi, categories.length - 1]
               end
             end
           end
