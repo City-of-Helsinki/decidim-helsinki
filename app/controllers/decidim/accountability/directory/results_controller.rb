@@ -144,14 +144,21 @@ module Decidim
 
         def available_spaces
           @available_spaces ||= Decidim::ParticipatoryProcess.published.where(
-            id: available_components.where(
-              participatory_space_type: "Decidim::ParticipatoryProcess"
-            ).pluck(:participatory_space_id)
+            id: available_components_query.pluck(:participatory_space_id)
           ).order(created_at: :desc)
         end
 
         def available_components
-          @available_components ||= Decidim::Component.where(manifest_name: "accountability").published
+          @available_components ||= available_components_query.where(
+            participatory_space_id: available_spaces
+          )
+        end
+
+        def available_components_query
+          Decidim::Component.where(
+            manifest_name: "accountability",
+            participatory_space_type: "Decidim::ParticipatoryProcess"
+          ).published
         end
 
         def component_settings
