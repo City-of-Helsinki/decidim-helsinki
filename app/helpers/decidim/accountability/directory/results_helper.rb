@@ -92,7 +92,7 @@ module Decidim
 
               existing_id = category_names_fi.key(name_fi)
               if existing_id
-                idx = categories.find_index { |(_, id)| id.split(".").include?(existing_id.to_s) }
+                idx = categories.find_index { |(_, id)| id.split(",").include?(existing_id.to_s) }
                 option = categories[idx]
                 categories[idx] = [option[0], "#{option[1]},#{category.id}"]
               else
