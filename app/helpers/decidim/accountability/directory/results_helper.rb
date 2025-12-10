@@ -90,7 +90,7 @@ module Decidim
               name_fi = category.name["fi"]
               name_fi = synonyms[name_fi] if synonyms[name_fi]
 
-              existing_id = category_names_fi.find_index { |value| value == name_fi }
+              existing_id = category_names_fi.key(name_fi)
               if existing_id
                 idx = categories.find { |(_, id)| id == existing_id }
                 option = categories[idx]
