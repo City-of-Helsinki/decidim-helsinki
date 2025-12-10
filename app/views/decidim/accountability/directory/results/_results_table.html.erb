@@ -1,0 +1,16 @@
+<div class="results-table" role="table" aria-label="<%= t(".label") %>" aria-describedby="results_table_desc">
+  <div role="rowgroup">
+    <div class="results-table__header" role="row">
+      <div class="results-table__header__data" role="presentation">
+        <div class="results-table__cell results-table__cell--title" role="columnheader"><%= t(".columns.title") %></div>
+        <div class="results-table__cell results-table__cell--scope" role="columnheader"><%= t(".columns.scope") %></div>
+        <div class="results-table__cell results-table__cell--budget" role="columnheader"><%= t(".columns.progress") %></div>
+        <div class="results-table__cell results-table__cell--details" role="columnheader"><span class="show-for-sr"><%= t(".columns.actions") %></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-table__body" role="rowgroup">
+    <%= render partial: "result", collection: results %>
+  </div>
+</div>

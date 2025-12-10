@@ -1,0 +1,220 @@
+.results-description{
+  margin-bottom: 1rem;
+
+  @include breakpoint(mediumlarge){
+    margin-bottom: 2rem;
+  }
+}
+
+.results-table{
+  .results-table__header__data,
+  .results-table__row__data{
+    position: relative;
+
+    @include breakpoint(mediumlarge){
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: 1fr 200px 120px 40px;
+    }
+  }
+
+  .results-table__header{
+    border-bottom: 1px solid $hel-black;
+    margin-bottom: 10px;
+    font-size: $hel-text-size-l;
+
+    // Keep the header visible for screen readers
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+
+    @include breakpoint(mediumlarge){
+      display: grid;
+
+      // Reset the screen reader visibility to normal visibility
+      position: static;
+      left: auto;
+      width: auto;
+      height: auto;
+      overflow: initial;
+      clip: auto;
+    }
+
+    .results-table__header__data,
+    .results-table__header__vote{
+      padding-bottom: 3px;
+    }
+
+    .results-table__header__data{
+      padding-left: 17px;
+      padding-right: 17px;
+    }
+
+    .results-table__header__vote{
+      text-align: center;
+    }
+  }
+
+  .results-table__body{
+    // In case there are multipe "groups" of items in the table, i.e. when
+    // they are sorted based on the category.
+    + .results-table__body{
+      margin-top: 2rem;
+    }
+  }
+
+  .results-table__body__subheader{
+    margin-bottom: .5rem;
+    font-weight: $global-weight-medium;
+  }
+
+  .results-table__header,
+  .results-table__row{
+    .results-table__cell{
+      @include breakpoint(mediumlarge){
+        margin-left: 10px;
+      }
+
+      &:first-child{
+        margin-left: 0;
+      }
+    }
+  }
+
+  .results-table__row{
+    background-color: $hel-white;
+    margin-bottom: 10px;
+
+    &[data-show-details]{
+      .results-table__row__details{
+        display: flex;
+        flex-direction: column;
+
+        @include breakpoint(mediumlarge){
+          flex-direction: row;
+        }
+      }
+
+      .results-table__row__icon{
+        top: -4px;
+        transform: rotate(180deg);
+      }
+    }
+
+    &[data-selected]{
+      .results-table__row__header{
+        background-color: $hel-suomenlinna-medium-light;
+      }
+    }
+
+    .results-table__row__header{
+      padding: 17px 0;
+
+      @include breakpoint(mediumlarge){
+        font-size: $hel-text-size-l;
+      }
+    }
+
+    .results-table__row__data{
+      padding-left: 17px;
+      padding-right: 17px;
+    }
+
+    .results-table__row__icon{
+      position: relative;
+      display: inline-block;
+
+      .icon{
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      button{
+        cursor: pointer;
+      }
+    }
+
+    .results-table__row__vote{
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-left: 14px;
+
+      &::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 10px;
+        height: 100%;
+        width: 1px;
+        background-color: $hel-silver;
+
+        // @include breakpoint(mediumlarge){}
+      }
+
+      .input-checkbox{
+        label{
+          margin-right: 0;
+        }
+      }
+    }
+
+    .input-checkbox{
+      display: flex;
+    }
+
+    .results-table__row__data{
+      cursor: pointer;
+    }
+
+    .results-table__row__details{
+      display: none;
+      padding: 20px 17px;
+      border-top: 1px solid $hel-silver;
+
+      @include breakpoint(mediumlarge){
+        padding: 24px 17px;
+      }
+
+      .results-table__row__main{
+        @include breakpoint(mediumlarge){
+          width: 65.5%;
+          margin-right: 50px;
+          font-size: $hel-text-size-l;
+        }
+      }
+
+      .results-table__row__side{
+        margin-top: 2rem;
+
+        @include breakpoint(mediumlarge){
+          margin-top: 0;
+          width: 20%;
+        }
+
+        .attributes{
+          font-size: $hel-text-size-l;
+
+          .attributes__item:first-child{
+            margin-top: 0;
+          }
+        }
+      }
+    }
+
+    .results-table__cell{
+      &.results-table__cell--budget{
+        display: flex;
+
+        span{
+          flex: 1;
+        }
+      }
+    }
+  }
+}

@@ -114,6 +114,8 @@ sv:
         name: Sidfotstext
       help_index:
         name: Hjälpavsnittets första sida
+      results_directory_index:
+        name: Resultatkatalog första sida
     pages:
       home:
         statistics:

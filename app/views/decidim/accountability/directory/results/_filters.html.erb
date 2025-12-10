@@ -1,0 +1,64 @@
+<%= filter_form_for filter, main_app.results_path, "aria-label": t(".title") do |form| %>
+  <div class="row medium-unstack">
+    <div class="columns">
+      <div class="filters__section text_filter">
+        <fieldset>
+          <legend class="mini-title"><%= t(".term") %></legend>
+          <%= form.search_field :search_text_cont, label: false, placeholder: t(".term"), data: { disable_dynamic_change: true } %>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="filters__control with_space_filter">
+        <%= form.select(:with_space, options_for_select(space_values), { label: t(".space"), include_blank: t(".space_prompt") }, id: "space", data: { disable_dynamic_change: true }) %>
+      </div>
+    </div>
+
+    <div class="columns mediumlarge-6 large-4">
+      <div class="filters__control with_multi_scope_filter">
+        <%= form.select(:with_multi_scope, options_for_select(scope_values), { label: t(".scope"), include_blank: t(".scope_prompt") }, id: "scope", data: { disable_dynamic_change: true }) %>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="filters__control with_multi_category_filter">
+        <%= form.select(:with_multi_category, options_for_select(category_values), { label: t(".category"), include_blank: t(".category_prompt") }, id: "category", data: { disable_dynamic_change: true }) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row columns">
+    <div class="filters__section">
+      <button type="button" class="link action-link margin-bottom-2" data-toggle="additional_search additional_search_closed additional_search_open" id="additional_search_toggle" aria-expanded="false">
+        <span id="additional_search_closed" data-toggler=".is-hidden">
+          <span><%= t(".more_criteria.show") %></span>
+          <%= icon "chevron-bottom", role: "img", "aria-hidden": true %>
+        </span>
+        <span id="additional_search_open" class="is-hidden" data-toggler=".is-hidden">
+          <span><%= t(".more_criteria.hide") %></span>
+          <%= icon "chevron-top", role: "img", "aria-hidden": true %>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div id="additional_search" class="row medium-unstack is-hidden" data-toggler=".is-hidden">
+    <div class="columns mediumlarge-6 large-3">
+      <div class="filters__control progress_filter">
+        <%= form.select(:with_progress_range, options_for_select(progress_values), { label: t(".progress"), include_blank: t(".progress_prompt") }, id: "progress", data: { disable_dynamic_change: true }) %>
+      </div>
+    </div>
+  </div>
+
+  <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>
+
+  <div class="row columns">
+    <div class="filters__section">
+      <button type="submit" class="button primary" aria-label="<%= t(".search") %>" aria-controls="results-count results" data-close>
+        <%= t(".search") %>
+      </button>
+      <button type="reset" class="button clear"><%= t ".reset" %></button>
+    </div>
+  </div>
+<% end %>

@@ -8,6 +8,7 @@ import fixMap from "src/helsinki/fix_map";
 import "src/helsinki/toggle_checkbox";
 import initSlider from "src/helsinki/slider";
 import "src/helsinki/youtube_modal";
+import initAccountabilityDirectory from "src/helsinki/accountability_directory";
 
 // Load images
 require.context("../../images", true);
@@ -15,6 +16,7 @@ require.context("../../images", true);
 const initialize = (container) => {
   initSlider(container);
   initForms(container);
+  initAccountabilityDirectory(container);
 
   $("[data-toggle-checkbox]", container).toggleCheckbox();
   $("[data-open-youtube]", container).youtubeModal();

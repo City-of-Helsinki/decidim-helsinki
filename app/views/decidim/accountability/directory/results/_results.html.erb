@@ -1,0 +1,11 @@
+<% scope_results(results) do |batch, scope| %>
+  <% if scope %>
+    <h2 class="h2 heading2 margin-bottom-2"><%= translated_attribute(scope.name) %></h2>
+    <p><%= t(".scope_count", count: batch.count, title: translated_attribute(scope.name)) %></p>
+  <% else %>
+    <h2 class="h2 heading2 margin-bottom-2"><%= t(".results_without_scope") %></h2>
+    <p><%= t(".scope_count_without_scope", count: batch.count) %></p>
+  <% end %>
+
+  <%= render partial: "results_table", locals: { results: batch } %>
+<% end %>

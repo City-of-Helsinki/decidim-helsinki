@@ -17,6 +17,60 @@ en:
       delete:
         explanation: Reason why you want to delete your account (optional)
     accountability:
+      directory:
+        results:
+          count:
+            results_total_count:
+              one: Found %{count} project in total.
+              other: Found %{count} projects in total.
+          filters:
+            category: Theme
+            category_prompt: All themes
+            more_criteria:
+              hide: Hide search criteria
+              show: Show more search criteria
+            progress: Progress
+            progress_prompt: All progress states
+            reset: Clear filters
+            search: Search
+            scope: Area
+            scope_prompt: All areas
+            space: Round
+            space_prompt: All rounds
+            term: Keyword
+            title: Search projects
+          index:
+            title: Implementations
+          orders:
+            alphabetical: Alphabetical order
+            label: Sort projects
+            most_recent: Most recent first
+            most_voted: Most voted first
+          result:
+            attributes:
+              budget: Budget
+              space: Round
+              status: Implementation phase
+              vote_count: Number of votes
+            description_title: Project description
+            show_details: Show details for project %{title}
+            show_result: See project details
+            show_result_descriptive: "See details for project: %{title}"
+          results:
+            results_without_scope: Projects without a defined area
+            scope_count:
+              one: "%{count} project in the %{title} area."
+              other: "%{count} projects in the %{title} area."
+            scope_count_without_scope:
+              one: "%{count} project withouth a defined area."
+              other: "%{count} projects withouth a defined area."
+          results_table:
+            label: Projects
+            columns:
+              actions: Actions
+              progress: Progress
+              scope: Theme
+              title: Title
       results:
         result_attributes_extra:
           attributes:

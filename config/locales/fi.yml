@@ -114,6 +114,8 @@ fi:
         name: Alaosion teksti
       help_index:
         name: Ohjeosion etusivu
+      results_directory_index:
+        name: Totetuskirjaston etusivun teksti
     pages:
       home:
         statistics:

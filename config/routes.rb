@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:index, :show], controller: "decidim/blogs/directory/posts", format: :html
   resources :events, only: [:index], controller: "helsinki/linked_events", format: :html
+  resources :results, only: [:index, :show], controller: "decidim/accountability/directory/results", format: :html
 
   mount Decidim::Core::Engine => "/"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

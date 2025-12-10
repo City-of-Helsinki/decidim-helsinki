@@ -1,0 +1,17 @@
+var $results = $('#results');
+var $count = $('#results-count');
+var $orderFilterInput = $('.order_filter');
+var $order = $('.order-by__dropdown a[data-order="<%= order %>"]');
+
+$results.html('<%= j(render partial: "decidim/accountability/directory/results/results", locals: { results: results }).strip.html_safe %>');
+$count.html('<%= j(render partial: "decidim/accountability/directory/results/count", locals: { results: results }).strip.html_safe %>');
+$orderFilterInput.val('<%= order %>');
+
+if ($order) {
+  $(".order-by__dropdown .is-dropdown-submenu-parent > button").text($order.text());
+}
+
+var $dropdownMenu = $('.dropdown.menu', $results);
+$dropdownMenu.foundation();
+
+$results[0].dispatchEvent(new CustomEvent("section:update", { bubbles: true }));

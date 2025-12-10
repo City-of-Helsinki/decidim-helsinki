@@ -17,6 +17,60 @@ fi:
       delete:
         explanation: Syy tilisi poistoon (valinnainen)
     accountability:
+      directory:
+        results:
+          count:
+            results_total_count:
+              one: Löytyi yhteensä %{count} tulos.
+              other: Löytyi yhteensä %{count} tulosta.
+          filters:
+            category: Teema
+            category_prompt: Kaikki teemat
+            more_criteria:
+              hide: Piilota hakuehdot
+              show: Näytä lisää hakuehtoja
+            progress: Valmiusaste
+            progress_prompt: Kaikki valmiusasteet
+            reset: Tyhjennä rajaukset
+            search: Hae
+            scope: Alue
+            scope_prompt: Kaikki alueet
+            space: Kierros
+            space_prompt: Kaikki kierrokset
+            term: Hakusana
+            title: Etsi hankkeista
+          index:
+            title: Toteutukset
+          orders:
+            alphabetical: Aakkosjärjestys
+            label: Järjestä hankkeet
+            most_recent: Uusimmat ensin
+            most_voted: Eniten ääniä saaneet ensin
+          result:
+            attributes:
+              budget: Budjetti
+              space: Kierros
+              status: Toteutuksen vaihe
+              vote_count: Äänimäärä
+            description_title: Hankkeen kuvaus
+            show_details: Näytä hankkeen %{title} lisätiedot
+            show_result: Tutustu hankkeeseen
+            show_result_descriptive: "Tutustu hankkeeseen: %{title}"
+          results:
+            results_without_scope: Ei määritettyä aluetta
+            scope_count:
+              one: "%{count} tulos alueella %{title}."
+              other: "%{count} tulosta alueella %{title}."
+            scope_count_without_scope:
+              one: "%{count} tulos ilman määritettyä aluetta."
+              other: "%{count} tulosta ilman määritettyä aluetta."
+          results_table:
+            label: Hankkeet
+            columns:
+              actions: Toiminnot
+              progress: Valmiusaste
+              scope: Teema
+              title: Otsikko
       results:
         result_attributes_extra:
           attributes:

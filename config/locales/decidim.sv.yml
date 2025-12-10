@@ -17,6 +17,60 @@ sv:
       delete:
         explanation: Anledning till varför du vill ta bort ditt konto (valfritt)
     accountability:
+      directory:
+        results:
+          count:
+            results_total_count:
+              one: Hittade totalt %{count} projekt.
+              other: Hittade totalt %{count} projekt.
+          filters:
+            category: Tema
+            category_prompt: Alla teman
+            more_criteria:
+              hide: Dölj sökkriterier
+              show: Visa fler sökkriterier
+            progress: Framsteg
+            progress_prompt: Alla framsteg stater
+            reset: Rensa filter
+            search: Sök
+            scope: Område
+            scope_prompt: Alla områden
+            space: Omgång
+            space_prompt: Alla omgångar
+            term: Nyckelord
+            title: Sök projekt
+          index:
+            title: Genomförande
+          orders:
+            alphabetical: Alfabetisk ordning
+            label: Sortera projekt
+            most_recent: Senaste först
+            most_voted: De flesta röstade först
+          result:
+            attributes:
+              budget: Budget
+              space: Omgång
+              status: Implementeringsfasen
+              vote_count: Röstetal
+            description_title: Projekt beskrivning
+            show_details: Visa detaljer för projektet %{title}
+            show_result: Visa detaljer för projektet
+            show_result_descriptive: "Visa detaljer för projektet: %{title}"
+          results:
+            results_without_scope: Projekt utan ett definierat område
+            scope_count:
+              one: "%{count} projekt i %{title} området."
+              other: "%{count} projekt i %{title} området."
+            scope_count_without_scope:
+              one: "%{count} projekt utan ett definierat område."
+              other: "%{count} projekt utan ett definierat område."
+          results_table:
+            label: Projekt
+            columns:
+              actions: Åtgärder
+              progress: Framsteg
+              scope: Tema
+              title: Titel
       results:
         result_attributes_extra:
           attributes:
