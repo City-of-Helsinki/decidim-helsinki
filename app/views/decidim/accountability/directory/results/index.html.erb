@@ -1,6 +1,6 @@
 <%
 text_section = Decidim::ContextualHelpSection.find_content(current_organization, "results_directory_index")
-footer_text = translated_attribute(text_section)
+section_text = translated_attribute(text_section)
 %>
 
 <div class="wrapper">
@@ -14,7 +14,7 @@ footer_text = translated_attribute(text_section)
     <div class="row medium-unstack content-intro">
       <div class="columns medium-6 mediumlarge-8">
         <div class="text-large">
-          <%= decidim_sanitize_admin(footer_text) if footer_text.present? %>
+          <%= decidim_sanitize_admin(section_text) if section_text.present? %>
         </div>
       </div>
     </div>
