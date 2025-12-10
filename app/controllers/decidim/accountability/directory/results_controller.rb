@@ -82,9 +82,7 @@ module Decidim
 
         def results
           @results ||= reorder(
-            join_vote_counts(
-              search.result.joins(:component).left_joins(:scope, :category, :status).where(parent_id: nil)
-            )
+            join_vote_counts(search.result).joins(:component).left_joins(:scope, :category, :status).where(parent_id: nil)
           )
         end
 
@@ -141,10 +139,13 @@ module Decidim
           SQL
           join_sanitized = ActiveRecord::Base.sanitize_sql([join_query, details.pluck(:id)])
 
-          query.joins(join_sanitized).select(
-            "decidim_accountability_results.*",
-            "vote_counts.description->>'fi' AS vote_count"
-          )
+          vote_count_select = <<~SQL.squish
+            CASE
+              WHEN vote_counts.description->>'fi' ~ '^\\d+$' THEN (vote_counts.description->>'fi')::int
+              ELSE NULL
+            END AS vote_count
+          SQL
+          query.joins(join_sanitized).select("decidim_accountability_results.*", vote_count_select)
         end
 
         def available_spaces
