@@ -1,11 +1,8 @@
 <%= filter_form_for filter, main_app.results_path, "aria-label": t(".title") do |form| %>
   <div class="row medium-unstack">
     <div class="columns">
-      <div class="filters__section text_filter">
-        <fieldset>
-          <legend class="mini-title"><%= t(".term") %></legend>
-          <%= form.search_field :search_text_cont, label: false, placeholder: t(".term"), data: { disable_dynamic_change: true } %>
-        </fieldset>
+      <div class="filters__control text_filter">
+        <%= form.search_field :search_text_cont, label: t(".term"), placeholder: t(".term"), data: { disable_dynamic_change: true } %>
       </div>
     </div>
 
