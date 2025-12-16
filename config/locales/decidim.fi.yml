@@ -98,6 +98,14 @@ fi:
               name: Vuorovaikutus
             plans_description:
               name: Suunnitelmat
+    admin:
+      categories:
+        form:
+          add_images: Lisää kuvia
+          attachment_legend: Kuvat
+          edit_images: Muokkaa kuvia
+          images: Kuvat
+          images_legend: Lisää kuvia
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar useammalle käyttäjälle

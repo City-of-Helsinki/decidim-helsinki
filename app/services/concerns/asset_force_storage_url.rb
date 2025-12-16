@@ -23,7 +23,7 @@ module AssetForceStorageUrl
         original_url(**options)
       else
         case asset
-        when ActiveStorage::Attached
+        when ActiveStorage::Attached, ActiveStorage::Attachment
           ensure_current_host(asset.record, **options)
           return asset.url(**options).presence || original_url(**options)
         when ActiveStorage::Blob

@@ -21,11 +21,21 @@
     </div>
 
     <div class="row column">
-      <%= form.upload :category_image %>
-    </div>
-
-    <div class="row column">
-      <%= form.upload :category_icon %>
+      <%= form.upload(
+        :category_images,
+        multiple: true,
+        titled: false,
+        resource_class: "Decidim::Category",
+        show_current: false,
+        max_file_size: Decidim::FileValidatorHumanizer.new(form.object, :category_images).max_file_size,
+        extension_allowlist: Decidim.organization_settings(form.object).upload_allowed_file_extensions_image,
+        help_i18n_scope: "decidim.forms.file_help.image",
+        help_text: t(".attachment_legend"),
+        label: t(".images"),
+        button_label: t(".add_images"),
+        button_edit_label: t(".edit_images"),
+        button_class: "button button__lg button__transparent-secondary"
+      ) %>
     </div>
 
     <div class="row column">

@@ -5,8 +5,6 @@ module Decidim
     # A command with all the business logic when updating a category in the
     # system.
     class UpdateCategory < Decidim::Command
-      include ::Decidim::AttachmentAttributesMethods
-
       attr_reader :category
 
       # Public: Initializes the command.
@@ -27,6 +25,7 @@ module Decidim
       # Returns nothing.
       def call
         return broadcast(:invalid) if form.invalid?
+        return broadcast(:invalid) if @form.add_category_images.any?(&:invalid?)
 
         update_category
         broadcast(:ok)
@@ -49,8 +48,13 @@ module Decidim
           name: form.name,
           weight: form.weight,
           parent_id: form.parent_id,
-          color: category_color
-        }.merge(attachment_attributes(:category_image, :category_icon))
+          color: category_color,
+          category_images: category_images
+        }
+      end
+
+      def category_images
+        @form.category_images + @form.add_category_images
       end
 
       def category_color

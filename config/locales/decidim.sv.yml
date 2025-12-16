@@ -98,6 +98,14 @@ sv:
               name: Interaktion
             plans_description:
               name: Planer
+    admin:
+      categories:
+        form:
+          add_images: Lägg till bilder
+          attachment_legend: Bilder
+          edit_images: Redigera bilder
+          images: Bilder
+          images_legend: Lägg till bilder
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar för flera användare

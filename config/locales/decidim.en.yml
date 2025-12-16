@@ -98,6 +98,14 @@ en:
               name: Interaction
             plans_description:
               name: Plans
+    admin:
+      categories:
+        form:
+          add_images: Add images
+          attachment_legend: Images
+          edit_images: Edit images
+          images: Images
+          images_legend: Add images
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar for multiple users

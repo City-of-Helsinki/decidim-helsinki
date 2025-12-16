@@ -1,14 +1,18 @@
 <div class="dynamic-uploads <%= with_title %> upload-container-for-<%= attribute %>">
+  <%= tag.strong label unless has_title? %>
+
   <% if !has_title? && file_attachment_path(attachments.first) && blob(attachments.first).image? %>
     <strong><%= attachment_label %></strong>
-    <%= link_to image_tag(file_attachment_path(attachments.first), alt: attribute), file_attachment_path(attachments.first) %>
+    <% attachments.each do |attachment| %>
+      <% next unless blob(attachment).image? %>
+      <%= link_to image_tag(file_attachment_path(attachment), alt: attribute), file_attachment_path(attachment) %>
+    <% end %>
   <% elsif !has_title? && uploader_default_image_path(attribute).present? %>
-      <%= link_to uploader_default_image_path(attribute) do %>
-        <%= image_tag uploader_default_image_path(attribute), alt: t("default_image", scope: "decidim.forms") %>
-      <% end %>
+    <%= link_to uploader_default_image_path(attribute) do %>
+      <%= image_tag uploader_default_image_path(attribute), alt: t("default_image", scope: "decidim.forms") %>
+    <% end %>
   <% end %>
 
-  <%= tag.strong label unless has_title? %>
   <div class="<%= actions_wrapper_class %>">
     <div class="active-uploads">
       <% attachments.each do |attachment| %>
@@ -19,6 +23,10 @@
             <span><%= title_for(attachment) %> (<%= truncated_file_name_for(attachment) %>)</span>
             <%= form.hidden_field attribute, multiple: true, value: attachment.id, id: attachment.id %>
           <% else %>
+            <% if attachment.is_a?(ActiveStorage::Blob) %>
+              <%= form.hidden_field attribute, multiple: true, value: attachment.signed_id, id: attachment.id %>
+            <% end %>
+
             <% if blob(attachment).image? %>
               <span><%= truncated_file_name_for(attachment, 15) %></span>
             <% else %>
