@@ -41,6 +41,7 @@ en:
             title: Search projects
           index:
             title: Implementations
+            total_budget: "Total budget for projects shown on this page: %{amount}"
           orders:
             alphabetical: Alphabetical order
             label: Sort projects
@@ -64,6 +65,7 @@ en:
             scope_count_without_scope:
               one: "%{count} project withouth a defined area."
               other: "%{count} projects withouth a defined area."
+            total_budget: "Total budget for projects shown in this area: %{amount}"
           results_table:
             label: Projects
             columns:

@@ -41,6 +41,7 @@ fi:
             title: Etsi hankkeista
           index:
             title: Toteutukset
+            total_budget: "Näytettävien hankkeiden budjetti yhteensä: %{amount}"
           orders:
             alphabetical: Aakkosjärjestys
             label: Järjestä hankkeet
@@ -64,6 +65,7 @@ fi:
             scope_count_without_scope:
               one: "%{count} tulos ilman määritettyä aluetta."
               other: "%{count} tulosta ilman määritettyä aluetta."
+            total_budget: "Näytettävien hankkeiden budjetti alueella yhteensä: %{amount}"
           results_table:
             label: Hankkeet
             columns:

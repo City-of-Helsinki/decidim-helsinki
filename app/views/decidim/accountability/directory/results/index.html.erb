@@ -31,8 +31,14 @@ section_text = translated_attribute(text_section)
   <div class="container listing-section">
     <div class="row columns">
       <div class="collection-info row smallmedium-unstack">
-        <div id="results-count" class="column results-description" aria-live="polite" aria-atomic="true">
-          <%= render partial: "decidim/accountability/directory/results/count", locals: { results: results } %>
+        <div class="column results-description">
+          <div id="results-count" aria-live="polite" aria-atomic="true">
+            <%= render partial: "decidim/accountability/directory/results/count", locals: { results: results } %>
+          </div>
+
+          <div class="margin-top-1">
+            <p><%= t(".total_budget", amount: number_to_currency(results.sum(:budget_amount), unit: Decidim.currency_unit, precision: 0)) %></p>
+          </div>
         </div>
 
         <div class="column">

@@ -16,19 +16,22 @@ module Decidim
         def scope_results(results)
           scope_results = []
           prev_scope = nil
+          total_budget = 0
 
           results.each do |result|
             if result.scope != prev_scope
-              yield scope_results, prev_scope if scope_results.any?
+              yield scope_results, prev_scope, { total_budget: total_budget } if scope_results.any?
 
               scope_results = []
+              total_budget = 0
               prev_scope = result.scope
             end
 
             scope_results << result
+            total_budget += result.budget_amount if result.budget_amount
           end
 
-          yield scope_results, prev_scope if scope_results.any?
+          yield scope_results, prev_scope, { total_budget: total_budget } if scope_results.any?
         end
 
         # Method to avoid N+1 queries

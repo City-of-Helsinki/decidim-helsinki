@@ -41,6 +41,7 @@ sv:
             title: Sök projekt
           index:
             title: Genomförande
+            total_budget: "Total budget för projekt som visas på denna sida: %{amount}"
           orders:
             alphabetical: Alfabetisk ordning
             label: Sortera projekt
@@ -64,6 +65,7 @@ sv:
             scope_count_without_scope:
               one: "%{count} projekt utan ett definierat område."
               other: "%{count} projekt utan ett definierat område."
+            total_budget: "Total budget för projekt som visas inom detta område: %{amount}"
           results_table:
             label: Projekt
             columns:
