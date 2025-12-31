@@ -55,8 +55,10 @@ const initialize = (container) => {
     });
   });
 
-  // Move the scroll position at the top of the accordion when it is opened if
-  // it is outside of the current view.
+  // Fixes for the accordion elements:
+  // - Move the scroll position at the top of the accordion when it is opened if
+  //   it is outside of the current view.
+  // - Render the map when displayed.
   $(".accordion", container).each((_i, element) => {
     const $accordion = $(element);
     const accordionPlugin = $accordion.data("zfPlugin");
@@ -77,7 +79,13 @@ const initialize = (container) => {
           $(window).scrollTop(targetPos);
         }
       }, accordionPlugin.options.slideSpeed + 50);
-    })
+    });
+
+    $(element).on("down.zf.accordion", (_ev, $node) => {
+      $("[data-decidim-map]", $node).each((_i, mapEl) => {
+        fixMap(mapEl.parentNode);
+      })
+    });
   });
 };
 
