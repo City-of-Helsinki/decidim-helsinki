@@ -55,6 +55,23 @@ const initialize = (container) => {
     });
   });
 
+  // Opens the map accordion when the anchor links are clicked
+  document.querySelectorAll("a[href='#project_map'], a[href='#result_map']").forEach((el) => {
+    const target = document.querySelector(el.getAttribute("href"));
+    if (!target.classList.contains("accordion")) {
+      return;
+    }
+
+    const contentEl = target.querySelector(".accordion-content");
+    if (!contentEl) {
+      return;
+    }
+
+    el.addEventListener("click", () => {
+      $(target).foundation("down", $(contentEl));
+    });
+  });
+
   // Fixes for the accordion elements:
   // - Move the scroll position at the top of the accordion when it is opened if
   //   it is outside of the current view.
