@@ -5,7 +5,8 @@
   <div class="attributes__item">
     <h3 class="attributes__item__name"><%= t(".attributes.budget") %></h3>
 
-    <% if strip_tags(breakdown).strip.present? %>
+    <% # The breakdown is disabled due to information not being sent from the backoffice %>
+    <% if false && strip_tags(breakdown).strip.present? %>
       <div class="attributes__item__value">
         <div class="row">
           <div class="columns"><%= budget_amount %></div>
