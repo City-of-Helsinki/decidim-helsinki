@@ -50,4 +50,47 @@ namespace :project_updates do
       puts "Updated title and summary for project: #{project.id}"
     end
   end
+
+  # This task imports the initial answers to projects from the first answer
+  # available in the linked plan (if any). This is how the answers were fetched
+  # for the projects prior to introducing the custom `answer` field to the
+  # projects. The custom field was introduced because the answers for the
+  # "parent proposals" (i.e. projects in Decidim) may differ from the answers of
+  # the individual linked proposals it is based on.
+  desc "Import the initial answers for projects"
+  task :import_answers, [:component_id] => [:environment] do |_t, args|
+    component = Decidim::Component.find_by(manifest_name: "budgets", id: args.component_id)
+    unless component
+      puts "Could not find budgets component with ID: #{args.component_id}"
+      next
+    end
+
+    budgets = Decidim::Budgets::Budget.where(component: component)
+    if budgets.blank?
+      puts "There are no budgets available within the given component."
+      next
+    end
+
+    textutil = Class.new do
+      include ActionView::Helpers::SanitizeHelper
+    end.new
+
+    Decidim::Budgets::Project.where(budget: budgets).find_each do |project|
+      # Note that the order is important as the resource links are created in
+      # the order that they are defined in the API query.
+      linked_plans = Decidim::ResourceLink.where(
+        from_type: "Decidim::Budgets::Project",
+        from_id: project.id,
+        name: "included_plans",
+        to_type: "Decidim::Plans::Plan"
+      ).order(:id).map(&:to)
+
+      answers = linked_plans.map(&:answer).select do |answer|
+        answer.present? && answer["fi"].present? && textutil.strip_tags(answer["fi"]).strip.present?
+      end
+      next if answers.blank?
+
+      project.update!(answer: answers.first)
+    end
+  end
 end
