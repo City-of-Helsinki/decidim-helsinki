@@ -1,5 +1,6 @@
 var $results = $('#results');
 var $count = $('#results-count');
+var $budget = $('#total-budget');
 var $orderFilterInput = $('.order_filter');
 var $order = $('.order-by__dropdown a[data-order="<%= order %>"]');
 
@@ -9,6 +10,10 @@ $orderFilterInput.val('<%= order %>');
 
 if ($order) {
   $(".order-by__dropdown .is-dropdown-submenu-parent > button").text($order.text());
+}
+
+if ($budget) {
+  $("p", $budget).text('<%= j(t(".total_budget", amount: number_to_currency(results.sum(:budget_amount), unit: Decidim.currency_unit, precision: 0))).html_safe %>');
 }
 
 var $dropdownMenu = $('.dropdown.menu', $results);

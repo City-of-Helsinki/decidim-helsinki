@@ -36,7 +36,7 @@ section_text = translated_attribute(text_section)
             <%= render partial: "decidim/accountability/directory/results/count", locals: { results: results } %>
           </div>
 
-          <div class="margin-top-1">
+          <div class="margin-top-1" id="total-budget" aria-live="polite" aria-atomic="true">
             <p><%= t(".total_budget", amount: number_to_currency(results.sum(:budget_amount), unit: Decidim.currency_unit, precision: 0)) %></p>
           </div>
         </div>
