@@ -27,7 +27,7 @@ module CategoryExtensions
     # Bacwards compatibility method for fetching the attached uploader with the
     # singular name as before there was only a single category image.
     def category_image
-      @category_image ||= ActiveStorage::Attached::One.new(:category_image, self) if category_image_attachment
+      @category_image ||= ActiveStorage::Attached::One.new(:category_image, self)
     end
 
     # Utility method used by ActiveStorage to find the attachment for the image.
