@@ -252,6 +252,7 @@ fi:
       contact: Ota yhteyttä
       feedback: Anna palautetta
       history: Historia
+      results: Toteutus
   number:
     percentage:
       format:

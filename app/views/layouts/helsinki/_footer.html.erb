@@ -70,6 +70,7 @@ visible_processes = Decidim::ParticipatoryProcess.published.where("start_date <=
           <div class="column small-12 medium-4 large-3 xlarge-2">
             <h2 class="h4"><%= t("layouts.footer.history") %></h2>
             <ul class="vertical menu">
+              <li><%= link_to t("layouts.footer.results"), main_app.results_path %></li>
               <% visible_processes.each do |process| %>
                 <li><%= link_to translated_attribute(process.title), decidim_participatory_processes.participatory_process_path(process) %></li>
               <% end %>
