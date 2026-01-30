@@ -61,8 +61,12 @@ edit_link(
               <h3><%= translated_attribute(step.title) %></h3>
               <%== translated_attribute(step.description) %>
               <% if step.cta_path.present? %>
+                <%
+                path, params = participatory_process_path(current_participatory_space).split("?")
+                step_url = "#{path}/#{step.cta_path}#{params.present? ? "?#{params}" : ""}"
+                %>
                 <p>
-                  <%= link_to "#{participatory_process_path(current_participatory_space)}/#{step.cta_path}" do %>
+                  <%= link_to step_url do %>
                     <span><%= t(".show_step") %></span>
                     <%= icon "arrow-right", role: "img", "aria-hidden": true %>
                   <% end %>
