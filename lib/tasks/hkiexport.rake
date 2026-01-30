@@ -531,7 +531,27 @@ namespace :hkiexport do
     dob = Date.strptime(date_of_birth, "%Y-%m-%d")
     now = at_date.utc.to_date
     diff_year = now.month > dob.month || (now.month == dob.month && now.day >= dob.day) ? 0 : 1
-    now.year - dob.year - diff_year
+    age_category(now.year - dob.year - diff_year)
+  end
+
+  def age_category(age)
+    if age < 16
+      "13-15"
+    elsif age < 20
+      "16-19"
+    elsif age < 30
+      "20-29"
+    elsif age < 40
+      "30-39"
+    elsif age < 50
+      "40-49"
+    elsif age < 65
+      "50-64"
+    elsif age < 75
+      "65-74"
+    else
+      "75+"
+    end
   end
 
   def parse_class_levels(rawdata)
