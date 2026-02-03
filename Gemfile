@@ -23,7 +23,7 @@ gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "rel
 gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "develop"
 # Helsinki profile disabled because it interrupts the SLO request from Suomi.fi
 # gem "decidim-helsinki_profile", github: "mainio/decidim-module-helsinki_profile", branch: "main"
-gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "develop"
+gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "release/0.27-stable"
 gem "decidim-insights", github: "mainio/decidim-module-insights", branch: "release/0.27-stable"
 gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "release/0.27-helsinki-stable"
 gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "release/0.27-stable"
