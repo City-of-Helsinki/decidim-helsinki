@@ -2,7 +2,7 @@
   <ul class="card-data">
     <li class="card-data__item">
       <div class="card__link text-center">
-        <%= resource_icon notification.resource, class: "icon--large" %>
+        <%= resource_icon notification.resource, class: "icon--large", "aria-hidden": true %>
         <span class="text-medium mt-xs" title="<%= l(notification.created_at) %>" data-tooltip="true" data-disable-hover="false">
           <%= notification.created_at_in_words %>
         </span>
