@@ -146,6 +146,10 @@ fi:
     forms:
       upload:
         choose_file: Valitse tiedosto
+    notifications:
+      index:
+        title: Ilmoitukset
+      no_notifications: Ei ilmoituksia.
     pages:
       terms_and_conditions:
         accept:

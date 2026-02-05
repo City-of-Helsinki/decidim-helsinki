@@ -146,6 +146,10 @@ en:
     forms:
       upload:
         choose_file: Choose file
+    notifications:
+      index:
+        title: Notifications
+      no_notifications: No notifications.
     pages:
       terms_and_conditions:
         accept:

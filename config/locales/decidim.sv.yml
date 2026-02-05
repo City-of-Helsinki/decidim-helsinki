@@ -146,6 +146,10 @@ sv:
     forms:
       upload:
         choose_file: Välj fil
+    notifications:
+      index:
+        title: Meddelanden
+      no_notifications: Inga meddelanden.
     pages:
       terms_and_conditions:
         accept:
