@@ -31,7 +31,7 @@ sv:
           sign_in_with: 'MPASSid-identifikation'
           sign_in_button: 'Logga in med elevkonto'
         weak:
-          description: 'Du kan också logga in med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med Omastadi-kontot du skapade tidigare.'
+          description: 'Du kan också logga in med sociala mediekonton (bl.a. Facebook, Yle, Google) eller med VårStad-kontot du skapade tidigare.'
           sign_in_with: 'Logga in utan identifikation'
           sign_in_button: 'Logga in med Helsingforsprofilen'
   decidim:
@@ -61,7 +61,7 @@ sv:
           sign_up_service_account_description: 'Skapa ett eget användarkonto och logga i fortsättningen in med din e-postadress och ditt eget lösenord.'
           terms: användarvillkoren
           tos_title: Samtycke till behandling av personuppgifter och användarvillkor
-          tos_agreement: Jag ger mitt samtycke till behandlingen av mina ovan nämnda personuppgifter för att producera tjänsten OmaStadi och jag godkänner %{link}. Jag intygar härmed att jag är 13-år eller äldre.
+          tos_agreement: Jag ger mitt samtycke till behandlingen av mina ovan nämnda personuppgifter för att producera tjänsten VårStad och jag godkänner %{link}. Jag intygar härmed att jag är 13-år eller äldre.
       sessions:
         default:
           omniauth:

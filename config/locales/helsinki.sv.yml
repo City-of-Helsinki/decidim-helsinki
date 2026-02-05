@@ -5,7 +5,7 @@ sv:
         settings:
           global:
             workflow_choices:
-              omastadi: 'OmaStadi: tillåter deltagare att rösta i ett större distrikt efter eget val.'
+              omastadi: 'VårStad: tillåter deltagare att rösta i ett större distrikt efter eget val.'
               ruuti_one: 'Ruuti röstar i ett: tillåter deltagare att rösta i budgeten för deras Ruuti-område.'
   helsinki:
     areas:
@@ -167,7 +167,7 @@ sv:
       label: "Helsingfors distrikt med sina budgetar: Västra 1534011€, Norra 593272€, Mellersta 1323211€, Södra 1662361€, Nordöstra 1374703€, Sydöstra 765547€, Östra och Östersundom 1546895€"
     plans:
       layouts:
-        omastadi: OmaStadi
+        omastadi: VårStad
       omastadi_form:
         buttons:
           create: Skapa och förhandsgranska
@@ -290,14 +290,14 @@ sv:
         privacy_link: /pages/tietosuoja?locale=sv
         tos_summary_html: |
           <p>
-            När du registrerar dig i tjänsten OmaStadi ska du ge ditt samtycke till behandlingen av personuppgifter.
+            När du registrerar dig i tjänsten VårStad ska du ge ditt samtycke till behandlingen av personuppgifter.
             Efter att ha gett ditt samtycke kan du lämna in förslag, kommentera förslag och rösta på förslag.
           </p>
           <p>
             När du registrerar dig i tjänsten behandlar vi följande personuppgifter: namn, signatur och e-postadress.
           </p>
           <p>
-            När du identifierar dig i OmaStadi genom stark autentisering behandlar vi följande personuppgifter: namn,
+            När du identifierar dig i VårStad genom stark autentisering behandlar vi följande personuppgifter: namn,
             e-postadress, hemkommun, postnummer och personbeteckning.
           </p>
           <p>
@@ -307,7 +307,7 @@ sv:
           </p>
           <p>Du kan när som helst återkalla ditt samtycke och radera dina uppgifter från användarkontots inställningar.</p>
           <p>
-            Mer information om behandlingen av dina personuppgifter i OmaStadi finns i
+            Mer information om behandlingen av dina personuppgifter i VårStad finns i
             <a href="%{privacy_link}" target="_blank">dataskyddsbeskrivningen</a> som bland annat innehåller mer
             information om de rättsliga grunderna för behandlingen av dina personuppgifter och om
             förvaringstiderna för dina uppgifter.
