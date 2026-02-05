@@ -51,9 +51,9 @@ module Helsinki
       def category_image_path(cat)
         return unless has_category?
         return unless cat
-        return unless cat.respond_to?(:category_image_url)
+        return unless cat.respond_to?(:category_image_url_for)
 
-        cat.category_image_url(:default)
+        cat.category_image_url_for(plan, :default)
       end
 
       def description
