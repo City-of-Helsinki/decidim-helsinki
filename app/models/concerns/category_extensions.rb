@@ -30,11 +30,18 @@ module CategoryExtensions
       Attached.new(:category_image, self, seed: seed)
     end
 
-    # Gets a unique "sticky" category image for the given model record. The
-    # image remains the same for the same given record as the seed value is
-    # always the same for that record.
+    # Gets a unique "sticky" category image for the given model record based on
+    # a consistent hash value unique enough to the record (for this purpose).
+    # The image remains the same for the same given record as the seed value is
+    # always the same for that record and the hash is calculated in a consistent
+    # way in all environments.
     def category_image_for(record)
-      category_image(seed: "#{record.class.name}##{record.id}".hash)
+      # SHA-1 hashes are 160 bit long (40 chars * 4 hexadecimal bits).
+      hash = Digest::SHA1.hexdigest("#{record.class.name}##{record.id}").to_i(16)
+      # Random allows maximum of 128 bits long seed values, so the hash value
+      # needs to be adjusted to this range to get consistent results with the
+      # random implementation. The difference is 32 bits (160 - 128).
+      category_image(seed: hash / ((2**32) - 1))
     end
 
     # Utility method used by ActiveStorage to find the attachment for the image.
