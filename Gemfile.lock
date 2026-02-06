@@ -78,7 +78,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: 22d90fb5654a1336bf1a820da09785b55ad8b1e3
+  revision: 91e8cd19df180d66eab3a050f8d71beee7964fe6
   branch: release/0.27-stable
   specs:
     decidim-budgeting_pipeline (0.27.0)
@@ -99,7 +99,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-favorites.git
-  revision: b070db197589506a905c1847bdb8bf9bda0f583b
+  revision: a3c1a8ffe788025e43154876d0f52bd0fb194cd7
   branch: release/0.27-stable
   specs:
     decidim-favorites (0.27.0)
