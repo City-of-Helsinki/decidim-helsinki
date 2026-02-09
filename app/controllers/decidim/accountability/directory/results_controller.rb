@@ -81,9 +81,12 @@ module Decidim
         end
 
         def results
-          @results ||= reorder(
-            join_vote_counts(search.result).joins(:component).left_joins(:scope, :category, :status).where(parent_id: nil)
-          )
+          @results ||= begin
+            query = join_vote_counts(search.result).joins(:component).left_joins(:category, :status).where(parent_id: nil)
+            query = map_old_scopes(query)
+
+            reorder(query)
+          end
         end
 
         def result
@@ -125,6 +128,53 @@ module Decidim
 
         def context_params
           { organization: current_organization }
+        end
+
+        # This maps the old scopes to the new corresponding scopes with a
+        # different top-level scope. This is done because the scopes are the
+        # same but in the old scope there was one additional scope for the whole
+        # city. Otherwise the "same" scope (city area) would be duplicated on
+        # the results directory page.
+        #
+        # The scope codes are the same but the old code have a string literal
+        # "-VANHA-" in the middle of them. For example, old scope
+        # SUURPIIRI-VANHA-ETELÄINEN should map to the corresponding new scope
+        # SUURPIIRI-ETELÄINEN.
+        def map_old_scopes(query)
+          scope_ids = {}
+          old_scopes = []
+          Decidim::Scope.where(id: query.pluck(:decidim_scope_id)).order(:code).find_each do |scope|
+            scope_ids[scope.code] = scope.id
+            next unless scope.code.match?("-VANHA-")
+
+            old_scopes << scope.id
+          end
+
+          scope_mapping = old_scopes.to_h do |id|
+            code = scope_ids.key(id)
+            new_code = code.sub("-VANHA-", "-")
+            [id, scope_ids[new_code]]
+          end.compact
+          return query.left_joins(:scope) if scope_mapping.blank?
+
+          query = query.select(query.column_names - %w(decidim_scope_id))
+          query = query.select(
+            <<~SQL.squish
+              CASE #{query.table_name}.decidim_scope_id
+                #{scope_mapping.map { |id, mapped_id| "WHEN #{id} THEN #{mapped_id}" }.join(" ")}
+                ELSE #{query.table_name}.decidim_scope_id
+              END AS decidim_scope_id
+            SQL
+          )
+          query.joins(
+            <<~SQL.squish
+              LEFT OUTER JOIN decidim_scopes ON
+              CASE #{query.table_name}.decidim_scope_id
+                #{scope_mapping.map { |id, mapped_id| "WHEN #{id} THEN #{mapped_id}" }.join(" ")}
+                ELSE #{query.table_name}.decidim_scope_id
+              END = decidim_scopes.id
+            SQL
+          )
         end
 
         def join_vote_counts(query)
