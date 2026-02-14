@@ -5,6 +5,8 @@ module Helsinki
     class OmastadiIndexCell < Decidim::Plans::PlanIndexCell
       include Decidim::LayoutHelper # For the icon helper
 
+      delegate :current_settings, :component_settings, to: :controller
+
       private
 
       attr_reader :filters_prefix

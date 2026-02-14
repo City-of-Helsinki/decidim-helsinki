@@ -25,6 +25,8 @@
       <div class="resource__main static__content margin-bottom-0">
         <h1><%= present(plan).title %></h1>
 
+        <%= render partial: "decidim/shared/component_announcement.html", locals: { current_settings: current_settings, component_settings: component_settings } %>
+
         <%== plan_notification %>
 
         <% if plan.tags.any? %>

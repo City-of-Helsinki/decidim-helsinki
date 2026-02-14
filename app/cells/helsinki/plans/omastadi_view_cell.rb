@@ -6,6 +6,8 @@ module Helsinki
       # include ActionView::Helpers::NumberHelper
       include Decidim::Plans::RichPresenter
 
+      delegate :current_settings, :component_settings, to: :controller
+
       def linked_ideas
         return unless ideas
         return unless ideas.any?
