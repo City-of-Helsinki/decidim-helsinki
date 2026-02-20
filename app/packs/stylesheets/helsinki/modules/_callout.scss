@@ -42,6 +42,8 @@
   }
 
   .callout__content{
+    word-break: break-word;
+
     // Leave space for the close icon so that it will not appear on top of the
     // text on narrow mobile screens.
     margin-right: 2rem;
