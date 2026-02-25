@@ -33,13 +33,13 @@ namespace :project_updates do
       existing_summary = project.summary || {}
       title = {
         "fi" => project.title["fi"],
-        "sv" => row.cells[2].value.strip,
-        "en" => row.cells[3].value.strip
+        "sv" => (row.cells[2]&.value || "").strip,
+        "en" => (row.cells[3]&.value || "").strip
       }
       summary = {
         "fi" => existing_summary["fi"].presence || row.cells[4].value.strip,
-        "sv" => row.cells[5].value.strip,
-        "en" => row.cells[6].value.strip
+        "sv" => (row.cells[5]&.value || "").strip,
+        "en" => (row.cells[6]&.value || "").strip
       }
 
       project.update!(
