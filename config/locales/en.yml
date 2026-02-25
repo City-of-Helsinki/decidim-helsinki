@@ -88,6 +88,9 @@ en:
       projects:
         filters:
           category_prompt: Choose category
+      votes:
+        finished:
+          feedback_link_title: How would you rate OmaStadi as a whole?
     components:
       component_order_selector:
         order:

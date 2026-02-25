@@ -87,6 +87,9 @@ sv:
       projects:
         filters:
           category_prompt: Välj ett ämne
+      votes:
+        finished:
+          feedback_link_title: Hur skulle du betygsätta VårStad som helhet?
     components:
       component_order_selector:
         order:

@@ -87,6 +87,9 @@ fi:
       projects:
         filters:
           category_prompt: Valitse aihepiiri
+      votes:
+        finished:
+          feedback_link_title: Miten arvioisit OmaStadia kokonaisuutena?
     components:
       component_order_selector:
         order:

@@ -1,0 +1,57 @@
+<%= decidim_form_for(feedback_form, namespace: "feedback", url: decidim_feedback.feedbacks_path, remote: true, html: { class: "feedback-form new_feedback" }) do |f| %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :feedback_type, "inline" %>
+  <%= f.hidden_field :feedbackable_gid %>
+  <%= f.hidden_field :rating, class: "feedback-rating" %>
+
+  <% f.fields_for :metadata, f.object.metadata do |mf| %>
+    <% metadata.each do |key, value| %>
+      <%= mf.hidden_field key, value: value %>
+    <% end %>
+  <% end %>
+
+  <div class="help-text feedback-help" aria-hidden="true">
+    <% (1..5).each do |rating| %>
+      <div><%= t("decidim.feedback.feedback_inline.rating.#{rating}") %></div>
+    <% end %>
+  </div>
+
+  <div class="feedback-buttons">
+    <% (1..5).each do |rating| %>
+      <button type="button" class="button hollow" aria-label="<%= t("decidim.feedback.feedback_inline.rating.#{rating}") %>" aria-controls="<%= "#{content_id}_content" %>" data-value="<%= rating %>">
+        <%= icon("face-rating-#{rating}", aria_hidden: true) %>
+        <%= rating %>
+      </button>
+    <% end %>
+  </div>
+<% end %>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var feedback = document.getElementById("<%= "#{content_id}_content" %>");
+  var form = feedback.querySelector("form");
+  var rating = feedback.querySelector(".feedback-rating");
+  var buttons = feedback.querySelectorAll("button");
+  var submitted = false;
+
+  buttons.forEach(function(btn) {
+    btn.addEventListener("click", function(ev) {
+      ev.preventDefault();
+      if (submitted) {
+        return;
+      }
+
+      rating.value = btn.dataset.value;
+
+      btn.classList.remove("hollow");
+      btn.classList.add("primary");
+      buttons.forEach(function(button) {
+        button.disabled = true;
+      });
+      submitted = true;
+
+      window.Rails.fire(form, "submit");
+    });
+  });
+});
+</script>
