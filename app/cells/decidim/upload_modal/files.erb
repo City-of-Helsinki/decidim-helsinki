@@ -24,7 +24,7 @@
             <%= form.hidden_field attribute, multiple: true, value: attachment.id, id: attachment.id %>
           <% else %>
             <% if attachment.is_a?(ActiveStorage::Blob) %>
-              <%= form.hidden_field attribute, multiple: true, value: attachment.signed_id, id: attachment.id %>
+              <%= form.hidden_field attribute, multiple: multiple, value: attachment.signed_id, id: attachment.id %>
             <% end %>
 
             <% if blob(attachment).image? %>
