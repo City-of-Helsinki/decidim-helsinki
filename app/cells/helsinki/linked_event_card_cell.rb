@@ -15,7 +15,7 @@ module Helsinki
       image = model.images.first
       return image["url"] if image
 
-      asset_pack_path("blogs-post-highlight-default.jpg")
+      asset_pack_path("media/images/blogs-post-highlight-default.jpg")
     end
 
     def dates
