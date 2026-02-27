@@ -41,12 +41,12 @@ end
 
 # Send notification mail digest weekly on saturdays
 every :saturday, at: "05:05", roles: [:background] do
-  rake "decidim:mailers:notifications_digest_weekly"
+  rake "helsinki:mailers:notifications_digest_weekly"
 end
 
 # Send notification mail digest daily
 every :day, at: "06:05", roles: [:background] do
-  rake "decidim:mailers:notifications_digest_daily"
+  rake "helsinki:mailers:notifications_digest_daily"
 end
 
 # bundle exec rails decidim:stats:aggregate
