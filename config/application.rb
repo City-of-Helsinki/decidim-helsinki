@@ -578,6 +578,9 @@ module DecidimHelsinki
 
         # Lib extensions
         Decidim::AssetRouter::Storage.include(AssetForceStorageUrl)
+
+        # Service extensions
+        Decidim::Budgets::OrderReminderGenerator.include(OrderReminderGeneratorExtensions)
       end
     end
   end
