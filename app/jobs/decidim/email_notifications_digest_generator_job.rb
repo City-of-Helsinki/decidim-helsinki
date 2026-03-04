@@ -13,7 +13,12 @@ module Decidim
       should_notify = force || NotificationsDigestSendingDecider.must_notify?(user, time: time)
       return unless should_notify
 
-      notification_ids = user.notifications.try(frequency, time: time).pluck(:id)
+      # Notifications that do not have a resource (such as notification
+      # generated for a new attachment that was deleted before the notification
+      # was sent) would cause issues when trying to generate the digest entries
+      # for them.
+      notifications = user.notifications.try(frequency, time: time)&.reject { |n| n.resource.nil? }
+      notification_ids = notifications.pluck(:id)
       return if notification_ids.blank?
 
       NotificationsDigestMailer.digest_mail(user, notification_ids).deliver_later
