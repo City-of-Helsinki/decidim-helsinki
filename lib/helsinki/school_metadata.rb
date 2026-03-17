@@ -60,12 +60,14 @@ module Helsinki
       "00394" => { name: "Englantilainen koulu", type: 19, postal_code: "00270", voting_unit: 7 },
       "00518" => { name: "Mäkelänrinteen lukio", type: 15, postal_code: "00550", voting_unit: nil },
       "00539" => { name: "Töölön yhteiskoulun aikuislukio", type: 15, postal_code: "00250", voting_unit: nil },
-      "00551" => { name: "Helsingin aikuislukio", type: 15, postal_code: "00550", voting_unit: nil },
+      "00551" => { name: "Konepajan aikuislukio", type: 15, postal_code: "00510", voting_unit: nil },
       "00561" => { name: "Gymnasiet Lärkan", type: 15, postal_code: "00320", voting_unit: nil },
       "00607" => { name: "Tölö gymnasium", type: 15, postal_code: "00260", voting_unit: nil },
+      "00627" => { name: "Konepajan lukio", type: 15, postal_code: "00510", voting_unit: nil },
       "00648" => { name: "Helsingin medialukio", type: 15, postal_code: "00730", voting_unit: nil },
       "00670" => { name: "Helsingin kielilukio", type: 15, postal_code: "00900", voting_unit: nil },
-      # 00729: preschool, primary school (classes 1-6), middle school (classes 7-9), high school
+      # 00622 / 00729: preschool, primary school (classes 1-6), middle school (classes 7-9), high school
+      "00622" => { name: "Rudolf Steinerskolan i Helsingfors", type: 19, postal_code: "00280", voting_unit: 9 },
       "00729" => { name: "Helsingin Rudolf Steiner -koulu", type: 19, postal_code: "00280", voting_unit: 9 },
       # 00842: primary school (classes 1-6), middle school (classes 7-9), high school
       "00842" => { name: "HY Viikin normaalikoulu", type: 19, postal_code: "00790", voting_unit: 15 },
