@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_01_28_091036) do
+ActiveRecord::Schema.define(version: 2026_03_20_071820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2026_01_28_091036) do
     t.jsonb "cocreation_description"
     t.jsonb "implementation_description"
     t.integer "favorites_count", default: 0, null: false
+    t.integer "maintenance_budget_amount"
     t.index ["coauthorships_count"], name: "idx_decidim_accountability_results_on_result_coauth_count"
     t.index ["comments_count"], name: "index_decidim_accountability_results_on_comments_count"
     t.index ["decidim_accountability_status_id"], name: "decidim_accountability_results_on_status_id"
@@ -396,6 +397,7 @@ ActiveRecord::Schema.define(version: 2026_01_28_091036) do
     t.bigint "decidim_scope_id"
     t.float "center_latitude"
     t.float "center_longitude"
+    t.jsonb "result_page_content"
     t.index ["decidim_component_id"], name: "index_decidim_budgets_budgets_on_decidim_component_id"
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_budgets_on_decidim_scope_id"
   end
@@ -479,6 +481,7 @@ ActiveRecord::Schema.define(version: 2026_01_28_091036) do
     t.integer "budget_amount_min"
     t.integer "favorites_count", default: 0, null: false
     t.jsonb "answer"
+    t.integer "maintenance_budget_amount"
     t.index ["comments_count"], name: "index_decidim_budgets_projects_on_comments_count"
     t.index ["decidim_budgets_budget_id"], name: "index_decidim_budgets_projects_on_decidim_budgets_budget_id"
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_projects_on_decidim_scope_id"
