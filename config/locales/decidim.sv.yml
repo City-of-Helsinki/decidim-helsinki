@@ -50,6 +50,7 @@ sv:
           result:
             attributes:
               budget: Budget
+              maintenance_budget: Underhållskostnader
               space: Omgång
               status: Implementeringsfasen
               vote_count: Röstetal
@@ -77,6 +78,7 @@ sv:
         result_attributes_extra:
           attributes:
             budget: Budget
+            maintenance_budget: Underhållskostnader
           show_budget_breakdown: Visa budgetfördelning
         show:
           stats:

@@ -5,8 +5,9 @@ module AdminResultFormExtensions
   extend ActiveSupport::Concern
 
   included do
-    attribute :budget_amount, Float
+    attribute :budget_amount, Integer
     translatable_attribute :budget_breakdown, String
+    attribute :maintenance_budget_amount, Integer
     translatable_attribute :cocreation_description, String
     translatable_attribute :implementation_description, String
     translatable_attribute :interaction_description, String

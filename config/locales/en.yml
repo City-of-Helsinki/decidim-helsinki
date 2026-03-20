@@ -20,6 +20,7 @@ en:
         cocreation_description: Co-creation description
         implementation_description: Implementation description
         interaction_description: Interaction description
+        maintenance_budget_amount: Maintenance costs
         news_description: News
         news_title: News title
         plans_description: Plans description

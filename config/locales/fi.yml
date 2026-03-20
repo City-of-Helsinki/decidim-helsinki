@@ -20,6 +20,7 @@ fi:
         cocreation_description: Yhteiskehittämisen kuvaus
         implementation_description: Toteutuksen kuvaus
         interaction_description: Vuorovaikutuksen kuvaus
+        maintenance_budget_amount: Ylläpitokustannukset
         news_description: Ajankohtaisia asioita
         news_title: Ajankohtaisten asioiden otsikko
         plans_description: Suunnitelmien kuvaus

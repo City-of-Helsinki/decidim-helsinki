@@ -7,6 +7,7 @@ module Helsinki
       type.own_fields["update"].tap do |f|
         f.argument :budget_amount, GraphQL::Types::Float, description: "The result budget amount", required: false
         f.argument :budget_breakdown, GraphQL::Types::JSON, description: "The result budget breakdown (HTML) localized hash, e.g. {\"en\": \"English title\"}", required: false
+        f.argument :maintenance_budget_amount, GraphQL::Types::Int, description: "The result maintenance budget amount", required: false
         f.argument :plans_description, GraphQL::Types::JSON, description: "The result plans description (HTML) localized hash, e.g. {\"en\": \"English title\"}", required: false
         f.argument(
           :interaction_description,
@@ -49,6 +50,7 @@ module Helsinki
           result_params_base(**args).merge(
             "budget_amount" => args[:budget_amount],
             "budget_breakdown" => args[:budget_breakdown],
+            "maintenance_budget_amount" => args[:maintenance_budget_amount],
             "cocreation_description" => args[:cocreation_description],
             "implementation_description" => args[:implementation_description],
             "plans_description" => args[:plans_description],

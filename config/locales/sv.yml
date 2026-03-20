@@ -20,6 +20,7 @@ sv:
         cocreation_description: Samskapande beskrivning
         implementation_description: Genomförande beskrivning
         interaction_description: Interaktionsbeskrivning
+        maintenance_budget_amount: Underhållskostnader
         news_description: Nyheter
         news_title: Nyheter titel
         plans_description: Planbeskrivning

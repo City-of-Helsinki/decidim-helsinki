@@ -50,6 +50,7 @@ en:
           result:
             attributes:
               budget: Budget
+              maintenance_budget: Maintenance costs
               space: Round
               status: Implementation phase
               vote_count: Number of votes
@@ -77,6 +78,7 @@ en:
         result_attributes_extra:
           attributes:
             budget: Budget
+            maintenance_budget: Maintenance costs
           show_budget_breakdown: Show budget breakdown
         show:
           stats:

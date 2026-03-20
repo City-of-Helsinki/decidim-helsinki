@@ -50,6 +50,7 @@ fi:
           result:
             attributes:
               budget: Budjetti
+              maintenance_budget: Ylläpitokustannukset
               space: Kierros
               status: Toteutuksen vaihe
               vote_count: Äänimäärä
@@ -77,6 +78,7 @@ fi:
         result_attributes_extra:
           attributes:
             budget: Budjetti
+            maintenance_budget: Ylläpitokustannukset
           show_budget_breakdown: Näytä budjetin erittely
         show:
           stats:

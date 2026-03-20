@@ -23,3 +23,10 @@
     <% end %>
   </div>
 <% end %>
+
+<% if result.maintenance_budget_amount && result.maintenance_budget_amount > 0 %>
+  <div class="attributes__item">
+    <h3 class="attributes__item__name"><%= t(".attributes.maintenance_budget") %></h3>
+    <div class="attributes__item__value"><%= number_to_currency(result.maintenance_budget_amount, unit: Decidim.currency_unit, precision: 0) %></div>
+  </div>
+<% end %>
