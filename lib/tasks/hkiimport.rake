@@ -368,22 +368,22 @@ namespace :hkiimport do
     budgets = Decidim::Budgets::Budget.where(component: component)
 
     # Budget name => Spreadsheet name
-    # budget_name_mapping = {
-    #   "Kaakkoinen Helsinki" => "Kaakkoinen",
-    #   "Pohjoinen Helsinki" => "Pohjoinen",
-    #   "Koillinen Helsinki" => "Koillinen",
-    #   "Itäinen Helsinki ja Östersundom" => "Itäinen ja Östersundom",
-    #   "Läntinen Helsinki" => "Läntinen",
-    #   "Keskinen Helsinki" => "Keskinen",
-    #   "Eteläinen Helsinki" => "Eteläinen"
-    # }
-    # Test mapping for development
     budget_name_mapping = {
-      "Budgets" => "Kaakkoinen",
-      "Another budget" => "Pohjoinen",
-      "Import test budjetti" => "Koillinen",
-      "Helsingin yhteinen" => "Eteläinen"
+      "Kaakkoinen Helsinki" => "Kaakkoinen",
+      "Pohjoinen Helsinki" => "Pohjoinen",
+      "Koillinen Helsinki" => "Koillinen",
+      "Itäinen Helsinki ja Östersundom" => "Itäinen ja Östersundom",
+      "Läntinen Helsinki" => "Läntinen",
+      "Keskinen Helsinki" => "Keskinen",
+      "Eteläinen Helsinki" => "Eteläinen"
     }
+    # Test mapping for development
+    # budget_name_mapping = {
+    #   "Budgets" => "Kaakkoinen",
+    #   "Another budget" => "Pohjoinen",
+    #   "Import test budjetti" => "Koillinen",
+    #   "Helsingin yhteinen" => "Eteläinen"
+    # }
 
     budget_mapping = budgets.index_by do |budget|
       budget_name_mapping[budget.title["fi"]]
