@@ -360,6 +360,9 @@ namespace :hkiexport do
           school_ruuti_unit: metadata[:school_ruuti_unit],
           school_class: metadata[:school_class],
           school_class_level: metadata[:school_class_level],
+          webform_location: metadata[:webform_location],
+          webform_school_class: metadata[:webform_school_class],
+          webform_source: metadata[:webform_source],
           created_at: order.created_at,
           checked_out_at: order.checked_out_at
         }
@@ -426,6 +429,7 @@ namespace :hkiexport do
       suomifi_eid
       mpassid_nids
       helsinki_documents_authorization_handler
+      helsinki_paper_votes_authorization_handler
     )
     auths = Decidim::Authorization.where(user: user, name: auth_names)
 
@@ -440,7 +444,10 @@ namespace :hkiexport do
       school_ruuti_unit: nil,
       school_role: nil,
       school_class: nil,
-      school_class_level: nil
+      school_class_level: nil,
+      webform_location: nil,
+      webform_school_class: nil,
+      webform_source: nil
     }
     return fulldata if auths.count < 1
 
@@ -478,7 +485,10 @@ namespace :hkiexport do
         school_ruuti_unit: nil,
         school_role: nil,
         school_class: nil,
-        school_class_level: nil
+        school_class_level: nil,
+        webform_location: nil,
+        webform_school_class: nil,
+        webform_source: nil
       }
     when "suomifi_eid"
       {
@@ -492,7 +502,10 @@ namespace :hkiexport do
         school_ruuti_unit: nil,
         school_role: nil,
         school_class: nil,
-        school_class_level: nil
+        school_class_level: nil,
+        webform_location: nil,
+        webform_school_class: nil,
+        webform_source: nil
       }
     when "mpassid_nids"
       levels = parse_class_levels(rawdata)
@@ -508,7 +521,10 @@ namespace :hkiexport do
         school_ruuti_unit: rawdata["voting_unit"],
         school_role: rawdata["role"],
         school_class: rawdata["group"],
-        school_class_level: levels.join(",")
+        school_class_level: levels.join(","),
+        webform_location: nil,
+        webform_school_class: nil,
+        webform_source: nil
       }
     when "helsinki_documents_authorization_handler"
       {
@@ -522,7 +538,27 @@ namespace :hkiexport do
         school_ruuti_unit: nil,
         school_role: nil,
         school_class: nil,
-        school_class_level: nil
+        school_class_level: nil,
+        webform_location: nil,
+        webform_school_class: nil,
+        webform_source: nil
+      }
+    when "helsinki_paper_votes_authorization_handler"
+      {
+        identity: "webform",
+        date_of_birth: nil,
+        age: nil,
+        gender: nil,
+        postal_code: nil,
+        school_code: nil,
+        school_name: nil,
+        school_ruuti_unit: nil,
+        school_role: nil,
+        school_class: nil,
+        school_class_level: nil,
+        webform_location: rawdata["voting_location"],
+        webform_school_class: rawdata["school_class"],
+        webform_source: rawdata["voting_source"]
       }
     end
   end
