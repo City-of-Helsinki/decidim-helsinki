@@ -420,8 +420,10 @@ namespace :hkiimport do
       # Voting location is school name for school voters or place name for
       # other voters.
       voting_location = row.cells[4].value
-      school_class = row.cells[5].value
-      district = row.cells[6].value
+      # School class may be undefined for rows that do not originate from a
+      # school.
+      school_class = row.cells[5]&.value
+      district = row.cells[6].value.strip
 
       # Budget
       budget = budget_mapping[district]
