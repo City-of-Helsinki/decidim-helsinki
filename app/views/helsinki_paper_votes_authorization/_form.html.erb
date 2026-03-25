@@ -1,0 +1,12 @@
+<div class="text-center" id="paper_votes_disabled">
+  <p><%= t("user_explanation", scope: "decidim.authorization_handlers.helsinki_paper_votes_authorization_handler") %></p>
+</div>
+
+<% content_for(:js_content) do %>
+  <script>
+  $(function() {
+    var $explanation = $("#paper_votes_disabled");
+    $(".actions", $explanation.parents("form")).hide();
+  });
+  </script>
+<% end %>

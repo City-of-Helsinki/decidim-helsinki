@@ -338,11 +338,21 @@ namespace :hkiimport do
     puts "Processing done."
   end
 
-  # Allows importing paper votes count to the budgets component.
-  desc "Import paper votes counts to budgets"
+  # Allows importing paper votes count to the budgets component and add some
+  # "accounting" to the imported votes.
+  #
+  # We have slightly changed the way how paper votes are imported as we wanted
+  # to have a better system for keeping track what votes have been imported and
+  # when. Therefore, we made a special authorization that adds votes from these
+  # imports as follows:
+  # - Create a managed user for each vote
+  # - Create special authorization for each managed user
+  # - Add a row to the paper votes import table
+  # - Create the votes for these users based on the paper votes data
+  desc "Import paper votes to budgets"
   task :budget_paper_votes, [:component_id, :filename] => [:environment] do |_t, args|
-    component_id = args[:component_id]
-    filename = args[:filename]
+    component_id = args.component_id
+    filename = args.filename
 
     component = Decidim::Component.find_by(id: component_id, manifest_name: "budgets")
     if component.nil?
@@ -354,19 +364,195 @@ namespace :hkiimport do
       next
     end
 
-    updated_projects = {}
+    organization = component.organization
     budgets = Decidim::Budgets::Budget.where(component: component)
-    CSV.parse(File.read(filename), headers: true, col_sep: ";").each_with_index do |row, index|
-      project = Decidim::Budgets::Project.find_by(budget: budgets, id: row["project_id"])
-      unless project
-        puts "Invalid project on row #{index}: ##{row["project_id"]}"
+
+    # Budget name => Spreadsheet name
+    # budget_name_mapping = {
+    #   "Kaakkoinen Helsinki" => "Kaakkoinen",
+    #   "Pohjoinen Helsinki" => "Pohjoinen",
+    #   "Koillinen Helsinki" => "Koillinen",
+    #   "Itäinen Helsinki ja Östersundom" => "Itäinen ja Östersundom",
+    #   "Läntinen Helsinki" => "Läntinen",
+    #   "Keskinen Helsinki" => "Keskinen",
+    #   "Eteläinen Helsinki" => "Eteläinen"
+    # }
+    # Test mapping for development
+    budget_name_mapping = {
+      "Budgets" => "Kaakkoinen",
+      "Another budget" => "Pohjoinen",
+      "Import test budjetti" => "Koillinen",
+      "Helsingin yhteinen" => "Eteläinen"
+    }
+
+    budget_mapping = budgets.index_by do |budget|
+      budget_name_mapping[budget.title["fi"]]
+    end
+
+    if budget_mapping.keys.include?(nil)
+      puts "Invalid budget mapping, missing corresponding budget."
+      next
+    end
+
+    require "rubyXL"
+    require "rubyXL/convenience_methods"
+
+    workbook = RubyXL::Parser.parse(args.filename)
+    sheet = workbook.worksheets[0]
+
+    imported_votes_count = 0
+
+    handler_name = "helsinki_paper_votes_authorization_handler"
+    unless Decidim.authorization_handlers.find { |m| m.name == handler_name }
+      puts "Authorization handler not registered: #{handler_name}"
+      next
+    end
+
+    sheet.each_with_index do |row, ridx|
+      next if ridx.zero?
+      break unless row.cells.first
+      break if row.cells.first.value.blank?
+
+      time = row.cells[0].value
+      lang = row.cells[1].value
+      age_verified = row.cells[2].value == "Kyllä"
+      location_verified = row.cells[3].value == "Kyllä"
+      # Voting location is school name for school voters or place name for
+      # other voters.
+      voting_location = row.cells[4].value
+      school_class = row.cells[5].value
+      district = row.cells[6].value
+
+      # Budget
+      budget = budget_mapping[district]
+      unless budget
+        puts "Skipping row: #{ridx + 1}, unmapped budget: #{district}"
         next
       end
 
-      project.update!(paper_orders_count: row["paper_votes_count"].to_i)
-      updated_projects[row["project_id"]] = row["paper_votes_count"].to_i
+      # Order of the vote columns:
+      # 7 = Eteläinen
+      # 8 = Itäinen ja Östersundom
+      # 9 = Kaakkoinen
+      # 10 = Keskinen
+      # 11 = Koillinen
+      # 12 = Läntinen
+      # 13 = Pohjoinen
+      voted_projects =
+        case district
+        when "Eteläinen"
+          row.cells[7].value
+        when "Itäinen ja Östersundom"
+          row.cells[8].value
+        when "Kaakkoinen"
+          row.cells[9].value
+        when "Keskinen"
+          row.cells[10].value
+        when "Koillinen"
+          row.cells[11].value
+        when "Läntinen"
+          row.cells[12].value
+        when "Pohjoinen"
+          row.cells[13].value
+        else
+          raise "Unknown district: #{district}"
+        end
+
+      # Voting source (may not be available in testing material)
+      voting_source = row.cells[14]&.value
+
+      project_ids = voted_projects.split(",").map do |item|
+        id_match = item.strip.match(/([0-9]+) /)
+        id_match[1].to_i
+      end
+
+      unless project_ids.all? { |id| budget.projects.find_by(id: id).present? }
+        puts "Skipping row: #{ridx + 1}, unknown project ID or IDs"
+        next
+      end
+
+      authorization_metadata = {
+        source_row: (ridx + 1),
+        registered_at: time,
+        language: lang,
+        age_verified: age_verified,
+        location_verified: location_verified,
+        voting_location: voting_location,
+        school_class: school_class,
+        district: district,
+        voting_source: voting_source
+      }
+      handler = Decidim::AuthorizationHandler.handler_for(
+        handler_name,
+        authorization_metadata
+      )
+
+      authorization = Decidim::Authorization.find_by(
+        user: Decidim::User.entire_collection.where(organization: organization),
+        name: handler_name,
+        unique_id: handler.unique_id
+      )
+      managed_user = nil
+      if authorization && authorization.user.managed?
+        managed_user = authorization.user
+        existing_order = Decidim::Budgets::Order.find_by(user: managed_user, budget: budget)
+        if existing_order
+          puts "Skipping row: #{ridx + 1}, already voted"
+          next
+        end
+      end
+
+      managed_user ||= Decidim::User.new(
+        organization: organization,
+        managed: true,
+        name: "Paper voter #{handler.unique_id}"
+      ) do |u|
+        u.nickname = Decidim::UserBaseEntity.nicknamize(u.name, organization: organization.id)
+        u.admin = false
+        u.tos_agreement = true
+      end
+
+      managed_user.save! unless managed_user.persisted?
+
+      # The handler needs to be re-initiated with the user because otherwise the
+      # authorization cannot be created due to missing organization.
+      handler = Decidim::AuthorizationHandler.handler_for(
+        handler_name,
+        authorization_metadata.merge(user: managed_user)
+      )
+      Decidim::Authorization.create_or_update_from(handler)
+
+      order = Decidim::Budgets::Order.create!(
+        user: managed_user,
+        budget: budget
+      )
+      order.with_lock do
+        project_ids.each do |prid|
+          order.projects << budget.projects.find(prid)
+        end
+      end
+
+      managed_user.with_lock do
+        order.with_lock do
+          order.update!(checked_out_at: Time.current)
+        end
+
+        Decidim.traceability.create!(
+          Decidim::Budgets::Vote,
+          managed_user,
+          {
+            component: component,
+            user: managed_user,
+            orders: [order]
+          },
+          visibility: "private-only"
+        )
+      end
+
+      puts "Imported vote row #{ridx + 1}"
+      imported_votes_count += 1
     end
 
-    puts "Successfully updated paper votes count for #{updated_projects.keys.count} projects."
+    puts "Successfully imported #{imported_votes_count} paper votes."
   end
 end

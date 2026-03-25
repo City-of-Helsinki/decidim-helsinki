@@ -64,6 +64,10 @@ en:
           passport: Passport
         name: Identity document at an office
         user_explanation: Go to a physical location to identify yourself with an identity document.
+      helsinki_paper_votes_authorization_handler:
+        explanation: Registering paper votes in participatory budgeting voting.
+        name: Paper vote handler
+        user_explanation: This identity confirmation method is only used for administrative purposes.
       mpassid_nids:
         fields:
           allowed_roles: Allowed roles
@@ -175,6 +179,7 @@ en:
           actions:
             cocreation: Co-creation
             helsinki_documents_authorization_handler: Identification at physical location
+            helsinki_paper_votes_authorization_handler: Paper vote handler
             mpassid_nids: MPASSid
             helsinki_idp: Helsinki profile
   errors:

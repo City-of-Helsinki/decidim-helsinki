@@ -64,6 +64,10 @@ sv:
           passport: Pass
         name: Identity document at an office
         user_explanation: Gå till en fysisk plats för att identifiera dig med ett identitetsdokument.
+      helsinki_paper_votes_authorization_handler:
+        explanation: Registrering av pappersröster i deltagande budgeteringsröstning.
+        name: Pappersröstningshanterare
+        user_explanation: Denna identitetsbekräftelsemetod används endast för administrativa ändamål.
       mpassid_nids:
         fields:
           allowed_units: Tillåtna Ruuti områden
@@ -174,6 +178,7 @@ sv:
           actions:
             cocreation: Samskapande
             helsinki_documents_authorization_handler: Identifiering på fysisk plats
+            helsinki_paper_votes_authorization_handler: Pappersröstningshanterare
             mpassid_nids: MPASSid
             helsinki_idp: Helsingforsprofilen
   errors:

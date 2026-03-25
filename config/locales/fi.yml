@@ -64,6 +64,10 @@ fi:
           passport: Passi
         name: Henkilöllisyystodistus toimipisteessä
         user_explanation: Käy fyysisessä toimipisteessä varmentamassa itsesi henkilöllisyystodistuksen avulla.
+      helsinki_paper_votes_authorization_handler:
+        explanation: Paperiäänten kirjaus osallistuvan budjetoinnin äänestyksessä.
+        name: Paperiäänien käsittelijä
+        user_explanation: Tämä identiteetin varmistamistoiminto on tarkoitettu ainoastaan hallinnollisiin tarkoituksiin.
       mpassid_nids:
         fields:
           allowed_units: Sallitut Ruuti-alueet
@@ -174,6 +178,7 @@ fi:
           actions:
             cocreation: Yhteiskehittäminen
             helsinki_documents_authorization_handler: Toimipistetunnistautuminen
+            helsinki_paper_votes_authorization_handler: Paperiäänien käsittelijä
             mpassid_nids: MPASSid
             helsinki_idp: Helsinki-profiili
   errors:
