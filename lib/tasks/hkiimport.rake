@@ -464,9 +464,9 @@ namespace :hkiimport do
       voting_source = row.cells[14]&.value
 
       project_ids = voted_projects.split(",").map do |item|
-        id_match = item.strip.match(/([0-9]+) /)
-        id_match[1].to_i
-      end
+        id_match = item.strip.match(/\A([0-9]+) /)
+        id_match[1].to_i if id_match
+      end.compact
 
       unless project_ids.all? { |id| budget.projects.find_by(id: id).present? }
         puts "Skipping row: #{ridx + 1}, unknown project ID or IDs"
