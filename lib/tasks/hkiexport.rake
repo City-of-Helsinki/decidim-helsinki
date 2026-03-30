@@ -108,7 +108,7 @@ namespace :hkiexport do
           "subcategory/id" => subcategory&.id,
           "subcategory/name" => (subcategory&.name.try(:[], "fi").presence || subcategory&.name.try(:[], "en")),
           budget_amount: project.budget_amount,
-          votes_count: project.votes_count
+          votes_count: project.confirmed_orders_count
         }
       end
 
