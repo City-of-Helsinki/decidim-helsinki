@@ -46,6 +46,10 @@ module Helsinki
             @cancelled_postal_code_votes = {}
 
             process_component(component)
+
+            # Since not all collections processed on every run, make sure they
+            # all get finalized on the last run.
+            finalize_collections!(component) if last_run?
           end
         end
 
@@ -251,7 +255,6 @@ module Helsinki
           end
         end
 
-        # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def update_collection(collection, accumulator)
           accumulation = accumulator.accumulate
 
@@ -309,12 +312,20 @@ module Helsinki
           else
             collection.update!(last_value_at: run_started_at)
           end
+        end
 
-          # Mark finalized when the voting has ended
-          collection.finalize! if last_run?
+        def finalize_collections!(component)
+          component.stats.each(&:finalize!)
+
+          Decidim::Budgets::Budget.where(component: component).each do |budget|
+            budget.stats.each(&:finalize!)
+
+            Decidim::Budgets::Project.where(budget: budget).each do |project|
+              project.stats.each(&:finalize!)
+            end
+          end
         end
       end
-      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     end
   end
 end

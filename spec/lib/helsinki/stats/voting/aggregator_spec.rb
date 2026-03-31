@@ -335,11 +335,34 @@ describe Helsinki::Stats::Voting::Aggregator do
       end
     end
 
+    shared_examples "finalized stats after voting finished" do
+      before do
+        step_settings = component.step_settings
+        step_settings.values.first.votes = "finished"
+        component.update!(step_settings: step_settings)
+
+        aggregator.run
+      end
+
+      it "finalizes all stats collections" do
+        component.stats.find_each { |c| expect(c.finalized).to be(true) }
+
+        Decidim::Budgets::Budget.where(component: component).find_each do |budget|
+          budget.stats.find_each { |c| expect(c.finalized).to be(true) }
+
+          Decidim::Budgets::Project.where(budget: budget).each do |project|
+            project.stats.find_each { |c| expect(c.finalized).to be(true) }
+          end
+        end
+      end
+    end
+
     context "when component" do
       let(:measurable) { component }
 
       it_behaves_like "correct stats"
       it_behaves_like "correct postal code stats for component"
+      it_behaves_like "finalized stats after voting finished"
 
       it "updates the correct last_value_at for the collection" do
         collection = measurable.stats.find_by(key: "votes")
