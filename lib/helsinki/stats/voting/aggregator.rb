@@ -40,7 +40,8 @@ module Helsinki
             # Therefore, we want to report each entity (component, budget,
             # project) based on the exact same voting situation at the exactly
             # same time for each entity.
-            @process_until = Time.current unless last_run?
+            @run_started_at = Time.current
+            @process_until = run_started_at unless last_run?
             @postal_code_votes = {}
             @cancelled_postal_code_votes = {}
 
@@ -63,7 +64,7 @@ module Helsinki
 
         private
 
-        attr_reader :process_until, :postal_code_votes, :cancelled_postal_code_votes
+        attr_reader :run_started_at, :process_until, :postal_code_votes, :cancelled_postal_code_votes
 
         def process_component(component)
           # Process the all stats in one locking block (the component stats
@@ -115,10 +116,10 @@ module Helsinki
             if collection.last_value_at
               votes = votes.where("created_at > ?", collection.last_value_at)
               cancelled_votes = Decidim::Budgets::CancelledVote.where(
-                "created_at > ?",
-                collection.last_value_at
-              ).where(component: component).where(
-                "vote_cast_at <= ?",
+                component: component
+              ).where(
+                "vote_cast_at <= ? AND created_at > ?",
+                collection.last_value_at,
                 collection.last_value_at
               ).order(:created_at)
             end
@@ -237,7 +238,7 @@ module Helsinki
                 "checked_out_at <= ? AND created_at > ?",
                 collection.last_value_at,
                 collection.last_value_at
-              )
+              ).order(:created_at)
             end
             if process_until
               votes = votes.where("checked_out_at <= ?", process_until)
@@ -250,6 +251,7 @@ module Helsinki
           end
         end
 
+        # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def update_collection(collection, accumulator)
           accumulation = accumulator.accumulate
 
@@ -302,12 +304,17 @@ module Helsinki
             m_datetime.update!(value: m_datetime.value + amount)
           end
 
-          collection.update!(last_value_at: accumulator.last_value_at)
+          if accumulator.last_value_at
+            collection.update!(last_value_at: accumulator.last_value_at)
+          else
+            collection.update!(last_value_at: run_started_at)
+          end
 
           # Mark finalized when the voting has ended
           collection.finalize! if last_run?
         end
       end
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     end
   end
 end
