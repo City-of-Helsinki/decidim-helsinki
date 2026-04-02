@@ -462,7 +462,7 @@ namespace :hkiexport do
     metas.each do |meta|
       next if meta[:identity] == "mpassid"
 
-      fulldata = fulldata.merge(meta)
+      fulldata = fulldata.merge(meta.compact_blank)
     end
     fulldata[:identity] = metas.map { |meta| meta[:identity] }.join(",")
 
