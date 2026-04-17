@@ -1,0 +1,6 @@
+
+<% if title.present? && body.present? && strip_tags(body).strip.present? %>
+  <h2><%= title %></h2>
+
+  <%== decidim_sanitize_admin(body) %>
+<% end %>

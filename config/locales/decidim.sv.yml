@@ -84,6 +84,7 @@ sv:
           stats:
             category: Tema
         show_result_body:
+          assets: Bilagor
           comments_amount:
             one: '%{count} kommentar'
             other: '%{count} kommentarer'
@@ -249,6 +250,9 @@ sv:
     resource_links:
       included_plans:
         project_plan: Relaterade förslag
+        result_plan: Förslag bifogade det röstade förslaget
+      included_projects:
+        result_project: Röstat förslag
       title: Relaterat till den här saken
     shared:
       dynamic_form:

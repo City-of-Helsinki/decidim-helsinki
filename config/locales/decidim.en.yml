@@ -84,6 +84,7 @@ en:
           stats:
             category: Theme
         show_result_body:
+          assets: Attachments
           comments_amount:
             one: '%{count} comment'
             other: '%{count} comments'
@@ -248,6 +249,9 @@ en:
     resource_links:
       included_plans:
         project_plan: Related proposals
+        result_plan: Proposals attached to the voted proposal
+      included_projects:
+        result_project: Voted proposal
       title: Related to this matter
     shared:
       dynamic_form:

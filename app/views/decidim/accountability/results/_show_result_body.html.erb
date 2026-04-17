@@ -7,43 +7,57 @@ first_status = Decidim::Accountability::Status.where(component: current_componen
 cocreation_phase_active = !result.status.present? || result.status == first_status
 %>
 
+<% unless cocreation_phase_active %>
+  <%= render partial: "result_body_section", locals: {
+    title: t(".section.implementation_description.name"),
+    body: translated_attribute(result.implementation_description)
+  } %>
+
+  <%= render partial: "timeline", locals: { result: result } if result.timeline_entries.any? %>
+<% end %>
+
 <h2><%= t(".subtitle") %></h2>
 
 <% if summary.present? %>
   <p><%== summary %></p>
 <% end %>
 
-<%== translated_attribute result.description %>
+<%== decidim_sanitize_admin(translated_attribute(result.description)) %>
+
+<%= render partial: "result_body_section", locals: {
+  title: t(".section.cocreation_description.name"),
+  body: translated_attribute(result.cocreation_description)
+} %>
 
 <% if strip_tags(news).strip.present? %>
 <div class="banner bg-silver-medium-light margin-top-2 margin-bottom-2">
   <div class="banner__content">
     <h2><%= news_title.presence || t(".news") %></h2>
-    <%== news %>
+    <%== decidim_sanitize_admin(news) %>
   </div>
 </div>
 <% end %>
 
-<%= render partial: "timeline", locals: { result: result } if result.timeline_entries.any? %>
 
 <%
-details_sections = [:implementation_description, :cocreation_description, :plans_description, :interaction_description].map do |section_key|
-  {
-    key: section_key.to_s.sub(/_description$/, "").to_sym,
-    title: t(".section.#{section_key}.name"),
-    body: translated_attribute(result.public_send(section_key))
-  }
-end.delete_if { |section| section[:body].blank? || strip_tags(section[:body]).strip.blank? }
+asset_keys = [:implementation, :cocreation, :plans, :interaction]
+
+at_collections = result.attachment_collections.where(key: asset_keys)
+ln_collections = result.result_link_collections.where(key: asset_keys)
+has_assets = at_collections.any? { |c| c.attachments.any? } || ln_collections.any? { |c| c.links.any? }
 %>
 
-<% if details_sections.count > 0 %>
-  <% details_sections.each do |section| %>
-    <% next if section[:key] == :implementation && cocreation_phase_active %>
+<% if has_assets %>
+  <h2><%= t(".assets") %></h2>
 
-    <h2><%= section[:title] %></h2>
-
-    <%== section[:body] %>
-
-    <%= render partial: "result_collection_assets", locals: { collection_key: section[:key] } %>
+  <% asset_keys.each do |key| %>
+    <%= render partial: "result_collection_assets", locals: { collection_key: key } %>
   <% end %>
+<% end %>
+
+<% [:plans_description, :interaction_description].each do |section_key| %>
+  <%= render partial: "result_body_section", locals: {
+    title: t(".section.#{section_key}.name"),
+    body: translated_attribute(result.public_send(section_key))
+  } %>
 <% end %>

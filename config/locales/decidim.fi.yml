@@ -84,6 +84,7 @@ fi:
           stats:
             category: Teema
         show_result_body:
+          assets: Liitteet
           comments_amount:
             one: '%{count} kommentti'
             other: '%{count} kommenttia'
@@ -249,6 +250,9 @@ fi:
     resource_links:
       included_plans:
         project_plan: Liitetyt ehdotukset
+        result_plan: Äänestettyyn ehdotukseen liitetyt ehdotukset
+      included_projects:
+        result_project: Äänestetty ehdotus
       title: Liitetyt asiat
     shared:
       dynamic_form:
