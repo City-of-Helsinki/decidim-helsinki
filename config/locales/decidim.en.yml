@@ -40,7 +40,7 @@ en:
             term: Keyword
             title: Search projects
           index:
-            title: Implementations
+            title: Implementation
             total_budget: "Total budget for projects shown on this page: %{amount}"
           orders:
             alphabetical: Alphabetical order
