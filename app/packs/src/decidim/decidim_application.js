@@ -9,6 +9,7 @@ import "src/helsinki/toggle_checkbox";
 import initSlider from "src/helsinki/slider";
 import "src/helsinki/youtube_modal";
 import initAccountabilityDirectory from "src/helsinki/accountability_directory";
+import initResources from "src/helsinki/resources";
 
 // Load images
 require.context("../../images", true);
@@ -112,6 +113,8 @@ $(() => {
   initHeader();
 
   initialize(document);
+
+  initResources();
 
   $(".hide-on-load").removeClass("hide-on-load");
 
