@@ -5,7 +5,7 @@ module Decidim
     module Directory
       # Exposes the result resource so users can view them
       class ResultsController < Decidim::ApplicationController
-        # layout "layouts/decidim/application"
+        layout "layouts/decidim/directory"
 
         include Decidim::TranslationsHelper
         include Decidim::Accountability::Directory::Orderable
