@@ -40,6 +40,9 @@ gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", 
 # gem "decidim-helsinki_smsauth", github: "mainio/decidim-module-helsinki_smsauth", branch: "main"
 # gem "decidim-sms-telia", github: "mainio/decidim-sms-telia", branch: "main"
 
+# See: https://github.com/rails/rails/issues/54263
+gem "concurrent-ruby", "1.3.4"
+
 gem "bootsnap", "~> 1.4"
 gem "puma", ">= 5.6.8"
 
