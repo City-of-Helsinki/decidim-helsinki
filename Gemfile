@@ -30,11 +30,11 @@ gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "release
 gem "decidim-nav", github: "mainio/decidim-module-nav", branch: "release/0.27-stable"
 gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "release/0.27-stable"
 gem "decidim-privacy", github: "mainio/decidim-module-privacy", branch: "release/0.27-stable"
-gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "main"
-gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "main"
+gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "release/0.27-stable"
+gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "release/0.27-stable"
 gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "release/0.27-stable"
-gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "develop"
-gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "master"
+gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.27-stable"
+gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "release/0.27-stable"
 
 # Modules for youth budget (nubu = nuorten budjetti / ruuti)
 gem "decidim-helsinki_smsauth", github: "mainio/decidim-module-helsinki_smsauth", branch: "main"

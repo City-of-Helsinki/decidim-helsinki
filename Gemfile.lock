@@ -191,15 +191,15 @@ GIT
 GIT
   remote: https://github.com/mainio/decidim-module-redirects.git
   revision: 452125c077da8db9c47c9a1030fb92992160a918
-  branch: main
+  branch: release/0.27-stable
   specs:
     decidim-redirects (0.27.0)
       decidim-core (~> 0.27.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-stats.git
-  revision: 9b80dd4f251f2c1194e6d013672d301102b61121
-  branch: main
+  revision: ea724e594c23c855d6abae8ef031bf10c3a9c34a
+  branch: release/0.27-stable
   specs:
     decidim-stats (0.27.0)
       decidim-core (~> 0.27.0)
@@ -216,16 +216,16 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-tags.git
-  revision: 4e868c286edfe5f460c3ff26aa740cffd76bde50
-  branch: develop
+  revision: a4b92596e84afb99c04b6c0cfd139f1eda0342c7
+  branch: release/0.27-stable
   specs:
     decidim-tags (0.27.0)
       decidim-core (~> 0.27.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-term_customizer.git
-  revision: abbf0c69e1bcaafebc5aa4f8da22fdb64ce62149
-  branch: master
+  revision: 9bc80aa99b9490ad86d294f28dd5b88bb1524bcc
+  branch: release/0.27-stable
   specs:
     decidim-term_customizer (0.27.0)
       decidim-admin (~> 0.27.0)
