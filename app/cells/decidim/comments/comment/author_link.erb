@@ -3,11 +3,11 @@
 <% if author_presenter.deleted? %>
   <div class="comment__author">
     <%= icon(icon_key, role: "img", "aria-hidden": true) %>
-    <span><%= author_presenter.name %></span>
+    <span><%= decidim_sanitize author_presenter.name %></span>
   </div>
 <% else %>
   <%= link_to author_presenter.profile_path, class: "comment__author" do %>
     <%= icon(icon_key, role: "img", "aria-hidden": true) %>
-    <span><%= author_presenter.name %></span>
+    <span><%= decidim_sanitize author_presenter.name %></span>
   <% end %>
 <% end %>
