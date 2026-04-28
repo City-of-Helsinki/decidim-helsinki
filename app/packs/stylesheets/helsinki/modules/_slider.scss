@@ -1,0 +1,83 @@
+@use "sass:map";
+
+@import "@splidejs/splide/src/css/core";
+
+$slider-arrow-size: 2rem;
+$slider-content-max-width: $content-max-width + 2 * rem-to-pixels(map.get($hel-layout-gutter, "large"));
+
+.splide__arrow{
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: $slider-arrow-size;
+  width: $slider-arrow-size;
+
+  @include breakpoint(large){
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+
+  &--prev{
+    left: 0;
+
+    @include breakpoint(large){
+      left: -$slider-arrow-size;
+    }
+
+    @media (min-width: ($slider-content-max-width + 2 * rem-to-pixels($slider-arrow-size))){
+      left: -$slider-arrow-size * 1.5;
+    }
+
+    @media (min-width: ($slider-content-max-width + 4 * rem-to-pixels($slider-arrow-size))){
+      left: -$slider-arrow-size * 2;
+    }
+
+    svg{
+      transform: scaleX(-1);
+    }
+  }
+
+  &--next{
+    right: 0;
+
+    @include breakpoint(large){
+      right: -$slider-arrow-size;
+    }
+
+    @media (min-width: ($slider-content-max-width + 2 * rem-to-pixels($slider-arrow-size))){
+      right: -$slider-arrow-size * 1.5;
+    }
+
+    @media (min-width: ($slider-content-max-width + 4 * rem-to-pixels($slider-arrow-size))){
+      right: -$slider-arrow-size * 2;
+    }
+  }
+}
+
+.splide__list{
+  transition: max-height 1s;
+}
+
+.splide__numpagination{
+  text-align: center;
+  padding-top: 1.4rem;
+  font-size: 1.125rem;
+
+  @include breakpoint(large){
+    display: none;
+  }
+}
+
+.splide__slide{
+  .card{
+    height: 100%;
+    margin-bottom: 0;
+  }
+}

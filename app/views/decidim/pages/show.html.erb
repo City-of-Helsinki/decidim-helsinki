@@ -12,8 +12,6 @@ edit_link(
 )
 %>
 
-<%= render partial: "layouts/decidim/breadcrumbs" %>
-
 <% if @topic %>
   <%= render partial: "tabbed", locals: {
     title: translated_attribute(@topic.title),

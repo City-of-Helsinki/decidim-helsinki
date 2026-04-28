@@ -1,0 +1,14 @@
+<li class="<%= "stepper__item #{step_status_class}" %>">
+  <div class="stepper__item__indicator">
+    <span><%= participatory_process_step.position + 1 %></span>
+  </div>
+  <div class="stepper__item__label">
+    <div class="stepper__item__label__date">
+      <%= participatory_space_helpers.step_dates(participatory_process_step) %>
+    </div>
+    <h3 class="stepper__item__label__title heading4"><%= translated_attribute(participatory_process_step.title) %></h3>
+    <div class="stepper__item__label__content">
+      <%= decidim_sanitize_editor_admin translated_attribute(participatory_process_step.description) %>
+    </div>
+  </div>
+</li>

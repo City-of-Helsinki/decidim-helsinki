@@ -2,6 +2,6 @@ sv:
   decidim:
     plans:
       answers:
-        accepted: Fortsätter till omröstningen
+        accepted: Accepterat
         not_answered: Ej besvarade
-        rejected: Går inte vidare till omröstningen
+        rejected: Avvisat

@@ -1,11 +1,13 @@
 en:
   decidim:
     comments:
+      comment:
+        comment_label: Comment %{comment_id}
+        comment_label_reply: Comment %{comment_id} (reply to comment %{parent_comment_id})
       comments:
         create:
           error: There was a problem creating the comment.
-      view: View
-      comments:
         title:
           one: "%{count} comment"
           other: "%{count} comments"
+      view: View

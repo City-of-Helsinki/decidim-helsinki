@@ -1,0 +1,13 @@
+<% icon_key = model.user_group.present? ? "people" : "person" %>
+
+<% if author_presenter.deleted? %>
+  <div class="comment__author">
+    <%= icon(icon_key, role: "img", "aria-hidden": true) %>
+    <span><%= author_presenter.name %></span>
+  </div>
+<% else %>
+  <%= link_to author_presenter.profile_path, class: "comment__author" do %>
+    <%= icon(icon_key, role: "img", "aria-hidden": true) %>
+    <span><%= author_presenter.name %></span>
+  <% end %>
+<% end %>

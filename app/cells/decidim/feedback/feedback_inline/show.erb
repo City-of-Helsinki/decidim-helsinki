@@ -1,0 +1,15 @@
+<div id="<%= "#{content_id}_content" %>" data-feedback-inline>
+  <% if title.present? %>
+    <div class="text-center">
+      <h2 class="h4 margin-bottom-2"><%= title %></h2>
+    </div>
+  <% end %>
+
+  <%= render :form unless feedback_registered? %>
+
+  <div class="feedback-success<%= " hide" unless feedback_registered? %>" aria-live="polite">
+    <div class="text-center lead">
+      <p><%= t("decidim.feedback.feedback_inline.thank_you") %></p>
+    </div>
+  </div>
+</div>

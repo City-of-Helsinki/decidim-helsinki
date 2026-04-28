@@ -5,7 +5,7 @@ en:
         settings:
           global:
             workflow_choices:
-              omastadi: 'OmaStadi: allows participants to vote in the Entire Helsinki area and in one major district of their choice.'
+              omastadi: 'OmaStadi: allows participants to vote in one major district of their choice.'
               ruuti_one: 'Ruuti vote in one: allows participants to vote in the budget of their Ruuti area.'
   helsinki:
     areas:
@@ -25,14 +25,14 @@ en:
             class_level_not_defined: Your grade level cannot be verified electronically. You can vote at the polling stations announced separately by showing an ID.
             not_in_area: Helsinki is not your home municipality. Only residents of Helsinki can participate in this voting.
             not_permanent_resident: You are not a permanent resident of Helsinki. Only residents of Helsinki can participate in this voting.
-            not_student: According to our information, you are not a pupil. Parents and teaches cannot identify themselves to vote through Wilma. Choose another identification method.
-            too_young: You may be too young to vote. You have to be at least on the 6th grade of comprehensive school to be able to identify yourself to vote through Wilma. If you have turned 12 or will turn 12 this year, then you can vote at the polling stations announced separately by showing an ID.
+            not_student: According to our information, you are not a pupil. Parents and teaches cannot identify themselves to vote through pupil's account. Choose another identification method.
+            too_young: You may be too young to vote. You have to be at least on the 6th grade of comprehensive school to be able to identify yourself to vote through pupil's account. If you have turned 12 or will turn 12 this year, then you can vote at the polling stations announced separately by showing an ID.
             unknown_school: We did not manage to verify electronically in which school you study. Unfortunately, you may not vote on the Ruuti budget.
-            invalid_school_type: Your school type does not allow you to identify yourself to vote through Wilma. Choose another identification method.
+            invalid_school_type: Your school type does not allow you to identify yourself to vote through pupil's account. Choose another identification method.
         identify:
           title: Identify yourself
         new:
-          help: You can vote both on the plans for entire Helsinki and plans for the district you select below. The service automatically suggests a major district based on your postal code (or postal code of your school if you identify with Wilma), but you can change it using the drop-down menu. If you want to vote for a particular plan, please check beforehand what districts it belongs to. If you want to change the district later, please see Instructions.
+          help: You can vote both on the plans for entire Helsinki and plans for the district you select below. The service automatically suggests a major district based on your postal code (or postal code of your school if you identify with pupil's account), but you can change it using the drop-down menu. If you want to vote for a particular plan, please check beforehand what districts it belongs to. If you want to change the district later, please see Instructions.
           title: Accept the major district
           submit: Accept
     content_blocks:
@@ -55,10 +55,11 @@ en:
         button2_url: Button 2 URL
         title: Title
       highlighted_blogs:
+        article: "Article: %{title}"
         name: Highlighted blogs
-        show_more: Show more
-        show_more_detailed: Show more news
+        show_more: Show more news
       highlighted_blogs_settings_form:
+        description: Description
         title: Title
       ideas_carousel:
         name: Ideas carousel
@@ -72,17 +73,43 @@ en:
         title: Title
       intro:
         name: Intro
+        show_less: Show less
+        show_more: Show more
       intro_settings_form:
         description: Description
-        link_text: Link text
-        link_url: Link URL
+        main_image: Image
+        main_image_alt: Alternative text for the image
         title: Title
       linked_events:
         name: Linked Events - Upcoming events
       linked_events_settings_form:
         button_text: Button text
         button_url: Button URL
+        description: Description
         title: Title
+      map_section:
+        name: Map section
+      map_section_settings_form:
+        description: Description
+        button_text: Button text
+        button_url: Button URL
+        image: Map image (%{language})
+        image_alt: Map image alternative text
+        section:
+          content: Content next to the map
+          map: Map image
+        title: Title
+      notification:
+        name: Notification
+      notification_settings_form:
+        description: Description
+        button_text: Button text
+        button_url: Button URL
+        title: Title
+        type: Type
+        type_choices:
+          info: Informational
+          success: Success
       plans_carousel:
         name: Proposals carousel (cocreation)
       process_steps:
@@ -98,17 +125,30 @@ en:
       records_carousel_settings_form:
         button_text: Button text
         button_url: Button URL
+        description: Description
         process: Process
         title: Title
       results_carousel:
         name: Project carousel (implementation)
+    consent:
+      show:
+        title: Cookie information
+        description_html: |
+          <p>A cookie is a small-scale data storage program that a computer browser installs on a user's computer hard drive. Whenever the user's browser retrieves the site from the City of Helsinki's servers, the message is sent back to the user's computer. Javascript and server logs are used to record, for example, the number of users, country of use, usage time and browser used, as well as the content that the visitor has visited. The cookie does not damage the drive.</p>
+          <p>Cookies are used to speed up, analyze and develop the website and to target content to each user.</p>
     copyright: '%{year} City of Helsinki'
-    devise:
-      shared:
-        omniauth_buttons:
-          tunnistamo_explanation: 'Facebook-, Google- or YLE authentication'
-          tunnistamo_explanation_internal: 'Tunnistamo authentication'
-        tunnistamo_description: Using Tunnistamo you can authenticate using Google, Facebook, or YLE among others.
+    forms:
+      label_tooltip: Guidance
+    linked_events:
+      index:
+        all_events: See events in your area
+        description_html: |
+          <p>In the spring 2024, the city will organise three events in which the city’s residents and employees can plan the various OmaStadi projects that will be implemented in different areas.</p>
+        subtitle: Upcoming events
+        title: Events
+    linked_event_card:
+      pricing:
+        free: Free of charge
     map:
       districts:
         central: Central
@@ -123,14 +163,16 @@ en:
         creator: Original creator of the image
         license: Image license
         note: The image has been edited from the original
+    pb_map:
+      label: "Helsinki districts with their budgets: Western 1534011€, Northern 593272€, Central 1323211€, Southern 1662361€, Northeastern 1374703€, Southeastern 765547€, Eastern and Östersundom 1546895€"
     plans:
       layouts:
         omastadi: OmaStadi
       omastadi_form:
         buttons:
           create: Create and preview
-          discard: Discard this draft
-          discard_confirmation: Are you sure you want to discard this draft?
+          discard: Delete draft
+          discard_confirmation: Are you sure you want to delete this draft?
           loading_message: Saving... Processing of images and attachments takes a while, please wait.
           save: Save
           save_draft: Save draft
@@ -140,7 +182,7 @@ en:
         edit_step_info: Write a brief description of your proposal and select the area in which it will be located. A good description explains what should be done concretely and where the funding is needed. When creating a proposal, you can utilise information about the city's services and plans.
         ideas_step_info: Proposals are made on the basis of ideas submitted by citizens that meet the criteria. Begin developing your proposal by selecting one or more ideas as its foundation. Every proposal must be based on at least one of the ideas which is accepted and fulfills the Omastadi criteria. Before you start creating your proposal, learn about the other proposals made for your area.
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
-        required_fields_text: Required fields are marked with the *-character.
+        required_fields_text: Fields marked with an asterisk * must be filled.
         steps:
           next: Next
           previous: Previous
@@ -167,9 +209,10 @@ en:
           close_modal: Close modal
           filter: Filter
           filter_by: Filter by
+          keyword: Keyword
           related_to: Related to
-          reset: Clear filters
-          search: Search
+          reset: Clear the selections
+          search: Execute search
           state:
             accepted: Proceeds to voting
             all: All
@@ -182,11 +225,23 @@ en:
           title: Search proposals
           unfold: Unfold
         leave_your_plan: Create your own proposal!!
-        new_plan: New proposal
+        new_plan: Submit a proposal
+        notification:
+          title: Information about areas
+          description_html: <p>Get familiar with important figures and interesting themes in your own area.</p>
+          button: Information about areas
         see_all_withdrawn: See all withdrawn
-        subtitle: Find and explore proposals!
+        show_list: Show results as list
+        show_map: Show results on map
         title: Browse proposals
         view_plan: View proposal
+      omastadi_notification:
+        accepted:
+          title: This proposal has been accepted
+        evaluating:
+          title: This proposal is being evaluated
+        rejected:
+          title: Unfortunately, this proposal has been rejected
       omastadi_view:
         answer:
           final_estimate: 'Final budget estimate: %{amount}'
@@ -206,20 +261,57 @@ en:
           edit_plan: Edit proposal
           withdraw_plan: Withdraw proposal
           withdraw_confirmation_html: Are you sure you want to withdraw this proposal?
+        details:
+          attributes:
+            area_scope: Area
+            category: Theme
+            id: Number (ID)
+            published_at: Publish time
+          title: Information
         feedback_title: Thank you for submitting a proposal!
         flag: Flag
-        info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         linked_ideas: Ideas attached to this proposal
+        linked_projects: Merged with other proposals for the vote
         manage_plan: Manage proposal
+        map_title: Proposal on map
         pending_access_request_message_html: <p>You have requested editing access to this proposal. Please wait for the collaborators to respond to your request.</p><p>You will receive an email notification once your request is answered.</p>
         request_access: Request access to edit
         share: Share
         share_link: Share link
         show_comments: Show comments
         show_on_map: Show on map
+        subtitle: Proposal
         related_documents: Related documents
-      plan_m:
+      plan_l:
+        card_label: "Proposal: %{title}"
         view_plan: View proposal
+    shared:
+      account_privacy_summary:
+        privacy_link: /pages/tietosuoja?locale=en
+        tos_summary_html: |
+          <p>
+            When you register with the OmaStadi service, you must consent to the processing of your personal data.
+            After consenting, you can create, comment and vote on the proposals.
+          </p>
+          <p>
+            When you register for the service, we process the following personal data about you: your name, user name
+            and email address.
+          </p>
+          <p>
+            When you log in to the OmaStadi service using strong authentication, we process the following personal
+            data about you: your name, email address, place of residence, postal code and personal identity code.
+          </p>
+          <p>
+            Students are authenticated when they vote using the mPassID used by schools, in which case we process the
+            following personal data: their first name, last name, nickname, municipality code, municipality name,
+            school code, school name, class ID and grade level.
+          </p>
+          <p>You can revoke your consent at any time and delete your data from your user account settings.</p>
+          <p>
+            You can find more information on the processing of your personal data in the OmaStadi service in the
+            <a href="%{privacy_link}" target="_blank">Privacy Policy</a>, which explains in more detail the legal
+            bases for the processing of your personal data and their retention periods.
+          </p>
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Your grade level cannot be verified electronically.
@@ -228,11 +320,11 @@ en:
       class_level_not_allowed_one: Your grade level should be %{level}.
       class_level_not_defined: Your grade level is not defined.
       disallowed_municipality: The voting is limited only to Helsinki residents.
-      disallowed_role: The Wilma identification is limited only to pupils.
+      disallowed_role: The pupil's account identification is limited only to pupils.
       disallowed_school: Voting is not allowed in this school.
       disallowed_voting_unit: You cannot vote on this area from your school.
       voting_unit_required: Information about your Ruuti area is not defined.
-  suomifi_action_authorizer:
+  helsinki_action_authorizer:
     restrictions:
       disallowed_district: This voting is not allowed from your major district.
       disallowed_municipality: Voting is limited only to Helsinki residents.

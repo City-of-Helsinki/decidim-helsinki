@@ -1,0 +1,327 @@
+#orders-summary{
+  background-color: $hel-suomenlinna-medium-light;
+  padding: 1rem;
+
+  @include breakpoint(mediumlarge){
+    padding: 2rem;
+  }
+
+  &::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  &.is-stuck{
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-width: none !important;
+
+    .orders-summary-info,
+    .orders-summary-cart{
+      display: none;
+    }
+
+    .voting-progress{
+      margin-bottom: .5rem;
+
+      @include breakpoint(mediumlarge){
+        float: left;
+        margin-top: .4rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  #projects_continue_button{
+    float: right;
+  }
+
+  #projects_continue_button_mobile{
+    margin-top: 1rem;
+  }
+
+  .voting-progress{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    @include breakpoint(mediumlarge){
+      flex-direction: row;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+
+    .voting-progress__indicator{
+      .icon{
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    .voting-progress__explanation{
+      @include breakpoint(mediumlarge){
+        margin-left: 1rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .order-items__item{
+    &::after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+
+  .project-cart-button{
+    float: left;
+    margin: 0 1rem 0 .2rem;
+
+    .icon{
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}
+
+body.loading{
+  .projects-table{
+    input[type=checkbox] + label[for]{
+      cursor: wait;
+    }
+  }
+}
+
+.projects-description{
+  margin-bottom: 1rem;
+}
+
+.projects-table{
+  .projects-table__header,
+  .projects-table__row__header{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 100px;
+  }
+
+  .projects-table__header__data,
+  .projects-table__row__data{
+    position: relative;
+
+    @include breakpoint(mediumlarge){
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: 70px 1fr 210px;
+    }
+  }
+
+  .projects-table__header{
+    border-bottom: 1px solid $hel-black;
+    margin-bottom: 10px;
+    font-size: $hel-text-size-l;
+
+    // Keep the header visible for screen readers
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+
+    @include breakpoint(mediumlarge){
+      display: grid;
+
+      // Reset the screen reader visibility to normal visibility
+      position: static;
+      left: auto;
+      width: auto;
+      height: auto;
+      overflow: initial;
+      clip: auto;
+    }
+
+    .projects-table__header__data,
+    .projects-table__header__vote{
+      padding-bottom: 3px;
+    }
+
+    .projects-table__header__data{
+      padding-left: 17px;
+    }
+
+    .projects-table__header__vote{
+      text-align: center;
+    }
+  }
+
+  .projects-table__body{
+    // In case there are multipe "groups" of items in the table, i.e. when
+    // they are sorted based on the category.
+    + .projects-table__body{
+      margin-top: 2rem;
+    }
+  }
+
+  .projects-table__body__subheader{
+    margin-bottom: .5rem;
+    font-weight: $global-weight-medium;
+  }
+
+  .projects-table__header,
+  .projects-table__row{
+    .projects-table__cell{
+      @include breakpoint(mediumlarge){
+        margin-left: 10px;
+      }
+
+      &:first-child{
+        margin-left: 0;
+      }
+    }
+  }
+
+  .projects-table__row{
+    background-color: $hel-white;
+    margin-bottom: 10px;
+
+    &[data-show-details]{
+      .projects-table__row__details{
+        display: flex;
+        flex-direction: column;
+
+        @include breakpoint(mediumlarge){
+          flex-direction: row;
+        }
+      }
+
+      .projects-table__row__icon{
+        top: -2px;
+        transform: rotate(180deg);
+      }
+    }
+
+    &[data-selected]{
+      .projects-table__row__header{
+        background-color: $hel-suomenlinna-medium-light;
+      }
+    }
+
+    .projects-table__row__header{
+      padding: 17px 0;
+
+      @include breakpoint(mediumlarge){
+        font-size: $hel-text-size-l;
+      }
+    }
+
+    .projects-table__row__data{
+      padding-left: 17px;
+    }
+
+    .projects-table__row__icon{
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      @include breakpoint(mediumlarge){
+        position: relative;
+      }
+
+      .icon{
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      button{
+        cursor: pointer;
+      }
+    }
+
+    .projects-table__row__vote{
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-left: 14px;
+
+      &::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 10px;
+        height: 100%;
+        width: 1px;
+        background-color: $hel-silver;
+
+        // @include breakpoint(mediumlarge){}
+      }
+
+      .input-checkbox{
+        label{
+          margin-right: 0;
+        }
+      }
+    }
+
+    .input-checkbox{
+      display: flex;
+    }
+
+    .projects-table__row__data{
+      cursor: pointer;
+    }
+
+    .projects-table__row__details{
+      display: none;
+      padding: 20px 17px;
+      border-top: 1px solid $hel-silver;
+
+      @include breakpoint(mediumlarge){
+        padding: 24px 40px 24px 100px;
+      }
+
+      .projects-table__row__main{
+        @include breakpoint(mediumlarge){
+          width: 70%;
+          margin-right: 30px;
+          font-size: $hel-text-size-l;
+        }
+      }
+
+      .projects-table__row__side{
+        margin-top: 2rem;
+
+        @include breakpoint(mediumlarge){
+          margin-top: 0;
+          width: 20%;
+        }
+
+        .attributes{
+          font-size: $hel-text-size-l;
+
+          .attributes__item:first-child{
+            margin-top: 0;
+          }
+        }
+      }
+    }
+
+    .projects-table__cell{
+      &.projects-table__cell--budget{
+        display: flex;
+
+        span{
+          flex: 1;
+        }
+      }
+    }
+  }
+}

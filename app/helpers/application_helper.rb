@@ -23,10 +23,23 @@ module ApplicationHelper
     end
   end
 
+  def render_breadcrumbs
+    crumbs =
+      if respond_to?(:breadcrumbs)
+        breadcrumbs.presence || auto_breadcrumbs
+      else
+        auto_breadcrumbs
+      end
+    return if crumbs.blank?
+
+    crumbs = [[t("decidim.menu.home"), decidim.root_path]] + crumbs
+    render partial: "layouts/decidim/breadcrumbs", locals: { crumbs: crumbs }
+  end
+
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting, Rails/HelperInstanceVariable
-  def breadcrumbs
+  def auto_breadcrumbs
     links = []
-    links << { title: t("decidim.menu.home"), url: decidim.root_path }
+
     if respond_to?(:current_participatory_space)
       # Do not display the current process in the menu because that's
       # apparently logic (?).
@@ -36,62 +49,63 @@ module ApplicationHelper
       #   # url: decidim_participatory_processes.participatory_process_path(current_participatory_space)
       # }
       if respond_to?(:current_component)
-        links << {
-          title: translated_attribute(current_component.name),
-          url: main_component_path(current_component)
-        }
+        links << [
+          translated_attribute(current_component.name),
+          main_component_path(current_component)
+        ]
 
-        if controller.is_a?(Decidim::Budgets::ProjectsController) && action_name == "show"
-          links << {
-            title: translated_attribute(project.title),
-            url: project_path(project)
-          }
-        elsif controller.is_a?(Decidim::Budgets::ResultsController)
-          links << {
-            title: t("decidim.budgets.results.show.title", organization_name: current_organization.name),
-            url: results_path
-          }
-        elsif controller.is_a?(Decidim::Accountability::ResultsController) && action_name == "show"
+        if controller.is_a?(Decidim::Accountability::ResultsController) && action_name == "show"
           ancestors = []
           target = result
           (ancestors << target) && target = target.parent while target
 
           ancestors.reverse_each do |current|
-            links << {
-              title: translated_attribute(current.title),
-              url: result_path(current)
-            }
+            links << [
+              translated_attribute(current.title),
+              result_path(current)
+            ]
           end
         elsif controller.is_a?(Decidim::Blogs::PostsController) && action_name == "show"
-          links << {
-            title: translated_attribute(post.title),
-            url: post_path(post)
-          }
+          links << [
+            translated_attribute(post.title),
+            post_path(post)
+          ]
+        end
+      elsif current_participatory_space.blank?
+        # Processes listing page
+        links << [
+          t("decidim.participatory_processes.participatory_processes.index.title"),
+          decidim_participatory_processes.participatory_processes_path
+        ]
+      else
+        # Process front page and other process pages
+        links << [
+          translated_attribute(current_participatory_space.title),
+          Decidim::ResourceLocatorPresenter.new(current_participatory_space).path
+        ]
+
+        if controller.is_a?(Decidim::ParticipatoryProcesses::ParticipatoryProcessStepsController)
+          links << [
+            t("decidim.participatory_process_steps.index.title"),
+            decidim_participatory_processes.participatory_process_participatory_process_steps_path(current_participatory_space)
+          ]
         end
       end
+    elsif controller.is_a?(Helsinki::LinkedEventsController)
+      links << [t("helsinki.linked_events.index.title"), main_app.events_path]
     elsif controller.is_a?(Decidim::Blogs::Directory::PostsController)
-      links << { title: t("decidim.blogs.directory.posts.index.posts"), url: main_app.posts_path }
-      if post
-        links << {
-          title: translated_attribute(post.title),
-          url: main_app.post_path(post)
-        }
-      end
+      links << [t("decidim.blogs.directory.posts.index.posts"), main_app.posts_path]
+      links << [translated_attribute(post.title), main_app.post_path(post)] if post
     elsif controller.is_a?(Decidim::PagesController) || controller.is_a?(Decidim::Pages::ApplicationController)
-      links << { title: t("layouts.decidim.header.help"), url: decidim.pages_path }
-      if @page
-        links << {
-          title: translated_attribute(@page.title),
-          url: decidim.page_path(@page)
-        }
-      end
+      links << [t("layouts.decidim.header.help"), decidim.pages_path]
+      links << [translated_attribute(@page.title), decidim.page_path(@page)] if @page
     elsif controller.is_a?(Decidim::Favorites::FavoritesController)
-      links << { title: t("decidim.favorites.favorites.show.title"), url: decidim_favorites.favorites_path }
+      links << [t("decidim.favorites.favorites.show.title"), decidim_favorites.favorites_path]
       if @type
-        links << {
-          title: @type[:name],
-          url: decidim_favorites.favorite_path(@selected_type)
-        }
+        links << [
+          @type[:name],
+          decidim_favorites.favorite_path(@selected_type)
+        ]
       end
     end
 
@@ -103,7 +117,9 @@ module ApplicationHelper
   # 'private' application mode these should be hidden in case the user is not
   # signed in.
   def display_common_elements?
-    true
+    return true unless current_organization.force_users_to_authenticate_before_access_organization
+
+    user_signed_in?
   end
 
   def display_header_koro?
@@ -114,6 +130,7 @@ module ApplicationHelper
   end
 
   def display_omnipresent_banner?
+    return false unless display_common_elements?
     return false unless current_organization.enable_omnipresent_banner
 
     controller.controller_name != "votes"
@@ -121,18 +138,6 @@ module ApplicationHelper
 
   def feedback_email
     Rails.application.config.feedback_email
-  end
-
-  def tunnistamo_sign_out_url
-    @tunnistamo_sign_out_url ||= begin
-      # Fetch the logout URI from OmniAuth configs
-      mw = Rails.application.middleware.find { |a| a == OmniAuth::Strategies::OpenIDConnectHelsinki }
-      if mw
-        strategy = mw.klass.new(Rails.application, *mw.args)
-        strategy.send(:discover!)
-        strategy.end_session_uri
-      end
-    end
   end
 
   # Replace the footer koro with a custom one. E.g. a specific background color
@@ -164,8 +169,6 @@ module ApplicationHelper
   end
 
   def meta_image_default
-    return asset_pack_path("media/images/social-ruuti-wide.jpg") if Rails.application.config.wrapper_class == "wrapper-ruuti"
-
     asset_pack_path("media/images/social-omastadi-wide.jpg")
   end
 end

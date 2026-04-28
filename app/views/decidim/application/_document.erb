@@ -1,0 +1,9 @@
+<div class="attachments__item">
+  <a href="<%= document.url %>" class="attachments__item__link" target="_blank">
+    <%= attachment_title(document) %>
+    <% if document.description.present? %>
+      <span class="text-small">&ndash; <%= translated_attribute(document.description) %></span>
+    <% end %>
+    <small>(<%= document.file_type %> <%= number_to_human_size(document.file_size) %>)</small>
+  </a>
+</div>

@@ -1,12 +1,12 @@
 .koro{
   position: relative;
-  bottom: -4px; // push the koro down to avoid extra white line (or what is in the bg)
+  bottom: -1px; // Prevent "shadow" border appearing
   width: 100%;
   line-height: 0;
 
-  &.flip-horizontal{
+  &.flip-vertical{
     transform: scaleY(-1);
-    top: -4px; // pull the koro up to avoid extra white line (or what is in the bg)
     bottom: auto;
+    top: -1px;
   }
 }

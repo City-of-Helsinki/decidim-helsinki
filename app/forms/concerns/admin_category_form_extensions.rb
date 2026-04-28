@@ -7,18 +7,17 @@ module AdminCategoryFormExtensions
   included do
     attribute :has_color, Decidim::AttributeObject::Model::Boolean, default: false
     attribute :color, String, default: nil
-    # For 0.27
-    # attribute :category_image, Decidim::Attributes::Blob
-    # attribute :category_icon, Decidim::Attributes::Blob
-    attribute :category_image
-    attribute :category_icon
-    attribute :remove_category_image, Decidim::AttributeObject::Model::Boolean, default: false
-    attribute :remove_category_icon, Decidim::AttributeObject::Model::Boolean, default: false
 
-    validates :category_image, passthru: { to: Decidim::Category }
-    validates :category_icon, passthru: { to: Decidim::Category }
+    attribute :category_images, Array[String]
+    attribute :add_category_images, Array[Decidim::Attributes::Blob]
+
+    validates :category_images, passthru: { to: Decidim::Category }
 
     # Needed for the passthru validator
     alias_method :organization, :current_organization
+
+    def map_model(model)
+      self.category_images = model.category_images.map(&:signed_id)
+    end
   end
 end

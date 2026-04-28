@@ -3,9 +3,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.helsinki_profile_enabled = false
   config.suomifi_enabled = true
   config.mpassid_enabled = true
-  config.smsauth_enabled = true
+  config.smsauth_enabled = false # For NuBu (ruuti)
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -70,8 +71,4 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
-  # The location of the Tunnistamo authentication server
-  # config.tunnistamo_auth_server = "http://127.0.0.1:8000"
-  config.tunnistamo_auth_server = "https://api.hel.fi/sso"
 end

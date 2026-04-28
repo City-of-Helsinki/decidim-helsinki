@@ -9,10 +9,74 @@ module Helsinki
             # There can be components which have removed participatory spaces
             next unless component.participatory_space
 
-            @postal_codes = []
+            # We check if the voting was finished already at the beginning of
+            # the statistics calculations so that we won't leave any votes
+            # unprocessed in case voting was closed AFTER this run was started.
+            # If that would happen, the last votes would not be included in the
+            # statistics.
+            @last_run = component.current_settings.votes == "finished"
 
-            aggregate_component(component)
+            # We store the processing time which is the upper limit until which
+            # we will process new votes. This is in order to ensure that the
+            # statistics for different entities are reported consistently.
+            # Otherwise, it would be possible that e.g. during the processing of
+            # component votes, new votes have been added to the system which
+            # would cause more votes to show up in the further statistics. E.g.
+            # when summing up the "total" votes for each budget, that number
+            # would be higher than the "total" votes of the component because
+            # there were more votes calculated for the budget totals than the
+            # component total due to this inconsistency.
+            #
+            # Take this example situation:
+            # - 100 votes for component to process (should take few minutes)
+            # - Start processing the component votes
+            # - (20 new votes are registered during processing)
+            # - End processing the component votes
+            # - Start processing votes for each budget
+            # => There are now 120 votes to process vs the 100 votes that were
+            #    processed for the component itself causing inconsistency in the
+            #    resulting datasets if they are compared against each other.
+            #
+            # Therefore, we want to report each entity (component, budget,
+            # project) based on the exact same voting situation at the exactly
+            # same time for each entity.
+            @run_started_at = Time.current
+            @process_until = run_started_at unless last_run?
+            @postal_code_votes = {}
+            @cancelled_postal_code_votes = {}
 
+            process_component(component)
+
+            # Since not all collections processed on every run, make sure they
+            # all get finalized on the last run.
+            finalize_collections!(component) if last_run?
+          end
+        end
+
+        # Allows resetting the stats for a specific component.
+        def reset_for(component)
+          component.stats.each(&:destroy!)
+
+          Decidim::Budgets::Budget.where(component: component).each do |budget|
+            budget.stats.each(&:destroy!)
+
+            Decidim::Budgets::Project.where(budget: budget).each do |project|
+              project.stats.each(&:destroy!)
+            end
+          end
+        end
+
+        private
+
+        attr_reader :run_started_at, :process_until, :postal_code_votes, :cancelled_postal_code_votes
+
+        def process_component(component)
+          # Process the all stats in one locking block (the component stats
+          # locking) to ensure only one process at a time processes one
+          # component. Otherwise duplicate entries could be created if the
+          # first process does not have enough time to complete before the
+          # next run starts.
+          aggregate_component(component) do
             Decidim::Budgets::Budget.where(component: component).each do |budget|
               aggregate_budget(budget)
 
@@ -21,92 +85,177 @@ module Helsinki
               end
             end
 
-            postal_codes.each do |code|
-              aggregate_postal_code(component, code)
+            postals = {}
+            postal_code_votes.each do |code, ids|
+              postals[code] ||= [[], []]
+              postals[code][0] += ids
+            end
+            cancelled_postal_code_votes.each do |code, ids|
+              postals[code] ||= [[], []]
+              postals[code][1] += ids
+            end
+
+            postals.each do |code, (ids, cancelled_ids)|
+              aggregate_postal_code(component, code, ids, cancelled_ids)
             end
           end
         end
 
-        private
-
-        attr_reader :postal_codes
+        def last_run?
+          @last_run == true
+        end
 
         def identity_provider
           @identity_provider ||= IdentityProvider.new
         end
 
         def aggregate_component(component)
-          collection = component.stats.find_or_create_by!(
+          component.stats.process!(
             organization: component.organization,
             metadata: {},
             key: "votes"
-          )
-          return if collection.finalized?
+          ) do |collection|
+            votes = Decidim::Budgets::Vote.where(component: component).order(:created_at)
+            cancelled_votes = nil
+            if collection.last_value_at
+              votes = votes.where("created_at > ?", collection.last_value_at)
+              cancelled_votes = Decidim::Budgets::CancelledVote.where(
+                component: component
+              ).where(
+                "vote_cast_at <= ? AND created_at > ?",
+                collection.last_value_at,
+                collection.last_value_at
+              ).order(:created_at)
+            end
+            if process_until
+              votes = votes.where("created_at <= ?", process_until)
+              cancelled_votes = cancelled_votes.where("created_at <= ?", process_until) if cancelled_votes
+            end
+            if votes.any? || cancelled_votes&.any?
+              accumulator = Accumulator.new(component, votes, cancelled_votes || [], identity_provider, cache_postal_votes: true)
+              update_collection(collection, accumulator)
 
-          votes = Decidim::Budgets::Vote.where(component: component).order(:created_at)
-          votes = votes.where("created_at > ?", collection.last_value_at) if collection.last_value_at
-          accumulator = Accumulator.new(component, votes, identity_provider)
+              cache_postal_votes(accumulator)
+            end
 
-          update_collection(component, collection, accumulator) if votes.any?
+            yield
+          end
         end
 
-        def aggregate_postal_code(component, code)
-          collection = component.stats.find_or_create_by!(
+        def cache_postal_votes(accumulator)
+          # Cache the vote IDs for each postal code to improve the processing
+          # performance. Otherwise every time a new postal code is introduced,
+          # the aggregation would take a long time because all votes would be
+          # processed from the beginning to find the votes for a particular
+          # postal code.
+          #
+          # This might no longer be such a large problem after the performance
+          # fixes to the Decidim data decryption.
+          accumulator.postal_code_votes.each do |code, ids|
+            postal_code_votes[code] ||= []
+            postal_code_votes[code] += ids
+          end
+          accumulator.cancelled_postal_code_votes do |code, ids|
+            cancelled_postal_code_votes[code] ||= []
+            cancelled_postal_code_votes[code] += ids
+          end
+        end
+
+        def aggregate_postal_code(component, code, ids, cancelled_ids)
+          postal_code = code.presence || "00000"
+          component.stats.process!(
             organization: component.organization,
             metadata: {
-              postal_code: code
+              postal_code: postal_code
             },
-            key: "votes_postal_#{code || "00000"}"
-          )
-          return if collection.finalized?
-
-          auth_types = %w(suomifi_eid helsinki_documents_authorization_handler)
-          votes = Decidim::Budgets::Vote.joins(:user).where(component: component).order(
-            "decidim_budgets_votes.created_at"
-          ).select do |vote|
-            metadata = Decidim::Authorization.where(user: vote.user, name: auth_types).order(updated_at: :desc).first&.metadata
-            metadata.try(:[], "postal_code") == code
+            key: "votes_postal_#{postal_code}"
+          ) do |collection|
+            votes = Decidim::Budgets::Vote.where(component: component, id: ids).order(:created_at)
+            cancelled_votes = nil
+            if collection.last_value_at
+              votes = votes.where("created_at > ?", collection.last_value_at)
+              cancelled_votes = Decidim::Budgets::CancelledVote.where(
+                component: component,
+                id: cancelled_ids
+              ).where(
+                "vote_cast_at <= ? AND created_at > ?",
+                collection.last_value_at,
+                collection.last_value_at
+              ).order(:created_at)
+            end
+            if process_until
+              votes = votes.where("created_at <= ?", process_until)
+              cancelled_votes = cancelled_votes.where("created_at <= ?", process_until) if cancelled_votes
+            end
+            if votes.any? || cancelled_votes&.any?
+              accumulator = Accumulator.new(component, votes, cancelled_votes || [], identity_provider)
+              update_collection(collection, accumulator)
+            end
           end
-          votes = votes.where("decidim_budgets_votes.created_at > ?", collection.last_value_at) if collection.last_value_at
-          accumulator = Accumulator.new(component, votes, identity_provider)
-
-          update_collection(component, collection, accumulator) if votes.any?
         end
 
         def aggregate_budget(budget)
-          collection = budget.stats.find_or_create_by!(
+          budget.stats.process!(
             organization: budget.component.organization,
             metadata: {},
             key: "votes"
-          )
-          return if collection.finalized?
-
-          votes = Decidim::Budgets::Order.finished.where(budget: budget).order(:checked_out_at)
-          votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
-          accumulator = Accumulator.new(budget.component, votes, identity_provider)
-
-          update_collection(budget.component, collection, accumulator) if votes.any?
+          ) do |collection|
+            votes = Decidim::Budgets::Order.finished.where(budget: budget).order(:checked_out_at)
+            cancelled_votes = nil
+            if collection.last_value_at
+              votes = votes.where("checked_out_at > ?", collection.last_value_at)
+              cancelled_votes = Decidim::Budgets::CancelledOrder.where(
+                budget: budget
+              ).where(
+                "checked_out_at <= ? AND created_at > ?",
+                collection.last_value_at,
+                collection.last_value_at
+              ).order(:created_at)
+            end
+            if process_until
+              votes = votes.where("checked_out_at <= ?", process_until)
+              cancelled_votes = cancelled_votes.where("created_at <= ?", process_until) if cancelled_votes
+            end
+            if votes.any? || cancelled_votes&.any?
+              accumulator = Accumulator.new(budget.component, votes, cancelled_votes || [], identity_provider)
+              update_collection(collection, accumulator)
+            end
+          end
         end
 
         def aggregate_project(project)
-          collection = project.stats.find_or_create_by!(
+          project.stats.process!(
             organization: project.component.organization,
             metadata: {},
             key: "votes"
-          )
-          return if collection.finalized?
+          ) do |collection|
+            votes = Decidim::Budgets::Order.joins(
+              "LEFT JOIN decidim_budgets_line_items li ON li.decidim_order_id = decidim_budgets_orders.id"
+            ).finished.where(li: { decidim_project_id: project }).group(:id).order(:checked_out_at)
+            cancelled_votes = nil
 
-          votes = Decidim::Budgets::Order.joins(
-            "LEFT JOIN decidim_budgets_line_items li ON li.decidim_order_id = decidim_budgets_orders.id"
-          ).finished.where(li: { decidim_project_id: project }).group(:id).order(:checked_out_at)
-          votes = votes.where("checked_out_at > ?", collection.last_value_at) if collection.last_value_at
-          accumulator = Accumulator.new(project.component, votes, identity_provider)
-
-          update_collection(project.component, collection, accumulator) if votes.any?
+            if collection.last_value_at
+              votes = votes.where("checked_out_at > ?", collection.last_value_at)
+              cancelled_votes = Decidim::Budgets::CancelledOrder.joins(
+                "CROSS JOIN LATERAL jsonb_array_elements(line_items_data) ids(elem)"
+              ).where("(elem->>'decidim_project_id')::jsonb @> ?", project.id.to_s).where(
+                "checked_out_at <= ? AND created_at > ?",
+                collection.last_value_at,
+                collection.last_value_at
+              ).order(:created_at)
+            end
+            if process_until
+              votes = votes.where("checked_out_at <= ?", process_until)
+              cancelled_votes = cancelled_votes.where("created_at <= ?", process_until) if cancelled_votes
+            end
+            if votes.any? || cancelled_votes&.any?
+              accumulator = Accumulator.new(project.component, votes, cancelled_votes || [], identity_provider)
+              update_collection(collection, accumulator)
+            end
+          end
         end
 
-        # rubocop:disable Metrics/CyclomaticComplexity
-        def update_collection(component, collection, accumulator)
+        def update_collection(collection, accumulator)
           accumulation = accumulator.accumulate
 
           set_total = collection.sets.find_or_create_by!(key: "total")
@@ -118,7 +267,6 @@ module Helsinki
           accumulation[:postal].each do |code, amount|
             m_postal = set_postal.measurements.find_or_create_by!(label: code)
             m_postal.update!(value: m_postal.value + amount)
-            postal_codes << code unless postal_codes.include?(code)
           end
 
           set_schools = collection.sets.find_or_create_by!(key: "school")
@@ -159,12 +307,24 @@ module Helsinki
             m_datetime.update!(value: m_datetime.value + amount)
           end
 
-          collection.update!(last_value_at: accumulator.last_value_at)
-
-          # Mark finalized when the voting has ended
-          collection.update!(finalized: true) if component.current_settings.votes == "finished"
+          if accumulator.last_value_at
+            collection.update!(last_value_at: accumulator.last_value_at)
+          else
+            collection.update!(last_value_at: run_started_at)
+          end
         end
-        # rubocop:enable Metrics/CyclomaticComplexity
+
+        def finalize_collections!(component)
+          component.stats.each(&:finalize!)
+
+          Decidim::Budgets::Budget.where(component: component).each do |budget|
+            budget.stats.each(&:finalize!)
+
+            Decidim::Budgets::Project.where(budget: budget).each do |project|
+              project.stats.each(&:finalize!)
+            end
+          end
+        end
       end
     end
   end

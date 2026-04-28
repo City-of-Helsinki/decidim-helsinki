@@ -23,8 +23,10 @@ class MpassidActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
       MpassidAuthorizationRule::School,
       MpassidAuthorizationRule::VotingUnit
     ]
+    # Cache the metadata for performance.
+    authorization_metadata = authorization.metadata
     rules.each do |rule_class|
-      rule = rule_class.new(authorization, rule_options)
+      rule = rule_class.new(authorization, authorization_metadata, rule_options)
       next if rule.valid?
 
       status_code = :unauthorized

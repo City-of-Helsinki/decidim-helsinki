@@ -3,10 +3,11 @@ import { truncateFilename, checkTitles, createHiddenInput } from "src/decidim/di
 import { escapeHtml } from "src/decidim/utilities/text";
 
 // Overridden to patch a problem with the Decidim core that should be fixed with
-// version 0.27.5 (upcoming at the time of writing). Once this version is
-// released, this override can be removed.
+// version 0.27.5. This also adds the ability to upload multiple images for a
+// ActiveStorage attribute that is not defined through Decidim::Attachment. This
+// is used for categories.
 //
-// Once updating, also remove
+// Once updating, also consider the following override:
 // `app/cells/concerns/upload_modal_cell_extensions.rb`.
 //
 // This class handles logic inside upload modal, but since modal is not inside the form
@@ -78,6 +79,7 @@ export default class UploadModal {
 
         const attachmentDetails = document.createElement("div");
         attachmentDetails.classList.add("attachment-details");
+        attachmentDetails.dataset.fileid = uploadItem.dataset.fileid;
         attachmentDetails.dataset.filename = escapeHtml(file.name);
         const titleAndFileNameSpan = document.createElement("span");
         titleAndFileNameSpan.style.display = "none";
@@ -86,6 +88,8 @@ export default class UploadModal {
         const hiddenBlobField = createHiddenInput(null, null, blob.signed_id);
         if (this.options.titled) {
           hiddenBlobField.name = `${this.options.resourceName}[${this.options.addAttribute}][${ordinalNumber}][file]`;
+        } else if (this.options.multiple) {
+          hiddenBlobField.name = `${this.options.resourceName}[${this.options.addAttribute}][${ordinalNumber}]`;
         } else {
           hiddenBlobField.name = `${this.options.resourceName}[${this.options.addAttribute}]`;
         }
@@ -135,6 +139,7 @@ export default class UploadModal {
   createUploadItem(fileName, title, state) {
     const wrapper = document.createElement("div");
     wrapper.classList.add("upload-item");
+    wrapper.setAttribute("data-fileid", Math.random().toString(36).substring(7));
     wrapper.setAttribute("data-filename", escapeHtml(fileName));
 
     const firstRow = document.createElement("div");
@@ -259,8 +264,8 @@ export default class UploadModal {
 
   cleanTrashCan() {
     Array.from(this.trashCan.children).forEach((item) => {
-      const fileName = item.dataset.filename;
-      const activeAttachment = this.activeAttachments.querySelector(`div[data-filename='${fileName}']`);
+      const fileId = item.dataset.fileid;
+      const activeAttachment = this.activeAttachments.querySelector(`div[data-fileid='${fileId}']`);
       if (activeAttachment) {
         activeAttachment.remove();
       }

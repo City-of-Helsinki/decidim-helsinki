@@ -89,44 +89,14 @@ namespace :accountability do
         puts "--year: #{year}"
       end
 
-      if det_votes
-        pr = result.resource_links_from.where(name: "included_projects").first&.to
-        if pr
-          val_votes = Decidim::AccountabilitySimple::ResultDetailValue.find_or_create_by(detail: det_votes, result: result)
-          val_votes.update!(description: { fi: pr.confirmed_orders_count.to_s })
-          puts "--votes: #{pr.confirmed_orders_count}"
-        end
-      end
+      next unless det_votes
 
-      pl = result.resource_links_from.where(name: "included_plans").first&.to
-      next unless pl
+      pr = result.resource_links_from.where(name: "included_projects").first&.to
+      next unless pr
 
-      # Reset the breakdown value so that the previous iteration won't affect.
-      breakdown = nil
-      if pl.answer
-        # Transform the answers such as "Accepted - Costs 300€" into more
-        # understandable values for the accountability phase, i.e. in the
-        # example "Costs 300€". This also transfers each line break to a
-        # paragraph break.
-        breakdown = pl.answer.transform_values do |v|
-          parts = v.split(" - ")
-          answer =
-            if parts.length > 1
-              parts[1..-1].join(" - ")
-            else
-              v
-            end
-
-          "<p>#{answer.gsub(/\n+/, "</p><p>")}</p>"
-        end
-      elsif (s_estimate = pl.sections.find_by(handle: "budget_estimate"))
-        breakdown = pl.contents.find_by(section: s_estimate) if s_estimate
-      end
-
-      if breakdown
-        result.update!(budget_breakdown: breakdown)
-        puts "--breakdown: #{breakdown}"
-      end
+      val_votes = Decidim::AccountabilitySimple::ResultDetailValue.find_or_create_by(detail: det_votes, result: result)
+      val_votes.update!(description: { fi: pr.confirmed_orders_count.to_s })
+      puts "--votes: #{pr.confirmed_orders_count}"
     end
   end
 end

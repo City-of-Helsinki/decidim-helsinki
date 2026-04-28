@@ -16,6 +16,10 @@ module BudgetListItemCellExtensions
     number_to_currency(budget, unit: Decidim.currency_unit, precision: 0).gsub(/ /, "&nbsp;")
   end
 
+  def number_to_delimited(number)
+    super.gsub(/ /, "&nbsp;")
+  end
+
   def description
     translated_attribute(budget.description)
   end

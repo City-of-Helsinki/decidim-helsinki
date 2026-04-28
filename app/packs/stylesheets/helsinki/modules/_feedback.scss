@@ -1,0 +1,62 @@
+.feedback-help{
+  @media (min-width: 400px){
+    text-align: center;
+  }
+
+  > div{
+    @media (min-width: 450px){
+      display: inline-block;
+    }
+
+    &::after{
+      @media (min-width: 450px){
+        content: " –";
+      }
+    }
+
+    &:last-child{
+      &::after{
+        display: none;
+      }
+    }
+  }
+}
+
+.feedback-buttons{
+  display: flex;
+  flex-direction: row;
+  gap: .5rem;
+  justify-content: space-between;
+
+  @media (min-width: 380px){
+    justify-content: center;
+  }
+
+  .button{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 20%;
+    padding: .4rem .7rem;
+    align-items: center;
+
+    @media (min-width: 380px){
+      padding: .4rem 1rem;
+    }
+
+    @media (min-width: 400px){
+      flex-basis: auto;
+      padding: .5rem 1.25rem;
+    }
+
+    .icon{
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-bottom: .5rem;
+
+      @media (min-width: 450px){
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+}

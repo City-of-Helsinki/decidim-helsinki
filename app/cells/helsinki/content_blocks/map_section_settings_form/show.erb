@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-divider">
+    <h3 class="card-title"><%= t(".section.map") %></h3>
+  </div>
+  <div class="card-section">
+    <% form.fields_for :images, form.object.images do |images_fields| %>
+      <% each_locale do |locale, name| %>
+        <div class="mb-s">
+          <%= images_fields.upload :"map_image_#{locale}", label: t(".image", language: name), help_i18n_scope: "decidim.forms.file_help.image" %>
+        </div>
+      <% end %>
+    <% end %>
+    <% form.fields_for :settings, form.object.settings do |settings_fields| %>
+      <%= settings_fields.translated :text_field, :image_alt, label: t(".image_alt") %>
+    <% end %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-divider">
+    <h3 class="card-title"><%= t(".section.content") %></h3>
+  </div>
+  <div class="card-section">
+    <% form.fields_for :settings, form.object.settings do |settings_fields| %>
+      <%= settings_fields.translated :text_field, :title, label: t(".title") %>
+      <%= settings_fields.translated :editor, :description, label: t(".description") %>
+      <%= settings_fields.text_field :button_url, label: t(".button_url") %>
+      <%= settings_fields.translated :text_field, :button_text, label: t(".button_text") %>
+    <% end %>
+  </div>
+</div>

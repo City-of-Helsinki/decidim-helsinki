@@ -85,23 +85,23 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
       [
         "name =? AND metadata->>'pin_digest' =?",
         "helsinki_documents_authorization_handler",
-        authorization.metadata["pin_digest"]
+        authorization_metadata["pin_digest"]
       ]
     )
   end
 
   def authorized_municipality_allowed?
     return true if allowed_municipalities.blank?
-    return false if authorization.metadata["municipality"].blank?
+    return false if authorization_metadata["municipality"].blank?
 
-    allowed_municipalities.include?(authorization.metadata["municipality"])
+    allowed_municipalities.include?(authorization_metadata["municipality"])
   end
 
   def authorized_district_allowed?
     return true if allowed_districts.blank?
-    return false if authorization.metadata["district"].blank?
+    return false if authorization_metadata["district"].blank?
 
-    allowed_districts.include?(authorization.metadata["district"])
+    allowed_districts.include?(authorization_metadata["district"])
   end
 
   def authorized_age_allowed?
@@ -111,11 +111,11 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
   end
 
   def authorization_age
-    return nil if authorization.metadata["date_of_birth"].blank?
+    return nil if authorization_metadata["date_of_birth"].blank?
 
     @authorization_age ||= begin
       now = Time.now.utc.to_date
-      bd = Date.strptime(authorization.metadata["date_of_birth"], "%Y-%m-%d")
+      bd = Date.strptime(authorization_metadata["date_of_birth"], "%Y-%m-%d")
       age = now.year - bd.year
       age -= 1 if now.month > bd.month || (now.month == bd.month && now.day > bd.day)
       age
@@ -125,7 +125,7 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
     # passed to Date.strptime(). Really rare edge case but apparently it is
     # possible. Add the log message for further debugging.
     Rails.logger.error(
-      "[ERROR] Could not parse date of birth for Suomi.fi authorization #{authorization.id} (value: #{authorization.metadata["date_of_birth"]})"
+      "[ERROR] Could not parse date of birth for Suomi.fi authorization #{authorization.id} (value: #{authorization_metadata["date_of_birth"]})"
     )
     nil
   end
@@ -139,7 +139,11 @@ class SuomifiActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
   end
 
   def allowed_districts
-    @allowed_districts ||= authorization.metadata["allowed_districts"].to_s.split(",").compact.collect(&:to_s)
+    @allowed_districts ||= authorization_metadata["allowed_districts"].to_s.split(",").compact.collect(&:to_s)
+  end
+
+  def authorization_metadata
+    @authorization_metadata ||= authorization.metadata
   end
 
   def allow_reauthorization?

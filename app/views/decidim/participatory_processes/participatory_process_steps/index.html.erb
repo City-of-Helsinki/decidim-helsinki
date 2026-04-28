@@ -1,0 +1,19 @@
+<% add_decidim_page_title(t("participatory_process_steps.index.title", scope: "decidim")) %>
+<div class="row columns">
+  <div class="row">
+    <div class="columns mediumlarge-9 large-7 margin-bottom-3">
+      <div class="section">
+        <div class="page-title">
+          <h1 class="section-heading"><%= t("participatory_process_steps.index.process_steps", scope: "decidim") %></h1>
+        </div>
+
+        <%= render partial: "timeline" %>
+
+        <%= link_to participatory_process_path(current_participatory_space), class: "small hollow" do %>
+          <%= icon "chevron-left", class: "icon--small", role: "img", "aria-hidden": true %>
+          <%= t(".back_to_process") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

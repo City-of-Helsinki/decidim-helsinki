@@ -18,14 +18,10 @@ extra_locals = {
       </div>
     </div>
 
-    <% if Rails.application.config.wrapper_class == "wrapper-ruuti" %>
-      <%= render "decidim/devise/sessions/ruuti", extra_locals: extra_locals %>
-    <% else %>
-      <%= render "decidim/devise/sessions/default", extra_locals: extra_locals %>
-    <% end %>
+    <%= render "decidim/devise/sessions/default", extra_locals: extra_locals, button_params: { redirect_to: vote_path } %>
   </div>
 <% else %>
-  <div class="wrapper">
-    <%= render partial: "identify_options" %>
+  <div class="margin-top-2">
+    <%= render partial: "decidim/budgets/votes/identify_options" %>
   </div>
 <% end %>

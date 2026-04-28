@@ -2,41 +2,85 @@ en:
   devise:
     omniauth_callbacks:
       disabled: Signing in is temporarily disabled.
+    passwords:
+      edit:
+        password_help: "%{minimun_characters} characters minimum, must not be too common (e.g. 123456) and must be different from your name and your email."
+        password_help_admin: "%{minimun_characters} characters minimum, must not be too common (e.g. 123456), must be different from your name and your email. Also, must be different from your old passwords."
     sessions:
       new:
-        sign_in: 'Sign in'
+        sign_in: 'Sign in to OmaStadi website'
     shared:
       omniauth:
-        tunnistamo:
-          description: 'You can sign in also using services such as Google, Facebook or YLE through Tunnistamo.'
-          sign_in_with: 'Sign in without verifying your identity'
-          sign_in_button: 'Sign in'
+        helsinki:
+          description: 'You can sign in using Helsinki profile.'
+          sign_in_with: 'Helsinki profile'
+          sign_in_button: 'Sign in via Helsinki profile'
         sms:
-          description: 'As a pupil, you can log in with SMS or a code given by your teacher or youth worker.'
+          description: 'As a pupil, you can sign in with SMS or a code given by your teacher or youth worker.'
           sign_in_with: 'SMS sign in'
           sign_in_button: 'Sign in via SMS'
         strong:
-          description: 'Sign in to omastadi.hel.fi with your online banking ID or mobile ID. Students at comprehensive school can sign in with their Wilma ID.'
+          description: "Sign in to %{domain} with bank ID or mobile certificate. Students at comprehensive school can sign in with their learner's account."
           sign_in_with: 'Sign in and verify your identity electronically'
         suomifi:
-          description: 'Suomi.fi allows users to verify their identity using Finnish online banking IDs and mobile IDs, among others.'
+          description: 'Suomi.fi allows users to verify their identity using Finnish online banking IDs and mobile certificates, among others.'
           sign_in_with: 'Suomi.fi e-Identification'
-          sign_in_button: 'Bank ID or mobile ID'
+          sign_in_button: 'Sign in with bank ID or mobile certificate'
         mpassid:
           description: 'If you are a student in comprehensive school, you can verify your identity through the MPASSid service using your school account.'
           sign_in_with: 'MPASSid-identification'
-          sign_in_button: 'Wilma ID for school students'
+          sign_in_button: "Sign in with learner's account"
         weak:
           description: 'You can also sign in with social media accounts (Facebook, Yle, Google, among others) or with an Omastadi account you have created earlier.'
           sign_in_with: 'Sign in without identity verification'
-          sign_in_button: 'Sign in with Tunnistamo'
+          sign_in_button: 'Sign in with Helsinki profile'
   decidim:
     devise:
-      registrations:
+      omniauth_registrations:
         new:
+          nickname_help: |
+            Your nickname in the %{organization} service. Can only contain letters (a-z), numbers, dashes "-" and underscores "_".
+            For example, "helen_helsinki", "HenryHelsinki" or "isabelle-inventive". The nickname has to be unique, i.e. two
+            users cannot have the same nickname.
+      registrations:
+        create:
+          error: There was a problem creating your account.
+        new:
+          newsletter: I would like to receive occasional newsletters with relevant information.
+          nickname_help: |
+            Your nickname in the %{organization} service. Can only contain letters (a-z), numbers, dashes "-" and underscores "_".
+            For example, "helen_helsinki", "HenryHelsinki" or "isabelle-inventive". The nickname has to be unique, i.e. two
+            users cannot have the same nickname.
+          password_tooltip_html: |
+            <ul>
+              <li>At least %{min_length} characters</li>
+              <li>Must not be too common (e.g. 123456)</li>
+              <li>Must be different from your nickname and email</li>
+            </ul>
           sign_up_service_account: 'Create an account'
           sign_up_service_account_description: 'Create your account and sign in with your personal email and a password of your choice in the future.'
+          terms: terms of use
+          tos_title: Consent to the processing of personal data and terms of use
+          tos_agreement: I consent to the processing of my personal data listed above for the purposes of providing the OmaStadi service and I agree to the %{link}. I hereby confirm that I am 13-years old or older.
       sessions:
+        default:
+          omniauth:
+            mpassid:
+              title: Learner's account
+              description: You can log in to the OmaStadi website with your email address if your school uses MPASSid authentication.
+            suomifi:
+              title: Bank ID or Mobile Certificate
+              description: You can log in using your personal bank credentials issued by your bank or mobile certificate.
         new:
-          sign_in_service_account: 'Sign in with service account'
-          sign_in_service_account_description: 'Sign in using your email address and a password of your choice.'
+          already_have_account?: I have a user account
+          are_you_new?: New user
+          register: Create a new OmaStadi account
+          sign_in_intro_html: |
+            <p>You can log in with your OmaStadi credentials, bank ID, or mobile certificate.</p>
+            <p>Students and pupils can log in with their learner-specific credentials.</p>
+            <p>The first time you login, a user account is created for you.</p>
+          sign_in_service_account: OmaStadi account
+          sign_in_service_account_description: "You can submit a proposal without strong identification by logging in with your OmaStadi account. Create an OmaStadi account if you don't have one yet."
+  errors:
+    messages:
+      password_confirmation_message: Password confirmation must match the given password.

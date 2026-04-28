@@ -13,7 +13,7 @@ module Decidim
 
       uploader = current_organization.attached_uploader(:favicon)
       safe_join(Decidim::OrganizationFaviconUploader::SIZES.map do |version, size|
-        favicon_link_tag(uploader.path(variant: version), sizes: "#{size}x#{size}")
+        favicon_link_tag(uploader.variant_url(version), sizes: "#{size}x#{size}")
       end)
     end
 
@@ -46,28 +46,22 @@ module Decidim
     def icon(name, options = {})
       html_properties = {}
 
+      label = options[:aria_label] || options[:"aria-label"] || options["aria-label"]
+
       html_properties["width"] = options[:width]
       html_properties["height"] = options[:height]
-      html_properties["aria-label"] = options[:aria_label] || options[:"aria-label"] || options["aria-label"]
       html_properties["role"] = options[:role] || "img"
+      html_properties["aria-label"] = label
       html_properties["aria-hidden"] = options[:aria_hidden] || options[:"aria-hidden"] || options["aria-hidden"]
 
       html_properties["class"] = (["icon--#{name}"] + _icon_classes(options)).join(" ")
 
-      if name == "tunnistamo"
-        content_tag :svg, html_properties do
-          inner = content_tag :title, options["title"] || html_properties["aria-label"]
-          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_pack_path("media/images/hkilogo-symbol.svg")}#icon-helsinki"
+      content_tag :svg, html_properties do
+        inner = content_tag :title, label
+        # Note that we use a different path for the override to pickup correctly.
+        inner += content_tag :use, nil, "href" => "#{asset_pack_path("media/images/helsinki-icons.svg")}#icon-#{name}"
 
-          inner
-        end
-      else
-        content_tag :svg, html_properties do
-          inner = content_tag :title, options["title"] || html_properties["aria-label"]
-          inner += content_tag :use, nil, role: options[:role], "href" => "#{asset_pack_path("media/images/icons.svg")}#icon-#{name}"
-
-          inner
-        end
+        inner
       end
     end
 

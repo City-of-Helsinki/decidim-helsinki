@@ -35,8 +35,18 @@ every :day, at: "03:05", roles: [:background] do
 end
 
 # Generate reminders
-every :day, at: "04:05", roles: [:app] do
+every :day, at: "04:05", roles: [:background] do
   rake "decidim:reminders:all"
+end
+
+# Send notification mail digest weekly on saturdays
+every :saturday, at: "05:05", roles: [:background] do
+  rake "helsinki:mailers:notifications_digest_weekly"
+end
+
+# Send notification mail digest daily
+every :day, at: "06:05", roles: [:background] do
+  rake "helsinki:mailers:notifications_digest_daily"
 end
 
 # bundle exec rails decidim:stats:aggregate
@@ -48,13 +58,3 @@ end
 every :hour, at: 30, roles: [:background] do
   rake "integration:sync_events"
 end
-
-# # Send notification mail digest weekly on saturdays
-# every :saturday, at: "05:05", roles: [:app] do
-#   rake "decidim:mailers:notifications_digest_weekly"
-# end
-
-# # Send notification mail digest daily
-# every :day, at: "06:05", roles: [:app] do
-#   rake "decidim:mailers:notifications_digest_daily"
-# end

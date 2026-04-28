@@ -1,0 +1,39 @@
+@media print{
+  body{
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important; /* stylelint-disable-line property-no-unknown */
+  }
+
+  .decidim-accessibility-badge,
+  .decidim-accessibility-report,
+  .decidim-accessibility-indicator,
+  .header-top,
+  .top-bar-panel,
+  .footer{
+    display: none;
+  }
+
+  .header a,
+  a.card{
+    &::after{
+      content: none !important;
+    }
+  }
+
+  .card{
+    break-inside: avoid;
+    border: $card-border;
+
+    &.bg-secondary{
+      background-color: $secondary !important;
+    }
+
+    &.bg-tertiary{
+      background-color: $tertiary !important;
+    }
+  }
+
+  .tabs{
+    display: none;
+  }
+}

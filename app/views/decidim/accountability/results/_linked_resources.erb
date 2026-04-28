@@ -1,7 +1,7 @@
-<div class="small-12 columns section">
-  <div class="row">
-    <div class="small-12 medium-9 columns">
-      <%= linked_resources_for result, :projects, "included_projects" %>
-    </div>
-  </div>
+<div class="linked-resources">
+  <%= linked_resources_group_for(result, {
+    projects: "included_projects",
+    plans: "included_plans",
+    ideas: "included_ideas"
+  }) %>
 </div>

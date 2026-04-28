@@ -1,13 +1,24 @@
 <% extra_locals ||= {} %>
 
+<%= render "decidim/devise/sessions/form", { autofocus: false, extra_locals: extra_locals }.merge(extra_locals) %>
+
 <% if strong_providers_enabled? %>
-  <%= render "decidim/devise/shared/omniauth_buttons_strong", wrapper_class: "pt-0" %>
-  <%= render "decidim/devise/shared/register_separator" %>
+  <% enabled_strong_providers.each_with_index do |provider, index| %>
+    <div class="static__content margin-top-2">
+      <h2 class="margin-bottom-1"><%= t(".omniauth.#{provider}.title") %></h2>
+      <p class="text-large"><%= t(".omniauth.#{provider}.description") %></p>
+
+      <div class="margin-top-2">
+        <% path = decidim.send("user_#{provider}_omniauth_authorize_path") %>
+        <%= link_to decidim.send("user_#{provider}_omniauth_authorize_path"), class: "button primary button--#{normalize_provider_name(provider)}", method: :post do %>
+          <%= t("devise.shared.omniauth.#{provider}.sign_in_button") %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
 
 <% if weak_providers_enabled? %>
-  <%= render "decidim/devise/shared/omniauth_buttons" %>
   <%= render "decidim/devise/shared/register_separator" %>
+  <%= render "decidim/devise/shared/omniauth_buttons" %>
 <% end %>
-
-<%= render "decidim/devise/sessions/form", { autofocus: false, extra_locals: extra_locals }.merge(extra_locals) %>

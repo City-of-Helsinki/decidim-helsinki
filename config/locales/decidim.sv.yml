@@ -1,11 +1,90 @@
 sv:
+  activemodel:
+    attributes:
+      user:
+        about: Profilbeskrivning
+        email: E-postadress
+        locale: Språk
+        name: Namn
+        nickname: Användarnamn
+        password: Lösenord
+        password_confirmation: Bekräfta lösenord
+        personal_url: Personlig URL
+        remove_avatar: Ta bort avatar
+        tos_agreement: Användarvillkor
   decidim:
+    account:
+      delete:
+        explanation: Anledning till varför du vill ta bort ditt konto (valfritt)
     accountability:
+      directory:
+        results:
+          count:
+            results_total_count:
+              one: Hittade totalt %{count} projekt.
+              other: Hittade totalt %{count} projekt.
+          filters:
+            category: Tema
+            category_prompt: Alla teman
+            more_criteria:
+              hide: Dölj sökkriterier
+              show: Visa fler sökkriterier
+            progress: Framsteg
+            progress_prompt: Alla framsteg stater
+            reset: Rensa filter
+            search: Sök
+            scope: Område
+            scope_prompt: Alla områden
+            space: Omgång
+            space_prompt: Alla omgångar
+            term: Nyckelord
+            title: Sök projekt
+          index:
+            title: Genomförande
+            total_budget: "Total budget för projekt som visas på denna sida: %{amount}"
+          orders:
+            alphabetical: Alfabetisk ordning
+            label: Sortera projekt
+            most_recent: Senaste först
+            most_voted: De flesta röstade först
+          result:
+            attributes:
+              budget: Budget
+              maintenance_budget: Underhållskostnader
+              space: Omgång
+              status: Implementeringsfasen
+              vote_count: Röstetal
+            description_title: Projekt beskrivning
+            show_details: Visa detaljer för projektet %{title}
+            show_result: Visa detaljer för projektet
+            show_result_descriptive: "Visa detaljer för projektet: %{title}"
+          results:
+            results_without_scope: Projekt utan ett definierat område
+            scope_count:
+              one: "%{count} projekt i %{title} området."
+              other: "%{count} projekt i %{title} området."
+            scope_count_without_scope:
+              one: "%{count} projekt utan ett definierat område."
+              other: "%{count} projekt utan ett definierat område."
+            total_budget: "Total budget för projekt som visas inom detta område: %{amount}"
+          results_table:
+            label: Projekt
+            columns:
+              actions: Åtgärder
+              progress: Framsteg
+              scope: Tema
+              title: Titel
       results:
+        result_attributes_extra:
+          attributes:
+            budget: Budget
+            maintenance_budget: Underhållskostnader
+          show_budget_breakdown: Visa budgetfördelning
         show:
           stats:
             category: Tema
         show_result_body:
+          assets: Bilagor
           comments_amount:
             one: '%{count} kommentar'
             other: '%{count} kommentarer'
@@ -16,12 +95,22 @@ sv:
               name: Budgetfördelning
             description:
               name: Projekt beskrivning
+            cocreation_description:
+              name: Utveckling av projektet
+            implementation_description:
+              name: Så genomför staden projektet
             interaction_description:
               name: Interaktion
             plans_description:
               name: Planer
-        stats_box:
-          budget: Budget
+    admin:
+      categories:
+        form:
+          add_images: Lägg till bilder
+          attachment_legend: Bilder
+          edit_images: Redigera bilder
+          images: Bilder
+          images_legend: Lägg till bilder
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar för flera användare
@@ -42,6 +131,9 @@ sv:
           back_to_budgets: Visa alla budgeter
     components:
       add_comment_form:
+        account_message: <a href="%{sign_in_url}">Logga in med ditt konto</a> för att lägga till din kommentar.
+        form:
+          submit: Skicka kommentar
         opinion:
           label: Din åsikt om detta ämne
           positive: Positiv
@@ -54,6 +146,135 @@ sv:
         settings:
           global:
             vote_success_mpassid_content: Innehåll som visas efter framgångsrik omröstning för MPASSid-användare
+    forms:
+      upload:
+        choose_file: Välj fil
+    notifications:
+      index:
+        title: Meddelanden
+      no_notifications: Inga meddelanden.
+    pages:
+      terms_and_conditions:
+        accept:
+          error: Det uppstod ett problem med att godkänna villkoren.
+          success: Tack! Du har godkänt användarvillkoren.
+        form:
+          agreement: Jag ger mitt samtycke till behandlingen av mina ovan nämnda personuppgifter och jag godkänner användarvillkoren. Jag intygar härmed att jag är 13-år eller äldre.
+          continue: Fortsätta
+          legend: Samtycke till användarvillkor och behandling av personuppgifter
+        refuse:
+          modal_btn_continue: Stäng
+          modal_btn_exit: Avböja och logga ut
+          modal_button: Vägra villkoren
+          modal_title: Är du säker på att du vill vägra de uppdaterade användarvillkoren?
+        required_review:
+          alert: Vi har uppdaterat användarvillkoren, var god och granska dem.
+          alert_new: Var god och granska användarvillkoren.
+      tos_not_accepted:
+        description_html: |
+          <p>Du har ännu inte gett ditt samtycke till användarvillkoren. Du måste ge ditt samtycke till användarvillkoren för att kunna använda tjänsten.</p>
+        see_terms_of_service: Läs användarvillkoren
+        title: Samtycke till användarvillkor
+    participatory_processes:
+      participatory_processes:
+        process_actions:
+          share: Dela processen
+        show:
+          show_step: Visa fas
+          steps: Faser
+    privacy:
+      partials:
+        privacy_consent:
+          agree: Spara
+          agree_to_public_profile: Jag accepterar att min profil görs offentlig
+          make_profile_public: Ändring av profil till offentlig profil
+          do_not_agree: Avbryt
+          content_html: |
+            <p>Om du vill lämna ett förslag eller kommentera ett förslag i tjänsten, måste du skapa en offentlig profil
+            i tjänsten. Detta innebär att andra användare av tjänsten kommer att se ditt namn vid ett förslag eller en
+            kommentar och få tillgång till din profil genom att klicka på den. I den offentliga profilen syns följande
+            uppgifter:</p>
+            <ul>
+              <li>ditt namn</li>
+              <li>dina förslag och kommentarer</li>
+              <li>vem du följer och vilka som följer dig i tjänsten VårStad</li>
+            </ul>
+            <p>Om du vill kan du dessutom i profilen lägga till:</p>
+            <ul>
+              <li>en profilbild</li>
+            </ul>
+            <p>Om du vill kan du ändra profilen så att den blir privat igen, vilket gör att inga uppgifter i din profil
+            visas för andra användare. I så fall försvinner även ditt namn från de förslag eller kommentarer du har
+            lämnat. Du kan göra din profil privat på webbplatsen via inställningarna för sekretess för ditt
+            användarkonto.</p>
+      privacy_settings:
+        show:
+          profile_publicity_html: |
+            <p>Dessa integritetsinställningar låter dig kontrollera hur du visas på denna plattform offentligt. Du kan
+            välja att förbli helt anonym men det kommer att begränsa vad du kan göra på denna plattform.</p>
+            <h2 class="h5">Profilpublicitet</h2>
+            <p>Att göra din profil offentlig låter dig utföra offentliga aktiviteter på denna plattform, såsom att
+            skicka kommentarer, delta i diskussioner, skapa förslag etc.</p><p>När du offentliggör din profil andra
+            deltagare kan se ditt namn offentligt på denna plattform och även se offentlig information om dig, såsom
+            ditt namn och avatar bild, din offentliga verksamhet på denna plattform, dina följare och vem du följer.</p>
+          private_messaging_html: |
+            <h2 class="h5">Direktmeddelanden</h2>
+            <p>Dessa inställningar låter dig kommunicera med andra deltagare på denna plattform. Andra deltagare kan
+            skicka direktmeddelanden och du kan även skicka dem till andra. Din profil måste vara offentlig för att
+            aktivera den här funktionen eftersom andra människor behöver hitta dig från denna plattform för att kunna
+            ha en konversation med dig.</p>
+    profiles:
+      show:
+        activity: Aktivitet på sidan
+    proposals:
+      proposal_l:
+        card_label: Förslag %{title}
+      proposals:
+        filters:
+          keyword: Nyckelord
+          reset: Rensa filter
+        index:
+          show_list: Visa resultat på kartan
+          show_map: Visa resultat som lista
+        map_template:
+          view_proposal: Visa förslag
+        proposal_actions:
+          share: Dela förslaget
+          show_comments: Visa förslagets kommentarer
+          show_on_map: Visa förslaget på kartan
+          flag: Uttryck förslaget
+        proposal_controls:
+          manage_proposal: Hantera förslag
+        proposal_map:
+          title: Förslag på karta
     resource_links:
       included_plans:
-        project_plan: Relaterade förslag om samutveckling
+        project_plan: Relaterade förslag
+        result_plan: Förslag bifogade det röstade förslaget
+      included_projects:
+        result_project: Röstat förslag
+      title: Relaterat till den här saken
+    shared:
+      dynamic_form:
+        reset_message: Filtren har rensats. Uppdaterade sökresultat visas nedan.
+      embed:
+        title: Inbäddat videoinnehåll
+      skip_subnavigation: Hoppa över undernavigering
+    tos_page:
+      privacy_title: Samtycke till behandling av personuppgifter
+    user_activity:
+      resource_type_label: Aktivitetstyp
+  layouts:
+    decidim:
+      data_consent:
+        warning:
+          all_categories: cookies för preferens, statistik och marknadsföring
+          change_settings: Ändra inställningarna för cookies
+          consent_required_html: |
+            Det här innehållet hämtas från <span data-content-source-text></span>. För att visa innehållet krävs att du
+            godkänner webbplatsens cookies. Du kan se innehållet antingen genom att gå till en extern webbplats eller
+            genom att ge ditt samtycke till användningen av %{categories}.
+          proceed_to_external_site: Gå till extern webbplats
+          title: Innehållet kan inte visas
+      impersonation_warning:
+        label: Imitation av en annan användare

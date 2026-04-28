@@ -10,13 +10,19 @@ sv:
       mpassid_nids:
         student_class_level: Årskurs
         voting_unit: Ruuti område
+      helsinki_idp:
+        district: Distrikt
       suomifi_eid:
         district: Distrikt
       result:
         budget_amount: Total budget för projektet
         budget_breakdown: Budgetfördelning
+        cocreation_description: Samskapande beskrivning
+        implementation_description: Genomförande beskrivning
         interaction_description: Interaktionsbeskrivning
+        maintenance_budget_amount: Underhållskostnader
         news_description: Nyheter
+        news_title: Nyheter titel
         plans_description: Planbeskrivning
     errors:
       models:
@@ -30,12 +36,13 @@ sv:
       decidim/plans/plan:
         one: Förslag
         other: Förslag
-  auth:
-    sign_in_with_tunnistamo: 'Logga in med Tunnistamo'
   date:
     formats:
       decidim_short: "%d.%m.%Y"
   decidim:
+    assemblies:
+      assembly_m:
+        card_label: "Grupp: %{title}"
     authorization_handlers:
       admin:
         cocreation:
@@ -57,6 +64,10 @@ sv:
           passport: Pass
         name: Identity document at an office
         user_explanation: Gå till en fysisk plats för att identifiera dig med ett identitetsdokument.
+      helsinki_paper_votes_authorization_handler:
+        explanation: Registrering av pappersröster i deltagande budgeteringsröstning.
+        name: Pappersröstningshanterare
+        user_explanation: Denna identitetsbekräftelsemetod används endast för administrativa ändamål.
       mpassid_nids:
         fields:
           allowed_units: Tillåtna Ruuti områden
@@ -64,17 +75,26 @@ sv:
           minimum_class_level: Minst årskurs
           student_class_level: Årskurs
           voting_unit: Ruuti område
-        name: Bankkoder eller mobilcertifikat
+        name: Elevens konto
       suomifi_eid:
         fields:
           allowed_districts: Tillåtna distrikt
           district: Distrikt
           minimum_age: Lägsta ålder
-        name: Wilma ID för skoleelever
+        name: Bankkoder eller mobilcertifikat
+      helsinki_idp:
+        fields:
+          allowed_districts: Tillåtna distrikt
+          district: Distrikt
+          minimum_age: Lägsta ålder
+        name: Helsingforsprofilen
     budgets:
       projects:
         filters:
           category_prompt: Välj ett ämne
+      votes:
+        finished:
+          feedback_link_title: Hur skulle du betygsätta VårStad som helhet?
     components:
       component_order_selector:
         order:
@@ -90,11 +110,22 @@ sv:
           explanation: 'Vägledning för bild:'
           message_1: Helst en landskapsbild som inte har någon text.
           message_2: Tjänsten beskär bilden.
+      upload_help:
+        explanation: 'Vägledning för filen som ska laddas upp:'
+      upload:
+        labels:
+          add_attachment: Välj bilaga
+          add_file: Välj fil
+          add_image: Välj bild
     help_sections:
       footer_text:
         name: Sidfotstext
       help_index:
         name: Hjälpavsnittets första sida
+      linked_events_index:
+        name: Evenemang-sidan
+      results_directory_index:
+        name: Resultatkatalog första sida
     pages:
       home:
         statistics:
@@ -102,19 +133,64 @@ sv:
       index:
         title: Hjälp
       side_panel:
-        show_navigation: Visa navigering
+        choose: Välj hjälpsektion
+        label: Undernavigering
+        show_navigation: Välj hjälpsektion
+    participatory_processes:
+      participatory_processes:
+        components_list:
+          title: Sidor
+        index:
+          title: Processer
+        process_attributes:
+          attributes:
+            end_date: Slutdatum
+            start_date: Startdatum
+          title: Information
+        show:
+          subtitle: Process
+      process_m:
+        card_label: "Process: %{title}"
     proposals:
+      collaborative_draft_m:
+        card_label: "Samarbetsförslag: %{title}"
+      proposal_m:
+        card_label: "Förslag: %{title}"
       proposals:
         filters:
           category_prompt: Välj ett ämne
-    suomifi:
+        proposal_attributes:
+          attributes:
+            address: Plats
+            category: Tema
+            id: Nummer (ID)
+            published_at: Publiceringstiden
+          title: Information
+        show:
+          subtitle: Förslag
+    helsinki:
       omniauth_callbacks:
         failure:
           security_denial: Din identitet kan inte verifieras elektroniskt. Du kan rösta på röstningsplatserna som har meddelats separat genom att visa upp ett identitetsbevis.
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            cocreation: Samskapande
+            helsinki_documents_authorization_handler: Identifiering på fysisk plats
+            helsinki_paper_votes_authorization_handler: Pappersröstningshanterare
+            mpassid_nids: MPASSid
+            helsinki_idp: Helsingforsprofilen
   errors:
     messages:
       extension_whitelist_error: Filtypen du försökte ladda upp är inte tillåten.
   forms:
+    errors:
+      email: E-postadress måste innehålla lokal del, @-tecken och domän.
+      name: Namnet måste innehålla minst ett tecken.
+      nickname: Användarnamn måste innehålla minst ett tecken och det måste följa kraven som visas nedan.
+      password: Lösenordet måste överensstämma med lösenordskraven. Kontrollera kraven i hjälptexten nedan.
+      password_confirmation: Lösenordsbekräftelsen måste matcha det angivna lösenordet.
     scopes_picker:
       others: Andra
       prompt: Välj %{item_name}
@@ -145,13 +221,14 @@ sv:
         unfold: Öppna
       breadcrumbs:
         current: Nuvarande sida
+        label: Länkstig
       header:
-        choose_language: Välj språk
         front_page_link: Gå till hemsidan
         help: Hjälp
-        navigation: Menu
-        sign_in: Logga in
+        navigation: Meny
         subtitle: 2020-2021
+      language_chooser_languages:
+        label: Välj språk
       participatory_processes:
         index:
           active_processes: Pågår nu
@@ -159,15 +236,40 @@ sv:
       process_header:
         unfold: Öppna
       user_menu:
-        conversations: Meddelanden
+        conversations: Samtal
         favorites: Favoriter
         notifications: Notifikationer
         profile: Kontoinformation
         profile_nav: Profil
         public_profile: Den egna verksamheten
-    footer:
-      about: Om tjänsten
-      contact: Kontaktuppgifter
+      user_profile:
+        my_data: Ladda ner din data
+      wrapper:
+        subnav:
+          choose: Välj sida
+          label: Undernavigering
+          show: Välj sida
+    header:
+      close: Stäng
       feedback: Ge feedback
-      processes_info: Du kan se alla processer i den här tjänsten från processidan
-      processes_show: Visa alla processer
+      sign_in: Logga in
+    flash:
+      close: Stäng avisering
+    footer:
+      back_to_top: Tillbaka till toppen
+      city_name: Helsingfors stad
+      contact: Ta kontakt
+      feedback: Ge respons
+      history: Historia
+      results: Genomförande
+  number:
+    percentage:
+      format:
+        format: "%n %"
+  views:
+    pagination:
+      first: Första
+      last: Sista
+      next: Nästa
+      previous: Tidigare
+      truncate: "&hellip;"

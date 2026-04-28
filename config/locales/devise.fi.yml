@@ -2,41 +2,85 @@ fi:
   devise:
     omniauth_callbacks:
       disabled: Sisäänkirjautuminen on tilapäisesti poissa käytöstä.
+    passwords:
+      edit:
+        password_help: "Tulee sisältää vähintään %{minimun_characters} merkkiä, ei voi olla yleisesti käytetty salasana (esim. 123456), eikä voi vastata nimeäsi tai sähköpostiosoitettasi."
+        password_help_admin: "Tulee sisältää vähintään %{minimun_characters} merkkiä, ei voi olla yleisesti käytetty salasana (esim. 123456), eikä voi vastata nimeäsi tai sähköpostiosoitettasi. On myös oltava eri salasana kuin edelliset salasanasi."
     sessions:
       new:
-        sign_in: 'Kirjaudu sisään'
+        sign_in: 'Kirjaudu OmaStadi-sivustolle'
     shared:
       omniauth:
-        tunnistamo:
-          description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa.'
-          sign_in_with: 'Kirjaudu ilman tunnistautumista'
-          sign_in_button: 'Kirjaudu sisään'
+        helsinki:
+          description: 'Voit kirjautua sisään Helsinki-profiilin avulla.'
+          sign_in_with: 'Helsinki-profiili'
+          sign_in_button: 'Kirjaudu Helsinki-profiililla'
         sms:
           description: 'Koululaisena voit tunnistautua tekstiviestillä tai opettajan tai nuoriso-ohjaajan antamalla koodilla.'
           sign_in_with: 'Tekstiviestikirjautuminen'
-          sign_in_button: 'Kirjaudu sisään tekstiviestillä'
+          sign_in_button: 'Kirjaudu tekstiviestillä'
         strong:
-          description: 'Kirjautuminen omastadi.hel.fi -palveluun pankkitunnuksella tai mobiilivarmenteella. Peruskoulun oppilaat voivat kirjautua myös Wilma-tunnuksilla.'
+          description: 'Kirjautuminen %{domain} -palveluun pankkitunnuksella tai mobiilivarmenteella. Peruskoulun oppilaat voivat kirjautua myös oppijan tunnuksilla.'
           sign_in_with: 'Kirjaudu ja tunnistaudu sähköisellä tunnistautumisella'
         suomifi:
-          description: 'Suomi.fi tarjoaa tunnistautumismahdollisuuden mm. suomalaisilla pankkitunnuksilla ja mobiilivarmenteella.'
+          description: 'Suomi.fi tarjoaa tunnistautumismahdollisuuden mm. suomalaisilla pankkitunnuksella ja mobiilivarmenteella.'
           sign_in_with: 'Suomi.fi-tunnistautuminen'
-          sign_in_button: 'Pankkitunnukset tai mobiilivarmenne'
+          sign_in_button: 'Kirjaudu sisään pankkitunnuksella tai mobiilivarmenteella'
         mpassid:
-          description: 'Koululaisena voit kirjautua MPASSid-palvelun avulla koulusi tunnuksella.'
+          description: 'Oppijana voit kirjautua MPASSid-palvelun avulla koulusi tunnuksella.'
           sign_in_with: 'MPASSid-tunnistautuminen'
-          sign_in_button: 'Oppilaiden Wilma-tunnukset'
+          sign_in_button: 'Kirjaudu sisään oppijan tunnuksella'
         weak:
-          description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) Tunnistamo-palvelussa tai aiemmin luomillasi Omastadi –tunnuksilla.'
-          sign_in_with: 'Kirjaudu  ilman tunnistautumista'
-          sign_in_button: 'Kirjaudu Tunnistamo-palvelun avulla'
+          description: 'Voit kirjautua sisään myös sosiaalisen median tileillä (mm. Facebook, Yle, Google) tai aiemmin luomillasi Omastadi –tunnuksilla.'
+          sign_in_with: 'Kirjaudu ilman tunnistautumista'
+          sign_in_button: 'Kirjaudu Helsinki-profiililla'
   decidim:
     devise:
+      omniauth_registrations:
+        new:
+          nickname_help: |
+            Nimimerkkisi %{organization} -palvelussa. Voi sisältää ainoastaan kirjaimia (a-z), numeroita sekä yhdysmerkkejä "-" ja alaviivoja "_".
+            Esimerkiksi "henna_helsinki", "HeikkiHelsinki" tai "iida-ideanikkari". Nimimerkin on oltava yksilöity, eli kahdella käyttäjällä
+            ei voi olla samaa nimimerkkiä.
       registrations:
+        create:
+          error: Käyttäjätilin luonti epäonnistui.
         new:
+          newsletter: Haluan vastaanottaa silloin tällöin ajankohtaista tietoa sisältäviä uutiskirjeitä.
+          nickname_help: |
+            Nimimerkkisi %{organization} -palvelussa. Voi sisältää ainoastaan kirjaimia (a-z), numeroita sekä yhdysmerkkejä "-" ja alaviivoja "_".
+            Esimerkiksi "henna_helsinki", "HeikkiHelsinki" tai "iida-ideanikkari". Nimimerkin on oltava yksilöity, eli kahdella käyttäjällä
+            ei voi olla samaa nimimerkkiä.
+          password_tooltip_html: |
+            <ul>
+              <li>Vähintään %{min_length} merkkiä</li>
+              <li>Ei yleisesti käytetty salasana (esim. 123456)</li>
+              <li>Ei voi vastata nimimerkkiäsi tai sähköpostiosoitettasi</li>
+            </ul>
           sign_up_service_account: 'Luo omat tunnukset'
-          sign_up_service_account_description: 'Luo oma käyttäjätili ja kirjaudu jatkossa sisään sähköpostisoittella ja itse valitsemallasi salasanalla.'
+          sign_up_service_account_description: 'Luo oma käyttäjätili ja kirjaudu jatkossa sisään sähköpostiosoitteella ja itse valitsemallasi salasanalla.'
+          terms: käyttöehdot
+          tos_title: Suostumus henkilötietojen käsittelylle ja käyttöehdot
+          tos_agreement: Annan suostumukseni edellä lueteltujen henkilötietojeni käsittelyyn OmaStadi-palvelun tuottamiseksi ja hyväksyn %{link}. Vakuutan, että olen 13-vuotta täyttänyt.
       sessions:
+        default:
+          omniauth:
+            mpassid:
+              title: Oppijan tunnus
+              description: Voit kirjautua OmaStadi-sivustolle opinnoissasi käyttämällä sähköpostiosoitteella, jos koululla on käytössä MPASSid-tunnistautuminen.
+            suomifi:
+              title: Pankkitunnus tai mobiilivarmenne
+              description: Voit kirjautua sivustolla pankkisi myöntämillä henkilökohtaisilla tunnuksilla tai mobiilivarmenteella.
         new:
-          sign_in_service_account: 'Kirjaudu omalla tunnuksella'
-          sign_in_service_account_description: 'Kirjaudu sisään sähköpostisoittella ja itse valitsemallasi salasanalla.'
+          already_have_account?: Minulla on käyttäjätili
+          are_you_new?: Uusi käyttäjä
+          register: Luo uusi OmaStadi-tunnus
+          sign_in_intro_html: |
+            <p>Voit kirjautua OmaStadi-tunnuksella, pankkitunnuksilla tai mobiilivarmenteella.</p>
+            <p>Koululaiset ja opiskelijat voivat kirjautua oppijoiden omilla tunnuksilla.</p>
+            <p>Ensimmäisen kirjautumisen yhteydessä sinulle luodaan käyttäjätili.</p>
+          sign_in_service_account: OmaStadi-tunnus
+          sign_in_service_account_description: Voit tehdä ehdotuksen ilman vahvaa tunnistautumista kirjautumalla sivustolle OmaStadi-tunnuksella. Luo OmaStadi-tunnus, jos sinulla ei vielä ole sitä.
+  errors:
+    messages:
+      password_confirmation_message: Salasanan vahvistuksen tulee vastata antamaasi salasanaa.

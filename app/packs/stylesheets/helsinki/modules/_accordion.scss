@@ -1,54 +1,52 @@
-.accordion-title,
-.accordion-content{
-  border-left: 0;
-  border-right: 0;
-}
+.accordion{
+  &.accordion--large{
+    .accordion-title{
+      font-size: 1.5rem;
 
-.accordion-title{
-  &::before{
-    margin-top: -20px;
-    font-size: 2rem;
-  }
-}
-
-.is-active > .accordion-title{
-  &::before{
-    margin-top: -6px;
-  }
-}
-
-.accordion-content{
-  h2,
-  .h2,
-  h3,
-  .h3,
-  h4,
-  .h4,
-  h5,
-  .h5,
-  h6,
-  .h6{
-    color: $body-font-color;
+      @include breakpoint(medium){
+        font-size: 2rem;
+      }
+    }
   }
 
-  h2,
-  .h2{
-    font-size: 1.4rem;
+  .accordion-title{
+    position: relative;
+    display: block;
+    padding: 1.25rem 2rem 1.25rem 0;
+    border-bottom: 1px solid $hel-dark-gray;
+    text-decoration: none;
+
+    .accordion-title__icon{
+      position: absolute;
+      display: block;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      line-height: 1;
+
+      .accordion--active{ display: none; }
+
+      .icon{
+        width: 1.5em;
+        height: 1.5em;
+      }
+    }
   }
 
-  h3,
-  .h3{
-    font-size: 1.3rem;
+  .accordion-item{
+    &.is-active{
+      .accordion-title{
+        .accordion-title__icon{
+          .accordion--active{ display: inline; }
+          .accordion--inactive{ display: none; }
+        }
+      }
+    }
   }
 
-  h4,
-  .h4{
-    font-size: 1.1rem;
-  }
-
-  h5,
-  .h5{
-    color: $body-font-color;
-    font-size: 1rem;
+  .accordion-content{
+    display: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid $hel-dark-gray;
   }
 }

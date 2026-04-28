@@ -1,0 +1,31 @@
+<div class="attributes">
+  <h2 class="resource__aside__title"><%= t(".details.title") %></h2>
+
+  <div class="attributes__item">
+    <h3 class="attributes__item__name"><%= t(".details.attributes.id") %></h3>
+    <div class="attributes__item__value"><%= plan.id %></div>
+  </div>
+  <% if area_scope.present? %>
+    <div class="attributes__item">
+      <h3 class="attributes__item__name"><%= t(".details.attributes.area_scope") %></h3>
+      <div class="attributes__item__value"><%= translated_attribute(area_scope.name) %></div>
+    </div>
+  <% end %>
+  <% if category.present? %>
+    <div class="attributes__item">
+      <h3 class="attributes__item__name"><%= t(".details.attributes.category") %></h3>
+      <div class="attributes__item__value">
+        <% if category.parent %>
+          <%= translated_attribute(category.parent.name) %> -
+        <% end %>
+        <%= translated_attribute(category.name) %>
+      </div>
+    </div>
+  <% end %>
+  <% if plan.published? %>
+    <div class="attributes__item">
+      <h3 class="attributes__item__name"><%= t(".details.attributes.published_at") %></h3>
+      <div class="attributes__item__value"><%= l(plan.published_at.to_date, format: :decidim_short) %></div>
+    </div>
+  <% end %>
+</div>

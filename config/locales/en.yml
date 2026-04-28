@@ -10,13 +10,19 @@ en:
       mpassid_nids:
         student_class_level: Grade level
         voting_unit: Ruuti area
+      helsinki_idp:
+        district: District
       suomifi_eid:
         district: District
       result:
         budget_amount: Total budget for the project
         budget_breakdown: Budget breakdown
+        cocreation_description: Co-creation description
+        implementation_description: Implementation description
         interaction_description: Interaction description
+        maintenance_budget_amount: Maintenance costs
         news_description: News
+        news_title: News title
         plans_description: Plans description
     errors:
       models:
@@ -30,12 +36,13 @@ en:
       decidim/plans/plan:
         one: Proposal
         other: Proposals
-  auth:
-    sign_in_with_tunnistamo: 'Use Tunnistamo to sign in'
   date:
     formats:
       decidim_short: "%d.%m.%Y"
   decidim:
+    assemblies:
+      assembly_m:
+        card_label: "Group: %{title}"
     authorization_handlers:
       admin:
         cocreation:
@@ -57,6 +64,10 @@ en:
           passport: Passport
         name: Identity document at an office
         user_explanation: Go to a physical location to identify yourself with an identity document.
+      helsinki_paper_votes_authorization_handler:
+        explanation: Registering paper votes in participatory budgeting voting.
+        name: Paper vote handler
+        user_explanation: This identity confirmation method is only used for administrative purposes.
       mpassid_nids:
         fields:
           allowed_roles: Allowed roles
@@ -65,17 +76,26 @@ en:
           minimum_class_level: Minimum grade level
           student_class_level: Grade level
           voting_unit: Ruuti area
-        name: Wilma ID for school students
+        name: Pupil's account
       suomifi_eid:
         fields:
           allowed_districts: Allowed districts
           district: District
           minimum_age: Minimum age
         name: Bank ID or mobile ID
+      helsinki_idp:
+        fields:
+          allowed_districts: Allowed districts
+          district: District
+          minimum_age: Minimum age
+        name: Helsinki profile
     budgets:
       projects:
         filters:
           category_prompt: Choose category
+      votes:
+        finished:
+          feedback_link_title: How would you rate OmaStadi as a whole?
     components:
       component_order_selector:
         order:
@@ -91,11 +111,22 @@ en:
           explanation: 'Guidance for image:'
           message_1: Preferrably a landscape image that does not have any text.
           message_2: The service crops the image.
+      upload_help:
+        explanation: 'Guidance for the file to be uploaded:'
+      upload:
+        labels:
+          add_attachment: Choose attachment
+          add_file: Choose file
+          add_image: Choose image
     help_sections:
       footer_text:
         name: Footer text
       help_index:
         name: Help section front page
+      linked_events_index:
+        name: Events front page
+      results_directory_index:
+        name: Results directory index
     pages:
       home:
         statistics:
@@ -103,19 +134,64 @@ en:
       index:
         title: Help
       side_panel:
-        show_navigation: Show navigation
+        choose: Choose help section
+        label: Sub navigation
+        show_navigation: Select help section
+    participatory_processes:
+      participatory_processes:
+        components_list:
+          title: Pages
+        index:
+          title: Processes
+        process_attributes:
+          attributes:
+            end_date: Ending date
+            start_date: Starting date
+          title: Information
+        show:
+          subtitle: Process
+      process_m:
+        card_label: "Process: %{title}"
     proposals:
+      collaborative_draft_m:
+        card_label: "Collaborative draft: %{title}"
+      proposal_m:
+        card_label: "Proposal: %{title}"
       proposals:
         filters:
           category_prompt: Choose category
-    suomifi:
+        proposal_attributes:
+          attributes:
+            address: Location
+            category: Theme
+            id: Number (ID)
+            published_at: Publish time
+          title: Information
+        show:
+          subtitle: Proposal
+    helsinki_idp:
       omniauth_callbacks:
         failure:
           security_denial: Your identity cannot be verified electronically. You can vote at the polling stations announced separately by showing an ID.
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            cocreation: Co-creation
+            helsinki_documents_authorization_handler: Identification at physical location
+            helsinki_paper_votes_authorization_handler: Paper vote handler
+            mpassid_nids: MPASSid
+            helsinki_idp: Helsinki profile
   errors:
     messages:
       extension_whitelist_error: The file type you tried to upload is not allowed.
   forms:
+    errors:
+      email: Email must contain local part, @-character and domain.
+      name: Name must contain at least one character.
+      nickname: Nickname must contain at least one character and it must follow the requirements shown below.
+      password: Password must comply with the password requirements. Please check the requirements from the help text shown below.
+      password_confirmation: Password confirmation must match the given password.
     scopes_picker:
       others: Others
       prompt: Choose %{item_name}
@@ -146,13 +222,14 @@ en:
         unfold: Unfold
       breadcrumbs:
         current: Current page
+        label: Breadcrumbs
       header:
-        choose_language: Select language
         front_page_link: Go to front page
         help: Help
         navigation: Menu
-        sign_in: Sign in
         subtitle: 2020-2021
+      language_chooser_languages:
+        label: Select language
       participatory_processes:
         index:
           active_processes: Ongoing now
@@ -160,15 +237,40 @@ en:
       process_header:
         unfold: Unfold
       user_menu:
-        conversations: Messages
+        conversations: Conversations
         favorites: Favourites
         notifications: Notifications
         profile: Account information
         profile_nav: Profile
         public_profile: My activity
-    footer:
-      about: About the service
-      contact: Contact information
+      user_profile:
+        my_data: Download your data
+      wrapper:
+        subnav:
+          choose: Select page
+          label: Sub navigation
+          show: Select page
+    header:
+      close: Close
       feedback: Give feedback
-      processes_info: You can see all the processes in this service from the processes page
-      processes_show: Show all processes
+      sign_in: Sign in
+    flash:
+      close: Close notification
+    footer:
+      back_to_top: Back to top
+      city_name: City of Helsinki
+      contact: Connect
+      feedback: Give feedback
+      history: History
+      results: Implementation
+  number:
+    percentage:
+      format:
+        format: "%n %"
+  views:
+    pagination:
+      first: First
+      last: Last
+      next: Next
+      previous: Previous
+      truncate: "&hellip;"

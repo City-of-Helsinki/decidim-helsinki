@@ -1,60 +1,63 @@
 <%
 summary = translated_attribute(result.summary)
+news_title = translated_attribute(result.news_title)
 news = translated_attribute(result.news_description)
+
+first_status = Decidim::Accountability::Status.where(component: current_component).order(:progress).first
+cocreation_phase_active = !result.status.present? || result.status == first_status
 %>
 
-<h1 class="heading2"><%= translated_attribute result.title %></h1>
+<% unless cocreation_phase_active %>
+  <%= render partial: "result_body_section", locals: {
+    title: t(".section.implementation_description.name"),
+    body: translated_attribute(result.implementation_description)
+  } %>
 
-<div class="record-details">
-  <%= cell "decidim/tags", result, context: { extra_classes: ["tags--result"] } %>
-  <%== cell("decidim/tags/tags", result) %>
+  <%= render partial: "timeline", locals: { result: result } if result.timeline_entries.any? %>
+<% end %>
 
-  <%= link_to "#comments" do %>
-    <%= icon "comment-square", class: "icon--small", aria_hidden: true, role: "img" %>
-    <%= t(".comments_amount", count: result.comments_count) %>
-  <% end %>
-</div>
+<h2><%= t(".subtitle") %></h2>
 
 <% if summary.present? %>
-  <div class="mb-3">
-    <p><%== summary %></p>
-  </div>
+  <p><%== summary %></p>
 <% end %>
 
-<% if news.present? %>
-  <div class="callout secondary">
-    <h2><%= t(".news") %></h2>
-    <%== news %>
+<%== decidim_sanitize_admin(translated_attribute(result.description)) %>
+
+<%= render partial: "result_body_section", locals: {
+  title: t(".section.cocreation_description.name"),
+  body: translated_attribute(result.cocreation_description)
+} %>
+
+<% if strip_tags(news).strip.present? %>
+<div class="banner bg-silver-medium-light margin-top-2 margin-bottom-2">
+  <div class="banner__content">
+    <h2><%= news_title.presence || t(".news") %></h2>
+    <%== decidim_sanitize_admin(news) %>
   </div>
+</div>
 <% end %>
 
-<div class="row">
-  <%= render partial: "timeline", locals: { result: result } if result.timeline_entries.any? %>
-</div>
 
-<div class="description mb-5">
-  <h2><%= t(".details") %></h2>
+<%
+asset_keys = [:implementation, :cocreation, :plans, :interaction]
 
-  <div class="accordion" data-accordion>
-    <div class="accordion-item is-active" data-accordion-item>
-      <a href="#" class="accordion-title"><%= t(".section.description.name") %></a>
+at_collections = result.attachment_collections.where(key: asset_keys)
+ln_collections = result.result_link_collections.where(key: asset_keys)
+has_assets = at_collections.any? { |c| c.attachments.any? } || ln_collections.any? { |c| c.links.any? }
+%>
 
-      <div class="accordion-content" data-tab-content>
-        <%== translated_attribute result.description %>
-      </div>
-    </div>
+<% if has_assets %>
+  <h2><%= t(".assets") %></h2>
 
-    <% [:plans_description, :budget_breakdown, :interaction_description].each do |section_key| %>
-      <% text = translated_attribute(result.public_send(section_key)) %>
-      <% next if text.blank? %>
+  <% asset_keys.each do |key| %>
+    <%= render partial: "result_collection_assets", locals: { collection_key: key } %>
+  <% end %>
+<% end %>
 
-      <div class="accordion-item" data-accordion-item>
-        <a href="#" class="accordion-title"><%= t(".section.#{section_key}.name") %></a>
-
-        <div class="accordion-content" data-tab-content>
-          <%== translated_attribute text %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+<% [:plans_description, :interaction_description].each do |section_key| %>
+  <%= render partial: "result_body_section", locals: {
+    title: t(".section.#{section_key}.name"),
+    body: translated_attribute(result.public_send(section_key))
+  } %>
+<% end %>

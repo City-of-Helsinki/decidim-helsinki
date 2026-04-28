@@ -1,0 +1,23 @@
+<%= card_wrapper do %>
+  <%# = render :label if has_label? %>
+  <%= render :top if render_top? %>
+  <%= render :image if has_image? %>
+
+  <div class="card__content">
+    <% if has_header? %>
+      <h3 class="h4"><%= title %></h3>
+    <% end %>
+
+    <div class="card__text">
+      <div class="card__text--paragraph">
+        <%= description %>
+      </div>
+    </div>
+
+    <%= render :tags %>
+  </div>
+
+  <%= render :data %>
+  <%# = render :status %>
+  <%= render :footer %>
+<% end %>

@@ -7,11 +7,15 @@ module Helsinki
     private
 
     def title
-      present(model).title
+      "##{model.id} #{present(model).title}"
     end
 
     def resource_path
-      Decidim::ResourceLocatorPresenter.new(model).path
+      if model.is_a?(Decidim::Budgets::Project)
+        Decidim::ResourceLocatorPresenter.new([model.budget, model]).path
+      else
+        Decidim::ResourceLocatorPresenter.new(model).path
+      end
     end
   end
 end

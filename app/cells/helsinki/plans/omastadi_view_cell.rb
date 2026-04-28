@@ -3,14 +3,10 @@
 module Helsinki
   module Plans
     class OmastadiViewCell < Decidim::Plans::PlanViewCell
-      include ActionView::Helpers::NumberHelper
+      # include ActionView::Helpers::NumberHelper
       include Decidim::Plans::RichPresenter
 
-      def answer
-        return if !plan.answered? && budget_estimate.blank? && final_budget_estimate.blank?
-
-        render :answer
-      end
+      delegate :current_settings, :component_settings, to: :controller
 
       def linked_ideas
         return unless ideas
@@ -24,6 +20,18 @@ module Helsinki
         )
       end
 
+      def linked_projects
+        return unless projects
+        return unless projects.any?
+
+        cell(
+          "helsinki/linked_resources",
+          projects,
+          title: t(".linked_projects"),
+          resource_cell: "helsinki/budgets/linked_project"
+        )
+      end
+
       def attachments
         return unless attachments_content
 
@@ -32,64 +40,9 @@ module Helsinki
 
       private
 
-      def answer_callout_class
-        return "success" if plan.accepted?
-        return "alert" if plan.rejected?
-        return "warning" if plan.answered?
-
-        "primary"
-      end
-
-      def final_answer_available?
-        plan.answered? || final_budget_estimate.present?
-      end
-
-      def budget_estimate
-        return unless budget_estimate_content
-
-        @budget_estimate ||= translated_attribute(budget_estimate_content.body).presence
-      end
-
-      def budget_estimate_section
-        @budget_estimate_section ||= section_with_handle("budget_estimate")
-      end
-
-      def budget_estimate_content
-        return @budget_estimate_content if @budget_estimate_content
-        return unless budget_estimate_section
-
-        @budget_estimate_content ||= content_for(budget_estimate_section)
-      end
-
-      def final_budget_estimate
-        return @final_budget_estimate if @final_budget_estimate
-        return unless final_budget_estimate_content
-        return if final_budget_estimate_content.body["value"].blank?
-
-        estimate = final_budget_estimate_content.body["value"].to_i
-        return unless estimate.positive?
-
-        @final_budget_estimate ||=
-          number_to_currency(
-            estimate,
-            precision: 0,
-            unit: Decidim.currency_unit
-          )
-      end
-
-      def final_budget_estimate_section
-        @final_budget_estimate_section ||= section_with_handle("final_budget_estimate")
-      end
-
-      def final_budget_estimate_content
-        return unless final_budget_estimate_section
-
-        @final_budget_estimate_content ||= content_for(final_budget_estimate_section)
-      end
-
       def main_image_path
         if plan_image && plan_image.photo? && plan_image.file && plan_image.file.attached?
-          plan_image.attached_uploader(:file).path
+          plan_image.attached_uploader(:file).url
         elsif category && (cat_img = category_image_path(category))
           cat_img
         else
@@ -99,10 +52,10 @@ module Helsinki
 
       def category_image_path(cat)
         return unless has_category?
-        return unless cat.respond_to?(:category_image)
-        return unless cat.category_image
+        return unless cat
+        return unless cat.respond_to?(:category_image_url_for)
 
-        cat.attached_uploader(:category_image).path
+        cat.category_image_url_for(plan, :default)
       end
 
       def description
@@ -125,6 +78,26 @@ module Helsinki
         @description_content ||= content_for(description_section)
       end
 
+      def audience_section
+        @audience_section ||= section_with_handle("audience")
+      end
+
+      def audience_content
+        return unless audience_section
+
+        @audience_content ||= content_for(audience_section)
+      end
+
+      def need_section
+        @need_section ||= section_with_handle("need")
+      end
+
+      def need_content
+        return unless need_section
+
+        @need_content ||= content_for(need_section)
+      end
+
       def ideas_section
         @ideas_section ||= section_with_handle("ideas")
       end
@@ -141,6 +114,10 @@ module Helsinki
         return if ideas_content.body["idea_ids"].blank?
 
         @ideas ||= Decidim::Ideas::Idea.where(id: ideas_content.body["idea_ids"])
+      end
+
+      def projects
+        plan.resource_links_to.map(&:from).compact
       end
 
       def attachments_section

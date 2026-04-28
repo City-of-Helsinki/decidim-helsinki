@@ -1,11 +1,13 @@
 fi:
   decidim:
     comments:
+      comment:
+        comment_label: Kommentti %{comment_id}
+        comment_label_reply: Kommentti %{comment_id} (vastaus kommenttiin %{parent_comment_id})
       comments:
         create:
           error: Kommentin tallennuksessa tapahtui virhe.
-      view: Näytä
-      comments:
         title:
           one: "%{count} kommentti"
           other: "%{count} kommenttia"
+      view: Näytä

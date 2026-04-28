@@ -44,6 +44,10 @@ sv:
           accepted: Möjligt
           rejected: Inte möjligt
       proposals:
+        count:
+          proposals_count:
+            one: "Hittade %{count} förslag"
+            other: "Hittade %{count} förslag"
         index:
           show_map: Förslag på kartan
           hide_map: Dölj kartan

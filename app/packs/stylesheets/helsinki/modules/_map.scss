@@ -1,3 +1,22 @@
+.google-map{
+  height: 300px;
+
+  @include breakpoint(mediumlarge){
+    height: 450px;
+  }
+}
+
+.reveal{
+  .map-info__content{
+    padding: 0 0 2rem;
+  }
+
+  .address__icon{
+    display: none;
+  }
+}
+
 .map__help{
+  // Show the "skip map" link in correct position
   position: relative;
 }

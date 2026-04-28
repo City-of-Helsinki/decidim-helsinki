@@ -1,0 +1,80 @@
+<div class="results-table__row" role="row" data-results-id="<%= result.id %>">
+  <div class="results-table__row__header" role="presentation">
+    <div class="results-table__row__data" role="presentation">
+      <div class="results-table__cell results-table__cell--title" role="cell"><%= translated_attribute(result.title) %></div>
+      <div class="results-table__cell results-table__cell--scope" role="cell">
+        <% if result.category.present? %>
+          <% if result.category.parent.present? %>
+            <%= translated_attribute(result.category.parent.name) %>
+          <% else %>
+            <%= translated_attribute(result.category.name) %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="results-table__cell results-table__cell--progress" role="cell">
+        <span><%= display_percentage(result.progress) %></span>
+      </div>
+
+      <div class="results-table__cell results-table__cell--details text-right" role="cell">
+        <div class="results-table__row__icon">
+          <button type="button" class="results-table__row__button" aria-expanded="false" aria-controls="results_table_row_<%= result.id %>_details">
+            <span class="show-for-sr"><%= t(".show_details", title: translated_attribute(result.title)) %></span>
+            <%= icon "chevron-bottom", role: "img", "aria-hidden": true %>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="results_table_row_<%= result.id %>_details" class="results-table__row__details">
+    <div class="results-table__row__main">
+      <p class="h5"><%= t(".description_title") %></p>
+      <p><%= strip_tags(translated_attribute(result.summary)).presence || strip_tags(translated_attribute(result.description)).truncate_words(30) %></p>
+      <p>
+        <%= link_to main_app.result_path(result), aria: { label: t(".show_result_descriptive", title: translated_attribute(result.title)) } do %>
+          <%= t(".show_result") %>
+          <%= icon "arrow-right", role: "img", "aria-hidden": true %>
+        <% end %>
+      </p>
+    </div>
+
+    <div class="results-table__row__side">
+      <div class="attributes">
+        <div class="attributes__item">
+          <div class="attributes__item__name"><%= t(".attributes.space") %></div>
+          <div class="attributes__item__value">
+            <%= result_space_title(result) %>
+          </div>
+        </div>
+
+        <% if result.budget_amount && result.budget_amount > 0 %>
+          <div class="attributes__item">
+            <div class="attributes__item__name"><%= t(".attributes.budget") %></div>
+            <div class="attributes__item__value">
+              <%= number_to_currency(result.budget_amount, unit: Decidim.currency_unit, precision: 0) %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if result.status %>
+          <div class="attributes__item">
+            <div class="attributes__item__name"><%= t(".attributes.status") %></div>
+            <div class="attributes__item__value">
+              <%= translated_attribute(result.status.name) %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if result.vote_count %>
+          <div class="attributes__item">
+            <div class="attributes__item__name"><%= t(".attributes.vote_count") %></div>
+            <div class="attributes__item__value">
+              <%= result.vote_count %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,22 +13,27 @@ gem "decidim-initiatives", DECIDIM_VERSION
 
 # External Decidim modules
 gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "main"
-gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "release/0.27-nubu"
+gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "release/0.27-stable"
 gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "main"
 gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "main"
-gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "main"
+gem "decidim-apifiles", github: "mainio/decidim-module-apifiles", branch: "release/0.27-stable"
+gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "release/0.27-stable"
 gem "decidim-connector", github: "mainio/decidim-module-connector", branch: "main"
-gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "main"
-gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "main"
-gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "main"
-gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "main"
+gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.27-stable"
+gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.27-stable"
+# Helsinki profile disabled because it interrupts the SLO request from Suomi.fi
+# gem "decidim-helsinki_profile", github: "mainio/decidim-module-helsinki_profile", branch: "main"
+gem "decidim-ideas", github: "mainio/decidim-module-ideas", branch: "release/0.27-stable"
+gem "decidim-insights", github: "mainio/decidim-module-insights", branch: "release/0.27-stable"
+gem "decidim-locations", github: "mainio/decidim-module-locations", branch: "release/0.27-helsinki-stable"
 gem "decidim-mpassid", github: "mainio/decidim-module-mpassid", branch: "release/0.27-stable"
-gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "release/omastadi-legacy/0.27-stable"
-gem "decidim-privacy", github: "mainio/decidim-module-privacy", branch: "main"
+gem "decidim-nav", github: "mainio/decidim-module-nav", branch: "release/0.27-stable"
+gem "decidim-plans", github: "mainio/decidim-module-plans", branch: "release/0.27-stable"
+gem "decidim-privacy", github: "mainio/decidim-module-privacy", branch: "release/0.27-stable"
 gem "decidim-redirects", github: "mainio/decidim-module-redirects", branch: "main"
 gem "decidim-stats", github: "mainio/decidim-module-stats", branch: "main"
 gem "decidim-suomifi", github: "mainio/decidim-module-suomifi", branch: "release/0.27-stable"
-gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "main"
+gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "develop"
 gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "master"
 
 # Modules for youth budget (nubu = nuorten budjetti / ruuti)
@@ -73,6 +78,11 @@ group :development do
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 4.2"
+
+  # Use the devtools during development but disable it after the validation
+  # process is completed in order to keep the development environment faster and
+  # in order to prevent excess load for the external validation service.
+  # gem "decidim-devtools", github: "mainio/decidim-module-devtools", branch: "main"
 end
 
 group :production, :production_ruuti, :staging, :staging_ruuti do

@@ -13,6 +13,10 @@ module Decidim
         render if has_badge?
       end
 
+      def render_column?
+        !context[:no_column].presence
+      end
+
       private
 
       def resource_path
@@ -71,26 +75,20 @@ module Decidim
 
       def endorsements_count_status
         return unless current_settings.endorsements_enabled?
-        return endorsements_count unless has_link_to_resource?
 
-        link_to resource_path do
-          endorsements_count
-        end
+        endorsements_count
       end
 
       def endorsements_count
         with_tooltip t("decidim.endorsable.endorsements") do
-          "#{icon("thumb-up", class: "icon--small")} #{model.endorsements_count}"
+          "#{icon("thumb-up", class: "icon--small", "aria-hidden": true)} #{model.endorsements_count}"
         end
       end
 
       def comments_count_status
         return unless component_settings.comments_enabled?
-        return render_comments_count unless has_link_to_resource?
 
-        link_to resource_path do
-          render_comments_count
-        end
+        render_comments_count
       end
 
       def progress_bar_progress
@@ -129,7 +127,7 @@ module Decidim
       end
 
       def resource_image_path
-        resource_image_attachment.attached_uploader(:file).path(variant: :big) if has_image?
+        resource_image_attachment.attached_uploader(:file).variant_url(:big) if has_image?
       end
 
       def resource_image_attachment

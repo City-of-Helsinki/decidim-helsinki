@@ -2,6 +2,6 @@ fi:
   decidim:
     plans:
       answers:
-        accepted: Etenee äänestykseen
+        accepted: Hyväksytty
         not_answered: Ei vastattu
-        rejected: Ei etene äänestykseen
+        rejected: Hylätty

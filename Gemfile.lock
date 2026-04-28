@@ -34,15 +34,17 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-accountability_simple.git
-  revision: 5184842a43c18dfce99a6eeecfaa8d4eaff814c6
-  branch: release/0.27-nubu
+  revision: b900ff3ad3ccebbbe9e7fd76ddb3f904ca9acddc
+  branch: release/0.27-stable
   specs:
     decidim-accountability_simple (0.27.0)
       decidim-accountability (~> 0.27.0)
       decidim-admin (~> 0.27.0)
+      decidim-apifiles (~> 0.27.0)
       decidim-core (~> 0.27.0)
       decidim-favorites (~> 0.27.0)
       decidim-locations (~> 0.27.0)
+      decidim-nav (~> 0.27.0)
       decidim-participatory_processes (~> 0.27.0)
       decidim-tags (~> 0.27.0)
 
@@ -67,14 +69,24 @@ GIT
       devise-jwt (~> 0.11.0)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-apifiles.git
+  revision: 64605a2031594d35591e57d870aa54044ff3a1c9
+  branch: release/0.27-stable
+  specs:
+    decidim-apifiles (0.27.0)
+      decidim-core (~> 0.27.0)
+
+GIT
   remote: https://github.com/mainio/decidim-module-budgeting_pipeline.git
-  revision: 8b7f1c1119483af9d717116a69ca17a41b56b332
-  branch: main
+  revision: 5fd77c1de465825a82f2ca5f59bc0ed95f6cc66e
+  branch: release/0.27-stable
   specs:
     decidim-budgeting_pipeline (0.27.0)
+      decidim-apifiles (~> 0.27.0)
       decidim-budgets (~> 0.27.0)
       decidim-core (~> 0.27.0)
       decidim-favorites (~> 0.27.0)
+      decidim-feedback (~> 0.27.0)
       decidim-stats (~> 0.27.0)
 
 GIT
@@ -87,16 +99,16 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-favorites.git
-  revision: 0aef1d8cb0565018b3df403c6d556bb0f0a580a3
-  branch: main
+  revision: a3c1a8ffe788025e43154876d0f52bd0fb194cd7
+  branch: release/0.27-stable
   specs:
     decidim-favorites (0.27.0)
       decidim-core (~> 0.27.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-feedback.git
-  revision: 8e7b4374992be09a8b3d07490660be4d745fdbc2
-  branch: main
+  revision: 4c04fc1d364b6ea674bd16ac5ad4ec883f5889dd
+  branch: release/0.27-stable
   specs:
     decidim-feedback (0.27.0)
       decidim-admin (~> 0.27.0)
@@ -112,8 +124,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-ideas.git
-  revision: f4ab32ba2197a15c192b2ff2af107abb2b2321fc
-  branch: main
+  revision: 577662c102be3efd55d88be704a7b43a9a708554
+  branch: release/0.27-stable
   specs:
     decidim-ideas (0.27.0)
       decidim-core (~> 0.27.0)
@@ -121,9 +133,20 @@ GIT
       decidim-feedback (~> 0.27.0)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-insights.git
+  revision: 3aecea632049e889dec06ed0bf65f13fe57be991
+  branch: release/0.27-stable
+  specs:
+    decidim-insights (0.27.0)
+      decidim-core (~> 0.27.0)
+      decidim-favorites (~> 0.27.0)
+      decidim-locations (~> 0.27.0)
+      decidim-tags (~> 0.27.0)
+
+GIT
   remote: https://github.com/mainio/decidim-module-locations.git
-  revision: 75cc5517b374a9eebee5d2ffd8ea947e40ee9d55
-  branch: main
+  revision: 3241951c84125040063a28452223c5fe66c85d72
+  branch: release/0.27-helsinki-stable
   specs:
     decidim-locations (0.27.0)
       decidim-core (~> 0.27.0)
@@ -138,22 +161,29 @@ GIT
       omniauth-mpassid (~> 0.6.1)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-nav.git
+  revision: 99b508bfafb925127cf91462c8d48d337491c7bc
+  branch: release/0.27-stable
+  specs:
+    decidim-nav (0.27.0)
+      decidim-core (~> 0.27.0)
+
+GIT
   remote: https://github.com/mainio/decidim-module-plans.git
-  revision: 16b219003c57e467027eedfebb2344f60ae73e8f
-  branch: release/omastadi-legacy/0.27-stable
+  revision: 27164a67ac33c063d71bd87773bd3de68590b8fe
+  branch: release/0.27-stable
   specs:
     decidim-plans (0.27.0)
       decidim-core (~> 0.27.0)
       decidim-favorites (~> 0.27.0)
       decidim-feedback (~> 0.27.0)
-      decidim-proposals (~> 0.27.0)
       decidim-tags (~> 0.27.0)
       paper_trail-association_tracking (~> 2.0)
 
 GIT
   remote: https://github.com/mainio/decidim-module-privacy.git
-  revision: dcaa83ddea51cbaff996b50fad87050532722712
-  branch: main
+  revision: eaa61739e397c65649d6d1f26343205c39344378
+  branch: release/0.27-stable
   specs:
     decidim-privacy (0.27.0)
       decidim-core (~> 0.27.0)
@@ -168,7 +198,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-stats.git
-  revision: e483b2c37cd388f00c7138d075c433f91627312a
+  revision: 9b80dd4f251f2c1194e6d013672d301102b61121
   branch: main
   specs:
     decidim-stats (0.27.0)
@@ -186,8 +216,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-tags.git
-  revision: b6816469f15713ffc273bbf7f7d5568a8f0e4810
-  branch: main
+  revision: 4e868c286edfe5f460c3ff26aa740cffd76bde50
+  branch: develop
   specs:
     decidim-tags (0.27.0)
       decidim-core (~> 0.27.0)
@@ -860,7 +890,7 @@ GEM
     paper_trail (12.3.0)
       activerecord (>= 5.2)
       request_store (~> 1.1)
-    paper_trail-association_tracking (2.2.1)
+    paper_trail-association_tracking (2.3.0)
       paper_trail (>= 12.0)
     parallel (1.23.0)
     parallel_tests (3.13.0)
@@ -885,7 +915,7 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (2.2.9)
+    rack (2.2.19)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
     rack-cors (1.1.1)
@@ -1192,6 +1222,7 @@ DEPENDENCIES
   decidim-accountability_simple!
   decidim-antivirus!
   decidim-apiauth!
+  decidim-apifiles!
   decidim-budgeting_pipeline!
   decidim-connector!
   decidim-dev (~> 0.27.9)
@@ -1200,8 +1231,10 @@ DEPENDENCIES
   decidim-helsinki_smsauth!
   decidim-ideas!
   decidim-initiatives (~> 0.27.9)
+  decidim-insights!
   decidim-locations!
   decidim-mpassid!
+  decidim-nav!
   decidim-plans!
   decidim-privacy!
   decidim-redirects!

@@ -1,11 +1,90 @@
 en:
+  activemodel:
+    attributes:
+      user:
+        about: Profile description
+        email: Email
+        locale: Language
+        name: Name
+        nickname: Nickname
+        password: Password
+        password_confirmation: Confirm password
+        personal_url: Personal URL
+        remove_avatar: Remove avatar
+        tos_agreement: Terms of use
   decidim:
+    account:
+      delete:
+        explanation: Reason why you want to delete your account (optional)
     accountability:
+      directory:
+        results:
+          count:
+            results_total_count:
+              one: Found %{count} project in total.
+              other: Found %{count} projects in total.
+          filters:
+            category: Theme
+            category_prompt: All themes
+            more_criteria:
+              hide: Hide search criteria
+              show: Show more search criteria
+            progress: Progress
+            progress_prompt: All progress states
+            reset: Clear filters
+            search: Search
+            scope: Area
+            scope_prompt: All areas
+            space: Round
+            space_prompt: All rounds
+            term: Keyword
+            title: Search projects
+          index:
+            title: Implementation
+            total_budget: "Total budget for projects shown on this page: %{amount}"
+          orders:
+            alphabetical: Alphabetical order
+            label: Sort projects
+            most_recent: Most recent first
+            most_voted: Most voted first
+          result:
+            attributes:
+              budget: Budget
+              maintenance_budget: Maintenance costs
+              space: Round
+              status: Implementation phase
+              vote_count: Number of votes
+            description_title: Project description
+            show_details: Show details for project %{title}
+            show_result: See project details
+            show_result_descriptive: "See details for project: %{title}"
+          results:
+            results_without_scope: Projects without a defined area
+            scope_count:
+              one: "%{count} project in the %{title} area."
+              other: "%{count} projects in the %{title} area."
+            scope_count_without_scope:
+              one: "%{count} project withouth a defined area."
+              other: "%{count} projects withouth a defined area."
+            total_budget: "Total budget for projects shown in this area: %{amount}"
+          results_table:
+            label: Projects
+            columns:
+              actions: Actions
+              progress: Progress
+              scope: Theme
+              title: Title
       results:
+        result_attributes_extra:
+          attributes:
+            budget: Budget
+            maintenance_budget: Maintenance costs
+          show_budget_breakdown: Show budget breakdown
         show:
           stats:
             category: Theme
         show_result_body:
+          assets: Attachments
           comments_amount:
             one: '%{count} comment'
             other: '%{count} comments'
@@ -16,12 +95,22 @@ en:
               name: Budget breakdown
             description:
               name: Project description
+            cocreation_description:
+              name: Co-creation of the project
+            implementation_description:
+              name: This is how the city implements the project
             interaction_description:
               name: Interaction
             plans_description:
               name: Plans
-        stats_box:
-          budget: Budget
+    admin:
+      categories:
+        form:
+          add_images: Add images
+          attachment_legend: Images
+          edit_images: Edit images
+          images: Images
+          images_legend: Add images
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar for multiple users
@@ -42,6 +131,9 @@ en:
           back_to_budgets: Show all budgets
     components:
       add_comment_form:
+        account_message: <a href="%{sign_in_url}">Sign in with your account</a> to add your comment.
+        form:
+          submit: Send comment
         opinion:
           label: Your opinion about this topic
           positive: Positive
@@ -54,6 +146,133 @@ en:
         settings:
           global:
             vote_success_mpassid_content: Content displayed after successful voting for MPASSid users
+    forms:
+      upload:
+        choose_file: Choose file
+    notifications:
+      index:
+        title: Notifications
+      no_notifications: No notifications.
+    pages:
+      terms_and_conditions:
+        accept:
+          error: There was a problem accepting the terms and conditions.
+          success: Great! You have accepted the terms and conditions.
+        form:
+          agreement: I consent to the processing of my personal data listed above and I agree to the terms of use. I hereby confirm that I am 13-years old or older.
+          continue: Continue
+          legend: Agreement to the terms of use and consent to the processing of personal data
+        refuse:
+          modal_btn_continue: Close
+          modal_btn_exit: Refuse and sign out
+          modal_button: Refuse the terms
+          modal_title: Are you sure you want to refuse the updated terms of use?
+        required_review:
+          alert: We have updated the terms of use, please review them.
+          alert_new: Please review the terms of use.
+      tos_not_accepted:
+        description_html: |
+          <p>You have not yet agreed to the terms of use. You need to agree to the terms of use in order to use the service.</p>
+        see_terms_of_service: Read the terms of use
+        title: Agreement to the terms of use
+    participatory_processes:
+      participatory_processes:
+        process_actions:
+          share: Share process
+        show:
+          show_step: Show phase
+          steps: Phases
+    privacy:
+      partials:
+        privacy_consent:
+          agree: Save
+          agree_to_public_profile: I agree to have my profile made public
+          make_profile_public: Making your profile public
+          do_not_agree: Cancel
+          content_html: |
+            <p>If you want to submit a proposal or comment on a proposal in the service, you must create a public
+            profile. This means that other service users will see your name attached to proposals or comments and can
+            click on it to view your profile. Your public profile shows the following information:</p>
+            <ul>
+              <li>your name</li>
+              <li>proposals and comments you have submitted</li>
+              <li>who you follow and who follows you on OmaStadi</li>
+            </ul>
+            <p>In addition, you can choose to add:</p>
+            <ul>
+              <li>a profile photo</li>
+            </ul>
+            <p>You can always change your profile back to non-public, so that none of your profile information is
+            visible to other users. In this case, your name will also be deleted from the proposals or comments you have
+            submitted. You can change your profile to non-public on the site in your account privacy settings.</p>
+      privacy_settings:
+        show:
+          profile_publicity_html: |
+            <p>These privacy settings allow you to control how you appear on this platform publicly. You can decide to
+            remain completely anonymous but it will limit what you can do on this platform.</p>
+            <h2 class="h5">Profile publicity</h2>
+            <p>Making your profile public allows you to perform public activities on this platform, such as sending
+            comments, participating in discussions, creating proposals, etc.</p><p>When you make your profile public,
+            other participants can see your name publicly on this platform and also see other public information about
+            you, such as your name and avatar image, your public activity on this platform, your followers and who you
+            follow.</p>
+          private_messaging_html: |
+            <h2 class="h5">Private messaging</h2>
+            <p>These settings allow you to communicate with other participants on this platform. Other participants can
+            send you private messages and you can send them to others as well. Your profile needs to be public in order
+            to enable this feature because other people need to find you from this platform in order to have a
+            conversation with you.</p>
+    profiles:
+      show:
+        activity: Activity on website
+    proposals:
+      proposal_l:
+        card_label: Proposal %{title}
+      proposals:
+        filters:
+          keyword: Keyword
+          reset: Clear filters
+        index:
+          show_list: Show results on map
+          show_map: Show results as list
+        map_template:
+          view_proposal: View proposal
+        proposal_actions:
+          share: Share proposal
+          show_comments: Show proposal comments
+          show_on_map: Show proposal on map
+          flag: Report proposal
+        proposal_controls:
+          manage_proposal: Manage proposal
+        proposal_map:
+          title: Proposal on map
     resource_links:
       included_plans:
-        project_plan: Related co-creation proposals
+        project_plan: Related proposals
+        result_plan: Proposals attached to the voted proposal
+      included_projects:
+        result_project: Voted proposal
+      title: Related to this matter
+    shared:
+      dynamic_form:
+        reset_message: Filters have been cleared. Updated search results are shown below.
+      embed:
+        title: Embedded video content
+      skip_subnavigation: Skip subnavigation
+    tos_page:
+      privacy_title: Consent to the processing of personal data
+    user_activity:
+      resource_type_label: Activity type
+  layouts:
+    decidim:
+      data_consent:
+        warning:
+          all_categories: preference, statistics and marketing cookies
+          change_settings: Change cookie settings
+          consent_required_html: |
+            This content is hosted by <span data-content-source-text></span>. To see the content, switch over to the
+            external site or modify your cookie settings to allow for %{categories}.
+          proceed_to_external_site: See content on external site
+          title: Content cannot be displayed
+      impersonation_warning:
+        label: Impersonation of another user

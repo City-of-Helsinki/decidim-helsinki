@@ -1,11 +1,90 @@
 fi:
+  activemodel:
+    attributes:
+      user:
+        about: Profiilikuvaus
+        email: Sähköpostiosoite
+        locale: Kieli
+        name: Nimi
+        nickname: Nimimerkki
+        password: Salasana
+        password_confirmation: Vahvista salasana
+        personal_url: Henkilökohtainen URL-osoite
+        remove_avatar: Poista profiilikuva
+        tos_agreement: Käyttöehdot
   decidim:
+    account:
+      delete:
+        explanation: Syy tilisi poistoon (valinnainen)
     accountability:
+      directory:
+        results:
+          count:
+            results_total_count:
+              one: Löytyi yhteensä %{count} tulos.
+              other: Löytyi yhteensä %{count} tulosta.
+          filters:
+            category: Teema
+            category_prompt: Kaikki teemat
+            more_criteria:
+              hide: Piilota hakuehdot
+              show: Näytä lisää hakuehtoja
+            progress: Valmiusaste
+            progress_prompt: Kaikki valmiusasteet
+            reset: Tyhjennä rajaukset
+            search: Hae
+            scope: Alue
+            scope_prompt: Kaikki alueet
+            space: Kierros
+            space_prompt: Kaikki kierrokset
+            term: Hakusana
+            title: Etsi hankkeista
+          index:
+            title: Hankkeiden toteutus
+            total_budget: "Näytettävien hankkeiden budjetti yhteensä: %{amount}"
+          orders:
+            alphabetical: Aakkosjärjestys
+            label: Järjestä hankkeet
+            most_recent: Uusimmat ensin
+            most_voted: Eniten ääniä saaneet ensin
+          result:
+            attributes:
+              budget: Budjetti
+              maintenance_budget: Ylläpitokustannukset
+              space: Kierros
+              status: Toteutuksen vaihe
+              vote_count: Äänimäärä
+            description_title: Hankkeen kuvaus
+            show_details: Näytä hankkeen %{title} lisätiedot
+            show_result: Tutustu hankkeeseen
+            show_result_descriptive: "Tutustu hankkeeseen: %{title}"
+          results:
+            results_without_scope: Ei määritettyä aluetta
+            scope_count:
+              one: "%{count} tulos alueella %{title}."
+              other: "%{count} tulosta alueella %{title}."
+            scope_count_without_scope:
+              one: "%{count} tulos ilman määritettyä aluetta."
+              other: "%{count} tulosta ilman määritettyä aluetta."
+            total_budget: "Näytettävien hankkeiden budjetti alueella yhteensä: %{amount}"
+          results_table:
+            label: Hankkeet
+            columns:
+              actions: Toiminnot
+              progress: Valmiusaste
+              scope: Teema
+              title: Otsikko
       results:
+        result_attributes_extra:
+          attributes:
+            budget: Budjetti
+            maintenance_budget: Ylläpitokustannukset
+          show_budget_breakdown: Näytä budjetin erittely
         show:
           stats:
             category: Teema
         show_result_body:
+          assets: Liitteet
           comments_amount:
             one: '%{count} kommentti'
             other: '%{count} kommenttia'
@@ -16,12 +95,22 @@ fi:
               name: Budjetin erittely
             description:
               name: Hankkeen kuvaus
+            cocreation_description:
+              name: Hankkeen yhteiskehittäminen
+            implementation_description:
+              name: Näin kaupunki toteuttaa hankkeen
             interaction_description:
               name: Vuorovaikutus
             plans_description:
               name: Suunnitelmat
-        stats_box:
-          budget: Budjetti
+    admin:
+      categories:
+        form:
+          add_images: Lisää kuvia
+          attachment_legend: Kuvat
+          edit_images: Muokkaa kuvia
+          images: Kuvat
+          images_legend: Lisää kuvia
     author:
       avatar: 'Avatar: %{name}'
       avatar_multiuser: Avatar useammalle käyttäjälle
@@ -42,6 +131,9 @@ fi:
           back_to_budgets: Näytä kaikki budjetit
     components:
       add_comment_form:
+        account_message: <a href="%{sign_in_url}">Kirjaudu sisään</a> kommentoidaksesi.
+        form:
+          submit: Lähetä kommentti
         opinion:
           label: Mielipiteesi tästä aiheesta
           positive: Positiivinen
@@ -54,6 +146,135 @@ fi:
         settings:
           global:
             vote_success_mpassid_content: Onnistuneen äänestyksen jälkeen näytettävä sisältö MPASSid-käyttäjille
+    forms:
+      upload:
+        choose_file: Valitse tiedosto
+    notifications:
+      index:
+        title: Ilmoitukset
+      no_notifications: Ei ilmoituksia.
+    pages:
+      terms_and_conditions:
+        accept:
+          error: Ehtojen hyväksyminen epäonnistui.
+          success: Hienoa! Olet hyväksynyt käyttöehdot.
+        form:
+          agreement: Annan suostumukseni edellä lueteltujen henkilötietojeni käsittelyyn ja hyväksyn käyttöehdot. Vakuutan, että olen 13-vuotta täyttänyt.
+          continue: Jatka
+          legend: Hyväksy käyttöehdot ja henkilötietojen käsittely
+        refuse:
+          modal_btn_continue: Sulje
+          modal_btn_exit: Kieltäydy ja kirjaudu ulos
+          modal_button: Kieltäydy hyväksymästä ehtoja
+          modal_title: Haluatko varmasti kieltäytyä hyväksymästä päivitettyjä käyttöehtoja?
+        required_review:
+          alert: Olemme päivittäneet palvelun ehtoja. Ole hyvä ja tutustu päivitettyihin ehtoihin.
+          alert_new: Ole hyvä ja tutustu palvelun ehtoihin.
+      tos_not_accepted:
+        description_html: |
+          <p>Et ole vielä hyväksynyt palvelun käyttöehtoja. Sinun on hyväksyttävä käyttöehdot, jotta voit käyttää palvelua.</p>
+        see_terms_of_service: Tutustu käyttöehtoihin
+        title: Käyttöehtojen hyväksyntä
+    participatory_processes:
+      participatory_processes:
+        process_actions:
+          share: Jaa prosessi
+        show:
+          show_step: Tutustu vaiheeseen
+          steps: Vaiheet
+    privacy:
+      partials:
+        privacy_consent:
+          agree: Tallenna
+          agree_to_public_profile: Hyväksyn, että profiilini muutetaan julkiseksi
+          do_not_agree: Peruuta
+          make_profile_public: Profiilin muuttaminen julkiseksi
+          content_html: |
+            <p>Mikäli haluat jättää ehdotuksen tai kommentoida ehdotusta palvelussa, tulee sinun luoda palveluun
+            julkinen profiili. Tämä tarkoittaa, että muut palvelun käyttäjät näkevät nimesi ehdotuksen tai kommentin
+            kohdalla ja pääsevät sitä klikkaamalla katsomaan profiiliasi. Julkisessa profiilissa näkyy seuraavat
+            tiedot:</p>
+            <ul>
+              <li>nimesi</li>
+              <li>jättämäsi ehdotukset ja kommentit</li>
+              <li>ketä sinä seuraat ja ketkä seuraavat sinua OmaStadi-palvelussa</li>
+            </ul>
+            <p>Lisäksi voit halutessasi lisätä profiiliin:</p>
+            <ul>
+              <li>profiilikuvan</li>
+            </ul>
+            <p>Voit halutessasi muuttaa profiilin takaisin ei-julkiseksi, jolloin mitkään profiilisi tiedot eivät näy
+            muille käyttäjille. Tällöin myös nimesi poistuu jättämäsi ehdotuksen tai kommentin kohdalta. Voit
+            muuttaa profiilin ei-julkiseksi sivustolla käyttäjätilisi yksityisyysasetuksista.</p>
+      privacy_settings:
+        show:
+          profile_publicity_html: |
+            <p>Näiden yksityisyysasetusten avulla voit hallita, kuinka esiinnyt tällä alustalla. Voit pysyä täysin
+            anonyymina, mutta se rajoittaa, mitä voit tehdä tällä alustalla.</p>
+            <h2 class="h5">Profiilin julkisuus</h2>
+            <p>Profiilin julkaiseminen mahdollistaa tiettyjen julkisten toimintojen suorittamisen tällä alustalla,
+            kuten kommentoinnin, keskusteluihin osallistumisen, ehdotusten tekemisen, jne.</p><p>Tekemällä profiilistasi
+            julkisen, muut osallistujat voivat nähdä nimesi julkisesti tällä alustalla ja myös muuta julkista tietoa
+            sinusta, kuten nimesi, profiilikuvasi, julkisen toimintasi tällä alustalla, seuraajasi ja keitä sinä
+            seuraat.</p>
+          private_messaging_html: |
+            <h2 class="h5">Yksityisviestit</h2>
+            <p>Näiden asetusten avulla voit keskustella muiden osallistujien kanssa tällä alustalla. Muut osallistujat
+            voivat lähettää sinulle yksityisviestejä ja myös sinä voit lähettää niitä muille osallistujille. Profiilisi
+            on oltava julkinen tämän asetuksen käyttöönottoa varten, koska muiden osallistujien on löydettävä sinut
+            tältä alustalta keskustellakseen kanssasi.</p>
+    profiles:
+      show:
+        activity: Toiminta sivustolla
+    proposals:
+      proposal_l:
+        card_label: Ehdotus %{title}
+      proposals:
+        filters:
+          keyword: Hakusana
+          reset: Tyhjennä rajaukset
+        index:
+          show_list: Näytä tulokset listana
+          show_map: Näytä tulokset kartalla
+        map_template:
+          view_proposal: Näytä ehdotus
+        proposal_actions:
+          share: Jaa ehdotus
+          show_comments: Katso ehdotuksen kommentit
+          show_on_map: Katso ehdotus kartalla
+          flag: Ilmianna ehdotus
+        proposal_controls:
+          manage_proposal: Hallinnoi ehdotusta
+        proposal_map:
+          title: Ehdotus kartalla
     resource_links:
       included_plans:
-        project_plan: Liitetyt yhteiskehittämisen ehdotukset
+        project_plan: Liitetyt ehdotukset
+        result_plan: Äänestettyyn ehdotukseen liitetyt ehdotukset
+      included_projects:
+        result_project: Äänestetty ehdotus
+      title: Liitetyt asiat
+    shared:
+      dynamic_form:
+        reset_message: Rajaukset on tyhjennetty. Päivitetyt hakutulokset näkyvät alla.
+      embed:
+        title: Upotettu videosisältö
+      skip_subnavigation: Ohita alanavigaatio
+    tos_page:
+      privacy_title: Suostumus henkilötietojen käsittelylle
+    user_activity:
+      resource_type_label: Aktiviteetin tyyppi
+  layouts:
+    decidim:
+      data_consent:
+        warning:
+          all_categories: personointi-, tilastointi- ja markkinointievästeet
+          change_settings: Muokkaa evästeasetuksia
+          consent_required_html: |
+            Tämä sisältö haetaan osoitteesta <span data-content-source-text></span>. Sen näyttämiseen vaaditaan, että
+            hyväksyt sivuston evästeet. Pääset näkemään sisällön joko siirtymällä ulkoiselle sivustolle tai sallimalla
+            evästeasetuksista %{categories}.
+          proceed_to_external_site: Siirry ulkoiselle sivustolle
+          title: Sisältöä ei voida näyttää
+      impersonation_warning:
+        label: Esiintyminen toisena käyttäjänä

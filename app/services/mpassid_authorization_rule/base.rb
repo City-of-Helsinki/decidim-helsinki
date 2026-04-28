@@ -2,8 +2,9 @@
 
 module MpassidAuthorizationRule
   class Base
-    def initialize(authorization, options)
+    def initialize(authorization, authorization_metadata, options)
       @authorization = authorization
+      @authorization_metadata = authorization_metadata
       @options = options
     end
 
@@ -21,6 +22,6 @@ module MpassidAuthorizationRule
 
     protected
 
-    attr_reader :authorization, :options
+    attr_reader :authorization, :authorization_metadata, :options
   end
 end

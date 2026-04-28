@@ -1,146 +1,70 @@
-$z-play-video-bg: 0;
-$z-play-video-button: 1;
-$z-mobile-lang: 2;
-$z-topbar: 4;
-$z-nav: 5;
-$z-nav-trigger: 6;
-$z-video-wrapper: 7;
+.banner{
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem 1rem 1.5rem;
 
-section{
-  .video-banner{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    // background-image: url('./img/OmaStadi_paakuvitus.jpg');
-    background-color: #ccc;
-    // background-size: 150% auto;
-    background-size: auto 150%;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: background-size 1s;
-    padding: 60px 45px;
-    min-height: 500px;
+  @include breakpoint(medium){
+    flex-direction: row;
+    padding: 1.3rem 2.1rem .7rem;
+  }
 
-    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active){
-      /* IE10+ CSS styles go here */
-      justify-content: flex-start !important;
+  &.banner--padded{
+    padding: 1.9rem 1.4rem;
+
+    @include breakpoint(medium){
+      padding: 3.8rem 2.5rem 2.7rem;
+    }
+  }
+
+  .banner__icon{
+    margin-bottom: 1.2rem;
+    color: $body-font-color;
+
+    @include breakpoint(medium){
+      margin-top: .8rem;
+      margin-bottom: 0;
+      margin-right: 1.3rem;
     }
 
-    @include breakpoint(mediumlarge){
-      background-size: 150%;
-    }
+    .icon{
+      width: 4rem;
+      height: 4rem;
 
-    .column{
-      width: 900px;
-      max-width: 100%;
-      padding: 35px 25px 25px;
-
-      @include breakpoint(mediumlarge){
-        padding-left: 45px;
-        padding-right: 45px;
-      }
-
-      h2{
-        font-size: 28px;
-        line-height: 34px;
-
-        @include breakpoint(mediumlarge){
-          font-size: 32px;
-          line-height: 40px;
-        }
-      }
-
-      a{
-        &.button{
-          font-size: 17px;
-          border: solid 2px black;
-          background: transparent;
-          color: $black;
-
-          &:focus,
-          &:hover{
-            background: $black;
-            color: $white;
-          }
-        }
+      @include breakpoint(medium){
+        width: 6.2rem;
+        height: 6.2rem;
       }
     }
   }
-}
 
-.play-video{
-  position: relative;
+  .banner__content{
+    flex: 1;
+    font-size: $hel-text-size-l;
 
-  &::after{
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(black, .2);
-    z-index: $z-play-video-bg;
-    border-radius: 10px 10px 0 0;
-  }
-}
+    @include breakpoint(medium){
+      padding: .8rem;
+    }
 
-.play-video__button{
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 1px solid rgba(white, .1);
-  box-shadow: 5px 5px 10px rgba(black, .4);
-  transition: .3s all;
-  transform: translateZ(0);
-  position: absolute;
-  z-index: $z-play-video-button;
-  color: rgba(white, .8);
-  bottom: calc(50% - 1.5em);
-  left: calc(50% - 1.5em);
-  width: 3em;
-  height: 3em;
+    h2{
+      margin-bottom: .9rem;
+      font-weight: $global-weight-normal;
 
-  @include breakpoint(mediumlarge){
-    bottom: calc(50% - 3em);
-    left: calc(50% - 3em);
-    width: 6em;
-    height: 6em;
-  }
+      @include breakpoint(medium){
+        margin-bottom: .8rem;
+      }
+    }
 
-  &:hover,
-  &:focus{
-    color: white;
-    transform: translateZ(0) scale(1.1);
-  }
-}
-
-.play-video__play{
-  &::after{
-    content: "\25B6\FE0E";
-    font-size: 1.5em;
-    margin-left: .3em;
-
-    @include breakpoint(mediumlarge){
-      font-size: 2.5em;
+    .button{
+      margin-top: .8rem;
     }
   }
-}
 
-.video-wrapper{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: $z-video-wrapper;
-  background-color: rgba(black, .7);
-  display: none;
-  justify-content: center;
-  align-items: center;
+  .banner__aside{
+    margin-top: .5rem;
 
-  &.is-video-active{
-    display: flex;
+    @include breakpoint(medium){
+      margin-top: 0;
+      padding-right: 1.9rem;
+    }
   }
 }

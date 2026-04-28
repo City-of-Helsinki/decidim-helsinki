@@ -9,7 +9,6 @@ add_decidim_meta_tags({
 
 wrapper_class = Rails.application.config.wrapper_class
 %>
-
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>" class="no-js">
   <head>
@@ -31,7 +30,7 @@ wrapper_class = Rails.application.config.wrapper_class
     <% end %>
 
     <%= render partial: "decidim/shared/confirm_modal" %>
-    <%= render partial: "decidim/shared/login_modal" %>
+    <%= render partial: "decidim/shared/login_modal" unless user_signed_in? %>
     <%= render partial: "decidim/shared/authorization_modal" %>
     <%= render partial: "layouts/decidim/decidim_javascript" %>
     <%= render partial: "layouts/decidim/data_consent_warning" %>

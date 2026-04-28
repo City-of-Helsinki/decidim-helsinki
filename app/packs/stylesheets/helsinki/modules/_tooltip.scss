@@ -1,0 +1,37 @@
+.tooltip{
+  &.bottom{
+    border-top: 8px solid $hel-coat;
+
+    &::before{
+      border-color: transparent transparent $hel-coat;
+    }
+  }
+
+  &.top{
+    border-bottom: 8px solid $hel-coat;
+
+    &::before{
+      border-color: $hel-coat transparent transparent;
+    }
+  }
+
+  &.left{
+    border-right: 8px solid $hel-coat;
+
+    &::before{
+      border-color: transparent transparent transparent $hel-coat;
+    }
+  }
+
+  &.right{
+    border-left: 8px solid $hel-coat;
+
+    &::before{
+      border-color: transparent $hel-coat transparent transparent;
+    }
+  }
+
+  > *:last-child{
+    margin-bottom: 0;
+  }
+}

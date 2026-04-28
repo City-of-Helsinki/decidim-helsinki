@@ -1,7 +1,5 @@
-<%= link_to resource_path do %>
-  <% if resource_image_path.present? %>
-    <%= image_tag resource_image_path, class: "card__image", alt: title %>
-  <% else %>
-    <%= image_pack_tag "media/images/osbu-2020-omastadi-card-default.jpg", class: "card__image", alt: title %>
-  <% end %>
+<% if resource_image_path.present? %>
+  <%= image_tag resource_image_path, class: "card__image", alt: title %>
+<% else %>
+  <%= image_pack_tag "media/images/osbu-2020-omastadi-card-default.jpg", class: "card__image", alt: title %>
 <% end %>

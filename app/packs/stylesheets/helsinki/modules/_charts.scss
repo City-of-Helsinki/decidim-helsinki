@@ -1,0 +1,48 @@
+.chart{
+  position: relative;
+
+  &--donut{
+    .chart__icon{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      color: $hel-grayscale-60;
+
+      .icon{
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+    }
+  }
+
+  &--bar{
+    padding: 0 .3rem;
+  }
+
+  &--column{
+    padding: 0 .4rem;
+  }
+
+  &--column-comparison{
+    padding: 0 .1rem;
+  }
+}
+
+.card{
+  .chart--donut{
+    padding: .8rem 1.4rem 0;
+
+    &.chart--small{
+      padding: .8rem 3.4rem 0;
+    }
+  }
+
+  .chart--bar{
+    padding-top: 2.2rem;
+  }
+
+  .chart--column{
+    padding-top: 5.5rem;
+  }
+}

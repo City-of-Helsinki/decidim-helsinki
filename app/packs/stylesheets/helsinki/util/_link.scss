@@ -1,0 +1,16 @@
+// Converts link to plain text format with hover/focus effects.
+// Used e.g. in the header.
+@mixin plain-text-links{
+  a{
+    @include plain-text-link;
+  }
+}
+
+@mixin plain-text-link{
+  text-decoration: none;
+
+  &:hover,
+  &:focus{
+    text-decoration: $anchor-text-decoration-hover;
+  }
+}

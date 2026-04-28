@@ -1,0 +1,49 @@
+<%
+text_section = Decidim::ContextualHelpSection.find_content(current_organization, "linked_events_index")
+section_text = translated_attribute(text_section) || ""
+
+add_decidim_page_title(t(".title"))
+add_decidim_meta_description(strip_tags(section_text))
+
+links = {
+  "fi" => "https://tapahtumat.hel.fi/fi/haku?fullText=omastadi",
+  "sv" => "https://tapahtumat.hel.fi/sv/sok?fullText=omastadi",
+  "en" => "https://tapahtumat.hel.fi/en/search?fullText=omastadi",
+}
+%>
+
+<div class="wrapper">
+  <div class="container">
+    <div class="row columns">
+      <div class="page-title">
+        <h1 class="heading1"><%= t(".title") %></h1>
+      </div>
+    </div>
+    <div class="row medium-unstack content-intro">
+      <div class="columns medium-6 mediumlarge-8">
+        <div class="text-large">
+          <%= decidim_sanitize_admin(section_text) if section_text.present? %>
+        </div>
+      </div>
+
+      <div class="columns medium-6 mediumlarge-4">
+        <div class="actions-panel bg-secondary">
+          <%= link_to links[current_locale] || links.values.first, target: "_blank", class: "action-link" do %>
+            <span><%= t(".all_events") %></span>
+            <%= icon("external-link", role: "img", "aria-hidden": true) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container margin-bottom-3">
+    <h2 class="show-for-sr"><%= t(".subtitle") %></h2>
+    <div class="cards-grid row">
+      <%= render partial: "event", collection: @events %>
+    </div>
+
+    <%= decidim_paginate @query %>
+  </div>
+</div>
+

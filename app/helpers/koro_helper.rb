@@ -14,8 +14,12 @@
 # See: https://github.com/City-of-Helsinki/helsinki-design-system
 module KoroHelper
   def koro(type = "basic", options = {})
+    # Old name for "wave" was "vibration".
+    type = "wave" if type == "vibration"
+    return unless %w(basic beat pulse storm wave).include?(type)
+
     css_class = "koro koro-#{type}"
-    css_class += " flip-horizontal" if options.delete(:flip)
+    css_class += " flip-vertical" if options.delete(:flip)
 
     extra_class = options.delete(:class)
     css_class += " #{extra_class}" if extra_class
@@ -27,21 +31,32 @@ module KoroHelper
 
   private
 
+  # Instead of the HDS, the koro SVGs and styling are adapted from the Hel.fi
+  # site's theme because they are different than the default koro patterns
+  # provided by HDS. See:
+  # https://github.com/City-of-Helsinki/drupal-hdbt/tree/main/templates/misc/koros
+  #
+  # The default patterns provided by HDS are narrower than those at Hel.fi which
+  # is why we use those variants instead as they match the desired layout
+  # better.
   def koro_svg(type)
     pattern_name = "koro_#{type}"
     pattern_id = "#{pattern_name}-#{rand(36**8).to_s(36)}"
     height = koro_height(type)
-    whitespace = 4 # How many pixels whitespace in the SVG rectangle
+    pattern_width = 67
+    pattern_height = 50
+    pattern_height = 49 if type == "basic"
 
     # The SVG element is less in height than the elements inside in order to
     # avoid extra element lines when the screen is scaled/zoomed.
-    content_tag :svg, xmlns: "http://www.w3.org/2000/svg", width: "100%", height: height do
+    content_tag :svg, xmlns: "http://www.w3.org/2000/svg", width: "100%", height: height, aria: { hidden: true } do
       defs = content_tag :defs do
-        content_tag :pattern, id: pattern_id, x: 0, y: 0, width: 106, height: height + whitespace, patternUnits: "userSpaceOnUse" do
+        content_tag :pattern, id: pattern_id, x: 0, y: height - pattern_height, width: pattern_width, height: pattern_height, patternUnits: "userSpaceOnUse" do
           koro_svg_pattern(type).html_safe
         end
       end
 
+      # defs + %(<rect fill="url(##{pattern_id})" width="100%" height="#{height}" />).html_safe
       defs + %(<rect fill="url(##{pattern_id})" width="100%" height="#{height}" />).html_safe
     end
   end
@@ -49,36 +64,38 @@ module KoroHelper
   def koro_height(type)
     case type
     when "beat"
-      76
+      49
     when "pulse"
-      40
+      37
     when "storm"
-      41
+      38
     when "wave"
-      60
+      42
     else # basic
-      20
+      30
     end
   end
 
+  # Note that the "calm" type is not implemented as we do not need to add koro
+  # in that case.
   def koro_svg_pattern(type)
     case type
     when "beat"
       # rubocop:disable Layout/LineLength
       %(
         <path
-          d="M106,76h-106v-76c14.84 0 18.55 12.19 18.55 12.19l14.84 44.52c3.18 7.95 10.07 13.25 19.08 13.25 14.84 0 19.08-13.25 19.08-13.25s14.84-42.93 14.84-43.46c3.71-7.95 10.6-13.25 19.61-13.25z"
+          d="M 67 52 v -5 h -0.14 c -8.59 0 -11.79 -8 -11.79 -8 S 45.79 10.82 45.7 10.61 A 13 13 0 0 0 33.53 2 C 24.28 2 21.35 10.61 21.35 10.61 L 12 38.71 A 12.94 12.94 0 0 1 0 47.06 V 52 Z"
         />
       )
       # rubocop:enable Layout/LineLength
     when "pulse"
-      %(<path d="M0,40h106v-40c-27.03 0-27.03 34.217-53 34.217s-27.03-34.217-53-34.217z" />)
-    when "storm"
-      %(<path d="M106,41V0C 93.81,29.15 59.89,42.93 30.21,30.21 16.43,24.91 6.36,13.78 0,0v41z" />)
-    when "wave"
-      %(<polygon points="106 0 51.94 53.53 0 0 0 60 106 60" />)
+      %(<path d="M 67 63.5 V 35.86 C 50.4 35.74 50.35 13.5 33.65 13.5 S 16.91 35.87 0.17 35.87 H 0 V 63.5 Z" />)
+    when "storm" # old name: "wave" (as in the Hel.fi theme)
+      %(<path class="cls-1" d="M 67 63.5 V 36.89 h 0 c -15 0 -27.91 -9.64 -33.46 -23.34 C 27.93 27.23 15 36.81 0 36.79 V 63.5 Z" />)
+    when "wave" # old name: "vibration" (as in the Hel.fi theme)
+      %(<polygon points="67 50 67 42.36 33.5 8.5 0 42.36 0 42.36 0 50 67 50" />)
     else # basic
-      %(<path d="M0,20h106v-20c-25.97 0-26.5 13.78-52.47 13.78s-27.03-13.78-53.53-13.78z" />)
+      %(<path d="M 67 70 V 30.32 h 0 C 50.25 30.32 50.25 20 33.5 20 S 16.76 30.32 0 30.32 H 0 V 70 Z" />)
     end
   end
 end

@@ -10,13 +10,19 @@ fi:
       mpassid_nids:
         student_class_level: Luokka-aste
         voting_unit: Ruuti-alue
+      helsinki_idp:
+        district: Suurpiiri
       suomifi_eid:
         district: Suurpiiri
       result:
         budget_amount: Hankkeen kokonaisbudjetti
         budget_breakdown: Budjetin perustelut
+        cocreation_description: Yhteiskehittämisen kuvaus
+        implementation_description: Toteutuksen kuvaus
         interaction_description: Vuorovaikutuksen kuvaus
+        maintenance_budget_amount: Ylläpitokustannukset
         news_description: Ajankohtaisia asioita
+        news_title: Ajankohtaisten asioiden otsikko
         plans_description: Suunnitelmien kuvaus
     errors:
       models:
@@ -30,12 +36,13 @@ fi:
       decidim/plans/plan:
         one: Ehdotus
         other: Ehdotukset
-  auth:
-    sign_in_with_tunnistamo: 'Käytä Tunnistamoa kirjautuaksesi sisään'
   date:
     formats:
       decidim_short: "%d.%m.%Y"
   decidim:
+    assemblies:
+      assembly_m:
+        card_label: "Ryhmä: %{title}"
     authorization_handlers:
       admin:
         cocreation:
@@ -57,6 +64,10 @@ fi:
           passport: Passi
         name: Henkilöllisyystodistus toimipisteessä
         user_explanation: Käy fyysisessä toimipisteessä varmentamassa itsesi henkilöllisyystodistuksen avulla.
+      helsinki_paper_votes_authorization_handler:
+        explanation: Paperiäänten kirjaus osallistuvan budjetoinnin äänestyksessä.
+        name: Paperiäänien käsittelijä
+        user_explanation: Tämä identiteetin varmistamistoiminto on tarkoitettu ainoastaan hallinnollisiin tarkoituksiin.
       mpassid_nids:
         fields:
           allowed_units: Sallitut Ruuti-alueet
@@ -64,17 +75,26 @@ fi:
           minimum_class_level: Pienin luokka-aste
           student_class_level: Luokka-aste
           voting_unit: Ruuti-alue
-        name: Oppilaiden Wilma-tunnukset
+        name: Koululaisen tunnukset
       suomifi_eid:
         fields:
           allowed_districts: Sallitut suurpiirit
           district: Suurpiiri
           minimum_age: Ikä vähintään
         name: Pankkitunnukset tai mobiilivarmenne
+      helsinki_idp:
+        fields:
+          allowed_districts: Sallitut suurpiirit
+          district: Suurpiiri
+          minimum_age: Ikä vähintään
+        name: Helsinki-profiili
     budgets:
       projects:
         filters:
           category_prompt: Valitse aihepiiri
+      votes:
+        finished:
+          feedback_link_title: Miten arvioisit OmaStadia kokonaisuutena?
     components:
       component_order_selector:
         order:
@@ -90,11 +110,22 @@ fi:
           explanation: 'Kuvan ohjeistus:'
           message_1: Käytä mieluiten vaakasuuntaista kuvaa, jossa ei ole tekstiä.
           message_2: Palvelu rajaa kuvaa.
+      upload_help:
+        explanation: 'Ohjeita ladattavaa tiedostoa varten:'
+      upload:
+        labels:
+          add_attachment: Valitse liite
+          add_file: Valitse tiedosto
+          add_image: Valitse kuva
     help_sections:
       footer_text:
         name: Alaosion teksti
       help_index:
         name: Ohjeosion etusivu
+      linked_events_index:
+        name: Tapahtumat-sivu
+      results_directory_index:
+        name: Totetuskirjaston etusivun teksti
     pages:
       home:
         statistics:
@@ -102,19 +133,64 @@ fi:
       index:
         title: Ohjeet
       side_panel:
-        show_navigation: Näytä navigaatio
+        choose: Valitse ohje
+        label: Alanavigaatio
+        show_navigation: Valitse tarkasteltava ohje
+    participatory_processes:
+      participatory_processes:
+        components_list:
+          title: Sivut
+        index:
+          title: Prosessit
+        process_attributes:
+          attributes:
+            end_date: Päättymispäivä
+            start_date: Alkamispäivä
+          title: Tiedot
+        show:
+          subtitle: Prosessi
+      process_m:
+        card_label: "Prosessi: %{title}"
     proposals:
+      collaborative_draft_m:
+        card_label: "Yhteistyölunnos: %{title}"
+      proposal_m:
+        card_label: "Ehdotus: %{title}"
       proposals:
         filters:
           category_prompt: Valitse aihepiiri
-    suomifi:
+        proposal_attributes:
+          attributes:
+            address: Sijainti
+            category: Teema
+            id: Numero (ID)
+            published_at: Julkaisuaika
+          title: Tiedot
+        show:
+          subtitle: Ehdotus
+    helsinki:
       omniauth_callbacks:
         failure:
           security_denial: Henkilöllisyyttäsi ei pystytä varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            cocreation: Yhteiskehittäminen
+            helsinki_documents_authorization_handler: Toimipistetunnistautuminen
+            helsinki_paper_votes_authorization_handler: Paperiäänien käsittelijä
+            mpassid_nids: MPASSid
+            helsinki_idp: Helsinki-profiili
   errors:
     messages:
       extension_whitelist_error: Lataamasi tiedostomuoto ei ole sallittu.
   forms:
+    errors:
+      email: Sähköpostiosoitteen tulee sisältää paikallinen nimi tai käyttäjänimi, @-merkki ja verkkotunnus.
+      name: Nimessä on oltava vähintään yksi kirjain.
+      nickname: Nimimerkissä on oltava vähintään yksi kirjain ja sen on noudatettava alla esitettyjä vaatimuksia.
+      password: Salasanan tulee noudattaa sille asetettuja vaatimuksia. Tarkasta vaatimukset alla esitetyn ohjetekstin avulla.
+      password_confirmation: Salasanan vahvistuksen tulee vastata antamaasi salasanaa.
     scopes_picker:
       others: Muut
       prompt: Valitse %{item_name}
@@ -145,13 +221,14 @@ fi:
         unfold: Avaa
       breadcrumbs:
         current: Nykyinen sivu
+        label: Murupolku
       header:
-        choose_language: Valitse kieli
         front_page_link: Siirry etusivulle
         help: Ohjeet
-        navigation: Menu
-        sign_in: Kirjaudu
+        navigation: Valikko
         subtitle: 2020-2021
+      language_chooser_languages:
+        label: Valitse kieli
       participatory_processes:
         index:
           active_processes: Käynnissä nyt
@@ -159,15 +236,40 @@ fi:
       process_header:
         unfold: Avaa
       user_menu:
-        conversations: Viestit
+        conversations: Keskustelut
         favorites: Suosikit
         notifications: Ilmoitukset
         profile: Omat tiedot
         profile_nav: Profiili
         public_profile: Oma toiminta
-    footer:
-      about: Tietoa palvelusta
-      contact: Yhteystiedot
+      user_profile:
+        my_data: Lataa tiedot
+      wrapper:
+        subnav:
+          choose: Valitse sivu
+          label: Alanavigaatio
+          show: Valitse sivu
+    header:
+      close: Sulje
       feedback: Anna palautetta
-      processes_info: Prosessit-sivulta voit tutustua palvelun muihin prosesseihin
-      processes_show: Näytä kaikki prosessit
+      sign_in: Kirjaudu
+    flash:
+      close: Sulje ilmoitus
+    footer:
+      back_to_top: Takaisin ylös
+      city_name: Helsingin kaupunki
+      contact: Ota yhteyttä
+      feedback: Anna palautetta
+      history: Historia
+      results: Hankkeiden toteutus
+  number:
+    percentage:
+      format:
+        format: "%n %"
+  views:
+    pagination:
+      first: Ensimmäinen
+      last: Viimeinen
+      next: Seuraava
+      previous: Edellinen
+      truncate: "&hellip;"

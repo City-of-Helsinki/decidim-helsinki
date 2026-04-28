@@ -1,0 +1,27 @@
+<div class="card__info">
+  <% if has_scope? %>
+    <div class="card__info__item">
+      <%= scope %>
+    </div>
+  <% end %>
+
+  <div class="card__info__item">
+    #<%= model.id %>
+  </div>
+</div>
+
+<% if has_scope? || model.budget_amount.present? %>
+  <div class="card__info">
+    <% if model.budget_amount.present? %>
+      <div class="card__info__item">
+        <%= budget_to_currency(model.budget_amount) %>
+      </div>
+    <% end %>
+
+    <% if has_category? %>
+      <div class="card__info__item">
+        <%= category %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

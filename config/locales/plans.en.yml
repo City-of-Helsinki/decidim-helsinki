@@ -2,6 +2,6 @@ en:
   decidim:
     plans:
       answers:
-        accepted: Proceeds to voting
+        accepted: Accepted
         not_answered: Not answered
-        rejected: Will not proceed to voting
+        rejected: Rejected

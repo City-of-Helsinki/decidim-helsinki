@@ -75,7 +75,7 @@ namespace :research do
 
       authorization = Decidim::Authorization.where(
         user: user,
-        name: %w(suomifi_eid helsinki_documents_authorization_handler)
+        name: %w(helsinki_idp helsinki_documents_authorization_handler)
       ).order(:created_at).last
       row[:postal_code] = authorization.metadata["postal_code"] if authorization
 

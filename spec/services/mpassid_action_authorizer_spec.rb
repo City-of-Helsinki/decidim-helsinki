@@ -108,7 +108,7 @@ describe MpassidActionAuthorizer do
             municipality: "091",
             role: "oppilas",
             school_code: "03085",
-            student_class_level: "8 y"
+            group: "8 y"
           }
         end
 
@@ -152,7 +152,7 @@ describe MpassidActionAuthorizer do
             municipality: "091",
             role: "oppilas",
             school_code: "03085",
-            student_class: "5B"
+            group: "5B"
           }
         end
 
@@ -210,7 +210,7 @@ describe MpassidActionAuthorizer do
             municipality: "091",
             role: "oppilas",
             school_code: "03085",
-            student_class: "11C"
+            group: "11C"
           }
         end
 
@@ -247,6 +247,86 @@ describe MpassidActionAuthorizer do
 
       it "passes the authorization" do
         expect(subject.authorize).to eq([:ok, {}])
+      end
+    end
+  end
+
+  # Note that for most high schools pupils in the combined schools, the class
+  # level is defined in a rather random manner, as described in the
+  # authorization rule class. Some examples include "23A", "24D", "L23a",
+  # "L22Tahk", "1B", "2C", "IA", "IIB", "1m", "2b", "HS21b", "HS22a", "11 A",
+  # "12 B", "11A", "12B", etc.
+  #
+  # Some high school pupils have the class level defined as e.g. "1", "2", "3",
+  # etc. and some have it as "11", "12", "13", etc. Some schools do not define
+  # the class level for high school pupils but it is rather random how this
+  # works.
+  #
+  # Voting should be possible for all combined school type's pupils due to this
+  # randomness and the inability to change the marking standards in these
+  # schools.
+  context "when the user is in combined elementary and high school" do
+    [
+      "23A", "24D", "L23a", "L22Tahk", "1B", "2C", "IA", "IIB", "1m", "2b",
+      "HS21b", "HS22a", "11 A", "12 B", "11A", "12B"
+    ].each do |group|
+      context "when the group is '#{group}'" do
+        let(:metadata) do
+          {
+            municipality: "091",
+            role: "Oppilas",
+            school_code: "03395",
+            group: group
+          }
+        end
+
+        it "passes the authorization" do
+          expect(subject.authorize).to eq([:ok, {}])
+        end
+      end
+    end
+
+    context "when the user's class level is nil" do
+      let(:metadata) do
+        {
+          municipality: "091",
+          role: "oppilas",
+          school_code: "03395",
+          group: "IIIB",
+          student_class_level: nil
+        }
+      end
+
+      it "passes the authorization" do
+        expect(subject.authorize).to eq([:ok, {}])
+      end
+    end
+
+    context "when the user's class level is defined" do
+      let(:metadata) do
+        {
+          municipality: "091",
+          role: "oppilas",
+          school_code: "03395",
+          group: "HS22a",
+          student_class_level: level
+        }
+      end
+
+      context "with value '1'" do
+        let(:level) { "1" }
+
+        it "passes the authorization" do
+          expect(subject.authorize).to eq([:ok, {}])
+        end
+      end
+
+      context "with value '12'" do
+        let(:level) { "12" }
+
+        it "passes the authorization" do
+          expect(subject.authorize).to eq([:ok, {}])
+        end
       end
     end
   end

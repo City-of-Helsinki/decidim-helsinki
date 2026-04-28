@@ -1,17 +1,35 @@
-<div class="extended home-section">
-  <div class="hero__container">
+<div class="intro-section">
+  <div class="intro-section-bg home-section">
     <div class="row">
-      <div class="columns large-8 large-centered">
-        <div class="text-center">
-          <h1 class="heading1">
-            <%= title %>
-          </h1>
-          <div class="lead">
-            <%== description %>
-            <%= link %>
+      <div class="columns small-12 large-7 xlarge-6 intro-section-text">
+        <h1 class="heading1">
+          <%= title %>
+        </h1>
+        <%== description_intro %>
+
+        <% if description_extra.present? %>
+          <div id="intro-<%= unique_id %>-extra" class="description-extra hide" data-toggler=".hide">
+            <%== description_extra %>
           </div>
-        </div>
+          <button id="intro-<%= unique_id %>-extra-toggle" type="button" data-toggle="intro-<%= unique_id %>-extra intro-<%= unique_id %>-extra-toggle" data-toggler=".active">
+            <%= icon("ellipses", role: "img", "aria-hidden": true) %>
+            <span class="show-for-sr active-hide"><%= t(".show_more") %></span>
+            <span class="show-for-sr active-show"><%= t(".show_less") %></span>
+          </button>
+        <% end %>
       </div>
+      <% if main_image.present? %>
+        <div class="columns small-12 large-5 xlarge-6 intro-section-image show-for-large" data-set="intro-section-image">
+        </div>
+      <% end %>
     </div>
   </div>
+  <%= koro("basic", flip: true) %>
+  <% if main_image.present? %>
+    <div class="intro-section-image-mobile hide-for-large" data-set="intro-section-image">
+      <div class="image-wrapper js-append">
+        <%= image_tag main_image, alt: main_image_alt %>
+      </div>
+    </div>
+  <% end %>
 </div>

@@ -5,8 +5,6 @@ module Decidim
     # A command with all the business logic to create a new category in the
     # system.
     class CreateCategory < Decidim::Command
-      include ::Decidim::AttachmentAttributesMethods
-
       # Public: Initializes the command.
       #
       # form - A form object with the params.
@@ -26,6 +24,7 @@ module Decidim
       # Returns nothing.
       def call
         return broadcast(:invalid) if form.invalid?
+        return broadcast(:invalid) if @form.add_category_images.any?(&:invalid?)
 
         create_category
         broadcast(:ok)
@@ -55,8 +54,13 @@ module Decidim
           weight: form.weight,
           parent_id: form.parent_id,
           color: category_color,
-          participatory_space: @participatory_space
-        }.merge(attachment_attributes(:category_image, :category_icon))
+          participatory_space: @participatory_space,
+          category_images: category_images
+        }
+      end
+
+      def category_images
+        @form.category_images + @form.add_category_images
       end
     end
   end

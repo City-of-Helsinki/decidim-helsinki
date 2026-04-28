@@ -1,0 +1,25 @@
+<div class="reveal" id="publishAccountModal" data-reveal role="dialog" aria-modal="true" aria-labelledby="privacy-modal-label">
+  <div class="reveal__header">
+    <h2 id="privacy-consent-label" class="reveal__title"><%= t("make_profile_public", scope:"decidim.privacy.partials.privacy_consent") %></h2>
+    <button class="close-button" data-close aria-label="<%= t("close_modal", scope: "decidim.privacy.partials.privacy_consent") %>"
+      type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="reveal__content">
+     <%= t("content_html", scope:"decidim.privacy.partials.privacy_consent") %>
+
+      <%= decidim_form_for(Decidim::Privacy::PublishAccountForm.new, url: decidim_privacy.update_account_publicity_path, html: { class: "public-account-form update-privacy" }, method: :put, remote: true) do |f| %>
+        <div class="field margin-bottom-1">
+          <%= f.check_box :agree_public_profile,label: t("agree_to_public_profile", scope: "decidim.privacy.partials.privacy_consent"), required: true %>
+        </div>
+
+        <div class="buttons buttons-row">
+          <%= f.submit t("agree", scope: "decidim.privacy.partials.privacy_consent"), class: "button" %>
+          <button class="button hollow" data-close aria-label="<%= t("close_modal", scope: "decidim.privacy.partials.privacy_consent") %>" type="button">
+            <%= t("do_not_agree", scope: "decidim.privacy.partials.privacy_consent")%>
+          </button>
+        </div>
+      <% end %>
+  </div>
+</div>

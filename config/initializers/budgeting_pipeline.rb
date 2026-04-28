@@ -4,6 +4,7 @@
 Decidim::BudgetingPipeline.configure do |config|
   config.identity_providers = lambda do |organization|
     possible = []
+    possible << :helsinki if Rails.application.config.helsinki_profile_enabled
     possible << :suomifi if Rails.application.config.suomifi_enabled
     possible << :mpassid if Rails.application.config.mpassid_enabled
     possible << :sms if Rails.application.config.smsauth_enabled
@@ -17,6 +18,7 @@ Decidim::BudgetingPipeline.configure do |config|
   end
   config.authorization_providers = lambda do |organization|
     possible = []
+    possible << "helsinki_idp" if Rails.application.config.helsinki_profile_enabled
     possible << "suomifi_eid" if Rails.application.config.suomifi_enabled
     possible << "mpassid_nids" if Rails.application.config.mpassid_enabled
     possible << "helsinki_smsauth_id" if Rails.application.config.smsauth_enabled

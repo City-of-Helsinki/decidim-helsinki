@@ -31,7 +31,13 @@ module DecidimHelsinki
     config.search_indexing = true
 
     # How long the sessions are valid
-    config.session_validity_period = 1.hour
+    config.session_validity_period = 30.minutes
+
+    config.service_name = {
+      fi: "OmaStadi",
+      sv: "VårStad",
+      en: "OmaStadi"
+    }
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -55,9 +61,10 @@ module DecidimHelsinki
     config.feedback_email = "omastadi@hel.fi"
 
     # This defines an email address for automatically generated user accounts,
-    # e.g. through the Suomi.fi or MPASSid authentications.
+    # e.g. through the Helsinki profile or MPASSid authentications.
     config.auto_email_domain = "omastadi.hel.fi"
 
+    config.helsinki_profile_enabled = false
     config.suomifi_enabled = false
     config.mpassid_enabled = false
     config.smsauth_enabled = false
@@ -71,25 +78,28 @@ module DecidimHelsinki
       end
     end
 
-    # Passes a block of code to do after initialization.
+    # Fixes issue with some of the Omniauth providers not being available
+    # depending on the load order.
     config.after_initialize do
-      # Override the main menu
-      Decidim::MenuRegistry.create(:menu)
-      Decidim.menu :menu do |menu|
-        menu.item I18n.t("menu.home", scope: "decidim"),
-                  decidim.root_path,
-                  position: 1,
-                  active: :exact
+      possible = []
+      # possible << Decidim::HelsinkiProfile.auth_service_name.to_sym if Rails.application.config.helsinki_profile_enabled
+      possible << :suomifi if Rails.application.config.suomifi_enabled
+      possible << :mpassid if Rails.application.config.mpassid_enabled
+      possible << :sms if Rails.application.config.smsauth_enabled
 
-        menu.item I18n.t("menu.processes", scope: "decidim"),
-                  decidim_participatory_processes.participatory_processes_path,
-                  position: 2,
-                  active: :inclusive
+      Decidim::User.omniauth_providers = possible
 
-        menu.item I18n.t("menu.more_information", scope: "decidim"),
-                  decidim.pages_path,
-                  position: 3,
-                  active: :inclusive
+      # Prevent the signed global IDs from expiring because they are cached and e.g.
+      # commenting might not work if the ID has expired.
+      #
+      # See: https://github.com/decidim/decidim/pull/12783
+      SignedGlobalID.expires_in = nil
+    end
+
+    # Customize the user menu
+    initializer "user_menu", after: "decidim.user_menu" do
+      Decidim.menu :user_menu do |menu|
+        menu.remove_item(:user_interests)
       end
     end
 
@@ -116,10 +126,10 @@ module DecidimHelsinki
       #
       # In case you are planning to change this, make sure that the following
       # works:
-      # - Start the application with Tunnistamo omniauth method configured
-      # - Load the login page and see that Tunnistamo is configured
+      # - Start the application with Helsinki profile omniauth method configured
+      # - Load the login page and see that Helsinki profile is configured
       # - Make a change to any file under the `app` folder
-      # - Reload the login page and see that Tunnistamo is configured
+      # - Reload the login page and see that Helsinki profile is configured
       #
       # This could be also fixed in the Decidim core by making the omniauth
       # providers configurable through the application configs. See:
@@ -191,11 +201,33 @@ module DecidimHelsinki
         content_block.settings_form_cell = "helsinki/content_blocks/intro_settings_form"
         content_block.public_name_key = "helsinki.content_blocks.intro.name"
 
+        content_block.images = [
+          {
+            name: :main_image,
+            uploader: "Helsinki::IntroImageUploader"
+          }
+        ]
+
         content_block.settings do |settings|
           settings.attribute :title, type: :text, translated: true
           settings.attribute :description, type: :text, translated: true
-          settings.attribute :link_url, type: :text
-          settings.attribute :link_text, type: :text, translated: true
+          settings.attribute :main_image_alt, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
+      Decidim.content_blocks.register(:homepage, :notification) do |content_block|
+        content_block.cell = "helsinki/content_blocks/notification"
+        content_block.settings_form_cell = "helsinki/content_blocks/notification_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.notification.name"
+
+        content_block.settings do |settings|
+          settings.attribute :type, type: :enum, default: "info", choices: %w(info success)
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :button_url, type: :text
+          settings.attribute :button_text, type: :text, translated: true
         end
 
         content_block.default!
@@ -235,6 +267,29 @@ module DecidimHelsinki
         content_block.default!
       end
 
+      Decidim.content_blocks.register(:homepage, :map_section) do |content_block|
+        content_block.cell = "helsinki/content_blocks/map_section"
+        content_block.settings_form_cell = "helsinki/content_blocks/map_section_settings_form"
+        content_block.public_name_key = "helsinki.content_blocks.map_section.name"
+
+        content_block.images = Decidim.available_locales.map do |locale|
+          {
+            name: :"map_image_#{locale}",
+            uploader: "Helsinki::SvgUploader"
+          }
+        end
+
+        content_block.settings do |settings|
+          settings.attribute :image_alt, type: :text, translated: true
+          settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
+          settings.attribute :button_url, type: :text
+          settings.attribute :button_text, type: :text, translated: true
+        end
+
+        content_block.default!
+      end
+
       Decidim.content_blocks.register(:homepage, :image_section) do |content_block|
         content_block.cell = "helsinki/content_blocks/image_section"
         content_block.settings_form_cell = "helsinki/content_blocks/image_section_settings_form"
@@ -265,6 +320,7 @@ module DecidimHelsinki
         content_block.settings do |settings|
           settings.attribute :process_id, type: :integer
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
           settings.attribute :button_url, type: :text
           settings.attribute :button_text, type: :text, translated: true
         end
@@ -280,6 +336,7 @@ module DecidimHelsinki
         content_block.settings do |settings|
           settings.attribute :process_id, type: :integer
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
           settings.attribute :button_url, type: :text
           settings.attribute :button_text, type: :text, translated: true
         end
@@ -295,6 +352,7 @@ module DecidimHelsinki
         content_block.settings do |settings|
           settings.attribute :process_id, type: :integer
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
           settings.attribute :button_url, type: :text
           settings.attribute :button_text, type: :text, translated: true
         end
@@ -310,6 +368,7 @@ module DecidimHelsinki
         content_block.settings do |settings|
           settings.attribute :process_id, type: :integer
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
           settings.attribute :button_url, type: :text
           settings.attribute :button_text, type: :text, translated: true
         end
@@ -324,6 +383,7 @@ module DecidimHelsinki
 
         content_block.settings do |settings|
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
         end
 
         content_block.default!
@@ -336,12 +396,18 @@ module DecidimHelsinki
 
         content_block.settings do |settings|
           settings.attribute :title, type: :text, translated: true
+          settings.attribute :description, type: :text, translated: true
           settings.attribute :button_url, type: :text, translated: true
           settings.attribute :button_text, type: :text, translated: true
         end
 
         content_block.default!
       end
+    end
+
+    initializer "decidim_elections.add_cells_view_paths" do |app|
+      # for overridden partials
+      Cell::ViewModel.view_paths.prepend File.expand_path("#{app.root}/app/views")
     end
 
     initializer "decidim_plans_layouts", after: "decidim_plans.register_layouts" do
@@ -351,7 +417,8 @@ module DecidimHelsinki
         layout.form_layout = "helsinki/plans/omastadi_form"
         layout.view_layout = "helsinki/plans/omastadi_view"
         layout.index_layout = "helsinki/plans/omastadi_index"
-        layout.card_layout = "helsinki/plans/plan_m"
+        layout.card_layout = "helsinki/plans/plan_l"
+        layout.notification_layout = "helsinki/plans/omastadi_notification"
         layout.public_name_key = "helsinki.plans.layouts.omastadi"
       end
     end
@@ -393,6 +460,35 @@ module DecidimHelsinki
       end
     end
 
+    initializer "pagination", before: "decidim.action_controller" do
+      config.to_prepare do
+        # Redefine the pagination options
+        Decidim::Paginable.send(:remove_const, :OPTIONS)
+        Decidim::Paginable.const_set(:OPTIONS, [20].freeze)
+
+        # Redefine the maximum depth for comments
+        Decidim::Comments::Comment.send(:remove_const, :MAX_DEPTH)
+        Decidim::Comments::Comment.const_set(:MAX_DEPTH, 2)
+      end
+    end
+
+    initializer "default_form_builder", after: "decidim.default_form_builder" do
+      ActionView::Base.default_form_builder = Helsinki::FormBuilder
+    end
+
+    initializer "mail_interceptors" do
+      # This would otherwise fail in case the migrations have not run yet.
+      next unless ActiveRecord::Base.connection.table_exists?(Decidim::Organization.table_name)
+
+      ActionMailer::Base.register_interceptor(
+        Helsinki::MailInterceptors::GeneratedRecipientsInterceptor
+      )
+
+      Helsinki::MailInterceptors::GeneratedRecipientsInterceptor.configure_domains(
+        *Decidim::Organization.pluck(:host)
+      )
+    end
+
     # Add the to_prepare hook AFTER the decidim.action_controller initializer
     # because otherwise a necessary helper would be missing from some of the
     # controllers.
@@ -402,29 +498,43 @@ module DecidimHelsinki
       #
       # Run before every request in development.
       config.to_prepare do
+        # Form helpers
+        ActionView::Helpers::Tags::CollectionCheckBoxes.include(Helsinki::FormExtensions::CollectionCheckBoxes)
+        ActionView::Helpers::Tags::CollectionRadioButtons.include(Helsinki::FormExtensions::CollectionRadioButtons)
+
+        # Form builders
+        Decidim::FormBuilder.include(DecidimFormBuilderExtensions)
+        Decidim::FilterFormBuilder.include(Helsinki::FormBuilderExtensions)
+
         # Helper extensions
-        Decidim::Comments::CommentsHelper.include(CommentsHelperExtensions)
         Decidim::ParticipatoryProcesses::ParticipatoryProcessHelper.include(ParticipatoryProcessHelperExtensions)
         Decidim::ScopesHelper.include(ScopesHelperExtensions)
+        FoundationRailsHelper::FlashHelper.include(FlashHelperExtensions)
+
+        # Presenter extensions
+        Decidim::MenuItemPresenter.include(MenuItemPresenterExtensions)
 
         # Command extensions
         Decidim::Accountability::Admin::CreateResult.include(ResultExtraAttributes)
         Decidim::Accountability::Admin::UpdateResult.include(ResultExtraAttributes)
         Decidim::Blogs::Admin::CreatePost.include(CreateBlogPostOverrides)
         Decidim::Blogs::Admin::UpdatePost.include(UpdateBlogPostOverrides)
+        Decidim::CreateRegistration.include(CreateRegistrationOverrides)
+        Decidim::UpdateAccount.include(UpdateAccountOverrides)
 
         # Controller extensions
         # Keep after helpers because these can load in helpers!
         Decidim::ApplicationController.include(LongLocationUrlStoring)
+        Decidim::ApplicationController.include(CustomTosRedirect)
         Decidim::Admin::HelpSectionsController.include(AdminHelpSectionsExtensions)
         Decidim::Admin::CategoriesController.include(AdminCategoriesControllerExtensions)
+        Decidim::Devise::SessionsController.include(DisableFirstLoginAndNotAuthorized)
         Decidim::Components::BaseController.include(ComponentsBaseExtensions)
         Decidim::UserActivitiesController.include(ActivityResourceTypes)
         Decidim::UserTimelineController.include(TimelineResourceTypes)
         Decidim::Meetings::RegistrationsController.include(MeetingsRegistrationsControllerExtensions)
+        Decidim::LinksController.include(LinksControllerExtensions)
         # For ensuring that the disabled omniauth strategies cannot be used
-        Decidim::Suomifi::OmniauthCallbacksController.include(OmniauthExtensions)
-        Decidim::Suomifi::OmniauthCallbacksController.ensure_strategy_enabled_for(:suomifi)
         Decidim::Mpassid::OmniauthCallbacksController.include(OmniauthExtensions)
         Decidim::Mpassid::OmniauthCallbacksController.ensure_strategy_enabled_for(:mpassid)
 
@@ -433,27 +543,44 @@ module DecidimHelsinki
         Decidim::CardMCell.include(CardMCellExtensions)
         Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::ApplicationHelper)
         Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.include(Decidim::SanitizeHelper)
+        Decidim::Comments::CommentsCell.include(CommentsCellExtensions)
+        Decidim::Comments::CommentCell.include(CommentCellExtensions)
         Decidim::ContentBlocks::HeroCell.include(KoroHelper)
         Decidim::Blogs::PostMCell.include(BlogPostMCellExtensions)
         Decidim::Budgets::BudgetListItemCell.include(BudgetListItemCellExtensions)
         Decidim::Budgets::BudgetInformationModalCell.include(BudgetInformationModalExtensions)
+        Decidim::Accountability::ResultMCell.include(ResultCellExtensions)
+        Decidim::Accountability::ResultLCell.include(ResultCellExtensions)
         Decidim::Meetings::MeetingMCell.include(MeetingMCellExtensions)
+        Decidim::UploadModalCell.include(UploadModalCellExtensions)
+        Decidim::UserActivityCell.include(UserActivityCellExtensions)
+        Decidim::FollowingCell.include(FollowingCellExtensions)
+        Decidim::NotificationsCell.include(NotificationsCellExtensions)
 
         # Form extensions
         Decidim::Admin::CategoryForm.include(AdminCategoryFormExtensions)
         Decidim::Accountability::Admin::ResultForm.include(AdminResultFormExtensions)
         Decidim::Blogs::Admin::PostForm.include(AdminBlogPostFormExtensions)
+        Decidim::RegistrationForm.include(RegistrationFormExtensions)
 
         # Model extensions
         Decidim::ActionLog.include(ActionLogExtensions)
         Decidim::Category.include(CategoryExtensions)
+        Decidim::User.include(UserExtensions)
         Decidim::Blogs::Post.include(BlogPostExtensions)
+        Decidim::Accountability::Result.include(ResultExtensions)
 
         # View extensions
         ActionView::Base.include(Decidim::WidgetUrlsHelper)
 
         # Authorizer extensions
         ::Decidim::ActionAuthorizer::AuthorizationStatusCollection.include(AuthorizationStatusCollectionExtensions)
+
+        # Lib extensions
+        Decidim::AssetRouter::Storage.include(AssetForceStorageUrl)
+
+        # Service extensions
+        Decidim::Budgets::OrderReminderGenerator.include(OrderReminderGeneratorExtensions)
       end
     end
   end

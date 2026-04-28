@@ -1,0 +1,30 @@
+.upload-modal .dropzone-container{
+  input[type=file]{
+    // Needs to be visible for screen readers
+    display: inline-block;
+  }
+
+  label{
+    &.is-dragover{
+      background-color: $secondary;
+    }
+
+    &.dropzone{
+      border-color: $primary;
+
+      &.is-dragover{
+        border-color: $input-focus-color;
+      }
+    }
+
+    &.disabled{
+      background-color: $light-gray;
+      cursor: not-allowed;
+      border-color: lighten($secondary, 50);
+
+      span{
+        color: #ccc;
+      }
+    }
+  }
+}

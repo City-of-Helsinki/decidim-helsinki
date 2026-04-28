@@ -1,0 +1,13 @@
+<% scope_results(results) do |batch, scope, details| %>
+  <% if scope %>
+    <h2 class="h2 heading2 margin-bottom-2"><%= translated_attribute(scope.name) %></h2>
+    <p><%= t(".scope_count", count: batch.count, title: translated_attribute(scope.name)) %></p>
+  <% else %>
+    <h2 class="h2 heading2 margin-bottom-2"><%= t(".results_without_scope") %></h2>
+    <p><%= t(".scope_count_without_scope", count: batch.count) %></p>
+  <% end %>
+
+  <p><%= t(".total_budget", amount: number_to_currency(details[:total_budget], unit: Decidim.currency_unit, precision: 0)) %></p>
+
+  <%= render partial: "results_table", locals: { results: batch } %>
+<% end %>

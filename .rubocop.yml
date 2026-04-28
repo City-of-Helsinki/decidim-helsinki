@@ -22,6 +22,7 @@ AllCops:
     - "**/vendor/**/*"
     - "development_app/**/*"
     - "spec/decidim_dummy_app/**/*"
+    - "spec/fixtures/**/*"
     - "node_modules/**/*"
     - "tmp/**/*"
 

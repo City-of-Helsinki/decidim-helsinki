@@ -5,7 +5,7 @@ fi:
         settings:
           global:
             workflow_choices:
-              omastadi: 'OmaStadi: sallii osallistujan äänestyksen Koko Helsinki -alueella ja yhdellä valitsemallaan suurpiirillä.'
+              omastadi: 'OmaStadi: sallii osallistujan äänestyksen yhdellä valitsemallaan suurpiirillä.'
               ruuti_one: 'Ruuti äänestä yhdessä: sallii osallistujan äänestyksen omalla Ruuti-alueellaan.'
   helsinki:
     areas:
@@ -25,14 +25,14 @@ fi:
             class_level_not_defined: Luokka-astettasi ei pystytty varmentamaan sähköisesti. Voit äänestää erikseen ilmoitetuissa äänestyspaikoissa esittämällä henkilöllisyystodistuksen.
             not_in_area: Kotikuntasi ei ole Helsinki. Tähän äänestykseen voivat osallistua vain helsinkiläiset.
             not_permanent_resident: Pysyvä asuinpaikkasi ei ole Helsinki. Tähän äänestykseen voivat osallistua vain helsinkiläiset.
-            not_student: Saamamme tiedon mukaan et ole oppilas. Vanhemmat ja opettajat eivät voi tunnistautua äänestämään Wilmalla. Valitse toinen tunnistautumistapa.
-            too_young: Olet ehkä liian nuori äänestämään. Sinun tulee olla vähintään peruskoulun 6-luokalla, jotta voit tunnistautua äänestäjäksi Wilmalla. Jos olet täyttänyt tai täytät tänä vuonna 12 vuotta, voit äänestää erikseen ilmoitetuissa äänestyspaikoissa luokkatasostasi riippumatta.
+            not_student: Saamamme tiedon mukaan et ole oppilas. Vanhemmat ja opettajat eivät voi tunnistautua äänestämään koululaisen tunnuksilla. Valitse toinen tunnistautumistapa.
+            too_young: Olet ehkä liian nuori äänestämään. Sinun tulee olla vähintään peruskoulun 6-luokalla, jotta voit tunnistautua äänestäjäksi koululaisen tunnuksilla. Jos olet täyttänyt tai täytät tänä vuonna 12 vuotta, voit äänestää erikseen ilmoitetuissa äänestyspaikoissa luokkatasostasi riippumatta.
             unknown_school: Emme onnistuneet varmistamaan sähköisesti missä koulussa opiskelet. Et valitettavasti voi äänestää Ruuti-budjetoinnissa.
-            invalid_school_type: Koulutyyppisi ei salli sinun tunnistautua äänestäjäksi Wilmalla. Valitse toinen tunnistautumistapa.
+            invalid_school_type: Koulutyyppisi ei salli sinun tunnistautua äänestäjäksi koululaisen  tunnuksilla. Valitse toinen tunnistautumistapa.
         identify:
           title: Tunnistaudu
         new:
-          help: Voit äänestää koko Helsingin suunnitelmista ja valitsemasi suurpiirin suunnitelmista. Sinulle ehdotetaan kotiosoitteeesi postinumeron (tai Wilma-tunnistautuvilla koulun postinumeron) mukaista suurpiiriä, mutta voit vaihtaa sen alla olevasta putodusvalikosta. Jos haluat äänestää tiettyä suunnitelmaa, tarkista etukäteen minkä suurpiirin alueella se sijaitsee. Jos haluat vaihtaa tässä tekemäsi valinnan jälkikäteen, katso ylävalikosta Ohjeet.
+          help: Voit äänestää koko Helsingin suunnitelmista ja valitsemasi suurpiirin suunnitelmista. Sinulle ehdotetaan kotiosoitteeesi postinumeron (tai koululaisen tunnuksilla koulun postinumeron) mukaista suurpiiriä, mutta voit vaihtaa sen alla olevasta putodusvalikosta. Jos haluat äänestää tiettyä suunnitelmaa, tarkista etukäteen minkä suurpiirin alueella se sijaitsee. Jos haluat vaihtaa tässä tekemäsi valinnan jälkikäteen, katso ylävalikosta Ohjeet.
           title: Hyväksy suurpiiri
           submit: Hyväksy
     content_blocks:
@@ -40,25 +40,26 @@ fi:
         name: Taustaosio
       background_section_settings_form:
         description: Kuvaus
-        button1_text: Napin 1 teksti
-        button1_url: Napin 1 URL
-        button2_text: Napin 2 teksti
-        button2_url: Napin 2 URL
+        button1_text: Painikkeen 1 teksti
+        button1_url: Painikkeen 1 URL
+        button2_text: Painikkeen 2 teksti
+        button2_url: Painikkeen 2 URL
         title: Otsikko
       help_section:
         name: Apuosio
       help_section_settings_form:
         description: Kuvaus
-        button1_text: Napin 1 teksti
-        button1_url: Napin 1 URL
-        button2_text: Napin 2 teksti
-        button2_url: Napin 2 URL
+        button1_text: Painikkeen 1 teksti
+        button1_url: Painikkeen 1 URL
+        button2_text: Painikkeen 2 teksti
+        button2_url: Painikkeen 2 URL
         title: Otsikko
       highlighted_blogs:
+        article: "Artikkeli: %{title}"
         name: Bloginostot
-        show_more: Näytä lisää
-        show_more_detailed: Näytä lisää ajankohtaisia asioita
+        show_more: Näytä lisää ajankohtaisia asioita
       highlighted_blogs_settings_form:
+        description: Kuvaus
         title: Otsikko
       ideas_carousel:
         name: Ideakaruselli
@@ -72,17 +73,43 @@ fi:
         title: Otsikko
       intro:
         name: Intro
+        show_less: Näytä vähemmän
+        show_more: Näytä enemmän
       intro_settings_form:
         description: Kuvaus
-        link_text: Linkin teksti
-        link_url: Linkin URL
+        main_image: Kuva
+        main_image_alt: Kuvan vaihtoehtoisteksti
         title: Otsikko
       linked_events:
         name: Linked Events - Tulevat tapahtumat
       linked_events_settings_form:
-        button_text: Napin teksti
-        button_url: Napin URL
+        button_text: Painikkeen teksti
+        button_url: Painikkeen URL
+        description: Kuvaus
         title: Otsikko
+      map_section:
+        name: Karttaosio
+      map_section_settings_form:
+        description: Kuvaus
+        button_text: Painikkeen teksti
+        button_url: Painikkeen URL
+        image: Karttakuva (%{language})
+        image_alt: Karttakuvan vaihtoehtoisteksti
+        section:
+          content: Sisältö kartan vieressä
+          map: Karttakuva
+        title: Otsikko
+      notification:
+        name: Ilmoitus
+      notification_settings_form:
+        description: Kuvaus
+        button_text: Painikkeen teksti
+        button_url: Painikkeen URL
+        title: Otsikko
+        type: Tyyppi
+        type_choices:
+          info: Tiedotusasia
+          success: Onnistuminen
       plans_carousel:
         name: Ehdotuskaruselli (yhteiskehittäminen)
       process_steps:
@@ -96,19 +123,32 @@ fi:
         next: Seuraava
         previous: Edellinen
       records_carousel_settings_form:
-        button_text: Napin teksti
-        button_url: Napin URL
+        button_text: Painikkeen teksti
+        button_url: Painikkeen URL
+        description: Kuvaus
         process: Prosessi
         title: Otsikko
       results_carousel:
         name: Hankekaruselli (seuranta)
+    consent:
+      show:
+        title: Evästeasetukset
+        description_html: |
+          <p>Eväste (engl. cookie) on pienikokoinen tekstitiedosto, jonka verkkoselain tallentaa käyttäjän tietokoneelle tai mobiililaitteelle, kun vierailet verkkosivustolla. Se ei vahingoita käyttäjän laitetta tai tiedostoja. Evästeitä ei voi käyttää haittaohjelmien levittämiseen.</p>
+          <p>Evästeistä saatava käyttäjätieto auttaa meitä varmistamaan sivuston teknisen toimivuuden ja parantamaan digitaalisten palveluidemme laatua. Niiden avulla voimme kehittää sivuston käyttäjäystävällisyyttä ja helpottaa tiedon löytymistä.</p>
     copyright: '%{year} Helsingin kaupunki'
-    devise:
-      shared:
-        omniauth_buttons:
-          tunnistamo_explanation: 'Facebook-, Google- tai YLE-kirjautuminen'
-          tunnistamo_explanation_internal: 'Tunnistamo-kirjautuminen'
-        tunnistamo_description: Tunnistamon avulla voit kirjautua palveluun mm. Google-, Facebook-, YLE-palveluiden avulla.
+    forms:
+      label_tooltip: Ohjeistus
+    linked_events:
+      index:
+        all_events: Katso alueesi tapahtumat
+        description_html: |
+          <p>Kaupungissa järjestetään keväällä 2024 kolme tapahtumaa, joissa kaupunkilaiset ja kaupungin työntekijät suunnittelevat eri alueilla toteutettavia OmaStadi-hankkeita yhdessä.</p>
+        subtitle: Tulevia tapahtumia
+        title: Tapahtumat
+    linked_event_card:
+      pricing:
+        free: Maksuton
     map:
       districts:
         central: Keskinen
@@ -123,14 +163,16 @@ fi:
         creator: Alkuperäisen kuvan tekijä
         license: Kuvan lisenssi
         note: Kuvaa muokattu alkuperäisestä
+    pb_map:
+      label: "Helsingin suurpiirit budjetteineen: Läntinen 1534011€, Pohjoinen 593272€, Keskinen 1323211€, Eteläinen 1662361€, Koillinen 1374703€, Kaakkoinen 765547€, Itäinen ja Östersundom 1546895€"
     plans:
       layouts:
         omastadi: OmaStadi
       omastadi_form:
         buttons:
           create: Luo ja esikatsele
-          discard: Tuhoa tämä luonnos
-          discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
+          discard: Poista luonnos
+          discard_confirmation: Haluatko varmasti poistaa tämän luonnoksen?
           loading_message: Tallennetaan... Kuvien ja liitetiedostojen käsittelyssä kestää hetki, odota rauhassa.
           save: Tallenna
           save_draft: Tallenna luonnos
@@ -140,7 +182,7 @@ fi:
         edit_step_info: Kirjoita lyhyt kuvaus ehdotuksestasi ja valitse alue, johon se sijoittuu. Hyvässä kuvauksessa kerrotaan, mitä pitäisi konkreettisesti tehdä ja mihin rahoitusta tarvitaan. Hyödynnä ehdotuksen suunnittelussa tietoa kaupungin palveluista ja suunnitelmista.
         ideas_step_info: Ehdotuksia tehdään kaupunkilaisten jättämien, kriteerit täyttäneiden ideoiden pohjalta. Aloita ehdotuksen luominen valitsemalla yksi tai useampi idea, johon ehdotuksesi perustuu. Jokaiseen ehdotukseen tulee liittää vähintään yksi idea. Ennen kuin teet oman ehdotuksen, käy tutustumassa muiden tekemiin ehdotuksiin.
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
-        required_fields_text: Pakolliset kentät on merkitty *-merkillä.
+        required_fields_text: Tähdellä * merkityt kentät on pakko täyttää.
         steps:
           next: Seuraava
           previous: Edellinen
@@ -167,9 +209,10 @@ fi:
           close_modal: Sulje ikkuna
           filter: Suodata
           filter_by: Suodata
+          keyword: Hakusana
           related_to: Liittyy kohteeseen
-          reset: Tyhjennä rajaukset
-          search: Hae
+          reset: Tyhjennä valinnat
+          search: Suorita haku
           state:
             accepted: Etenee äänestykseen
             all: Kaikki
@@ -182,19 +225,27 @@ fi:
           title: Etsi ehdotuksia
           unfold: Avaa
         leave_your_plan: Tee oma ehdotuksesi!
-        new_plan: Uusi ehdotus
+        new_plan: Tee ehdotus
+        notification:
+          title: Tietoa alueista
+          description_html: <p>Tutustu oman alueesi tärkeisiin lukuihin ja kiinnostaviin teemoihin.</p>
+          button: Tietoa alueista
         see_all_withdrawn: Näytä kaikki peruutetut
-        subtitle: Etsi ja tutki ehdotuksia!
+        show_list: Näytä tulokset listana
+        show_map: Näytä tulokset kartalla
         title: Tutustu ehdotuksiin
         view_plan: Näytä ehdotus
+      omastadi_notification:
+        accepted:
+          title: Ehdotus on hyväksytty
+        estimate:
+          final: "Lopullinen budjettiarvio: %{amount}"
+          initial: "Alustava budjettiarvio: %{amount}"
+        evaluating:
+          title: Ehdotus on arvioitavana
+        rejected:
+          title: Ehdotus on valitettavasti hylätty
       omastadi_view:
-        answer:
-          final_estimate: 'Lopullinen budjettiarvio: %{amount}'
-          generic_title: Vastaus
-          initial_estimate: Alustava budjettiarvio
-          reasoning: Perustelu
-          show_final_estimate: Näytä lopullinen budjettiarvio
-          show_initial_estimate: Näytä alustava budjettiarvio
         authors: Ehdotuksen tekijät
         back: Palaa takaisin ehdotuslistaukseen
         back_to_list: Näytä muut ehdotukset
@@ -206,20 +257,56 @@ fi:
           edit_plan: Muokkaa ehdotusta
           withdraw_plan: Peru ehdotus
           withdraw_confirmation_html: Haluatko varmasti perua tämän ehdotuksen?
+        details:
+          attributes:
+            area_scope: Alue
+            category: Teema
+            id: Numero (ID)
+            published_at: Julkaisuaika
+          title: Tiedot
         feedback_title: Kiitos ehdotuksen jättämisestä!
         flag: Ilmoita
-        info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         linked_ideas: Ehdotukseen liitetyt ideat
+        linked_projects: Liitetty äänestettävään ehdotukseen
         manage_plan: Hallitse ehdotusta
+        map_title: Ehdotus kartalla
         pending_access_request_message_html: <p>Olet pyytänyt muokkausoikeuksia tähän ehdotukseen. Odota, että ehdotuksen tekijät vastaavat pyyntöösi.</p><p>Saat viestin sähköpostiisi, kun pyyntöösi vastataan.</p>
         request_access: Pyydä muokkausoikeuksia
         share: Jaa
         share_link: Jaettava linkki
         show_comments: Näytä kommentit
         show_on_map: Näytä kartalla
+        subtitle: Ehdotus
         related_documents: Liittyvät asiakirjat
-      plan_m:
+      plan_l:
+        card_label: "Ehdotus: %{title}"
         view_plan: Näytä ehdotus
+    shared:
+      account_privacy_summary:
+        privacy_link: /pages/tietosuoja
+        tos_summary_html: |
+          <p>
+            Kun rekisteröidyt OmaStadi-palveluun, on sinun annettava suostumuksesi henkilötietojen käsittelylle.
+            Suostumuksen antamisen jälkeen voit tehdä ehdotuksen, kommentoida ehdotuksia ja äänestää ehdotuksia.
+          </p>
+          <p>
+            Kun rekisteröidyt palveluun käsittelemme seuraavia henkilötietojasi: nimi, nimimerkki ja sähköpostiosoite.
+          </p>
+          <p>
+            Kun tunnistaudut OmaStadi-palveluun vahvan tunnistautumisen kautta, käsittelemme seuraavia
+            henkilötietojasi: nimi, sähköpostisosoite, kotikunta, postinumero ja henkilötunnus.
+          </p>
+          <p>
+            Koululaiset tunnistautuvat äänestäessään koulujen käyttämän mPassID:n avulla, jolloin käsitellemme
+            seuraavia henkilötietoja: etunimi, sukunimi, kutsumanimi, kuntakoodi, kunnan nimi, koulukoodi, koulun
+            nimi, luokkatunnus ja luokka-aste.
+          </p>
+          <p>Voit peruuttaa antamasi suostumuksen milloin tahansa ja poistaa tietosi käyttäjätilisi asetuksista.</p>
+          <p>
+            Lisätietoa henkilötietojesi käsittelystä OmaStadi palvelussa löytyy
+            <a href="%{privacy_link}" target="_blank">tietosuojaselosteesta</a>, jossa kerrotaan muun muassa tarkemmin
+            henkilötietojesi käsittelyn oikeusperusteista ja tietojesi säilytysajoista.
+          </p>
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Luokka-astettasi ei pystytty varmentamaan sähköisesti.
@@ -228,11 +315,11 @@ fi:
       class_level_not_allowed_one: Luokka-asteesi tulisi olla %{level}.
       class_level_not_defined: Luokka-astettasi ei ole määritetty.
       disallowed_municipality: Äänestys on rajattu vain helsinkiläisille.
-      disallowed_role: Wilma-tunnistautumisella äänestäminen on rajattu vain oppilaille.
+      disallowed_role: Koululaisen tunnistautumisella äänestäminen on rajattu vain oppilaille.
       disallowed_school: Äänestys ei ole sallittu tässä koulussa.
       disallowed_voting_unit: Koulustasi ei voi äänestää tällä alueella.
       voting_unit_required: Tietoa Ruuti-alueestasi ei tiedetä.
-  suomifi_action_authorizer:
+  helsinki_action_authorizer:
     restrictions:
       disallowed_district: Tämä äänestys ei ole sallittu suurpiiristäsi.
       disallowed_municipality: Äänestys on rajattu vain helsinkiläisille.

@@ -5,6 +5,12 @@ module Decidim
     # This cell renders the Medium (:m) process card
     # for an given instance of a Process
     class ProcessMCell < Decidim::CardMCell
+      include Decidim::TwitterSearchHelper
+
+      def render_column?
+        !context[:no_column].presence
+      end
+
       private
 
       def has_image?
@@ -40,7 +46,7 @@ module Decidim
       def resource_image_path
         return unless has_image?
 
-        model.attached_uploader(:hero_image).path
+        model.attached_uploader(:hero_image).url
       end
 
       def step_title

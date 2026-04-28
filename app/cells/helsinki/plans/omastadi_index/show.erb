@@ -1,0 +1,88 @@
+<div class="row columns">
+  <div class="page-title">
+    <h1 class="heading1"><%= t ".title" %></h1>
+  </div>
+</div>
+
+<%= render partial: "decidim/shared/component_announcement.html", locals: { current_settings: current_settings, component_settings: component_settings } %>
+
+<div class="row medium-unstack content-intro">
+  <div class="columns medium-6 mediumlarge-8">
+    <div class="text-large">
+      <% if translated_attribute(component.settings.plan_listing_intro).present? %>
+        <%= decidim_sanitize translated_attribute(component.settings.plan_listing_intro) %>
+      <% end %>
+    </div>
+  </div>
+  <% if component.current_settings.creation_enabled && component.participatory_space.can_participate?(current_user) %>
+    <div class="columns medium-6 mediumlarge-4">
+      <div class="actions-panel bg-secondary">
+        <% if draft_link %>
+          <p><%= t ".draft_plan_title" %></p>
+          <%= link_to draft_link, class: "action-link" do %>
+            <span><%= t(".draft_plan_continue") %></span>
+            <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+          <% end %>
+        <% else %>
+          <%= link_to new_plan_path, class: "action-link", data: { "redirect_url" => new_plan_path } do %>
+            <span><%= t(".new_plan") %></span>
+            <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="container bg-secondary filters-section">
+  <div class="row columns">
+    <div class="plan-filters record-filters">
+      <%= render :filters %>
+    </div>
+  </div>
+</div>
+
+<div class="container listing-section">
+  <div class="row columns">
+    <% if has_geocoding? %>
+      <ul class="tabs" data-tabs id="listing-tabs">
+        <li class="tabs-title is-active"><a data-tabs-target="plans-listing" href="#plans-listing" aria-selected="true"><%= t(".show_list") %></a></li>
+        <li class="tabs-title"><a data-tabs-target="plans-map" href="#plans-map"><%= t(".show_map") %></a></li>
+      </ul>
+    <% end %>
+
+    <div class="tabs-content" data-tabs-content="listing-tabs">
+      <div class="tabs-panel is-active" id="plans-listing">
+        <div class="collection-info row smallmedium-unstack">
+          <div class="column">
+            <div id="plans-count" aria-live="polite">
+              <%= render :count %>
+            </div>
+          </div>
+          <div class="column">
+            <%= render :controls %>
+          </div>
+        </div>
+
+        <%= render :notification %>
+
+        <div id="plans">
+          <div class="cards-list">
+            <%= render :plans %>
+          </div>
+        </div>
+        <div class="text-right">
+          <%= link_to t(".see_all_withdrawn"), plans_path(filter: { with_availability: "withdrawn", with_any_state: [""] }) %>
+        </div>
+      </div>
+
+      <% if has_geocoding? %>
+        <div class="tabs-panel" id="plans-map">
+          <%= render :notification %>
+
+          <%= cell("decidim/plans/plans_map", geocoded_plans) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

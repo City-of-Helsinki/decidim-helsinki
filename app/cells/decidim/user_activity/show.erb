@@ -1,0 +1,27 @@
+<div class="user-activity">
+  <div id="activities" class="row columns">
+    <% if activities.length == 0 %>
+      <div class="callout warning">
+        <%= t "decidim.user_activity.index.no_activities_warning" %>
+      </div>
+    <% else %>
+      <div class="show-for-mediumlarge filters__left-legend">
+        <%= filter_form_for context[:filter] do |form| %>
+          <%= form.select(
+            :resource_type,
+            options_for_select(resources_for_select, selected: context[:filter].resource_type),
+            label: t(".resource_type_label"),
+            include_blank: t("all_types", scope: "decidim.components.component_order_selector.order")
+          ) %>
+        <% end %>
+      </div>
+      <div class="row columns" id="activities-container">
+        <%= cell "decidim/activities", activities %>
+      </div>
+
+      <div class="row columns" id="decidim-paginate-container">
+        <%= decidim_paginate activities %>
+      </div>
+    <% end %>
+  </div>
+</div>

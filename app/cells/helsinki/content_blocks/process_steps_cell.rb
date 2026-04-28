@@ -18,6 +18,7 @@ module Helsinki
 
       def show
         return unless participatory_process
+        return unless steps.any?
 
         render
       end

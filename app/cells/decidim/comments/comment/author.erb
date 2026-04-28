@@ -1,0 +1,10 @@
+<% if model.author.respond_to?(:official?) && model.author.official? %>
+  <div class="comment__author">
+    <%= icon("globe", role: "img", "aria-hidden": true) %>
+    <span><%= author_presenter.name %></span>
+  </div>
+<% elsif model.respond_to?(:public?) %>
+  <%= render :author_link if model.public? %>
+<% else %>
+  <%= render :author_link %>
+<% end %>

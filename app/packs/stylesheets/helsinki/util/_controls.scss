@@ -1,0 +1,11 @@
+@mixin dropdown-select{
+  border: $input-border;
+  transition: $input-transition;
+  padding: .8rem 4.8rem .8rem $dropdownmenu-padding;
+  background-position: right -3.9rem center;
+  background-color: $input-background;
+  font-size: $input-font-size;
+  line-height: $input-line-height;
+  text-decoration: none;
+  text-align: left;
+}

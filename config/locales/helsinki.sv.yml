@@ -5,7 +5,7 @@ sv:
         settings:
           global:
             workflow_choices:
-              omastadi: 'OmaStadi: tillåter deltagare att rösta i Hela Helsingfors området och i ett större distrikt efter eget val.'
+              omastadi: 'VårStad: tillåter deltagare att rösta i ett större distrikt efter eget val.'
               ruuti_one: 'Ruuti röstar i ett: tillåter deltagare att rösta i budgeten för deras Ruuti-område.'
   helsinki:
     areas:
@@ -25,10 +25,10 @@ sv:
             class_level_not_defined: Din årskurs kan inte verifieras elektroniskt. Du kan rösta på röstningsplatserna som har meddelats separat genom att visa upp ett identitetsbevis.
             not_in_area: Helsingfors är inte din hemkommun. Endast helsingforsare kan delta i den här omröstningen.
             not_permanent_resident: Du är inte stadigvarande bosatt i Helsingfors. Endast helsingforsare kan delta i den här omröstningen.
-            not_student: Enligt våra uppgifter är du inte en elev. Föräldrar och lärare kan inte identifiera sig för att rösta via Wilma. Välj ett annat identifieringssätt.
-            too_young: Du kan vara för ung för att rösta. Du måste vara minst på årskurs 6 i grundskolan för att kunna identifiera dig för att rösta via Wilma. Om du har fyllt eller i år fyller 12 år, kan du rösta på röstningsplatserna som har meddelats separat genom att visa upp ett identitetsbevis.
+            not_student: Enligt våra uppgifter är du inte en elev. Föräldrar och lärare kan inte identifiera sig för att rösta via elevens konto. Välj ett annat identifieringssätt.
+            too_young: Du kan vara för ung för att rösta. Du måste vara minst på årskurs 6 i grundskolan för att kunna identifiera dig för att rösta via elevens konto. Om du har fyllt eller i år fyller 12 år, kan du rösta på röstningsplatserna som har meddelats separat genom att visa upp ett identitetsbevis.
             unknown_school: Vi lyckades inte elektroniskt fastställa i vilken skola du studerar. Du kan tyvärr inte rösta om Krut-budgeteringen.
-            invalid_school_type: Din skoltyp tillåter dig inte att identifiera dig för att rösta via Wilma. Välj ett annat identifikationssätt.
+            invalid_school_type: Din skoltyp tillåter dig inte att identifiera dig för att rösta via elevens konto. Välj ett annat identifikationssätt.
         identify:
           title: Identifiera dig
         new:
@@ -55,15 +55,16 @@ sv:
         button2_url: Knapp 2 URL
         title: Titel
       highlighted_blogs:
+        article: "Artikel: %{title}"
         name: Markerade bloggar
-        show_more: Visa mer
-        show_more_detailed: Visa mer aktuella saker
+        show_more: Visa mer aktuella saker
       highlighted_blogs_settings_form:
+        description: Beskrivning
         title: Titel
       ideas_carousel:
         name: Idéer karusell
       image_section:
-        name: Image section
+        name: Bildsektion
       image_section_settings_form:
         description: Beskrivning
         image: Bild
@@ -72,16 +73,42 @@ sv:
         title: Titel
       intro:
         name: Intro
+        show_less: Visa mindre
+        show_more: Visa mer
       intro_settings_form:
         description: Beskrivning
-        link_text: Länktext
-        link_url: Länk URL
+        main_image: Bild
+        main_image_alt: Alternativ text till bilden
         title: Titel
+      map_section:
+        name: Kartsektion
+      map_section_settings_form:
+        description: Beskrivning
+        button_text: Knapp text
+        button_url: Knapp URL
+        image: Kartbild (%{language})
+        image_alt: Alternativ text för kartbild
+        section:
+          content: Innehåll bredvid kartan
+          map: Kartbild
+        title: Titel
+      notification:
+        name: Meddelande
+      notification_settings_form:
+        description: Beskrivning
+        button_text: Knapp text
+        button_url: Knapp URL
+        title: Titel
+        type: Typ
+        type_choices:
+          info: Informativ
+          success: Framgång
       linked_events:
         name: Linked Events - Uppkommande händelser
       linked_events_settings_form:
         button_text: Knapp text
         button_url: Knapp URL
+        description: Beskrivning
         title: Titel
       plans_carousel:
         name: Förslagskarusell (samutveckling)
@@ -98,17 +125,30 @@ sv:
       records_carousel_settings_form:
         button_text: Knapptext
         button_url: Knapp URL
+        description: Beskrivning
         process: Process
         title: Titel
       results_carousel:
         name: Projektkarusell (genomförande)
+    consent:
+      show:
+        title: Cookie -inställningar
+        description_html: |
+          <p>En kaka (eng. cookie) är en liten textfil som webbläsaren sparar i användarens dator eller mobila enhet när hen besöker en webbplats. Den skadar inte användarens enhet eller filer. Kakor kan inte användas för att sprida skadeprogram.</p>
+          <p>Användarinformationen som fås från kakorna hjälper oss att säkerställa webbplatsens funktionalitet och förbättra kvaliteten på våra digitala tjänster. Med hjälp av dem kan vi utveckla webbplatsens användarvänlighet och göra det lättare att hitta information.</p>
     copyright: '%{year} Helsingfors stad'
-    devise:
-      shared:
-        omniauth_buttons:
-          tunnistamo_explanation: 'Facebook-, Google- eller YLE-inloggning'
-          tunnistamo_explanation_internal: 'Tunnistamo-inloggning'
-        tunnistamo_description: Tunnistamo låter dig logga in på tjänsten, t.ex. Google, Facebook eller YLE.
+    forms:
+      label_tooltip: Vägledning
+    linked_events:
+      index:
+        all_events: Se evenemang i ditt område
+        description_html: |
+          <p>Staden ordnar våren 2024 tre evenemang där stadsinvånare och stadens anställda planerar tillsammans de VårStad-projekt som staden genomför i olika områden.</p>
+        subtitle: Kommande evenemang
+        title: Evenemang
+    linked_event_card:
+      pricing:
+        free: Fri
     map:
       districts:
         central: Centrala
@@ -123,9 +163,11 @@ sv:
         creator: Författare till originalbilden
         license: Bildlicens
         note: Bildredigerad från original
+    pb_map:
+      label: "Helsingfors distrikt med sina budgetar: Västra 1534011€, Norra 593272€, Mellersta 1323211€, Södra 1662361€, Nordöstra 1374703€, Sydöstra 765547€, Östra och Östersundom 1546895€"
     plans:
       layouts:
-        omastadi: OmaStadi
+        omastadi: VårStad
       omastadi_form:
         buttons:
           create: Skapa och förhandsgranska
@@ -140,7 +182,7 @@ sv:
         edit_step_info: Skriv en kort beskrivning av ditt förslag. I beskrivningen av förslaget är det bra att berätta vilken typ av fråga som kan lösas med förslaget, vem som har nytta av det och vad är det som behöver göras konkret. Välj också ett område och lämpligt tema för förslaget.
         ideas_step_info: Ett förslag består av en eller flera godkända idéer som lämnats på webbplatsen omastadi.hel.fi. Här kan du börja skapa förslag genom att välja en eller flera idéer som ditt förslag grundar sig på. Innan du gör ditt eget förslag bekanta dig med förslag som andra har gett.
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
-        required_fields_text: Obligatoriska fält är markerade med *-tecknet.
+        required_fields_text: Fält markerade med en asterisk * är obligatoriska.
         steps:
           next: Nästa
           previous: Tidigare
@@ -167,9 +209,10 @@ sv:
           close_modal: Stäng fönstret
           filter: Filtrera
           filter_by: Filtrera
+          keyword: Nyckelord
           related_to: Anknyter till
-          reset: Rensa filter
-          search: Sök
+          reset: Rensa valen
+          search: Utför sökning
           state:
             accepted: Fortsätter till omröstningen
             all: Alla
@@ -182,11 +225,23 @@ sv:
           title: Sök förslag
           unfold: Öppna
         leave_your_plan: Gör ditt eget förslag!!
-        new_plan: Nytt förslag
+        new_plan: Lämna in förslag
+        notification:
+          title: Information om områden
+          description_html: <p>Bekanta dig med viktiga figurer och intressanta teman i ditt eget område.</p>
+          button: Information om områden
         see_all_withdrawn: Visa alla annullerade
-        subtitle: Hitta och utforska förslag!
-        title: Bläddra bland förslag
+        show_list: Visa resultat som lista
+        show_map: Visa resultat på kartan
+        title: Bekanta dig med förslag
         view_plan: Visa förslag
+      omastadi_notification:
+        accepted:
+          title: Detta förslag accepterats
+        evaluating:
+          title: Detta förslag utvärderas
+        rejected:
+          title: Tyvärr har det här förslaget avvisades
       omastadi_view:
         answer:
           final_estimate: 'Slutlig budgetberäkning: %{amount}'
@@ -206,20 +261,57 @@ sv:
           edit_plan: Redigera förslaget
           withdraw_plan: Annullera förslaget
           withdraw_confirmation_html: Är du säker på att du vill annullera det här förslaget?
+        details:
+          attributes:
+            area_scope: Område
+            category: Tema
+            id: Nummer (ID)
+            published_at: Publiceringstiden
+          title: Information
         feedback_title: Tack för att du skickade ett förslag!
         flag: Rapportera
-        info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         linked_ideas: Idéer bifogade detta förslag
+        linked_projects: Förslagets att slåtts ihop med andra förslag inför röstningen
         manage_plan: Hantera ditt förslag
+        map_title: Förslag på karta
         request_access: Begär redigeringsrättigheter
         pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
         share: Dela
         share_link: Länk som ska delas
         show_comments: Visa kommentarer
         show_on_map: Visa på kartan
+        subtitle: Förslag
         related_documents: Relaterade dokument
-      plan_m:
+      plan_l:
+        card_label: "Förslag: %{title}"
         view_plan: Visa förslag
+    shared:
+      account_privacy_summary:
+        privacy_link: /pages/tietosuoja?locale=sv
+        tos_summary_html: |
+          <p>
+            När du registrerar dig i tjänsten VårStad ska du ge ditt samtycke till behandlingen av personuppgifter.
+            Efter att ha gett ditt samtycke kan du lämna in förslag, kommentera förslag och rösta på förslag.
+          </p>
+          <p>
+            När du registrerar dig i tjänsten behandlar vi följande personuppgifter: namn, signatur och e-postadress.
+          </p>
+          <p>
+            När du identifierar dig i VårStad genom stark autentisering behandlar vi följande personuppgifter: namn,
+            e-postadress, hemkommun, postnummer och personbeteckning.
+          </p>
+          <p>
+            Skolelever identifierar sig vid rösning med hjälp av mPassID som skolorna använder, varvid vi behandlar
+            följande personuppgifter: förnamn, efternamn, tilltalsnamn, kommunkod, kommunnamn, skolkod, skolans namn,
+            klassbeteckning och årskurs.
+          </p>
+          <p>Du kan när som helst återkalla ditt samtycke och radera dina uppgifter från användarkontots inställningar.</p>
+          <p>
+            Mer information om behandlingen av dina personuppgifter i VårStad finns i
+            <a href="%{privacy_link}" target="_blank">dataskyddsbeskrivningen</a> som bland annat innehåller mer
+            information om de rättsliga grunderna för behandlingen av dina personuppgifter och om
+            förvaringstiderna för dina uppgifter.
+          </p>
   mpassid_action_authorizer:
     restrictions:
       class_level_not_defined: Din årskurs kan inte verifieras elektroniskt.
@@ -228,11 +320,11 @@ sv:
       class_level_not_allowed_one: Din årskurs ska vara %{level}.
       class_level_not_defined: Din årskurs är inte definierad.
       disallowed_municipality: Omröstningen är endast begränsad till Helsingforsbor.
-      disallowed_role: Wilma-identifieringen är endast begränsad till elever.
+      disallowed_role: Elevens konto identifieringen är endast begränsad till elever.
       disallowed_school: Omröstning är inte tillåten i denna skola.
       disallowed_voting_unit: Du kan inte rösta på detta område från din skola.
       voting_unit_required: Information som behövs om ditt Ruuti-område.
-  suomifi_action_authorizer:
+  helsinki_action_authorizer:
     restrictions:
       disallowed_district: Denna omröstning är inte tillåten från ditt större distrikt.
       disallowed_municipality: Omröstningen är endast begränsad till Helsingforsbor.

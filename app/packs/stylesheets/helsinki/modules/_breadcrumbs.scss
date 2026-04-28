@@ -1,5 +1,29 @@
-.wrapper-ruuti{
-  .breadcrumbs a{
-    color: $ruuti-primary;
+.breadcrumbs{
+  @extend .clearfix;
+
+  padding: 1.4rem 0;
+  margin: 0;
+  list-style-type: none;
+  font-weight: $global-weight-medium;
+
+  li{
+    position: relative;
+    float: left;
+    padding: 0 1.8rem 0 0;
+    margin-right: .3rem;
+
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+
+  .breadcrumbs-separator{
+    position: absolute;
+    right: 0;
+
+    .icon{
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 }

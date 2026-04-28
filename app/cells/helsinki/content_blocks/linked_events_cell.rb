@@ -8,6 +8,12 @@ module Helsinki
       include Decidim::ApplicationHelper # needed for html_truncate
       include Decidim::IconHelper
 
+      def show
+        return if events.blank?
+
+        render
+      end
+
       def button
         return unless events_set
         return unless events.any?
@@ -19,8 +25,16 @@ module Helsinki
 
       private
 
+      def unique_id
+        @unique_id ||= SecureRandom.hex(3).to_s
+      end
+
+      def label_id
+        "carousel-#{unique_id}-heading"
+      end
+
       def events
-        @events ||= ::LinkedEvents.upcoming(events_set, amount: 4).events
+        @events ||= ::LinkedEvents.random_upcoming(events_set, amount: 9).events
       end
 
       def events_set
@@ -31,46 +45,16 @@ module Helsinki
         translated_attribute(model.settings.title)
       end
 
+      def description
+        translated_attribute(model.settings.description)
+      end
+
       def button_url
         translated_attribute(model.settings.button_url)
       end
 
       def button_text
         translated_attribute(model.settings.button_text)
-      end
-
-      def imagebox_for(event, index)
-        cls = ["imagebox"]
-        cls << "show-for-medium" if index.positive?
-
-        content_tag :div, aria: { hidden: true }, class: cls.join(" ") do
-          image_tag(image_for(event), alt: translated_attribute(event["name"]))
-        end
-      end
-
-      def image_for(event)
-        image = event.images.first
-        return image["url"] if image
-
-        asset_pack_tag("blogs-post-highlight-default.jpg")
-      end
-
-      def dates_for(event)
-        start_date = Date.parse(event.start_time)
-        end_date = Date.parse(event.end_time)
-        if start_date == end_date
-          return content_tag :time, datetime: start_date.iso8601 do
-            l(start_date, format: :decidim_short)
-          end
-        end
-
-        content_tag :time, datetime: "#{start_date.iso8601}/#{end_date.iso8601}" do
-          "#{l(start_date, format: :decidim_short)} - #{l(end_date, format: :decidim_short)}"
-        end
-      end
-
-      def summary_for(event)
-        html_truncate(translated_attribute(event.short_description), length: 100, separator: "...")
       end
     end
   end

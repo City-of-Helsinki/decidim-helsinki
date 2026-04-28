@@ -19,9 +19,10 @@ $(() => {
       currentSuggestionQuery = setTimeout(() => {
         const language = $("html").attr("lang");
 
+        // https://api.hel.fi/servicemap/v2/search?language=fi&limit=10&q=Veneentekij%C3%A4nkuja&type=address
         const suggestions = $.ajax({
           method: "GET",
-          url: "https://api.hel.fi/servicemap/v2/suggestion/",
+          url: "https://api.hel.fi/servicemap/v2/search/",
           data: { q: query, language: language === "sv" ? language : "fi" }, // eslint-disable-line
           dataType: "json"
         });

@@ -1,0 +1,33 @@
+<%# Link showing page number
+  - available local variables
+    page:          a page object for "this" page
+    url:           url to this page
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote -%>
+<%-
+classes = ["page"]
+classes << "current" if page.current?
+classes << "first" if page.first?
+classes << "last" if page.last?
+classes << "window" if !page.first? && !page.last? && !page.current?
+
+distance = {
+  first: page.number - 1,
+  last: total_pages - page.number,
+  current: (page.number - current_page.number).abs
+}
+-%>
+
+<li class="<%= classes.join(" ") %>"<%== ' aria-current="page"' if page.current? %>
+  data-distance-first="<%= distance[:first] %>"
+  data-distance-last="<%= distance[:last] %>"
+  data-distance-current="<%= distance[:current] %>"
+>
+  <% if page.current? %>
+    <%= content_tag :span, page, rel: page.rel, title: t("views.pagination.title") << page.to_s %>
+  <% else %>
+    <%= link_to page, url, { remote: remote, rel: page.rel, title: t("views.pagination.title") << page.to_s } %>
+  <% end %>
+</li>

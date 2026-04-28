@@ -1,0 +1,16 @@
+<div class="callout callout--icon <%= status_class %> margin-bottom-2">
+  <div class="callout__title">
+    <p class="h6"><%= title %></p>
+  </div>
+  <% if has_answer_text? %>
+    <div class="callout__content">
+      <%== decidim_sanitize description %>
+      <% if final_answer_available? && final_budget_estimate %>
+        <p><%= t(".estimate.final", amount: final_budget_estimate) %></p>
+      <% end %>
+      <% if budget_estimate %>
+        <p><%= t(".estimate.initial", amount: budget_estimate) %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

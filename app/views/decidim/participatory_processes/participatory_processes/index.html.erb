@@ -20,26 +20,44 @@ past_processes = organization_participatory_processes.past.order(end_date: :desc
 %>
 
 <%= participatory_space_wrapper do %>
-  <% if promoted_collection.any? %>
-    <section id="highlighted-processes" class="row section">
-      <h1 class="section-heading"><%= t("participatory_processes.index.promoted_processes", scope: "layouts.decidim") %></h1>
-      <%= render partial: "promoted_process", collection: promoted_collection, as: :promoted_process %>
-    </section>
-  <% end %>
+  <div class="expanded page-section">
+    <div class="row columns">
+      <div class="page-title">
+        <h1><%= t(".title") %></h1>
+      </div>
+    </div>
+  </div>
 
-  <% if active_processes.any? %>
-    <section id="active-processes" class="row section">
-      <h1 class="section-heading"><%= t("participatory_processes.index.active_processes", scope: "layouts.decidim") %></h1>
-      <%= render partial: "promoted_process", collection: active_processes, as: :promoted_process %>
-    </section>
-  <% end %>
+  <div class="expanded page-section bg-silver-light">
+    <div class="row columns">
+      <% if promoted_collection.any? %>
+        <section id="highlighted-processes" class="cards-section">
+          <h2 class="section-heading"><%= t("participatory_processes.index.promoted_processes", scope: "layouts.decidim") %></h2>
+          <div class="cards-list">
+            <%= render partial: "promoted_process", collection: promoted_collection, as: :promoted_process %>
+          </div>
+        </section>
+      <% end %>
 
-  <% if past_processes.any? %>
-    <section id="past-processes" class="row section">
-      <h1 class="section-heading"><%= t("participatory_processes.index.past_processes", scope: "layouts.decidim") %></h1>
-      <%= render partial: "promoted_process", collection: past_processes, as: :promoted_process %>
-    </section>
-  <% end %>
+      <% if active_processes.any? %>
+        <section id="active-processes" class="cards-section">
+          <h2 class="section-heading"><%= t("participatory_processes.index.active_processes", scope: "layouts.decidim") %></h2>
+          <div class="cards-list">
+            <%= render partial: "promoted_process", collection: active_processes, as: :promoted_process %>
+          </div>
+        </section>
+      <% end %>
+
+      <% if past_processes.any? %>
+        <section id="past-processes" class="cards-section">
+          <h2 class="section-heading"><%= t("participatory_processes.index.past_processes", scope: "layouts.decidim") %></h2>
+          <div class="cards-list">
+            <%= render partial: "promoted_process", collection: past_processes, as: :promoted_process %>
+          </div>
+        </section>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
 <%= javascript_pack_tag "decidim_participatory_processes" %>

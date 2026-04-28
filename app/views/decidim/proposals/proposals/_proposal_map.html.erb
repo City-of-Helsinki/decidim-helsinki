@@ -1,0 +1,7 @@
+<% if component_settings.geocoding_enabled? && proposal.address.present? && proposal.latitude.present? && proposal.longitude.present? %>
+  <div id="proposal_map" class="margin-top-3">
+    <h2><%= t(".title") %></h2>
+
+    <%= dynamic_map_for proposals_data_for_map([proposal]), type: "resource-markers" %>
+  </div>
+<% end %>

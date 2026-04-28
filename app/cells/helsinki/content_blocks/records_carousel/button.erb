@@ -1,1 +1,8 @@
-<p><%= link_to button_text, button_url, class: "button large primary" %></p>
+<div class="text-center more-link">
+  <p>
+    <%= link_to button_url, class: "action-link" do %>
+      <span><%= button_text %></span>
+      <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+    <% end %>
+  </p>
+</div>

@@ -15,15 +15,22 @@ class OrganizationResourceFetcher
   attr_reader :scope, :organization
 
   def filter_spaces(query, published: false)
-    Decidim.participatory_space_manifests.each do |space|
-      cls = space.model_class_name.constantize
+    space_classes = Decidim.participatory_space_manifests.map { |space| space.model_class_name.constantize }
+
+    space_classes.each do |cls|
       join_query = <<~SQL.squish
         LEFT JOIN #{cls.table_name} ON #{cls.table_name}.id = decidim_components.participatory_space_id
           AND #{cls.table_name}.decidim_organization_id = #{cls.sanitize_sql(organization.id)}
           AND decidim_components.participatory_space_type = #{cls.sanitize_sql("'#{cls}'")}
-          #{published ? "AND #{cls.table_name}.published_at IS NOT NULL" : ""}
       SQL
-      query = query.joins(join_query)
+      query = query.joins(Arel.sql(join_query))
+    end
+
+    if published
+      sql_case = space_classes.map do |cls|
+        "WHEN decidim_components.participatory_space_type = #{cls.sanitize_sql("'#{cls}'")} THEN #{cls.table_name}.published_at IS NOT NULL"
+      end
+      query = query.where(Arel.sql("CASE #{sql_case.join(" ")} ELSE true END"))
     end
 
     query

@@ -8,14 +8,17 @@ Decidim.configure do |config|
 
   # Uncomment this lines to set your preferred locales
   config.default_locale = :fi
-  config.available_locales = [:fi, :en, :sv]
+  config.available_locales = [:fi, :sv, :en]
+
+  # Disable service worker for all environments
+  config.service_worker_enabled = false
 
   # Maps configuration
   config.maps = {
     provider: :helsinki,
     dynamic: {
       tile_layer: {
-        url: "https://tiles.hel.ninja/styles/{style}/{z}/{x}/{y}@2x{lang}.png",
+        url: "https://maptiles.api.hel.fi/styles/{style}-{lang}/{z}/{x}/{y}@2x.png",
         style: "hel-osm-bright",
         max_zoom: 18,
         attribution: %(
@@ -38,6 +41,10 @@ Decidim.configure do |config|
   config.expire_session_after = Rails.application.config.session_validity_period
 
   config.maximum_attachment_size = 15.megabytes
+
+  # Throttling settings that may be temporarily raised for API requests
+  config.throttling_max_requests = ENV.fetch("DECIDIM_THROTTLING_MAX_REQUESTS", "100").to_i
+  config.throttling_period = ENV.fetch("DECIDIM_THROTTLING_PERIOD", "1").to_i
 end
 
 # Define the I18n locales.
