@@ -3,6 +3,13 @@
 // elsewhere. This is done so to only load the required dictionary for the
 // current language.
 
+// Note that this works up until Hyphenopoly version 5.2.1. Newer versions fail
+// to build with webpack due to the following change:
+// https://github.com/mnater/Hyphenopoly/commit/b732a4f8c51eef1b8d9c26fa41d434aafe3f95ff
+//
+// The relevant change is the addition of the `new URL(...)` parameters which
+// cannot be resolved by webpack.
+
 import hyphenopoly from "hyphenopoly";
 
 const hyphenate = (container, baseConfig) => {
