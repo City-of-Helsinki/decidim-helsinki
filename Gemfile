@@ -37,8 +37,8 @@ gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.27-
 gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "release/0.27-stable"
 
 # Modules for youth budget (nubu = nuorten budjetti / ruuti)
-gem "decidim-helsinki_smsauth", github: "mainio/decidim-module-helsinki_smsauth", branch: "main"
-gem "decidim-sms-telia", github: "mainio/decidim-sms-telia", branch: "main"
+# gem "decidim-helsinki_smsauth", github: "mainio/decidim-module-helsinki_smsauth", branch: "main"
+# gem "decidim-sms-telia", github: "mainio/decidim-sms-telia", branch: "main"
 
 gem "bootsnap", "~> 1.4"
 gem "puma", ">= 5.6.8"
