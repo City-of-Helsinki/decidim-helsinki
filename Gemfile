@@ -14,11 +14,11 @@ gem "decidim-initiatives", DECIDIM_VERSION
 # External Decidim modules
 gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "main"
 gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "release/0.27-stable"
-gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "main"
-gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "main"
+gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "release/0.27-stable"
+gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "release/0.27-stable"
 gem "decidim-apifiles", github: "mainio/decidim-module-apifiles", branch: "release/0.27-stable"
 gem "decidim-budgeting_pipeline", github: "mainio/decidim-module-budgeting_pipeline", branch: "release/0.27-stable"
-gem "decidim-connector", github: "mainio/decidim-module-connector", branch: "main"
+gem "decidim-connector", github: "mainio/decidim-module-connector", branch: "release/0.27-stable"
 gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.27-stable"
 gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.27-stable"
 # Helsinki profile disabled because it interrupts the SLO request from Suomi.fi
