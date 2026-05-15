@@ -548,6 +548,7 @@ describe Helsinki::Stats::Voting::Aggregator do
       connection = ActiveRecord::Base.connection
       connection.disable_referential_integrity do
         connection.tables.each do |table_name|
+          next if table_name == "schema_migrations"
           next if connection.select_value("SELECT COUNT(*) FROM #{table_name}").zero?
 
           connection.execute("TRUNCATE #{table_name} CASCADE")
