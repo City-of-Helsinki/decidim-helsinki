@@ -191,6 +191,10 @@ sv:
       nickname: Användarnamn måste innehålla minst ett tecken och det måste följa kraven som visas nedan.
       password: Lösenordet måste överensstämma med lösenordskraven. Kontrollera kraven i hjälptexten nedan.
       password_confirmation: Lösenordsbekräftelsen måste matcha det angivna lösenordet.
+    length_validator:
+      minimum:
+        one: Minst %{count} tecken
+        other: Minst %{count} tecken
     scopes_picker:
       others: Andra
       prompt: Välj %{item_name}

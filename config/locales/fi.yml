@@ -191,6 +191,10 @@ fi:
       nickname: Nimimerkissä on oltava vähintään yksi kirjain ja sen on noudatettava alla esitettyjä vaatimuksia.
       password: Salasanan tulee noudattaa sille asetettuja vaatimuksia. Tarkasta vaatimukset alla esitetyn ohjetekstin avulla.
       password_confirmation: Salasanan vahvistuksen tulee vastata antamaasi salasanaa.
+    length_validator:
+      minimum:
+        one: Vähintään %{count} merkki
+        other: Vähintään %{count} merkkiä
     scopes_picker:
       others: Muut
       prompt: Valitse %{item_name}
