@@ -49,6 +49,14 @@ GIT
       decidim-tags (~> 0.27.0)
 
 GIT
+  remote: https://github.com/mainio/decidim-module-adminauth.git
+  revision: c4c2cc1453f10861c8b1385af2e3f4c1b566c2e1
+  specs:
+    decidim-adminauth (0.27.0)
+      decidim-core (~> 0.27.0)
+      rotp (~> 6.3)
+
+GIT
   remote: https://github.com/mainio/decidim-module-antivirus.git
   revision: 221f9a6375195ff15902ffe9262da8276aa5033b
   branch: release/0.27-stable
@@ -1012,6 +1020,7 @@ GEM
     roo (2.10.1)
       nokogiri (~> 1)
       rubyzip (>= 1.3.0, < 3.0.0)
+    rotp (6.3.0)
     rspec (3.13.2)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -1225,6 +1234,7 @@ DEPENDENCIES
   decidim (~> 0.27.9)
   decidim-access_requests!
   decidim-accountability_simple!
+  decidim-adminauth!
   decidim-antivirus!
   decidim-apiauth!
   decidim-apifiles!

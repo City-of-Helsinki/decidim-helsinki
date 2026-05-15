@@ -14,6 +14,7 @@ gem "decidim-initiatives", DECIDIM_VERSION
 # External Decidim modules
 gem "decidim-access_requests", github: "mainio/decidim-module-access_requests", branch: "main"
 gem "decidim-accountability_simple", github: "mainio/decidim-module-accountability_simple", branch: "release/0.27-stable"
+gem "decidim-adminauth", github: "mainio/decidim-module-adminauth"
 gem "decidim-antivirus", github: "mainio/decidim-module-antivirus", branch: "release/0.27-stable"
 gem "decidim-apiauth", github: "mainio/decidim-module-apiauth", branch: "release/0.27-stable"
 gem "decidim-apifiles", github: "mainio/decidim-module-apifiles", branch: "release/0.27-stable"
