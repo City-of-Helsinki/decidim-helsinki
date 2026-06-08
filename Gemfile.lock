@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-adminauth.git
-  revision: c4c2cc1453f10861c8b1385af2e3f4c1b566c2e1
+  revision: bcb5dd69c512db6d80fcb2eec7122803637e0217
   specs:
     decidim-adminauth (0.27.0)
       decidim-core (~> 0.27.0)
