@@ -308,10 +308,9 @@ namespace :pb_pabulib do
         data_idx += 1
       when "Votes"
         votes = []
-        idx = 0
         each_data_row.call(sheet) do |data|
           votes << {
-            id: (idx + 1),
+            id: data[:order_hash],
             vote: data[:voted_project_ids],
             age: data[:age],
             sex: data[:gender]&.upcase,
@@ -321,7 +320,6 @@ namespace :pb_pabulib do
           date_begin = data[:created_at] if date_begin.nil? || data[:created_at] < date_begin
           date_end = data[:created_at] if date_end.nil? || data[:created_at] > date_end
           max_length = data[:voted_projects_count] if data[:voted_projects_count] > max_length
-          idx += 1
         end
       else
         puts "Unknown sheet name: #{sheet.sheet_name}"
