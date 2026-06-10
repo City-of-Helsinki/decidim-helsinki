@@ -296,6 +296,234 @@ namespace :hkiexport do
     write_excel({ "Categories" => categories }, filename)
   end
 
+  # Export record data from the different components. This can be used e.g. for
+  # putting data on a map with the items that have location data mapped to them.
+  #
+  # Usage:
+  #   bundle exec rake hkiexport:records[1,tmp/records.xlsx]
+  desc "Export the geolocated data from different components in each process."
+  task :records, [:organization_id, :filename] => [:environment] do |_t, args|
+    organization = Decidim::Organization.find_by(id: args.organization_id)
+    unless organization
+      puts "Unknown organization ID: #{args.organization_id}"
+      next
+    end
+    unless args.filename
+      puts "Please provide an export file path."
+      next
+    end
+    if File.exist?(args.filename)
+      puts "File already exists at: #{args.filename}"
+      return
+    end
+
+    expand_localized_data = lambda do |data, prefix = nil|
+      organization.available_locales.to_h do |locale|
+        key = prefix.present? ? :"#{prefix}_#{locale}" : locale.to_sym
+        [key, data&.fetch(locale, nil)]
+      end
+    end
+
+    data = {}
+
+    Decidim::ParticipatoryProcess.published.order(:id).find_each do |space|
+      space.components.published.where(manifest_name: "proposals").find_each do |component|
+        data["Proposals"] ||= []
+        Decidim::Proposals::Proposal.where(component: component).published.not_hidden.find_each do |record|
+          answer = record.answer
+          answer = { "fi" => answer } unless answer.is_a?(Hash)
+          data["Proposals"] << {
+            space: space.title["fi"],
+            space_id: space.id,
+            component: component.name["fi"],
+            component_id: component.id,
+            id: record.id,
+            created_at: record.created_at,
+            published_at: record.published_at,
+            title: record.title.values.compact_blank.first,
+            body: record.body.values.compact_blank.first,
+            scope_id: record.scope&.id,
+            **expand_localized_data.call(record.scope&.name, :scope),
+            category_id: record.category&.id,
+            **expand_localized_data.call(record.category&.name, :category),
+            state: record.state,
+            **expand_localized_data.call(answer, :answer),
+            address: record.address,
+            latitude: record.latitude,
+            longitude: record.longitude
+          }
+        end
+      end
+      space.components.published.where(manifest_name: "ideas").find_each do |component|
+        data["Ideas"] ||= []
+        Decidim::Ideas::Idea.where(component: component).published.not_hidden.find_each do |record|
+          answer = record.answer
+          answer = { "fi" => answer } unless answer.is_a?(Hash)
+          data["Ideas"] << {
+            space: space.title["fi"],
+            space_id: space.id,
+            component: component.name["fi"],
+            component_id: component.id,
+            id: record.id,
+            created_at: record.created_at,
+            published_at: record.published_at,
+            title: record.title,
+            body: record.body,
+            area_id: record.area_scope&.id,
+            **expand_localized_data.call(record.area_scope&.name, :area),
+            category_id: record.category&.id,
+            **expand_localized_data.call(record.category&.name, :category),
+            state: record.state,
+            **expand_localized_data.call(answer, :answer),
+            address: record.address,
+            latitude: record.latitude,
+            longitude: record.longitude
+          }
+        end
+      end
+      space.components.published.where(manifest_name: "plans").find_each do |component|
+        data_key = "Plans_#{component.id}"
+
+        sections = Decidim::Plans::Section.where(component: component).order(:position)
+
+        Decidim::Plans::Plan.where(component: component).published.not_hidden.find_each do |record|
+          data[data_key] ||= []
+
+          section_data = {}
+          sections.each do |section|
+            content = record.contents.find_by(section: section)
+
+            value = false
+            case section.section_type
+            when "field_area_scope", "field_scope"
+              scope = Decidim::Scope.find_by(id: content&.body&.fetch("scope_id", nil))
+              value = {
+                id: scope&.id,
+                **expand_localized_data.call(scope&.name)
+              }
+            when "field_category"
+              category = Decidim::Category.find_by(id: content&.body&.fetch("category_id", nil))
+              value = {
+                id: category&.id,
+                **expand_localized_data.call(category&.name)
+              }
+            when "field_text_multiline", "field_text"
+              value = expand_localized_data.call(content&.body)
+            when "field_currency", "field_number"
+              value = content&.body&.fetch("value", nil)
+            when "field_map_point"
+              value = {
+                address: content&.body&.fetch("address", nil),
+                latitude: content&.body&.fetch("latitude", nil),
+                longitude: content&.body&.fetch("longitude", nil)
+              }
+            end
+            next if value == false
+
+            content_key = "#{section.handle} (#{section.body["fi"]})"
+
+            if value.is_a?(Hash)
+              value.each do |key, val|
+                section_data["#{content_key} - #{key}"] = val
+              end
+            else
+              section_data[content_key] = value
+            end
+          end
+
+          data[data_key] << {
+            space: space.title["fi"],
+            space_id: space.id,
+            component: component.name["fi"],
+            component_id: component.id,
+            id: record.id,
+            created_at: record.created_at,
+            published_at: record.published_at,
+            **expand_localized_data.call(record.title, :title),
+            state: record.state,
+            **expand_localized_data.call(record.answer, :answer),
+            included_proposals: record.linked_resources(:proposals, "included_proposals").pluck(:id).join(","),
+            included_ideas: record.linked_resources(:ideas, "included_ideas").pluck(:id).join(","),
+            **section_data
+          }
+        end
+      end
+      space.components.published.where(manifest_name: "budgets").find_each do |component|
+        data["Projects"] ||= []
+        Decidim::Budgets::Budget.where(component: component).find_each do |budget|
+          Decidim::Budgets::Project.where(budget: budget).find_each do |record|
+            data["Projects"] << {
+              space: space.title["fi"],
+              space_id: space.id,
+              component: component.name["fi"],
+              component_id: component.id,
+              **expand_localized_data.call(budget.title, :budget),
+              id: record.id,
+              created_at: record.created_at,
+              **expand_localized_data.call(record.title, :title),
+              **expand_localized_data.call(record.summary, :summary),
+              **expand_localized_data.call(record.description, :description),
+              **expand_localized_data.call(record.answer, :answer),
+              category_id: record.category&.id,
+              **expand_localized_data.call(record&.category&.name, :category),
+              budget_amount: record.budget_amount,
+              address: record.address,
+              latitude: record.latitude,
+              longitude: record.longitude,
+              votes_count: record.confirmed_orders_count,
+              included_proposals: record.linked_resources(:proposals, "included_proposals").pluck(:id).join(","),
+              included_ideas: record.linked_resources(:ideas, "included_ideas").pluck(:id).join(","),
+              included_plans: record.linked_resources(:plans, "included_plans").pluck(:id).join(",")
+            }
+          end
+        end
+      end
+      space.components.published.where(manifest_name: "accountability").find_each do |component|
+        data["Results"] ||= []
+        Decidim::Accountability::Result.published.where(component: component, parent_id: nil).find_each do |record|
+          locations = record.locations
+
+          data["Results"] << {
+            space: space.title["fi"],
+            space_id: space.id,
+            component: component.name["fi"],
+            component_id: component.id,
+            id: record.id,
+            created_at: record.created_at,
+            published_at: record.published_at,
+            **expand_localized_data.call(record.title, :title),
+            scope_id: record.scope&.id,
+            **expand_localized_data.call(record.scope&.name, :scope),
+            category_id: record.category&.id,
+            **expand_localized_data.call(record.category&.name, :category),
+            status_key: record.status&.key,
+            **expand_localized_data.call(record.status&.name, :status),
+            progress: record.progress,
+            start_date: record.start_date,
+            end_date: record.end_date,
+            addresses: locations.map(&:address).join(";"),
+            coordinates: locations.map { |l| [l.latitude, l.longitude].join(",") }.join(";"),
+            budget_amount: record.budget_amount,
+            maintenance_budget_amount: record.maintenance_budget_amount,
+            **expand_localized_data.call(record.budget_breakdown, :budget_breakdown),
+            **expand_localized_data.call(record.plans_description, :plans_description),
+            **expand_localized_data.call(record.interaction_description, :interaction_description),
+            **expand_localized_data.call(record.cocreation_description, :cocreation_description),
+            **expand_localized_data.call(record.implementation_description, :implementation_description),
+            **expand_localized_data.call(record.news_title, :news_title),
+            **expand_localized_data.call(record.news_description, :news_description),
+            included_proposals: record.linked_resources(:proposals, "included_proposals").pluck(:id).join(","),
+            included_ideas: record.linked_resources(:ideas, "included_ideas").pluck(:id).join(","),
+            included_plans: record.linked_resources(:plans, "included_plans").pluck(:id).join(","),
+            included_projects: record.linked_resources(:projects, "included_projects").pluck(:id).join(",")
+          }
+        end
+      end
+    end
+
+    write_excel(data, args.filename)
+  end
+
   private
 
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
