@@ -56,6 +56,7 @@ table{
 
         th,
         td{
+          display: block;
           padding: .1rem .625rem;
 
           @include breakpoint(medium){
@@ -78,8 +79,6 @@ table{
               padding-right: 0;
             }
           }
-
-          display: block;
         }
       }
     }
