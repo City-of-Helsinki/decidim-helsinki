@@ -324,6 +324,16 @@ namespace :hkiexport do
       end
     end
 
+    result_details =
+      Decidim::AccountabilitySimple::ResultDetail
+      .order(
+        accountability_result_detailable_type: :desc,
+        accountability_result_detailable_id: :asc,
+        position: :asc
+      )
+      .pluck(:id, Arel.sql("TRIM(title->>'fi') AS title_fi"))
+      .to_h
+
     data = {}
 
     Decidim::ParticipatoryProcess.published.order(:id).find_each do |space|
@@ -338,6 +348,7 @@ namespace :hkiexport do
             component: component.name["fi"],
             component_id: component.id,
             id: record.id,
+            reference: record.reference,
             created_at: record.created_at,
             published_at: record.published_at,
             title: record.title.values.compact_blank.first,
@@ -365,6 +376,7 @@ namespace :hkiexport do
             component: component.name["fi"],
             component_id: component.id,
             id: record.id,
+            reference: record.reference,
             created_at: record.created_at,
             published_at: record.published_at,
             title: record.title,
@@ -459,6 +471,7 @@ namespace :hkiexport do
               component_id: component.id,
               **expand_localized_data.call(budget.title, :budget),
               id: record.id,
+              reference: record.reference,
               created_at: record.created_at,
               **expand_localized_data.call(record.title, :title),
               **expand_localized_data.call(record.summary, :summary),
@@ -483,12 +496,31 @@ namespace :hkiexport do
         Decidim::Accountability::Result.published.where(component: component, parent_id: nil).find_each do |record|
           locations = record.locations
 
+          detail_values =
+            record
+            .result_detail_values
+            .pluck(
+              :decidim_accountability_result_detail_id,
+              Arel.sql("TRIM(description->>'fi') AS description_fi")
+            )
+            .to_h
+
+          # As different record details can have the same label, convert them to
+          # a hash containing only single instance of each label.
+          detail_values = result_details.values.uniq.to_h do |label|
+            ids = result_details.select { |_, lbl| lbl == label }.keys
+            value = detail_values.find { |id, _| id.in?(ids) }&.last
+
+            [label, value]
+          end
+
           data["Results"] << {
             space: space.title["fi"],
             space_id: space.id,
             component: component.name["fi"],
             component_id: component.id,
             id: record.id,
+            reference: record.reference,
             created_at: record.created_at,
             published_at: record.published_at,
             **expand_localized_data.call(record.title, :title),
@@ -503,6 +535,7 @@ namespace :hkiexport do
             end_date: record.end_date,
             addresses: locations.map(&:address).join(";"),
             coordinates: locations.map { |l| [l.latitude, l.longitude].join(",") }.join(";"),
+            **detail_values,
             budget_amount: record.budget_amount,
             maintenance_budget_amount: record.maintenance_budget_amount,
             **expand_localized_data.call(record.budget_breakdown, :budget_breakdown),
