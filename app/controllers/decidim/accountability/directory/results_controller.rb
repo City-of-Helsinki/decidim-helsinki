@@ -180,7 +180,7 @@ module Decidim
         def join_vote_counts(query)
           details = Decidim::AccountabilitySimple::ResultDetail.where(
             accountability_result_detailable: available_components
-          ).where("title->>'fi' = ?", "Äänet")
+          ).where("TRIM(title->>'fi') = ?", "Äänet")
 
           join_query = <<~SQL.squish
             LEFT OUTER JOIN decidim_accountability_simple_result_detail_values AS vote_counts
