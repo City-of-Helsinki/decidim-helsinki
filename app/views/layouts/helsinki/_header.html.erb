@@ -15,11 +15,12 @@
   <div class="top-bar">
     <div class="headerbar row expanded">
       <div class="columns small-8 medium-6">
-        <%= link_to decidim.root_path, class: "top-bar-logo", aria: { label: t("layouts.decidim.header.front_page_link") } do %>
+        <%= link_to decidim.root_path, class: "top-bar-logo" do %>
           <div class="top-bar-logo-symbol">
             <%= render partial: "layouts/decidim/logo", locals: { organization: current_organization } %>
           </div>
           <div class="top-bar-logo-text"><%= translated_attribute(Rails.application.config.service_name) %></div>
+          <span class="sr-only"><%= t("layouts.decidim.header.front_page_link") %></span>
         <% end %>
       </div>
       <div class="columns small-4 medium-6">

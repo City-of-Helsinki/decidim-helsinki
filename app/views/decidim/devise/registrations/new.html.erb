@@ -32,7 +32,21 @@
           <%= f.email_field :email, id: "registration_email", label_options: { for: "registration_email" } %>
         </div>
         <div class="field">
-          <%= f.password_field :password, password_field_options_for(:user).merge(id: "registration_password", label_options: { for: "registration_password", tooltip: password_tooltip_for(:user) }) %>
+          <span class="label__wrapper">
+            <span class="label__text"><%= f.label :password, nil, for: "registration_password" %></span>
+            <button class="label__tooltip" type="button"
+              data-tooltip="true"
+              data-position="top"
+              data-disable-hover="true"
+              data-click-open="true"
+              data-allow-html="true"
+              title="<%= password_tooltip_for(:user) %>"
+            >
+              <%= icon("info", role: "img", "aria-hidden": true) %>
+              <span class="show-for-sr"><%= t("helsinki.forms.label_tooltip") %></span>
+            </button>
+          </span>
+          <%= f.password_field :password, password_field_options_for(:user).merge(id: "registration_password", label: false) %>
         </div>
         <div class="field">
           <%= f.password_field :password_confirmation, password_field_options_for(:user).except(:help_text) %>

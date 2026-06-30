@@ -13,7 +13,7 @@
     <% if current_component.categories.any? %>
       <div class="columns">
         <div class="filters__control category_id_filter">
-          <%= form.select(:with_any_category, options_for_select(current_component.categories.map { |c| [translated_attribute(c.name), c.id] }), { label: t(".category"), include_blank: t("decidim.filters.linked_classes.all") }, id: "category", data: { disable_dynamic_change: true }) %>
+          <%= form.select(:with_any_category, options_for_select(current_component.categories.map { |c| [translated_attribute(c.name), c.id] }), { label: t(".category"), include_blank: t("decidim.filters.linked_classes.all") }, data: { disable_dynamic_change: true }) %>
         </div>
       </div>
     <% end %>
@@ -29,7 +29,7 @@
             [t("decidim.proposals.application_helper.filter_state_values.rejected"), "rejected"]
           ]
           %>
-          <%= form.select(:with_any_state, filter_states_values, { label: t(".state"), include_blank: t("decidim.filters.linked_classes.all") }, data: { disable_dynamic_change: true }) %>
+          <%= form.select(:with_any_state, options_for_select(filter_states_values), { label: t(".state"), include_blank: t("decidim.filters.linked_classes.all") }, data: { disable_dynamic_change: true }) %>
         </div>
       </div>
     <% end %>

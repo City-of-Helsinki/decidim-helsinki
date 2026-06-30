@@ -1,9 +1,9 @@
-<%= filter_form_for filter, main_app.posts_path, role: "region", "aria-label": t("decidim.blogs.posts.filters.label") do |form| %>
+<%= filter_form_for filter, main_app.posts_path do |form| %>
   <div class="row columns show-for-medium">
     <div class="filters__section filters__section--title">
       <div class="row">
         <div class="columns mediumlarge-6 large-8">
-          <h3><%= t("decidim.blogs.posts.filters.title") %></h3>
+          <h2 class="h3"><%= t("decidim.blogs.posts.filters.title") %></h2>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
 
   <div class="row columns">
     <div class="filters__section">
-      <button type="submit" class="button primary" aria-label="<%= t("decidim.blogs.posts.filters.search") %>" aria-controls="projects-count projects" data-close>
+      <button type="submit" class="button primary" aria-label="<%= t("decidim.blogs.posts.filters.search") %>" data-close>
         <%= t("decidim.blogs.posts.filters.search") %>
       </button>
       <button type="reset" class="button clear"><%= t "decidim.blogs.posts.filters.reset" %></button>

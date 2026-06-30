@@ -14,6 +14,10 @@ module CardMCellExtensions
     def render_space?
       false
     end
+
+    def comments_count_status
+      render_comments_count
+    end
   end
 
   private

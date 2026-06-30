@@ -10,7 +10,7 @@
     <div class="columns large-8 margin-bottom-3">
       <%= decidim_form_for(resource, namespace: "password", as: resource_name, url: password_path(resource_name), html: { method: :post, class: "register-form new_user" }) do |f| %>
         <div class="field">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autocomplete: "email" %>
         </div>
 
         <div class="actions">
