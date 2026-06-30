@@ -193,10 +193,41 @@ class Slider {
       }
     });
 
+    // Move the page and focus the first item of the page after the move. We are
+    // not using the `keyboard` option so that we can also do the focus which is
+    // not handled by Splide. This also uses the controller to initiate the
+    // action in order to provide the callback function to it.
+    const { Controller, Slides } = this.splide.Components;
+    const afterKeyboardPageChange = () => {
+      const visible = Slides.getIn(this.splide.index);
+
+      // First visible slide. Does not use the Splide API because it would
+      // calculate the pages differently based on the `perPage` option which
+      // could lead to the wrong item being focused if the amount of items is
+      // not divisible by the `perPage` option.
+      const targetSlide = this.splide.root.querySelector(".splide__slide.is-visible");
+      if (!targetSlide) {
+        return;
+      }
+
+      const linkEl = targetSlide.querySelector("a");
+      linkEl?.focus();
+    };
+    this._onKeyDown = (ev) => {
+      if (ev.key === "ArrowLeft") {
+        Controller.go("<", false, afterKeyboardPageChange);
+      } else if (ev.key === "ArrowRight") {
+        Controller.go(">", false, afterKeyboardPageChange);
+      }
+    };
+    this.splide.root.addEventListener("keydown", this._onKeyDown);
+
     this.available = true;
   }
 
   _destroy() {
+    this.splide.root.removeEventListener("keydown", this._onKeyDown)
+
     this.splide.destroy(true);
     delete this.splide;
 
