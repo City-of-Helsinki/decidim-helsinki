@@ -146,9 +146,15 @@ en:
         settings:
           global:
             vote_success_mpassid_content: Content displayed after successful voting for MPASSid users
+    debates:
+      debate_m:
+        card_label: Discussion %{title}
     forms:
       upload:
         choose_file: Choose file
+    meetings:
+      meeting_m:
+        card_label: Meeting %{title}
     notifications:
       index:
         title: Notifications
@@ -259,6 +265,9 @@ en:
       embed:
         title: Embedded video content
       skip_subnavigation: Skip subnavigation
+    sortitions:
+      sortition_m:
+        card_label: Sortition %{title}
     tos_page:
       privacy_title: Consent to the processing of personal data
     user_activity:

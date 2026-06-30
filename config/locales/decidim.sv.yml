@@ -146,9 +146,15 @@ sv:
         settings:
           global:
             vote_success_mpassid_content: Innehåll som visas efter framgångsrik omröstning för MPASSid-användare
+    debates:
+      debate_m:
+        card_label: Samtala %{title}
     forms:
       upload:
         choose_file: Välj fil
+    meetings:
+      meeting_m:
+        card_label: Möte %{title}
     notifications:
       index:
         title: Meddelanden
@@ -260,6 +266,9 @@ sv:
       embed:
         title: Inbäddat videoinnehåll
       skip_subnavigation: Hoppa över undernavigering
+    sortitions:
+      sortition_m:
+        card_label: Lottning %{title}
     tos_page:
       privacy_title: Samtycke till behandling av personuppgifter
     user_activity:
