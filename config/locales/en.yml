@@ -132,7 +132,7 @@ en:
         statistics:
           plans_count: Plans
       index:
-        title: Help
+        title: About OmaStadi
       side_panel:
         choose: Choose help section
         label: Sub navigation
@@ -229,7 +229,7 @@ en:
         label: Breadcrumbs
       header:
         front_page_link: Go to front page
-        help: Help
+        help: About OmaStadi
         navigation: Menu
         subtitle: 2020-2021
       language_chooser_languages:

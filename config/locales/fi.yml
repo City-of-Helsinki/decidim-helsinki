@@ -131,7 +131,7 @@ fi:
         statistics:
           plans_count: Suunnitelmia
       index:
-        title: Ohjeet
+        title: Tietoa OmaStadista
       side_panel:
         choose: Valitse ohje
         label: Alanavigaatio
@@ -228,7 +228,7 @@ fi:
         label: Murupolku
       header:
         front_page_link: Siirry etusivulle
-        help: Ohjeet
+        help: Tietoa OmaStadista
         navigation: Valikko
         subtitle: 2020-2021
       language_chooser_languages:

@@ -131,7 +131,7 @@ sv:
         statistics:
           plans_count: Planer
       index:
-        title: Hjälp
+        title: Om VårStad
       side_panel:
         choose: Välj hjälpsektion
         label: Undernavigering
@@ -228,7 +228,7 @@ sv:
         label: Länkstig
       header:
         front_page_link: Gå till hemsidan
-        help: Hjälp
+        help: Om VårStad
         navigation: Meny
         subtitle: 2020-2021
       language_chooser_languages:
