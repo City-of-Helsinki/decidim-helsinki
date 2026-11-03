@@ -82,7 +82,7 @@ module DecidimHelsinki
     # depending on the load order.
     config.after_initialize do
       possible = []
-      possible << Decidim::HelsinkiProfile.auth_service_name.to_sym if Rails.application.config.helsinki_profile_enabled
+      # possible << Decidim::HelsinkiProfile.auth_service_name.to_sym if Rails.application.config.helsinki_profile_enabled
       possible << :suomifi if Rails.application.config.suomifi_enabled
       possible << :mpassid if Rails.application.config.mpassid_enabled
       possible << :sms if Rails.application.config.smsauth_enabled

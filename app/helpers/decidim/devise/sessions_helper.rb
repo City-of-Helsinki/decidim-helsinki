@@ -5,10 +5,8 @@ module Decidim
     module SessionsHelper
       def enabled_strong_providers
         @enabled_strong_providers ||= begin
-          providers = []
-          providers << Decidim::HelsinkiProfile.auth_service_name.to_sym if Decidim::HelsinkiProfile.configured? && Rails.application.config.helsinki_profile_enabled
-          providers += [:suomifi, :mpassid]
-          possible = providers.select do |key|
+          # possible = [Decidim::HelsinkiProfile.auth_service_name.to_sym, :suomifi, :mpassid].select do |key|
+          possible = [:suomifi, :mpassid].select do |key|
             decidim.respond_to?("user_#{key}_omniauth_authorize_path")
           end
 
