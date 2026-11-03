@@ -65,6 +65,9 @@ fi:
       sessions:
         default:
           omniauth:
+            helsinki:
+              title: Helsinki-profiili
+              description: Voit kirjautua sivustolle Helsinki-profiilin avulla.
             mpassid:
               title: Oppijan tunnus
               description: Voit kirjautua OmaStadi-sivustolle opinnoissasi käyttämällä sähköpostiosoitteella, jos koululla on käytössä MPASSid-tunnistautuminen.

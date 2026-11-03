@@ -65,6 +65,9 @@ sv:
       sessions:
         default:
           omniauth:
+            helsinki:
+              title: Helsingforsprofil
+              description: Du kan logga in på webbplatsen med Helsingforsprofil.
             mpassid:
               title: Elevkonto
               description: Du kan logga in på VårStad-webbplatsen med din e-postadress om din skola använder MPASSid-autentisering.

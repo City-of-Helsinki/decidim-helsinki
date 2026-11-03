@@ -65,6 +65,9 @@ en:
       sessions:
         default:
           omniauth:
+            helsinki:
+              title: Helsinki profile
+              description: You can log in to the website using Helsinki profile.
             mpassid:
               title: Learner's account
               description: You can log in to the OmaStadi website with your email address if your school uses MPASSid authentication.
