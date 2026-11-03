@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_05_04_064031) do
+ActiveRecord::Schema.define(version: 2026_11_03_084346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -865,6 +865,14 @@ ActiveRecord::Schema.define(version: 2026_05_04_064031) do
     t.datetime "updated_at", null: false
     t.index ["decidim_organization_id"], name: "index_decidim_hashtags_on_decidim_organization_id"
     t.index ["name"], name: "index_decidim_hashtags_on_name"
+  end
+
+  create_table "decidim_helsinki_profile_session_infos", force: :cascade do |t|
+    t.bigint "decidim_user_id", null: false
+    t.text "id_token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["decidim_user_id"], name: "index_decidim_helsinki_profile_session_infos_on_decidim_user_id"
   end
 
   create_table "decidim_helsinki_smsauth_signin_code_sessions", force: :cascade do |t|
@@ -2436,6 +2444,7 @@ ActiveRecord::Schema.define(version: 2026_05_04_064031) do
   add_foreign_key "decidim_debates_debates", "decidim_scopes"
   add_foreign_key "decidim_editor_images", "decidim_organizations"
   add_foreign_key "decidim_editor_images", "decidim_users", column: "decidim_author_id"
+  add_foreign_key "decidim_helsinki_profile_session_infos", "decidim_users"
   add_foreign_key "decidim_ideas_ideas", "decidim_scopes", column: "area_scope_id"
   add_foreign_key "decidim_identities", "decidim_organizations"
   add_foreign_key "decidim_initiatives_settings", "decidim_organizations"
